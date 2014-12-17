@@ -6,9 +6,7 @@ Date: 2014-12-15
 Authors@R: c(
     person("Joseph", "Thorley", email = "joe@poissonconsulting.ca", role = "aut"),
     person("Colin", "Millar", role = "aut"),
-    person("Robyn", "Irvine", role = "ctb"),
     person("Wendy", "Wang", role = "ctb"),
-    person("Stephanie", "Hazlitt", role = "ctb"),
     person("Andy", "Teucher", email = "andy.teucher@gmail.com", role = c("cre","ctb")))
 Description: Gets water quality thresholds, calculates water quality indices, and
     tests for water quality trends and plots water quality sites for British Columbia.
