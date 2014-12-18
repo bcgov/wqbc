@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/poissonconsulting/wqbc.png?branch=master)](https://travis-ci.com/poissonconsulting/wqbc)
+[![Build Status](https://magnum.travis-ci.com/poissonconsulting/wqbc.png?branch=master)](https://magnum.travis-ci.com/poissonconsulting/wqbc)
 
 # wqbc
 
