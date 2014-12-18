@@ -2,6 +2,7 @@
 #'
 #' Calculates water quality index from data.frame with columns Parameter, Value
 #' and Threshold.
+#'
 #' @param x data.frame with columns Parameter, Value and Threshold
 wq_index <- function (x) {
   if("Parameter" %in% colnames(x))

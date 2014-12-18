@@ -7,7 +7,7 @@
 wq_thresholds(x)
 }
 \arguments{
-\item{x}{data.frame with columns Parameter, Value and Threshold}
+\item{x}{data.frame with columns Parameter and Value}
 }
 \description{
 Gets water quality thresholds for Parameters

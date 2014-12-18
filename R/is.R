@@ -1,9 +1,21 @@
+#' Test wq_thresholds
+#'
+#' Test if object is of class wq_thresholds
+#'
+#' @param x object to test
+#' @return flag indicating result
 #' @export
-is.wq_thresholds <- function (x) {
-  is.inherits(x, "wq_thresholds")
+is_wq_thresholds <- function (x) {
+  inherits(x, "wq_thresholds")
 }
 
+#' Test wq_index
+#'
+#' Test if object is of class wq_thresholds
+#'
+#' @param x object to test
+#' @return flag indicating result
 #' @export
-is.wq_index <- function (x) {
-  is.inherits(x, "wq_index")
+is_wq_index <- function (x) {
+  inherits(x, "wq_index")
 }
