@@ -2,15 +2,13 @@ Package: wqbc
 Type: Package
 Title: Water Quality Thresholds and Index Calculation for British Columbia
 Version: 0.0.0.9000
-Date: 2014-12-15
-Authors@R: c( person("Joseph", "Thorley", email = "joe@poissonconsulting.ca",
-    role = "aut"), person("Colin", "Millar", role = "aut"), person("Wendy",
-    "Wang", role = "ctb"), person("Andy", "Teucher", email =
-    "andy.teucher@gmail.com", role = c("cre","ctb")))
+Date: 2014-12-18
+Authors@R: c(person("Joseph", "Thorley", email = "joe@poissonconsulting.ca",
+    role = c("aut", "cre")))
 Description: Gets water quality thresholds, calculates water quality indices,
     and tests for water quality trends and plots water quality sites for
     British Columbia.
-License: MIT + file LICENSE
+License: file LICENSE
 LazyData: true
 Depends:
     R (>= 3.1.2)
