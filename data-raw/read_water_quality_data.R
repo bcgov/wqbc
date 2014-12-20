@@ -19,10 +19,8 @@ getFiles <- function(url) {
 #  Extract data from web page
 #
 #---------------------------------------------------------------
-library(httr) 
-library(rjson) 
-library(XML)
-
+library(httr)
+library(devtools)
 
 url <- "http://open.canada.ca/data/api/action/package_show?id=9ec91c92-22f8-4520-8b2c-0f1cce663e18"
 # get url locations of data from webpage
@@ -70,11 +68,9 @@ head(variableLU)
 head(siteLU)
 head(descriptionLU)
 
-waterq <- dataFull 
+waterq <- dataFull
 
-use_data(waterq, pkg = as.package("~/consulting/wqbc"), overwrite = TRUE, compress = "xz")
-#save(waterq, file = "~/consulting/wqbc/data/waterq.rda")
+use_data(waterq, pkg = as.package("."), overwrite = TRUE, compress = "xz")
+#save(waterq, file = "data/waterq.rda")
 # improve compression
-#tools::resaveRdaFiles("~/consulting/wqbc/data/waterq.rda")
-
-
+#tools::resaveRdaFiles("data/waterq.rda")
