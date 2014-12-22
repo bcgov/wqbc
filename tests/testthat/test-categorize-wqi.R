@@ -1,0 +1,15 @@
+library(wqbc)
+context("categorize-wqi")
+
+test_that("categorize_wqi ", {
+  expect_equal(as.character(categorize_wqi(0)), "Poor")
+  expect_equal(as.character(categorize_wqi(44)), "Poor")
+  expect_equal(as.character(categorize_wqi(45)), "Marginal")
+  expect_equal(as.character(categorize_wqi(64)), "Marginal")
+  expect_equal(as.character(categorize_wqi(65)), "Fair")
+  expect_equal(as.character(categorize_wqi(79)), "Fair")
+  expect_equal(as.character(categorize_wqi(80)), "Good")
+  expect_equal(as.character(categorize_wqi(94)), "Good")
+  expect_equal(as.character(categorize_wqi(95)), "Excellent")
+  expect_equal(as.character(categorize_wqi(100)), "Excellent")
+})
