@@ -7,20 +7,20 @@
 \format{A data frame with 13 variables:
 \describe{
   \item{Parameter}{name of water quality parameter}
-  \item{Form}{ form of parameter (permitted values: Dissolved, Total)}
+  \item{Form}{form of parameter (permitted values: Dissolved, Total, E.coli, Enterococci)}
   \item{Jurisdiction}{regulatory jurisdiction (permitted values:
   British Columbia, Canada)}
   \item{Use}{intended use (permitted values: Drinking, Freshwater Life,
-   Marine Life, Wildlife, Livestock, Irrigation)}
+   Marine Life, Wildlife, Livestock, Irrigation, Recreation)}
   \item{Samples}{minimum number of samples required}
   \item{Days}{period within which number of samples must be collected}
-  \item{Function}{R expression to calculate value for multiple samples}
+  \item{Average}{R expression to calculate "average" value for multiple samples}
   \item{Condition}{R logical expression to test required condition}
   \item{Guideline}{R logical expression to test whether guideline fulfilled}
-  \item{Unit}{units for guideline (permitted values: mg/L, ug/L, /100mL, C)}
+  \item{Unit}{units for guideline (permitted values: mg/L, ug/L, /100mL, m, C, NTU)}
+  \item{Comments}{comments regarding the interpretation of the online documentation}
   \item{Date}{YYYY-MM-DD online documentation last checked}
   \item{URL}{online documentation from which guideline extracted}
-  \item{Comments}{comments regarding the interpretation of the online documentation}
 }}
 \usage{
 guidelines
@@ -36,7 +36,8 @@ or locations are not included. For example some of the
 guidelines for turbidity are defined with respect to background
 levels and/or an upstream site.
 Where some interpretation of the information provided was required
-this is noted in the comments.
+this is noted in the comments. Missing values (NA) are permitted in
+Form, Condition and Comments only.
 }
 \keyword{datasets}
 
