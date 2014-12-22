@@ -14,7 +14,7 @@
    Marine Life, Wildlife, Livestock, Irrigation, Recreation)}
   \item{Samples}{minimum number of samples required}
   \item{Days}{period within which number of samples must be collected}
-  \item{Average}{R expression to calculate "average" value for multiple samples}
+  \item{Average}{R function(s) to calculate "average" value for multiple samples}
   \item{Condition}{R logical expression to test required condition}
   \item{Guideline}{R logical expression to test whether guideline fulfilled}
   \item{Unit}{units for guideline (permitted values: mg/L, ug/L, /dL, m, NTU, pH)}
