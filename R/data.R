@@ -53,7 +53,7 @@
 #'   \item{Average}{R expression to calculate "average" value for multiple samples}
 #'   \item{Condition}{R logical expression to test required condition}
 #'   \item{Guideline}{R logical expression to test whether guideline fulfilled}
-#'   \item{Unit}{units for guideline (permitted values: mg/L, ug/L, /100mL, m, C, NTU)}
+#'   \item{Unit}{units for guideline (permitted values: mg/L, ug/L, /100mL, m, NTU)}
 #'   \item{Comments}{comments regarding the interpretation of the online documentation}
 #'   \item{Date}{YYYY-MM-DD online documentation last checked}
 #'   \item{URL}{online documentation from which guideline extracted}
