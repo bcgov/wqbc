@@ -39,7 +39,7 @@ input_guidelines <- function () {
   stopifnot(all(!is.na(guidelines$Guideline)))
   stopifnot(all(!is.na(guidelines$Unit)))
   stopifnot(all(!is.na(guidelines$Date)))
-  stopifnot(all(!is.na(guidelines$Url)))
+  stopifnot(all(!is.na(guidelines$URL)))
 
   # check url if internet connection
 
