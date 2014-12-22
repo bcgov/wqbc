@@ -32,9 +32,9 @@ Bacteria,E.coli,British Columbia,Freshwater Life,,,median(.),,<= 14,/100mL,http:
 Bacteria,Enterococci,British Columbia,Freshwater Life,,,median(.),,<= 4,/100mL,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,number of samples not specified
 Bacteria,Enterococci,British Columbia,Marine Life,,,median(.),,<= 4,/100mL,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,number of samples not specified
 Bacteria,E.coli,Canada,Recreational,,,,,<= 400,/100mL,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
-Bacteria,E.coli,Canada,Recreational,>= 5,,exp(mean(log(.))),,<= 200,/100mL,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
+Bacteria,E.coli,Canada,Recreational,5,,exp(mean(log(.))),,<= 200,/100mL,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
 Bacteria,Enterococci,Canada,Recreational,,,,,<= 70,/100mL,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
-Bacteria,Enterococci,Canada,Recreational,>=5,,exp(mean(log(.))),,<= 35,/100mL,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
+Bacteria,Enterococci,Canada,Recreational,5,,exp(mean(log(.))),,<= 35,/100mL,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
 Fluoride,,,,,,,,,,,
 Iron,,,,,,,,,,,
 Lead,,,,,,,,,,,
