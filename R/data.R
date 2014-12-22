@@ -1,10 +1,10 @@
 #' Fraser River Basin Long-term Water Quality Monitoring 1979-Present
 #'
-#' Surface freshwater quality monitoring in the Fraser River Basin 
-#' is carried out under the Canada-British Columbia Water Quality 
-#' Monitoring Agreement. Monitoring is conducted to assess water 
-#' quality status and long-term trends, detect emerging issues, 
-#' establish water quality guidelines and track the effectiveness 
+#' Surface freshwater quality monitoring in the Fraser River Basin
+#' is carried out under the Canada-British Columbia Water Quality
+#' Monitoring Agreement. Monitoring is conducted to assess water
+#' quality status and long-term trends, detect emerging issues,
+#' establish water quality guidelines and track the effectiveness
 #' of remedial measures and regulatory decisions.
 #'
 #' @format A data frame with 249079 rows and 12 variables:
@@ -24,3 +24,37 @@
 #' }
 #' @source \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}
 "waterq"
+
+#' Water Quality Guidelines for British Columbia and Canada
+#'
+#' Both the Canadian federal government and the
+#' province of British Columbia set guidelines for a range of
+#' water quality parameters. The data were taken from a
+#' range of federal and provincial websites. They represent
+#' long-term guidelines for samples taken from the water column.
+#' Guidelines which depend on conditions from other periods
+#' or locations are not included. For example some of the
+#' guidelines for turbidity are defined with respect to background
+#' levels and/or an upstream site.
+#' Where some interpretation of the information provided was required
+#' this is noted in the comments.
+#'
+#' @format A data frame with 13 variables:
+#' \describe{
+#'   \item{Parameter}{name of water quality parameter}
+#'   \item{Form}{ form of parameter (permitted values: Dissolved, Total)}
+#'   \item{Jurisdiction}{regulatory jurisdiction (permitted values:
+#'   British Columbia, Canada)}
+#'   \item{Use}{intended use (permitted values: Drinking, Freshwater Life,
+#'    Marine Life, Wildlife, Livestock, Irrigation)}
+#'   \item{Samples}{minimum number of samples required}
+#'   \item{Days}{period within which number of samples must be collected}
+#'   \item{Function}{R expression to calculate value for multiple samples}
+#'   \item{Condition}{R logical expression to test required condition}
+#'   \item{Guideline}{R logical expression to test whether guideline fulfilled}
+#'   \item{Unit}{units for guideline (permitted values: mg/L, ug/L, /100mL, C)}
+#'   \item{Date}{YYYY-MM-DD online documentation last checked}
+#'   \item{URL}{online documentation from which guideline extracted}
+#'   \item{Comments}{comments regarding the interpretation of the online documentation}
+#' }
+"guidelines"
