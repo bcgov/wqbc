@@ -3,8 +3,10 @@ Type: Package
 Title: Water Quality Thresholds and Index Calculation for British Columbia
 Version: 0.0.0.9000
 Date: 2014-12-18
-Authors@R: c(person("Joseph", "Thorley", email = "joe@poissonconsulting.ca",
-    role = c("aut", "cre")))
+Authors@R: as.person(c(
+    "Joe Thorley <joe@poissonconsulting.ca> [aut, cre]",
+    "Colin Millar [aut]",
+    "Wendy Wang [aut]"))
 Description: Gets water quality thresholds, calculates water quality indices,
     and tests for water quality trends and plots water quality sites for
     British Columbia.
@@ -12,5 +14,8 @@ License: file LICENSE
 LazyData: true
 Depends:
     R (>= 3.1.2)
+Imports:
+    assertthat (>= 0.1),
+    plyr (>= 1.8.1)
 Suggests:
     testthat

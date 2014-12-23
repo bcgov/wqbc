@@ -1,0 +1,37 @@
+Variable,Jurisdiction,Use,Samples,Days,Average,Condition,Guideline,Unit,Comments,Date,URL
+Aluminium - Dissolved,BC,Drinking,1,1,mean,,<= 0.2,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
+Aluminium - Dissolved,BC,Freshwater Life,1,1,mean,pH >= 6.5,<= 0.1,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
+Aluminium - Dissolved,BC,Freshwater Life,5,30,mean,median(pH) >=6.5,<= 0.05,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
+Aluminium - Dissolved,BC,Freshwater Life,1,1,mean,pH < 6.5,<= exp(1.209 - 2.426 * pH + 0.286 * pH^2),mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
+Aluminium - Dissolved,BC,Freshwater Life,5,30,mean,median(pH) < 6.5,<= exp(1.6 - 3.327 * median(pH) + 0.402 * median(pH)^2),mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
+Aluminum - Total,BC,Wildlife,1,1,mean,,<= 5,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
+Aluminum - Total,BC,Livestock,1,1,mean,,<= 5,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
+Aluminum - Total,BC,Irrigation,1,1,mean,,<= 5,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
+Aluminum - Total,BC,Recreation,1,1,mean,,<= 0.2,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
+Arsenic,BC,Drinking,1,1,mean,,<= 25,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html
+Arsenic,BC,Freshwater Life,1,1,mean,,<= 5,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html
+Arsenic,BC,Marine Life,1,1,mean,,<= 12.5,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html
+Arsenic,BC,Irrigation,1,1,mean,,<= 100,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html
+Arsenic,BC,Livestock,1,1,mean,,<= 25,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html
+Arsenic,BC,Wildlife,1,1,mean,,<= 25,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html
+Cadmium,CA,Drinking,1,1,mean,,<= 5,ug/L,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/alt_formats/hecs-sesc/pdf/pubs/water-eau/cadmium/cadmium-eng.pdf
+Cadmium,CA,Freshwater Life,1,1,mean,,<= 0.09,ug/L,,2014-12-21,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1
+Cadmium,CA,Marine Life,1,1,mean,,<= 0.12,ug/L,,2014-12-21,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1
+Cadmium,CA,Irrigation,1,1,mean,,<= 5.1,ug/L,,2014-12-21,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1
+Cadmium,CA,Livestock,1,1,mean,,<= 80,ug/L,,2014-12-21,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1
+Clarity,CA,Recreation,1,1,mean,,>= 1.2,m,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php
+E.coli,BC,Drinking,1,1,exp(mean(log)),,<= 0,/dL,Assumed geometric mean,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html
+Enterococci,BC,Drinking,1,1,exp(mean(log)),,<= 0,/dL,Assumed geometric mean,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html
+E.coli,BC,Livestock,1,1,exp(mean(log)),,<= 200,/dL,Assumed geometric mean,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html
+Enterococci,BC,Livestock,1,1,exp(mean(log)),,<= 50,/dL,Assumed geometric mean,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html
+E.coli,BC,Recreation,1,1,exp(mean(log)),,<= 77,/dL,Assumed sampling period of 1 day,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html
+Enterococci,BC,Recreation,1,1,exp(mean(log)),,<= 20,/dL,Assumed sampling period of 1 day,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html
+E.coli,BC,Freshwater Life,1,1,median,,<= 14,/dL,Assumed sampling period of 1 day,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html
+Enterococci,BC,Freshwater Life,1,1,median,,<= 4,/dL,Assumed sampling period of 1 day,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html
+Enterococci,BC,Marine Life,1,1,median,,<= 4,/dL,Assumed sampling period of 1 day,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html
+E.coli,CA,Recreation,1,1,exp(mean(log)),,<= 400,/dL,Assumed geometric mean,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php
+E.coli,CA,Recreation,5,30,exp(mean(log)),,<= 200,/dL,Assumed sampling period of 30 days,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php
+Enterococci,CA,Recreation,1,1,exp(mean(log)),,<= 70,/dL,Assumed geometric mean,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php
+Enterococci,CA,Recreation,5,30,exp(mean(log)),,<= 35,/dL,Assumed sampling period of 30 days,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php
+pH,CA,Recreation,1,1,mean,,>= 5.0 & <= 9.0,pH,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php
+Turbidity,CA,Recreation,1,1,mean,,<= 50,NTU,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php
