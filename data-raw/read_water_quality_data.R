@@ -59,22 +59,6 @@ dataList <- lapply(seq_along(allFiles), function(i) {
 dataFull <- do.call(rbind, dataList)
 
 
+save(dataFull, variableLU, siteLU, descriptionLU, file = "~/consulting/wqbc/data-raw/dataFull.rda")
 # DONE
-
-
-# the data
-head(dataFull)
-
-# look up tables
-head(variableLU)
-head(siteLU)
-head(descriptionLU)
-
-waterq <- dataFull 
-
-use_data(waterq, pkg = as.package("~/consulting/wqbc"), overwrite = TRUE, compress = "xz")
-#save(waterq, file = "~/consulting/wqbc/data/waterq.rda")
-# improve compression
-#tools::resaveRdaFiles("~/consulting/wqbc/data/waterq.rda")
-
 
