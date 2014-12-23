@@ -1,9 +1,9 @@
 Variable,Jurisdiction,Use,Samples,Days,Average,Condition,Guideline,Unit,Comments,Date,URL
 Aluminium - Dissolved,BC,Drinking,1,1,mean,,<= 0.2,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
 Aluminium - Dissolved,BC,Freshwater Life,1,1,mean,pH >= 6.5,<= 0.1,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
-Aluminium - Dissolved,BC,Freshwater Life,5,30,mean,pH >= 6.5,<= 0.05,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
+Aluminium - Dissolved,BC,Freshwater Life,5,30,mean,median(pH) >=6.5,<= 0.05,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
 Aluminium - Dissolved,BC,Freshwater Life,1,1,mean,pH < 6.5,<= exp(1.209 - 2.426 * pH + 0.286 * pH^2),mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
-Aluminium - Dissolved,BC,Freshwater Life,5,30,mean,pH < 6.5,<= exp(1.6 - 3.327 * median(pH) + 0.402 * median(pH)^2),mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
+Aluminium - Dissolved,BC,Freshwater Life,5,30,mean,median(pH) < 6.5,<= exp(1.6 - 3.327 * median(pH) + 0.402 * median(pH)^2),mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
 Aluminum - Total,BC,Wildlife,1,1,mean,,<= 5,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
 Aluminum - Total,BC,Livestock,1,1,mean,,<= 5,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
 Aluminum - Total,BC,Irrigation,1,1,mean,,<= 5,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
