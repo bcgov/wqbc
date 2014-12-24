@@ -10,10 +10,21 @@ Aluminum - Total,BC,Irrigation,1,1,mean,,<= 5,mg/L,,2014-12-21,http://www.env.go
 Aluminum - Total,BC,Recreation,1,1,mean,,<= 0.2,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html
 Arsenic,BC,Drinking,1,1,mean,,<= 25,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html
 Arsenic,BC,Freshwater Life,1,1,mean,,<= 5,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html
-Arsenic,BC,Marine Life,1,1,mean,,<= 12.5,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html
 Arsenic,BC,Irrigation,1,1,mean,,<= 100,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html
 Arsenic,BC,Livestock,1,1,mean,,<= 25,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html
 Arsenic,BC,Wildlife,1,1,mean,,<= 25,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html
+Benzene,BC,Drinking,1,1,mean,,<= 5,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/benzene/benzene_overview.pdf
+Benzene,BC,Freshwater Life,1,1,mean,,<= 40,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/benzene/benzene_overview.pdf
+Boron,BC,Drinking,1,1,mean,,<= 5,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html
+Boron,BC,Freshwater Life,1,1,mean,,<=1.2,mg B/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html
+Boron,BC,Wildlife,1,1,mean,,<= 5,mg B/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html
+Boron,BC,Irrigation-Very Sensitive,1,1,mean,,<=0.5,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html
+Boron,BC,Irrigation-Sensitive,1,1,mean,,0.5 ~ 1.0,mg/L,,2014--12-22,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html
+Boron,BC,Irrigation-Moderately Sensitive,1,1,mean,,"1.0 ~ 2,0",mg/L,,2014--12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html
+Boron,BC,Irrigation-Moderately Tolerate,1,1,mean,,2.0 ~ 4.0,mg/L,,2014--12-20,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html
+Boron,BC,Irrigation-Tolerate,1,1,mean,,4.0 ~ 6.0,mg/L,,2014--12-19,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html
+Boron,BC,Irrigation-Very Tolerate,1,1,mean,,6.0 ~ 15.0,mg/L,,2014--12-18,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html
+Boron,BC,Livestock,1,1,mean,,<= 5,mg B/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html
 Cadmium,CA,Drinking,1,1,mean,,<= 5,ug/L,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/alt_formats/hecs-sesc/pdf/pubs/water-eau/cadmium/cadmium-eng.pdf
 Cadmium,CA,Freshwater Life,1,1,mean,,<= 0.09,ug/L,,2014-12-21,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1
 Cadmium,CA,Marine Life,1,1,mean,,<= 0.12,ug/L,,2014-12-21,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1
