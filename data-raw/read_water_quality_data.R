@@ -56,20 +56,38 @@ dataList <- lapply(seq_along(allFiles), function(i) {
 # rbind into one data.frame
 dataFull <- do.call(rbind, dataList)
 
-
-# DONE
-
-
-# the data
+# the raw data
 head(dataFull)
 
 # look up tables
 head(variableLU)
 head(siteLU)
 head(descriptionLU)
+# could add these in at a later date
+# this would sort out some issues that we clear up by hand anyway such as missing lat long and missing station name
 
-waterq <- dataFull
+waterq <- dataFull 
 
+# clean datetime
+# get correct time zone ?
+waterq $ sample_datetime <-  strptime(as.character(waterq $ sample_datetime), "%Y-%m-%dT%H:%M:%S")
+
+# remove white space
+waterq $ method_detect_limit <- as.numeric(gsub("MG/L", "", as.character(waterq $ method_detect_limit)))
+
+# change NULL and blank to NA
+waterq $ flag <- as.character(waterq $ flag)
+waterq $ flag[waterq $ flag %in% c("", "NULL")] <- NA
+
+# fill in blank station_name on one entry
+waterq $ station_name[waterq $ station_name == ""] <- "North Alouette River at 132nd Ave and Edge Street"
+waterq $ station_name <- waterq $ station_name[drop = TRUE]
+
+# remove white space and replace blank with NA
+waterq $ status <- gsub(" ", "", as.character(waterq $ status))
+waterq $ status[waterq $ status == ""] <- NA
+
+# save to package
 use_data(waterq, pkg = as.package("."), overwrite = TRUE, compress = "xz")
 #save(waterq, file = "data/waterq.rda")
 # improve compression
