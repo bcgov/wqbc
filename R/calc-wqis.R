@@ -24,8 +24,6 @@ F3 <- function (x) {
   nse / (0.01 * nse + 0.01)
 }
 
-# categorize_wqi(1:100)
-
 categorize_wqi <- function (x) {
   cut(x, breaks = c(-1, 44, 64, 79, 94, 100),
       labels = c("Poor", "Marginal", "Fair", "Good", "Excellent"),
