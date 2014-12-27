@@ -5,7 +5,7 @@ Version: 0.0.0.9000
 Date: 2014-12-18
 Authors@R: as.person(c(
     "Joe Thorley <joe@poissonconsulting.ca> [aut, cre]",
-    "Colin Millar [aut]",
+    "Colin Millar <colinpmillar@gmail.com> [aut]",
     "Wendy Wang [aut]"))
 Description: Gets water quality thresholds, calculates water quality indices,
     and tests for water quality trends and plots water quality sites for
