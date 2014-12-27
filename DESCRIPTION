@@ -17,6 +17,7 @@ Depends:
 Imports:
     assertthat (>= 0.1),
     dplyr (>= 0.3.0.2),
-    plyr (>= 1.8.1)
+    plyr (>= 1.8.1),
+    zyp (>= 0.10-1)
 Suggests:
     testthat
