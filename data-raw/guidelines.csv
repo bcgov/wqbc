@@ -145,5 +145,33 @@ Manganese,BC,Freshwater Life,5,30,mean,31-Day Mean at Specified CaCO3 Hardness 5
 Manganese,BC,Freshwater Life,5,30,mean,32-Day Mean at Specified CaCO3 Hardness 100mg/L,<=1,mg/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 38
 Manganese,BC,Freshwater Life,5,30,mean,33-Day Mean at Specified CaCO3 Hardness 150mg/L,<=1.3,mg/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 38
 Manganese,BC,Freshwater Life,5,30,mean,34-Day Mean at Specified CaCO3 Hardness 300mg/L,<=1.9,mg/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 38
+Mercury,BC,Drinking,1,1,mean,,<= 1,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+Mercury,BC,Freshwater Life,1,1,mean,,<= 0.1,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+Mercury,BC,Freshwater Life,5,30,mean,,<= 0.02,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+Mercury,BC,Marine Life,1,1,mean,,<= 2,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+Mercury,BC,Marine Life,5,30,mean,,<= 0.02,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+Mercury,BC,Wildlife,1,1,mean,% MeHg <= 0.5,<= 0.02,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13a
+Mercury,BC,Wildlife,1,1,mean,% MeHg <= 1,<= 0.01,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13a
+Mercury,BC,Wildlife,1,1,mean,% MeHg <= 2.5,<= 0.004,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13a
+Mercury,BC,Wildlife,1,1,mean,% MeHg <= 5,<= 0.002,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13a
+Mercury,BC,Livestock,1,1,mean,,<= 3,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+Mercury,BC,Irrigation,1,1,mean,,<= 2,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+Mercury,BC,Recreation,1,1,mean,,<= 1,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+,,,,,mean,,<= ,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+,,,,,mean,,<= ,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+,,,,,mean,,<= ,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+,,,,,mean,,<= ,ug/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+,,,,,mean,,<= ,,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+,,,,,mean,,<= ,,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+,,,,,mean,,<= ,,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
+,,,,,mean,,<= ,,,,,
+,,,,,mean,,<= ,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
 pH,CA,Recreation,1,1,mean,,<= 35,pH,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
 Turbidity,CA,Recreation,1,1,mean,,>= 5.0 & <= 9.0,NTU,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
