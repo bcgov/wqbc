@@ -161,40 +161,39 @@ Methyl Tertiary-Butyl Ether,BC,Recreation,1,1,mean,,<= 0.02,mg/L,,2006--1-8,Brit
 Methyl Tertiary-Butyl Ether,BC,Livestock,1,1,mean,,<= 11,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 39
 Methyl Tertiary-Butyl Ether,BC,Aquatic Life (freshwater ),1,1,mean,,<= 3.4,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 39
 Methyl Tertiary-Butyl Ether,BC,"Aquatic Life (marine, estuarine)",1,1,mean,,<= 0.44,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 39
-Molybdenum,BC,Drinking,1,1,mean,,<= 0.25,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 39
-Molybdenum,BC,Freshwater Life,1,1,mean,,<= 2,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
-Molybdenum,BC,Freshwater Life,5,30,mean,,<= 1,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
-Molybdenum,BC,Wildlife,1,1,mean,,<= 0.05,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
-Molybdenum,BC,Livestock,1,1,mean,consuming forages not irrigated or if no molybdenum containing fertilizers are applied to grow feed consumed by livestock,<= 0.08,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
-Molybdenum,BC,Livestock,1,1,mean,all other cases,<= 0.05,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+Molybdenum,BC,Drinking,1,1,mean,,<= 0.25,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 39
+Molybdenum,BC,Freshwater Life,1,1,mean,,<= 2,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+Molybdenum,BC,Freshwater Life,5,30,mean,,<= 1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+Molybdenum,BC,Wildlife,1,1,mean,,<= 0.05,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+Molybdenum,BC,Livestock,1,1,mean,consuming forages not irrigated or if no molybdenum containing fertilizers are applied to grow feed consumed by livestock,<= 0.08,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+Molybdenum,BC,Livestock,1,1,mean,all other cases,<= 0.05,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
 Molybdenum,BC,Irrigation,1,1,mean,"Poorly Drained Soil
 - Cu:Mo ratio is less than
 2:1 in the irrigation water
-- (forage crops)",<= 0.05,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+- (forage crops)",<= 0.05,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
 Molybdenum,BC,Irrigation,5,30,mean,"Poorly Drained Soil
 - Cu:Mo ratio is less than
 2:1 in the irrigation water
-- (forage crops)",<= 0.01,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+- (forage crops)",<= 0.01,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
 Molybdenum,BC,Irrigation,1,1,mean,"- Poorly
 Drained Soil
 - Cu:Mo ratio is greater than
 2:1 in the irrigation water
-- (forage crops)",<= 0.05,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+- (forage crops)",<= 0.05,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
 Molybdenum,BC,Irrigation,5,30,mean,"- Poorly
 Drained Soil
 - Cu:Mo ratio is greater than
 2:1 in the irrigation water
-- (forage crops)",<= 0.02,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+- (forage crops)",<= 0.02,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
 Molybdenum,BC,Irrigation,1,1,mean,"- Well Drained Soil
-(forage crops)",<= 0.05,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+(forage crops)",<= 0.05,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
 Molybdenum,BC,Irrigation,5,30,mean,"- Well Drained Soil
-(forage crops)",<= 0.02,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+(forage crops)",<= 0.02,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
 Molybdenum,BC,Irrigation,5,30,mean,"- All Soils
-(non-forage crops)",<= 0.03,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
-,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
+(non-forage crops)",<= 0.03,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+Naphthalene,BC,Freshwater Life,1,1,mean,,<= 1,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 25
+Naphthalene,BC,Marine Life,1,1,mean,,<= 1,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 25
+Naphthalene,BC,Sediments (Fresh Water),1,1,mean,,<= 0.01,ug/g,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 25
+Naphthalene,BC,Sediments (Marine),1,1,mean,,<= 0.01,ug/g,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 25
 pH,CA,Recreation,1,1,mean,,<= 35,pH,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
 Turbidity,CA,Recreation,1,1,mean,,>= 5.0 & <= 9.0,NTU,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
