@@ -221,27 +221,37 @@ PhACs 17 ?-ethinylestradiol ,BC,Freshwater Life,5,30,mean,,<= 0.5 with no single
 Phenol,BC,Freshwater Life,1,1,mean,"4-hydroxyphenol (quinol,hydroquinone, 1,4-benzenediol)",<= 4.5,ng/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/phenol/phenol_summ.pdf,
 Phenol,BC,Freshwater Life,1,1,mean,"3-hydroxyphenol (resorcinol,1,3-benzenediol) ",<= 12.5,ng/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/phenol/phenol_summ.pdf,
 Phenol,BC,Freshwater Life,1,1,mean,all other nonhalogenated phenols ,<= 50,ng/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/phenol/phenol_summ.pdf,
-Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,low consumption of 50 g/week ,4,µg/kg wet weight,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,moderate consumption of 100 g/week,2,µg/kg wet weight,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,heavy consumption of 200 g/week ,1,µg/kg wet weight,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polycyclic Aromatic Hydrocarbons,BC,Industrial,1,1,mean,,<= 0.01,µg/L ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Irrigation,1,1,mean,PCBs  = total,<= 0.5,µg/L ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs total ,<= 0.1,µg/L ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #105,<= 0.09,µg/L ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #169,<= 0.06,µg/L ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #77,<= 0.04,µg/L ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #126,<= 0.00025,µg/L ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life ,1,1,mean,fish and/or shellfish (for wildlife consumption: whole animal) ,<= 0.1,µg/g wet weight ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life ,1,1,mean,fish and/or shellfish (for human consumption: edible tissue only) ,<= 2,µg/g wet weight ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,sediment (*containing 1% organic carbon),<= 0.02 ,µg/g dry weight ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Selenium ,BC,Drinking Water ,1,1,mean,,<= 10,µg/L ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Freshwater Life,1,1,mean,,<= 2,µg/L ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Marine Life,1,1,mean,,<= 2,µg/L ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Sediments ,1,1,mean,,<= 2,µg/g (dry weight) ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Tissue,1,1,mean,,<= 1,µg/g body weight (wet weight) ,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Wildlife,1,1,mean,,<= 4,µg/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Irrigation,1,1,mean,,<= 10,µg/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Livestock,1,1,mean,,<= 10,µg/L,,2014--12-28,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
+Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,low consumption of 50 g/week ,4,µg/kg wet weight,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,moderate consumption of 100 g/week,2,µg/kg wet weight,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,heavy consumption of 200 g/week ,1,µg/kg wet weight,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Polycyclic Aromatic Hydrocarbons,BC,Industrial,1,1,mean,,<= 0.01,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Polychlorinated Biphenyls,BC,Irrigation,1,1,mean,PCBs  = total,<= 0.5,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs total ,<= 0.1,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #105,<= 0.09,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #169,<= 0.06,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #77,<= 0.04,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #126,<= 0.00025,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life ,1,1,mean,fish and/or shellfish (for wildlife consumption: whole animal) ,<= 0.1,µg/g wet weight ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life ,1,1,mean,fish and/or shellfish (for human consumption: edible tissue only) ,<= 2,µg/g wet weight ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,sediment (*containing 1% organic carbon),<= 0.02 ,µg/g dry weight ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
+Selenium ,BC,Drinking Water ,1,1,mean,,<= 10,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
+Selenium ,BC,Freshwater Life,1,1,mean,,<= 2,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
+Selenium ,BC,Marine Life,1,1,mean,,<= 2,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
+Selenium ,BC,Sediments ,1,1,mean,,<= 2,µg/g (dry weight) ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
+Selenium ,BC,Tissue,1,1,mean,,<= 1,µg/g body weight (wet weight) ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
+Selenium ,BC,Wildlife,1,1,mean,,<= 4,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
+Selenium ,BC,Irrigation,1,1,mean,,<= 10,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
+Selenium ,BC,Livestock,1,1,mean,,<= 10,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
+Silver,BC,Freshwater Life,5,30,mean,hardness less than or equal to 100 mg/L ,<= 0.05,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 29
+Silver,BC,Freshwater Life,1,1,mean,hardness less than or equal to 100 mg/L ,<=0.1,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 29
+Silver,BC,Freshwater Life,5,30,mean,hardness greater than 100 mg/L ,<=1.5,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 29
+Silver,BC,Freshwater Life,1,1,mean,hardness greater than 100 mg/L ,<=3,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 29
+Silver,BC,Freshwater Life,5,30,mean,open coast and estuaries,<=1.5,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 29
+Sulfolane,BC,Freshwater Life,1,1,mean,,<= 50,mg/L,,2014--12-29,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,
+Sulfolane,BC,Irrigation,1,1,mean,,<= 8.4,mg/L,,2014--12-29,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,
+Sulfolane,BC,Livestock,1,1,mean,,<= 14,mg/L,,2014--12-29,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
 ,,,,,,,,,,,,
 pH,CA,Recreation,1,1,mean,water / PCBs #126,<= 35,pH,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
 Turbidity,CA,Recreation,1,1,mean,,>= 5.0 & <= 9.0,NTU,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
