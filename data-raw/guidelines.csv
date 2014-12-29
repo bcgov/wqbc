@@ -259,23 +259,16 @@ Toluene,BC,Freshwater Life,1,1,mean,,<=0.039,mg/L,,2006--1-8,British Columbia Ap
 Toluene,BC,Marine Life,1,1,mean,,<=0.33,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 35
 Toluene,BC,Livestock,1,1,mean,,<=0.024,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 35
 Total Gas Pressure (TGP),BC,Freshwater Life,1,1,mean,local water depth greater than 1 m ,DP <= 76 HG or  less than or equal to 110% at sea level,mm,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
-Total Gas Pressure (TGP),BC,Freshwater Life,,,mean,background levels exceed guidelines ,no increase in DP or % TGP ,mm,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
-Total Gas Pressure (TGP),BC,Freshwater Life,,,mean,hatchery environments ,"maximum DP = 24 Hg or 103% at sea level
+Total Gas Pressure (TGP),BC,Freshwater Life,1,1,mean,background levels exceed guidelines ,no increase in DP or % TGP ,mm,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
+Total Gas Pressure (TGP),BC,Freshwater Life,1,,mean,hatchery environments ,"maximum DP = 24 Hg or 103% at sea level
 DP=0 Hg when pO2 <= 100 Hg ",mm,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
-,,,,,mean,,,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
-,,,,,mean,,,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
-,,,,,mean,,,,,,British Columbia Approved Water Quality Guidelines  2006 Edition,
-,,,,,mean,,,,,,British Columbia Approved Water Quality Guidelines  2006 Edition,
-,,,,,mean,,,,,,,
-,,,,,mean,,,,,,,
-,,,,,mean,,,,,,,
-,,,,,mean,,,,,,,
-,,,,,mean,,,,,,,
-,,,,,mean,,,,,,,
-,,,,,mean,,,,,,,
 Turbidity,CA,Recreation,1,1,mean,,>= 5.0 & <= 9.0,NTU,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
-,,,,,mean,,,,,,,
-,,,,,mean,,,,,,,
-,,,,,mean,,,,,,,
-,,,,,mean,,,,,,,
-,,,,,mean,,,,,,,
+Zinc,BC,Drinking,1,1,mean,,<= 5000,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
+Zinc,BC,Recreation,1,1,mean,,<= 5000,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
+Zinc,BC,Marine Life,1,1,mean,,<= 10,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
+Zinc,BC,Livestock,1,1,mean,,<= 2000,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
+Zinc,BC,Irrigation,1,1,mean,soil pH less than 6 ,<= 1000,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
+Zinc,BC,Irrigation,1,1,mean,soil pH equal to or greater than 6 and less than 7 ,<= 2000,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
+Zinc,BC,Irrigation,1,1,mean,soil pH greater than or equal to 7 ,<= 5000,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
+Zinc,BC,Freshwater Life,1,1,mean,,<= 33 + 0.75 x (hardness - 90) ,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
+Zinc,BC,Freshwater Life,5,30,mean,,<= 7.5 + 0.75 x (hardness - 90) ,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
