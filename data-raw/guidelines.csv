@@ -195,5 +195,17 @@ Naphthalene,BC,Freshwater Life,1,1,mean,,<= 1,ug/L,,2006--1-8,British Columbia A
 Naphthalene,BC,Marine Life,1,1,mean,,<= 1,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 25
 Naphthalene,BC,Sediments (Fresh Water),1,1,mean,,<= 0.01,ug/g,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 25
 Naphthalene,BC,Sediments (Marine),1,1,mean,,<= 0.01,ug/g,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 25
+Nitrogen,BC,Drinking,1,1,mean,Nitrate,<= 10,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
+Nitrogen,BC,Drinking,1,1,mean,Nitrite,<= 1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
+Nitrogen,BC,Freshwater Life - maximum,1,1,mean,Nitrate,<= 200,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
+Nitrogen,BC,Freshwater Life - maximum,1,1,mean,Nitrite,<= 0.06,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
+Nitrogen,BC,Freshwater Life - average ,1,1,mean,Nitrate,<= 40,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
+Nitrogen,BC,Freshwater Life - average ,1,1,mean,Nitrite,<= 0.02,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
+Nitrogen,BC,Livestock,1,1,mean,Nitrate,<= 100,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
+Nitrogen,BC,Livestock,1,1,mean,Nitrite,<= 10,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
+Nitrogen,BC,Wildlife,1,1,mean,Nitrate,<= 100,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
+Nitrogen,BC,Wildlife,1,1,mean,Nitrite,<= 10,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
+Nitrogen,BC,Recreation,1,1,mean,Nitrate,<= 10,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
+Nitrogen,BC,Recreation,1,1,mean,Nitrite,<= 1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
 pH,CA,Recreation,1,1,mean,,<= 35,pH,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
 Turbidity,CA,Recreation,1,1,mean,,>= 5.0 & <= 9.0,NTU,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
