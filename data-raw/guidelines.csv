@@ -212,16 +212,16 @@ Nutrients ,BC,Aquatic Life - streams ,1,1,mean,Chlorophyll a,<= 100, mg/m2,,2006
 Nutrients ,BC,Aquatic Life - lakes ,1,1,mean,Phosphorus , 5 ~ 15  (inclusive) ,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
 Nutrients ,BC,Recreation - streams,1,1,mean,Chlorophyll a,<= 50, mg/m2,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
 Nutrients ,BC,Recreation - lakes ,1,1,mean,Phosphorus ,<= 10,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
+Organic Carbon,BC,Drinking,1,1,mean,with chlorination/ TOC,4 mg/L source water ,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 32
+Organic Carbon,BC,Freshwater Life,1,1,mean, fresh water/TOC,30-day median ± 20% of the median background concentration. ,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 32
+Organic Carbon,BC,Freshwater Life,1,1,mean, fresh water/DOC,30-day median ± 20% of the median background concentration. ,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 32
+Organic Carbon,BC,Wildlife,1,1,mean,TOC ,30-day median ± 20% of the median background concentration. ,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 32
+Organic Carbon,BC,Wildlife,1,1,mean,DOC ,30-day median ± 20% ,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 32
+PhACs 17 ?-ethinylestradiol ,BC,Freshwater Life,5,30,mean,,<= 0.5 with no single value to exceed 0.75 ng L-1 ,ng/L,,2006--1-8,http://www.env.gov.bc.ca/wat/wq/BCguidelines/PhACs-EE2/PhACs-EE2-overview.pdf,
+Phenol,BC,Freshwater Life,1,1,mean,"4-hydroxyphenol (quinol,hydroquinone, 1,4-benzenediol)",<= 4.5,ng/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/phenol/phenol_summ.pdf,
+Phenol,BC,Freshwater Life,1,1,mean,"3-hydroxyphenol (resorcinol,1,3-benzenediol) ",<= 12.5,ng/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/phenol/phenol_summ.pdf,
+Phenol,BC,Freshwater Life,1,1,mean,all other nonhalogenated phenols ,<= 50,ng/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/phenol/phenol_summ.pdf,
 ,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
+,BC,,,,mean,,,,,,,
 pH,CA,Recreation,1,1,mean,,<= 35,pH,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
 Turbidity,CA,Recreation,1,1,mean,,>= 5.0 & <= 9.0,NTU,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
