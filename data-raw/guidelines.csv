@@ -207,5 +207,21 @@ Nitrogen,BC,Wildlife,1,1,mean,Nitrate,<= 100,mg/L,,2006--1-8,British Columbia Ap
 Nitrogen,BC,Wildlife,1,1,mean,Nitrite,<= 10,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
 Nitrogen,BC,Recreation,1,1,mean,Nitrate,<= 10,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
 Nitrogen,BC,Recreation,1,1,mean,Nitrite,<= 1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
+Nutrients ,BC,Drinking,1,1,mean,Phosphorus ,<= 10,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
+Nutrients ,BC,Aquatic Life - streams ,1,1,mean,Chlorophyll a,<= 100, mg/m2,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
+Nutrients ,BC,Aquatic Life - lakes ,1,1,mean,Phosphorus , 5 ~ 15  (inclusive) ,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
+Nutrients ,BC,Recreation - streams,1,1,mean,Chlorophyll a,<= 50, mg/m2,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
+Nutrients ,BC,Recreation - lakes ,1,1,mean,Phosphorus ,<= 10,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
 pH,CA,Recreation,1,1,mean,,<= 35,pH,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
 Turbidity,CA,Recreation,1,1,mean,,>= 5.0 & <= 9.0,NTU,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
