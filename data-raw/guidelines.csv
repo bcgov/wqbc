@@ -250,8 +250,8 @@ Silver,BC,Freshwater Life,5,30,mean,open coast and estuaries,<=1.5,µg/L,,2006--1
 Sulfolane,BC,Freshwater Life,1,1,mean,,<= 50,mg/L,,2014--12-29,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,
 Sulfolane,BC,Irrigation,1,1,mean,,<= 8.4,mg/L,,2014--12-29,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,
 Sulfolane,BC,Livestock,1,1,mean,,<= 14,mg/L,,2014--12-29,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
-,,,,,,,,,,,,
+Sulphate,BC,Drinking,1,1,mean,,<= 500,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 36
+Sulphate,BC,Freshwater Life - maximum,1,1,mean,,<= 100,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 36
+Sulphate,,Freshwater Life - alert level,1,1,mean,,<= 50,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 36
 pH,CA,Recreation,1,1,mean,water / PCBs #126,<= 35,pH,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
 Turbidity,CA,Recreation,1,1,mean,,>= 5.0 & <= 9.0,NTU,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
