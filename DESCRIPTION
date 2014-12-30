@@ -13,12 +13,14 @@ Description: Gets water quality thresholds, calculates water quality indices,
     British Columbia.
 License: file LICENSE
 LazyData: true
-Depends:
+Depends: 
     R (>= 3.1.2)
-Imports:
+Imports: 
     assertthat (>= 0.1),
     dplyr (>= 0.3.0.2),
     plyr (>= 1.8.1),
     zyp (>= 0.10-1)
-Suggests:
-    testthat
+Suggests: 
+    testthat,
+    knitr
+VignetteBuilder: knitr
