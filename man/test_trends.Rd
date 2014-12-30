@@ -37,4 +37,17 @@ the actual number of WQI values in the test plus the columns Trend (which
 gives the positive or negative net rate of change per scale unit) and
 Significance (p-value).
 }
+\examples{
+# subset data to select only TOTAL LEAD and station "BC08KA0001"
+data(waterq)
+x <- subset(waterq, station_no == "BC08KA0001" & grepl("LEAD TOTAL", variable_name))
+
+# rescale recorded values to be on common scale (some are MG/L some UG/L)
+x $ WQI <- x $ value * ifelse(x $ unit_code == "MG/L", 1000, 1)
+# and month and year covariates
+x $ month <- factor(month.abb[x $ sample_datetime $ mon + 1], levels = month.abb)
+x $ year <- x $ sample_datetime $ year + 1900
+
+test_trends(x, scale = "year", by = "month")
+}
 
