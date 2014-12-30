@@ -27,5 +27,13 @@
 #' @param by a factor or a list of factors, which must be named columns of  \code{x}.
 #' @export
 test_trends <- function (x, scale = "Year", by = NULL) {
-  NA
+
+  # center the time variable
+  mean_scale <- mean(x[[scale]])
+  centered_scale <- x[[scale]] - mean_scale
+
+  # run the trend test
+  fit <- zyp.trend.vector(y = x $ WQI, x = centered_scale, method = "yuepilon")
+
+  fit
 }
