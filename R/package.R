@@ -3,4 +3,5 @@
 #' @docType package
 #' @name wqbc
 #' @import assertthat
+#' @import zyp
 NULL
