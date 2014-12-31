@@ -67,7 +67,19 @@ Chlorophenols ,BC,Recreation,1,1,mean,Primary,MCPs: 0.1; DCPs: 0.2; TCPs: 2.0; T
 Chlorophenols ,BC,Recreation,1,1,mean,Secondary ,MCPs: 0.3; DCPs: 0.3; TCPs: 11; TTCPs: 600; PCP: 860,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
 Chlorophenols ,BC,Irrigation,1,1,mean,,NO CRITERION SET,,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
 Chlorophenols ,BC,Industrial,1,1,mean,Food Processing ,MCPs: 0.1; DCPs: 0.3; TCPs: 2.0; TTCPs: 1.0; PCP: 30 ,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
-Chlorophenols ,BC,Industrial,1,1,mean,Other uses,NO CRITERION SET,,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
+Copper,BC,Drinking,1,1,mean,,<= 500,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Freshwater Life,1,1,mean,average water hardness as CaC03 <= 50 mg/L,"(0.094(hardness)+2) ?g/L
+(hardness as mg/L CaCO3)",ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Freshwater Life,5,30,mean,average water hardness as CaC03 <= 50 mg/L,<= 2,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Freshwater Life,1,1,mean,average water hardness as CaC03 > 50 mg/L,"(0.094(hardness)+2) ?g/L
+(hardness as mg/L CaCO3)",ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Freshwater Life,5,30,mean,average water hardness as CaC03 > 50 mg/L,<= 4,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Wildlife,1,1,mean,,<= 300,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Livestock,1,1,mean,,<= 300,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Irrigation,1,1,mean,,<= 200,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Recreation,1,1,mean,,<= 1000,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Marine Life,1,1,mean,,<= 3,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Marine Life,5,30,mean,,<= 2,ug/L,,2006--1-8,bc_pdf,table 9
 Cobalt,BC,Aquatic Life,5,30,mean,Maximum,<= 110,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/cobalt/cobalt_over.html,
 Cobalt,BC,Aquatic Life,5,30,mean,39-d average ,<= 4,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/cobalt/cobalt_over.html,
 Cyanide,BC,Drinking,1,1,mean,"Strong-acid dissociable cyanide + thiocyanate 
