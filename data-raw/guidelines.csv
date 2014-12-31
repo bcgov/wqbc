@@ -14,24 +14,25 @@ Arsenic,BC,Marine Life,1,1,mean,,<= 12.5,ug/L,,2014-12-21,http://www.env.gov.bc.
 Arsenic,BC,Irrigation,1,1,mean,,<= 100,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,
 Arsenic,BC,Livestock,1,1,mean,,<= 25,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,
 Arsenic,BC,Wildlife,1,1,mean,,<= 25,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,
-Benzene,BC,Drinking,1,1,mean,,<= 5,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/benzene/benzene_overview.pdf,
-Benzene,BC,Freshwater Life,1,1,mean,,<= 40,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/benzene/benzene_overview.pdf,
-Boron,BC,Drinking,1,1,mean,,<= 5,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html,
-Boron,BC,Freshwater Life,1,1,mean,,<=1.2,mg B/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html,
-Boron,BC,Wildlife,1,1,mean,,<= 5,mg B/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html,
-Boron,BC,Irrigation-Very Sensitive,1,1,mean,,<=0.5,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html,
-Boron,BC,Irrigation-Sensitive,1,1,mean,,0.5 ~ 1.0,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html,
-Boron,BC,Irrigation-Moderately Sensitive,1,1,mean,,"1.0 ~ 2,0",mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html,
-Boron,BC,Irrigation-Moderately Tolerate,1,1,mean,,2.0 ~ 4.0,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html,
-Boron,BC,Irrigation-Tolerate,1,1,mean,,4.0 ~ 6.0,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html,
-Boron,BC,Irrigation-Very Tolerate,1,1,mean,,6.0 ~ 15.0,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html,
-Boron,BC,Livestock,1,1,mean,,<= 5,mg B/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/boron/boron.html,
 Cadmium,CA,Drinking,1,1,mean,for Aquatic life ,I will do this later,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html#table3,
 Cadmium,CA,Freshwater Life,1,1,mean,,<= 5,ug/L,,2014-12-21,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1,
 Cadmium,CA,Marine Life,1,1,mean,,<= 0.09,ug/L,,2014-12-21,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1,
 Cadmium,CA,Irrigation,1,1,mean,,<= 0.12,ug/L,,2014-12-21,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1,
 Cadmium,CA,Livestock,1,1,mean,,<= 5.1,ug/L,,2014-12-21,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1,
 Clarity,CA,Recreation,1,1,mean,,<= 80,m,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
+Copper,BC,Drinking,1,1,mean,,<= 500,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Freshwater Life,1,1,mean,average water hardness as CaC03 <= 50 mg/L,"(0.094(hardness)+2) ?g/L
+(hardness as mg/L CaCO3)",ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Freshwater Life,5,30,mean,average water hardness as CaC03 <= 50 mg/L,<= 2,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Freshwater Life,1,1,mean,average water hardness as CaC03 > 50 mg/L,"(0.094(hardness)+2) ?g/L
+(hardness as mg/L CaCO3)",ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Freshwater Life,5,30,mean,average water hardness as CaC03 > 50 mg/L,<= 4,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Wildlife,1,1,mean,,<= 300,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Livestock,1,1,mean,,<= 300,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Irrigation,1,1,mean,,<= 200,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Recreation,1,1,mean,,<= 1000,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Marine Life,1,1,mean,,<= 3,ug/L,,2006--1-8,bc_pdf,table 9
+Copper,BC,Marine Life,5,30,mean,,<= 2,ug/L,,2006--1-8,bc_pdf,table 9
 Chloride,BC,Freshwater Life,5,30,mean,,<= 150,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chloride/chloride.html,
 Chloride,BC,Irrigation,1,1,mean,,<= 100,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chloride/chloride.html,
 Chloride,BC,Livestock,1,1,mean,,<= 600,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chloride/chloride.html,
@@ -56,52 +57,18 @@ Chlorine ,BC,Marine Life -  Maximum Controlled Intermittent ,1,1,mean,Duration o
 Chlorine ,BC,Marine Life -  Maximum Controlled Intermittent ,1,1,mean,Duration of Exposure in mins 60 ~ 90,<= 3,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11,
 Chlorine ,BC,Marine Life -  Maximum Controlled Intermittent ,1,1,mean,Duration of Exposure in mins >= 120,use continuous exposure criterion ,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11,
 Chlorine ,BC,Irrigation - Maximum Controlled Intermittent,1,1,mean,,<= 1000,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11,
-Chlorophenols ,BC,Drinking,1,1,mean,Aesthetics (taste and odour),MCPs: 0.1; DCPs: 0.3; TCPs: 2.0; TTCPs: 1.0; PCP: 30 ,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
-Chlorophenols ,BC,Drinking,1,1,mean,Aesthetics (Toxicity),"2, 4-DCPs: 0.1; 2,4,6-TCP: 5; 2,3,4,6-TTCP: 100; PCP:60",ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
-Chlorophenols ,BC,Livestock and Wildlife ,1,1,mean,Aesthetics,MCPs: 0.1; DCPs: 0.3; TCPs: 2.0; TTCPs: 1.0; PCP: 30 ,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
-Chlorophenols ,BC,Livestock and Wildlife ,1,1,mean,Toxicity for Lactating Animals ,MCPs: 185; DCPs: 46; TCPs: 21; TTCPs: 41; PCP: 17.5,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
-Chlorophenols ,BC,Aquatic Life,1,1,mean,Toxicity for Non-Lactating Animals ,MCPs: 1854; DCPs: 460; TCPs: 210; TTCPs: 410; PCP: 175,mg/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
-Chlorophenols ,BC,Aquatic Life,1,1,mean,for Fish Muscle ,"2-MCP: 10; 3-MCP: 20; 4-MCP: 40; 2,3-DCP: 80; 2,4-DCP: 0.2; 2,5-DCP: 20; 2,6-DCP: 30; 2,4,6-TCP: 50; 2,3,4,5,6-DCP: 20",ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html#table2,
-Chlorophenols ,BC,Aquatic Life,1,1,mean,for Water,MCPs: 0.1; DCPs: 0.2; etc(I will do this later),ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html#table3,
-Chlorophenols ,BC,Recreation,1,1,mean,Primary,MCPs: 0.1; DCPs: 0.2; TCPs: 2.0; TTCPs: 1.0; PCP: 30 ,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
-Chlorophenols ,BC,Recreation,1,1,mean,Secondary ,MCPs: 0.3; DCPs: 0.3; TCPs: 11; TTCPs: 600; PCP: 860,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
-Chlorophenols ,BC,Irrigation,1,1,mean,,NO CRITERION SET,,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
-Chlorophenols ,BC,Industrial,1,1,mean,Food Processing ,MCPs: 0.1; DCPs: 0.3; TCPs: 2.0; TTCPs: 1.0; PCP: 30 ,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html,
-Copper,BC,Drinking,1,1,mean,,<= 500,ug/L,,2006--1-8,bc_pdf,table 9
-Copper,BC,Freshwater Life,1,1,mean,average water hardness as CaC03 <= 50 mg/L,"(0.094(hardness)+2) ?g/L
-(hardness as mg/L CaCO3)",ug/L,,2006--1-8,bc_pdf,table 9
-Copper,BC,Freshwater Life,5,30,mean,average water hardness as CaC03 <= 50 mg/L,<= 2,ug/L,,2006--1-8,bc_pdf,table 9
-Copper,BC,Freshwater Life,1,1,mean,average water hardness as CaC03 > 50 mg/L,"(0.094(hardness)+2) ?g/L
-(hardness as mg/L CaCO3)",ug/L,,2006--1-8,bc_pdf,table 9
-Copper,BC,Freshwater Life,5,30,mean,average water hardness as CaC03 > 50 mg/L,<= 4,ug/L,,2006--1-8,bc_pdf,table 9
-Copper,BC,Wildlife,1,1,mean,,<= 300,ug/L,,2006--1-8,bc_pdf,table 9
-Copper,BC,Livestock,1,1,mean,,<= 300,ug/L,,2006--1-8,bc_pdf,table 9
-Copper,BC,Irrigation,1,1,mean,,<= 200,ug/L,,2006--1-8,bc_pdf,table 9
-Copper,BC,Recreation,1,1,mean,,<= 1000,ug/L,,2006--1-8,bc_pdf,table 9
-Copper,BC,Marine Life,1,1,mean,,<= 3,ug/L,,2006--1-8,bc_pdf,table 9
-Copper,BC,Marine Life,5,30,mean,,<= 2,ug/L,,2006--1-8,bc_pdf,table 9
-Cobalt,BC,Aquatic Life,5,30,mean,Maximum,<= 110,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/cobalt/cobalt_over.html,
-Cobalt,BC,Aquatic Life,5,30,mean,39-d average ,<= 4,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/cobalt/cobalt_over.html,
 Cyanide,BC,Drinking,1,1,mean,"Strong-acid dissociable cyanide + thiocyanate 
 
 ",<=200,µg/L ,,2006--1-8,bc_pdf,
 Cyanide,BC,Freshwater Life,5,30,mean,Strong-acid dissociable cyanide + thiocyanate ,<= 5,µg/L ,,2006--1-8,bc_pdf,
 Cyanide,BC,Freshwater Life,1,1,mean,Weak-acid dissociable cyanide,<=10,µg/L ,,2006--1-8,bc_pdf,
 Cyanide,BC,Marine Life,1,1,mean,Weak-acid dissociable cyanide,<=1,µg/L ,,2006--1-8,bc_pdf,
-Diisopropanolamine,BC,Freshwater Life,1,1,mean,,<= 1.6,mg/L,,2006--1-8,bc_pdf,table 45
-Diisopropanolamine,BC,Marine Life,1,1,mean,,Insufficient data,mg/L,,2006--1-8,bc_pdf,table 45
-Diisopropanolamine,BC,Irrigation,1,1,mean,,<= 3.9,mg/L,,2006--1-8,bc_pdf,table 45
-Diisopropanolamine,BC,Livestock,1,1,mean,,<= 38,mg/L,,2006--1-8,bc_pdf,table 45
 Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",1,1,mean,All Life Stages other than buried embryo/alevin -- water column ,>=5,mg/L,,2006--1-8,bc_pdf,table 18
 Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",5,30,mean,All Life Stages other than buried embryo/alevin -- water column ,>=8,mg/L,,2006--1-8,bc_pdf,table 18
 Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",1,1,mean,Buried embryo/alevin life stages -- water column,>=9,mg/L,,2006--1-8,bc_pdf,table 18
 Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",5,30,mean,Buried embryo/alevin life stages -- water column,>=11,mg/L,,2006--1-8,bc_pdf,table 18
 Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",1,1,mean,Buried embryo/alevin life stages -- Interstitial water,>=6,mg/L,,2006--1-8,bc_pdf,table 18
 Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",5,30,mean,Buried embryo/alevin life stages -- Interstitial water,>=8,mg/L,,2006--1-8,bc_pdf,table 18
-Ethylbenzene,BC,Drinking,1,1,mean,,<= 0.0024,mg/L,,2006--1-8,bc_pdf,table 34
-Ethylbenzene,BC,Freshwater Life,1,1,mean,,<=0.2,mg/L,,2006--1-8,bc_pdf,table 34
-Ethylbenzene,BC,Marine Life,1,1,mean,,<= 0.25,mg/L,,2006--1-8,bc_pdf,table 34
-Ethylbenzene,BC,Recreation,1,1,mean,,<= 0.0024,mg/L,,2006--1-8,bc_pdf,table 34
 E.coli,BC,Drinking,1,1,exp(mean(log)),,>= 1.2,/dL,Assumed geometric mean,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,
 Enterococci,BC,Drinking,1,1,exp(mean(log)),,<= 0,/dL,Assumed geometric mean,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,
 E.coli,BC,Livestock,1,1,exp(mean(log)),,<= 0,/dL,Assumed geometric mean,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,
@@ -169,11 +136,6 @@ Mercury,BC,Wildlife,1,1,mean,% MeHg <= 5,<= 0.002,ug/L,,2006--1-8,bc_pdf,table 1
 Mercury,BC,Livestock,1,1,mean,,<= 3,ug/L,,2006--1-8,bc_pdf,table 13
 Mercury,BC,Irrigation,1,1,mean,,<= 2,ug/L,,2006--1-8,bc_pdf,table 13
 Mercury,BC,Recreation,1,1,mean,,<= 1,ug/L,,2006--1-8,bc_pdf,table 13
-Methyl Tertiary-Butyl Ether,BC,Drinking,1,1,mean,,<= 0.02,mg/L,,2006--1-8,bc_pdf,table 39
-Methyl Tertiary-Butyl Ether,BC,Recreation,1,1,mean,,<= 0.02,mg/L,,2006--1-8,bc_pdf,table 39
-Methyl Tertiary-Butyl Ether,BC,Livestock,1,1,mean,,<= 11,mg/L,,2006--1-8,bc_pdf,table 39
-Methyl Tertiary-Butyl Ether,BC,Aquatic Life (freshwater ),1,1,mean,,<= 3.4,mg/L,,2006--1-8,bc_pdf,table 39
-Methyl Tertiary-Butyl Ether,BC,"Aquatic Life (marine, estuarine)",1,1,mean,,<= 0.44,mg/L,,2006--1-8,bc_pdf,table 39
 Molybdenum,BC,Drinking,1,1,mean,,<= 0.25,mg/L,,2006--1-8,bc_pdf,table 39
 Molybdenum,BC,Freshwater Life,1,1,mean,,<= 2,mg/L,,2006--1-8,bc_pdf,table 15
 Molybdenum,BC,Freshwater Life,5,30,mean,,<= 1,mg/L,,2006--1-8,bc_pdf,table 15
@@ -220,33 +182,6 @@ Nitrogen,BC,Wildlife,1,1,mean,Nitrate,<= 100,mg/L,,2006--1-8,bc_pdf,table 16
 Nitrogen,BC,Wildlife,1,1,mean,Nitrite,<= 10,mg/L,,2006--1-8,bc_pdf,table 16 
 Nitrogen,BC,Recreation,1,1,mean,Nitrate,<= 10,mg/L,,2006--1-8,bc_pdf,table 16 
 Nitrogen,BC,Recreation,1,1,mean,Nitrite,<= 1,mg/L,,2006--1-8,bc_pdf,table 16 
-Nutrients ,BC,Drinking,1,1,mean,Phosphorus ,<= 10,ug/L,,2006--1-8,bc_pdf,table 3
-Nutrients ,BC,Aquatic Life - streams ,1,1,mean,Chlorophyll a,<= 100, mg/m2,,2006--1-8,bc_pdf,table 3
-Nutrients ,BC,Aquatic Life - lakes ,1,1,mean,Phosphorus , 5 ~ 15  (inclusive) ,ug/L,,2006--1-8,bc_pdf,table 3
-Nutrients ,BC,Recreation - streams,1,1,mean,Chlorophyll a,<= 50, mg/m2,,2006--1-8,bc_pdf,table 3
-Nutrients ,BC,Recreation - lakes ,1,1,mean,Phosphorus ,<= 10,ug/L,,2006--1-8,bc_pdf,table 3
-Organic Carbon,BC,Drinking,1,1,mean,with chlorination/ TOC,4 mg/L source water ,,,2006--1-8,bc_pdf,table 32
-Organic Carbon,BC,Freshwater Life,1,1,mean, fresh water/TOC,30-day median ± 20% of the median background concentration. ,,,2006--1-8,bc_pdf,table 32
-Organic Carbon,BC,Freshwater Life,1,1,mean, fresh water/DOC,30-day median ± 20% of the median background concentration. ,,,2006--1-8,bc_pdf,table 32
-Organic Carbon,BC,Wildlife,1,1,mean,TOC ,30-day median ± 20% of the median background concentration. ,,,2006--1-8,bc_pdf,table 32
-Organic Carbon,BC,Wildlife,1,1,mean,DOC ,30-day median ± 20% ,,,2006--1-8,bc_pdf,table 32
-PhACs 17 ?-ethinylestradiol ,BC,Freshwater Life,5,30,mean,,<= 0.5 with no single value to exceed 0.75 ng/L,ng/L,,2006--1-8,http://www.env.gov.bc.ca/wat/wq/BCguidelines/PhACs-EE2/PhACs-EE2-overview.pdf,
-Phenol,BC,Freshwater Life,1,1,mean,"4-hydroxyphenol (quinol,hydroquinone, 1,4-benzenediol)",<= 4.5,ng/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/phenol/phenol_summ.pdf,
-Phenol,BC,Freshwater Life,1,1,mean,"3-hydroxyphenol (resorcinol,1,3-benzenediol) ",<= 12.5,ng/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/phenol/phenol_summ.pdf,
-Phenol,BC,Freshwater Life,1,1,mean,all other nonhalogenated phenols ,<= 50,ng/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/phenol/phenol_summ.pdf,
-Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,low consumption of 50 g/week ,4,µg/kg wet weight,,2006--1-8,bc_pdf,table 24
-Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,moderate consumption of 100 g/week,2,µg/kg wet weight,,2006--1-8,bc_pdf,table 24
-Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,heavy consumption of 200 g/week ,1,µg/kg wet weight,,2006--1-8,bc_pdf,table 24
-Polycyclic Aromatic Hydrocarbons,BC,Industrial,1,1,mean,,<= 0.01,µg/L ,,2006--1-8,bc_pdf,table 24
-Polychlorinated Biphenyls,BC,Irrigation,1,1,mean,PCBs  = total,<= 0.5,µg/L ,,2006--1-8,bc_pdf,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs total ,<= 0.1,µg/L ,,2006--1-8,bc_pdf,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #105,<= 0.09,µg/L ,,2006--1-8,bc_pdf,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #169,<= 0.06,µg/L ,,2006--1-8,bc_pdf,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #77,<= 0.04,µg/L ,,2006--1-8,bc_pdf,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #126,<= 0.00025,µg/L ,,2006--1-8,bc_pdf,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life ,1,1,mean,fish and/or shellfish (for wildlife consumption: whole animal) ,<= 0.1,µg/g wet weight ,,2006--1-8,bc_pdf,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life ,1,1,mean,fish and/or shellfish (for human consumption: edible tissue only) ,<= 2,µg/g wet weight ,,2006--1-8,bc_pdf,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,sediment (*containing 1% organic carbon),<= 0.02 ,µg/g dry weight ,,2006--1-8,bc_pdf,table 24
 Selenium ,BC,Drinking Water ,1,1,mean,,<= 10,µg/L ,,2006--1-8,bc_pdf,table 40
 Selenium ,BC,Freshwater Life,1,1,mean,,<= 2,µg/L ,,2006--1-8,bc_pdf,table 40
 Selenium ,BC,Marine Life,1,1,mean,,<= 2,µg/L ,,2006--1-8,bc_pdf,table 40
@@ -271,10 +206,6 @@ Toluene,BC,Drinking,1,1,mean,,<=0.024,mg/L,,2006--1-8,bc_pdf,table 35
 Toluene,BC,Freshwater Life,1,1,mean,,<=0.039,mg/L,,2006--1-8,bc_pdf,table 35
 Toluene,BC,Marine Life,1,1,mean,,<=0.33,mg/L,,2006--1-8,bc_pdf,table 35
 Toluene,BC,Livestock,1,1,mean,,<=0.024,mg/L,,2006--1-8,bc_pdf,table 35
-Total Gas Pressure (TGP),BC,Freshwater Life,1,1,mean,local water depth greater than 1 m ,DP <= 76 HG or  less than or equal to 110% at sea level,mm,,2006--1-8,bc_pdf,table 30
-Total Gas Pressure (TGP),BC,Freshwater Life,1,1,mean,background levels exceed guidelines ,no increase in DP or % TGP ,mm,,2006--1-8,bc_pdf,table 30
-Total Gas Pressure (TGP),BC,Freshwater Life,1,1,mean,hatchery environments ,"maximum DP = 24 Hg or 103% at sea level
-DP=0 Hg when pO2 <= 100 Hg ",mm,,2006--1-8,bc_pdf,table 30
 Turbidity,CA,Recreation,1,1,mean,,>= 5.0 & <= 9.0,NTU,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
 Zinc,BC,Drinking,1,1,mean,,<= 5000,µg/L,,2006--1-8,bc_pdf,table 30
 Zinc,BC,Recreation,1,1,mean,,<= 5000,µg/L,,2006--1-8,bc_pdf,table 30
