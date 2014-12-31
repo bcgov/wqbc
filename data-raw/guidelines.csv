@@ -10,6 +10,7 @@ Aluminum - Total,BC,Irrigation,1,1,mean,,<= 5,mg/L,,2014-12-21,http://www.env.go
 Aluminum - Total,BC,Recreation,1,1,mean,,<= 0.2,mg/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,
 Arsenic,BC,Drinking,1,1,mean,,<= 25,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,
 Arsenic,BC,Freshwater Life,1,1,mean,,<= 5,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,
+Arsenic,BC,Marine Life,1,1,mean,,<= 12.5,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,
 Arsenic,BC,Irrigation,1,1,mean,,<= 100,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,
 Arsenic,BC,Livestock,1,1,mean,,<= 25,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,
 Arsenic,BC,Wildlife,1,1,mean,,<= 25,ug/L,,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,
@@ -71,24 +72,24 @@ Cobalt,BC,Aquatic Life,5,30,mean,Maximum,<= 110,ug/L,,2014--12-23,http://www.env
 Cobalt,BC,Aquatic Life,5,30,mean,39-d average ,<= 4,ug/L,,2014--12-23,http://www.env.gov.bc.ca/wat/wq/BCguidelines/cobalt/cobalt_over.html,
 Cyanide,BC,Drinking,1,1,mean,"Strong-acid dissociable cyanide + thiocyanate 
 
-",<=200,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,
-Cyanide,BC,Freshwater Life,5,30,mean,Strong-acid dissociable cyanide + thiocyanate ,<= 5,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,
-Cyanide,BC,Freshwater Life,1,1,mean,Weak-acid dissociable cyanide,<=10,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,
-Cyanide,BC,Marine Life,1,1,mean,Weak-acid dissociable cyanide,<=1,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,
-Diisopropanolamine,BC,Freshwater Life,1,1,mean,,<= 1.6,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 45
-Diisopropanolamine,BC,Marine Life,1,1,mean,,Insufficient data,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 45
-Diisopropanolamine,BC,Irrigation,1,1,mean,,<= 3.9,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 45
-Diisopropanolamine,BC,Livestock,1,1,mean,,<= 38,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 45
-Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",1,1,mean,All Life Stages other than buried embryo/alevin -- water column ,>=5,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 18
-Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",5,30,mean,All Life Stages other than buried embryo/alevin -- water column ,>=8,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 18
-Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",1,1,mean,Buried embryo/alevin life stages -- water column,>=9,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 18
-Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",5,30,mean,Buried embryo/alevin life stages -- water column,>=11,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 18
-Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",1,1,mean,Buried embryo/alevin life stages -- Interstitial water,>=6,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 18
-Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",5,30,mean,Buried embryo/alevin life stages -- Interstitial water,>=8,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 18
-Ethylbenzene,BC,Drinking,1,1,mean,,<= 0.0024,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 34
-Ethylbenzene,BC,Freshwater Life,1,1,mean,,<=0.2,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 34
-Ethylbenzene,BC,Marine Life,1,1,mean,,<= 0.25,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 34
-Ethylbenzene,BC,Recreation,1,1,mean,,<= 0.0024,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 34
+",<=200,µg/L ,,2006--1-8,bc_pdf,
+Cyanide,BC,Freshwater Life,5,30,mean,Strong-acid dissociable cyanide + thiocyanate ,<= 5,µg/L ,,2006--1-8,bc_pdf,
+Cyanide,BC,Freshwater Life,1,1,mean,Weak-acid dissociable cyanide,<=10,µg/L ,,2006--1-8,bc_pdf,
+Cyanide,BC,Marine Life,1,1,mean,Weak-acid dissociable cyanide,<=1,µg/L ,,2006--1-8,bc_pdf,
+Diisopropanolamine,BC,Freshwater Life,1,1,mean,,<= 1.6,mg/L,,2006--1-8,bc_pdf,table 45
+Diisopropanolamine,BC,Marine Life,1,1,mean,,Insufficient data,mg/L,,2006--1-8,bc_pdf,table 45
+Diisopropanolamine,BC,Irrigation,1,1,mean,,<= 3.9,mg/L,,2006--1-8,bc_pdf,table 45
+Diisopropanolamine,BC,Livestock,1,1,mean,,<= 38,mg/L,,2006--1-8,bc_pdf,table 45
+Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",1,1,mean,All Life Stages other than buried embryo/alevin -- water column ,>=5,mg/L,,2006--1-8,bc_pdf,table 18
+Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",5,30,mean,All Life Stages other than buried embryo/alevin -- water column ,>=8,mg/L,,2006--1-8,bc_pdf,table 18
+Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",1,1,mean,Buried embryo/alevin life stages -- water column,>=9,mg/L,,2006--1-8,bc_pdf,table 18
+Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",5,30,mean,Buried embryo/alevin life stages -- water column,>=11,mg/L,,2006--1-8,bc_pdf,table 18
+Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",1,1,mean,Buried embryo/alevin life stages -- Interstitial water,>=6,mg/L,,2006--1-8,bc_pdf,table 18
+Dissolved Oxygen,BC,"Fresh, Marine and Estuarine Life",5,30,mean,Buried embryo/alevin life stages -- Interstitial water,>=8,mg/L,,2006--1-8,bc_pdf,table 18
+Ethylbenzene,BC,Drinking,1,1,mean,,<= 0.0024,mg/L,,2006--1-8,bc_pdf,table 34
+Ethylbenzene,BC,Freshwater Life,1,1,mean,,<=0.2,mg/L,,2006--1-8,bc_pdf,table 34
+Ethylbenzene,BC,Marine Life,1,1,mean,,<= 0.25,mg/L,,2006--1-8,bc_pdf,table 34
+Ethylbenzene,BC,Recreation,1,1,mean,,<= 0.0024,mg/L,,2006--1-8,bc_pdf,table 34
 E.coli,BC,Drinking,1,1,exp(mean(log)),,>= 1.2,/dL,Assumed geometric mean,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,
 Enterococci,BC,Drinking,1,1,exp(mean(log)),,<= 0,/dL,Assumed geometric mean,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,
 E.coli,BC,Livestock,1,1,exp(mean(log)),,<= 0,/dL,Assumed geometric mean,2014-12-21,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,
@@ -102,173 +103,173 @@ E.coli,CA,Recreation,1,1,exp(mean(log)),,<= 4,/dL,Assumed geometric mean,2014-12
 E.coli,CA,Recreation,5,30,exp(mean(log)),,<= 400,/dL,Assumed sampling period of 30 days,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
 Enterococci,CA,Recreation,1,1,exp(mean(log)),,<= 200,/dL,Assumed geometric mean,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
 Enterococci,CA,Recreation,5,30,exp(mean(log)),,<= 70,/dL,Assumed sampling period of 30 days,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
-Fluoride,BC,Drinking,1,1,mean,,<= 1.5,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,Drinking,5,30,mean,,<= 1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,Freshwater Life,1,1,mean,water hardness is less than 50 mg/L as CaCO3,<= 0.2,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,Freshwater Life,1,1,mean,water hardness is greater than or equal to 50 mg/L as CaCO3,<= 0.3,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,Marine Life,1,1,mean,,<= 1.5,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,Wildlife,1,1,mean,,<= 1.5,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,Wildlife,5,30,mean,,<=1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,"Dairy Cows, Breeding Stock - long-lived animals",1,1,mean,,<= 1.5,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,"Dairy Cows, Breeding Stock - long-lived animals",5,30,mean,,<= 1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,Livestock - high fluoride diets - mineral or bone meal feed additives,1,1,mean,,<= 2,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,Livestock - high fluoride diets - mineral or bone meal feed additives,5,30,mean,,<= 1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,All Other Livestock - normal diet,1,1,mean,,<= 4,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,All Other Livestock - normal diet,5,30,mean,,<= 2,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,Irrigation,1,1,mean,,<= 2,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,Irrigation,5,30,mean,,<= 1,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,Industrial,1,1,mean,,<= 1.5,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
-Fluoride,BC,Industrial,5,30,mean,,<= 1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 20
+Fluoride,BC,Drinking,1,1,mean,,<= 1.5,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,Drinking,5,30,mean,,<= 1,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,Freshwater Life,1,1,mean,water hardness is less than 50 mg/L as CaCO3,<= 0.2,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,Freshwater Life,1,1,mean,water hardness is greater than or equal to 50 mg/L as CaCO3,<= 0.3,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,Marine Life,1,1,mean,,<= 1.5,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,Wildlife,1,1,mean,,<= 1.5,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,Wildlife,5,30,mean,,<=1,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,"Dairy Cows, Breeding Stock - long-lived animals",1,1,mean,,<= 1.5,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,"Dairy Cows, Breeding Stock - long-lived animals",5,30,mean,,<= 1,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,Livestock - high fluoride diets - mineral or bone meal feed additives,1,1,mean,,<= 2,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,Livestock - high fluoride diets - mineral or bone meal feed additives,5,30,mean,,<= 1,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,All Other Livestock - normal diet,1,1,mean,,<= 4,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,All Other Livestock - normal diet,5,30,mean,,<= 2,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,Irrigation,1,1,mean,,<= 2,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,Irrigation,5,30,mean,,<= 1,,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,Industrial,1,1,mean,,<= 1.5,mg/L,,2006--1-8,bc_pdf,table 20
+Fluoride,BC,Industrial,5,30,mean,,<= 1,mg/L,,2006--1-8,bc_pdf,table 20
 Iron,BC,Freshwater Life,1,1,mean, total iron,<= 1,mg/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/iron/iron_overview.pdf,
 Iron,BC,Freshwater Life,1,1,mean,dissolved iron,<= 0.35,mg/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/iron/iron_overview.pdf,
-Lead,BC,Drinking,1,1,mean,,<= 50,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Lead,BC,Freshwater Life,1,1,mean,water hardness as CaCO3 less than or equal to 8 mg/L,<= 3,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Lead,BC,Freshwater Life,1,1,mean,water hardness as CaCO3 less than or equal to 8 mg/L,<= e(1.273 ln[hardness] - 1.460),ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Lead,BC,Freshwater Life,5,30,mean,water hardness as CaCO3 less than or equal to 8 mg/L,<= 3.31 + e(1.273 * ln [mean hardness] - 4.704),ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Lead,BC,Wildlife,1,1,mean,,<= 100,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Lead,BC,Livestock,1,1,mean,,<= 100,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Lead,BC,Marine Life,1,1,mean,,<= 140,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Lead,BC,Marine Life,5,30,mean,,<= 2,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Lead,BC,Marine Life,5,30,mean,,<= 3,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Lead,BC,Irrigation,1,1,mean,neutral and alkaline fine-textured soils,<= 400,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Lead,BC,Irrigation,1,1,mean,all other soils,<= 200,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Lead,BC,Industrial,1,1,mean,,<= 50 ,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Lead,BC,Recreation,1,1,mean,,<= 50,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 11
-Manganese,BC,Freshwater Life,1,1,mean,Maximum at Specified CaCO3 Hardness 25mg/L,<=0.8,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 37
-Manganese,BC,Freshwater Life,1,1,mean,Maximum at Specified CaCO3 Hardness 50mg/L,<= 1.1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 37
-Manganese,BC,Freshwater Life,1,1,mean,Maximum at Specified CaCO3 Hardness 100mg/L,<=1.6,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 37
-Manganese,BC,Freshwater Life,1,1,mean,Maximum at Specified CaCO3 Hardness 150mg/L,<=2.2,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 37
-Manganese,BC,Freshwater Life,1,1,mean,Maximum at Specified CaCO3 Hardness 300mg/L,<=3.8,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 37
-Manganese,BC,Freshwater Life,5,30,mean,30-Day Mean at Specified CaCO3 Hardness 25mg/L,<=0.7,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 38
-Manganese,BC,Freshwater Life,5,30,mean,31-Day Mean at Specified CaCO3 Hardness 50mg/L,<=0.8,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 38
-Manganese,BC,Freshwater Life,5,30,mean,32-Day Mean at Specified CaCO3 Hardness 100mg/L,<=1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 38
-Manganese,BC,Freshwater Life,5,30,mean,33-Day Mean at Specified CaCO3 Hardness 150mg/L,<=1.3,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 38
-Manganese,BC,Freshwater Life,5,30,mean,34-Day Mean at Specified CaCO3 Hardness 300mg/L,<=1.9,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 38
-Mercury,BC,Drinking,1,1,mean,,<= 1,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
-Mercury,BC,Freshwater Life,1,1,mean,,<= 0.1,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
-Mercury,BC,Freshwater Life,5,30,mean,,<= 0.02,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
-Mercury,BC,Marine Life,1,1,mean,,<= 2,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
-Mercury,BC,Marine Life,5,30,mean,,<= 0.02,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
-Mercury,BC,Wildlife,1,1,mean,% MeHg <= 0.5,<= 0.02,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13a
-Mercury,BC,Wildlife,1,1,mean,% MeHg <= 1,<= 0.01,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13a
-Mercury,BC,Wildlife,1,1,mean,% MeHg <= 2.5,<= 0.004,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13a
-Mercury,BC,Wildlife,1,1,mean,% MeHg <= 5,<= 0.002,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13a
-Mercury,BC,Livestock,1,1,mean,,<= 3,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
-Mercury,BC,Irrigation,1,1,mean,,<= 2,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
-Mercury,BC,Recreation,1,1,mean,,<= 1,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 13
-Methyl Tertiary-Butyl Ether,BC,Drinking,1,1,mean,,<= 0.02,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 39
-Methyl Tertiary-Butyl Ether,BC,Recreation,1,1,mean,,<= 0.02,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 39
-Methyl Tertiary-Butyl Ether,BC,Livestock,1,1,mean,,<= 11,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 39
-Methyl Tertiary-Butyl Ether,BC,Aquatic Life (freshwater ),1,1,mean,,<= 3.4,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 39
-Methyl Tertiary-Butyl Ether,BC,"Aquatic Life (marine, estuarine)",1,1,mean,,<= 0.44,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 39
-Molybdenum,BC,Drinking,1,1,mean,,<= 0.25,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 39
-Molybdenum,BC,Freshwater Life,1,1,mean,,<= 2,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
-Molybdenum,BC,Freshwater Life,5,30,mean,,<= 1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
-Molybdenum,BC,Wildlife,1,1,mean,,<= 0.05,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
-Molybdenum,BC,Livestock,1,1,mean,consuming forages not irrigated or if no molybdenum containing fertilizers are applied to grow feed consumed by livestock,<= 0.08,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
-Molybdenum,BC,Livestock,1,1,mean,all other cases,<= 0.05,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+Lead,BC,Drinking,1,1,mean,,<= 50,ug/L,,2006--1-8,bc_pdf,table 11
+Lead,BC,Freshwater Life,1,1,mean,water hardness as CaCO3 less than or equal to 8 mg/L,<= 3,ug/L,,2006--1-8,bc_pdf,table 11
+Lead,BC,Freshwater Life,1,1,mean,water hardness as CaCO3 less than or equal to 8 mg/L,<= e(1.273 ln[hardness] - 1.460),ug/L,,2006--1-8,bc_pdf,table 11
+Lead,BC,Freshwater Life,5,30,mean,water hardness as CaCO3 less than or equal to 8 mg/L,<= 3.31 + e(1.273 * ln [mean hardness] - 4.704),ug/L,,2006--1-8,bc_pdf,table 11
+Lead,BC,Wildlife,1,1,mean,,<= 100,ug/L,,2006--1-8,bc_pdf,table 11
+Lead,BC,Livestock,1,1,mean,,<= 100,ug/L,,2006--1-8,bc_pdf,table 11
+Lead,BC,Marine Life,1,1,mean,,<= 140,ug/L,,2006--1-8,bc_pdf,table 11
+Lead,BC,Marine Life,5,30,mean,,<= 2,ug/L,,2006--1-8,bc_pdf,table 11
+Lead,BC,Marine Life,5,30,mean,,<= 3,ug/L,,2006--1-8,bc_pdf,table 11
+Lead,BC,Irrigation,1,1,mean,neutral and alkaline fine-textured soils,<= 400,ug/L,,2006--1-8,bc_pdf,table 11
+Lead,BC,Irrigation,1,1,mean,all other soils,<= 200,ug/L,,2006--1-8,bc_pdf,table 11
+Lead,BC,Industrial,1,1,mean,,<= 50 ,ug/L,,2006--1-8,bc_pdf,table 11
+Lead,BC,Recreation,1,1,mean,,<= 50,ug/L,,2006--1-8,bc_pdf,table 11
+Manganese,BC,Freshwater Life,1,1,mean,Maximum at Specified CaCO3 Hardness 25mg/L,<=0.8,mg/L,,2006--1-8,bc_pdf,table 37
+Manganese,BC,Freshwater Life,1,1,mean,Maximum at Specified CaCO3 Hardness 50mg/L,<= 1.1,mg/L,,2006--1-8,bc_pdf,table 37
+Manganese,BC,Freshwater Life,1,1,mean,Maximum at Specified CaCO3 Hardness 100mg/L,<=1.6,mg/L,,2006--1-8,bc_pdf,table 37
+Manganese,BC,Freshwater Life,1,1,mean,Maximum at Specified CaCO3 Hardness 150mg/L,<=2.2,mg/L,,2006--1-8,bc_pdf,table 37
+Manganese,BC,Freshwater Life,1,1,mean,Maximum at Specified CaCO3 Hardness 300mg/L,<=3.8,mg/L,,2006--1-8,bc_pdf,table 37
+Manganese,BC,Freshwater Life,5,30,mean,30-Day Mean at Specified CaCO3 Hardness 25mg/L,<=0.7,mg/L,,2006--1-8,bc_pdf,table 38
+Manganese,BC,Freshwater Life,5,30,mean,31-Day Mean at Specified CaCO3 Hardness 50mg/L,<=0.8,mg/L,,2006--1-8,bc_pdf,table 38
+Manganese,BC,Freshwater Life,5,30,mean,32-Day Mean at Specified CaCO3 Hardness 100mg/L,<=1,mg/L,,2006--1-8,bc_pdf,table 38
+Manganese,BC,Freshwater Life,5,30,mean,33-Day Mean at Specified CaCO3 Hardness 150mg/L,<=1.3,mg/L,,2006--1-8,bc_pdf,table 38
+Manganese,BC,Freshwater Life,5,30,mean,34-Day Mean at Specified CaCO3 Hardness 300mg/L,<=1.9,mg/L,,2006--1-8,bc_pdf,table 38
+Mercury,BC,Drinking,1,1,mean,,<= 1,ug/L,,2006--1-8,bc_pdf,table 13
+Mercury,BC,Freshwater Life,1,1,mean,,<= 0.1,ug/L,,2006--1-8,bc_pdf,table 13
+Mercury,BC,Freshwater Life,5,30,mean,,<= 0.02,ug/L,,2006--1-8,bc_pdf,table 13
+Mercury,BC,Marine Life,1,1,mean,,<= 2,ug/L,,2006--1-8,bc_pdf,table 13
+Mercury,BC,Marine Life,5,30,mean,,<= 0.02,ug/L,,2006--1-8,bc_pdf,table 13
+Mercury,BC,Wildlife,1,1,mean,% MeHg <= 0.5,<= 0.02,ug/L,,2006--1-8,bc_pdf,table 13a
+Mercury,BC,Wildlife,1,1,mean,% MeHg <= 1,<= 0.01,ug/L,,2006--1-8,bc_pdf,table 13a
+Mercury,BC,Wildlife,1,1,mean,% MeHg <= 2.5,<= 0.004,ug/L,,2006--1-8,bc_pdf,table 13a
+Mercury,BC,Wildlife,1,1,mean,% MeHg <= 5,<= 0.002,ug/L,,2006--1-8,bc_pdf,table 13a
+Mercury,BC,Livestock,1,1,mean,,<= 3,ug/L,,2006--1-8,bc_pdf,table 13
+Mercury,BC,Irrigation,1,1,mean,,<= 2,ug/L,,2006--1-8,bc_pdf,table 13
+Mercury,BC,Recreation,1,1,mean,,<= 1,ug/L,,2006--1-8,bc_pdf,table 13
+Methyl Tertiary-Butyl Ether,BC,Drinking,1,1,mean,,<= 0.02,mg/L,,2006--1-8,bc_pdf,table 39
+Methyl Tertiary-Butyl Ether,BC,Recreation,1,1,mean,,<= 0.02,mg/L,,2006--1-8,bc_pdf,table 39
+Methyl Tertiary-Butyl Ether,BC,Livestock,1,1,mean,,<= 11,mg/L,,2006--1-8,bc_pdf,table 39
+Methyl Tertiary-Butyl Ether,BC,Aquatic Life (freshwater ),1,1,mean,,<= 3.4,mg/L,,2006--1-8,bc_pdf,table 39
+Methyl Tertiary-Butyl Ether,BC,"Aquatic Life (marine, estuarine)",1,1,mean,,<= 0.44,mg/L,,2006--1-8,bc_pdf,table 39
+Molybdenum,BC,Drinking,1,1,mean,,<= 0.25,mg/L,,2006--1-8,bc_pdf,table 39
+Molybdenum,BC,Freshwater Life,1,1,mean,,<= 2,mg/L,,2006--1-8,bc_pdf,table 15
+Molybdenum,BC,Freshwater Life,5,30,mean,,<= 1,mg/L,,2006--1-8,bc_pdf,table 15
+Molybdenum,BC,Wildlife,1,1,mean,,<= 0.05,mg/L,,2006--1-8,bc_pdf,table 15
+Molybdenum,BC,Livestock,1,1,mean,consuming forages not irrigated or if no molybdenum containing fertilizers are applied to grow feed consumed by livestock,<= 0.08,mg/L,,2006--1-8,bc_pdf,table 15
+Molybdenum,BC,Livestock,1,1,mean,all other cases,<= 0.05,mg/L,,2006--1-8,bc_pdf,table 15
 Molybdenum,BC,Irrigation,1,1,mean,"Poorly Drained Soil
 - Cu:Mo ratio is less than
 2:1 in the irrigation water
-- (forage crops)",<= 0.05,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+- (forage crops)",<= 0.05,mg/L,,2006--1-8,bc_pdf,table 15
 Molybdenum,BC,Irrigation,5,30,mean,"Poorly Drained Soil
 - Cu:Mo ratio is less than
 2:1 in the irrigation water
-- (forage crops)",<= 0.01,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+- (forage crops)",<= 0.01,mg/L,,2006--1-8,bc_pdf,table 15
 Molybdenum,BC,Irrigation,1,1,mean,"- Poorly
 Drained Soil
 - Cu:Mo ratio is greater than
 2:1 in the irrigation water
-- (forage crops)",<= 0.05,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+- (forage crops)",<= 0.05,mg/L,,2006--1-8,bc_pdf,table 15
 Molybdenum,BC,Irrigation,5,30,mean,"- Poorly
 Drained Soil
 - Cu:Mo ratio is greater than
 2:1 in the irrigation water
-- (forage crops)",<= 0.02,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+- (forage crops)",<= 0.02,mg/L,,2006--1-8,bc_pdf,table 15
 Molybdenum,BC,Irrigation,1,1,mean,"- Well Drained Soil
-(forage crops)",<= 0.05,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+(forage crops)",<= 0.05,mg/L,,2006--1-8,bc_pdf,table 15
 Molybdenum,BC,Irrigation,5,30,mean,"- Well Drained Soil
-(forage crops)",<= 0.02,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
+(forage crops)",<= 0.02,mg/L,,2006--1-8,bc_pdf,table 15
 Molybdenum,BC,Irrigation,5,30,mean,"- All Soils
-(non-forage crops)",<= 0.03,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 15
-Naphthalene,BC,Freshwater Life,1,1,mean,,<= 1,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 25
-Naphthalene,BC,Marine Life,1,1,mean,,<= 1,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 25
-Naphthalene,BC,Sediments (Fresh Water),1,1,mean,,<= 0.01,ug/g,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 25
-Naphthalene,BC,Sediments (Marine),1,1,mean,,<= 0.01,ug/g,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 25
-Nitrogen,BC,Drinking,1,1,mean,Nitrate,<= 10,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
-Nitrogen,BC,Drinking,1,1,mean,Nitrite,<= 1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
-Nitrogen,BC,Freshwater Life - maximum,1,1,mean,Nitrate,<= 200,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
-Nitrogen,BC,Freshwater Life - maximum,1,1,mean,Nitrite,<= 0.06,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
-Nitrogen,BC,Freshwater Life - average ,1,1,mean,Nitrate,<= 40,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
-Nitrogen,BC,Freshwater Life - average ,1,1,mean,Nitrite,<= 0.02,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
-Nitrogen,BC,Livestock,1,1,mean,Nitrate,<= 100,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
-Nitrogen,BC,Livestock,1,1,mean,Nitrite,<= 10,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
-Nitrogen,BC,Wildlife,1,1,mean,Nitrate,<= 100,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
-Nitrogen,BC,Wildlife,1,1,mean,Nitrite,<= 10,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
-Nitrogen,BC,Recreation,1,1,mean,Nitrate,<= 10,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
-Nitrogen,BC,Recreation,1,1,mean,Nitrite,<= 1,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 16 
-Nutrients ,BC,Drinking,1,1,mean,Phosphorus ,<= 10,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
-Nutrients ,BC,Aquatic Life - streams ,1,1,mean,Chlorophyll a,<= 100, mg/m2,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
-Nutrients ,BC,Aquatic Life - lakes ,1,1,mean,Phosphorus , 5 ~ 15  (inclusive) ,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
-Nutrients ,BC,Recreation - streams,1,1,mean,Chlorophyll a,<= 50, mg/m2,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
-Nutrients ,BC,Recreation - lakes ,1,1,mean,Phosphorus ,<= 10,ug/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 3
-Organic Carbon,BC,Drinking,1,1,mean,with chlorination/ TOC,4 mg/L source water ,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 32
-Organic Carbon,BC,Freshwater Life,1,1,mean, fresh water/TOC,30-day median ± 20% of the median background concentration. ,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 32
-Organic Carbon,BC,Freshwater Life,1,1,mean, fresh water/DOC,30-day median ± 20% of the median background concentration. ,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 32
-Organic Carbon,BC,Wildlife,1,1,mean,TOC ,30-day median ± 20% of the median background concentration. ,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 32
-Organic Carbon,BC,Wildlife,1,1,mean,DOC ,30-day median ± 20% ,,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 32
+(non-forage crops)",<= 0.03,mg/L,,2006--1-8,bc_pdf,table 15
+Naphthalene,BC,Freshwater Life,1,1,mean,,<= 1,ug/L,,2006--1-8,bc_pdf,table 25
+Naphthalene,BC,Marine Life,1,1,mean,,<= 1,ug/L,,2006--1-8,bc_pdf,table 25
+Naphthalene,BC,Sediments (Fresh Water),1,1,mean,,<= 0.01,ug/g,,2006--1-8,bc_pdf,table 25
+Naphthalene,BC,Sediments (Marine),1,1,mean,,<= 0.01,ug/g,,2006--1-8,bc_pdf,table 25
+Nitrogen,BC,Drinking,1,1,mean,Nitrate,<= 10,mg/L,,2006--1-8,bc_pdf,table 16 
+Nitrogen,BC,Drinking,1,1,mean,Nitrite,<= 1,mg/L,,2006--1-8,bc_pdf,table 16 
+Nitrogen,BC,Freshwater Life - maximum,1,1,mean,Nitrate,<= 200,mg/L,,2006--1-8,bc_pdf,table 16 
+Nitrogen,BC,Freshwater Life - maximum,1,1,mean,Nitrite,<= 0.06,mg/L,,2006--1-8,bc_pdf,table 16 
+Nitrogen,BC,Freshwater Life - average ,1,1,mean,Nitrate,<= 40,mg/L,,2006--1-8,bc_pdf,table 16 
+Nitrogen,BC,Freshwater Life - average ,1,1,mean,Nitrite,<= 0.02,mg/L,,2006--1-8,bc_pdf,table 16 
+Nitrogen,BC,Livestock,1,1,mean,Nitrate,<= 100,mg/L,,2006--1-8,bc_pdf,table 16 
+Nitrogen,BC,Livestock,1,1,mean,Nitrite,<= 10,mg/L,,2006--1-8,bc_pdf,table 16 
+Nitrogen,BC,Wildlife,1,1,mean,Nitrate,<= 100,mg/L,,2006--1-8,bc_pdf,table 16 
+Nitrogen,BC,Wildlife,1,1,mean,Nitrite,<= 10,mg/L,,2006--1-8,bc_pdf,table 16 
+Nitrogen,BC,Recreation,1,1,mean,Nitrate,<= 10,mg/L,,2006--1-8,bc_pdf,table 16 
+Nitrogen,BC,Recreation,1,1,mean,Nitrite,<= 1,mg/L,,2006--1-8,bc_pdf,table 16 
+Nutrients ,BC,Drinking,1,1,mean,Phosphorus ,<= 10,ug/L,,2006--1-8,bc_pdf,table 3
+Nutrients ,BC,Aquatic Life - streams ,1,1,mean,Chlorophyll a,<= 100, mg/m2,,2006--1-8,bc_pdf,table 3
+Nutrients ,BC,Aquatic Life - lakes ,1,1,mean,Phosphorus , 5 ~ 15  (inclusive) ,ug/L,,2006--1-8,bc_pdf,table 3
+Nutrients ,BC,Recreation - streams,1,1,mean,Chlorophyll a,<= 50, mg/m2,,2006--1-8,bc_pdf,table 3
+Nutrients ,BC,Recreation - lakes ,1,1,mean,Phosphorus ,<= 10,ug/L,,2006--1-8,bc_pdf,table 3
+Organic Carbon,BC,Drinking,1,1,mean,with chlorination/ TOC,4 mg/L source water ,,,2006--1-8,bc_pdf,table 32
+Organic Carbon,BC,Freshwater Life,1,1,mean, fresh water/TOC,30-day median ± 20% of the median background concentration. ,,,2006--1-8,bc_pdf,table 32
+Organic Carbon,BC,Freshwater Life,1,1,mean, fresh water/DOC,30-day median ± 20% of the median background concentration. ,,,2006--1-8,bc_pdf,table 32
+Organic Carbon,BC,Wildlife,1,1,mean,TOC ,30-day median ± 20% of the median background concentration. ,,,2006--1-8,bc_pdf,table 32
+Organic Carbon,BC,Wildlife,1,1,mean,DOC ,30-day median ± 20% ,,,2006--1-8,bc_pdf,table 32
 PhACs 17 ?-ethinylestradiol ,BC,Freshwater Life,5,30,mean,,<= 0.5 with no single value to exceed 0.75 ng/L,ng/L,,2006--1-8,http://www.env.gov.bc.ca/wat/wq/BCguidelines/PhACs-EE2/PhACs-EE2-overview.pdf,
 Phenol,BC,Freshwater Life,1,1,mean,"4-hydroxyphenol (quinol,hydroquinone, 1,4-benzenediol)",<= 4.5,ng/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/phenol/phenol_summ.pdf,
 Phenol,BC,Freshwater Life,1,1,mean,"3-hydroxyphenol (resorcinol,1,3-benzenediol) ",<= 12.5,ng/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/phenol/phenol_summ.pdf,
 Phenol,BC,Freshwater Life,1,1,mean,all other nonhalogenated phenols ,<= 50,ng/L,,2014--12-28,http://www.env.gov.bc.ca/wat/wq/BCguidelines/phenol/phenol_summ.pdf,
-Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,low consumption of 50 g/week ,4,µg/kg wet weight,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,moderate consumption of 100 g/week,2,µg/kg wet weight,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,heavy consumption of 200 g/week ,1,µg/kg wet weight,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polycyclic Aromatic Hydrocarbons,BC,Industrial,1,1,mean,,<= 0.01,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Irrigation,1,1,mean,PCBs  = total,<= 0.5,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs total ,<= 0.1,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #105,<= 0.09,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #169,<= 0.06,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #77,<= 0.04,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #126,<= 0.00025,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life ,1,1,mean,fish and/or shellfish (for wildlife consumption: whole animal) ,<= 0.1,µg/g wet weight ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life ,1,1,mean,fish and/or shellfish (for human consumption: edible tissue only) ,<= 2,µg/g wet weight ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,sediment (*containing 1% organic carbon),<= 0.02 ,µg/g dry weight ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 24
-Selenium ,BC,Drinking Water ,1,1,mean,,<= 10,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Freshwater Life,1,1,mean,,<= 2,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Marine Life,1,1,mean,,<= 2,µg/L ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Sediments ,1,1,mean,,<= 2,µg/g (dry weight) ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Tissue,1,1,mean,,<= 1,µg/g body weight (wet weight) ,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Wildlife,1,1,mean,,<= 4,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Irrigation,1,1,mean,,<= 10,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Selenium ,BC,Livestock,1,1,mean,,<= 10,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 40
-Silver,BC,Freshwater Life,5,30,mean,hardness less than or equal to 100 mg/L ,<= 0.05,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 29
-Silver,BC,Freshwater Life,1,1,mean,hardness less than or equal to 100 mg/L ,<=0.1,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 29
-Silver,BC,Freshwater Life,5,30,mean,hardness greater than 100 mg/L ,<=1.5,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 29
-Silver,BC,Freshwater Life,1,1,mean,hardness greater than 100 mg/L ,<=3,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 29
-Silver,BC,Freshwater Life,5,30,mean,open coast and estuaries,<=1.5,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 29
+Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,low consumption of 50 g/week ,4,µg/kg wet weight,,2006--1-8,bc_pdf,table 24
+Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,moderate consumption of 100 g/week,2,µg/kg wet weight,,2006--1-8,bc_pdf,table 24
+Polycyclic Aromatic Hydrocarbons,BC,Fish and/or Shellfish ,1,1,mean,heavy consumption of 200 g/week ,1,µg/kg wet weight,,2006--1-8,bc_pdf,table 24
+Polycyclic Aromatic Hydrocarbons,BC,Industrial,1,1,mean,,<= 0.01,µg/L ,,2006--1-8,bc_pdf,table 24
+Polychlorinated Biphenyls,BC,Irrigation,1,1,mean,PCBs  = total,<= 0.5,µg/L ,,2006--1-8,bc_pdf,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs total ,<= 0.1,µg/L ,,2006--1-8,bc_pdf,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #105,<= 0.09,µg/L ,,2006--1-8,bc_pdf,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #169,<= 0.06,µg/L ,,2006--1-8,bc_pdf,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #77,<= 0.04,µg/L ,,2006--1-8,bc_pdf,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,water / PCBs #126,<= 0.00025,µg/L ,,2006--1-8,bc_pdf,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life ,1,1,mean,fish and/or shellfish (for wildlife consumption: whole animal) ,<= 0.1,µg/g wet weight ,,2006--1-8,bc_pdf,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life ,1,1,mean,fish and/or shellfish (for human consumption: edible tissue only) ,<= 2,µg/g wet weight ,,2006--1-8,bc_pdf,table 24
+Polychlorinated Biphenyls,BC,Freshwater Life,1,1,mean,sediment (*containing 1% organic carbon),<= 0.02 ,µg/g dry weight ,,2006--1-8,bc_pdf,table 24
+Selenium ,BC,Drinking Water ,1,1,mean,,<= 10,µg/L ,,2006--1-8,bc_pdf,table 40
+Selenium ,BC,Freshwater Life,1,1,mean,,<= 2,µg/L ,,2006--1-8,bc_pdf,table 40
+Selenium ,BC,Marine Life,1,1,mean,,<= 2,µg/L ,,2006--1-8,bc_pdf,table 40
+Selenium ,BC,Sediments ,1,1,mean,,<= 2,µg/g (dry weight) ,,2006--1-8,bc_pdf,table 40
+Selenium ,BC,Tissue,1,1,mean,,<= 1,µg/g body weight (wet weight) ,,2006--1-8,bc_pdf,table 40
+Selenium ,BC,Wildlife,1,1,mean,,<= 4,µg/L,,2006--1-8,bc_pdf,table 40
+Selenium ,BC,Irrigation,1,1,mean,,<= 10,µg/L,,2006--1-8,bc_pdf,table 40
+Selenium ,BC,Livestock,1,1,mean,,<= 10,µg/L,,2006--1-8,bc_pdf,table 40
+Silver,BC,Freshwater Life,5,30,mean,hardness less than or equal to 100 mg/L ,<= 0.05,µg/L,,2006--1-8,bc_pdf,table 29
+Silver,BC,Freshwater Life,1,1,mean,hardness less than or equal to 100 mg/L ,<=0.1,µg/L,,2006--1-8,bc_pdf,table 29
+Silver,BC,Freshwater Life,5,30,mean,hardness greater than 100 mg/L ,<=1.5,µg/L,,2006--1-8,bc_pdf,table 29
+Silver,BC,Freshwater Life,1,1,mean,hardness greater than 100 mg/L ,<=3,µg/L,,2006--1-8,bc_pdf,table 29
+Silver,BC,Freshwater Life,5,30,mean,open coast and estuaries,<=1.5,µg/L,,2006--1-8,bc_pdf,table 29
 Sulfolane,BC,Freshwater Life,1,1,mean,,<= 50,mg/L,,2014--12-29,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,
 Sulfolane,BC,Irrigation,1,1,mean,,<= 8.4,mg/L,,2014--12-29,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,
 Sulfolane,BC,Livestock,1,1,mean,,<= 14,mg/L,,2014--12-29,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,
-Sulphate,BC,Drinking,1,1,mean,,<= 500,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 36
-Sulphate,BC,Freshwater Life - maximum,1,1,mean,,<= 100,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 36
-Sulphate,BC,Freshwater Life - alert level,1,1,mean,,<= 50,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 36
+Sulphate,BC,Drinking,1,1,mean,,<= 500,mg/L,,2006--1-8,bc_pdf,table 36
+Sulphate,BC,Freshwater Life - maximum,1,1,mean,,<= 100,mg/L,,2006--1-8,bc_pdf,table 36
+Sulphate,BC,Freshwater Life - alert level,1,1,mean,,<= 50,mg/L,,2006--1-8,bc_pdf,table 36
 pH,CA,Recreation,1,1,mean,water / PCBs #126,<= 35,pH,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
-Toluene,BC,Drinking,1,1,mean,,<=0.024,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 35
-Toluene,BC,Freshwater Life,1,1,mean,,<=0.039,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 35
-Toluene,BC,Marine Life,1,1,mean,,<=0.33,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 35
-Toluene,BC,Livestock,1,1,mean,,<=0.024,mg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 35
-Total Gas Pressure (TGP),BC,Freshwater Life,1,1,mean,local water depth greater than 1 m ,DP <= 76 HG or  less than or equal to 110% at sea level,mm,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
-Total Gas Pressure (TGP),BC,Freshwater Life,1,1,mean,background levels exceed guidelines ,no increase in DP or % TGP ,mm,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
+Toluene,BC,Drinking,1,1,mean,,<=0.024,mg/L,,2006--1-8,bc_pdf,table 35
+Toluene,BC,Freshwater Life,1,1,mean,,<=0.039,mg/L,,2006--1-8,bc_pdf,table 35
+Toluene,BC,Marine Life,1,1,mean,,<=0.33,mg/L,,2006--1-8,bc_pdf,table 35
+Toluene,BC,Livestock,1,1,mean,,<=0.024,mg/L,,2006--1-8,bc_pdf,table 35
+Total Gas Pressure (TGP),BC,Freshwater Life,1,1,mean,local water depth greater than 1 m ,DP <= 76 HG or  less than or equal to 110% at sea level,mm,,2006--1-8,bc_pdf,table 30
+Total Gas Pressure (TGP),BC,Freshwater Life,1,1,mean,background levels exceed guidelines ,no increase in DP or % TGP ,mm,,2006--1-8,bc_pdf,table 30
 Total Gas Pressure (TGP),BC,Freshwater Life,1,,mean,hatchery environments ,"maximum DP = 24 Hg or 103% at sea level
-DP=0 Hg when pO2 <= 100 Hg ",mm,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
+DP=0 Hg when pO2 <= 100 Hg ",mm,,2006--1-8,bc_pdf,table 30
 Turbidity,CA,Recreation,1,1,mean,,>= 5.0 & <= 9.0,NTU,,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,
-Zinc,BC,Drinking,1,1,mean,,<= 5000,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
-Zinc,BC,Recreation,1,1,mean,,<= 5000,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 30
-Zinc,BC,Marine Life,1,1,mean,,<= 10,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
-Zinc,BC,Livestock,1,1,mean,,<= 2000,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
-Zinc,BC,Irrigation,1,1,mean,soil pH less than 6 ,<= 1000,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
-Zinc,BC,Irrigation,1,1,mean,soil pH equal to or greater than 6 and less than 7 ,<= 2000,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
-Zinc,BC,Irrigation,1,1,mean,soil pH greater than or equal to 7 ,<= 5000,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
-Zinc,BC,Freshwater Life,1,1,mean,,<= 33 + 0.75 x (hardness - 90) ,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
-Zinc,BC,Freshwater Life,5,30,mean,,<= 7.5 + 0.75 x (hardness - 90) ,µg/L,,2006--1-8,British Columbia Approved Water Quality Guidelines  2006 Edition,table 33
+Zinc,BC,Drinking,1,1,mean,,<= 5000,µg/L,,2006--1-8,bc_pdf,table 30
+Zinc,BC,Recreation,1,1,mean,,<= 5000,µg/L,,2006--1-8,bc_pdf,table 30
+Zinc,BC,Marine Life,1,1,mean,,<= 10,µg/L,,2006--1-8,bc_pdf,table 33
+Zinc,BC,Livestock,1,1,mean,,<= 2000,µg/L,,2006--1-8,bc_pdf,table 33
+Zinc,BC,Irrigation,1,1,mean,soil pH less than 6 ,<= 1000,µg/L,,2006--1-8,bc_pdf,table 33
+Zinc,BC,Irrigation,1,1,mean,soil pH equal to or greater than 6 and less than 7 ,<= 2000,µg/L,,2006--1-8,bc_pdf,table 33
+Zinc,BC,Irrigation,1,1,mean,soil pH greater than or equal to 7 ,<= 5000,µg/L,,2006--1-8,bc_pdf,table 33
+Zinc,BC,Freshwater Life,1,1,mean,,<= 33 + 0.75 x (hardness - 90) ,µg/L,,2006--1-8,bc_pdf,table 33
+Zinc,BC,Freshwater Life,5,30,mean,,<= 7.5 + 0.75 x (hardness - 90) ,µg/L,,2006--1-8,bc_pdf,table 33
