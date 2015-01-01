@@ -166,6 +166,12 @@ Molybdenum,BC,Irrigation,5,30,mean,"- Well Drained Soil
 (forage crops)",<= 0.02,mg/L,,2006--1-8,bc_pdf,table 15
 Molybdenum,BC,Irrigation,5,30,mean,"- All Soils
 (non-forage crops)",<= 0.03,mg/L,,2006--1-8,bc_pdf,table 15
+Nickel,BC,Freshwater Life,1,1,mean,,<= e0.76*ln[hardness]+1.06 ?g/L,ug/L,,2014--12-31,https://www.ec.gc.ca/indicateurs-indicators/default.asp?lang=en&n=3786D3FD-1,
+Nickel,BC,Marine Life,1,1,mean,one hour,<= 75,ug/L,,,,
+Nickel,BC,Marine Life,1,1,mean,four days,<= 8.3 ,ug/L,,2014--12-31,http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html,
+Nickel,BC,Livestock,1,1,maximum,,<= 1000,ug/L,,2014--12-31,http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html,
+Nickel,BC,Irrigation,1,1,maximum,continuous use on all soils,<= 200,ug/L,,2014--12-31,http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html,
+Nickel,BC,Irrigation,1,1,maximum,20-year use on neutral to alkaline fine-textured soils,<= 2000,ug/L,,,,
 Nitrate,BC,Drinking,1,1,mean,,<= 10,mg/L,,2006--1-8,bc_pdf,table 16 
 Nitrite,BC,Drinking,1,1,mean,,<= 1,mg/L,,2006--1-8,bc_pdf,table 16 
 Nitrate,BC,Freshwater Life - maximum,1,1,mean,,<= 200,mg/L,,2006--1-8,bc_pdf,table 16 
