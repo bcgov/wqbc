@@ -166,10 +166,6 @@ Molybdenum,BC,Irrigation,5,30,mean,"- Well Drained Soil
 (forage crops)",<= 0.02,mg/L,,2006--1-8,bc_pdf,table 15
 Molybdenum,BC,Irrigation,5,30,mean,"- All Soils
 (non-forage crops)",<= 0.03,mg/L,,2006--1-8,bc_pdf,table 15
-Naphthalene,BC,Freshwater Life,1,1,mean,,<= 1,ug/L,,2006--1-8,bc_pdf,table 25
-Naphthalene,BC,Marine Life,1,1,mean,,<= 1,ug/L,,2006--1-8,bc_pdf,table 25
-Naphthalene,BC,Sediments (Fresh Water),1,1,mean,,<= 0.01,ug/g,,2006--1-8,bc_pdf,table 25
-Naphthalene,BC,Sediments (Marine),1,1,mean,,<= 0.01,ug/g,,2006--1-8,bc_pdf,table 25
 Nitrate,BC,Drinking,1,1,mean,,<= 10,mg/L,,2006--1-8,bc_pdf,table 16 
 Nitrite,BC,Drinking,1,1,mean,,<= 1,mg/L,,2006--1-8,bc_pdf,table 16 
 Nitrate,BC,Freshwater Life - maximum,1,1,mean,,<= 200,mg/L,,2006--1-8,bc_pdf,table 16 
