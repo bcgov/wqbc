@@ -1,29 +1,29 @@
 Code,Variable
 Al-D,Aluminium - Dissolved
 Al-T,Aluminum - Total
-,Ammonia
+NH4,Ammonia
 As,Arsenic
 Cd,Cadmium
-,Chloride
+Cl,Chloride
 ,Clarity
 Cu,Copper
-,Cyanide
+CN?,Cyanide
 DO,Dissolved Oxygen
 ,E.coli
 ,Enterococci
-,Fluoride
+F-,Fluoride
 Fe,Iron
 Pb,Lead
 Mn,Manganese
 Hg,Mercury
-,Molybdenum
+Mo,Molybdenum
 Ni,Nickel
-,Nitrate
-,Nitrite
+NO3-,Nitrate
+NO2?,Nitrite
 pH,pH
 Se,Selenium
 Ag,Silver
-,Sulphate
+SO42-,Sulphate
 TN,Total Nitrogen
 TP,Total Phosphorus
 ,Turbidity
