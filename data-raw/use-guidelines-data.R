@@ -1,8 +1,8 @@
 input_guidelines <- function () {
   require(devtools)
 
-  variables <- read.csv("data-raw/variables.csv", na.strings = c("NA", ""), stringsAsFactors = TRUE)
-  guidelines <- read.csv("data-raw/guidelines.csv", na.strings = c("NA", ""), stringsAsFactors = TRUE)
+  variables <- read.csv("data-raw/variables.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
+  guidelines <- read.csv("data-raw/guidelines.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
   n <- nrow(guidelines)
   guidelines <- merge(variables, guidelines, by = "Variable")
@@ -10,22 +10,22 @@ input_guidelines <- function () {
 
   stopifnot(identical(colnames(guidelines),
                       c("Variable", "Code", "Jurisdiction",
-                        "Use", "Samples", "Days", "Average",
+                        "Use", "SubUse", "Samples", "Days", "Average",
                         "Condition", "Guideline", "Unit",
-                        "Comments", "Date", "URL")))
+                        "Comments", "Date", "URL", "TableNumber")))
 
-  stopifnot(identical(levels(guidelines$Jurisdiction),
+  stopifnot(identical(sort(unique(guidelines$Jurisdiction)),
                       c("BC", "CA")))
 
-  stopifnot(identical(levels(guidelines$Use),
+  stopifnot(identical(sort(unique(guidelines$Use)),
                       c("Drinking", "Freshwater Life", "Irrigation", "Livestock",
                         "Marine Life", "Recreation", "Wildlife")))
 
-  stopifnot(identical(levels(guidelines$Unit),
+  stopifnot(identical(sort(unique(guidelines$Unit)),
                       c("/dL", "m", "mg/L", "NTU", "pH", "ug/L")))
 
-  guidelines$Comments <- as.character(guidelines$Comments)
-  guidelines$Date <- as.Date(as.character(guidelines$Date))
+  guidelines$Date <- gsub("--", "-", guidelines$Date)
+  guidelines$Date <- as.Date(guidelines$Date)
 
   stopifnot(is.integer(guidelines$Samples))
   stopifnot(is.integer(guidelines$Days))
@@ -41,7 +41,12 @@ input_guidelines <- function () {
   stopifnot(all(!is.na(guidelines$Date)))
   stopifnot(all(!is.na(guidelines$URL)))
 
-  # check url if internet connection
+  guidelines$Variable <- factor(guidelines$Variable)
+  guidelines$Code <- factor(guidelines$Code)
+  guidelines$Jurisdiction <- factor(guidelines$Jurisdiction)
+  guidelines$Use <- factor(guidelines$Use, levels = c(
+    "Freshwater Life", "Marine Life", "Drinking", "Livestock",
+    "Wildlife", "Irrigation", "Recreation"))
 
   guidelines
 }
