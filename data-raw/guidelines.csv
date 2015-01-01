@@ -187,8 +187,6 @@ Drained Soil
 "Selenium ","BC","Drinking Water ",1,1,"mean",NA,"<= 10","µg/L ",NA,"2006--1-8","bc_pdf","40"
 "Selenium ","BC","Freshwater Life",1,1,"mean",NA,"<= 2","µg/L ",NA,"2006--1-8","bc_pdf","40"
 "Selenium ","BC","Marine Life",1,1,"mean",NA,"<= 2","µg/L ",NA,"2006--1-8","bc_pdf","40"
-"Selenium ","BC","Sediments ",1,1,"mean",NA,"<= 2","µg/g (dry weight) ",NA,"2006--1-8","bc_pdf","40"
-"Selenium ","BC","Tissue",1,1,"mean",NA,"<= 1","µg/g body weight (wet weight) ",NA,"2006--1-8","bc_pdf","40"
 "Selenium ","BC","Wildlife",1,1,"mean",NA,"<= 4","µg/L",NA,"2006--1-8","bc_pdf","40"
 "Selenium ","BC","Irrigation",1,1,"mean",NA,"<= 10","µg/L",NA,"2006--1-8","bc_pdf","40"
 "Selenium ","BC","Livestock",1,1,"mean",NA,"<= 10","µg/L",NA,"2006--1-8","bc_pdf","40"
