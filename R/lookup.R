@@ -5,8 +5,7 @@
 #'
 #' @export
 wq_uses <- function () {
-  c("Drinking", "Freshwater Life", "Marine Life", "Wildlife", "Livestock",
-    "Irrigation", "Recreation")
+  levels(wqbc::guidelines$Use)
 }
 
 #' Get Water Quality Jurisdictions
@@ -16,7 +15,7 @@ wq_uses <- function () {
 #'
 #' @export
 wq_jurisdictions <- function () {
-  c("BC", "CA")
+  levels(wqbc::guidelines$Jurisdiction)
 }
 
 #' Get Water Quality Variables
@@ -26,5 +25,27 @@ wq_jurisdictions <- function () {
 #'
 #' @export
 wq_variables <- function () {
-  sort(wqbc::guidelines$Variables)
+  levels(wqbc::guidelines$Variable)
+}
+
+#' Get Water Quality Codes
+#'
+#' Returns a character vector of the water quality codes for which
+#' guidelines are currently defined in the wqbc package.
+#'
+#' @export
+wq_codes<- function () {
+  levels(wqbc::guidelines$Code)
+}
+
+#' Get Water Quality Code-Variable Lookup
+#'
+#' Returns a data.frame of the water quality code and variable
+#' look up table currently defined in the wqbc package.
+#'
+#' @export
+wq_code_variable <- function () {
+  x <- dplyr::select_(guidelines, ~Code, ~Variable)
+  x <- unique(x)
+  dplyr::arrange_(x, ~Code)
 }
