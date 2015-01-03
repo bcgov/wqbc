@@ -59,10 +59,10 @@
 "Chlorine ","BC","Irrigation ",NA,1,1,"maximum",NA,"<= 1000","ug/L",NA,2014-12-23,"http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
 "Cyanide","BC","Drinking",NA,1,1,"mean","Strong-acid dissociable cyanide + thiocyanate 
 
-","<=200","µg/L ",NA,2006-01-08,"bc_pdf",NA
-"Cyanide","BC","Freshwater Life",NA,5,30,"mean","Strong-acid dissociable cyanide + thiocyanate ","<= 5","µg/L ",NA,2006-01-08,"bc_pdf",NA
-"Cyanide","BC","Freshwater Life",NA,1,1,"mean","Weak-acid dissociable cyanide","<=10","µg/L ",NA,2006-01-08,"bc_pdf",NA
-"Cyanide","BC","Marine Life",NA,1,1,"mean","Weak-acid dissociable cyanide","<=1","µg/L ",NA,2006-01-08,"bc_pdf",NA
+","<=200","µg/L",NA,2006-01-08,"bc_pdf",NA
+"Cyanide","BC","Freshwater Life",NA,5,30,"mean","Strong-acid dissociable cyanide + thiocyanate ","<= 5","µg/L",NA,2006-01-08,"bc_pdf",NA
+"Cyanide","BC","Freshwater Life",NA,1,1,"mean","Weak-acid dissociable cyanide","<=10","µg/L",NA,2006-01-08,"bc_pdf",NA
+"Cyanide","BC","Marine Life",NA,1,1,"mean","Weak-acid dissociable cyanide","<=1","µg/L",NA,2006-01-08,"bc_pdf",NA
 "Dissolved Oxygen","BC","Fresh, Marine and Estuarine Life",NA,1,1,"mean","All Life Stages other than buried embryo/alevin -- water column ",">=5","mg/L",NA,2006-01-08,"bc_pdf","18"
 "Dissolved Oxygen","BC","Fresh, Marine and Estuarine Life",NA,5,30,"mean","All Life Stages other than buried embryo/alevin -- water column ",">=8","mg/L",NA,2006-01-08,"bc_pdf","18"
 "Dissolved Oxygen","BC","Fresh, Marine and Estuarine Life",NA,1,1,"mean","Buried embryo/alevin life stages -- water column",">=9","mg/L",NA,2006-01-08,"bc_pdf","18"
@@ -184,9 +184,9 @@ Drained Soil
 "Nitrite","BC","Wildlife",NA,1,1,"mean",NA,"<= 10","mg/L",NA,2006-01-08,"bc_pdf","16"
 "Nitrate","BC","Recreation",NA,1,1,"mean",NA,"<= 10","mg/L",NA,2006-01-08,"bc_pdf","16"
 "Nitrite","BC","Recreation",NA,1,1,"mean",NA,"<= 1","mg/L",NA,2006-01-08,"bc_pdf","16"
-"Selenium ","BC","Drinking Water ",NA,1,1,"mean",NA,"<= 10","µg/L ",NA,2006-01-08,"bc_pdf","40"
-"Selenium ","BC","Freshwater Life",NA,1,1,"mean",NA,"<= 2","µg/L ",NA,2006-01-08,"bc_pdf","40"
-"Selenium ","BC","Marine Life",NA,1,1,"mean",NA,"<= 2","µg/L ",NA,2006-01-08,"bc_pdf","40"
+"Selenium ","BC","Drinking Water ",NA,1,1,"mean",NA,"<= 10","µg/L",NA,2006-01-08,"bc_pdf","40"
+"Selenium ","BC","Freshwater Life",NA,1,1,"mean",NA,"<= 2","µg/L",NA,2006-01-08,"bc_pdf","40"
+"Selenium ","BC","Marine Life",NA,1,1,"mean",NA,"<= 2","µg/L",NA,2006-01-08,"bc_pdf","40"
 "Selenium ","BC","Wildlife",NA,1,1,"mean",NA,"<= 4","µg/L",NA,2006-01-08,"bc_pdf","40"
 "Selenium ","BC","Irrigation",NA,1,1,"mean",NA,"<= 10","µg/L",NA,2006-01-08,"bc_pdf","40"
 "Selenium ","BC","Livestock",NA,1,1,"mean",NA,"<= 10","µg/L",NA,2006-01-08,"bc_pdf","40"
