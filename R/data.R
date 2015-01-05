@@ -14,7 +14,7 @@
 #' }
 "ccme"
 
-#' Raw Fraser River Basin Long-term Water Quality Monitoring 1979-Present
+#' Fraser River Basin Long-term Water Quality Monitoring 1979-Present
 #'
 #' Surface freshwater quality monitoring in the Fraser River Basin
 #' is carried out under the Canada-British Columbia Water Quality
@@ -23,23 +23,26 @@
 #' establish water quality guidelines and track the effectiveness
 #' of remedial measures and regulatory decisions.
 #'
-#' @format A data frame with 249079 rows and 12 variables:
+#' @details The original dataset has been filtered to remove values
+#' for variables without currently defined limits. In addition,
+#' variables are referenced
+#' by code, unimportant columns have been dropped and the remaining
+#' columns renamed.
+#'
+#' @format A data frame with 17,837 rows and 9 variables:
 #' \describe{
-#'   \item{station_no}{unique water quality station number}
-#'   \item{sample_datetime}{ISO 8601 time of captured water quality sample}
-#'   \item{value}{value of observed measurement}
-#'   \item{method_detect_limit}{lower measurable limit of method}
-#'   \item{unit_code}{unit of variable measured}
-#'   \item{vmv_code}{unique variable and method code}
-#'   \item{variable_name}{observed phenonomenon variable name}
-#'   \item{flag}{measurement quality assurance flag by laboratory}
-#'   \item{station_name}{full station name}
-#'   \item{latitude}{latitude in decimal degrees}
-#'   \item{longitude}{longitude in decimal degrees}
-#'   \item{status}{post-analysis quality assurance flag}
+#'   \item{SiteID}{unique water quality station number}
+#'   \item{Date}{date of water quality sample}
+#'   \item{Code}{parameter code}
+#'   \item{Value}{measured value}
+#'   \item{Units}{reading units}
+#'   \item{DetectionLimit}{minimum value of method}
+#'   \item{Site}{full station name}
+#'   \item{Latitude}{latitude in decimal degrees}
+#'   \item{Longitude}{longitude in decimal degrees}
 #' }
 #' @source \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}
-"waterq_raw"
+"waterq"
 
 #' Water Quality Guidelines for British Columbia and Canada
 #'

@@ -38,15 +38,16 @@ gives the positive or negative net rate of change per scale unit) and
 Significance (p-value).
 }
 \examples{
-# subset data to select only TOTAL LEAD and station "BC08KA0001"
-data(waterq_raw)
-x <- subset(waterq_raw, station_no == "BC08KA0001" & grepl("LEAD TOTAL", variable_name))
+# subset data to select only Pb and SiteID "BC08KA0001"
+require(lubridate)
+data(waterq)
+x <- subset(waterq, SiteID == "BC08KA0001" & grepl("Pb", Code))
 
-# rescale recorded values to be on common scale (some are MG/L some UG/L)
-x $ WQI <- x $ value * ifelse(x $ unit_code == "MG/L", 1000, 1)
+# rescale recorded values to be on common scale (some are mg/L some ug/L)
+x $ WQI <- x $ Value * ifelse(x $ Units == "mg/L", 1000, 1)
 # and month and year covariates
-x $ month <- factor(month.abb[x $ sample_datetime $ mon + 1], levels = month.abb)
-x $ year <- x $ sample_datetime $ year + 1900
+x $ month <- factor(month.abb[lubridate::month(x $ Date)], levels = month.abb)
+x $ year <- lubridate::year(x $ Date)
 
 test_trends(x, scale = "year", by = "month")
 }

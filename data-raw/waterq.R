@@ -1,95 +1,37 @@
-#
-# Utility function
-#
-# scrape a direcory structure web page for file/folder links
-getFiles <- function(url) {
-  rawtxt <- content(GET(url), "text")
-  # strip out file name links
-  rawtxt <- sapply(strsplit(rawtxt, "<A "), gsub, pattern = "(<([a-z]*|/[a-z]*)>|HREF=|\")", replacement = "")
-  rawtxt <- unname(sapply(sapply(rawtxt, strsplit, split = ">"), "[[", 1))
-  # drop the first two which are title and back link
-  files <- rawtxt[-(1:2)]
-  # paste on http location
-  paste0("http://ec.gc.ca", files)
-}
+require(devtools)
+require(dplyr)
+require(magrittr)
 
+waterq <- read.csv("data-raw/waterq.csv")
 
-#---------------------------------------------------------------
-#
-#  Extract data from web page
-#
-#---------------------------------------------------------------
-library(httr)
-library(devtools)
+waterq %<>% select(
+  SiteID = station_no,
+  Date = sample_datetime,
+  Code = variable_name,
+  Value = value,
+  Units = unit_code,
+  DetectionLimit = method_detect_limit,
+  Site = station_name,
+  Latitude = latitude,
+  Longitude = longitude
+)
 
-url <- "http://open.canada.ca/data/api/action/package_show?id=9ec91c92-22f8-4520-8b2c-0f1cce663e18"
-# get url locations of data from webpage
-r <- GET(url)
-# extract the locations of the resources
-urls <- sapply(content(r) $ result $ resources, "[[", "url")
+is.na(waterq$Value[waterq$Value == -999.999]) <- TRUE
+waterq$Date %<>% as.Date
 
+levels(waterq$Code) <- list(
+  pH = "PH",
+  As = "ARSENIC TOTAL",
+  Pb = "LEAD TOTAL",
+  Ca = "CADMIUM TOTAL")
 
+levels(waterq$Units) <- list(
+  "ug/L" = "UG/L",
+  "mg/L" = "MG/L",
+  "pH" = "PH UNITS")
 
-# read in look up tables
-# -----------------------
+waterq %<>% filter(!is.na(Code) & !is.na(Value) & !is.na(Units))
 
-variableLU <- read.csv(urls[2])
-siteLU <- read.csv(urls[3])
-descriptionLU <- read.csv(urls[4])
-
-
-# read in data
-# ------------
-
-# read in folder names (one for each site)
-siteFiles <- getFiles(urls[1])
-# loop over these reading all file names
-allFiles <- unname(unlist(sapply(siteFiles, getFiles)))
-# read each file, store as a list (takes a wee while...)
-dataList <- lapply(seq_along(allFiles), function(i) {
-    fnameshort <- tail(strsplit(allFiles[i], "/")[[1]], 1)
-    cat("reading file :", fnameshort, "...");flush.console()
-    out <- read.csv(allFiles[i])
-    cat(" done", length(allFiles) - i, "to go!\n")
-    out
-  })
-# rbind into one data.frame
-dataFull <- do.call(rbind, dataList)
-
-# the raw data
-head(dataFull)
-
-# look up tables
-head(variableLU)
-head(siteLU)
-head(descriptionLU)
-# could add these in at a later date
-# this would sort out some issues that we clear up by hand anyway such as missing lat long and missing station name
-
-waterq <- dataFull
-
-# clean datetime
-# get correct time zone ?
-waterq $ sample_datetime <-  strptime(as.character(waterq $ sample_datetime), "%Y-%m-%dT%H:%M:%S")
-
-# remove white space
-waterq $ method_detect_limit <- as.numeric(gsub("MG/L", "", as.character(waterq $ method_detect_limit)))
-
-# change NULL and blank to NA
-waterq $ flag <- as.character(waterq $ flag)
-waterq $ flag[waterq $ flag %in% c("", "NULL")] <- NA
-
-# fill in blank station_name on one entry
-waterq $ station_name[waterq $ station_name == ""] <- "North Alouette River at 132nd Ave and Edge Street"
-waterq $ station_name <- waterq $ station_name[drop = TRUE]
-
-# remove white space and replace blank with NA
-waterq $ status <- gsub(" ", "", as.character(waterq $ status))
-waterq $ status[waterq $ status == ""] <- NA
-
-waterq_raw <- waterq
-# save to package
-use_data(waterq_raw, pkg = as.package("."), overwrite = TRUE, compress = "xz")
-#save(waterq, file = "data/waterq.rda")
+use_data(waterq, pkg = as.package("."), overwrite = TRUE, compress = "xz")
 # improve compression
 #tools::resaveRdaFiles("data/waterq.rda")
