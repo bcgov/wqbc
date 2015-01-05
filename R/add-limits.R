@@ -1,5 +1,5 @@
-get_limits_use_jurisdiction <- function (use, jurisdiction) {
-  limits <- dplyr::filter_(wqbc::limits, ~Use == use & Jurisdiction == jurisdiction)
+get_limits_use <- function (use) {
+  limits <- dplyr::filter_(wqbc::limits, ~Use == use)
   dplyr::select_(limits, ~Code, ~LowerLimit, ~UpperLimit, ~Units, ~Samples, ~Days,
                                ~Condition, ~Variable, ~Use, ~Jurisdiction)
 }
@@ -9,30 +9,17 @@ get_limits_use_jurisdiction <- function (use, jurisdiction) {
 #' Adds water quality thresholds/objectives for British Columbia (BC) or
 #' Canada (CA) for a range
 #'
-#' If the argument \code{x} is missing the function returns all
-#' the limits for all the variables currently defined in the
-#' wqbc package for the specified use and jurisdiction.
-#'
 #' @param x data.frame with column(s) Code or Variable
 #' @param use string of required use
-#' @param jurisdiction string of regulatory body
-#' @examples
-#' wq_add_limits()
-#' wq_add_limits(use = "Drinking")
 #' @export
-wq_add_limits <- function (x, use = "Freshwater Life", jurisdiction = "BC") {
+wq_add_limits <- function (x, use = "Freshwater Life") {
+  assert_that(is.data.frame(x))
   assert_that(is.string(use))
-  assert_that(is.string(jurisdiction))
 
   if(!use %in% wq_uses()) stop("use must be ", punctuate_strings(wq_uses()))
 
-  if(!jurisdiction %in% wq_jurisdictions())
-    stop("jurisdiction must be ", punctuate_strings(wq_jurisdictions()))
+  glines <- get_limits_use(use)
 
-  glines <- get_limits_use_jurisdiction(use, jurisdiction)
-  if(missing(x)) return (glines)
-
-  assert_that(is.data.frame(x))
   if(nrow(x) == 0) stop("x must contain at least one row of data")
 
   if("Code" %in% colnames(x)) {

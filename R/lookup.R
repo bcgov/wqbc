@@ -10,18 +10,6 @@ wq_uses <- function () {
   levels(wqbc::limits$Use)
 }
 
-#' Get Water Quality Jurisdictions
-#'
-#' Returns a character vector of the jurisdictions for which
-#' limits are currently defined in the wqbc package.
-#' @examples
-#' wq_jurisdictions()
-#'
-#' @export
-wq_jurisdictions <- function () {
-  levels(wqbc::limits$Jurisdiction)
-}
-
 #' Get Water Quality Variables
 #'
 #' Returns a character vector of the water quality variables for which

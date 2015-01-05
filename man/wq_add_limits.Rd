@@ -4,26 +4,15 @@
 \alias{wq_add_limits}
 \title{Adds Water Quality limits}
 \usage{
-wq_add_limits(x, use = "Freshwater Life", jurisdiction = "BC")
+wq_add_limits(x, use = "Freshwater Life")
 }
 \arguments{
 \item{x}{data.frame with column(s) Code or Variable}
 
 \item{use}{string of required use}
-
-\item{jurisdiction}{string of regulatory body}
 }
 \description{
 Adds water quality thresholds/objectives for British Columbia (BC) or
 Canada (CA) for a range
-}
-\details{
-If the argument \code{x} is missing the function returns all
-the limits for all the variables currently defined in the
-wqbc package for the specified use and jurisdiction.
-}
-\examples{
-wq_add_limits()
-wq_add_limits(use = "Drinking")
 }
 
