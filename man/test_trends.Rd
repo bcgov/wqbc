@@ -39,8 +39,8 @@ Significance (p-value).
 }
 \examples{
 # subset data to select only TOTAL LEAD and station "BC08KA0001"
-data(waterq)
-x <- subset(waterq, station_no == "BC08KA0001" & grepl("LEAD TOTAL", variable_name))
+data(waterq_raw)
+x <- subset(waterq_raw, station_no == "BC08KA0001" & grepl("LEAD TOTAL", variable_name))
 
 # rescale recorded values to be on common scale (some are MG/L some UG/L)
 x $ WQI <- x $ value * ifelse(x $ unit_code == "MG/L", 1000, 1)

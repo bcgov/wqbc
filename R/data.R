@@ -1,4 +1,37 @@
-#' Fraser River Basin Long-term Water Quality Monitoring 1979-Present
+#' Raw CCME Water Quality Index User’s Manual Example Data
+#'
+#' Example raw dataset from the CCME Water Quality Index 1.0 User’s Manual
+#'
+#' @format A data frame with 12 rows and 11 variables:
+#' \describe{
+#'   \item{Date}{date of reading}
+#'   \item{DO}{dissolved oxygen value}
+#'   \item{pH}{pH value}
+#'   \item{TP}{total phosphorus value}
+#'   \item{TN}{total nitrogen value}
+#'   \item{FC}{faecal coliform value}
+#'   \item{As}{arsenic value}
+#'   \item{Pb}{lead value}
+#'   \item{Hg}{mercury value}
+#'   \item{x2.4.D}{2,4-D value}
+#'   \item{Lindane}{linedane value}
+#' }
+"ccme_raw"
+
+#' Tidy CCME Water Quality Index User’s Manual Example Data
+#'
+#' Example tidy dataset from the CCME Water Quality Index 1.0 User’s Manual
+#'
+#' @format A data frame with 12 rows and 11 variables:
+#' \describe{
+#'   \item{Code}{parameter code}
+#'   \item{Date}{date of reading}
+#'   \item{Value}{value of reading}
+#'   \item{Guideline}{guideline}
+#' }
+"ccme"
+
+#' Raw Fraser River Basin Long-term Water Quality Monitoring 1979-Present
 #'
 #' Surface freshwater quality monitoring in the Fraser River Basin
 #' is carried out under the Canada-British Columbia Water Quality
@@ -23,7 +56,7 @@
 #'   \item{status}{post-analysis quality assurance flag}
 #' }
 #' @source \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}
-"waterq"
+"waterq_raw"
 
 #' Water Quality Guidelines for British Columbia and Canada
 #'

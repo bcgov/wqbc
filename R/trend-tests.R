@@ -1,18 +1,18 @@
 #' Test for Trends in Water Quality Indices
 #'
 #' Tests for linear and non-linear trends in water quality indices
-#' 
+#'
 #' [DRAFT]
 #'
-#' If the argument \code{x} must have columns: 
-#' WQI (0 to 100), 
-#' Year (or whichever single column is specified by the argument Year). 
-#' 
-#' only one WQI value for each year is allowed. 
-#' If a by argument is specified for example if by = c("Lake", "Site") 
+#' If the argument \code{x} must have columns:
+#' WQI (0 to 100),
+#' Year (or whichever single column is specified by the argument Year).
+#'
+#' only one WQI value for each year is allowed.
+#' If a by argument is specified for example if by = c("Lake", "Site")
 #' then a trend test is conducted for each combination of Site
-#' within each Lake by Year 
-#' 
+#' within each Lake by Year
+#'
 #' The function returns an object of class wq_trend which inherits from data.frame. It
 #' the will include any columns listed in the \code{by} argument plus any columns which do
 #' not vary for each Trend test (allows things like Lat and Lon to be passed
@@ -27,16 +27,16 @@
 #' @param by a factor or a list of factors, which must be named columns of  \code{x}.
 #' @export
 #' @examples
-#' # subset data to select only TOTAL LEAD and station "BC08KA0001" 
-#' data(waterq)
-#' x <- subset(waterq, station_no == "BC08KA0001" & grepl("LEAD TOTAL", variable_name))
-#' 
+#' # subset data to select only TOTAL LEAD and station "BC08KA0001"
+#' data(waterq_raw)
+#' x <- subset(waterq_raw, station_no == "BC08KA0001" & grepl("LEAD TOTAL", variable_name))
+#'
 #' # rescale recorded values to be on common scale (some are MG/L some UG/L)
 #' x $ WQI <- x $ value * ifelse(x $ unit_code == "MG/L", 1000, 1)
 #' # and month and year covariates
 #' x $ month <- factor(month.abb[x $ sample_datetime $ mon + 1], levels = month.abb)
 #' x $ year <- x $ sample_datetime $ year + 1900
-#' 
+#'
 #' test_trends(x, scale = "year", by = "month")
 test_trends <- function (x, scale = "Year", by = NULL) {
 
@@ -50,7 +50,7 @@ test_trends <- function (x, scale = "Year", by = NULL) {
   # run the trend test
   fit <- by(x,  INDICES, function(x.) zyp.trend.vector(y = x. $ WQI, x = x. $ centered_scale, method = "yuepilon"))
 
-  # return this list for now, but we will be producing 
+  # return this list for now, but we will be producing
   # a specific class in coming revisions
   unclass(fit)
 }

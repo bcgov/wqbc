@@ -66,7 +66,7 @@ head(descriptionLU)
 # could add these in at a later date
 # this would sort out some issues that we clear up by hand anyway such as missing lat long and missing station name
 
-waterq <- dataFull 
+waterq <- dataFull
 
 # clean datetime
 # get correct time zone ?
@@ -87,8 +87,9 @@ waterq $ station_name <- waterq $ station_name[drop = TRUE]
 waterq $ status <- gsub(" ", "", as.character(waterq $ status))
 waterq $ status[waterq $ status == ""] <- NA
 
+waterq_raw <- waterq
 # save to package
-use_data(waterq, pkg = as.package("."), overwrite = TRUE, compress = "xz")
+use_data(waterq_raw, pkg = as.package("."), overwrite = TRUE, compress = "xz")
 #save(waterq, file = "data/waterq.rda")
 # improve compression
 #tools::resaveRdaFiles("data/waterq.rda")
