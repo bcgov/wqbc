@@ -1,6 +1,6 @@
 get_limits_use_jurisdiction <- function (use, jurisdiction) {
   limits <- dplyr::filter_(wqbc::limits, ~Use == use & Jurisdiction == jurisdiction)
-  dplyr::select_(limits, ~Code, ~Guideline, ~Unit, ~Samples, ~Days,
+  dplyr::select_(limits, ~Code, ~LowerLimit, ~UpperLimit, ~Unit, ~Samples, ~Days,
                                ~Condition, ~Variable, ~Use, ~Jurisdiction)
 }
 
@@ -43,9 +43,9 @@ wq_add_limits <- function (x, use = "Freshwater Life", jurisdiction = "BC") {
 
   x <- remove_columns_from_x_in_y(x, y = dplyr::select_(glines, ~-Code, ~-Variable))
   x <- dplyr::left_join(x, glines, by = c("Code", "Variable"))
-  unknown <- is.na(x$Guideline)
+  unknown <- is.na(x$LowerLimit) | is.na(x$UpperLimit)
   if(any(unknown)) {
-    warning(sum(unknown), " values in x do not have a recognised guideline")
+    warning(sum(unknown), " values in x do not have recognised limits")
   }
   x
 }

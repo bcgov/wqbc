@@ -6,7 +6,7 @@ input_limits <- function () {
   stopifnot(identical(colnames(limits),
                       c("Variable", "Jurisdiction",
                         "Use", "SubUse", "Samples", "Days", "Average",
-                        "Condition", "Guideline", "Unit",
+                        "Condition", "LowerLimit", "UpperLimit", "Unit",
                         "Comments", "Date", "URL", "TableNumber")))
 
   stopifnot(identical(sort(unique(limits$Jurisdiction)),
@@ -19,9 +19,6 @@ input_limits <- function () {
   stopifnot(identical(sort(unique(limits$Unit)),
                       c("/dL", "m", "mg/L", "NTU", "pH", "ug/L")))
 
-  #  limits$Unit <- gsub("µg/L", "ug/L", limits$Unit)
-  #  limits$Unit <- gsub(" ", "", limits$Unit)
-  #  limits$Date <- gsub("--", "-", limits$Date)
   #  write.csv(limits, "data-raw/limits.csv", row.names = FALSE)
 
   limits$Date <- as.Date(limits$Date)
@@ -35,7 +32,7 @@ input_limits <- function () {
   stopifnot(all(!is.na(limits$Samples)))
   stopifnot(all(!is.na(limits$Days)))
   stopifnot(all(!is.na(limits$Average)))
-  stopifnot(all(!is.na(limits$Guideline)))
+  stopifnot(all(!is.na(limits$LowerLimit) | !is.na(limits$UpperLimit)))
   stopifnot(all(!is.na(limits$Unit)))
   stopifnot(all(!is.na(limits$Date)))
   stopifnot(all(!is.na(limits$URL)))
@@ -63,17 +60,19 @@ input_limits <- function () {
     "Freshwater Life", "Marine Life", "Drinking", "Livestock",
     "Wildlife", "Irrigation", "Recreation"))
 
-  limits <- limits[!is.na(limits$Variable) &
-                             !is.na(limits$Code) &
-                             !is.na(limits$Jurisdiction) &
-                             !is.na(limits$Use) &
-                             !is.na(limits$Sample) &
-                             !is.na(limits$Days) &
-                             !is.na(limits$Average) &
-                             !is.na(limits$Guideline) &
-                             !is.na(limits$Unit) &
-                             !is.na(limits$Date) &
-                             !is.na(limits$URL),,drop = FALSE]
+  limits <- limits[
+    !is.na(limits$Variable) &
+      !is.na(limits$Code) &
+      !is.na(limits$Jurisdiction) &
+      !is.na(limits$Use) &
+      !is.na(limits$Sample) &
+      !is.na(limits$Days) &
+      !is.na(limits$Average) &
+      !(is.na(limits$LowerLimit) & is.na(limits$UpperLimit)) &
+      !is.na(limits$Unit) &
+      !is.na(limits$Date) &
+      !is.na(limits$URL),
+    ,drop = FALSE]
 
   limits
 }

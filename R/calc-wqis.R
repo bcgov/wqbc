@@ -17,8 +17,8 @@ F3 <- function (x) {
     return (0)
 
   bol <- TRUE # need to fix this up
-  excursion1 <- x$Value[bol] / x$Guideline[bol]
-  excursion2 <- x$Guideline[!bol] / x$Value[!bol]
+  excursion1 <- x$Value[bol] / x$LowerLimit[bol]
+  excursion2 <- x$UpperLimit[!bol] / x$Value[!bol]
 
   nse <-  sum(excursion1, excursion2) / nrow(x)
   nse / (0.01 * nse + 0.01)
@@ -37,8 +37,8 @@ calc_wqi <- function (x) {
   assert_that(is.data.frame(x))
   assert_that(is.factor(x$Variable) && noNA(x$Variable))
   assert_that(is.numeric(x$Value) && noNA(x$Value))
-  assert_that(is.numeric(x$Guideline) && noNA(x$Guideline))
-  assert_that(is.character(x$Condition) && noNA(x$Condition))
+  assert_that(is.numeric(x$LowerLimit) && noNA(x$LowerLimit))
+  assert_that(is.numeric(x$UpperLimit) && noNA(x$UpperLimit))
   assert_that(is.character(x$Condition) && noNA(x$Condition))
   assert_that(all(x$Condition %in% c("<", "<=", ">", ">=")))
 

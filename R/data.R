@@ -71,7 +71,8 @@
 #'   \item{Days}{period within which number of samples must be collected}
 #'   \item{Average}{R function(s) to calculate "average" value for multiple samples}
 #'   \item{Condition}{R logical expression to test required condition}
-#'   \item{Guideline}{R logical expression to test whether guideline fulfilled}
+#'   \item{LowerLimit}{Value or R expression to calculate lower limit}
+#'   \item{UpperLimit}{Value or R expression to calculate upper limit}
 #'   \item{Unit}{units for guideline (permitted values: mg/L, ug/L, /dL, m, NTU, pH)}
 #'   \item{Comments}{comments regarding the interpretation of the online documentation}
 #'   \item{Date}{YYYY-MM-DD format date online documentation last checked}
