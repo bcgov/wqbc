@@ -41,12 +41,13 @@
 #'
 #' @format A data frame with 13 variables:
 #' \describe{
-#'   \item{Variable}{name of water quality parameter}
 #'   \item{Code}{short-hand code}
+#'   \item{Variable}{name of water quality parameter}
 #'   \item{Jurisdiction}{regulatory jurisdiction in Canada (permitted values:
 #'   BC, CA)}
 #'   \item{Use}{intended use (permitted values: Drinking, Freshwater Life,
 #'    Marine Life, Wildlife, Livestock, Irrigation, Recreation)}
+#'   \item{SubUse}{additional information on use}
 #'   \item{Samples}{minimum number of samples required}
 #'   \item{Days}{period within which number of samples must be collected}
 #'   \item{Average}{R function(s) to calculate "average" value for multiple samples}
@@ -56,5 +57,6 @@
 #'   \item{Comments}{comments regarding the interpretation of the online documentation}
 #'   \item{Date}{YYYY-MM-DD format date online documentation last checked}
 #'   \item{URL}{online documentation from which guideline extracted}
+#'   \item{TableNumber}{number of table from which guideline extracted}
 #' }
 "guidelines"

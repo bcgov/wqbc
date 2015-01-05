@@ -5,23 +5,11 @@ punctuate_strings <- function (x, qualifier = "or") {
   paste(paste(x[-n], collapse = ", "), qualifier, x[n])
 }
 
-filter_select_guidelines <- function (use, jurisdiction) {
-  guidelines <- dplyr::filter_(guidelines, ~Use == use & Jurisdiction == jurisdiction)
-  guidelines <- dplyr::select_(guidelines, ~Code, ~Guideline, ~Unit, ~Samples, ~Days,
-                               ~Condition, ~Variable, ~Use, ~Jurisdiction)
+remove_columns_from_x_in_y <- function (x, y) {
 
-  guidelines
-}
-
-remove_use_jurisdiction_columns <- function (x, use, jurisdiction) {
-  if("Use" %in% colnames(x)) {
-    message("Use column in x replaced with ", use)
-    x$Use <- NULL
+  colnames <- colnames(x)[colnames(x) %in% colnames(y)]
+  if(length(colnames) >= 1) {
+    message("Removed columns ", punctuate_strings(colnames, "and"), " from x")
   }
-  if("Jurisdiction" %in% colnames(x)) {
-    message("Jurisdiction column in x replaced with ", jurisdiction)
-    x$Jurisdiction <- NULL
-  }
-  x
+  x[,!colnames(x) %in% colnames(y), drop = FALSE]
 }
-

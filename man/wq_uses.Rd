@@ -10,4 +10,7 @@ wq_uses()
 Returns a character vector of the uses for which
 guidelines are currently defined in the wqbc package.
 }
+\examples{
+wq_uses()
+}
 

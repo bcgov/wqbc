@@ -10,4 +10,7 @@ wq_jurisdictions()
 Returns a character vector of the jurisdictions for which
 guidelines are currently defined in the wqbc package.
 }
+\examples{
+wq_jurisdictions()
+}
 

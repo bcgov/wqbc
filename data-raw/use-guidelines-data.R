@@ -48,6 +48,10 @@ input_guidelines <- function () {
   guidelines <- merge(variables, guidelines, by = "Variable")
   stopifnot(n == nrow(guidelines))
 
+  code <- guidelines$Code
+  guidelines$Code <- NULL
+  guidelines <- cbind(data.frame(Code = code), guidelines)
+
   guidelines$Variable <- factor(guidelines$Variable)
   guidelines$Code <- factor(guidelines$Code)
 
