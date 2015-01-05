@@ -1,5 +1,6 @@
 input_limits <- function () {
-  require(devtools)
+  require(dplyr)
+  require(magrittr)
 
   limits <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
@@ -19,7 +20,10 @@ input_limits <- function () {
   stopifnot(identical(sort(unique(limits$Unit)),
                       c("/dL", "m", "mg/L", "NTU", "pH", "ug/L")))
 
-  #  write.csv(limits, "data-raw/limits.csv", row.names = FALSE)
+  stopifnot(identical(sort(unique(limits$Status)),
+                      c("Approved")))
+
+  #    write.csv(limits, "data-raw/limits.csv", row.names = FALSE)
 
   limits$Date <- as.Date(limits$Date)
 
@@ -34,12 +38,15 @@ input_limits <- function () {
   stopifnot(all(!is.na(limits$Average)))
   stopifnot(all(!is.na(limits$LowerLimit) | !is.na(limits$UpperLimit)))
   stopifnot(all(!is.na(limits$Unit)))
+  stopifnot(all(!is.na(limits$Status)))
   stopifnot(all(!is.na(limits$Date)))
   stopifnot(all(!is.na(limits$URL)))
 
   codes <- read.csv("data-raw/codes.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
   stopifnot(identical(colnames(codes), c("Code", "Variable")))
+
+  stopifnot(all(!is.na(codes$Code)))
 
   n <- nrow(limits)
   limits <- merge(codes, limits, by = "Variable")
@@ -51,31 +58,34 @@ input_limits <- function () {
 
   limits$Variable <- factor(limits$Variable)
   limits$Code <- factor(limits$Code)
+  limits$Status <- factor(limits$Code, levels = c("Approved"))
 
-  stopifnot(all(!is.na(limits$Code)))
-
-  limits$Jurisdiction <- factor(limits$Jurisdiction)
+  limits$Jurisdiction <- factor(limits$Jurisdiction, levels = c("BC", "CA"))
 
   limits$Use <- factor(limits$Use, levels = c(
     "Freshwater Life", "Marine Life", "Drinking", "Livestock",
     "Wildlife", "Irrigation", "Recreation"))
 
-  limits <- limits[
-    !is.na(limits$Variable) &
-      !is.na(limits$Code) &
-      !is.na(limits$Jurisdiction) &
-      !is.na(limits$Use) &
-      !is.na(limits$Sample) &
-      !is.na(limits$Days) &
-      !is.na(limits$Average) &
-      !(is.na(limits$LowerLimit) & is.na(limits$UpperLimit)) &
-      !is.na(limits$Unit) &
-      !is.na(limits$Date) &
-      !is.na(limits$URL),
-    ,drop = FALSE]
+  limits %<>% dplyr::filter(
+    !is.na(Variable) &
+      !is.na(Code) &
+      !is.na(Jurisdiction) &
+      !is.na(Use) &
+      !is.na(Samples) &
+      !is.na(Days) &
+      !is.na(Average) &
+      !(is.na(LowerLimit) & is.na(UpperLimit)) &
+      !is.na(Unit) &
+      #  Status == "Approved" &
+      !is.na(Date) &
+      !is.na(URL))
 
+  limits %<>% select(Code, Variable, Jurisdiction, Use, SubUse,
+                     Samples, Days,
+                     Average, Condition, LowerLimit, UpperLimit, Unit)
   limits
 }
+require(devtools)
 rm(limits)
 limits <- input_limits()
 summary(limits)

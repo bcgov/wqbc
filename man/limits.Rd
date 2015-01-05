@@ -20,10 +20,6 @@
   \item{LowerLimit}{Value or R expression to calculate lower limit}
   \item{UpperLimit}{Value or R expression to calculate upper limit}
   \item{Unit}{units for guideline (permitted values: mg/L, ug/L, /dL, m, NTU, pH)}
-  \item{Comments}{comments regarding the interpretation of the online documentation}
-  \item{Date}{YYYY-MM-DD format date online documentation last checked}
-  \item{URL}{online documentation from which guideline extracted}
-  \item{TableNumber}{number of table from which guideline extracted}
 }}
 \usage{
 limits
