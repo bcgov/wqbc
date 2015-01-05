@@ -1,6 +1,6 @@
 get_limits_use_jurisdiction <- function (use, jurisdiction) {
   limits <- dplyr::filter_(wqbc::limits, ~Use == use & Jurisdiction == jurisdiction)
-  dplyr::select_(limits, ~Code, ~LowerLimit, ~UpperLimit, ~Unit, ~Samples, ~Days,
+  dplyr::select_(limits, ~Code, ~LowerLimit, ~UpperLimit, ~Units, ~Samples, ~Days,
                                ~Condition, ~Variable, ~Use, ~Jurisdiction)
 }
 

@@ -19,7 +19,7 @@
   \item{Condition}{R logical expression to test required condition}
   \item{LowerLimit}{Value or R expression to calculate lower limit}
   \item{UpperLimit}{Value or R expression to calculate upper limit}
-  \item{Unit}{units for guideline (permitted values: mg/L, ug/L, /dL, m, NTU, pH)}
+  \item{Units}{units for guideline (permitted values: mg/L, ug/L, /dL, m, NTU, pH)}
 }}
 \usage{
 limits

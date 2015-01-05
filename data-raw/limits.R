@@ -7,7 +7,7 @@ input_limits <- function () {
   stopifnot(identical(colnames(limits),
                       c("Variable", "Jurisdiction",
                         "Use", "SubUse", "Samples", "Days", "Average",
-                        "Condition", "LowerLimit", "UpperLimit", "Unit",
+                        "Condition", "LowerLimit", "UpperLimit", "Units",
                         "Comments", "Date", "URL", "TableNumber")))
 
   stopifnot(identical(sort(unique(limits$Jurisdiction)),
@@ -17,7 +17,7 @@ input_limits <- function () {
                       c("Drinking", "Freshwater Life", "Irrigation", "Livestock",
                         "Marine Life", "Recreation", "Wildlife")))
 
-  stopifnot(identical(sort(unique(limits$Unit)),
+  stopifnot(identical(sort(unique(limits$Units)),
                       c("/dL", "m", "mg/L", "NTU", "pH", "ug/L")))
 
   stopifnot(identical(sort(unique(limits$Status)),
@@ -37,7 +37,7 @@ input_limits <- function () {
   stopifnot(all(!is.na(limits$Days)))
   stopifnot(all(!is.na(limits$Average)))
   stopifnot(all(!is.na(limits$LowerLimit) | !is.na(limits$UpperLimit)))
-  stopifnot(all(!is.na(limits$Unit)))
+  stopifnot(all(!is.na(limits$Units)))
   stopifnot(all(!is.na(limits$Status)))
   stopifnot(all(!is.na(limits$Date)))
   stopifnot(all(!is.na(limits$URL)))
@@ -75,14 +75,14 @@ input_limits <- function () {
       !is.na(Days) &
       !is.na(Average) &
       !(is.na(LowerLimit) & is.na(UpperLimit)) &
-      !is.na(Unit) &
+      !is.na(Units) &
       #  Status == "Approved" &
       !is.na(Date) &
       !is.na(URL))
 
   limits %<>% select(Code, Variable, Jurisdiction, Use, SubUse,
                      Samples, Days,
-                     Average, Condition, LowerLimit, UpperLimit, Unit)
+                     Average, Condition, LowerLimit, UpperLimit, Units)
   limits
 }
 require(devtools)
