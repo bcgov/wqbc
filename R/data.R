@@ -1,33 +1,16 @@
-#' Raw CCME Water Quality Index User’s Manual Example Data
+#' CCME Water Quality Index User's Manual Example Data
 #'
-#' Example raw dataset from the CCME Water Quality Index 1.0 User’s Manual
+#' A tidy data.frame of the CCME Water Quality Index 1.0 User's Manual
+#' example dataset.
 #'
-#' @format A data frame with 12 rows and 11 variables:
-#' \describe{
-#'   \item{Date}{date of reading}
-#'   \item{DO}{dissolved oxygen value}
-#'   \item{pH}{pH value}
-#'   \item{TP}{total phosphorus value}
-#'   \item{TN}{total nitrogen value}
-#'   \item{FC}{faecal coliform value}
-#'   \item{As}{arsenic value}
-#'   \item{Pb}{lead value}
-#'   \item{Hg}{mercury value}
-#'   \item{x2.4.D}{2,4-D value}
-#'   \item{Lindane}{linedane value}
-#' }
-"ccme_raw"
-
-#' Tidy CCME Water Quality Index User’s Manual Example Data
-#'
-#' Example tidy dataset from the CCME Water Quality Index 1.0 User’s Manual
-#'
-#' @format A data frame with 12 rows and 11 variables:
+#' @format A data frame with 120 rows and 6 variables:
 #' \describe{
 #'   \item{Code}{parameter code}
 #'   \item{Date}{date of reading}
 #'   \item{Value}{value of reading}
-#'   \item{Guideline}{guideline}
+#'   \item{DetectionLimit}{detection limit of method}
+#'   \item{LowerLimit}{minimum permitted value}
+#'   \item{UpperLimit}{maximum permitted value}
 #' }
 "ccme"
 

@@ -3,19 +3,22 @@
 \docType{data}
 \name{ccme}
 \alias{ccme}
-\title{Tidy CCME Water Quality Index User’s Manual Example Data}
-\format{A data frame with 12 rows and 11 variables:
+\title{CCME Water Quality Index User's Manual Example Data}
+\format{A data frame with 120 rows and 6 variables:
 \describe{
   \item{Code}{parameter code}
   \item{Date}{date of reading}
   \item{Value}{value of reading}
-  \item{Guideline}{guideline}
+  \item{DetectionLimit}{detection limit of method}
+  \item{LowerLimit}{minimum permitted value}
+  \item{UpperLimit}{maximum permitted value}
 }}
 \usage{
 ccme
 }
 \description{
-Example tidy dataset from the CCME Water Quality Index 1.0 User’s Manual
+A tidy data.frame of the CCME Water Quality Index 1.0 User's Manual
+example dataset.
 }
 \keyword{datasets}
 
