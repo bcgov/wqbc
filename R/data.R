@@ -42,7 +42,7 @@
 #'   \item{Longitude}{longitude in decimal degrees}
 #' }
 #' @source \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}
-"waterq"
+"fraser"
 
 #' Water Quality Guidelines for British Columbia and Canada
 #'

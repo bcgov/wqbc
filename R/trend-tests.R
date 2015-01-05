@@ -29,8 +29,8 @@
 #' @examples
 #' # subset data to select only Pb and SiteID "BC08KA0001"
 #' require(lubridate)
-#' data(waterq)
-#' x <- subset(waterq, SiteID == "BC08KA0001" & grepl("Pb", Code))
+#' data(fraser)
+#' x <- subset(fraser, SiteID == "BC08KA0001" & grepl("Pb", Code))
 #'
 #' # rescale recorded values to be on common scale (some are mg/L some ug/L)
 #' x $ WQI <- x $ Value * ifelse(x $ Units == "mg/L", 1000, 1)

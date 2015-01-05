@@ -2,9 +2,9 @@ require(devtools)
 require(dplyr)
 require(magrittr)
 
-waterq <- read.csv("data-raw/waterq.csv")
+fraser <- read.csv("data-raw/fraser.csv")
 
-waterq %<>% select(
+fraser %<>% select(
   SiteID = station_no,
   Date = sample_datetime,
   Code = variable_name,
@@ -16,22 +16,22 @@ waterq %<>% select(
   Longitude = longitude
 )
 
-is.na(waterq$Value[waterq$Value == -999.999]) <- TRUE
-waterq$Date %<>% as.Date
+is.na(fraser$Value[fraser$Value == -999.999]) <- TRUE
+fraser$Date %<>% as.Date
 
-levels(waterq$Code) <- list(
+levels(fraser$Code) <- list(
   pH = "PH",
   As = "ARSENIC TOTAL",
   Pb = "LEAD TOTAL",
   Ca = "CADMIUM TOTAL")
 
-levels(waterq$Units) <- list(
+levels(fraser$Units) <- list(
   "ug/L" = "UG/L",
   "mg/L" = "MG/L",
   "pH" = "PH UNITS")
 
-waterq %<>% filter(!is.na(Code) & !is.na(Value) & !is.na(Units))
+fraser %<>% filter(!is.na(Code) & !is.na(Value) & !is.na(Units))
 
-use_data(waterq, pkg = as.package("."), overwrite = TRUE, compress = "xz")
+use_data(fraser, pkg = as.package("."), overwrite = TRUE, compress = "xz")
 # improve compression
-#tools::resaveRdaFiles("data/waterq.rda")
+#tools::resaveRdaFiles("data/fraser.rda")
