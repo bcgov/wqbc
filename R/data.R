@@ -44,16 +44,16 @@
 #' @source \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}
 "fraser"
 
-#' Water Quality Guidelines for British Columbia and Canada
+#' Water Quality Limits for British Columbia and Canada
 #'
 #' Both the Canadian federal government and the
-#' province of British Columbia set guidelines for a range of
+#' province of British Columbia set limits for a range of
 #' water quality parameters. The data were taken from a
 #' range of federal and provincial websites. They represent
-#' long-term guidelines for samples taken from the water column.
-#' Guidelines which depend on conditions from other periods
+#' long-term limits for samples taken from the water column.
+#' Limits which depend on conditions from other periods
 #' or locations are not included. For example some of the
-#' guidelines for turbidity are defined with respect to background
+#' limits for turbidity are defined with respect to background
 #' levels and/or an upstream site.
 #' Where some interpretation of the information provided was required
 #' this is noted in the comments.
@@ -78,4 +78,4 @@
 #'   \item{URL}{online documentation from which guideline extracted}
 #'   \item{TableNumber}{number of table from which guideline extracted}
 #' }
-"guidelines"
+"limits"

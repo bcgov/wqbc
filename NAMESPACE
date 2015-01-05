@@ -2,7 +2,7 @@
 
 export(test_trends)
 export(wq_add_codes)
-export(wq_add_guidelines)
+export(wq_add_limits)
 export(wq_add_variables)
 export(wq_codes)
 export(wq_codes_variables)

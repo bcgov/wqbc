@@ -8,7 +8,7 @@ wq_variables()
 }
 \description{
 Returns a character vector of the water quality variables for which
-guidelines are currently defined in the wqbc package.
+limits are currently defined in the wqbc package.
 }
 \examples{
 wq_variables()

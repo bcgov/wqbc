@@ -8,7 +8,7 @@ wq_codes()
 }
 \description{
 Returns a character vector of the water quality codes for which
-guidelines are currently defined in the wqbc package.
+limits are currently defined in the wqbc package.
 }
 \examples{
 wq_codes()

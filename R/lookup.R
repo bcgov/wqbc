@@ -1,49 +1,49 @@
 #' Get Water Quality Uses
 #'
 #' Returns a character vector of the uses for which
-#' guidelines are currently defined in the wqbc package.
+#' limits are currently defined in the wqbc package.
 #' @examples
 #' wq_uses()
 #'
 #' @export
 wq_uses <- function () {
-  levels(wqbc::guidelines$Use)
+  levels(wqbc::limits$Use)
 }
 
 #' Get Water Quality Jurisdictions
 #'
 #' Returns a character vector of the jurisdictions for which
-#' guidelines are currently defined in the wqbc package.
+#' limits are currently defined in the wqbc package.
 #' @examples
 #' wq_jurisdictions()
 #'
 #' @export
 wq_jurisdictions <- function () {
-  levels(wqbc::guidelines$Jurisdiction)
+  levels(wqbc::limits$Jurisdiction)
 }
 
 #' Get Water Quality Variables
 #'
 #' Returns a character vector of the water quality variables for which
-#' guidelines are currently defined in the wqbc package.
+#' limits are currently defined in the wqbc package.
 #' @examples
 #' wq_variables()
 #'
 #' @export
 wq_variables <- function () {
-  levels(wqbc::guidelines$Variable)
+  levels(wqbc::limits$Variable)
 }
 
 #' Get Water Quality Codes
 #'
 #' Returns a character vector of the water quality codes for which
-#' guidelines are currently defined in the wqbc package.
+#' limits are currently defined in the wqbc package.
 #'@examples
 #' wq_codes()
 #'
 #' @export
 wq_codes<- function () {
-  levels(wqbc::guidelines$Code)
+  levels(wqbc::limits$Code)
 }
 
 #' Get Water Quality Code-Variable Lookup
@@ -55,7 +55,7 @@ wq_codes<- function () {
 #'
 #' @export
 wq_codes_variables <- function () {
-  x <- dplyr::select_(wqbc::guidelines, ~Code, ~Variable)
+  x <- dplyr::select_(wqbc::limits, ~Code, ~Variable)
   x <- unique(x)
   dplyr::arrange_(x, ~Code)
 }

@@ -8,7 +8,7 @@ wq_uses()
 }
 \description{
 Returns a character vector of the uses for which
-guidelines are currently defined in the wqbc package.
+limits are currently defined in the wqbc package.
 }
 \examples{
 wq_uses()
