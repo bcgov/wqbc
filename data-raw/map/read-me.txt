@@ -1,0 +1,449 @@
+                               GeoAccess Division
+
+                                Geomatics Canada
+                     Department of Natural Resources Canada
+
+				   * * * * *
+
+
+                          NATIONAL ATLAS DIGITAL DATA
+
+
+
+	This directory contains 1:7.5 million scale National Atlas
+	digital base map data for Canada. The data was produced by the
+	GeoAccess Division, formerly the National Atlas Information
+	Service (NAIS), of Geomatics Canada.
+
+
+
+	GENERAL INFORMATION
+	Scale:			1:7 500 000
+	Data Format:		SHAPE
+	Data Type:		2D layered vector data
+	Geographic Extent:	Canada
+	Transfer Method:	ISO 9660 CD-ROM
+				3.5" diskette (DOS)
+				8 mm cassette (UNIX)
+
+	Date:			Information updated as of 1996-1997.
+
+				Population categories determined from
+				Statistics Canada 1991 Census data.
+
+	LIABILITY
+	The Government of Canada and the Department of Natural 
+	Resources Canada assumes NO liability for any errors or
+	ommisions in the digital data it provides to users.
+
+	SOURCE
+	Derived from National Topographic Series maps at a scale of
+	1:250 000 and International Map of the World Series maps at a
+	scale of 1:1 000 000. Other data such as transport and urban
+	were usually taken from maps and statistical documents
+	produced by Canadian governmental agencies.
+
+	ACCURACY/PRECISION
+	Co-ordinate Precision:	+/- 500 metres
+	Co-ordinate Accuracy:	+/- 10 kilometres
+
+	PROJECTION INFORMATION
+	Projection:             unprojected - Geographical coordinates
+                                (Latitude/Longitude)
+
+Introduction:
+
+The following document describes the contents of the 7.5 million, digital topographic database of the GeoAccess Division, Canada Centre for Remote Sensing.  This database contains all features represented on the 7.5 million map of Canada and surrounding areas published by Geomatics Canada in 1997.
+
+Data are organised into layers representing related features.  The accompanying tables describe each layer, the feature types and feature attributes that have been defined for each layer. 
+
+Terminology:
+
+The Geographic Information System (GIS) currently used by the Division is ARC/INFO(tm).  The following ARC/INFO(tm) terms have been used throughout this document:
+
+* coverages  represent layers of data
+* item name refers to the field name describing the features.
+
+
+Data Layers:
+
+The following layers represent the Division's base data at the 7.5 million scale:
+
+
+Coverage Name	Description
+
+air		Major Canadian airports
+dr		Features representing rivers and lakes
+fedlt		lnternational boundaries, Canada/Greenland dividing line, or 200 mile fishing limit
+gla		Glaciers and icefields
+pk		National park boundaries
+pkt		Canadian national parks represented as a point feature on the Canada map
+pice		Approximate marine areas covered by permanent polar ice
+place		Selection of populated places in Canada
+pv		Limits of the Canada land mass, provincial and territorial boundaries
+rl		Railway features
+roa		Major road features and ferry routes
+
+* This layer is currently in development.
+
+
+A number of coverages representing foreign areas, map extent/frame and a projection grid are also included with the Canada 7.5 million coverages.  They are listed in the following table:
+
+
+Coverage Name	Description
+
+dr_fn		Rivers and lakes
+gl_fn		Glaciers
+la_fn		Landmass
+rl_fn		Railway features
+roa_fn	Road features
+fra		Defines map extent/frame 
+gr		5 degree latitude and longitude grid
+_____________________________________________________________________________________________________
+
+
+Layer Descriptions
+
+This section describes the contents of each coverage.  Each will be described in terms of its type, features and attributes. 
+
+air 
+Point attributes	
+			
+Item Name	Description
+
+F_code 
+     79		Airport
+Name_E		English name of airport
+Name_F		French name of airport
+Class		International, national, regional
+Reg_Code	Province or territory in which airport is located (see prov cover)
+Lat		Latitude of airport location (ddmmss)
+Long		Longitude of airport location (ddmmss)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dr
+
+Line attributes	
+			
+Item Name	Description
+F_code 
+      17		River
+      16		Lake shoreline
+      21		River shoreline
+     1000		Connector line (closes double line rivers and the Canadian portion of lakes)
+
+Name		Name of river (name used in both English and French)
+Name_E		English name of river (Pan-Canadian name)
+Name_F		French name of river (Pan-Canadian name)
+
+
+Polygon Attributes
+
+Item Name	Description
+Name		Name of river or lake (name used in both English and French)
+Name_E		English name of lake or river (Pan-Canadian name)
+Name_F		French name of lake or river (Pan-Canadian name)
+Poly_feature
+    9999		Polygon feature (islands within lakes or closed drainage networks forming a polygon)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+fedlt
+
+Line attributes				
+
+Item Name	Description
+F_code 
+     30		Political boundary
+F_Type		International boundary, Canada/Greenland dividing line, Exclusive Economic Zone (200 mile 						limit)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+gla
+
+Line attributes	
+
+Item Name	Description		
+F_code
+     27		Glacier
+    1000		Connector line
+
+
+Polygon Attributes
+
+Item Name	Description
+Poly_feature
+    27		Glacier polygons
+    9999		Land areas within glaciers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Pk
+
+Line attributes
+				
+Item Name	Description
+F_code
+      40		National park
+
+
+
+Polygon Attributes
+
+Item Name	Description
+Name_E		English name of park
+Name_F		French name of park
+Year_est		Year in which park was established
+Reg_code	Province or territory in which park is located - Statistics Canada province code (first two digits of the SGC)
+Area_kmsq	Park area in square kilometres
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Pkt	     parks that are too small to show as polygons at the 7.5 million scale
+
+Point attributes	
+			
+Item Name	Description
+F_code
+      40		National park
+Name_E		English name of park
+Name_F		French name of park
+Year_est		Year in which park was established
+Reg_code	Province or territory in which park is located - Statistics Canada province code (first two digits of the SGC)
+Area_kmsq	Park area in square kilometres
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+pice
+
+Line attributes
+				
+Item Name	Description
+F_code
+      28		Approximate limit of permanent polar ice
+      1000		Connector line (closes polarice polygon along map frame)
+
+
+Polygon Attributes
+
+Item Name	Description
+Poly_feature	Polygon fill for permanent polar ice
+      28
+      9999		Polygon feature representing arctic islands within permanent polar ice 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+place		The populated place coverage contains a selection of populated places in Canada maintained 		by the CPCGN.
+
+Point attributes	
+			
+Item Name	Description
+Name		Name of place (name used in both official languages)
+Name_E		English name of place 
+Name_F		French name of place  
+Unique_Key	Alphabetical sequence code of 5 letters assigned to each record in the CGNDB
+Unique_Key_E	CPCGN English code
+Unique_Key_F	CPCGN French code
+Reg_Code	2 digit numeric code corresponding to Statistics Canada records identifying places within a 												province or territory
+NTS50		NTS mapsheet (1:50 000) number on which place can be located
+Lat		Latitude of place location (ddmmss)
+Long		Longitude of place location (ddmmss)
+Pop91		Population based on the 1991 Census
+SGC_Code	Statistics Canada seven digit code
+Capital		1 = Federal,  2 = Provincial,  3 = Territorial
+Pop_Range	1   less than 499
+		2   500  to  4 999
+		3   5 000  to  24 999
+		4   25 000  to  49 999
+		5   50 000  to  99 999
+		6   greater than 100 000
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+pv
+
+Line attributes				
+
+Item Name	Description
+F_code
+      15		Coastline
+      30		Political boundary
+      1000		Connector line needed to create polygon topology, i.e. river mouths
+F_type		District, Nunavut, provincial, undemarcated
+
+
+
+Polygon Attributes
+
+Item Name	Description
+Name		Name of province or territory (name used in both English and French)
+Name_E	English name of province or territory (Pan-Canadian name)
+Name_F	French name of province or territory (Pan-Canadian name)
+Status	Province, territory
+Reg_code	Statistics Canada province code (first two digits of the SGC) defines provincial/territory extent
+Poly_feature
+       9999	Polygon feature created by administrative boundaries enclosing water bodies - defines the Canada landmass
+Island	Name of island (name used in both English and French)
+Island_E	English name of island (Pan-Canadian name)
+Island_F	French name of island (Pan-Canadian name)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Rl
+
+Line attributes				
+
+Item Name	Description
+F_code
+     80		Railway
+     81		Rail ferry
+Company		Name of company which operates the railway 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Roa
+
+Line attributes				
+
+Item Name	Description
+F_code
+     66		Expressway
+     67		Major road
+     68		Other road
+     74		Ferry route
+Name_E		English name of road
+Name_F		French name of road 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+dr_fn
+
+Line attributes
+				
+Item Name	Description
+F_code 
+     17		River
+     16		Lake shoreline
+     21		River shoreline
+     1000		Connector line
+
+
+
+Polygon Attributes
+
+Item Name	Description
+     16		Lake fill 
+     21		Double line river fill
+     9999		Island polygon inside water body
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+gla_fn
+
+Line attributes	
+			
+Item Name	Description
+F_code
+     27		Glacier and ice-field
+
+
+Polygon Attributes
+
+Item Name	Description
+Poly_feature
+     27		Glacier and ice field fill
+     9999		Land areas within glaciers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+la_fn
+
+Line attributes	
+			
+Item Name	Description
+F_code
+     15		Coastline
+     1000		Connector line
+
+
+Polygon Attributes
+
+Item Name	Description
+Name_E		English name of country
+Name_F		French name of country
+Poly_feature	Polygon fill for all foreign areas
+     12
+     9999		Polygon feature created by administrative boundaries enclosing water bodies (in this coverage, it represents the 						U.S./Canada international boundary at the Great Lakes)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+rl_fn
+
+Line attributes
+			
+Item Name	Description
+F_code
+     80		Railway
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+rd_fn
+
+Line attributes
+				
+Item		Description 
+F_code
+     66		Expressway
+     67		Major road	
+     68		Other
+     74		Ferry route
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Frame
+
+Line attributes
+				
+Item Name	Description
+F_code
+     1		Neatline
+     2		Inside frame
+     3		Outside frame
+     4		Scale bar
+     5		Scale bar tics
+
+
+Polygon Attributes
+
+Item Name	Description
+Poly_feature
+     1		Map extent
+     2		Inside frame
+     3		Outside frame
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Grid
+
+Line attributes	
+			
+Item Name	Description
+F_code
+     8		5 degree latitude and longitude 
+     9		Arctic circle
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+ APPENDIX A:  TERMS
+
+The following terms have been used within this document.
+
+CPCGN	Canadian Permanent Committee on Geographic Names
+
+GIS	Geographic Information System.  A computer-based information system designed to capture, manipulate, analyze and 		output geographical data 
+
+SGC	Standard Geographic Classification is the seven digit Statistics Canada code used to uniquely identify the 	provinces,																 		census divisions and census subdivisions
+
+Undemarcated Boundaries that are mostly surveyed but are not monumented; the boundaries for the Yukon Territory and Labrador 	region of Newfoundland are the two cases in Canada with such boundaries
+
+Connector line	Extensions of international or provincial boundaries across river mouths
+
+
+
+

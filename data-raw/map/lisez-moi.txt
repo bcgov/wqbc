@@ -1,0 +1,555 @@
+
+Division GéoAccès, Centre canadien de télédétection	
+Dictionnaire des données au 1/7,5 000 000 pour le Canada
+
+Mars 1998
+
+
+Introduction
+
+Le présent document décrit le contenu de la base de données topographiques numériques au 1/7,5 000 000, de la Division GéoAccès, Centre canadien de télédétection. Cette base de données contient toutes les caractéristiques représentées sur la carte au 1/7,5 000 000 du Canada et des régions adjacentes publiee par Geomatique Canada en 1997.
+
+Les données sont organisées en couches, qui présentent des caractéristiques connexes. Les tableaux qui suivent décrivent chaque couche, ainsi que les types de caractéristiques et les attributs définis pour chaque couche.
+
+
+Terminologie
+
+La Division utilise actuellement ARC/INFO( comme Système d'information géographique (SIG). Dans ce document, nous utilisons les termes ARC/INFO( suivants :
+
+* couverture désigne une couche de données.
+* nom de l'article désigne le nom l'article décrivant une entité.
+
+Description de la base de données
+
+----------------------------------------------------------------
+Couches de données
+
+Les couches suivantes représentent les données de base de la Division, au 
+		1/7,5 000 000 :
+
+Nom de la:     Description
+couverture
+
+air:	Principaux aéroports canadiens
+dr:	Entités représentant les rivières et les lacs
+fedlt:	Frontières internationales, ligne de séparation entre le Canada et 
+		le Groenland, ou limite de la zone de pêche de 200 milles 
+gla:	Glaciers et champs de glace
+pk:	Limites des parcs nationaux
+pkt:	Parcs nationaux canadiens représentés sous forme d'entités ponctuelles 
+		sur la carte du Canada
+pice:	Régions maritimes approximatives recouvertes par les glaces polaires permanentes
+place:	Sélection de lieux peuplés au Canada
+pv:	Limites de la masse continentale du Canada, frontières provinciales et territoriales
+rl:	Entités représentant les chemins de fer
+roa:	Entités représentant les routes principales et les trajets des traversiers
+
+
+
+Les couvertures de la carte au 1/7,5 000 000 du Canada renferment un certain 
+nombre de couvertures qui représentent diverses informations : régions 
+étrangères, étendue et cadre de la carte, quadrillage de la projection. 
+
+Voici ces couvertures :
+
+
+Nom de la:     Description
+couverture
+dr_fn:	Rivières et lacs
+gl_fn:	Glaciers
+la_fn:	Masse continentale
+rl_fn:	Entités représentan les chemins de fer
+ro_fn:	Entités représentant les routes
+fra:	Étendue et cadre de la carte
+gr:	Quadrillage à maille de 5 degrés en latitude et longitude
+---------------------------------------------------------------
+Description des couches
+
+La présente section décrit le contenu de chaque couverture. Pour 
+chaque couverture, nous en décrivons le type, les entités et les attributs.
+
+Air 
+
+Attributs des points
+				
+Nom de l'article	Description
+
+F_code
+  79			Aéroport
+
+Name_E			Nom anglais de l'aéroport
+
+Name_F			Nom français de l'aéroport
+
+Class			Aéroport international, national, régional
+
+Reg_Code		Province ou territoire où se trouve l'aéroport 
+			(voir la couverture prov)
+
+Lat			Latitude de l'aéroport (ddmmss)
+
+Long			Longitude de l'aéroport (ddmmss)
+---------------------------------------------------------------
+
+dr
+
+Attributs des lignes				
+
+Nom de l'article  	Description
+
+F_code 
+
+  16			Rive de lac
+
+  21			Berge de rivière
+
+  1000			Trait de fermeture (ferme les rivières à double trait et la partie 
+			canadienne des lacs
+
+Name			Nom de la rivière (nom utilisé en anglais et en français)
+
+Name_E			Nom anglais de la rivière (nom d'intérêt pancanadien)
+
+Name_F			Nom français de la rivière (nom d'intérêt pancanadien)
+
+
+
+Attributs des polygones
+
+Nom de l'article	Description
+
+Name			Nom de la rivière ou du lac (nom utilisé en anglais et en français)
+
+Name_E			Nom anglais du lac ou de la rivière (nom d'intérêt pancanadien)
+
+Name_F			Nom français du lac ou de la rivière (nom d'intérêt pancanadien)
+
+Poly_feature		Entité polygonale (île dans un lac, ou réseau de drainage fermé 
+9999 		        formant un polygone)
+---------------------------------------------------------------
+fedl
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+ 
+  30			Limite politique
+
+F_Type			Frontière internationale, ligne de séparation entre le Canada et 
+			le Groenland, zone économique exclusive (limite des 200 milles)
+---------------------------------------------------------------
+gla
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+
+  27			Glacier
+
+  1000			Trait de fermeture
+
+
+Attributs des polygones
+
+Nom de l'article	Description
+
+Poly_feature
+
+  27			Polygone représentant un glacier
+
+  9999			Zone de terre à l'intérieur d'un glacier
+---------------------------------------------------------------
+
+pk
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+
+  40			Parc national
+
+
+Attributs des polygones
+
+Nom de l'article	Description
+
+Name_E			Nom anglais du parc
+
+Name_F			Nom français du parc
+
+Year_est		Année d'établissement du parc
+
+Reg_code		Province ou territoire où se trouve le parc - Code 
+			de province de Statistique Canada (deux premiers chiffres 
+			du code CGT)
+
+Area_kmsq		Superficie du parc en kilomètres carrés
+---------------------------------------------------------------
+
+pkt(
+
+Attributs des points				
+
+Nom de l'article	Description
+
+F_code
+
+  40			Parc national		
+
+Name_E			Nom anglais du parc	
+
+Name_F			Nom français du parc	
+
+Year_est/		Année d'établissement du parc
+
+Reg_Code		Province ou territoire où se trouve le parc - Code de 
+			province de Statistique Canada (deux premiers chiffres du 
+			code CGT)
+
+Area_kmsq		Superficie du parc en kilomètres carrés
+
+---------------------------------------------------------------
+pice
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+
+  28			Limite approximative des glaces polaires permanentes
+
+  1000			Trait de fermeture (ferme les polygones de type polarice, 
+			le long du cadre de la carte)
+
+
+Attributs des polygones
+
+Nom de l'article	Description
+
+Poly_feature
+
+  28			Remplissage de polygone pour les glaces polaires permanentes
+
+  9999			Entité polygonale représentant les îles de l'Arctique à 
+			l'intérieur de la zone des glaces polaires permanentes
+---------------------------------------------------------------
+place
+
+Attributs des points				
+
+Nom de l'article	Description
+
+Name			Nom du lieu (nom utilisé dans les deux langues officielles)
+
+Name_E			Nom anglais du lieu
+
+Name_F			Nom français du lieu	
+
+Unique_Key		Code séquentiel alphabétique de 5 lettres assigné à chaque 
+			enregistrement dans la BDTC
+
+Unique_Key_E		Code anglais du CPCNG
+
+Unique_Key_F		Code français du CPCNG
+
+Reg_Code		Code numérique à 2 chiffres correspondant aux enregistrements 
+			de Statistique Canada et indiquant les lieux dans une province 
+			ou un territoire
+
+NTS50			Numéro de la feuille de carte SNRC (1/50 000) sur laquelle se 
+			trouve le lieu
+
+Lat			Latitude du lieu (ddmmss)
+
+Long			Longitude du lieu (ddmmss)
+
+Pop91			Population, d'après le recensement de 1991
+
+SGC_Code		Code à sept chiffres de Statistique Canada
+
+Capital			1 = Fédérale,  2 = Provinciale,  3 = Territoriale
+
+Pop_Range		1   moins de 499 habitants
+			2   500  à  4 999 habitants
+			3   5 000  à  24 999 habitants
+			4   25 000  à  49 999 habitants
+			5   50 000  à  99 999 habitants
+			6   plus de 100 000 habitants
+
+---------------------------------------------------------------
+pv
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+
+  15			Littoral
+      
+  30			Limite politique
+      
+  1000			Trait de fermeture requise pour créer une topologie de polygone, 
+			c.-à-d. embouchures des fleuves et rivières
+
+F_type			District, Nunavut, provincial, limites non démarquées
+
+
+Attributs des polygones
+
+Nom de l'article	Description
+
+Name			Nom de la province ou du territoire (nom utilisé en anglais et 
+			en français)
+
+Name_E			Nom anglais de la province ou du territoire (nom d'intérêt 
+			pancanadien)
+
+Name_F			Nom français de la province ou du territoire (nom d'intérêt 
+			pancanadien)
+
+Status			Province, territoire
+
+Reg_code		Code de province de Statistique Canada (deux premiers chiffres 
+			du code CGT). Définit l'étendue de la province ou du territoire
+
+Poly_feature
+
+  9999			Entité polygonale créée par les limites administratives renfermant 
+			les masses d'eau - définit la masse continentale du Canada
+
+Island			Nom de l'île (nom utilisé en anglais et en français)
+
+Island_E		Nom anglais de l'île (nom d'intérêt pancanadien)
+
+Island_F		Nom français de l'île (nom d'intérêt pancanadien)
+
+---------------------------------------------------------------
+rl
+
+Attributs des lignes		
+
+Nom de l'article	Description
+
+F_code
+
+  80			Chemin de fer
+
+  81			Traversier ferroviaire
+
+Company			Nom de la société qui exploite le chemin de fer
+
+---------------------------------------------------------------
+roa
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+
+  66			Autoroute
+
+  67			Route principale
+
+  68			Autre route
+
+  74			Trajet de traversier
+
+Name_E			Nom anglais de la route
+
+Name_F			Nom français de la route
+
+---------------------------------------------------------------
+dr_fn
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+ 
+  17			Rivière
+
+  16			Rive de lac
+
+  21			Berge de rivière
+
+  1000			Trait de fermeture
+
+
+Attributs des polygones
+
+Nom de l'article	Description
+
+  12			Remplissage de lac
+
+  21			Remplissage de rivière délimitée par un double trait
+
+---------------------------------------------------------------
+
+gl_fn
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+
+  27			Glacier et champ de glaces
+
+
+Attributs des polygones
+
+Nom de l'article	Description
+
+Poly_feature
+
+  27			Remplissage de glacier et de champ de glaces
+
+  9999			Zone de terre à l'intérieur d'un glacier
+---------------------------------------------------------------
+la_fn
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+
+  15			Littoral
+
+  1000			Trait de fermeture
+
+
+Attributs des polygones
+
+
+Name_E			Nom anglais du pays
+
+Name_F			Nom français du pays
+
+Poly_feature
+		
+  12			Remplissage de polygone pour toutes les zones étrangères
+
+  9999			Entité polygonale créée par les limites administratives 
+			renfermant les nappes d'eau (pour cette couverture-ci, 
+			cette zone représente la frontière internationale 
+			États-Unis/Canada dans les Grands Lacs)
+---------------------------------------------------------------
+rl_fn
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+
+  80			Chemin de fer
+---------------------------------------------------------------
+roa_fn
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+
+  66			Autoroute
+
+  67			Route principale
+
+  68			Autre
+
+  74			Trajet de traversier
+
+---------------------------------------------------------------
+
+fra
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+
+  1			Limite de coupure
+
+  2			Cadre intérieur
+
+  3			Cadre extérieur
+
+  4			Échelle graphique
+
+  5			Échelons sur l'échelle graphique
+
+Attributs des polygones
+
+Nom de l'article	Description
+
+  1			Étendue de la carte
+
+  2			Cadre intérieur
+
+  3			Cadre extérieur
+---------------------------------------------------------------
+
+gr
+
+Attributs des lignes				
+
+Nom de l'article	Description
+
+F_code
+
+  8			Latitude et longitude, intervalles de 5 degrés
+
+  9			Cercle polaire
+
+---------------------------------------------------------------
+ANNEXE A : TERMES
+
+Les termes suivants sont utilisés dans le présent document :
+
+CPCNG: Comité permanent canadien des noms géographiques.
+
+SIG: Système d'information géographique. Il sagit d'un système d'information sur 
+		ordinateur, conçu pour saisir, manipuler, analyser et reproduire 
+		des données géographiques.
+
+CGT: Classification géographique type - code à sept chiffres utilisé par Statistique 
+		Canada pour identifier sans équivoque les provinces, les divisions 
+		de recensement et les subdivisions de recensement.
+
+Isobathes: Courbe de niveau, reliant des points d'égale profondeur.
+
+
+Non démarqué: Se dit des frontières et limites qui sont presque entièrement délimitées, 
+		mais ne sont pas bornées. Les frontières du Territoire du Yukon et de 
+		la région du Labrador à Terre-Neuve sont les deux cas canadiens où il 
+		y a de telles frontières.
+
+Trait de fermeture: Trait prolongeant les frontières internationales ou provinciales
+		au travers des embouchures de cours d'eau.
+
+
+f_code désigne le code assigné à chaque entité dans la base de données.
+
+- Les parcs qui sont trop petits pour être présentés sous forme de polygones au 
+		1/7,5 000 000 sont représentés sous forme d'entités ponctuelles.
+- La couverture des lieux peuplés contient une sélection des lieux peuplés au Canada, 
+		maintenue par le CPCNG.
+- District deviendra un attribut valide seulement avec la formation officielle du 
+		Nunavut en 1999 ou avant.
+
+
+
+

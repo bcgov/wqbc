@@ -1,0 +1,73 @@
+	DEPARTMENT OF NATURAL RESOURCES
+	GEOMATICS CANADA
+
+	END-USER AGREEMENT FOR DIGITAL DATA
+
+
+THIS is a legal Agreement between you, the "End-User" and HER MAJESTY THE QUEEN IN RIGHT OF CANADA ("Canada"), represented 
+by the Minister of Natural Resources.  BY OPENING THE PACKAGE DELIVERED WITH THIS AGREEMENT, YOU ARE AGREEING TO 
+BE BOUND BY THE TERMS OF THIS AGREEMENT.  IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, PROMPTLY 
+RETURN THE PACKAGE AND ANY ACCOMPANYING ITEMS (including written materials) TO THE PLACE YOU OBTAINED THEM 
+FOR A FULL REFUND.
+
+WHEREAS Canada is the owner of the proprietary rights in the digital data ("Data") delivered with this Agreement;
+
+WHEREAS the End-User wishes to obtain the right to use the Data;
+
+AND WHEREAS Canada is prepared to license to the End-User the right to use the Data for the End-Users' own internal use subject to the terms 
+and conditions hereinafter set forth;
+
+NOW, THEREFORE, Canada and the End-User for valuable consideration, the receipt and sufficiency of which is hereby acknowledged by the 
+parties, covenant and agree as follows: 
+
+1.	The End-User acknowledges that the Data is protected under the Copyright Act of Canada.
+
+2.	The Data is licensed, not sold, to the End-User for use subject to the terms and conditions of this Agreement.  The End-User owns the 
+disk(s) or tape(s) on which the Data is recorded, but Canada retains all ownership interests in the Data.
+
+3.	The End-User shall use the Data only on a single computer.  The End-User must obtain a supplementary licence from Canada before 
+using the Data in connection with systems, multiple central processing units, computer networks, or emulations on a mainframe or 
+minicomputer.
+
+4.	The End-User may make one (1) copy of the Data for the purpose of backup only, which copy may not be used except in the event that 
+the primary copy is damaged, destroyed or lost.  The End-User shall reproduce on the backup copy the copyright notice appearing on 
+the disk(s) or tape(s) on which the Data is recorded.
+
+5.	Except as provided in Article 4 above, the End-User shall not duplicate or reproduce the Data, in whole or in part, in any form or 
+format whatsoever without the prior written consent of Canada.
+
+6. 	The End-User shall not sell, loan, lease, distribute, transfer or sublicense the Data or otherwise assign any rights under this Agreement 
+to any third party without the prior written consent of Canada. 
+
+7.	If the End-User wishes to make any other copies of the Data for internal use, written authorization for such copies must be obtained 
+from Canada prior to any copies being made and a royalty fee will be charged for each additional copy of the Data made by the
+	End-User.
+
+8. 	The Data is provided on an "as is" basis and Canada makes no guarantees, representations or warranties respecting the Data, either 
+expressed or implied, arising by law or otherwise, including but not limited to, effectiveness, completeness, accuracy or fitness for a 
+particular purpose.
+
+9.	Canada shall not be liable in respect of any claim, demand or action, irrespective of the nature of the cause of the claim, demand or 
+action alleging any loss, injury or damages, direct or indirect, which may result from the End-User's use or possession of the Data.  
+Canada shall not be liable in any way for loss of revenue or contracts, or any other consequential loss of any kind resulting from the 
+End-User's use or possession of the Data.
+
+10.	The End-User shall indemnify and save harmless Canada and its Ministers, officers, employees and agents from and against any claim, 
+demand or action, irrespective of the nature of the cause of the claim, demand or action, alleging loss, costs, expenses, damages or 
+injuries (including injuries resulting in death) arising out of the End-User's use or possession of the Data.
+
+11.	This Agreement shall be interpreted in accordance with the laws in force in the Province of Ontario, Canada.
+
+
+ 
+
+ 
+ 
+
+
+
+Geomatics Canada - End-User Agreement for Digital Data	February 7, 1996
+
+
+
+Geomatics Canada - End-User Agreement for Digital Data	February 7, 1996

@@ -7,6 +7,7 @@ Authors@R: as.person(c(
     "Joe Thorley <joe@poissonconsulting.ca> [aut, cre]",
     "Colin Millar <colinpmillar@gmail.com> [aut]",
     "Wendy Wang [ctb]",
+    "Andy Teucher [ctb]",
     "Robyn Irvine [ctb]"))
 Description: Gets water quality thresholds, calculates water quality indices,
     and tests for water quality trends and plots water quality sites for
