@@ -4,7 +4,7 @@
 \alias{plot_map}
 \title{Plot Map}
 \usage{
-plot_map(data, x = "Longitude", y = "Latitude")
+plot_map(data, x = "Longitude", y = "Latitude", input_proj = NULL)
 }
 \arguments{
 \item{data}{data.frame to plot}
@@ -12,6 +12,8 @@ plot_map(data, x = "Longitude", y = "Latitude")
 \item{x}{string of column in data to plot on x axis}
 
 \item{y}{string of column in data to plot on y axis}
+
+\item{input_proj}{a valid proj4string. Defaults to longlat/NAD83 (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})}
 }
 \value{
 ggplot2 object

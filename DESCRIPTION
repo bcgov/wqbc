@@ -21,7 +21,9 @@ Imports:
     plyr (>= 1.8.1),
     dplyr (>= 0.3.0.2),
     ggplot2 (>= 1.0.0),
-    zyp (>= 0.10-1)
+    zyp (>= 0.10-1),
+    sp (>= 1.0-16),
+    rgdal (>= 0.9-1)
 Suggests:
     testthat,
     knitr,
