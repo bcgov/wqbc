@@ -1,26 +1,31 @@
 # percent of failed variables
 F1 <- function (x) {
-  nfv <- 0   # number of failed variables
-  nfv / length(unique(x$Variable)) * 100
+  nfv <- length(unique(x$Code[x$Failed]))
+  nv <- length(unique(x$Code))
+  nfv / nv * 100
 }
 
 # percentage of failed tests
 F2 <- function (x) {
-  length(sum(x$Failed)) / nrow(x) * 100
+  nft <- sum(x$Failed)
+  nt <- nrow(x)
+  nft / nt * 100
 }
 
 # the amount by which failed test values do not meet their objectives
 F3 <- function (x) {
+  nt <- nrow(x)
+
   x <- x[x$Failed,,drop = FALSE]
 
   if(nrow(x) == 0)
     return (0)
 
-  bol <- TRUE # need to fix this up
-  excursion1 <- x$Value[bol] / x$LowerLimit[bol]
-  excursion2 <- x$UpperLimit[!bol] / x$Value[!bol]
+  bol <- x$Value > x$UpperLimit
+  excursion1 <- x$Value[bol] / x$UpperLimit[bol] - 1
+  excursion2 <- x$LowerLimit[!bol] / x$Value[!bol] - 1
 
-  nse <-  sum(excursion1, excursion2) / nrow(x)
+  nse <-  sum(excursion1, excursion2) / nt
   nse / (0.01 * nse + 0.01)
 }
 
@@ -30,30 +35,67 @@ categorize_wqi <- function (x) {
       ordered_result = TRUE)
 }
 
-#data <- data.frame(Variable = c("As", "As", "Al-T"), Value = c(4,5,6), Guideline = 5, Condition "<=")
+add_failed <- function (x) {
+  x$UpperLimit[is.na(x$UpperLimit)] <- Inf
+  x$LowerLimit[is.na(x$LowerLimit)] <- -Inf
+  x$Failed <- x$Value < x$LowerLimit | x$Value > x$UpperLimit
+  x
+}
 
 calc_wqi <- function (x) {
-  # can likely remove once set up higher level
-  assert_that(is.data.frame(x))
-  assert_that(is.factor(x$Variable) && noNA(x$Variable))
-  assert_that(is.numeric(x$Value) && noNA(x$Value))
-  assert_that(is.numeric(x$LowerLimit) && noNA(x$LowerLimit))
-  assert_that(is.numeric(x$UpperLimit) && noNA(x$UpperLimit))
-  assert_that(is.character(x$Condition) && noNA(x$Condition))
-  assert_that(all(x$Condition %in% c("<", "<=", ">", ">=")))
-
-  # determine if test failed or not.. x$Failed <-
+  x <- add_failed(x)
   F1 <- F1(x)
   F2 <- F2(x)
   F3 <- F3(x)
   WQI <- 100 - sqrt(F1^2 + F2^2 + F3^2) / 1.732
   Category <- categorize_wqi(WQI)
   data.frame(WQI = round(WQI), Category = Category,
-             Variables = length(unique(x$Variable)), Tests = nrow(x),
+             Variables = length(unique(x$Code)), Tests = nrow(x),
              F1 = signif(F1, 3), F2 = signif(F2, 3), F3 = signif(F3, 3))
 }
 
+#' Calculate Water Quality Indices (WQIs)
+#'
+#' Calculates WQIs for x.
+#'
+#' @param x data.frame with Code, Value, UpperLimit and if defined
+#' LowerLimit columns
+#' @param by character vector of columns to calculate WQIs by.
+#' @examples
+#' data(ccme)
+#' calc_wqis(ccme)
+#'
+#' @export
 calc_wqis <- function (x, by = NULL) {
+  assert_that(is.data.frame(x))
+
+  if(!all(c("Code", "Value", "UpperLimit") %in% colnames(x)))
+    stop("x must contain columns Code, Value and UpperLimit")
+
+  if(!"LowerLimit" %in% colnames(x)) {
+    warning("x does not contain column LowerLimit")
+    x$LowerLimit <- NA_real_
+  }
+
+  if(!is.numeric(x$Value)) stop("column Value must be numeric")
+  if(!is.numeric(x$LowerLimit)) stop("column LowerLimit must be numeric")
+  if(!is.numeric(x$UpperLimit)) stop("column UpperLimit must be numeric")
+
+  if(any(is.na(x$Value))) {
+    message("filtered ", length(is.na(x$Value)), " rows with missing values from x")
+    x <- dplyr::filter_(x, ~!is.na(Value))
+  }
+
+  if(any(is.na(x$Code))) {
+    message("filtered ", length(is.na(x$Code)), " rows with missing codes from x")
+    x <- dplyr::filter_(x, ~!is.na(Code))
+  }
+
+  if(any(is.na(x$LowerLimit) & is.na(x$UpperLimit))) {
+    message("filtered ", length(is.na(x$LowerLimit) & is.na(x$UpperLimit)), " rows without an upper or lower limit from x")
+    x <- dplyr::filter_(x, ~!(is.na(LowerLimit) & is.na(UpperLimit)))
+  }
+
   # might need to strip out non-constant values....
   if(is.null(by)) {
     return(calc_wqi(x))

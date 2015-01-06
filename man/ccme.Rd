@@ -4,7 +4,7 @@
 \name{ccme}
 \alias{ccme}
 \title{CCME Water Quality Index User's Manual Example Data}
-\format{A data frame with 120 rows and 6 variables:
+\format{A data frame with 103 rows and 6 variables:
 \describe{
   \item{Code}{parameter code}
   \item{Date}{date of reading}

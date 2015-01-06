@@ -20,5 +20,8 @@ colnames(limits) <- c("Code", "LowerLimit", "UpperLimit")
 ccme %<>% dplyr::inner_join(limits, by = "Code") %>% dplyr::filter(!is.na(Date))
 ccme$LowerLimit %<>% as.numeric
 ccme$UpperLimit %<>% as.numeric
+ccme %<>% filter(!is.na(Value))
+ccme$Code <- as.factor(as.character(ccme$Code), levels = unique(ccme$Code))
+
 summary(ccme)
 devtools::use_data(ccme, overwrite = TRUE, compress = "xz")

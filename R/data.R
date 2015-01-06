@@ -3,7 +3,7 @@
 #' A tidy data.frame of the CCME Water Quality Index 1.0 User's Manual
 #' example dataset.
 #'
-#' @format A data frame with 120 rows and 6 variables:
+#' @format A data frame with 103 rows and 6 variables:
 #' \describe{
 #'   \item{Code}{parameter code}
 #'   \item{Date}{date of reading}
