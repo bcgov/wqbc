@@ -74,10 +74,17 @@ get_codes_variables <- function () {
 #' Returns a named vector of the category colors to use when
 #' plotting water quality index values.
 #' @seealso \code{\link{calc_wqis}}
+#' @aliases get_category_colours
 #' @examples
 #' get_category_colors()
+#' get_category_colours()
 #'
 #' @export
 get_category_colors <- function () {
-  c(Poor = "red", Marginal = "brown", Fair = "indigo", Good = "yellow", Excellent = "green")
+  c(Excellent = "green", Good = "yellow", Fair = "indigo", Marginal = "brown", Poor = "red")
+}
+
+#' @export
+get_category_colours <- function () {
+  get_category_colors()
 }

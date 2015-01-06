@@ -2,6 +2,7 @@
 % Please edit documentation in R/lookup.R
 \name{get_category_colors}
 \alias{get_category_colors}
+\alias{get_category_colours}
 \title{Get Category Colors}
 \usage{
 get_category_colors()
@@ -12,6 +13,7 @@ plotting water quality index values.
 }
 \examples{
 get_category_colors()
+get_category_colours()
 }
 \seealso{
 \code{\link{calc_wqis}}
