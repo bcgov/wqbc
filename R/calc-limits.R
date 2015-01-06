@@ -4,29 +4,22 @@ get_limits_use <- function (use) {
                                ~Condition, ~Variable, ~Use, ~Jurisdiction)
 }
 
-#' Adds Water Quality limits
+#' Gets Water Quality limits
 #'
-#' Adds water quality thresholds/objectives for British Columbia (BC) or
-#' Canada (CA) for a range
+#' Gets lower and upper water quality thresholds for British Columbia
 #'
-#' @param x data.frame with column(s) Code or Variable
+#' @param x data.frame with columns Code and Value
 #' @param use string of required use
 #' @export
-wq_add_limits <- function (x, use = "Freshwater Life") {
+calc_limits <- function (x, use = "Freshwater Life") {
   assert_that(is.data.frame(x))
   assert_that(is.string(use))
 
-  if(!use %in% wq_uses()) stop("use must be ", punctuate_strings(wq_uses()))
+  if(!use %in% get_uses()) stop("use must be ", punctuate_strings(get_uses()))
 
   glines <- get_limits_use(use)
 
   if(nrow(x) == 0) stop("x must contain at least one row of data")
-
-  if("Code" %in% colnames(x)) {
-    x <- wq_add_variables(x)
-  } else if("Variable" %in% colnames(x)) {
-    x <- wq_add_codes(x)
-  } else stop("x must contain the column(s) Code and/or Variable")
 
   x <- remove_columns_from_x_in_y(x, y = dplyr::select_(glines, ~-Code, ~-Variable))
   x <- dplyr::left_join(x, glines, by = c("Code", "Variable"))

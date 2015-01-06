@@ -35,15 +35,12 @@ categorize_wqi <- function (x) {
       ordered_result = TRUE)
 }
 
-add_failed <- function (x) {
+calc_wqi <- function (x) {
+
   x$UpperLimit[is.na(x$UpperLimit)] <- Inf
   x$LowerLimit[is.na(x$LowerLimit)] <- -Inf
   x$Failed <- x$Value < x$LowerLimit | x$Value > x$UpperLimit
-  x
-}
 
-calc_wqi <- function (x) {
-  x <- add_failed(x)
   F1 <- F1(x)
   F2 <- F2(x)
   F3 <- F3(x)

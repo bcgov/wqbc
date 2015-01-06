@@ -3,10 +3,10 @@
 #' Returns a character vector of the uses for which
 #' limits are currently defined in the wqbc package.
 #' @examples
-#' wq_uses()
+#' get_uses()
 #'
 #' @export
-wq_uses <- function () {
+get_uses <- function () {
   levels(wqbc::limits$Use)
 }
 
@@ -14,24 +14,45 @@ wq_uses <- function () {
 #'
 #' Returns a character vector of the water quality variables for which
 #' limits are currently defined in the wqbc package.
+#' @param codes optional character vector of codes to get variables for
 #' @examples
-#' wq_variables()
+#' get_variables()
+#' get_variables(c("Ag", "KR", "As", NA, "pH", "TP"))
 #'
 #' @export
-wq_variables <- function () {
-  levels(wqbc::limits$Variable)
+get_variables<- function (codes = NULL) {
+  if(is.null(codes)) return (levels(wqbc::limits$Variable))
+
+  assert_that(is.character(codes) || is.factor(codes))
+  codes <- as.character(codes)
+  x <- data.frame(Code = codes)
+  y <- get_codes_variables()
+  x <- dplyr::left_join(x,y, by = "Code")
+  x$Variable <- as.character(x$Variable)
+  x$Variable
 }
 
 #' Get Water Quality Codes
 #'
 #' Returns a character vector of the water quality codes for which
 #' limits are currently defined in the wqbc package.
+#'
+#' @param variables optional character vector of variables to get codes for
 #'@examples
-#' wq_codes()
+#' get_codes()
+#' get_codes(c("Silver", "Kryptonite", "Arsenic", NA, "pH", "Total Phosphorus"))
 #'
 #' @export
-wq_codes<- function () {
-  levels(wqbc::limits$Code)
+get_codes<- function (variables = NULL) {
+  if(is.null(variables)) return (levels(wqbc::limits$Code))
+
+  assert_that(is.character(variables) || is.factor(variables))
+  variables <- as.character(variables)
+  x <- data.frame(Variable = variables)
+  y <- get_codes_variables()
+  x <- dplyr::left_join(x,y, by = "Variable")
+  x$Code <- as.character(x$Code)
+  x$Code
 }
 
 #' Get Water Quality Code-Variable Lookup
@@ -39,75 +60,11 @@ wq_codes<- function () {
 #' Returns a data.frame of the water quality code and variable
 #' look up table currently defined in the wqbc package.
 #' @examples
-#' wq_codes_variables()
+#' get_codes_variables()
 #'
 #' @export
-wq_codes_variables <- function () {
+get_codes_variables <- function () {
   x <- dplyr::select_(wqbc::limits, ~Code, ~Variable)
   x <- unique(x)
   dplyr::arrange_(x, ~Code)
-}
-
-#' Adds Code Column
-#'
-#' Adds a Code column to the data.frame x based on the Variable column.
-#' Unknown variable names are dropped.
-#'
-#' @param x data.frame with Variable column
-#' @return data.frame with Variable and Code columns
-#'
-#' @export
-wq_add_codes <- function (x) {
-  assert_that(is.data.frame(x))
-
-  if("Variable" %in% colnames(x))
-    stop("x must contain column Variable")
-
-  lookup <- wq_codes_variables()
-  unknown <- !x$Variable %in% lookup$Variable
-
-  if(all(unknown)) {
-    stop("None of the variable names in x are recognised.
-         To see the possible values type wq_codes_variables().")
-  } else if(any(unknown)) {
-    warning("Removed the unrecognised variable names ", punctuate_strings(sort(unique(x$Variable[unknown])), "and"), "from x")
-    message("To see the possible values type wq_codes_variables()")
-  }
-  if("Code" %in% colnames(x)) {
-    warning("Replaced Code column in x")
-    x$Code <- NULL
-  }
-  dplyr::inner_join(dplyr::select_(lookup, ~Code, ~Variable), x, by = "Variable")
-}
-
-#' Adds Variable Column
-#'
-#' Adds a Variable column to the data.frame x based on the Code column.
-#' Unknown variable names are dropped.
-#'
-#' @param x data.frame with Code column
-#' @return data.frame with Variable and Code columns
-#'
-#' @export
-wq_add_variables <- function (x) {
-  assert_that(is.data.frame(x))
-
-  if("Code" %in% colnames(x))
-    stop("x must contain column Code")
-
-  lookup <- wq_codes_variables()
-  unknown <- !x$Code %in% lookup$Code
-
-  if(all(unknown)) {
-    stop("None of the code names in x are recognised.
-         To see the possible values type wq_codes_variables().")
-  } else if(any(unknown)) {
-    warning("Removed the unrecognised code names ", punctuate_strings(sort(unique(x$Variable[unknown])), "and"), "from x")
-    message("To see the possible values type wq_codes_variables()")
-  }
-  if("Variable" %in% colnames(x)) {
-    warning("Replaced Variable column in x")
-    x$Variable <- NULL
-  }
-  dplyr::inner_join(dplyr::select_(lookup, ~Code, ~Variable), x, by = "Code")
 }
