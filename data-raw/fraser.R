@@ -32,6 +32,9 @@ levels(fraser$Units) <- list(
 
 fraser %<>% filter(!is.na(Code) & !is.na(Value) & !is.na(Units))
 
+# check for and flip sign of positive longitude values
+fraser$Longitude <- ifelse(fraser$Longitude > 0, fraser$Longitude * -1, fraser$Longitude)
+
 use_data(fraser, pkg = as.package("."), overwrite = TRUE, compress = "xz")
 # improve compression
 #tools::resaveRdaFiles("data/fraser.rda")
