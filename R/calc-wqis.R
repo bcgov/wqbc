@@ -64,6 +64,7 @@ calc_wqi <- function (x) {
 #' @examples
 #' data(ccme)
 #' calc_wqis(ccme)
+#' calc_wqis(ccme, by = "Date")
 #'
 #' @export
 calc_wqis <- function (x, by = NULL) {
@@ -96,9 +97,16 @@ calc_wqis <- function (x, by = NULL) {
     x <- dplyr::filter_(x, ~!(is.na(LowerLimit) & is.na(UpperLimit)))
   }
 
-  # might need to strip out non-constant values....
   if(is.null(by)) {
     return(calc_wqi(x))
   }
-  plyr::ddply(x, .variables = by, .fun = calc_wqi, .parallel = TRUE)
+  assert_that(is.character(by))
+
+  if(!all(by %in% colnames(x)))
+    stop("x must contain columns ", punctuate_strings(by, "and"), " in by")
+  res_names <- c("Code", "Value", "UpperLimit", "LowerLimit")
+  if(any(by %in% res_names))
+     stop("by must not include ", punctuate_strings(res_names, "and"))
+
+  plyr::ddply(x, .variables = by, .fun = calc_wqi)
 }

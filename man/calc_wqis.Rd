@@ -18,5 +18,6 @@ Calculates WQIs for x.
 \examples{
 data(ccme)
 calc_wqis(ccme)
+calc_wqis(ccme, by = "Date")
 }
 
