@@ -28,7 +28,7 @@
 #' @export
 #' @examples
 #' # subset data to select only Pb and SiteID "BC08KA0001"
-#' require(lubridate)
+#' library(lubridate)
 #' data(fraser)
 #' x <- subset(fraser, SiteID == "BC08KA0001" & grepl("Pb", Code))
 #'

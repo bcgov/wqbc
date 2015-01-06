@@ -1,7 +1,7 @@
-require(devtools)
-require(tidyr)
-require(dplyr)
-require(magrittr)
+library(devtools)
+library(tidyr)
+library(dplyr)
+library(magrittr)
 
 rm(ccme)
 ccme <- read.csv("data-raw/ccme.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)

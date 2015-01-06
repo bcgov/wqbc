@@ -65,7 +65,7 @@ calc_wqi <- function (x) {
 #' calc_wqis(ccme)
 #' calc_wqis(ccme, by = "Date")
 #'
-#' require(ggplot2)
+#' library(ggplot2)
 #' wqis <- calc_wqis(ccme, by = "Date")
 #' gp <- ggplot(data = wqis, aes(x = Date, y = WQI))
 #' gp <- gp + geom_line()

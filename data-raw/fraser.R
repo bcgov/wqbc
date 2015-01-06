@@ -1,6 +1,6 @@
-require(devtools)
-require(dplyr)
-require(magrittr)
+library(devtools)
+library(dplyr)
+library(magrittr)
 
 fraser <- read.csv("data-raw/fraser.csv")
 

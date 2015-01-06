@@ -1,6 +1,6 @@
 input_limits <- function () {
-  require(dplyr)
-  require(magrittr)
+  library(dplyr)
+  library(magrittr)
 
   limits <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
@@ -85,7 +85,7 @@ input_limits <- function () {
                      Average, Condition, LowerLimit, UpperLimit, Units)
   limits
 }
-require(devtools)
+library(devtools)
 rm(limits)
 limits <- input_limits()
 summary(limits)
