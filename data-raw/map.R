@@ -8,6 +8,8 @@
 library("rgdal")
 library("ggplot2")
 library("devtools")
+library("dplyr")
+library("magrittr")
 
 map_zip <- "data-raw/map.zip"
 map_dir <- "data-raw/map"
@@ -35,7 +37,10 @@ plot(map)
 
 ## Plot with ggplot2
 map <- fortify(map)
-ggplot(map, aes(x = long, y = lat, group = group)) +
+
+map %<>% select(Longitude = long, Latitude = lat, Group = group)
+
+ggplot(map, aes(x = Longitude, y = Latitude, group = Group)) +
   geom_polygon(fill = "#377eb8", size = 0.5, colour = "grey50") +
   coord_fixed() +
   theme_minimal() +

@@ -81,7 +81,7 @@ get_codes_variables <- function () {
 #'
 #' @export
 get_category_colors <- function () {
-  c(Excellent = "green", Good = "yellow", Fair = "indigo", Marginal = "brown", Poor = "red")
+  c(Excellent = "green", Good = "blue", Fair = "yellow", Marginal = "brown", Poor = "red")
 }
 
 #' @export

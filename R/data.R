@@ -76,3 +76,15 @@
 #'   \item{Units}{units for guideline (permitted values: mg/L, ug/L, /dL, m, NTU, pH)}
 #' }
 "limits"
+
+#' Borders of British Columbia
+#'
+#' Borders of British Columbia used by \code{\link{plot_map}} function.
+#'
+#' @format A data frame with 4,920 rows and 3 variables:
+#' \describe{
+#'   \item{Longitude}{longitude}
+#'   \item{Latitude}{latitude}
+#'   \item{Group}{grouping variable for plotting to ensure discrete polygons}
+#' }
+"map"
