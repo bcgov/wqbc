@@ -2,6 +2,7 @@
 
 export(calc_limits)
 export(calc_wqis)
+export(get_category_colors)
 export(get_codes)
 export(get_codes_variables)
 export(get_uses)

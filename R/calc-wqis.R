@@ -30,9 +30,11 @@ F3 <- function (x) {
 }
 
 categorize_wqi <- function (x) {
-  cut(x, breaks = c(-1, 44, 64, 79, 94, 100),
-      labels = c("Poor", "Marginal", "Fair", "Good", "Excellent"),
-      ordered_result = TRUE)
+  labels <- c("Poor", "Marginal", "Fair", "Good", "Excellent")
+  x <- cut(x, breaks = c(-1, 44, 64, 79, 94, 100),
+      labels = labels, ordered_result = TRUE)
+  x <- factor(as.character(x), levels = rev(labels))
+  x
 }
 
 calc_wqi <- function (x) {
@@ -62,6 +64,16 @@ calc_wqi <- function (x) {
 #' data(ccme)
 #' calc_wqis(ccme)
 #' calc_wqis(ccme, by = "Date")
+#'
+#' require(ggplot2)
+#' wqis <- calc_wqis(ccme, by = "Date")
+#' gp <- ggplot(data = wqis, aes(x = Date, y = WQI))
+#' gp <- gp + geom_line()
+#' gp <- gp + geom_point(aes(size = Tests, color = Category))
+#' gp <- gp + expand_limits(y = 0)
+#' gp <- gp + scale_color_manual(values = get_category_colors())
+#'
+#' print(gp)
 #'
 #' @export
 calc_wqis <- function (x, by = NULL) {
@@ -94,9 +106,9 @@ calc_wqis <- function (x, by = NULL) {
     x <- dplyr::filter_(x, ~!(is.na(LowerLimit) & is.na(UpperLimit)))
   }
 
-  if(is.null(by)) {
+  if(is.null(by))
     return(calc_wqi(x))
-  }
+
   assert_that(is.character(by))
 
   if(!all(by %in% colnames(x)))

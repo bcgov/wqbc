@@ -19,5 +19,15 @@ Calculates WQIs for x.
 data(ccme)
 calc_wqis(ccme)
 calc_wqis(ccme, by = "Date")
+
+require(ggplot2)
+wqis <- calc_wqis(ccme, by = "Date")
+gp <- ggplot(data = wqis, aes(x = Date, y = WQI))
+gp <- gp + geom_line()
+gp <- gp + geom_point(aes(size = Tests, color = Category))
+gp <- gp + expand_limits(y = 0)
+gp <- gp + scale_color_manual(values = get_category_colors())
+
+print(gp)
 }
 

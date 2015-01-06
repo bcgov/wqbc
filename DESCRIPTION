@@ -23,5 +23,6 @@ Imports:
 Suggests:
     testthat,
     knitr,
-    lubridate
+    lubridate,
+    ggplot2
 VignetteBuilder: knitr
