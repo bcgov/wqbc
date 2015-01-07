@@ -20,8 +20,8 @@ ggplot2 object
 }
 \description{
 Creates ggplot2 object with map polygon,
-limits expanded to include 0 and 100 and color scale
-with values get_category_colors()
+limits expanded to include 0 and 100 and colour scale
+with values get_category_colours()
 }
 \examples{
 library(ggplot2)

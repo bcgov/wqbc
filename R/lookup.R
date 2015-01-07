@@ -69,22 +69,15 @@ get_codes_variables <- function () {
   dplyr::arrange_(x, ~Code)
 }
 
-#' Get Category Colors
+#' Get Category Colours
 #'
-#' Returns a named vector of the category colors to use when
+#' Returns a named vector of the category colours to use when
 #' plotting water quality index values.
 #' @seealso \code{\link{calc_wqis}}
-#' @aliases get_category_colours
 #' @examples
-#' get_category_colors()
 #' get_category_colours()
 #'
 #' @export
-get_category_colors <- function () {
-  c(Excellent = "green", Good = "blue", Fair = "yellow", Marginal = "brown", Poor = "red")
-}
-
-#' @export
 get_category_colours <- function () {
-  get_category_colors()
+  c(Excellent = "green", Good = "blue", Fair = "yellow", Marginal = "brown", Poor = "red")
 }

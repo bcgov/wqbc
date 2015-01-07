@@ -1,8 +1,8 @@
 #' Plot Water Quality Indices
 #'
 #' Creates ggplot2 object with map polygon,
-#' limits expanded to include 0 and 100 and color scale
-#' with values get_category_colors()
+#' limits expanded to include 0 and 100 and colour scale
+#' with values get_category_colours()
 #'
 #' @param data data.frame to plot
 #' @param x string of column in data to plot on x axis
@@ -38,15 +38,15 @@ plot_wqis <- function (data, x = "Tests", size = NULL, shape = NULL) {
   if(!"Category" %in% colnames(data)) stop("data must contain Category column")
   if(!x %in% colnames(data)) stop("data must contain ", x ," column")
   if(is.string(size) && !size %in% colnames(data)) stop("data must contain ", size ," column")
-  if(is.string(shape) && !size %in% colnames(data)) stop("data must contain ", shape ," column")
+  if(is.string(shape) && !shape %in% colnames(data)) stop("data must contain ", shape ," column")
 
   if(!requireNamespace("ggplot2", quietly = TRUE))
     stop("ggplot2 package not installed")
 
   ggplot2:: ggplot(data = data, ggplot2::aes_string(x = x, y = "WQI")) +
-    ggplot2::geom_point(ggplot2::aes_string(color = "Category", size = size, shape = shape)) +
+    ggplot2::geom_point(ggplot2::aes_string(colour = "Category", size = size, shape = shape)) +
     ggplot2::expand_limits(y = c(0, 100)) +
-    ggplot2::scale_color_manual(values = get_category_colors()) +
+    ggplot2::scale_colour_manual(values = get_category_colours()) +
     ggplot2::ylab("Water Quality Index")
 }
 
@@ -58,52 +58,59 @@ plot_wqis <- function (data, x = "Tests", size = NULL, shape = NULL) {
 #' @param data data.frame to plot
 #' @param x string of column in data to plot on x axis
 #' @param y string of column in data to plot on y axis
+#' @param colour string of column in data to plot colour of points
+#' @param shape string of column in data to plot shape of points
 #' @param input_proj a valid proj4string. Defaults to longlat/NAD83 (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})
 #' @return ggplot2 object
 #' @examples
+#' library(ggplot2)
 #' library(sp)
 #' library(rgdal)
-#' library(ggplot2)
 #'
 #' data(fraser)
 #' plot_map(fraser)
+#' plot_map(fraser, colour = "SiteID")
+#'
+#' library(lubridate)
+#'
+#' fraser$Year <- year(fraser$Date)
+#' plot_map(fraser) + facet_wrap(~Year)
 #'
 #' @export
-plot_map <- function (data,  x = "Longitude", y = "Latitude", input_proj = NULL) {
+plot_map <- function (data,  x = "Longitude", y = "Latitude", colour = NULL,
+                      shape = NULL, input_proj = NULL) {
   assert_that(is.data.frame(data))
   assert_that(is.string(x))
   assert_that(is.string(y))
+  assert_that(is.null(colour) || is.string(colour))
+  assert_that(is.null(shape) || is.string(shape))
+  assert_that(is.null(input_proj) || is.string(input_proj))
 
-  if(!requireNamespace("sp", quietly = TRUE))
-    stop("sp package not installed")
-
-  if(!requireNamespace("rgdal", quietly = TRUE))
-    stop("rgdal package not installed")
+  if(!x %in% colnames(data)) stop("data must contain ", x ," column")
+  if(!y %in% colnames(data)) stop("data must contain ", y ," column")
+  if(is.string(colour) && !colour %in% colnames(data)) stop("data must contain ", colour ," column")
+  if(is.string(shape) && !shape %in% colnames(data)) stop("data must contain ", shape ," column")
 
   if(!requireNamespace("ggplot2", quietly = TRUE))
     stop("ggplot2 package not installed")
 
   ## Get unique site locations so we don't do lots of overplotting
-  unique_rows <- rownames(unique(data[c(x,y)]))
+  unique_rows <- rownames(unique(data[c(x,y,colour,shape)]))
   data <- data[unique_rows,]
 
-  ## Assign and transform the coordinate system/projection to match the base BC map
-  if (is.null(input_proj)) {
-    input_proj <- "+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"
-  }
-  output_proj <- "+proj=aea +lat_1=50 +lat_2=58.5 +lat_0=45 +lon_0=-126 +x_0=1000000 +y_0=0 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0"
-
-  sp::coordinates(data) <- c(x,y)
-  sp::proj4string(data) <- sp::CRS(input_proj)
-  data <- sp::spTransform(data, sp::CRS(output_proj))
-  data <- as.data.frame(data)
+  data <- proj_bc(data, x = x, y = y, input_proj = input_proj)
 
   ggplot2::ggplot(data, ggplot2::aes_string(x = x, y = y)) +
-    ggplot2::geom_polygon(data = wqbc::map,
-                          ggplot2::aes_string(x = "Longitude", y = "Latitude", group = "Group"),
-                 fill = "grey80", size = 0.5, colour = "grey50") +
-    ggplot2::geom_point() +
+    ggplot2::geom_polygon(
+      data = wqbc::map,
+      ggplot2::aes_string(x = "Longitude", y = "Latitude", group = "Group"),
+      fill = "grey80", size = 0.5, colour = "grey50"
+    ) +
+    ggplot2::coord_fixed() +
+    ggplot2::geom_point(ggplot2::aes_string(colour = colour, shape = shape)) +
     ggplot2::theme_minimal() +
-    ggplot2::theme(axis.title = ggplot2::element_blank(), axis.text = ggplot2::element_blank(),
-          axis.ticks = ggplot2::element_blank(), panel.grid = ggplot2::element_blank())
+    ggplot2::theme(
+      axis.title = ggplot2::element_blank(), axis.text = ggplot2::element_blank(),
+      axis.ticks = ggplot2::element_blank(), panel.grid = ggplot2::element_blank()
+    )
 }

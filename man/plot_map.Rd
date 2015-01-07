@@ -4,7 +4,8 @@
 \alias{plot_map}
 \title{Plot Map}
 \usage{
-plot_map(data, x = "Longitude", y = "Latitude", input_proj = NULL)
+plot_map(data, x = "Longitude", y = "Latitude", colour = NULL,
+  shape = NULL, input_proj = NULL)
 }
 \arguments{
 \item{data}{data.frame to plot}
@@ -12,6 +13,10 @@ plot_map(data, x = "Longitude", y = "Latitude", input_proj = NULL)
 \item{x}{string of column in data to plot on x axis}
 
 \item{y}{string of column in data to plot on y axis}
+
+\item{colour}{string of column in data to plot colour of points}
+
+\item{shape}{string of column in data to plot shape of points}
 
 \item{input_proj}{a valid proj4string. Defaults to longlat/NAD83 (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})}
 }
@@ -23,11 +28,17 @@ Creates ggplot2 object with map polygon,
 coord_fixed and theme_minimal.
 }
 \examples{
+library(ggplot2)
 library(sp)
 library(rgdal)
-library(ggplot2)
 
 data(fraser)
 plot_map(fraser)
+plot_map(fraser, colour = "SiteID")
+
+library(lubridate)
+
+fraser$Year <- year(fraser$Date)
+plot_map(fraser) + facet_wrap(~Year)
 }
 
