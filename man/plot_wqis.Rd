@@ -21,6 +21,7 @@ with values get_category_colors()
 }
 \examples{
 library(ggplot2)
+
 data(ccme)
 plot_wqis(calc_wqis(ccme))
 plot_wqis(calc_wqis(ccme, by = "Date"))

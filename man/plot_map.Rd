@@ -23,7 +23,10 @@ Creates ggplot2 object with map polygon,
 coord_fixed and theme_minimal.
 }
 \examples{
+library(sp)
+library(rgdal)
 library(ggplot2)
+
 data(fraser)
 plot_map(fraser)
 }

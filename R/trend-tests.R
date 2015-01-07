@@ -35,8 +35,8 @@
 #' # rescale recorded values to be on common scale (some are mg/L some ug/L)
 #' x $ WQI <- x $ Value * ifelse(x $ Units == "mg/L", 1000, 1)
 #' # and month and year covariates
-#' x $ month <- factor(month.abb[lubridate::month(x $ Date)], levels = month.abb)
-#' x $ year <- lubridate::year(x $ Date)
+#' x $ month <- factor(month.abb[month(x $ Date)], levels = month.abb)
+#' x $ year <- year(x $ Date)
 #'
 #' test_trends(x, scale = "year", by = "month")
 test_trends <- function (x, scale = "Year", by = NULL) {

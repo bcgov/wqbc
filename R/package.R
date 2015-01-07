@@ -2,16 +2,12 @@
 #'
 #' @docType package
 #' @name wqbc
-#' @import assertthat ggplot2
-#' @import zyp
+#' @import assertthat zyp
+#' @seealso \code{\link{plot_map}}, \code{\link{plot_wqis}}
 #' @examples
-#' library(ggplot2)
-#' data(fraser)
-#' plot_map(fraser)
 #'
 #' data(ccme)
 #' calc_wqis(ccme)
-#' wqis <- calc_wqis(ccme, by = "Date")
-#' plot_wqis(wqis, x = "Date")
+#' calc_wqis(ccme, by = "Date")
 #'
 NULL
