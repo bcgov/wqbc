@@ -2,8 +2,8 @@
 #'
 #' @docType package
 #' @name wqbc
-#' @import assertthat zyp
-#' @seealso \code{\link{plot_map}}, \code{\link{plot_wqis}}
+#' @import assertthat
+#' @seealso \code{\link{plot_map}} and \code{\link{plot_wqis}}
 #' @examples
 #'
 #' data(ccme)
