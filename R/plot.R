@@ -1,3 +1,55 @@
+#' Plot Water Quality Indices
+#'
+#' Creates ggplot2 object with map polygon,
+#' limits expanded to include 0 and 100 and color scale
+#' with values get_category_colors()
+#'
+#' @param data data.frame to plot
+#' @param x string of column in data to plot on x axis
+#' @param size string of column in data to plot size of points
+#' @param shape string of column in data to plot shape of points
+#' @return ggplot2 object
+#' @examples
+#' library(ggplot2)
+#'
+#' data(ccme)
+#' plot_wqis(calc_wqis(ccme))
+#'
+#' wqis <- calc_wqis(ccme, by = "Date")
+#' plot_wqis(wqis)
+#' plot_wqis(wqis, x = "Date")
+#'
+#' library(lubridate)
+#'
+#' wqis$Year <- year(wqis$Date)
+#' wqis$Dayte <- wqis$Date
+#' year(wqis$Dayte) <- 2000
+#' plot_wqis(wqis, x = "Dayte", size = "Tests") +
+#' facet_wrap(~Year) + xlab("Day of the Year") + theme_bw()
+#'
+#' @export
+plot_wqis <- function (data, x = "Tests", size = NULL, shape = NULL) {
+  assert_that(is.data.frame(data))
+  assert_that(is.string(x))
+  assert_that(is.null(size) || is.string(size))
+  assert_that(is.null(shape) || is.string(shape))
+
+  if(!"WQI" %in% colnames(data)) stop("data must contain WQI column")
+  if(!"Category" %in% colnames(data)) stop("data must contain Category column")
+  if(!x %in% colnames(data)) stop("data must contain ", x ," column")
+  if(is.string(size) && !size %in% colnames(data)) stop("data must contain ", size ," column")
+  if(is.string(shape) && !size %in% colnames(data)) stop("data must contain ", shape ," column")
+
+  if(!requireNamespace("ggplot2", quietly = TRUE))
+    stop("ggplot2 package not installed")
+
+  ggplot2:: ggplot(data = data, ggplot2::aes_string(x = x, y = "WQI")) +
+    ggplot2::geom_point(ggplot2::aes_string(color = "Category", size = size, shape = shape)) +
+    ggplot2::expand_limits(y = c(0, 100)) +
+    ggplot2::scale_color_manual(values = get_category_colors()) +
+    ggplot2::ylab("Water Quality Index")
+}
+
 #' Plot Map
 #'
 #' Creates ggplot2 object with map polygon,
@@ -54,35 +106,4 @@ plot_map <- function (data,  x = "Longitude", y = "Latitude", input_proj = NULL)
     ggplot2::theme_minimal() +
     ggplot2::theme(axis.title = ggplot2::element_blank(), axis.text = ggplot2::element_blank(),
           axis.ticks = ggplot2::element_blank(), panel.grid = ggplot2::element_blank())
-}
-
-#' Plot Water Quality Indices
-#'
-#' Creates ggplot2 object with map polygon,
-#' limits expanded to include 0 and 100 and color scale
-#' with values get_category_colors()
-#'
-#' @param data data.frame to plot
-#' @param x string of column in data to plot on x axis
-#' @return ggplot2 object
-#' @examples
-#' library(ggplot2)
-#'
-#' data(ccme)
-#' plot_wqis(calc_wqis(ccme))
-#' plot_wqis(calc_wqis(ccme, by = "Date"))
-#' plot_wqis(calc_wqis(ccme, by = "Date"), x = "Date")
-#'
-#' @export
-plot_wqis <- function (data, x = "Tests") {
-  assert_that(is.data.frame(data))
-  assert_that(is.string(x))
-
-  if(!requireNamespace("ggplot2", quietly = TRUE))
-    stop("ggplot2 package not installed")
-
-  ggplot2:: ggplot(data = data, ggplot2::aes_string(x = x, y = "WQI")) +
-    ggplot2::geom_point(ggplot2::aes_string(color = "Category", size = "Tests")) +
-    ggplot2::expand_limits(y = c(0, 100)) +
-    ggplot2::scale_color_manual(values = get_category_colors())
 }

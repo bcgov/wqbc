@@ -4,12 +4,16 @@
 \alias{plot_wqis}
 \title{Plot Water Quality Indices}
 \usage{
-plot_wqis(data, x = "Tests")
+plot_wqis(data, x = "Tests", size = NULL, shape = NULL)
 }
 \arguments{
 \item{data}{data.frame to plot}
 
 \item{x}{string of column in data to plot on x axis}
+
+\item{size}{string of column in data to plot size of points}
+
+\item{shape}{string of column in data to plot shape of points}
 }
 \value{
 ggplot2 object
@@ -24,7 +28,17 @@ library(ggplot2)
 
 data(ccme)
 plot_wqis(calc_wqis(ccme))
-plot_wqis(calc_wqis(ccme, by = "Date"))
-plot_wqis(calc_wqis(ccme, by = "Date"), x = "Date")
+
+wqis <- calc_wqis(ccme, by = "Date")
+plot_wqis(wqis)
+plot_wqis(wqis, x = "Date")
+
+library(lubridate)
+
+wqis$Year <- year(wqis$Date)
+wqis$Dayte <- wqis$Date
+year(wqis$Dayte) <- 2000
+plot_wqis(wqis, x = "Dayte", size = "Tests") +
+facet_wrap(~Year) + xlab("Day of the Year") + theme_bw()
 }
 

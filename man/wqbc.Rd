@@ -14,6 +14,6 @@ calc_wqis(ccme)
 calc_wqis(ccme, by = "Date")
 }
 \seealso{
-\code{\link{plot_map}}, \code{\link{plot_wqis}}
+\code{\link{plot_map}} and \code{\link{plot_wqis}}
 }
 
