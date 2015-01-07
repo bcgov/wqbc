@@ -5,7 +5,7 @@
 \title{Plot Map}
 \usage{
 plot_map(data, x = "Longitude", y = "Latitude", colour = NULL,
-  shape = NULL, input_proj = NULL)
+  shape = NULL, size = 2, drop = TRUE, input_proj = NULL)
 }
 \arguments{
 \item{data}{data.frame to plot}
@@ -17,6 +17,11 @@ plot_map(data, x = "Longitude", y = "Latitude", colour = NULL,
 \item{colour}{string of column in data to plot colour of points}
 
 \item{shape}{string of column in data to plot shape of points}
+
+\item{size}{number of size of points}
+
+\item{drop}{flag indicating whether to drop duplicated rows to
+avoid overplotting}
 
 \item{input_proj}{a valid proj4string. Defaults to longlat/NAD83 (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})}
 }
@@ -34,11 +39,16 @@ library(rgdal)
 
 data(fraser)
 plot_map(fraser)
+
+fraser <- fraser[fraser$SiteID \%in\% levels(fraser$SiteID)[1:5],]
 plot_map(fraser, colour = "SiteID")
 
 library(lubridate)
 
+data(fraser)
 fraser$Year <- year(fraser$Date)
-plot_map(fraser) + facet_wrap(~Year)
+fraser <- unique(fraser[c("Longitude","Latitude","Year")])
+fraser <- fraser[fraser$Year <= 1990,]
+plot_map(fraser, drop = FALSE) + facet_wrap(~Year)
 }
 

@@ -60,6 +60,9 @@ plot_wqis <- function (data, x = "Tests", size = NULL, shape = NULL) {
 #' @param y string of column in data to plot on y axis
 #' @param colour string of column in data to plot colour of points
 #' @param shape string of column in data to plot shape of points
+#' @param size number of size of points
+#' @param drop flag indicating whether to drop duplicated rows to
+#' avoid overplotting
 #' @param input_proj a valid proj4string. Defaults to longlat/NAD83 (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})
 #' @return ggplot2 object
 #' @examples
@@ -69,21 +72,28 @@ plot_wqis <- function (data, x = "Tests", size = NULL, shape = NULL) {
 #'
 #' data(fraser)
 #' plot_map(fraser)
+#'
+#' fraser <- fraser[fraser$SiteID %in% levels(fraser$SiteID)[1:5],]
 #' plot_map(fraser, colour = "SiteID")
 #'
 #' library(lubridate)
 #'
+#' data(fraser)
 #' fraser$Year <- year(fraser$Date)
-#' plot_map(fraser) + facet_wrap(~Year)
+#' fraser <- unique(fraser[c("Longitude","Latitude","Year")])
+#' fraser <- fraser[fraser$Year <= 1990,]
+#' plot_map(fraser, drop = FALSE) + facet_wrap(~Year)
 #'
 #' @export
 plot_map <- function (data,  x = "Longitude", y = "Latitude", colour = NULL,
-                      shape = NULL, input_proj = NULL) {
+                      shape = NULL, size = 2, drop = TRUE, input_proj = NULL) {
   assert_that(is.data.frame(data))
   assert_that(is.string(x))
   assert_that(is.string(y))
   assert_that(is.null(colour) || is.string(colour))
   assert_that(is.null(shape) || is.string(shape))
+  assert_that(is.number(size))
+  assert_that(is.flag(drop) || noNA(drop))
   assert_that(is.null(input_proj) || is.string(input_proj))
 
   if(!x %in% colnames(data)) stop("data must contain ", x ," column")
@@ -94,9 +104,8 @@ plot_map <- function (data,  x = "Longitude", y = "Latitude", colour = NULL,
   if(!requireNamespace("ggplot2", quietly = TRUE))
     stop("ggplot2 package not installed")
 
-  ## Get unique site locations so we don't do lots of overplotting
-  unique_rows <- rownames(unique(data[c(x,y,colour,shape)]))
-  data <- data[unique_rows,]
+  if(drop)
+    data <- unique(data[c(x, y, colour, shape)])
 
   data <- proj_bc(data, x = x, y = y, input_proj = input_proj)
 
@@ -107,7 +116,8 @@ plot_map <- function (data,  x = "Longitude", y = "Latitude", colour = NULL,
       fill = "grey80", size = 0.5, colour = "grey50"
     ) +
     ggplot2::coord_fixed() +
-    ggplot2::geom_point(ggplot2::aes_string(colour = colour, shape = shape)) +
+    ggplot2::geom_point(ggplot2::aes_string(colour = colour, shape = shape),
+                        size = size) +
     ggplot2::theme_minimal() +
     ggplot2::theme(
       axis.title = ggplot2::element_blank(), axis.text = ggplot2::element_blank(),
