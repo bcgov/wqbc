@@ -25,12 +25,34 @@ check_valid_expression <- function (x) {
   TRUE
 }
 
-check_limits <- function (x) {
+read_limits <- function () {
+  read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
+}
+
+read_codes <- function () {
+  read.csv("data-raw/codes.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
+}
+
+check_codes <- function () {
+
+  x <- read_codes()
+
+  stopifnot(identical(colnames(x), c("Code", "Variable")))
+  stopifnot(all(!is.na(x$Code)))
+  stopifnot(all(!is.na(x$Variable)))
+
+  TRUE
+}
+
+check_limits <- function () {
+
+  x <- read_limits()
+
   stopifnot(identical(colnames(x),
                       c("Variable", "Jurisdiction",
                         "Use", "SubUse", "Samples", "Days", "Average",
                         "Condition", "LowerLimit", "UpperLimit", "Units",
-                        "Status", "Comments", "Date", "URL", "TableNumber")))
+                        "Status", "Comments", "URL", "TableNumber")))
 
   stopifnot(identical(sort(unique(x$Jurisdiction)),
                       c("BC", "CA")))
@@ -52,99 +74,86 @@ check_limits <- function (x) {
   stopifnot(identical(sort(unique(x$Status)),
                       c("Approved")))
 
+  stopifnot(is.integer(x$Samples))
   stopifnot(is.integer(x$Days))
 
   check_valid_expression(x$Condition)
   check_valid_expression(x$LowerLimit)
   check_valid_expression(x$UpperLimit)
 
-  TRUE
-}
-
-input_limits <- function () {
-  require(dplyr)
-  require(magrittr)
-
-  x <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
-
-  check_limits(x)
-
-  lapply(x, FUN = function (x) (sort(unique(x))))
-
-
- # write.csv(x, "data-raw/limits.csv", row.names = FALSE)
-
-  x %<>% reassign_aquatic_life()
-  x %<>% set_periods()
-
-  x$Date %<>% as.Date
-
-  x$Status %<>% factor(levels = c("Approved"))
-
-  x$Jurisdiction %<>% factor(levels = c("BC", "CA"))
-
-  x$Units %<>% factor(levels = c("ug/L", "mg/L", "/dL", "pH", "NTU", "m"))
-
-  x$Average %<>% factor(levels = c("geomean1", "max", "mean", "median"))
-
-  x$Use %<>% factor(levels = c(
-    "Freshwater Life", "Marine Life", "Drinking", "Livestock",
-    "Wildlife", "Irrigation", "Recreation", "Industrial"))
-
-sort(unique(x$UpperLimit))
-
-  stopifnot(is.integer(x$Samples))
-
   stopifnot(all(!is.na(x$Variable)))
   stopifnot(all(!is.na(x$Jurisdiction)))
   stopifnot(all(!is.na(x$Use)))
   stopifnot(all(!is.na(x$Samples)))
-  stopifnot(all(!is.na(x$Period)))
+  stopifnot(all(!is.na(x$Days)))
   stopifnot(all(!is.na(x$Average)))
   stopifnot(all(!is.na(x$LowerLimit) | !is.na(x$UpperLimit)))
   stopifnot(all(!is.na(x$Units)))
-  stopifnot(all(!is.na(x$Status)))
-  stopifnot(all(!is.na(x$Date)))
-  stopifnot(all(!is.na(x$URL)))
 
-  codes <- read.csv("data-raw/codes.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
+  TRUE
+}
 
-  stopifnot(identical(colnames(codes), c("Code", "Variable")))
+input_limits <- function () {
 
-  stopifnot(all(!is.na(codes$Code)))
+  require(dplyr)
+  require(magrittr)
 
-  n <- nrow(x)
-  x <- merge(codes, x, by = "Variable")
-  stopifnot(n == nrow(x))
+  check_limits()
 
-  code <- x$Code
-  x$Code <- NULL
-  x <- cbind(data.frame(Code = code), x)
+  limits <- read_limits()
 
-  x$Variable %<>% factor
-  x$Code %<>% factor
+  unique(select(limits, Jurisdiction, URL))
 
-  x %<>% dplyr::filter(
+  lapply(limits, FUN = function (limits) (sort(unique(limits))))
+  # write.csv(limits, "data-raw/limits.csv", row.names = FALSE)
+
+  limits %<>% reassign_aquatic_life()
+  limits %<>% set_periods()
+
+  limits$Status %<>% factor(levels = c("Approved"))
+  limits$Jurisdiction %<>% factor(levels = c("BC", "CA"))
+  limits$Units %<>% factor(levels = c("ug/L", "mg/L", "/dL", "pH", "NTU", "m"))
+  limits$Average %<>% factor(levels = c("geomean1", "max", "mean", "median"))
+  limits$Use %<>% factor(levels = c(
+    "Freshwater Life", "Marine Life", "Drinking", "Livestock",
+    "Wildlife", "Irrigation", "Recreation", "Industrial"))
+
+  check_codes()
+  codes <- read_codes()
+
+  limits <- inner_join(codes, limits, by = "Variable")
+
+  # move code to first column position
+  code <- limits$Code
+  limits$Code <- NULL
+  limits <- cbind(data.frame(Code = code), limits)
+
+  limits %<>% dplyr::filter(
     !is.na(Variable) &
       !is.na(Code) &
       !is.na(Jurisdiction) &
       !is.na(Use) &
       !is.na(Samples) &
-      !is.na(Days) &
+      !is.na(Period) &
       !is.na(Average) &
       !(is.na(LowerLimit) & is.na(UpperLimit)) &
       !is.na(Units) &
-      #  Status == "Approved" &
-      !is.na(Date) &
-      !is.na(URL))
+      Status == "Approved")
 
-  x %<>% arrange(Code, Use, SubUse, Jurisdiction, Samples, Days)
+  limits %<>% arrange(Code, Use, SubUse, Jurisdiction, Samples, Period)
 
-  x %<>% select(Code, Variable, Jurisdiction, Use, SubUse,
-                     Samples, Days,
+  limits %<>% select(Code, Variable, Jurisdiction, Use, SubUse,
+                     Samples, Period,
                      Average, Condition, LowerLimit, UpperLimit, Units)
-  x
+
+  limits$Code %<>% factor
+  limits$Variable %<>% factor
+  limits$Jurisdiction %<>% droplevels
+  limits$Units %<>% droplevels
+  limits$Average %<>% droplevels
+
+  limits
 }
 limits <- input_limits()
 summary(limits)
-devtools::use_data(limits, overwrite = TRUE, compress = "xz")
+# devtools::use_data(limits, overwrite = TRUE, compress = "xz")
