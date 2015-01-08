@@ -164,7 +164,7 @@ Molybdenum,BC,Irrigation,NA,5,Month,mean,NA,NA,0.02,mg/L,Approved,"- Well Draine
 (forage crops) NA",2006-01-08,bc_pdf,15
 Molybdenum,BC,Irrigation,NA,5,Month,mean,NA,NA,0.03,mg/L,Approved,"- All Soils
 (non-forage crops) NA",2006-01-08,bc_pdf,15
-Nickel,BC,Freshwater Life,NA,1,Day,mean,NA,NA,e0.76*log(hardness)+1.06 ?g/L,ug/L,NA,NA NA,2014-12-31,https://www.ec.gc.ca/indicateurs-indicators/default.asp?lang=en&n=3786D3FD-1,NA
+Nickel,BC,Freshwater Life,NA,1,Day,mean,NA,NA,exp(0.76 * log(hardness) + 1.06),ug/L,NA,NA NA,2014-12-31,https://www.ec.gc.ca/indicateurs-indicators/default.asp?lang=en&n=3786D3FD-1,NA
 Nickel,BC,Marine Life,NA,1,Day,mean,NA,NA,75,ug/L,NA,one hour NA,NA,NA,NA
 Nickel,BC,Marine Life,NA,1,Day,mean,NA,NA,8.3,ug/L,NA,four days NA,2014-12-31,http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html,NA
 Nickel,BC,Livestock,NA,1,Day,max,NA,NA,1000,ug/L,NA,NA NA,2014-12-31,http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html,NA
