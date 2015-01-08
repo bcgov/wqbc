@@ -197,7 +197,8 @@ Sulfolane,BC,Freshwater Life,NA,1,1,mean,NA,NA,50,mg/L,NA,NA NA,2014-12-29,http:
 Sulfolane,BC,Irrigation,NA,1,1,mean,NA,NA,8.4,mg/L,NA,NA NA,2014-12-29,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,NA
 Sulfolane,BC,Livestock,NA,1,1,mean,NA,NA,14,mg/L,NA,NA NA,2014-12-29,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,NA
 Sulphate,BC,Drinking,NA,1,1,mean,NA,NA,500,mg/L,Approved,NA NA,2006-01-08,bc_pdf,36
-Sulphate,BC,Freshwater Life,NA,1,1,mean,NA,NA,100,mg/L,Approved,Alert level is 50 mg/L. Assumed that mean of multiple values even though states that 1000 mg/L is the maximum value.,2006-01-08,bc_pdf,36
+Sulphate,BC,Freshwater Life,NA,1,1,maximum,NA,NA,100,mg/L,Approved,NA,2006-01-08,bc_pdf,36
+Sulphate,BC,Freshwater Life,NA,1,1,mean,NA,NA,50,mg/L,Approved,Described as alert level assumed to be mean value,2006-01-08,bc_pdf,36
 pH,CA,Recreation,NA,1,1,mean,NA,NA,35,pH,NA,water / PCBs #126 ?,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
 Total Phosphorus,BC,Drinking,NA,1,1,mean,NA,NA,10,ug/L,Approved,NA NA,2006-01-08,bc_pdf,3
 Total Phosphorus,BC,Aquatic Life,NA,1,1,mean,NA,5,10,ug/L,Approved,NA NA,2006-01-08,bc_pdf,3
