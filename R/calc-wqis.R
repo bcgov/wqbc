@@ -29,7 +29,16 @@ F3 <- function (x) {
   nse / (0.01 * nse + 0.01)
 }
 
+#' Categorize WQI Values
+#'
+#' @param x numeric vector of WQI values
+#' @return factor of WQI categories
+#' @examples
+#' categorize_wqi(seq(0, 100, by = 5))
+#' @export
 categorize_wqi <- function (x) {
+  assert_that(is.numeric(x))
+
   labels <- c("Poor", "Marginal", "Fair", "Good", "Excellent")
   x <- cut(x, breaks = c(-1, 44, 64, 79, 94, 100),
       labels = labels, ordered_result = TRUE)

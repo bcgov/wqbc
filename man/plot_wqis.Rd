@@ -40,5 +40,9 @@ wqis$Dayte <- wqis$Date
 year(wqis$Dayte) <- 2000
 plot_wqis(wqis, x = "Dayte", size = "Tests") +
 facet_wrap(~Year) + xlab("Day of the Year") + theme_bw()
+
+test <- data.frame(WQI = seq(0, 100, by = 5))
+test$Category = categorize_wqi(test$WQI)
+plot_wqis(test, x = "WQI") + xlab("Water Quality Index")
 }
 
