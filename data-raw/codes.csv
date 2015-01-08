@@ -5,26 +5,26 @@ NH4,Ammonia
 As,Arsenic
 Cd,Cadmium
 Cl,Chloride
-,Clarity
+Clxx,Clarity
 Cu,Copper
 CN?,Cyanide
 DO,Dissolved Oxygen
-,E.coli
-,Enterococci
-F-,Fluoride
+ECxx,E.coli
+Enxx,Enterococci
+Fxx,Fluoride
 Fe,Iron
 Pb,Lead
 Mn,Manganese
 Hg,Mercury
 Mo,Molybdenum
 Ni,Nickel
-NO3-,Nitrate
-NO2?,Nitrite
+NO3xx,Nitrate
+NO2xx,Nitrite
 pH,pH
 Se,Selenium
 Ag,Silver
-SO42-,Sulphate
+SO42xx,Sulphate
 TN,Total Nitrogen
 TP,Total Phosphorus
-,Turbidity
+TBxx,Turbidity
 Zn,Zinc
