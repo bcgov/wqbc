@@ -69,7 +69,7 @@ Fluoride,BC,Livestock,high fluoride diets (mineral or bone meal feed additives),
 Fluoride,BC,Livestock,normal diet,1,1,mean,NA,NA,4,mg/L,Approved,NA NA,bc_pdf,20
 Fluoride,BC,Livestock,normal diet,5,30,mean,NA,NA,2,mg/L,Approved,NA NA,bc_pdf,20
 Fluoride,BC,Irrigation,NA,1,1,mean,NA,NA,2,mg/L,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Irrigation,NA,5,30,mean,NA,NA,1,NA,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Irrigation,NA,5,30,mean,NA,NA,1,mg/L,Approved,NA NA,bc_pdf,20
 Fluoride,BC,Industrial,NA,1,1,mean,NA,NA,1.5,mg/L,Approved,NA NA,bc_pdf,20
 Fluoride,BC,Industrial,NA,5,30,mean,NA,NA,1,mg/L,Approved,NA NA,bc_pdf,20
 Iron,BC,Freshwater Life,NA,1,1,mean,NA,NA,1,mg/L,NA, total iron NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/iron/iron_overview.pdf,NA
