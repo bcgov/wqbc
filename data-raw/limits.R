@@ -1,46 +1,71 @@
+library(dplyr)
+library(magrittr)
+library(devtools)
+
+rm(list = ls())
+graphics.off()
+
+reassign_aquatic_life <- function (x) {
+  x2 <- filter(x, Use == "Aquatic Life")
+  x2$Use <- "Marine Life"
+  x$Use <- sub("Aquatic Life", "Freshwater Life", x$Use)
+  x <- rbind(x, x2)
+  x
+}
+
 input_limits <- function () {
-  library(dplyr)
-  library(magrittr)
+  require(dplyr)
+  require(magrittr)
 
-  limits <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
+  x <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
-  stopifnot(identical(colnames(limits),
+  stopifnot(identical(colnames(x),
                       c("Variable", "Jurisdiction",
                         "Use", "SubUse", "Samples", "Days", "Average",
                         "Condition", "LowerLimit", "UpperLimit", "Units",
-                        "Comments", "Date", "URL", "TableNumber")))
+                        "Status", "Comments", "Date", "URL", "TableNumber")))
 
-  stopifnot(identical(sort(unique(limits$Jurisdiction)),
+  stopifnot(identical(sort(unique(x$Jurisdiction)),
                       c("BC", "CA")))
 
-  stopifnot(identical(sort(unique(limits$Use)),
-                      c("Drinking", "Freshwater Life", "Irrigation", "Livestock",
+  stopifnot(identical(sort(unique(x$Use)),
+                      c("Aquatic Life", "Drinking", "Freshwater Life",
+                        "Industrial", "Irrigation", "Livestock",
                         "Marine Life", "Recreation", "Wildlife")))
 
-  stopifnot(identical(sort(unique(limits$Units)),
+  stopifnot(identical(sort(unique(x$Units)),
                       c("/dL", "m", "mg/L", "NTU", "pH", "ug/L")))
 
-  stopifnot(identical(sort(unique(limits$Status)),
+  stopifnot(identical(sort(unique(x$Status)),
                       c("Approved")))
 
-  #    write.csv(limits, "data-raw/limits.csv", row.names = FALSE)
+  #  write.csv(x, "data-raw/limits.csv", row.names = FALSE)
 
-  limits$Date <- as.Date(limits$Date)
+  x %<>% reassign_aquatic_life()
+  x$Date %<>% as.Date
 
-  stopifnot(is.integer(limits$Samples))
-  stopifnot(is.integer(limits$Days))
+  x$Status %<>% factor(levels = c("Approved"))
 
-  stopifnot(all(!is.na(limits$Variable)))
-  stopifnot(all(!is.na(limits$Jurisdiction)))
-  stopifnot(all(!is.na(limits$Use)))
-  stopifnot(all(!is.na(limits$Samples)))
-  stopifnot(all(!is.na(limits$Days)))
-  stopifnot(all(!is.na(limits$Average)))
-  stopifnot(all(!is.na(limits$LowerLimit) | !is.na(limits$UpperLimit)))
-  stopifnot(all(!is.na(limits$Units)))
-  stopifnot(all(!is.na(limits$Status)))
-  stopifnot(all(!is.na(limits$Date)))
-  stopifnot(all(!is.na(limits$URL)))
+  x$Jurisdiction %<>% factor(levels = c("BC", "CA"))
+
+  x$Use %<>% factor(levels = c(
+    "Freshwater Life", "Marine Life", "Drinking", "Livestock",
+    "Wildlife", "Irrigation", "Recreation", "Industrial"))
+
+  stopifnot(is.integer(x$Samples))
+  stopifnot(is.integer(x$Days))
+
+  stopifnot(all(!is.na(x$Variable)))
+  stopifnot(all(!is.na(x$Jurisdiction)))
+  stopifnot(all(!is.na(x$Use)))
+  stopifnot(all(!is.na(x$Samples)))
+  stopifnot(all(!is.na(x$Days)))
+  stopifnot(all(!is.na(x$Average)))
+  stopifnot(all(!is.na(x$LowerLimit) | !is.na(x$UpperLimit)))
+  stopifnot(all(!is.na(x$Units)))
+  stopifnot(all(!is.na(x$Status)))
+  stopifnot(all(!is.na(x$Date)))
+  stopifnot(all(!is.na(x$URL)))
 
   codes <- read.csv("data-raw/codes.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
@@ -48,25 +73,18 @@ input_limits <- function () {
 
   stopifnot(all(!is.na(codes$Code)))
 
-  n <- nrow(limits)
-  limits <- merge(codes, limits, by = "Variable")
-  stopifnot(n == nrow(limits))
+  n <- nrow(x)
+  x <- merge(codes, x, by = "Variable")
+  stopifnot(n == nrow(x))
 
-  code <- limits$Code
-  limits$Code <- NULL
-  limits <- cbind(data.frame(Code = code), limits)
+  code <- x$Code
+  x$Code <- NULL
+  x <- cbind(data.frame(Code = code), x)
 
-  limits$Variable <- factor(limits$Variable)
-  limits$Code <- factor(limits$Code)
-  limits$Status <- factor(limits$Code, levels = c("Approved"))
+  x$Variable %<>% factor
+  x$Code %<>% factor
 
-  limits$Jurisdiction <- factor(limits$Jurisdiction, levels = c("BC", "CA"))
-
-  limits$Use <- factor(limits$Use, levels = c(
-    "Freshwater Life", "Marine Life", "Drinking", "Livestock",
-    "Wildlife", "Irrigation", "Recreation"))
-
-  limits %<>% dplyr::filter(
+  x %<>% dplyr::filter(
     !is.na(Variable) &
       !is.na(Code) &
       !is.na(Jurisdiction) &
@@ -80,13 +98,13 @@ input_limits <- function () {
       !is.na(Date) &
       !is.na(URL))
 
-  limits %<>% select(Code, Variable, Jurisdiction, Use, SubUse,
+  x %<>% arrange(Code, Use, SubUse, Jurisdiction, Samples, Days)
+
+  x %<>% select(Code, Variable, Jurisdiction, Use, SubUse,
                      Samples, Days,
                      Average, Condition, LowerLimit, UpperLimit, Units)
-  limits
+  x
 }
-library(devtools)
-rm(limits)
 limits <- input_limits()
 summary(limits)
 devtools::use_data(limits, overwrite = TRUE, compress = "xz")
