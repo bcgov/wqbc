@@ -6,19 +6,26 @@ rm(list = ls())
 graphics.off()
 
 reassign_aquatic_life <- function (x) {
-  x2 <- filter(x, Use == "Aquatic Life")
+  x2 <- filter_(x, ~Use == "Aquatic Life")
   x2$Use <- "Marine Life"
   x$Use <- sub("Aquatic Life", "Freshwater Life", x$Use)
   x <- rbind(x, x2)
   x
 }
 
-input_limits <- function () {
-  require(dplyr)
-  require(magrittr)
+set_periods <- function (x) {
+  x <- dplyr::rename(x, Period = Days)
+  x$Period <- factor(x$Period)
+  levels(x$Period) <- list(Day = "1", Month = "30")
+  x
+}
 
-  x <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
+check_valid_expression <- function (x) {
+  parse(text = x)
+  TRUE
+}
 
+check_limits <- function (x) {
   stopifnot(identical(colnames(x),
                       c("Variable", "Jurisdiction",
                         "Use", "SubUse", "Samples", "Days", "Average",
@@ -33,33 +40,66 @@ input_limits <- function () {
                         "Industrial", "Irrigation", "Livestock",
                         "Marine Life", "Recreation", "Wildlife")))
 
+  stopifnot(all.equal(sort(unique(x$Days)),
+                      c(1, 30)))
+
+  stopifnot(identical(sort(unique(x$Average)),
+                      c("geomean1", "max", "mean", "median")))
+
   stopifnot(identical(sort(unique(x$Units)),
                       c("/dL", "m", "mg/L", "NTU", "pH", "ug/L")))
 
   stopifnot(identical(sort(unique(x$Status)),
                       c("Approved")))
 
-  #  write.csv(x, "data-raw/limits.csv", row.names = FALSE)
+  stopifnot(is.integer(x$Days))
+
+  check_valid_expression(x$Condition)
+  check_valid_expression(x$LowerLimit)
+  check_valid_expression(x$UpperLimit)
+
+  TRUE
+}
+
+input_limits <- function () {
+  require(dplyr)
+  require(magrittr)
+
+  x <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
+
+  check_limits(x)
+
+  lapply(x, FUN = function (x) (sort(unique(x))))
+
+
+ # write.csv(x, "data-raw/limits.csv", row.names = FALSE)
 
   x %<>% reassign_aquatic_life()
+  x %<>% set_periods()
+
   x$Date %<>% as.Date
 
   x$Status %<>% factor(levels = c("Approved"))
 
   x$Jurisdiction %<>% factor(levels = c("BC", "CA"))
 
+  x$Units %<>% factor(levels = c("ug/L", "mg/L", "/dL", "pH", "NTU", "m"))
+
+  x$Average %<>% factor(levels = c("geomean1", "max", "mean", "median"))
+
   x$Use %<>% factor(levels = c(
     "Freshwater Life", "Marine Life", "Drinking", "Livestock",
     "Wildlife", "Irrigation", "Recreation", "Industrial"))
 
+sort(unique(x$UpperLimit))
+
   stopifnot(is.integer(x$Samples))
-  stopifnot(is.integer(x$Days))
 
   stopifnot(all(!is.na(x$Variable)))
   stopifnot(all(!is.na(x$Jurisdiction)))
   stopifnot(all(!is.na(x$Use)))
   stopifnot(all(!is.na(x$Samples)))
-  stopifnot(all(!is.na(x$Days)))
+  stopifnot(all(!is.na(x$Period)))
   stopifnot(all(!is.na(x$Average)))
   stopifnot(all(!is.na(x$LowerLimit) | !is.na(x$UpperLimit)))
   stopifnot(all(!is.na(x$Units)))
