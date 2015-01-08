@@ -2,16 +2,25 @@
 % Please edit documentation in R/calc-limits.R
 \name{calc_limits}
 \alias{calc_limits}
-\title{Gets Water Quality limits}
+\title{Calculates Water Quality limits}
 \usage{
-calc_limits(x, use = "Freshwater Life")
+calc_limits(x, by = NULL, use = "Freshwater Life")
 }
 \arguments{
-\item{x}{data.frame with columns Code and Value}
+\item{x}{data.frame with columns Code, Value and Units.}
+
+\item{by}{character vector of columns to calculate limits by}
 
 \item{use}{string of required use}
 }
 \description{
-Gets lower and upper water quality thresholds for British Columbia
+Calculates the approved lower and upper water quality thresholds for
+the jurisdiction of British Columbia. If the Date column is not
+supplied the data is assumed to have been collected on the same date.
+Assumes values are individual readings.
+}
+\examples{
+data(fraser)
+fraser <- calc_limits(fraser)
 }
 
