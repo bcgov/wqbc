@@ -20,10 +20,10 @@ Cadmium,CA,Irrigation,NA,1,1,mean,NA,NA,0.12,ug/L,NA,NA NA,http://st-ts.ccme.ca/
 Cadmium,CA,Livestock,NA,1,1,mean,NA,NA,5.1,ug/L,NA,NA NA,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1,NA
 Clarity,CA,Recreation,NA,1,1,mean,NA,NA,80,m,NA,NA NA,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
 Copper,BC,Drinking,NA,1,1,mean,NA,NA,500,ug/L,Approved,NA NA,bc_pdf,9
-Copper,BC,Freshwater Life,NA,1,1,mean,NA,NA,NA,ug/L,Approved,average water hardness as CaC03 <= 50 mg/L NA,bc_pdf,9
-Copper,BC,Freshwater Life,NA,5,30,mean,NA,NA,2,ug/L,Approved,average water hardness as CaC03 <= 50 mg/L NA,bc_pdf,9
-Copper,BC,Freshwater Life,NA,1,1,mean,NA,NA,NA,ug/L,Approved,average water hardness as CaC03 > 50 mg/L NA,bc_pdf,9
-Copper,BC,Freshwater Life,NA,5,30,mean,NA,NA,4,ug/L,Approved,average water hardness as CaC03 > 50 mg/L NA,bc_pdf,9
+Copper,BC,Freshwater Life,NA,1,1,mean,CacO3 <= 50,NA,0.094 * CaCO3 + 2,ug/L,Approved,NA,bc_pdf,9
+Copper,BC,Freshwater Life,NA,5,30,mean,CacO3 <= 50,NA,2,ug/L,Approved,NA,bc_pdf,9
+Copper,BC,Freshwater Life,NA,1,1,mean,CacO3 > 50,NA,0.094 * CaCO3 + 2,ug/L,Approved,NA,bc_pdf,9
+Copper,BC,Freshwater Life,NA,5,30,mean,CacO3 > 50,NA,0.04 * mean(CaCO3),ug/L,Approved,NA,bc_pdf,9
 Copper,BC,Wildlife,NA,1,1,mean,NA,NA,300,ug/L,Approved,NA NA,bc_pdf,9
 Copper,BC,Livestock,NA,1,1,mean,NA,NA,300,ug/L,Approved,NA NA,bc_pdf,9
 Copper,BC,Irrigation,NA,1,1,mean,NA,NA,200,ug/L,Approved,NA NA,bc_pdf,9
