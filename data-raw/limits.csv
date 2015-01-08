@@ -67,19 +67,19 @@
 "Dissolved Oxygen","BC","Aquatic Life",NA,5,30,"mean",NA,11,NA,"mg/L","Approved","Buried embryo/alevin life stages -- water column NA","2006-01-08","bc_pdf","18"
 "Dissolved Oxygen","BC","Aquatic Life",NA,1,1,"mean",NA,6,NA,"mg/L","Approved","Buried embryo/alevin life stages -- Interstitial water NA","2006-01-08","bc_pdf","18"
 "Dissolved Oxygen","BC","Aquatic Life",NA,5,30,"mean",NA,8,NA,"mg/L","Approved","Buried embryo/alevin life stages -- Interstitial water NA","2006-01-08","bc_pdf","18"
-"E.coli","BC","Drinking",NA,1,1,"exp(mean(log))",NA,1.2,NA,"/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
-"Enterococci","BC","Drinking",NA,1,1,"exp(mean(log))",NA,NA,"0","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
-"E.coli","BC","Livestock",NA,1,1,"exp(mean(log))",NA,NA,"0","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
-"Enterococci","BC","Livestock",NA,1,1,"exp(mean(log))",NA,NA,"200","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
-"E.coli","BC","Recreation",NA,1,1,"exp(mean(log))",NA,NA,"50","/dL",NA,"NA Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
-"Enterococci","BC","Recreation",NA,1,1,"exp(mean(log))",NA,NA,"77","/dL",NA,"NA Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"E.coli","BC","Drinking",NA,1,1,"geomean1",NA,1.2,NA,"/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"Enterococci","BC","Drinking",NA,1,1,"geomean1",NA,NA,"0","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"E.coli","BC","Livestock",NA,1,1,"geomean1",NA,NA,"0","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"Enterococci","BC","Livestock",NA,1,1,"geomean1",NA,NA,"200","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"E.coli","BC","Recreation",NA,1,1,"geomean1",NA,NA,"50","/dL",NA,"NA Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"Enterococci","BC","Recreation",NA,1,1,"geomean1",NA,NA,"77","/dL",NA,"NA Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
 "E.coli","BC","Freshwater Life",NA,1,1,"median",NA,NA,"20","/dL",NA,"NA Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
 "Enterococci","BC","Freshwater Life",NA,1,1,"median",NA,NA,"14","/dL",NA,"NA Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
 "Enterococci","BC","Marine Life",NA,1,1,"median",NA,NA,"4","/dL",NA,"NA Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
-"E.coli","CA","Recreation",NA,1,1,"exp(mean(log))",NA,NA,"4","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
-"E.coli","CA","Recreation",NA,5,30,"exp(mean(log))",NA,NA,"400","/dL",NA,"NA Assumed sampling period of 30 days","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
-"Enterococci","CA","Recreation",NA,1,1,"exp(mean(log))",NA,NA,"200","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
-"Enterococci","CA","Recreation",NA,5,30,"exp(mean(log))",NA,NA,"70","/dL",NA,"NA Assumed sampling period of 30 days","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
+"E.coli","CA","Recreation",NA,1,1,"geomean1",NA,NA,"4","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
+"E.coli","CA","Recreation",NA,5,30,"geomean1",NA,NA,"400","/dL",NA,"NA Assumed sampling period of 30 days","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
+"Enterococci","CA","Recreation",NA,1,1,"geomean1",NA,NA,"200","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
+"Enterococci","CA","Recreation",NA,5,30,"geomean1",NA,NA,"70","/dL",NA,"NA Assumed sampling period of 30 days","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
 "Fluoride","BC","Drinking",NA,1,1,"mean",NA,NA,"1.5","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
 "Fluoride","BC","Drinking",NA,5,30,"mean",NA,NA,"1","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
 "Fluoride","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.2","mg/L","Approved","water hardness is less than 50 mg/L as CaCO3 NA","2006-01-08","bc_pdf","20"
