@@ -1,219 +1,219 @@
-"Variable","Jurisdiction","Use","SubUse","Samples","Days","Average","Condition","LowerLimit","UpperLimit","Units","Status","Comments","Date","URL","TableNumber","Comment"
-"Aluminium - Dissolved","BC","Drinking",NA,1,1,"mean",NA,NA,"0.2","mg/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA,"NA NA"
-"Aluminium - Dissolved","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.1","mg/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA,"pH >= 6.5 NA"
-"Aluminium - Dissolved","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"0.05","mg/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA,"median(pH) >=6.5 NA"
-"Aluminium - Dissolved","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"exp(1.209 - 2.426 * pH + 0.286 * pH^2)","mg/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA,"pH < 6.5 NA"
-"Aluminium - Dissolved","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"exp(1.6 - 3.327 * median(pH) + 0.402 * median(pH)^2)","mg/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA,"median(pH) < 6.5 NA"
-"Aluminum - Total","BC","Wildlife",NA,1,1,"mean",NA,NA,"5","mg/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA,"NA NA"
-"Aluminum - Total","BC","Livestock",NA,1,1,"mean",NA,NA,"5","mg/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA,"NA NA"
-"Aluminum - Total","BC","Irrigation",NA,1,1,"mean",NA,NA,"5","mg/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA,"NA NA"
-"Aluminum - Total","BC","Recreation",NA,1,1,"mean",NA,NA,"0.2","mg/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA,"NA NA"
-"Arsenic","BC","Drinking",NA,1,1,"mean",NA,NA,"25","ug/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html",NA,"NA NA"
-"Arsenic","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"5","ug/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html",NA,"NA NA"
-"Arsenic","BC","Marine Life",NA,1,1,"mean",NA,NA,"12.5","ug/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html",NA,"NA NA"
-"Arsenic","BC","Irrigation",NA,1,1,"mean",NA,NA,"100","ug/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html",NA,"NA NA"
-"Arsenic","BC","Livestock",NA,1,1,"mean",NA,NA,"25","ug/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html",NA,"NA NA"
-"Arsenic","BC","Wildlife",NA,1,1,"mean",NA,NA,"25","ug/L",NA,NA,"2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html",NA,"NA NA"
-"Cadmium","CA","Drinking",NA,1,1,"mean",NA,NA,NA,"ug/L",NA,"for Aquatic life ","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html#table3",NA,"NA for Aquatic life "
-"Cadmium","CA","Freshwater Life",NA,1,1,"mean",NA,NA,"5","ug/L",NA,NA,"2014-12-21","http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1",NA,"NA NA"
-"Cadmium","CA","Marine Life",NA,1,1,"mean",NA,NA,"0.09","ug/L",NA,NA,"2014-12-21","http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1",NA,"NA NA"
-"Cadmium","CA","Irrigation",NA,1,1,"mean",NA,NA,"0.12","ug/L",NA,NA,"2014-12-21","http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1",NA,"NA NA"
-"Cadmium","CA","Livestock",NA,1,1,"mean",NA,NA,"5.1","ug/L",NA,NA,"2014-12-21","http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1",NA,"NA NA"
-"Clarity","CA","Recreation",NA,1,1,"mean",NA,NA,"80","m",NA,NA,"2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA,"NA NA"
-"Copper","BC","Drinking",NA,1,1,"mean",NA,NA,"500","ug/L","Approved",NA,"2006-01-08","bc_pdf","9","NA NA"
-"Copper","BC","Freshwater Life",NA,1,1,"mean",NA,NA,NA,"ug/L","Approved",NA,"2006-01-08","bc_pdf","9","average water hardness as CaC03 <= 50 mg/L NA"
-"Copper","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"2","ug/L","Approved",NA,"2006-01-08","bc_pdf","9","average water hardness as CaC03 <= 50 mg/L NA"
-"Copper","BC","Freshwater Life",NA,1,1,"mean",NA,NA,NA,"ug/L","Approved",NA,"2006-01-08","bc_pdf","9","average water hardness as CaC03 > 50 mg/L NA"
-"Copper","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"4","ug/L","Approved",NA,"2006-01-08","bc_pdf","9","average water hardness as CaC03 > 50 mg/L NA"
-"Copper","BC","Wildlife",NA,1,1,"mean",NA,NA,"300","ug/L","Approved",NA,"2006-01-08","bc_pdf","9","NA NA"
-"Copper","BC","Livestock",NA,1,1,"mean",NA,NA,"300","ug/L","Approved",NA,"2006-01-08","bc_pdf","9","NA NA"
-"Copper","BC","Irrigation",NA,1,1,"mean",NA,NA,"200","ug/L","Approved",NA,"2006-01-08","bc_pdf","9","NA NA"
-"Copper","BC","Recreation",NA,1,1,"mean",NA,NA,"1000","ug/L","Approved",NA,"2006-01-08","bc_pdf","9","NA NA"
-"Copper","BC","Marine Life",NA,1,1,"mean",NA,NA,"3","ug/L","Approved",NA,"2006-01-08","bc_pdf","9","NA NA"
-"Copper","BC","Marine Life",NA,5,30,"mean",NA,NA,"2","ug/L","Approved",NA,"2006-01-08","bc_pdf","9","NA NA"
-"Chloride","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"150","mg/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chloride/chloride.html",NA,"NA NA"
-"Chloride","BC","Irrigation",NA,1,1,"mean",NA,NA,"100","mg/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chloride/chloride.html",NA,"NA NA"
-"Chloride","BC","Livestock",NA,1,1,"mean",NA,NA,"600","mg/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chloride/chloride.html",NA,"NA NA"
-"Chloride","BC","Wildlife",NA,1,1,"mean",NA,NA,"600","mg/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chloride/chloride.html",NA,"NA NA"
-"Chlorine ","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"2","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"NA NA"
-"Chlorine ","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"1074*(duration)^(-0.74)","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"NA NA"
-"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"100","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins <= 25 NA"
-"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"87","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins 25 ~ 30  NA"
-"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"64","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins 30 ~ 45 NA"
-"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"52","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins 45 ~ 60  NA"
-"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"38","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins 60 ~ 90 NA"
-"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"31","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins 90 ~ 120 NA"
-"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,NA,"ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins >= 120 NA"
-"Chlorine ","BC","Marine Life",NA,5,30,"mean",NA,NA,"3","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"NA NA"
-"Chlorine ","BC","Marine Life",NA,1,1,"mean",NA,NA,"20.36*(duration)^(-0.4)","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"NA NA"
-"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"40","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins < 0.2 NA"
-"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"11","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins 0.2 ~ 5 NA"
-"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"8","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins 5 ~ 10 NA"
-"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"7","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins 10 ~ 15 NA"
-"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"5","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins 15 ~ 30 NA"
-"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"4","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins 30 ~ 60 NA"
-"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"3","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins 60 ~ 90 NA"
-"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,NA,"ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"Duration of Exposure in mins >= 120 NA"
-"Chlorine ","BC","Irrigation",NA,1,1,"maximum",NA,NA,"1000","ug/L",NA,NA,"2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA,"NA NA"
-"Cyanide","BC","Drinking",NA,1,1,"mean",NA,NA,"200","ug/L","Approved",NA,"2006-01-08","bc_pdf",NA,"Strong-acid dissociable cyanide + thiocyanate
+"Variable","Jurisdiction","Use","SubUse","Samples","Days","Average","Condition","LowerLimit","UpperLimit","Units","Status","Comments","Date","URL","TableNumber"
+"Aluminium - Dissolved","BC","Drinking",NA,1,1,"mean",NA,NA,"0.2","mg/L",NA,"NA NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA
+"Aluminium - Dissolved","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.1","mg/L",NA,"pH >= 6.5 NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA
+"Aluminium - Dissolved","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"0.05","mg/L",NA,"median(pH) >=6.5 NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA
+"Aluminium - Dissolved","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"exp(1.209 - 2.426 * pH + 0.286 * pH^2)","mg/L",NA,"pH < 6.5 NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA
+"Aluminium - Dissolved","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"exp(1.6 - 3.327 * median(pH) + 0.402 * median(pH)^2)","mg/L",NA,"median(pH) < 6.5 NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA
+"Aluminum - Total","BC","Wildlife",NA,1,1,"mean",NA,NA,"5","mg/L",NA,"NA NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA
+"Aluminum - Total","BC","Livestock",NA,1,1,"mean",NA,NA,"5","mg/L",NA,"NA NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA
+"Aluminum - Total","BC","Irrigation",NA,1,1,"mean",NA,NA,"5","mg/L",NA,"NA NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA
+"Aluminum - Total","BC","Recreation",NA,1,1,"mean",NA,NA,"0.2","mg/L",NA,"NA NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html",NA
+"Arsenic","BC","Drinking",NA,1,1,"mean",NA,NA,"25","ug/L",NA,"NA NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html",NA
+"Arsenic","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"5","ug/L",NA,"NA NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html",NA
+"Arsenic","BC","Marine Life",NA,1,1,"mean",NA,NA,"12.5","ug/L",NA,"NA NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html",NA
+"Arsenic","BC","Irrigation",NA,1,1,"mean",NA,NA,"100","ug/L",NA,"NA NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html",NA
+"Arsenic","BC","Livestock",NA,1,1,"mean",NA,NA,"25","ug/L",NA,"NA NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html",NA
+"Arsenic","BC","Wildlife",NA,1,1,"mean",NA,NA,"25","ug/L",NA,"NA NA","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html",NA
+"Cadmium","CA","Drinking",NA,1,1,"mean",NA,NA,NA,"ug/L",NA,"NA for Aquatic life ","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorophenols/chlorophenol.html#table3",NA
+"Cadmium","CA","Freshwater Life",NA,1,1,"mean",NA,NA,"5","ug/L",NA,"NA NA","2014-12-21","http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1",NA
+"Cadmium","CA","Marine Life",NA,1,1,"mean",NA,NA,"0.09","ug/L",NA,"NA NA","2014-12-21","http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1",NA
+"Cadmium","CA","Irrigation",NA,1,1,"mean",NA,NA,"0.12","ug/L",NA,"NA NA","2014-12-21","http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1",NA
+"Cadmium","CA","Livestock",NA,1,1,"mean",NA,NA,"5.1","ug/L",NA,"NA NA","2014-12-21","http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1",NA
+"Clarity","CA","Recreation",NA,1,1,"mean",NA,NA,"80","m",NA,"NA NA","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
+"Copper","BC","Drinking",NA,1,1,"mean",NA,NA,"500","ug/L","Approved","NA NA","2006-01-08","bc_pdf","9"
+"Copper","BC","Freshwater Life",NA,1,1,"mean",NA,NA,NA,"ug/L","Approved","average water hardness as CaC03 <= 50 mg/L NA","2006-01-08","bc_pdf","9"
+"Copper","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"2","ug/L","Approved","average water hardness as CaC03 <= 50 mg/L NA","2006-01-08","bc_pdf","9"
+"Copper","BC","Freshwater Life",NA,1,1,"mean",NA,NA,NA,"ug/L","Approved","average water hardness as CaC03 > 50 mg/L NA","2006-01-08","bc_pdf","9"
+"Copper","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"4","ug/L","Approved","average water hardness as CaC03 > 50 mg/L NA","2006-01-08","bc_pdf","9"
+"Copper","BC","Wildlife",NA,1,1,"mean",NA,NA,"300","ug/L","Approved","NA NA","2006-01-08","bc_pdf","9"
+"Copper","BC","Livestock",NA,1,1,"mean",NA,NA,"300","ug/L","Approved","NA NA","2006-01-08","bc_pdf","9"
+"Copper","BC","Irrigation",NA,1,1,"mean",NA,NA,"200","ug/L","Approved","NA NA","2006-01-08","bc_pdf","9"
+"Copper","BC","Recreation",NA,1,1,"mean",NA,NA,"1000","ug/L","Approved","NA NA","2006-01-08","bc_pdf","9"
+"Copper","BC","Marine Life",NA,1,1,"mean",NA,NA,"3","ug/L","Approved","NA NA","2006-01-08","bc_pdf","9"
+"Copper","BC","Marine Life",NA,5,30,"mean",NA,NA,"2","ug/L","Approved","NA NA","2006-01-08","bc_pdf","9"
+"Chloride","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"150","mg/L",NA,"NA NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chloride/chloride.html",NA
+"Chloride","BC","Irrigation",NA,1,1,"mean",NA,NA,"100","mg/L",NA,"NA NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chloride/chloride.html",NA
+"Chloride","BC","Livestock",NA,1,1,"mean",NA,NA,"600","mg/L",NA,"NA NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chloride/chloride.html",NA
+"Chloride","BC","Wildlife",NA,1,1,"mean",NA,NA,"600","mg/L",NA,"NA NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chloride/chloride.html",NA
+"Chlorine ","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"2","ug/L",NA,"NA NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"1074*(duration)^(-0.74)","ug/L",NA,"NA NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"100","ug/L",NA,"Duration of Exposure in mins <= 25 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"87","ug/L",NA,"Duration of Exposure in mins 25 ~ 30  NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"64","ug/L",NA,"Duration of Exposure in mins 30 ~ 45 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"52","ug/L",NA,"Duration of Exposure in mins 45 ~ 60  NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"38","ug/L",NA,"Duration of Exposure in mins 60 ~ 90 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"31","ug/L",NA,"Duration of Exposure in mins 90 ~ 120 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,NA,"ug/L",NA,"Duration of Exposure in mins >= 120 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Marine Life",NA,5,30,"mean",NA,NA,"3","ug/L",NA,"NA NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Marine Life",NA,1,1,"mean",NA,NA,"20.36*(duration)^(-0.4)","ug/L",NA,"NA NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"40","ug/L",NA,"Duration of Exposure in mins < 0.2 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"11","ug/L",NA,"Duration of Exposure in mins 0.2 ~ 5 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"8","ug/L",NA,"Duration of Exposure in mins 5 ~ 10 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"7","ug/L",NA,"Duration of Exposure in mins 10 ~ 15 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"5","ug/L",NA,"Duration of Exposure in mins 15 ~ 30 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"4","ug/L",NA,"Duration of Exposure in mins 30 ~ 60 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,"3","ug/L",NA,"Duration of Exposure in mins 60 ~ 90 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Marine Life",NA,1,1,"maximum",NA,NA,NA,"ug/L",NA,"Duration of Exposure in mins >= 120 NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Chlorine ","BC","Irrigation",NA,1,1,"maximum",NA,NA,"1000","ug/L",NA,"NA NA","2014-12-23","http://www.env.gov.bc.ca/wat/wq/BCguidelines/chlorine/chlorine.html#11",NA
+"Cyanide","BC","Drinking",NA,1,1,"mean",NA,NA,"200","ug/L","Approved","Strong-acid dissociable cyanide + thiocyanate
 
- NA"
-"Cyanide","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"5","ug/L","Approved",NA,"2006-01-08","bc_pdf",NA,"Strong-acid dissociable cyanide + thiocyanate  NA"
-"Cyanide","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"10","ug/L","Approved",NA,"2006-01-08","bc_pdf",NA,"Weak-acid dissociable cyanide NA"
-"Cyanide","BC","Marine Life",NA,1,1,"mean",NA,NA,"1","ug/L","Approved",NA,"2006-01-08","bc_pdf",NA,"Weak-acid dissociable cyanide NA"
-"Dissolved Oxygen","BC","Aquatic Life",NA,1,1,"mean",NA,5,NA,"mg/L","Approved",NA,"2006-01-08","bc_pdf","18","All Life Stages other than buried embryo/alevin -- water column  NA"
-"Dissolved Oxygen","BC","Aquatic Life",NA,5,30,"mean",NA,8,NA,"mg/L","Approved",NA,"2006-01-08","bc_pdf","18","All Life Stages other than buried embryo/alevin -- water column  NA"
-"Dissolved Oxygen","BC","Aquatic Life",NA,1,1,"mean",NA,9,NA,"mg/L","Approved",NA,"2006-01-08","bc_pdf","18","Buried embryo/alevin life stages -- water column NA"
-"Dissolved Oxygen","BC","Aquatic Life",NA,5,30,"mean",NA,11,NA,"mg/L","Approved",NA,"2006-01-08","bc_pdf","18","Buried embryo/alevin life stages -- water column NA"
-"Dissolved Oxygen","BC","Aquatic Life",NA,1,1,"mean",NA,6,NA,"mg/L","Approved",NA,"2006-01-08","bc_pdf","18","Buried embryo/alevin life stages -- Interstitial water NA"
-"Dissolved Oxygen","BC","Aquatic Life",NA,5,30,"mean",NA,8,NA,"mg/L","Approved",NA,"2006-01-08","bc_pdf","18","Buried embryo/alevin life stages -- Interstitial water NA"
-"E.coli","BC","Drinking",NA,1,1,"exp(mean(log))",NA,1.2,NA,"/dL",NA,"Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA,"NA Assumed geometric mean"
-"Enterococci","BC","Drinking",NA,1,1,"exp(mean(log))",NA,NA,"0","/dL",NA,"Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA,"NA Assumed geometric mean"
-"E.coli","BC","Livestock",NA,1,1,"exp(mean(log))",NA,NA,"0","/dL",NA,"Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA,"NA Assumed geometric mean"
-"Enterococci","BC","Livestock",NA,1,1,"exp(mean(log))",NA,NA,"200","/dL",NA,"Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA,"NA Assumed geometric mean"
-"E.coli","BC","Recreation",NA,1,1,"exp(mean(log))",NA,NA,"50","/dL",NA,"Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA,"NA Assumed sampling period of 1 day"
-"Enterococci","BC","Recreation",NA,1,1,"exp(mean(log))",NA,NA,"77","/dL",NA,"Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA,"NA Assumed sampling period of 1 day"
-"E.coli","BC","Freshwater Life",NA,1,1,"median",NA,NA,"20","/dL",NA,"Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA,"NA Assumed sampling period of 1 day"
-"Enterococci","BC","Freshwater Life",NA,1,1,"median",NA,NA,"14","/dL",NA,"Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA,"NA Assumed sampling period of 1 day"
-"Enterococci","BC","Marine Life",NA,1,1,"median",NA,NA,"4","/dL",NA,"Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA,"NA Assumed sampling period of 1 day"
-"E.coli","CA","Recreation",NA,1,1,"exp(mean(log))",NA,NA,"4","/dL",NA,"Assumed geometric mean","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA,"NA Assumed geometric mean"
-"E.coli","CA","Recreation",NA,5,30,"exp(mean(log))",NA,NA,"400","/dL",NA,"Assumed sampling period of 30 days","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA,"NA Assumed sampling period of 30 days"
-"Enterococci","CA","Recreation",NA,1,1,"exp(mean(log))",NA,NA,"200","/dL",NA,"Assumed geometric mean","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA,"NA Assumed geometric mean"
-"Enterococci","CA","Recreation",NA,5,30,"exp(mean(log))",NA,NA,"70","/dL",NA,"Assumed sampling period of 30 days","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA,"NA Assumed sampling period of 30 days"
-"Fluoride","BC","Drinking",NA,1,1,"mean",NA,NA,"1.5","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Drinking",NA,5,30,"mean",NA,NA,"1","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.2","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","water hardness is less than 50 mg/L as CaCO3 NA"
-"Fluoride","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.3","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","water hardness is greater than or equal to 50 mg/L as CaCO3 NA"
-"Fluoride","BC","Marine Life",NA,1,1,"mean",NA,NA,"1.5","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Wildlife",NA,1,1,"mean",NA,NA,"1.5","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Wildlife",NA,5,30,"mean",NA,NA,"1","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Livestock","long-lived animals (dairy cows, breeding stock)",1,1,"mean",NA,NA,"1.5","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Livestock","long-lived animals (dairy cows, breeding stock)",5,30,"mean",NA,NA,"1","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Livestock","high fluoride diets (mineral or bone meal feed additives)",1,1,"mean",NA,NA,"2","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Livestock","high fluoride diets (mineral or bone meal feed additives)",5,30,"mean",NA,NA,"1","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Livestock","normal diet",1,1,"mean",NA,NA,"4","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Livestock","normal diet",5,30,"mean",NA,NA,"2","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Irrigation",NA,1,1,"mean",NA,NA,"2","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Irrigation",NA,5,30,"mean",NA,NA,"1",NA,"Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Industrial",NA,1,1,"mean",NA,NA,"1.5","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Fluoride","BC","Industrial",NA,5,30,"mean",NA,NA,"1","mg/L","Approved",NA,"2006-01-08","bc_pdf","20","NA NA"
-"Iron","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"1","mg/L",NA,NA,"2014-12-28","http://www.env.gov.bc.ca/wat/wq/BCguidelines/iron/iron_overview.pdf",NA," total iron NA"
-"Iron","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.35","mg/L",NA,NA,"2014-12-28","http://www.env.gov.bc.ca/wat/wq/BCguidelines/iron/iron_overview.pdf",NA,"dissolved iron NA"
-"Lead","BC","Drinking",NA,1,1,"mean",NA,NA,"50","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","NA NA"
-"Lead","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"3","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","water hardness as CaCO3 less than or equal to 8 mg/L NA"
-"Lead","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"e(1.273 ln[hardness] - 1.460)","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","water hardness as CaCO3 less than or equal to 8 mg/L NA"
-"Lead","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"3.31 + e(1.273 * ln [mean hardness] - 4.704)","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","water hardness as CaCO3 less than or equal to 8 mg/L NA"
-"Lead","BC","Wildlife",NA,1,1,"mean",NA,NA,"100","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","NA NA"
-"Lead","BC","Livestock",NA,1,1,"mean",NA,NA,"100","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","NA NA"
-"Lead","BC","Marine Life",NA,1,1,"mean",NA,NA,"140","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","NA NA"
-"Lead","BC","Marine Life",NA,5,30,"mean",NA,NA,"2","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","NA NA"
-"Lead","BC","Marine Life",NA,5,30,"mean",NA,NA,"3","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","NA NA"
-"Lead","BC","Irrigation",NA,1,1,"mean",NA,NA,"400","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","neutral and alkaline fine-textured soils NA"
-"Lead","BC","Irrigation",NA,1,1,"mean",NA,NA,"200","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","all other soils NA"
-"Lead","BC","Industrial",NA,1,1,"mean",NA,NA,"50","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","NA NA"
-"Lead","BC","Recreation",NA,1,1,"mean",NA,NA,"50","ug/L","Approved",NA,"2006-01-08","bc_pdf","11","NA NA"
-"Manganese","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.8","mg/L","Approved",NA,"2006-01-08","bc_pdf","37","Maximum at Specified CaCO3 Hardness 25mg/L NA"
-"Manganese","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"1.1","mg/L","Approved",NA,"2006-01-08","bc_pdf","37","Maximum at Specified CaCO3 Hardness 50mg/L NA"
-"Manganese","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"1.6","mg/L","Approved",NA,"2006-01-08","bc_pdf","37","Maximum at Specified CaCO3 Hardness 100mg/L NA"
-"Manganese","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"2.2","mg/L","Approved",NA,"2006-01-08","bc_pdf","37","Maximum at Specified CaCO3 Hardness 150mg/L NA"
-"Manganese","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"3.8","mg/L","Approved",NA,"2006-01-08","bc_pdf","37","Maximum at Specified CaCO3 Hardness 300mg/L NA"
-"Manganese","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"0.7","mg/L","Approved",NA,"2006-01-08","bc_pdf","38","30-Day Mean at Specified CaCO3 Hardness 25mg/L NA"
-"Manganese","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"0.8","mg/L","Approved",NA,"2006-01-08","bc_pdf","38","31-Day Mean at Specified CaCO3 Hardness 50mg/L NA"
-"Manganese","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"1","mg/L","Approved",NA,"2006-01-08","bc_pdf","38","32-Day Mean at Specified CaCO3 Hardness 100mg/L NA"
-"Manganese","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"1.3","mg/L","Approved",NA,"2006-01-08","bc_pdf","38","33-Day Mean at Specified CaCO3 Hardness 150mg/L NA"
-"Manganese","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"1.9","mg/L","Approved",NA,"2006-01-08","bc_pdf","38","34-Day Mean at Specified CaCO3 Hardness 300mg/L NA"
-"Mercury","BC","Drinking",NA,1,1,"mean",NA,NA,"1","ug/L","Approved",NA,"2006-01-08","bc_pdf","13","NA NA"
-"Mercury","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.1","ug/L","Approved",NA,"2006-01-08","bc_pdf","13","NA NA"
-"Mercury","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"0.02","ug/L","Approved",NA,"2006-01-08","bc_pdf","13","NA NA"
-"Mercury","BC","Marine Life",NA,1,1,"mean",NA,NA,"2","ug/L","Approved",NA,"2006-01-08","bc_pdf","13","NA NA"
-"Mercury","BC","Marine Life",NA,5,30,"mean",NA,NA,"0.02","ug/L","Approved",NA,"2006-01-08","bc_pdf","13","NA NA"
-"Mercury","BC","Wildlife",NA,1,1,"mean",NA,NA,"0.02","ug/L","Approved",NA,"2006-01-08","bc_pdf","13a","% MeHg <= 0.5 NA"
-"Mercury","BC","Wildlife",NA,1,1,"mean",NA,NA,"0.01","ug/L","Approved",NA,"2006-01-08","bc_pdf","13a","% MeHg <= 1 NA"
-"Mercury","BC","Wildlife",NA,1,1,"mean",NA,NA,"0.004","ug/L","Approved",NA,"2006-01-08","bc_pdf","13a","% MeHg <= 2.5 NA"
-"Mercury","BC","Wildlife",NA,1,1,"mean",NA,NA,"0.002","ug/L","Approved",NA,"2006-01-08","bc_pdf","13a","% MeHg <= 5 NA"
-"Mercury","BC","Livestock",NA,1,1,"mean",NA,NA,"3","ug/L","Approved",NA,"2006-01-08","bc_pdf","13","NA NA"
-"Mercury","BC","Irrigation",NA,1,1,"mean",NA,NA,"2","ug/L","Approved",NA,"2006-01-08","bc_pdf","13","NA NA"
-"Mercury","BC","Recreation",NA,1,1,"mean",NA,NA,"1","ug/L","Approved",NA,"2006-01-08","bc_pdf","13","NA NA"
-"Molybdenum","BC","Drinking",NA,1,1,"mean",NA,NA,"0.25","mg/L","Approved",NA,"2006-01-08","bc_pdf","39","NA NA"
-"Molybdenum","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"2","mg/L","Approved",NA,"2006-01-08","bc_pdf","15","NA NA"
-"Molybdenum","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"1","mg/L","Approved",NA,"2006-01-08","bc_pdf","15","NA NA"
-"Molybdenum","BC","Wildlife",NA,1,1,"mean",NA,NA,"0.05","mg/L","Approved",NA,"2006-01-08","bc_pdf","15","NA NA"
-"Molybdenum","BC","Livestock",NA,1,1,"mean",NA,NA,"0.08","mg/L","Approved",NA,"2006-01-08","bc_pdf","15","consuming forages not irrigated or if no molybdenum containing fertilizers are applied to grow feed consumed by livestock NA"
-"Molybdenum","BC","Livestock",NA,1,1,"mean",NA,NA,"0.05","mg/L","Approved",NA,"2006-01-08","bc_pdf","15","all other cases NA"
-"Molybdenum","BC","Irrigation",NA,1,1,"mean",NA,NA,"0.05","mg/L","Approved",NA,"2006-01-08","bc_pdf","15","Poorly Drained Soil
+ NA","2006-01-08","bc_pdf",NA
+"Cyanide","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"5","ug/L","Approved","Strong-acid dissociable cyanide + thiocyanate  NA","2006-01-08","bc_pdf",NA
+"Cyanide","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"10","ug/L","Approved","Weak-acid dissociable cyanide NA","2006-01-08","bc_pdf",NA
+"Cyanide","BC","Marine Life",NA,1,1,"mean",NA,NA,"1","ug/L","Approved","Weak-acid dissociable cyanide NA","2006-01-08","bc_pdf",NA
+"Dissolved Oxygen","BC","Aquatic Life",NA,1,1,"mean",NA,5,NA,"mg/L","Approved","All Life Stages other than buried embryo/alevin -- water column  NA","2006-01-08","bc_pdf","18"
+"Dissolved Oxygen","BC","Aquatic Life",NA,5,30,"mean",NA,8,NA,"mg/L","Approved","All Life Stages other than buried embryo/alevin -- water column  NA","2006-01-08","bc_pdf","18"
+"Dissolved Oxygen","BC","Aquatic Life",NA,1,1,"mean",NA,9,NA,"mg/L","Approved","Buried embryo/alevin life stages -- water column NA","2006-01-08","bc_pdf","18"
+"Dissolved Oxygen","BC","Aquatic Life",NA,5,30,"mean",NA,11,NA,"mg/L","Approved","Buried embryo/alevin life stages -- water column NA","2006-01-08","bc_pdf","18"
+"Dissolved Oxygen","BC","Aquatic Life",NA,1,1,"mean",NA,6,NA,"mg/L","Approved","Buried embryo/alevin life stages -- Interstitial water NA","2006-01-08","bc_pdf","18"
+"Dissolved Oxygen","BC","Aquatic Life",NA,5,30,"mean",NA,8,NA,"mg/L","Approved","Buried embryo/alevin life stages -- Interstitial water NA","2006-01-08","bc_pdf","18"
+"E.coli","BC","Drinking",NA,1,1,"exp(mean(log))",NA,1.2,NA,"/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"Enterococci","BC","Drinking",NA,1,1,"exp(mean(log))",NA,NA,"0","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"E.coli","BC","Livestock",NA,1,1,"exp(mean(log))",NA,NA,"0","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"Enterococci","BC","Livestock",NA,1,1,"exp(mean(log))",NA,NA,"200","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"E.coli","BC","Recreation",NA,1,1,"exp(mean(log))",NA,NA,"50","/dL",NA,"NA Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"Enterococci","BC","Recreation",NA,1,1,"exp(mean(log))",NA,NA,"77","/dL",NA,"NA Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"E.coli","BC","Freshwater Life",NA,1,1,"median",NA,NA,"20","/dL",NA,"NA Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"Enterococci","BC","Freshwater Life",NA,1,1,"median",NA,NA,"14","/dL",NA,"NA Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"Enterococci","BC","Marine Life",NA,1,1,"median",NA,NA,"4","/dL",NA,"NA Assumed sampling period of 1 day","2014-12-21","http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html",NA
+"E.coli","CA","Recreation",NA,1,1,"exp(mean(log))",NA,NA,"4","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
+"E.coli","CA","Recreation",NA,5,30,"exp(mean(log))",NA,NA,"400","/dL",NA,"NA Assumed sampling period of 30 days","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
+"Enterococci","CA","Recreation",NA,1,1,"exp(mean(log))",NA,NA,"200","/dL",NA,"NA Assumed geometric mean","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
+"Enterococci","CA","Recreation",NA,5,30,"exp(mean(log))",NA,NA,"70","/dL",NA,"NA Assumed sampling period of 30 days","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
+"Fluoride","BC","Drinking",NA,1,1,"mean",NA,NA,"1.5","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Drinking",NA,5,30,"mean",NA,NA,"1","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.2","mg/L","Approved","water hardness is less than 50 mg/L as CaCO3 NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.3","mg/L","Approved","water hardness is greater than or equal to 50 mg/L as CaCO3 NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Marine Life",NA,1,1,"mean",NA,NA,"1.5","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Wildlife",NA,1,1,"mean",NA,NA,"1.5","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Wildlife",NA,5,30,"mean",NA,NA,"1","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Livestock","long-lived animals (dairy cows, breeding stock)",1,1,"mean",NA,NA,"1.5","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Livestock","long-lived animals (dairy cows, breeding stock)",5,30,"mean",NA,NA,"1","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Livestock","high fluoride diets (mineral or bone meal feed additives)",1,1,"mean",NA,NA,"2","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Livestock","high fluoride diets (mineral or bone meal feed additives)",5,30,"mean",NA,NA,"1","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Livestock","normal diet",1,1,"mean",NA,NA,"4","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Livestock","normal diet",5,30,"mean",NA,NA,"2","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Irrigation",NA,1,1,"mean",NA,NA,"2","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Irrigation",NA,5,30,"mean",NA,NA,"1",NA,"Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Industrial",NA,1,1,"mean",NA,NA,"1.5","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Fluoride","BC","Industrial",NA,5,30,"mean",NA,NA,"1","mg/L","Approved","NA NA","2006-01-08","bc_pdf","20"
+"Iron","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"1","mg/L",NA," total iron NA","2014-12-28","http://www.env.gov.bc.ca/wat/wq/BCguidelines/iron/iron_overview.pdf",NA
+"Iron","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.35","mg/L",NA,"dissolved iron NA","2014-12-28","http://www.env.gov.bc.ca/wat/wq/BCguidelines/iron/iron_overview.pdf",NA
+"Lead","BC","Drinking",NA,1,1,"mean",NA,NA,"50","ug/L","Approved","NA NA","2006-01-08","bc_pdf","11"
+"Lead","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"3","ug/L","Approved","water hardness as CaCO3 less than or equal to 8 mg/L NA","2006-01-08","bc_pdf","11"
+"Lead","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"e(1.273 ln[hardness] - 1.460)","ug/L","Approved","water hardness as CaCO3 less than or equal to 8 mg/L NA","2006-01-08","bc_pdf","11"
+"Lead","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"3.31 + e(1.273 * ln [mean hardness] - 4.704)","ug/L","Approved","water hardness as CaCO3 less than or equal to 8 mg/L NA","2006-01-08","bc_pdf","11"
+"Lead","BC","Wildlife",NA,1,1,"mean",NA,NA,"100","ug/L","Approved","NA NA","2006-01-08","bc_pdf","11"
+"Lead","BC","Livestock",NA,1,1,"mean",NA,NA,"100","ug/L","Approved","NA NA","2006-01-08","bc_pdf","11"
+"Lead","BC","Marine Life",NA,1,1,"mean",NA,NA,"140","ug/L","Approved","NA NA","2006-01-08","bc_pdf","11"
+"Lead","BC","Marine Life",NA,5,30,"mean",NA,NA,"2","ug/L","Approved","NA NA","2006-01-08","bc_pdf","11"
+"Lead","BC","Marine Life",NA,5,30,"mean",NA,NA,"3","ug/L","Approved","NA NA","2006-01-08","bc_pdf","11"
+"Lead","BC","Irrigation",NA,1,1,"mean",NA,NA,"400","ug/L","Approved","neutral and alkaline fine-textured soils NA","2006-01-08","bc_pdf","11"
+"Lead","BC","Irrigation",NA,1,1,"mean",NA,NA,"200","ug/L","Approved","all other soils NA","2006-01-08","bc_pdf","11"
+"Lead","BC","Industrial",NA,1,1,"mean",NA,NA,"50","ug/L","Approved","NA NA","2006-01-08","bc_pdf","11"
+"Lead","BC","Recreation",NA,1,1,"mean",NA,NA,"50","ug/L","Approved","NA NA","2006-01-08","bc_pdf","11"
+"Manganese","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.8","mg/L","Approved","Maximum at Specified CaCO3 Hardness 25mg/L NA","2006-01-08","bc_pdf","37"
+"Manganese","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"1.1","mg/L","Approved","Maximum at Specified CaCO3 Hardness 50mg/L NA","2006-01-08","bc_pdf","37"
+"Manganese","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"1.6","mg/L","Approved","Maximum at Specified CaCO3 Hardness 100mg/L NA","2006-01-08","bc_pdf","37"
+"Manganese","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"2.2","mg/L","Approved","Maximum at Specified CaCO3 Hardness 150mg/L NA","2006-01-08","bc_pdf","37"
+"Manganese","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"3.8","mg/L","Approved","Maximum at Specified CaCO3 Hardness 300mg/L NA","2006-01-08","bc_pdf","37"
+"Manganese","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"0.7","mg/L","Approved","30-Day Mean at Specified CaCO3 Hardness 25mg/L NA","2006-01-08","bc_pdf","38"
+"Manganese","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"0.8","mg/L","Approved","31-Day Mean at Specified CaCO3 Hardness 50mg/L NA","2006-01-08","bc_pdf","38"
+"Manganese","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"1","mg/L","Approved","32-Day Mean at Specified CaCO3 Hardness 100mg/L NA","2006-01-08","bc_pdf","38"
+"Manganese","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"1.3","mg/L","Approved","33-Day Mean at Specified CaCO3 Hardness 150mg/L NA","2006-01-08","bc_pdf","38"
+"Manganese","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"1.9","mg/L","Approved","34-Day Mean at Specified CaCO3 Hardness 300mg/L NA","2006-01-08","bc_pdf","38"
+"Mercury","BC","Drinking",NA,1,1,"mean",NA,NA,"1","ug/L","Approved","NA NA","2006-01-08","bc_pdf","13"
+"Mercury","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.1","ug/L","Approved","NA NA","2006-01-08","bc_pdf","13"
+"Mercury","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"0.02","ug/L","Approved","NA NA","2006-01-08","bc_pdf","13"
+"Mercury","BC","Marine Life",NA,1,1,"mean",NA,NA,"2","ug/L","Approved","NA NA","2006-01-08","bc_pdf","13"
+"Mercury","BC","Marine Life",NA,5,30,"mean",NA,NA,"0.02","ug/L","Approved","NA NA","2006-01-08","bc_pdf","13"
+"Mercury","BC","Wildlife",NA,1,1,"mean",NA,NA,"0.02","ug/L","Approved","% MeHg <= 0.5 NA","2006-01-08","bc_pdf","13a"
+"Mercury","BC","Wildlife",NA,1,1,"mean",NA,NA,"0.01","ug/L","Approved","% MeHg <= 1 NA","2006-01-08","bc_pdf","13a"
+"Mercury","BC","Wildlife",NA,1,1,"mean",NA,NA,"0.004","ug/L","Approved","% MeHg <= 2.5 NA","2006-01-08","bc_pdf","13a"
+"Mercury","BC","Wildlife",NA,1,1,"mean",NA,NA,"0.002","ug/L","Approved","% MeHg <= 5 NA","2006-01-08","bc_pdf","13a"
+"Mercury","BC","Livestock",NA,1,1,"mean",NA,NA,"3","ug/L","Approved","NA NA","2006-01-08","bc_pdf","13"
+"Mercury","BC","Irrigation",NA,1,1,"mean",NA,NA,"2","ug/L","Approved","NA NA","2006-01-08","bc_pdf","13"
+"Mercury","BC","Recreation",NA,1,1,"mean",NA,NA,"1","ug/L","Approved","NA NA","2006-01-08","bc_pdf","13"
+"Molybdenum","BC","Drinking",NA,1,1,"mean",NA,NA,"0.25","mg/L","Approved","NA NA","2006-01-08","bc_pdf","39"
+"Molybdenum","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"2","mg/L","Approved","NA NA","2006-01-08","bc_pdf","15"
+"Molybdenum","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"1","mg/L","Approved","NA NA","2006-01-08","bc_pdf","15"
+"Molybdenum","BC","Wildlife",NA,1,1,"mean",NA,NA,"0.05","mg/L","Approved","NA NA","2006-01-08","bc_pdf","15"
+"Molybdenum","BC","Livestock",NA,1,1,"mean",NA,NA,"0.08","mg/L","Approved","consuming forages not irrigated or if no molybdenum containing fertilizers are applied to grow feed consumed by livestock NA","2006-01-08","bc_pdf","15"
+"Molybdenum","BC","Livestock",NA,1,1,"mean",NA,NA,"0.05","mg/L","Approved","all other cases NA","2006-01-08","bc_pdf","15"
+"Molybdenum","BC","Irrigation",NA,1,1,"mean",NA,NA,"0.05","mg/L","Approved","Poorly Drained Soil
 - Cu:Mo ratio is less than
 2:1 in the irrigation water
-- (forage crops) NA"
-"Molybdenum","BC","Irrigation",NA,5,30,"mean",NA,NA,"0.01","mg/L","Approved",NA,"2006-01-08","bc_pdf","15","Poorly Drained Soil
+- (forage crops) NA","2006-01-08","bc_pdf","15"
+"Molybdenum","BC","Irrigation",NA,5,30,"mean",NA,NA,"0.01","mg/L","Approved","Poorly Drained Soil
 - Cu:Mo ratio is less than
 2:1 in the irrigation water
-- (forage crops) NA"
-"Molybdenum","BC","Irrigation",NA,1,1,"mean",NA,NA,"0.05","mg/L","Approved",NA,"2006-01-08","bc_pdf","15","- Poorly
+- (forage crops) NA","2006-01-08","bc_pdf","15"
+"Molybdenum","BC","Irrigation",NA,1,1,"mean",NA,NA,"0.05","mg/L","Approved","- Poorly
 Drained Soil
 - Cu:Mo ratio is greater than
 2:1 in the irrigation water
-- (forage crops) NA"
-"Molybdenum","BC","Irrigation",NA,5,30,"mean",NA,NA,"0.02","mg/L","Approved",NA,"2006-01-08","bc_pdf","15","- Poorly
+- (forage crops) NA","2006-01-08","bc_pdf","15"
+"Molybdenum","BC","Irrigation",NA,5,30,"mean",NA,NA,"0.02","mg/L","Approved","- Poorly
 Drained Soil
 - Cu:Mo ratio is greater than
 2:1 in the irrigation water
-- (forage crops) NA"
-"Molybdenum","BC","Irrigation",NA,1,1,"mean",NA,NA,"0.05","mg/L","Approved",NA,"2006-01-08","bc_pdf","15","- Well Drained Soil
-(forage crops) NA"
-"Molybdenum","BC","Irrigation",NA,5,30,"mean",NA,NA,"0.02","mg/L","Approved",NA,"2006-01-08","bc_pdf","15","- Well Drained Soil
-(forage crops) NA"
-"Molybdenum","BC","Irrigation",NA,5,30,"mean",NA,NA,"0.03","mg/L","Approved",NA,"2006-01-08","bc_pdf","15","- All Soils
-(non-forage crops) NA"
-"Nickel","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"e0.76*ln[hardness]+1.06 ?g/L","ug/L",NA,NA,"2014-12-31","https://www.ec.gc.ca/indicateurs-indicators/default.asp?lang=en&n=3786D3FD-1",NA,"NA NA"
-"Nickel","BC","Marine Life",NA,1,1,"mean",NA,NA,"75","ug/L",NA,NA,NA,NA,NA,"one hour NA"
-"Nickel","BC","Marine Life",NA,1,1,"mean",NA,NA,"8.3","ug/L",NA,NA,"2014-12-31","http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html",NA,"four days NA"
-"Nickel","BC","Livestock",NA,1,1,"maximum",NA,NA,"1000","ug/L",NA,NA,"2014-12-31","http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html",NA,"NA NA"
-"Nickel","BC","Irrigation",NA,1,1,"maximum",NA,NA,"200","ug/L",NA,NA,"2014-12-31","http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html",NA,"continuous use on all soils NA"
-"Nickel","BC","Irrigation",NA,1,1,"maximum",NA,NA,"2000","ug/L",NA,NA,NA,NA,NA,"20-year use on neutral to alkaline fine-textured soils NA"
-"Nitrate","BC","Drinking",NA,1,1,"mean",NA,NA,"10","mg/L","Approved",NA,"2006-01-08","bc_pdf","16","NA NA"
-"Nitrite","BC","Drinking",NA,1,1,"mean",NA,NA,"1","mg/L","Approved",NA,"2006-01-08","bc_pdf","16","NA NA"
-"Nitrate","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"200","mg/L","Approved",NA,"2006-01-08","bc_pdf","16","NA NA"
-"Nitrite","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"0.06","mg/L","Approved",NA,"2006-01-08","bc_pdf","16","NA NA"
-"Nitrate","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"40","mg/L","Approved",NA,"2006-01-08","bc_pdf","16","NA NA"
-"Nitrite","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.02","mg/L","Approved",NA,"2006-01-08","bc_pdf","16","NA NA"
-"Nitrate","BC","Livestock",NA,1,1,"mean",NA,NA,"100","mg/L","Approved",NA,"2006-01-08","bc_pdf","16","NA NA"
-"Nitrite","BC","Livestock",NA,1,1,"mean",NA,NA,"10","mg/L","Approved",NA,"2006-01-08","bc_pdf","16","NA NA"
-"Nitrate","BC","Wildlife",NA,1,1,"mean",NA,NA,"100","mg/L","Approved",NA,"2006-01-08","bc_pdf","16","NA NA"
-"Nitrite","BC","Wildlife",NA,1,1,"mean",NA,NA,"10","mg/L","Approved",NA,"2006-01-08","bc_pdf","16","NA NA"
-"Nitrate","BC","Recreation",NA,1,1,"mean",NA,NA,"10","mg/L","Approved",NA,"2006-01-08","bc_pdf","16","NA NA"
-"Nitrite","BC","Recreation",NA,1,1,"mean",NA,NA,"1","mg/L","Approved",NA,"2006-01-08","bc_pdf","16","NA NA"
-"Selenium ","BC","Drinking",NA,1,1,"mean",NA,NA,"10","ug/L","Approved",NA,"2006-01-08","bc_pdf","40","NA NA"
-"Selenium ","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"2","ug/L","Approved",NA,"2006-01-08","bc_pdf","40","NA NA"
-"Selenium ","BC","Marine Life",NA,1,1,"mean",NA,NA,"2","ug/L","Approved",NA,"2006-01-08","bc_pdf","40","NA NA"
-"Selenium ","BC","Wildlife",NA,1,1,"mean",NA,NA,"4","ug/L","Approved",NA,"2006-01-08","bc_pdf","40","NA NA"
-"Selenium ","BC","Irrigation",NA,1,1,"mean",NA,NA,"10","ug/L","Approved",NA,"2006-01-08","bc_pdf","40","NA NA"
-"Selenium ","BC","Livestock",NA,1,1,"mean",NA,NA,"10","ug/L","Approved",NA,"2006-01-08","bc_pdf","40","NA NA"
-"Silver","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"0.05","ug/L","Approved",NA,"2006-01-08","bc_pdf","29","hardness less than or equal to 100 mg/L  NA"
-"Silver","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.1","ug/L","Approved",NA,"2006-01-08","bc_pdf","29","hardness less than or equal to 100 mg/L  NA"
-"Silver","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"1.5","ug/L","Approved",NA,"2006-01-08","bc_pdf","29","hardness greater than 100 mg/L  NA"
-"Silver","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"3","ug/L","Approved",NA,"2006-01-08","bc_pdf","29","hardness greater than 100 mg/L  NA"
-"Silver","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"1.5","ug/L","Approved",NA,"2006-01-08","bc_pdf","29","open coast and estuaries NA"
-"Sulfolane","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"50","mg/L",NA,NA,"2014-12-29","http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm",NA,"NA NA"
-"Sulfolane","BC","Irrigation",NA,1,1,"mean",NA,NA,"8.4","mg/L",NA,NA,"2014-12-29","http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm",NA,"NA NA"
-"Sulfolane","BC","Livestock",NA,1,1,"mean",NA,NA,"14","mg/L",NA,NA,"2014-12-29","http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm",NA,"NA NA"
-"Sulphate","BC","Drinking",NA,1,1,"mean",NA,NA,"500","mg/L","Approved",NA,"2006-01-08","bc_pdf","36","NA NA"
-"Sulphate","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"100","mg/L","Approved",NA,"2006-01-08","bc_pdf","36","NA NA"
-"Sulphate","BC","Freshwater Life",NA,1,1," alert level",NA,NA,"50","mg/L","Approved",NA,"2006-01-08","bc_pdf","36","NA NA"
-"pH","CA","Recreation",NA,1,1,"mean",NA,NA,"35","pH",NA,"?","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA,"water / PCBs #126 ?"
-"Total Phosphorus","BC","Drinking",NA,1,1,"mean",NA,NA,"10","ug/L","Approved",NA,"2006-01-08","bc_pdf","3","NA NA"
-"Total Phosphorus","BC","Aquatic Life",NA,1,1,"mean",NA,5,"10","ug/L","Approved",NA,"2006-01-08","bc_pdf","3","NA NA"
-"Total Phosphorus","BC","Recreation",NA,1,1,"mean",NA,NA,"10","ug/L","Approved",NA,"2006-01-08","bc_pdf","3","NA NA"
-"Toluene","BC","Drinking",NA,1,1,"mean",NA,NA,"0.024","mg/L","Approved",NA,"2006-01-08","bc_pdf","35","NA NA"
-"Toluene","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.039","mg/L","Approved",NA,"2006-01-08","bc_pdf","35","NA NA"
-"Toluene","BC","Marine Life",NA,1,1,"mean",NA,NA,"0.33","mg/L","Approved",NA,"2006-01-08","bc_pdf","35","NA NA"
-"Toluene","BC","Livestock",NA,1,1,"mean",NA,NA,"0.024","mg/L","Approved",NA,"2006-01-08","bc_pdf","35","NA NA"
-"Turbidity","CA","Recreation",NA,1,1,"mean",NA,5,"9","NTU",NA,NA,"2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA,"NA NA"
-"Zinc","BC","Drinking",NA,1,1,"mean",NA,NA,"5000","ug/L","Approved",NA,"2006-01-08","bc_pdf","30","NA NA"
-"Zinc","BC","Recreation",NA,1,1,"mean",NA,NA,"5000","ug/L","Approved",NA,"2006-01-08","bc_pdf","30","NA NA"
-"Zinc","BC","Marine Life",NA,1,1,"mean",NA,NA,"10","ug/L","Approved",NA,"2006-01-08","bc_pdf","33","NA NA"
-"Zinc","BC","Livestock",NA,1,1,"mean",NA,NA,"2000","ug/L","Approved",NA,"2006-01-08","bc_pdf","33","NA NA"
-"Zinc","BC","Irrigation",NA,1,1,"mean",NA,NA,"1000","ug/L","Approved",NA,"2006-01-08","bc_pdf","33","soil pH less than 6  NA"
-"Zinc","BC","Irrigation",NA,1,1,"mean",NA,NA,"2000","ug/L","Approved",NA,"2006-01-08","bc_pdf","33","soil pH equal to or greater than 6 and less than 7  NA"
-"Zinc","BC","Irrigation",NA,1,1,"mean",NA,NA,"5000","ug/L","Approved",NA,"2006-01-08","bc_pdf","33","soil pH greater than or equal to 7  NA"
-"Zinc","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"33 + 0.75 x (hardness - 90) ","ug/L","Approved",NA,"2006-01-08","bc_pdf","33","NA NA"
-"Zinc","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"7.5 + 0.75 x (hardness - 90) ","ug/L","Approved",NA,"2006-01-08","bc_pdf","33","NA NA"
+- (forage crops) NA","2006-01-08","bc_pdf","15"
+"Molybdenum","BC","Irrigation",NA,1,1,"mean",NA,NA,"0.05","mg/L","Approved","- Well Drained Soil
+(forage crops) NA","2006-01-08","bc_pdf","15"
+"Molybdenum","BC","Irrigation",NA,5,30,"mean",NA,NA,"0.02","mg/L","Approved","- Well Drained Soil
+(forage crops) NA","2006-01-08","bc_pdf","15"
+"Molybdenum","BC","Irrigation",NA,5,30,"mean",NA,NA,"0.03","mg/L","Approved","- All Soils
+(non-forage crops) NA","2006-01-08","bc_pdf","15"
+"Nickel","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"e0.76*ln[hardness]+1.06 ?g/L","ug/L",NA,"NA NA","2014-12-31","https://www.ec.gc.ca/indicateurs-indicators/default.asp?lang=en&n=3786D3FD-1",NA
+"Nickel","BC","Marine Life",NA,1,1,"mean",NA,NA,"75","ug/L",NA,"one hour NA",NA,NA,NA
+"Nickel","BC","Marine Life",NA,1,1,"mean",NA,NA,"8.3","ug/L",NA,"four days NA","2014-12-31","http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html",NA
+"Nickel","BC","Livestock",NA,1,1,"maximum",NA,NA,"1000","ug/L",NA,"NA NA","2014-12-31","http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html",NA
+"Nickel","BC","Irrigation",NA,1,1,"maximum",NA,NA,"200","ug/L",NA,"continuous use on all soils NA","2014-12-31","http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html",NA
+"Nickel","BC","Irrigation",NA,1,1,"maximum",NA,NA,"2000","ug/L",NA,"20-year use on neutral to alkaline fine-textured soils NA",NA,NA,NA
+"Nitrate","BC","Drinking",NA,1,1,"mean",NA,NA,"10","mg/L","Approved","NA NA","2006-01-08","bc_pdf","16"
+"Nitrite","BC","Drinking",NA,1,1,"mean",NA,NA,"1","mg/L","Approved","NA NA","2006-01-08","bc_pdf","16"
+"Nitrate","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"200","mg/L","Approved","NA NA","2006-01-08","bc_pdf","16"
+"Nitrite","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"0.06","mg/L","Approved","NA NA","2006-01-08","bc_pdf","16"
+"Nitrate","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"40","mg/L","Approved","NA NA","2006-01-08","bc_pdf","16"
+"Nitrite","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.02","mg/L","Approved","NA NA","2006-01-08","bc_pdf","16"
+"Nitrate","BC","Livestock",NA,1,1,"mean",NA,NA,"100","mg/L","Approved","NA NA","2006-01-08","bc_pdf","16"
+"Nitrite","BC","Livestock",NA,1,1,"mean",NA,NA,"10","mg/L","Approved","NA NA","2006-01-08","bc_pdf","16"
+"Nitrate","BC","Wildlife",NA,1,1,"mean",NA,NA,"100","mg/L","Approved","NA NA","2006-01-08","bc_pdf","16"
+"Nitrite","BC","Wildlife",NA,1,1,"mean",NA,NA,"10","mg/L","Approved","NA NA","2006-01-08","bc_pdf","16"
+"Nitrate","BC","Recreation",NA,1,1,"mean",NA,NA,"10","mg/L","Approved","NA NA","2006-01-08","bc_pdf","16"
+"Nitrite","BC","Recreation",NA,1,1,"mean",NA,NA,"1","mg/L","Approved","NA NA","2006-01-08","bc_pdf","16"
+"Selenium ","BC","Drinking",NA,1,1,"mean",NA,NA,"10","ug/L","Approved","NA NA","2006-01-08","bc_pdf","40"
+"Selenium ","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"2","ug/L","Approved","NA NA","2006-01-08","bc_pdf","40"
+"Selenium ","BC","Marine Life",NA,1,1,"mean",NA,NA,"2","ug/L","Approved","NA NA","2006-01-08","bc_pdf","40"
+"Selenium ","BC","Wildlife",NA,1,1,"mean",NA,NA,"4","ug/L","Approved","NA NA","2006-01-08","bc_pdf","40"
+"Selenium ","BC","Irrigation",NA,1,1,"mean",NA,NA,"10","ug/L","Approved","NA NA","2006-01-08","bc_pdf","40"
+"Selenium ","BC","Livestock",NA,1,1,"mean",NA,NA,"10","ug/L","Approved","NA NA","2006-01-08","bc_pdf","40"
+"Silver","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"0.05","ug/L","Approved","hardness less than or equal to 100 mg/L  NA","2006-01-08","bc_pdf","29"
+"Silver","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.1","ug/L","Approved","hardness less than or equal to 100 mg/L  NA","2006-01-08","bc_pdf","29"
+"Silver","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"1.5","ug/L","Approved","hardness greater than 100 mg/L  NA","2006-01-08","bc_pdf","29"
+"Silver","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"3","ug/L","Approved","hardness greater than 100 mg/L  NA","2006-01-08","bc_pdf","29"
+"Silver","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"1.5","ug/L","Approved","open coast and estuaries NA","2006-01-08","bc_pdf","29"
+"Sulfolane","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"50","mg/L",NA,"NA NA","2014-12-29","http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm",NA
+"Sulfolane","BC","Irrigation",NA,1,1,"mean",NA,NA,"8.4","mg/L",NA,"NA NA","2014-12-29","http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm",NA
+"Sulfolane","BC","Livestock",NA,1,1,"mean",NA,NA,"14","mg/L",NA,"NA NA","2014-12-29","http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm",NA
+"Sulphate","BC","Drinking",NA,1,1,"mean",NA,NA,"500","mg/L","Approved","NA NA","2006-01-08","bc_pdf","36"
+"Sulphate","BC","Freshwater Life",NA,1,1,"maximum",NA,NA,"100","mg/L","Approved","NA NA","2006-01-08","bc_pdf","36"
+"Sulphate","BC","Freshwater Life",NA,1,1," alert level",NA,NA,"50","mg/L","Approved","NA NA","2006-01-08","bc_pdf","36"
+"pH","CA","Recreation",NA,1,1,"mean",NA,NA,"35","pH",NA,"water / PCBs #126 ?","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
+"Total Phosphorus","BC","Drinking",NA,1,1,"mean",NA,NA,"10","ug/L","Approved","NA NA","2006-01-08","bc_pdf","3"
+"Total Phosphorus","BC","Aquatic Life",NA,1,1,"mean",NA,5,"10","ug/L","Approved","NA NA","2006-01-08","bc_pdf","3"
+"Total Phosphorus","BC","Recreation",NA,1,1,"mean",NA,NA,"10","ug/L","Approved","NA NA","2006-01-08","bc_pdf","3"
+"Toluene","BC","Drinking",NA,1,1,"mean",NA,NA,"0.024","mg/L","Approved","NA NA","2006-01-08","bc_pdf","35"
+"Toluene","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"0.039","mg/L","Approved","NA NA","2006-01-08","bc_pdf","35"
+"Toluene","BC","Marine Life",NA,1,1,"mean",NA,NA,"0.33","mg/L","Approved","NA NA","2006-01-08","bc_pdf","35"
+"Toluene","BC","Livestock",NA,1,1,"mean",NA,NA,"0.024","mg/L","Approved","NA NA","2006-01-08","bc_pdf","35"
+"Turbidity","CA","Recreation",NA,1,1,"mean",NA,5,"9","NTU",NA,"NA NA","2014-12-21","http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php",NA
+"Zinc","BC","Drinking",NA,1,1,"mean",NA,NA,"5000","ug/L","Approved","NA NA","2006-01-08","bc_pdf","30"
+"Zinc","BC","Recreation",NA,1,1,"mean",NA,NA,"5000","ug/L","Approved","NA NA","2006-01-08","bc_pdf","30"
+"Zinc","BC","Marine Life",NA,1,1,"mean",NA,NA,"10","ug/L","Approved","NA NA","2006-01-08","bc_pdf","33"
+"Zinc","BC","Livestock",NA,1,1,"mean",NA,NA,"2000","ug/L","Approved","NA NA","2006-01-08","bc_pdf","33"
+"Zinc","BC","Irrigation",NA,1,1,"mean",NA,NA,"1000","ug/L","Approved","soil pH less than 6  NA","2006-01-08","bc_pdf","33"
+"Zinc","BC","Irrigation",NA,1,1,"mean",NA,NA,"2000","ug/L","Approved","soil pH equal to or greater than 6 and less than 7  NA","2006-01-08","bc_pdf","33"
+"Zinc","BC","Irrigation",NA,1,1,"mean",NA,NA,"5000","ug/L","Approved","soil pH greater than or equal to 7  NA","2006-01-08","bc_pdf","33"
+"Zinc","BC","Freshwater Life",NA,1,1,"mean",NA,NA,"33 + 0.75 x (hardness - 90) ","ug/L","Approved","NA NA","2006-01-08","bc_pdf","33"
+"Zinc","BC","Freshwater Life",NA,5,30,"mean",NA,NA,"7.5 + 0.75 x (hardness - 90) ","ug/L","Approved","NA NA","2006-01-08","bc_pdf","33"
