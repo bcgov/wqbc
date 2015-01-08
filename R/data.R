@@ -63,17 +63,17 @@
 #'   \item{Code}{short-hand code}
 #'   \item{Variable}{name of water quality parameter}
 #'   \item{Jurisdiction}{regulatory jurisdiction in Canada (permitted values:
-#'   BC, CA)}
+#'   BC or CA)}
 #'   \item{Use}{intended use (permitted values: Drinking, Freshwater Life,
-#'    Marine Life, Wildlife, Livestock, Irrigation, Recreation)}
+#'    Marine Life, Wildlife, Livestock, Irrigation or Recreation)}
 #'   \item{SubUse}{additional information on use}
 #'   \item{Samples}{minimum number of samples required}
-#'   \item{Days}{period within which number of samples must be collected}
+#'   \item{Period}{period within which number of samples must be collected (permitted values: Day or Month)}
 #'   \item{Average}{R function(s) to calculate "average" value for multiple samples}
 #'   \item{Condition}{R logical expression to test required condition}
-#'   \item{LowerLimit}{Value or R expression to calculate lower limit}
-#'   \item{UpperLimit}{Value or R expression to calculate upper limit}
-#'   \item{Units}{units for guideline (permitted values: mg/L, ug/L, /dL, m, NTU, pH)}
+#'   \item{LowerLimit}{R expression defining lower limit}
+#'   \item{UpperLimit}{R expression defining upper limit}
+#'   \item{Units}{units for guideline (permitted values: mg/L, ug/L, /dL, m, NTU or pH)}
 #' }
 "limits"
 
