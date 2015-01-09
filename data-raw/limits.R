@@ -112,7 +112,7 @@ input_limits <- function () {
 
   limits$Status %<>% factor(levels = c("Approved"))
   limits$Jurisdiction %<>% factor(levels = c("BC", "CA"))
-  limits$Units %<>% factor(levels = c("ug/L", "mg/L", "/dL", "pH", "NTU", "m"))
+  limits$Units %<>% factor(levels = c("ug/L", "mg/L", "g/L", "kg/L", "/dL", "pH", "NTU", "m"))
   limits$Average %<>% factor(levels = c("geomean1", "max", "mean", "median"))
   limits$Use %<>% factor(levels = c(
     "Freshwater Life", "Marine Life", "Drinking", "Livestock",
@@ -149,7 +149,6 @@ input_limits <- function () {
   limits$Code %<>% factor
   limits$Variable %<>% factor
   limits$Jurisdiction %<>% droplevels
-  limits$Units %<>% droplevels
   limits$Average %<>% droplevels
 
   limits

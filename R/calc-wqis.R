@@ -87,7 +87,7 @@ calc_wqis <- function (x, by = NULL) {
                               "LowerLimit" = "numeric",
                               "UpperLimit" = "numeric"))
 
-  delete_rows_with_missing_values(x, list("Value", "Code",
+  x <- delete_rows_with_missing_values(x, list("Value", "Code",
                                           c("LowerLimit", "UpperLimit")))
   check_rows(x)
 

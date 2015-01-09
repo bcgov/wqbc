@@ -1,3 +1,44 @@
+#' Get Units
+#'
+#' @return character vector of the recognised units.
+#' @examples
+#' get_units()
+#'
+#' @export
+get_units <- function () {
+  c("ug/L", "mg/L", "g/L", "kg/L",
+    "mm", "cm", "m", "km",
+    "/dL", "pH", "NTU")
+}
+
+get_unit_multiplier <- function (x) {
+  units <- c("ug/L" = 10^-6, "mg/L" = 10^-3, "g/L" = 1,  "kg/L" = 10^3,
+             "mm" = 10^-3, "cm" = 10^-2, "m" = 1, "km" = 10^3,
+             "/dL" = 1,  "pH" = 1, "NTU" = 1)
+  x <- units[x]
+  names(x) <- NULL
+  x
+}
+
+get_unit_type <- function (x) {
+
+    type <- list("concentration" = c("ug/L", "mg/L", "g/L", "kg/L"),
+                 "length" = c("mm", "cm", "m", "km"),
+                 "individuals" = "/dL",
+                 "pH" = "pH",
+                 "turbidity" = "NTU")
+
+    type <- unlist(type)
+    names <- sub("\\d$", "", names(type))
+    values <- type
+    type <- names
+    names(type) <- values
+
+    x <- type[x]
+    names(x) <- NULL
+    x
+}
+
 #' Get Water Quality Uses
 #'
 #' Returns a character vector of the uses for which

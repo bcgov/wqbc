@@ -1,35 +1,16 @@
-get_limits_use <- function (use) {
-  x <- dplyr::filter_(wqbc::limits, ~Use == use)
-  x <- dplyr::select_(x, ~Code, ~LowerLimit, ~UpperLimit, ~Units, ~Samples, ~Period,
-                      ~Condition, ~Variable, ~Use, ~Jurisdiction)
-  x
-}
+add_limits_use <- function (x, use) {
+  x$..ID <- 1:nrow(x)
+  x <- dplyr::rename_(x, "..Units" = "Units")
 
-join_values_limits <- function (x, y) {
-  x <- dplyr::rename_(x, "ValueUnits" = "Units")
+  y <- dplyr::filter_(wqbc::limits, ~Use == use)
+  y <- dplyr::select_(y, ~Code, ~LowerLimit, ~UpperLimit, ~Units, ~Samples, ~Period,
+                      ~Condition, ~Variable, ~Use, ~Jurisdiction)
+
   x <- delete_columns(x, colnames(dplyr::select_(y, ~-Code)))
   x <- dplyr::left_join(x, y, by = "Code")
-  x
-}
 
-tidy_up_values <- function (x) {
-  unknown <- is.na(x$LowerLimit) & is.na(x$UpperLimit)
-  if(all(unknown))
-    stop("no values in x with recognised limits")
-  if(any(unknown)) {
-    warning("deleting ", sum(unknown), " values in x with no limits")
-    x <- x[!unknown,,drop = FALSE]
-  }
-
-  x$Variable <- droplevels(x$Variable)
-  x$Variable <- droplevels(x$Variable)
-  x$Period <- droplevels(x$Period)
-
-  x$Units <- as.character(x$Units)
-  x$ValueUnits <- as.character(x$ValueUnits)
-
-  x$Use <- droplevels(x$Use)
-  x$ValueUnits <- NULL
+  x$Value <- convert_units(x$Value, from = x$..Units, to = x$Units)
+  x$..Units <- NULL
   x
 }
 
@@ -62,10 +43,14 @@ calc_limits <- function (x, by = NULL, use = "Freshwater Life") {
                               "Units" = c("character", "factor"),
                               "Date" = "Date"))
 
+  x$Units <- substitute_units(x$Units)
+  x <- delete_rows_with_missing_values(x, list("Code", "Value", "Units", "Date"))
+  x <- add_limits_use(x, use)
+  x <- delete_rows_with_missing_values(x, list("Value", "Units"))
+
+  # also need to check not in limits....
   check_by(by, x, res_names = c("Code", "Value", "Units", "Date"))
 
-  x <- join_values_limits(x, get_limits_use(use))
-  #  x <- adjust_units_values(x)
-  x <- tidy_up_values (x)
+#  x <- tidy_up_values (x)
   x
 }
