@@ -1,9 +1,4 @@
-library(dplyr)
-library(magrittr)
-library(devtools)
-
-rm(list = ls())
-graphics.off()
+source("R/codes.R")
 
 reassign_aquatic_life <- function (x) {
   x2 <- filter_(x, ~Use == "Aquatic Life")
@@ -20,33 +15,21 @@ set_periods <- function (x) {
   x
 }
 
-check_valid_expression <- function (x) {
-  parse(text = x)
-  TRUE
-}
+check_limits <- function (x) {
 
-read_limits <- function () {
-  read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
-}
+  check_valid_expression <- function (x) {
+    parse(text = x)
+    TRUE
+  }
 
-read_codes <- function () {
-  read.csv("data-raw/codes.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
-}
-
-check_codes <- function () {
-
-  x <- read_codes()
-
-  stopifnot(identical(colnames(x), c("Code", "Variable")))
-  stopifnot(all(!is.na(x$Code)))
   stopifnot(all(!is.na(x$Variable)))
-
-  TRUE
-}
-
-check_limits <- function () {
-
-  x <- read_limits()
+  stopifnot(all(!is.na(x$Jurisdiction)))
+  stopifnot(all(!is.na(x$Use)))
+  stopifnot(all(!is.na(x$Samples)))
+  stopifnot(all(!is.na(x$Days)))
+  stopifnot(all(!is.na(x$Average)))
+  stopifnot(all(!is.na(x$LowerLimit) | !is.na(x$UpperLimit)))
+  stopifnot(all(!is.na(x$Units)))
 
   stopifnot(identical(colnames(x),
                       c("Variable", "Jurisdiction",
@@ -81,30 +64,16 @@ check_limits <- function () {
   check_valid_expression(x$LowerLimit)
   check_valid_expression(x$UpperLimit)
 
-  stopifnot(all(!is.na(x$Variable)))
-  stopifnot(all(!is.na(x$Jurisdiction)))
-  stopifnot(all(!is.na(x$Use)))
-  stopifnot(all(!is.na(x$Samples)))
-  stopifnot(all(!is.na(x$Days)))
-  stopifnot(all(!is.na(x$Average)))
-  stopifnot(all(!is.na(x$LowerLimit) | !is.na(x$UpperLimit)))
-  stopifnot(all(!is.na(x$Units)))
-
-  TRUE
+  NULL
 }
 
-input_limits <- function () {
+input_limits <- function (codes) {
+  limits <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
-  require(dplyr)
-  require(magrittr)
+  check_limits(limits)
 
-  check_limits()
 
-  limits <- read_limits()
-
-  unique(select(limits, Jurisdiction, URL))
-
-  lapply(limits, FUN = function (limits) (sort(unique(limits))))
+  # lapply(limits, FUN = function (limits) (sort(unique(limits))))
   # write.csv(limits, "data-raw/limits.csv", row.names = FALSE)
 
   limits %<>% reassign_aquatic_life()
@@ -112,16 +81,16 @@ input_limits <- function () {
 
   limits$Status %<>% factor(levels = c("Approved"))
   limits$Jurisdiction %<>% factor(levels = c("BC", "CA"))
-  limits$Units %<>% factor(levels = c("ug/L", "mg/L", "g/L", "kg/L", "/dL", "pH", "NTU", "m"))
   limits$Average %<>% factor(levels = c("geomean1", "max", "mean", "median"))
   limits$Use %<>% factor(levels = c(
     "Freshwater Life", "Marine Life", "Drinking", "Livestock",
     "Wildlife", "Irrigation", "Recreation", "Industrial"))
 
-  check_codes()
-  codes <- read_codes()
-
+  limits <- rename_(limits, "..Units" = "Units")
   limits <- inner_join(codes, limits, by = "Variable")
+
+  stopifnot(all(limits$..Unit == limits$Unit))
+  limits$..Unit <- NULL
 
   # move code to first column position
   code <- limits$Code
@@ -150,9 +119,10 @@ input_limits <- function () {
   limits$Variable %<>% factor
   limits$Jurisdiction %<>% droplevels
   limits$Average %<>% droplevels
+  limits$Units %<>% droplevels
 
   limits
 }
-limits <- input_limits()
+limits <- input_limits(codes)
 summary(limits)
-# devtools::use_data(limits, overwrite = TRUE, compress = "xz")
+devtools::use_data(limits, overwrite = TRUE, compress = "xz")

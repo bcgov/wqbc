@@ -1,194 +1,194 @@
-Variable,Jurisdiction,Use,SubUse,Samples,Days,Average,Condition,LowerLimit,UpperLimit,,Status,Comments,URL,TableNumber
-Aluminium - Dissolved,BC,Drinking,NA,1,1,mean,NA,NA,0.2,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
-Aluminium - Dissolved,BC,Freshwater Life,NA,1,1,mean,pH >= 6.5,NA,0.1,,NA,NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
-Aluminium - Dissolved,BC,Freshwater Life,NA,5,30,mean,NA,NA,0.05,,NA,median(pH) >=6.5 NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
-Aluminium - Dissolved,BC,Freshwater Life,NA,1,1,mean,pH < 6.5,NA,exp(1.209 - 2.426 * pH + 0.286 * pH^2),,NA,NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
-Aluminium - Dissolved,BC,Freshwater Life,NA,5,30,mean,NA,NA,exp(1.6 - 3.327 * median(pH) + 0.402 * median(pH)^2),,NA,median(pH) < 6.5 NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
-Aluminum - Total,BC,Wildlife,NA,1,1,mean,NA,NA,5,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
-Aluminum - Total,BC,Livestock,NA,1,1,mean,NA,NA,5,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
-Aluminum - Total,BC,Irrigation,NA,1,1,mean,NA,NA,5,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
-Aluminum - Total,BC,Recreation,NA,1,1,mean,NA,NA,0.2,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
-Arsenic,BC,Drinking,NA,1,1,mean,NA,NA,25,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,NA
-Arsenic,BC,Freshwater Life,NA,1,1,mean,NA,NA,5,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,NA
-Arsenic,BC,Marine Life,NA,1,1,mean,NA,NA,12.5,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,NA
-Arsenic,BC,Irrigation,NA,1,1,mean,NA,NA,100,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,NA
-Arsenic,BC,Livestock,NA,1,1,mean,NA,NA,25,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,NA
-Arsenic,BC,Wildlife,NA,1,1,mean,NA,NA,25,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,NA
-Cadmium,CA,Freshwater Life,NA,1,1,mean,NA,NA,5,,NA,NA NA,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1,NA
-Cadmium,CA,Marine Life,NA,1,1,mean,NA,NA,0.09,,NA,NA NA,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1,NA
-Cadmium,CA,Irrigation,NA,1,1,mean,NA,NA,0.12,,NA,NA NA,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1,NA
-Cadmium,CA,Livestock,NA,1,1,mean,NA,NA,5.1,,NA,NA NA,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1,NA
-Clarity,CA,Recreation,NA,1,1,mean,NA,NA,80,,NA,NA NA,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
-Copper,BC,Drinking,NA,1,1,mean,NA,NA,500,,Approved,NA NA,bc_pdf,9
-Copper,BC,Freshwater Life,NA,1,1,mean,CacO3 <= 50,NA,0.094 * CaCO3 + 2,,Approved,NA,bc_pdf,9
-Copper,BC,Freshwater Life,NA,5,30,mean,CacO3 <= 50,NA,2,,Approved,NA,bc_pdf,9
-Copper,BC,Freshwater Life,NA,1,1,mean,CacO3 > 50,NA,0.094 * CaCO3 + 2,,Approved,NA,bc_pdf,9
-Copper,BC,Freshwater Life,NA,5,30,mean,CacO3 > 50,NA,0.04 * mean(CaCO3),,Approved,NA,bc_pdf,9
-Copper,BC,Wildlife,NA,1,1,mean,NA,NA,300,,Approved,NA NA,bc_pdf,9
-Copper,BC,Livestock,NA,1,1,mean,NA,NA,300,,Approved,NA NA,bc_pdf,9
-Copper,BC,Irrigation,NA,1,1,mean,NA,NA,200,,Approved,NA NA,bc_pdf,9
-Copper,BC,Recreation,NA,1,1,mean,NA,NA,1000,,Approved,NA NA,bc_pdf,9
-Copper,BC,Marine Life,NA,1,1,mean,NA,NA,3,,Approved,NA NA,bc_pdf,9
-Copper,BC,Marine Life,NA,5,30,mean,NA,NA,2,,Approved,NA NA,bc_pdf,9
-Cyanide,BC,Drinking,NA,1,1,mean,NA,NA,200,,Approved,"Strong-acid dissociable cyanide + thiocyanate
+Variable,Jurisdiction,Use,SubUse,Samples,Days,Average,Condition,LowerLimit,UpperLimit,Units,Status,Comments,URL,TableNumber
+Aluminium - Dissolved,BC,Drinking,NA,1,1,mean,NA,NA,0.2,mg/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
+Aluminium - Dissolved,BC,Freshwater Life,NA,1,1,mean,pH >= 6.5,NA,0.1,mg/L,NA,NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
+Aluminium - Dissolved,BC,Freshwater Life,NA,5,30,mean,NA,NA,0.05,mg/L,NA,median(pH) >=6.5 NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
+Aluminium - Dissolved,BC,Freshwater Life,NA,1,1,mean,pH < 6.5,NA,exp(1.209 - 2.426 * pH + 0.286 * pH^2),mg/L,NA,NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
+Aluminium - Dissolved,BC,Freshwater Life,NA,5,30,mean,NA,NA,exp(1.6 - 3.327 * median(pH) + 0.402 * median(pH)^2),mg/L,NA,median(pH) < 6.5 NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
+Aluminum - Total,BC,Wildlife,NA,1,1,mean,NA,NA,5,mg/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
+Aluminum - Total,BC,Livestock,NA,1,1,mean,NA,NA,5,mg/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
+Aluminum - Total,BC,Irrigation,NA,1,1,mean,NA,NA,5,mg/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
+Aluminum - Total,BC,Recreation,NA,1,1,mean,NA,NA,0.2,mg/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/aluminum/aluminum.html,NA
+Arsenic,BC,Drinking,NA,1,1,mean,NA,NA,25,ug/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,NA
+Arsenic,BC,Freshwater Life,NA,1,1,mean,NA,NA,5,ug/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,NA
+Arsenic,BC,Marine Life,NA,1,1,mean,NA,NA,12.5,ug/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,NA
+Arsenic,BC,Irrigation,NA,1,1,mean,NA,NA,100,ug/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,NA
+Arsenic,BC,Livestock,NA,1,1,mean,NA,NA,25,ug/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,NA
+Arsenic,BC,Wildlife,NA,1,1,mean,NA,NA,25,ug/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/arsenic/index.html,NA
+Cadmium,CA,Freshwater Life,NA,1,1,mean,NA,NA,5,ug/L,NA,NA NA,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1,NA
+Cadmium,CA,Marine Life,NA,1,1,mean,NA,NA,0.09,ug/L,NA,NA NA,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=1&pdf=1,NA
+Cadmium,CA,Irrigation,NA,1,1,mean,NA,NA,0.12,ug/L,NA,NA NA,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1,NA
+Cadmium,CA,Livestock,NA,1,1,mean,NA,NA,5.1,ug/L,NA,NA NA,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1,NA
+Clarity,CA,Recreation,NA,1,1,mean,NA,NA,80,m,NA,NA NA,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
+Copper,BC,Drinking,NA,1,1,mean,NA,NA,500,ug/L,Approved,NA NA,bc_pdf,9
+Copper,BC,Freshwater Life,NA,1,1,mean,CacO3 <= 50,NA,0.094 * CaCO3 + 2,ug/L,Approved,NA,bc_pdf,9
+Copper,BC,Freshwater Life,NA,5,30,mean,CacO3 <= 50,NA,2,ug/L,Approved,NA,bc_pdf,9
+Copper,BC,Freshwater Life,NA,1,1,mean,CacO3 > 50,NA,0.094 * CaCO3 + 2,ug/L,Approved,NA,bc_pdf,9
+Copper,BC,Freshwater Life,NA,5,30,mean,CacO3 > 50,NA,0.04 * mean(CaCO3),ug/L,Approved,NA,bc_pdf,9
+Copper,BC,Wildlife,NA,1,1,mean,NA,NA,300,ug/L,Approved,NA NA,bc_pdf,9
+Copper,BC,Livestock,NA,1,1,mean,NA,NA,300,ug/L,Approved,NA NA,bc_pdf,9
+Copper,BC,Irrigation,NA,1,1,mean,NA,NA,200,ug/L,Approved,NA NA,bc_pdf,9
+Copper,BC,Recreation,NA,1,1,mean,NA,NA,1000,ug/L,Approved,NA NA,bc_pdf,9
+Copper,BC,Marine Life,NA,1,1,mean,NA,NA,3,ug/L,Approved,NA NA,bc_pdf,9
+Copper,BC,Marine Life,NA,5,30,mean,NA,NA,2,ug/L,Approved,NA NA,bc_pdf,9
+Cyanide,BC,Drinking,NA,1,1,mean,NA,NA,200,ug/L,Approved,"Strong-acid dissociable cyanide + thiocyanate
 
  NA",bc_pdf,NA
-Cyanide,BC,Freshwater Life,NA,5,30,mean,NA,NA,5,,Approved,Strong-acid dissociable cyanide + thiocyanate  NA,bc_pdf,NA
-Cyanide,BC,Freshwater Life,NA,1,1,mean,NA,NA,10,,Approved,Weak-acid dissociable cyanide NA,bc_pdf,NA
-Cyanide,BC,Marine Life,NA,1,1,mean,NA,NA,1,,Approved,Weak-acid dissociable cyanide NA,bc_pdf,NA
-Dissolved Oxygen,BC,Aquatic Life,NA,1,1,mean,NA,5,NA,,Approved,All Life Stages other than buried embryo/alevin -- water column  NA,bc_pdf,18
-Dissolved Oxygen,BC,Aquatic Life,NA,5,30,mean,NA,8,NA,,Approved,All Life Stages other than buried embryo/alevin -- water column  NA,bc_pdf,18
-Dissolved Oxygen,BC,Aquatic Life,NA,1,1,mean,NA,9,NA,,Approved,Buried embryo/alevin life stages -- water column NA,bc_pdf,18
-Dissolved Oxygen,BC,Aquatic Life,NA,5,30,mean,NA,11,NA,,Approved,Buried embryo/alevin life stages -- water column NA,bc_pdf,18
-Dissolved Oxygen,BC,Aquatic Life,NA,1,1,mean,NA,6,NA,,Approved,Buried embryo/alevin life stages -- Interstitial water NA,bc_pdf,18
-Dissolved Oxygen,BC,Aquatic Life,NA,5,30,mean,NA,8,NA,,Approved,Buried embryo/alevin life stages -- Interstitial water NA,bc_pdf,18
-E.coli,BC,Drinking,NA,1,1,geomean1,NA,1.2,NA,,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-Enterococci,BC,Drinking,NA,1,1,geomean1,NA,NA,0,,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-E.coli,BC,Livestock,NA,1,1,geomean1,NA,NA,0,,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-Enterococci,BC,Livestock,NA,1,1,geomean1,NA,NA,200,,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-E.coli,BC,Recreation,NA,1,1,geomean1,NA,NA,50,,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-Enterococci,BC,Recreation,NA,1,1,geomean1,NA,NA,77,,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-E.coli,BC,Freshwater Life,NA,1,1,median,NA,NA,20,,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-Enterococci,BC,Freshwater Life,NA,1,1,median,NA,NA,14,,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-Enterococci,BC,Marine Life,NA,1,1,median,NA,NA,4,,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-E.coli,CA,Recreation,NA,1,1,geomean1,NA,NA,4,,NA,NA Assumed geometric mean,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
-E.coli,CA,Recreation,NA,5,30,geomean1,NA,NA,400,,NA,NA Assumed sampling period of 30 days,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
-Enterococci,CA,Recreation,NA,1,1,geomean1,NA,NA,200,,NA,NA Assumed geometric mean,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
-Enterococci,CA,Recreation,NA,5,30,geomean1,NA,NA,70,,NA,NA Assumed sampling period of 30 days,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
-Fluoride,BC,Drinking,NA,1,1,mean,NA,NA,1.5,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Drinking,NA,5,30,mean,NA,NA,1,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.2,,Approved,water hardness is less than 50 mg/L as CaCO3 NA,bc_pdf,20
-Fluoride,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.3,,Approved,water hardness is greater than or equal to 50 mg/L as CaCO3 NA,bc_pdf,20
-Fluoride,BC,Marine Life,NA,1,1,mean,NA,NA,1.5,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Wildlife,NA,1,1,mean,NA,NA,1.5,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Wildlife,NA,5,30,mean,NA,NA,1,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Livestock,"long-lived animals (dairy cows, breeding stock)",1,1,mean,NA,NA,1.5,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Livestock,"long-lived animals (dairy cows, breeding stock)",5,30,mean,NA,NA,1,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Livestock,high fluoride diets (mineral or bone meal feed additives),1,1,mean,NA,NA,2,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Livestock,high fluoride diets (mineral or bone meal feed additives),5,30,mean,NA,NA,1,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Livestock,normal diet,1,1,mean,NA,NA,4,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Livestock,normal diet,5,30,mean,NA,NA,2,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Irrigation,NA,1,1,mean,NA,NA,2,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Irrigation,NA,5,30,mean,NA,NA,1,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Industrial,NA,1,1,mean,NA,NA,1.5,,Approved,NA NA,bc_pdf,20
-Fluoride,BC,Industrial,NA,5,30,mean,NA,NA,1,,Approved,NA NA,bc_pdf,20
-Iron,BC,Freshwater Life,NA,1,1,mean,NA,NA,1,,NA, total iron NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/iron/iron_overview.pdf,NA
-Iron,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.35,,NA,dissolved iron NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/iron/iron_overview.pdf,NA
-Lead,BC,Drinking,NA,1,1,mean,NA,NA,50,,Approved,NA NA,bc_pdf,11
-Lead,BC,Freshwater Life,NA,1,1,mean,NA,NA,3,,Approved,water hardness as CaCO3 less than or equal to 8 mg/L NA,bc_pdf,11
-Lead,BC,Freshwater Life,NA,1,1,mean,NA,NA,exp(1.273 * log(CaCO3) - 1.460),,Approved,water hardness as CaCO3 less than or equal to 8 mg/L NA,bc_pdf,11
-Lead,BC,Freshwater Life,NA,5,30,mean,NA,NA,exp(1.273 * log(mean(CaCO3)) - 4.704) + 3.31,,Approved,water hardness as CaCO3 less than or equal to 8 mg/L NA,bc_pdf,11
-Lead,BC,Wildlife,NA,1,1,mean,NA,NA,100,,Approved,NA NA,bc_pdf,11
-Lead,BC,Livestock,NA,1,1,mean,NA,NA,100,,Approved,NA NA,bc_pdf,11
-Lead,BC,Marine Life,NA,1,1,mean,NA,NA,140,,Approved,NA NA,bc_pdf,11
-Lead,BC,Marine Life,NA,5,30,mean,NA,NA,2,,Approved,NA NA,bc_pdf,11
-Lead,BC,Marine Life,NA,5,30,mean,NA,NA,3,,Approved,NA NA,bc_pdf,11
-Lead,BC,Irrigation,NA,1,1,mean,NA,NA,400,,Approved,neutral and alkaline fine-textured soils NA,bc_pdf,11
-Lead,BC,Irrigation,NA,1,1,mean,NA,NA,200,,Approved,all other soils NA,bc_pdf,11
-Lead,BC,Industrial,NA,1,1,mean,NA,NA,50,,Approved,NA NA,bc_pdf,11
-Lead,BC,Recreation,NA,1,1,mean,NA,NA,50,,Approved,NA NA,bc_pdf,11
-Manganese,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.8,,Approved,Maximum at Specified CaCO3 Hardness 25mg/L NA,bc_pdf,37
-Manganese,BC,Freshwater Life,NA,1,1,mean,NA,NA,1.1,,Approved,Maximum at Specified CaCO3 Hardness 50mg/L NA,bc_pdf,37
-Manganese,BC,Freshwater Life,NA,1,1,mean,NA,NA,1.6,,Approved,Maximum at Specified CaCO3 Hardness 100mg/L NA,bc_pdf,37
-Manganese,BC,Freshwater Life,NA,1,1,mean,NA,NA,2.2,,Approved,Maximum at Specified CaCO3 Hardness 150mg/L NA,bc_pdf,37
-Manganese,BC,Freshwater Life,NA,1,1,mean,NA,NA,3.8,,Approved,Maximum at Specified CaCO3 Hardness 300mg/L NA,bc_pdf,37
-Manganese,BC,Freshwater Life,NA,5,30,mean,NA,NA,0.7,,Approved,30-Day Mean at Specified CaCO3 Hardness 25mg/L NA,bc_pdf,38
-Manganese,BC,Freshwater Life,NA,5,30,mean,NA,NA,0.8,,Approved,31-Day Mean at Specified CaCO3 Hardness 50mg/L NA,bc_pdf,38
-Manganese,BC,Freshwater Life,NA,5,30,mean,NA,NA,1,,Approved,32-Day Mean at Specified CaCO3 Hardness 100mg/L NA,bc_pdf,38
-Manganese,BC,Freshwater Life,NA,5,30,mean,NA,NA,1.3,,Approved,33-Day Mean at Specified CaCO3 Hardness 150mg/L NA,bc_pdf,38
-Manganese,BC,Freshwater Life,NA,5,30,mean,NA,NA,1.9,,Approved,34-Day Mean at Specified CaCO3 Hardness 300mg/L NA,bc_pdf,38
-Mercury,BC,Drinking,NA,1,1,mean,NA,NA,1,,Approved,NA NA,bc_pdf,13
-Mercury,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.1,,Approved,NA NA,bc_pdf,13
-Mercury,BC,Freshwater Life,NA,5,30,mean,NA,NA,0.02,,Approved,NA NA,bc_pdf,13
-Mercury,BC,Marine Life,NA,1,1,mean,NA,NA,2,,Approved,NA NA,bc_pdf,13
-Mercury,BC,Marine Life,NA,5,30,mean,NA,NA,0.02,,Approved,NA NA,bc_pdf,13
-Mercury,BC,Wildlife,NA,1,1,mean,NA,NA,0.02,,Approved,% MeHg <= 0.5 NA,bc_pdf,13a
-Mercury,BC,Wildlife,NA,1,1,mean,NA,NA,0.01,,Approved,% MeHg <= 1 NA,bc_pdf,13a
-Mercury,BC,Wildlife,NA,1,1,mean,NA,NA,0.004,,Approved,% MeHg <= 2.5 NA,bc_pdf,13a
-Mercury,BC,Wildlife,NA,1,1,mean,NA,NA,0.002,,Approved,% MeHg <= 5 NA,bc_pdf,13a
-Mercury,BC,Livestock,NA,1,1,mean,NA,NA,3,,Approved,NA NA,bc_pdf,13
-Mercury,BC,Irrigation,NA,1,1,mean,NA,NA,2,,Approved,NA NA,bc_pdf,13
-Mercury,BC,Recreation,NA,1,1,mean,NA,NA,1,,Approved,NA NA,bc_pdf,13
-Molybdenum,BC,Drinking,NA,1,1,mean,NA,NA,0.25,,Approved,NA NA,bc_pdf,39
-Molybdenum,BC,Freshwater Life,NA,1,1,mean,NA,NA,2,,Approved,NA NA,bc_pdf,15
-Molybdenum,BC,Freshwater Life,NA,5,30,mean,NA,NA,1,,Approved,NA NA,bc_pdf,15
-Molybdenum,BC,Wildlife,NA,1,1,mean,NA,NA,0.05,,Approved,NA NA,bc_pdf,15
-Molybdenum,BC,Livestock,NA,1,1,mean,NA,NA,0.08,,Approved,consuming forages not irrigated or if no molybdenum containing fertilizers are applied to grow feed consumed by livestock NA,bc_pdf,15
-Molybdenum,BC,Livestock,NA,1,1,mean,NA,NA,0.05,,Approved,all other cases NA,bc_pdf,15
-Molybdenum,BC,Irrigation,NA,1,1,mean,NA,NA,0.05,,Approved,"Poorly Drained Soil
+Cyanide,BC,Freshwater Life,NA,5,30,mean,NA,NA,5,ug/L,Approved,Strong-acid dissociable cyanide + thiocyanate  NA,bc_pdf,NA
+Cyanide,BC,Freshwater Life,NA,1,1,mean,NA,NA,10,ug/L,Approved,Weak-acid dissociable cyanide NA,bc_pdf,NA
+Cyanide,BC,Marine Life,NA,1,1,mean,NA,NA,1,ug/L,Approved,Weak-acid dissociable cyanide NA,bc_pdf,NA
+Dissolved Oxygen,BC,Aquatic Life,NA,1,1,mean,NA,5,NA,mg/L,Approved,All Life Stages other than buried embryo/alevin -- water column  NA,bc_pdf,18
+Dissolved Oxygen,BC,Aquatic Life,NA,5,30,mean,NA,8,NA,mg/L,Approved,All Life Stages other than buried embryo/alevin -- water column  NA,bc_pdf,18
+Dissolved Oxygen,BC,Aquatic Life,NA,1,1,mean,NA,9,NA,mg/L,Approved,Buried embryo/alevin life stages -- water column NA,bc_pdf,18
+Dissolved Oxygen,BC,Aquatic Life,NA,5,30,mean,NA,11,NA,mg/L,Approved,Buried embryo/alevin life stages -- water column NA,bc_pdf,18
+Dissolved Oxygen,BC,Aquatic Life,NA,1,1,mean,NA,6,NA,mg/L,Approved,Buried embryo/alevin life stages -- Interstitial water NA,bc_pdf,18
+Dissolved Oxygen,BC,Aquatic Life,NA,5,30,mean,NA,8,NA,mg/L,Approved,Buried embryo/alevin life stages -- Interstitial water NA,bc_pdf,18
+E.coli,BC,Drinking,NA,1,1,geomean1,NA,1.2,NA,/dL,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+Enterococci,BC,Drinking,NA,1,1,geomean1,NA,NA,0,/dL,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+E.coli,BC,Livestock,NA,1,1,geomean1,NA,NA,0,/dL,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+Enterococci,BC,Livestock,NA,1,1,geomean1,NA,NA,200,/dL,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+E.coli,BC,Recreation,NA,1,1,geomean1,NA,NA,50,/dL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+Enterococci,BC,Recreation,NA,1,1,geomean1,NA,NA,77,/dL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+E.coli,BC,Freshwater Life,NA,1,1,median,NA,NA,20,/dL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+Enterococci,BC,Freshwater Life,NA,1,1,median,NA,NA,14,/dL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+Enterococci,BC,Marine Life,NA,1,1,median,NA,NA,4,/dL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+E.coli,CA,Recreation,NA,1,1,geomean1,NA,NA,4,/dL,NA,NA Assumed geometric mean,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
+E.coli,CA,Recreation,NA,5,30,geomean1,NA,NA,400,/dL,NA,NA Assumed sampling period of 30 days,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
+Enterococci,CA,Recreation,NA,1,1,geomean1,NA,NA,200,/dL,NA,NA Assumed geometric mean,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
+Enterococci,CA,Recreation,NA,5,30,geomean1,NA,NA,70,/dL,NA,NA Assumed sampling period of 30 days,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
+Fluoride,BC,Drinking,NA,1,1,mean,NA,NA,1.5,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Drinking,NA,5,30,mean,NA,NA,1,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.2,mg/L,Approved,water hardness is less than 50 mg/L as CaCO3 NA,bc_pdf,20
+Fluoride,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.3,mg/L,Approved,water hardness is greater than or equal to 50 mg/L as CaCO3 NA,bc_pdf,20
+Fluoride,BC,Marine Life,NA,1,1,mean,NA,NA,1.5,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Wildlife,NA,1,1,mean,NA,NA,1.5,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Wildlife,NA,5,30,mean,NA,NA,1,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Livestock,"long-lived animals (dairy cows, breeding stock)",1,1,mean,NA,NA,1.5,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Livestock,"long-lived animals (dairy cows, breeding stock)",5,30,mean,NA,NA,1,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Livestock,high fluoride diets (mineral or bone meal feed additives),1,1,mean,NA,NA,2,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Livestock,high fluoride diets (mineral or bone meal feed additives),5,30,mean,NA,NA,1,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Livestock,normal diet,1,1,mean,NA,NA,4,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Livestock,normal diet,5,30,mean,NA,NA,2,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Irrigation,NA,1,1,mean,NA,NA,2,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Irrigation,NA,5,30,mean,NA,NA,1,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Industrial,NA,1,1,mean,NA,NA,1.5,mg/L,Approved,NA NA,bc_pdf,20
+Fluoride,BC,Industrial,NA,5,30,mean,NA,NA,1,mg/L,Approved,NA NA,bc_pdf,20
+Iron,BC,Freshwater Life,NA,1,1,mean,NA,NA,1,mg/L,NA, total iron NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/iron/iron_overview.pdf,NA
+Iron,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.35,mg/L,NA,dissolved iron NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/iron/iron_overview.pdf,NA
+Lead,BC,Drinking,NA,1,1,mean,NA,NA,50,ug/L,Approved,NA NA,bc_pdf,11
+Lead,BC,Freshwater Life,NA,1,1,mean,NA,NA,3,ug/L,Approved,water hardness as CaCO3 less than or equal to 8 mg/L NA,bc_pdf,11
+Lead,BC,Freshwater Life,NA,1,1,mean,NA,NA,exp(1.273 * log(CaCO3) - 1.460),ug/L,Approved,water hardness as CaCO3 less than or equal to 8 mg/L NA,bc_pdf,11
+Lead,BC,Freshwater Life,NA,5,30,mean,NA,NA,exp(1.273 * log(mean(CaCO3)) - 4.704) + 3.31,ug/L,Approved,water hardness as CaCO3 less than or equal to 8 mg/L NA,bc_pdf,11
+Lead,BC,Wildlife,NA,1,1,mean,NA,NA,100,ug/L,Approved,NA NA,bc_pdf,11
+Lead,BC,Livestock,NA,1,1,mean,NA,NA,100,ug/L,Approved,NA NA,bc_pdf,11
+Lead,BC,Marine Life,NA,1,1,mean,NA,NA,140,ug/L,Approved,NA NA,bc_pdf,11
+Lead,BC,Marine Life,NA,5,30,mean,NA,NA,2,ug/L,Approved,NA NA,bc_pdf,11
+Lead,BC,Marine Life,NA,5,30,mean,NA,NA,3,ug/L,Approved,NA NA,bc_pdf,11
+Lead,BC,Irrigation,NA,1,1,mean,NA,NA,400,ug/L,Approved,neutral and alkaline fine-textured soils NA,bc_pdf,11
+Lead,BC,Irrigation,NA,1,1,mean,NA,NA,200,ug/L,Approved,all other soils NA,bc_pdf,11
+Lead,BC,Industrial,NA,1,1,mean,NA,NA,50,ug/L,Approved,NA NA,bc_pdf,11
+Lead,BC,Recreation,NA,1,1,mean,NA,NA,50,ug/L,Approved,NA NA,bc_pdf,11
+Manganese,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.8,mg/L,Approved,Maximum at Specified CaCO3 Hardness 25mg/L NA,bc_pdf,37
+Manganese,BC,Freshwater Life,NA,1,1,mean,NA,NA,1.1,mg/L,Approved,Maximum at Specified CaCO3 Hardness 50mg/L NA,bc_pdf,37
+Manganese,BC,Freshwater Life,NA,1,1,mean,NA,NA,1.6,mg/L,Approved,Maximum at Specified CaCO3 Hardness 100mg/L NA,bc_pdf,37
+Manganese,BC,Freshwater Life,NA,1,1,mean,NA,NA,2.2,mg/L,Approved,Maximum at Specified CaCO3 Hardness 150mg/L NA,bc_pdf,37
+Manganese,BC,Freshwater Life,NA,1,1,mean,NA,NA,3.8,mg/L,Approved,Maximum at Specified CaCO3 Hardness 300mg/L NA,bc_pdf,37
+Manganese,BC,Freshwater Life,NA,5,30,mean,NA,NA,0.7,mg/L,Approved,30-Day Mean at Specified CaCO3 Hardness 25mg/L NA,bc_pdf,38
+Manganese,BC,Freshwater Life,NA,5,30,mean,NA,NA,0.8,mg/L,Approved,31-Day Mean at Specified CaCO3 Hardness 50mg/L NA,bc_pdf,38
+Manganese,BC,Freshwater Life,NA,5,30,mean,NA,NA,1,mg/L,Approved,32-Day Mean at Specified CaCO3 Hardness 100mg/L NA,bc_pdf,38
+Manganese,BC,Freshwater Life,NA,5,30,mean,NA,NA,1.3,mg/L,Approved,33-Day Mean at Specified CaCO3 Hardness 150mg/L NA,bc_pdf,38
+Manganese,BC,Freshwater Life,NA,5,30,mean,NA,NA,1.9,mg/L,Approved,34-Day Mean at Specified CaCO3 Hardness 300mg/L NA,bc_pdf,38
+Mercury,BC,Drinking,NA,1,1,mean,NA,NA,1,ug/L,Approved,NA NA,bc_pdf,13
+Mercury,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.1,ug/L,Approved,NA NA,bc_pdf,13
+Mercury,BC,Freshwater Life,NA,5,30,mean,NA,NA,0.02,ug/L,Approved,NA NA,bc_pdf,13
+Mercury,BC,Marine Life,NA,1,1,mean,NA,NA,2,ug/L,Approved,NA NA,bc_pdf,13
+Mercury,BC,Marine Life,NA,5,30,mean,NA,NA,0.02,ug/L,Approved,NA NA,bc_pdf,13
+Mercury,BC,Wildlife,NA,1,1,mean,NA,NA,0.02,ug/L,Approved,% MeHg <= 0.5 NA,bc_pdf,13a
+Mercury,BC,Wildlife,NA,1,1,mean,NA,NA,0.01,ug/L,Approved,% MeHg <= 1 NA,bc_pdf,13a
+Mercury,BC,Wildlife,NA,1,1,mean,NA,NA,0.004,ug/L,Approved,% MeHg <= 2.5 NA,bc_pdf,13a
+Mercury,BC,Wildlife,NA,1,1,mean,NA,NA,0.002,ug/L,Approved,% MeHg <= 5 NA,bc_pdf,13a
+Mercury,BC,Livestock,NA,1,1,mean,NA,NA,3,ug/L,Approved,NA NA,bc_pdf,13
+Mercury,BC,Irrigation,NA,1,1,mean,NA,NA,2,ug/L,Approved,NA NA,bc_pdf,13
+Mercury,BC,Recreation,NA,1,1,mean,NA,NA,1,ug/L,Approved,NA NA,bc_pdf,13
+Molybdenum,BC,Drinking,NA,1,1,mean,NA,NA,0.25,mg/L,Approved,NA NA,bc_pdf,39
+Molybdenum,BC,Freshwater Life,NA,1,1,mean,NA,NA,2,mg/L,Approved,NA NA,bc_pdf,15
+Molybdenum,BC,Freshwater Life,NA,5,30,mean,NA,NA,1,mg/L,Approved,NA NA,bc_pdf,15
+Molybdenum,BC,Wildlife,NA,1,1,mean,NA,NA,0.05,mg/L,Approved,NA NA,bc_pdf,15
+Molybdenum,BC,Livestock,NA,1,1,mean,NA,NA,0.08,mg/L,Approved,consuming forages not irrigated or if no molybdenum containing fertilizers are applied to grow feed consumed by livestock NA,bc_pdf,15
+Molybdenum,BC,Livestock,NA,1,1,mean,NA,NA,0.05,mg/L,Approved,all other cases NA,bc_pdf,15
+Molybdenum,BC,Irrigation,NA,1,1,mean,NA,NA,0.05,mg/L,Approved,"Poorly Drained Soil
 - Cu:Mo ratio is less than
 2:1 in the irrigation water
 - (forage crops) NA",bc_pdf,15
-Molybdenum,BC,Irrigation,NA,5,30,mean,NA,NA,0.01,,Approved,"Poorly Drained Soil
+Molybdenum,BC,Irrigation,NA,5,30,mean,NA,NA,0.01,mg/L,Approved,"Poorly Drained Soil
 - Cu:Mo ratio is less than
 2:1 in the irrigation water
 - (forage crops) NA",bc_pdf,15
-Molybdenum,BC,Irrigation,NA,1,1,mean,NA,NA,0.05,,Approved,"- Poorly
+Molybdenum,BC,Irrigation,NA,1,1,mean,NA,NA,0.05,mg/L,Approved,"- Poorly
 Drained Soil
 - Cu:Mo ratio is greater than
 2:1 in the irrigation water
 - (forage crops) NA",bc_pdf,15
-Molybdenum,BC,Irrigation,NA,5,30,mean,NA,NA,0.02,,Approved,"- Poorly
+Molybdenum,BC,Irrigation,NA,5,30,mean,NA,NA,0.02,mg/L,Approved,"- Poorly
 Drained Soil
 - Cu:Mo ratio is greater than
 2:1 in the irrigation water
 - (forage crops) NA",bc_pdf,15
-Molybdenum,BC,Irrigation,NA,1,1,mean,NA,NA,0.05,,Approved,"- Well Drained Soil
+Molybdenum,BC,Irrigation,NA,1,1,mean,NA,NA,0.05,mg/L,Approved,"- Well Drained Soil
 (forage crops) NA",bc_pdf,15
-Molybdenum,BC,Irrigation,NA,5,30,mean,NA,NA,0.02,,Approved,"- Well Drained Soil
+Molybdenum,BC,Irrigation,NA,5,30,mean,NA,NA,0.02,mg/L,Approved,"- Well Drained Soil
 (forage crops) NA",bc_pdf,15
-Molybdenum,BC,Irrigation,NA,5,30,mean,NA,NA,0.03,,Approved,"- All Soils
+Molybdenum,BC,Irrigation,NA,5,30,mean,NA,NA,0.03,mg/L,Approved,"- All Soils
 (non-forage crops) NA",bc_pdf,15
-Nickel,BC,Freshwater Life,NA,1,1,mean,NA,NA,exp(0.76 * log(CaCO3) + 1.06),,NA,NA NA,https://www.ec.gc.ca/indicateurs-indicators/default.asp?lang=en&n=3786D3FD-1,NA
-Nickel,BC,Marine Life,NA,1,1,mean,NA,NA,75,,NA,one hour NA,NA,NA
-Nickel,BC,Marine Life,NA,1,1,mean,NA,NA,8.3,,NA,four days NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html,NA
-Nickel,BC,Livestock,NA,1,1,max,NA,NA,1000,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html,NA
-Nickel,BC,Irrigation,NA,1,1,max,NA,NA,200,,NA,continuous use on all soils NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html,NA
-Nickel,BC,Irrigation,NA,1,1,max,NA,NA,2000,,NA,20-year use on neutral to alkaline fine-textured soils NA,NA,NA
-Nitrate,BC,Drinking,NA,1,1,mean,NA,NA,10,,Approved,NA NA,bc_pdf,16
-Nitrite,BC,Drinking,NA,1,1,mean,NA,NA,1,,Approved,NA NA,bc_pdf,16
-Nitrate,BC,Freshwater Life,NA,1,1,max,NA,NA,200,,Approved,NA NA,bc_pdf,16
-Nitrite,BC,Freshwater Life,NA,1,1,max,NA,NA,0.06,,Approved,NA NA,bc_pdf,16
-Nitrate,BC,Freshwater Life,NA,1,1,mean,NA,NA,40,,Approved,NA NA,bc_pdf,16
-Nitrite,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.02,,Approved,NA NA,bc_pdf,16
-Nitrate,BC,Livestock,NA,1,1,mean,NA,NA,100,,Approved,NA NA,bc_pdf,16
-Nitrite,BC,Livestock,NA,1,1,mean,NA,NA,10,,Approved,NA NA,bc_pdf,16
-Nitrate,BC,Wildlife,NA,1,1,mean,NA,NA,100,,Approved,NA NA,bc_pdf,16
-Nitrite,BC,Wildlife,NA,1,1,mean,NA,NA,10,,Approved,NA NA,bc_pdf,16
-Nitrate,BC,Recreation,NA,1,1,mean,NA,NA,10,,Approved,NA NA,bc_pdf,16
-Nitrite,BC,Recreation,NA,1,1,mean,NA,NA,1,,Approved,NA NA,bc_pdf,16
-Selenium ,BC,Drinking,NA,1,1,mean,NA,NA,10,,Approved,NA NA,bc_pdf,40
-Selenium ,BC,Freshwater Life,NA,1,1,mean,NA,NA,2,,Approved,NA NA,bc_pdf,40
-Selenium ,BC,Marine Life,NA,1,1,mean,NA,NA,2,,Approved,NA NA,bc_pdf,40
-Selenium ,BC,Wildlife,NA,1,1,mean,NA,NA,4,,Approved,NA NA,bc_pdf,40
-Selenium ,BC,Irrigation,NA,1,1,mean,NA,NA,10,,Approved,NA NA,bc_pdf,40
-Selenium ,BC,Livestock,NA,1,1,mean,NA,NA,10,,Approved,NA NA,bc_pdf,40
-Silver,BC,Freshwater Life,NA,5,30,mean,NA,NA,0.05,,Approved,hardness less than or equal to 100 mg/L  NA,bc_pdf,29
-Silver,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.1,,Approved,hardness less than or equal to 100 mg/L  NA,bc_pdf,29
-Silver,BC,Freshwater Life,NA,5,30,mean,NA,NA,1.5,,Approved,hardness greater than 100 mg/L  NA,bc_pdf,29
-Silver,BC,Freshwater Life,NA,1,1,mean,NA,NA,3,,Approved,hardness greater than 100 mg/L  NA,bc_pdf,29
-Silver,BC,Freshwater Life,NA,5,30,mean,NA,NA,1.5,,Approved,open coast and estuaries NA,bc_pdf,29
-Sulfolane,BC,Freshwater Life,NA,1,1,mean,NA,NA,50,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,NA
-Sulfolane,BC,Irrigation,NA,1,1,mean,NA,NA,8.4,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,NA
-Sulfolane,BC,Livestock,NA,1,1,mean,NA,NA,14,,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,NA
-Sulphate,BC,Drinking,NA,1,1,mean,NA,NA,500,,Approved,NA NA,bc_pdf,36
-Sulphate,BC,Freshwater Life,NA,1,1,max,NA,NA,100,,Approved,NA,bc_pdf,36
-Sulphate,BC,Freshwater Life,NA,1,1,mean,NA,NA,50,,Approved,Described as alert level assumed to be mean value,bc_pdf,36
-pH,CA,Recreation,NA,1,1,mean,NA,NA,35,,NA,water / PCBs #126 ?,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
-Total Phosphorus,BC,Drinking,NA,1,1,mean,NA,NA,10,,Approved,NA NA,bc_pdf,3
-Total Phosphorus,BC,Aquatic Life,NA,1,1,mean,NA,5,10,,Approved,NA NA,bc_pdf,3
-Total Phosphorus,BC,Recreation,NA,1,1,mean,NA,NA,10,,Approved,NA NA,bc_pdf,3
-Toluene,BC,Drinking,NA,1,1,mean,NA,NA,0.024,,Approved,NA NA,bc_pdf,35
-Toluene,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.039,,Approved,NA NA,bc_pdf,35
-Toluene,BC,Marine Life,NA,1,1,mean,NA,NA,0.33,,Approved,NA NA,bc_pdf,35
-Toluene,BC,Livestock,NA,1,1,mean,NA,NA,0.024,,Approved,NA NA,bc_pdf,35
-Turbidity,CA,Recreation,NA,1,1,mean,NA,5,9,,NA,NA NA,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
-Zinc,BC,Drinking,NA,1,1,mean,NA,NA,5000,,Approved,NA NA,bc_pdf,30
-Zinc,BC,Recreation,NA,1,1,mean,NA,NA,5000,,Approved,NA NA,bc_pdf,30
-Zinc,BC,Marine Life,NA,1,1,mean,NA,NA,10,,Approved,NA NA,bc_pdf,33
-Zinc,BC,Livestock,NA,1,1,mean,NA,NA,2000,,Approved,NA NA,bc_pdf,33
-Zinc,BC,Irrigation,NA,1,1,mean,NA,NA,1000,,Approved,soil pH less than 6  NA,bc_pdf,33
-Zinc,BC,Irrigation,NA,1,1,mean,NA,NA,2000,,Approved,soil pH equal to or greater than 6 and less than 7  NA,bc_pdf,33
-Zinc,BC,Irrigation,NA,1,1,mean,NA,NA,5000,,Approved,soil pH greater than or equal to 7  NA,bc_pdf,33
-Zinc,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.75 * (CaCO3 - 90) + 33,,Approved,NA NA,bc_pdf,33
-Zinc,BC,Freshwater Life,NA,5,30,mean,NA,NA,0.75 * (CaCO3 - 90) + 7.5,,Approved,NA NA,bc_pdf,33
+Nickel,BC,Freshwater Life,NA,1,1,mean,NA,NA,exp(0.76 * log(CaCO3) + 1.06),ug/L,NA,NA NA,https://www.ec.gc.ca/indicateurs-indicators/default.asp?lang=en&n=3786D3FD-1,NA
+Nickel,BC,Marine Life,NA,1,1,mean,NA,NA,75,ug/L,NA,one hour NA,NA,NA
+Nickel,BC,Marine Life,NA,1,1,mean,NA,NA,8.3,ug/L,NA,four days NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html,NA
+Nickel,BC,Livestock,NA,1,1,max,NA,NA,1000,ug/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html,NA
+Nickel,BC,Irrigation,NA,1,1,max,NA,NA,200,ug/L,NA,continuous use on all soils NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/working.html,NA
+Nickel,BC,Irrigation,NA,1,1,max,NA,NA,2000,ug/L,NA,20-year use on neutral to alkaline fine-textured soils NA,NA,NA
+Nitrate,BC,Drinking,NA,1,1,mean,NA,NA,10,mg/L,Approved,NA NA,bc_pdf,16
+Nitrite,BC,Drinking,NA,1,1,mean,NA,NA,1,mg/L,Approved,NA NA,bc_pdf,16
+Nitrate,BC,Freshwater Life,NA,1,1,max,NA,NA,200,mg/L,Approved,NA NA,bc_pdf,16
+Nitrite,BC,Freshwater Life,NA,1,1,max,NA,NA,0.06,mg/L,Approved,NA NA,bc_pdf,16
+Nitrate,BC,Freshwater Life,NA,1,1,mean,NA,NA,40,mg/L,Approved,NA NA,bc_pdf,16
+Nitrite,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.02,mg/L,Approved,NA NA,bc_pdf,16
+Nitrate,BC,Livestock,NA,1,1,mean,NA,NA,100,mg/L,Approved,NA NA,bc_pdf,16
+Nitrite,BC,Livestock,NA,1,1,mean,NA,NA,10,mg/L,Approved,NA NA,bc_pdf,16
+Nitrate,BC,Wildlife,NA,1,1,mean,NA,NA,100,mg/L,Approved,NA NA,bc_pdf,16
+Nitrite,BC,Wildlife,NA,1,1,mean,NA,NA,10,mg/L,Approved,NA NA,bc_pdf,16
+Nitrate,BC,Recreation,NA,1,1,mean,NA,NA,10,mg/L,Approved,NA NA,bc_pdf,16
+Nitrite,BC,Recreation,NA,1,1,mean,NA,NA,1,mg/L,Approved,NA NA,bc_pdf,16
+Selenium ,BC,Drinking,NA,1,1,mean,NA,NA,10,ug/L,Approved,NA NA,bc_pdf,40
+Selenium ,BC,Freshwater Life,NA,1,1,mean,NA,NA,2,ug/L,Approved,NA NA,bc_pdf,40
+Selenium ,BC,Marine Life,NA,1,1,mean,NA,NA,2,ug/L,Approved,NA NA,bc_pdf,40
+Selenium ,BC,Wildlife,NA,1,1,mean,NA,NA,4,ug/L,Approved,NA NA,bc_pdf,40
+Selenium ,BC,Irrigation,NA,1,1,mean,NA,NA,10,ug/L,Approved,NA NA,bc_pdf,40
+Selenium ,BC,Livestock,NA,1,1,mean,NA,NA,10,ug/L,Approved,NA NA,bc_pdf,40
+Silver,BC,Freshwater Life,NA,5,30,mean,NA,NA,0.05,ug/L,Approved,hardness less than or equal to 100 mg/L  NA,bc_pdf,29
+Silver,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.1,ug/L,Approved,hardness less than or equal to 100 mg/L  NA,bc_pdf,29
+Silver,BC,Freshwater Life,NA,5,30,mean,NA,NA,1.5,ug/L,Approved,hardness greater than 100 mg/L  NA,bc_pdf,29
+Silver,BC,Freshwater Life,NA,1,1,mean,NA,NA,3,ug/L,Approved,hardness greater than 100 mg/L  NA,bc_pdf,29
+Silver,BC,Freshwater Life,NA,5,30,mean,NA,NA,1.5,ug/L,Approved,open coast and estuaries NA,bc_pdf,29
+Sulfolane,BC,Freshwater Life,NA,1,1,mean,NA,NA,50,mg/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,NA
+Sulfolane,BC,Irrigation,NA,1,1,mean,NA,NA,8.4,mg/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,NA
+Sulfolane,BC,Livestock,NA,1,1,mean,NA,NA,14,mg/L,NA,NA NA,http://www.env.gov.bc.ca/wat/wq/BCguidelines/sulfolane/sulfolane.htm,NA
+Sulphate,BC,Drinking,NA,1,1,mean,NA,NA,500,mg/L,Approved,NA NA,bc_pdf,36
+Sulphate,BC,Freshwater Life,NA,1,1,max,NA,NA,100,mg/L,Approved,NA,bc_pdf,36
+Sulphate,BC,Freshwater Life,NA,1,1,mean,NA,NA,50,mg/L,Approved,Described as alert level assumed to be mean value,bc_pdf,36
+pH,CA,Recreation,NA,1,1,mean,NA,NA,35,pH,NA,water / PCBs #126 ?,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
+Total Phosphorus,BC,Drinking,NA,1,1,mean,NA,NA,10,ug/L,Approved,NA NA,bc_pdf,3
+Total Phosphorus,BC,Aquatic Life,NA,1,1,mean,NA,5,10,ug/L,Approved,NA NA,bc_pdf,3
+Total Phosphorus,BC,Recreation,NA,1,1,mean,NA,NA,10,ug/L,Approved,NA NA,bc_pdf,3
+Toluene,BC,Drinking,NA,1,1,mean,NA,NA,0.024,mg/L,Approved,NA NA,bc_pdf,35
+Toluene,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.039,mg/L,Approved,NA NA,bc_pdf,35
+Toluene,BC,Marine Life,NA,1,1,mean,NA,NA,0.33,mg/L,Approved,NA NA,bc_pdf,35
+Toluene,BC,Livestock,NA,1,1,mean,NA,NA,0.024,mg/L,Approved,NA NA,bc_pdf,35
+Turbidity,CA,Recreation,NA,1,1,mean,NA,5,9,NTU,NA,NA NA,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
+Zinc,BC,Drinking,NA,1,1,mean,NA,NA,5000,ug/L,Approved,NA NA,bc_pdf,30
+Zinc,BC,Recreation,NA,1,1,mean,NA,NA,5000,ug/L,Approved,NA NA,bc_pdf,30
+Zinc,BC,Marine Life,NA,1,1,mean,NA,NA,10,ug/L,Approved,NA NA,bc_pdf,33
+Zinc,BC,Livestock,NA,1,1,mean,NA,NA,2000,ug/L,Approved,NA NA,bc_pdf,33
+Zinc,BC,Irrigation,NA,1,1,mean,NA,NA,1000,ug/L,Approved,soil pH less than 6  NA,bc_pdf,33
+Zinc,BC,Irrigation,NA,1,1,mean,NA,NA,2000,ug/L,Approved,soil pH equal to or greater than 6 and less than 7  NA,bc_pdf,33
+Zinc,BC,Irrigation,NA,1,1,mean,NA,NA,5000,ug/L,Approved,soil pH greater than or equal to 7  NA,bc_pdf,33
+Zinc,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.75 * (CaCO3 - 90) + 33,ug/L,Approved,NA NA,bc_pdf,33
+Zinc,BC,Freshwater Life,NA,5,30,mean,NA,NA,0.75 * (CaCO3 - 90) + 7.5,ug/L,Approved,NA NA,bc_pdf,33

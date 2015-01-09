@@ -44,6 +44,18 @@
 #' @source \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}
 "fraser"
 
+#' Water Quality Parameter codes and units
+#'
+#' @details Water Quality Parameter codes and units
+#'
+#' @format A data frame with 3 variables:
+#' \describe{
+#'   \item{Code}{unique short-hand code}
+#'   \item{Variable}{unique name of water quality parameter}
+#'   \item{Units}{units for parameter}
+#' }
+"codes"
+
 #' Water Quality Limits for British Columbia and Canada
 #'
 #' Both the Canadian federal government and the
@@ -56,7 +68,8 @@
 #' limits for turbidity are defined with respect to background
 #' levels and/or an upstream site.
 #' Where some interpretation of the information provided was required
-#' this is noted in the comments.
+#' this is noted in the comments. Units are as defined in the \code{\link{codes}}
+#' data frame.
 #'
 #' @format A data frame with 13 variables:
 #' \describe{
@@ -73,7 +86,7 @@
 #'   \item{Condition}{R logical expression to test required condition}
 #'   \item{LowerLimit}{R expression defining lower limit}
 #'   \item{UpperLimit}{R expression defining upper limit}
-#'   \item{Units}{units for guideline (permitted values: mg/L, ug/L, /dL, m, NTU or pH)}
+#'   \item{Units}{units for limit}
 #' }
 "limits"
 

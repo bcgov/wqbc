@@ -19,7 +19,7 @@
   \item{Condition}{R logical expression to test required condition}
   \item{LowerLimit}{R expression defining lower limit}
   \item{UpperLimit}{R expression defining upper limit}
-  \item{Units}{units for guideline (permitted values: mg/L, ug/L, /dL, m, NTU or pH)}
+  \item{Units}{units for limit}
 }}
 \usage{
 limits
@@ -35,7 +35,8 @@ or locations are not included. For example some of the
 limits for turbidity are defined with respect to background
 levels and/or an upstream site.
 Where some interpretation of the information provided was required
-this is noted in the comments.
+this is noted in the comments. Units are as defined in the \code{\link{codes}}
+data frame.
 }
 \keyword{datasets}
 
