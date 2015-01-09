@@ -5,13 +5,50 @@ punctuate_strings <- function (x, qualifier = "or") {
   paste(paste(x[-n], collapse = ", "), qualifier, x[n])
 }
 
-remove_columns_from_x_in_y <- function (x, y) {
+add_missing_columns <- function (x, columns, quiet = FALSE) {
+  assert_that(is.data.frame(x))
+  assert_that(is.list(columns))
+  assert_that(is.flag(quiet) && noNA(quiet))
 
-  colnames <- colnames(x)[colnames(x) %in% colnames(y)]
-  if(length(colnames) >= 1) {
-    message("Removed columns ", punctuate_strings(colnames, "and"), " from x")
+  for(column in names(columns)) {
+    if(!column %in% colnames(x)) {
+      if(!quiet) warning("adding missing column ", column, " to x")
+      x[[column]] <-  columns[[column]]
+    }
   }
-  x[,!colnames(x) %in% colnames(y), drop = FALSE]
+  x
+}
+
+delete_columns <- function (x, colnames, quiet = FALSE) {
+
+  colnames <- colnames(x)[colnames(x) %in% colnames]
+  if(length(colnames) >= 1) {
+    if(!quiet)
+      message("Removed columns ", punctuate_strings(colnames, "and"), " from x")
+  }
+  x <- x[, !colnames(x) %in% colnames, drop = FALSE]
+  x
+}
+
+delete_rows_with_missing_values <- function (x, columns, quiet = FALSE) {
+  check_columns(x, unlist(columns))
+
+  for(col in columns) {
+    bol <- is.na(x[[col[1]]])
+
+    if(length(col) > 1) {
+      for(i in 2:length(col))
+        bol <- bol & is.na(x[[col[i]]])
+    }
+    if(any(bol)) {
+      if(!quiet) {
+        message("filtered ", length(bol), " rows with missing values
+                from column(s) ", punctuate_strings(col, "and"), " in x")
+      }
+      x <- x[!bol, , drop = FALSE]
+    }
+  }
+  x
 }
 
 ## Assign and transform the coordinate system/projection to match the base BC map

@@ -41,7 +41,7 @@ categorize_wqi <- function (x) {
 
   labels <- c("Poor", "Marginal", "Fair", "Good", "Excellent")
   x <- cut(x, breaks = c(-1, 44, 64, 79, 94, 100),
-      labels = labels, ordered_result = TRUE)
+           labels = labels, ordered_result = TRUE)
   x <- factor(as.character(x), levels = rev(labels))
   x
 }
@@ -77,44 +77,24 @@ calc_wqi <- function (x) {
 #' @export
 calc_wqis <- function (x, by = NULL) {
   assert_that(is.data.frame(x))
+  assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
-  if(!all(c("Code", "Value", "UpperLimit") %in% colnames(x)))
-    stop("x must contain columns Code, Value and UpperLimit")
+  check_rows(x)
+  check_columns(x, c("Code", "Value", "UpperLimit"))
+  x <- add_missing_columns(x, list("LowerLimit" = NA_real_))
 
-  if(!"LowerLimit" %in% colnames(x)) {
-    warning("x does not contain column LowerLimit")
-    x$LowerLimit <- NA_real_
-  }
+  check_class_columns(x, list("Value" = "numeric",
+                              "LowerLimit" = "numeric",
+                              "UpperLimit" = "numeric"))
 
-  if(!is.numeric(x$Value)) stop("column Value must be numeric")
-  if(!is.numeric(x$LowerLimit)) stop("column LowerLimit must be numeric")
-  if(!is.numeric(x$UpperLimit)) stop("column UpperLimit must be numeric")
+  delete_rows_with_missing_values(x, list("Value", "Code",
+                                          c("LowerLimit", "UpperLimit")))
+  check_rows(x)
 
-  if(any(is.na(x$Value))) {
-    message("filtered ", length(is.na(x$Value)), " rows with missing values from x")
-    x <- dplyr::filter_(x, ~!is.na(Value))
-  }
-
-  if(any(is.na(x$Code))) {
-    message("filtered ", length(is.na(x$Code)), " rows with missing codes from x")
-    x <- dplyr::filter_(x, ~!is.na(Code))
-  }
-
-  if(any(is.na(x$LowerLimit) & is.na(x$UpperLimit))) {
-    message("filtered ", length(is.na(x$LowerLimit) & is.na(x$UpperLimit)), " rows without an upper or lower limit from x")
-    x <- dplyr::filter_(x, ~!(is.na(LowerLimit) & is.na(UpperLimit)))
-  }
+  check_by(by, x, res_names = c("Code", "Value", "LowerLimit", "UpperLimit"))
 
   if(is.null(by))
     return(calc_wqi(x))
-
-  assert_that(is.character(by))
-
-  if(!all(by %in% colnames(x)))
-    stop("x must contain columns ", punctuate_strings(by, "and"), " in by")
-  res_names <- c("Code", "Value", "UpperLimit", "LowerLimit")
-  if(any(by %in% res_names))
-     stop("by must not include ", punctuate_strings(res_names, "and"))
 
   plyr::ddply(x, .variables = by, .fun = calc_wqi)
 }
