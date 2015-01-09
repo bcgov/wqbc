@@ -1,30 +1,32 @@
-Code,Variable
-Al-D,Aluminium - Dissolved
-Al-T,Aluminum - Total
-NH4,Ammonia
-As,Arsenic
-Cd,Cadmium
-Cl,Chloride
-Clxx,Clarity
-Cu,Copper
-CN?,Cyanide
-DO,Dissolved Oxygen
-ECxx,E.coli
-Enxx,Enterococci
-Fxx,Fluoride
-Fe,Iron
-Pb,Lead
-Mn,Manganese
-Hg,Mercury
-Mo,Molybdenum
-Ni,Nickel
-NO3xx,Nitrate
-NO2xx,Nitrite
-pH,pH
-Se,Selenium
-Ag,Silver
-SO42xx,Sulphate
-TN,Total Nitrogen
-TP,Total Phosphorus
-TBxx,Turbidity
-Zn,Zinc
+Code,Variable,Units
+Al-D,Aluminium - Dissolved,mg/L
+Al-T,Aluminum - Total,mg/L
+NH4,Ammonia,mg/L
+As,Arsenic,ug/L
+Cd,Cadmium,ug/L
+Cl,Chloride,mg/L
+Clxx,Clarity,m
+Cu,Copper,ug/L
+CN?,Cyanide,ug/L
+DO,Dissolved Oxygen,mg/L
+ECxx,E.coli,/dL
+Enxx,Enterococci,/dL
+Fxx,Fluoride,mg/L
+Fe,Iron,mg/L
+Pb,Lead,ug/L
+Mn,Manganese,mg/L
+Hg,Mercury,ug/L
+Mo,Molybdenum,mg/L
+Ni,Nickel,ug/L
+NO3xx,Nitrate,mg/L
+NO2xx,Nitrite,mg/L
+pH,pH,pH
+Se,Selenium,ug/L
+Ag,Silver,ug/L
+SO42xx,Sulphate,mg/L
+TN,Total Nitrogen,mg/L
+TP,Total Phosphorus,ug/L
+TBxx,Turbidity,NTU
+Zn,Zinc,ug/L
+Toxx,Toluene,mg/L
+Suxx,Sulfolane,mg/L
