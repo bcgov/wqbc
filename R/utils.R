@@ -84,7 +84,12 @@ proj_bc <- function (data, x, y, input_proj = NULL) {
 #' geomean1(0:9)
 #' @export
 geomean1 <- function (x, na.rm = FALSE) {
-  assert_that(is.numeric(x))
-  assert_that(is.flag(na.rm))
-  expm1(mean(log1p(x), na.rm = na.rm))
+  assert_that(is.vector(x))
+  assert_that(is.flag(na.rm) && noNA(na.rm))
+  x <- as.numeric(x)
+
+  if(any(x < 0, na.rm = TRUE))
+    stop("x must not be negative")
+
+  expm1(mean(log1p(as.numeric(x)), na.rm = na.rm))
 }

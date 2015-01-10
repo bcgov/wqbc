@@ -10,8 +10,8 @@ get_variables(codes = NULL)
 \item{codes}{optional character vector of codes to get variables for}
 }
 \description{
-Returns a character vector of the water quality variables for which
-limits are currently defined in the wqbc package.
+Returns a character vector of the water quality variables
+recognised by the wqbc package.
 }
 \examples{
 get_variables()

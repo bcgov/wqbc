@@ -12,24 +12,21 @@ get_uses <- function () {
 
 #' Get Water Quality Variables
 #'
-#' Returns a character vector of the water quality variables for which
-#' limits are currently defined in the wqbc package.
+#' Returns a character vector of the water quality variables
+#' recognised by the wqbc package.
 #' @param codes optional character vector of codes to get variables for
 #' @examples
 #' get_variables()
 #' get_variables(c("Ag", "KR", "As", NA, "pH", "TP"))
-#'
 #' @export
 get_variables<- function (codes = NULL) {
-  if(is.null(codes)) return (levels(wqbc::limits$Variable))
+  if(is.null(codes)) return (levels(wqbc::codes$Variable))
 
-  assert_that(is.character(codes) || is.factor(codes))
+  assert_that(is.vector(codes))
   codes <- as.character(codes)
-  x <- data.frame(Code = codes)
-  y <- get_codes_variables()
-  x <- dplyr::left_join(x,y, by = "Code")
-  x$Variable <- as.character(x$Variable)
-  x$Variable
+
+  x <- dplyr::left_join(data.frame(Code = codes), wqbc::codes, by = "Code")
+  as.character(x$Variable)
 }
 
 #' Get Water Quality Codes
@@ -44,29 +41,13 @@ get_variables<- function (codes = NULL) {
 #'
 #' @export
 get_codes<- function (variables = NULL) {
-  if(is.null(variables)) return (levels(wqbc::limits$Code))
+  if(is.null(variables)) return (levels(wqbc::codes$Code))
 
-  assert_that(is.character(variables) || is.factor(variables))
+  assert_that(is.vector(variables))
   variables <- as.character(variables)
-  x <- data.frame(Variable = variables)
-  y <- get_codes_variables()
-  x <- dplyr::left_join(x,y, by = "Variable")
-  x$Code <- as.character(x$Code)
-  x$Code
-}
 
-#' Get Water Quality Code-Variable Lookup
-#'
-#' Returns a data.frame of the water quality code and variable
-#' look up table currently defined in the wqbc package.
-#' @examples
-#' get_codes_variables()
-#'
-#' @export
-get_codes_variables <- function () {
-  x <- dplyr::select_(wqbc::limits, ~Code, ~Variable)
-  x <- unique(x)
-  dplyr::arrange_(x, ~Code)
+  x <- dplyr::left_join(data.frame(Variable = variables), wqbc::codes, by = "Variable")
+  as.character(x$Code)
 }
 
 #' Get Category Colours
@@ -76,7 +57,6 @@ get_codes_variables <- function () {
 #' @seealso \code{\link{calc_wqis}}
 #' @examples
 #' get_category_colours()
-#'
 #' @export
 get_category_colours <- function () {
   c(Excellent = "green", Good = "blue", Fair = "yellow", Marginal = "brown", Poor = "red")
