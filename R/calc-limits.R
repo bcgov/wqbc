@@ -36,20 +36,20 @@ calc_limits <- function (x, by = NULL, use = "Freshwater Life") {
   if(!use %in% get_uses()) stop("use must be ", punctuate_strings(get_uses()))
 
   check_rows(x)
-  check_columns(x, c("Code", "Value", "Units"))
-  x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")))
-  check_class_columns(x, list("Code" = c("character", "factor"),
-                              "Value" = "numeric",
-                              "Units" = c("character", "factor"),
-                              "Date" = "Date"))
-
-  x$Units <- substitute_units(x$Units)
-  x <- delete_rows_with_missing_values(x, list("Code", "Value", "Units", "Date"))
-  x <- add_limits_use(x, use)
-  x <- delete_rows_with_missing_values(x, list("Value", "Units"))
-
-  # also need to check not in limits....
-  check_by(by, x, res_names = c("Code", "Value", "Units", "Date"))
+#   check_columns(x, c("Code", "Value", "Units"))
+#   x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")))
+#   check_class_columns(x, list("Code" = c("character", "factor"),
+#                               "Value" = "numeric",
+#                               "Units" = c("character", "factor"),
+#                               "Date" = "Date"))
+#
+#   x$Units <- substitute_units(x$Units)
+#   x <- delete_rows_with_missing_values(x, list("Code", "Value", "Units", "Date"))
+#   x <- add_limits_use(x, use)
+#   x <- delete_rows_with_missing_values(x, list("Value", "Units"))
+#
+#   # also need to check not in limits....
+#   check_by(by, x, res_names = c("Code", "Value", "Units", "Date"))
 
 #  x <- tidy_up_values (x)
   x

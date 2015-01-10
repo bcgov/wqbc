@@ -8,6 +8,7 @@
 \describe{
   \item{Code}{short-hand code}
   \item{Variable}{name of water quality parameter}
+  \item{Form}{form of parameter}
   \item{Jurisdiction}{regulatory jurisdiction in Canada (permitted values:
   BC or CA)}
   \item{Use}{intended use (permitted values: Drinking, Freshwater Life,

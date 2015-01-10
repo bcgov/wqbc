@@ -29,11 +29,11 @@
 #' by code, unimportant columns have been dropped and the remaining
 #' columns renamed.
 #'
-#' @format A data frame with 17,837 rows and 9 variables:
+#' @format A data frame with 9 variables:
 #' \describe{
 #'   \item{SiteID}{unique water quality station number}
 #'   \item{Date}{date of water quality sample}
-#'   \item{Code}{parameter code}
+#'   \item{Variable}{variable name}
 #'   \item{Value}{measured value}
 #'   \item{Units}{reading units}
 #'   \item{DetectionLimit}{minimum value of method}
@@ -75,6 +75,7 @@
 #' \describe{
 #'   \item{Code}{short-hand code}
 #'   \item{Variable}{name of water quality parameter}
+#'   \item{Form}{form of parameter}
 #'   \item{Jurisdiction}{regulatory jurisdiction in Canada (permitted values:
 #'   BC or CA)}
 #'   \item{Use}{intended use (permitted values: Drinking, Freshwater Life,

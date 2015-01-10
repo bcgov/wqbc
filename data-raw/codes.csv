@@ -1,33 +1,32 @@
-"Code","Variable","Units"
-"Ag","Silver","ug/L"
-"Al-D","Aluminium - Dissolved","mg/L"
-"Al-T","Aluminum - Total","mg/L"
-"As","Arsenic","ug/L"
-"CaCO3","Hardness","mg/L"
-"Cd","Cadmium","ug/L"
-"Cl","Chloride","mg/L"
-"Clxx","Clarity","m"
-"CN?","Cyanide","ug/L"
-"Cu","Copper","ug/L"
-"DO","Dissolved Oxygen","mg/L"
-"ECxx","E.coli","/dL"
-"Enxx","Enterococci","/dL"
-"Fe","Iron","mg/L"
-"Fxx","Fluoride","mg/L"
-"Hg","Mercury","ug/L"
-"Mn","Manganese","mg/L"
-"Mo","Molybdenum","mg/L"
-"NH4","Ammonia","mg/L"
-"Ni","Nickel","ug/L"
-"NO2xx","Nitrite","mg/L"
-"NO3xx","Nitrate","mg/L"
-"Pb","Lead","ug/L"
-"pH","pH","pH"
-"Se","Selenium","ug/L"
-"SO42xx","Sulphate","mg/L"
-"Suxx","Sulfolane","mg/L"
-"TBxx","Turbidity","NTU"
-"TN","Total Nitrogen","mg/L"
-"Toxx","Toluene","mg/L"
-"TP","Total Phosphorus","ug/L"
-"Zn","Zinc","ug/L"
+Code,Variable,Units
+Ag,Silver,ug/L
+Al,Aluminium,mg/L
+As,Arsenic,ug/L
+CaCO3,Hardness,mg/L
+Cd,Cadmium,ug/L
+Cl,Chloride,mg/L
+Clxx,Clarity,m
+CN?,Cyanide,ug/L
+Cu,Copper,ug/L
+DO,Dissolved Oxygen,mg/L
+ECxx,E.coli,CFU/100mL
+Enxx,Enterococci,CFU/100mL
+Fe,Iron,mg/L
+Fxx,Fluoride,mg/L
+Hg,Mercury,ug/L
+Mn,Manganese,mg/L
+Mo,Molybdenum,mg/L
+NH4,Ammonia,mg/L
+Ni,Nickel,ug/L
+NO2xx,Nitrite,mg/L
+NO3xx,Nitrate,mg/L
+Pb,Lead,ug/L
+pH,pH,pH
+Se,Selenium,ug/L
+SO42xx,Sulphate,mg/L
+Suxx,Sulfolane,mg/L
+TBxx,Turbidity,NTU
+TN,Total Nitrogen,mg/L
+Toxx,Toluene,mg/L
+TP,Total Phosphorus,ug/L
+Zn,Zinc,ug/L

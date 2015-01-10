@@ -32,7 +32,7 @@ check_limits <- function (x) {
   stopifnot(all(!is.na(x$Units)))
 
   stopifnot(identical(colnames(x),
-                      c("Variable", "Jurisdiction",
+                      c("Variable", "Form", "Jurisdiction",
                         "Use", "SubUse", "Samples", "Days", "Average",
                         "Condition", "LowerLimit", "UpperLimit", "Units",
                         "Status", "Comments", "URL", "TableNumber")))
@@ -51,8 +51,7 @@ check_limits <- function (x) {
   stopifnot(identical(sort(unique(x$Average)),
                       c("geomean1", "max", "mean", "median")))
 
-  stopifnot(identical(sort(unique(x$Units)),
-                      c("/dL", "m", "mg/L", "NTU", "pH", "ug/L")))
+  stopifnot(all(x$Units %in% get_units()))
 
   stopifnot(identical(sort(unique(x$Status)),
                       c("Approved")))
@@ -109,14 +108,15 @@ input_limits <- function (codes) {
       !is.na(Units) &
       Status == "Approved")
 
-  limits %<>% arrange(Code, Use, SubUse, Jurisdiction, Samples, Period)
+  limits %<>% arrange(Code, Form, Use, SubUse, Jurisdiction, Samples, Period)
 
-  limits %<>% select(Code, Variable, Jurisdiction, Use, SubUse,
+  limits %<>% select(Code, Variable, Form, Jurisdiction, Use, SubUse,
                      Samples, Period,
                      Average, Condition, LowerLimit, UpperLimit, Units)
 
   limits$Code %<>% factor
   limits$Variable %<>% factor
+  limits$Form %<>% factor
   limits$Jurisdiction %<>% droplevels
   limits$Average %<>% droplevels
   limits$Units %<>% droplevels

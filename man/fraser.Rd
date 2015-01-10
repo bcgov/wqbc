@@ -4,11 +4,11 @@
 \name{fraser}
 \alias{fraser}
 \title{Fraser River Basin Long-term Water Quality Monitoring 1979-Present}
-\format{A data frame with 17,837 rows and 9 variables:
+\format{A data frame with 9 variables:
 \describe{
   \item{SiteID}{unique water quality station number}
   \item{Date}{date of water quality sample}
-  \item{Code}{parameter code}
+  \item{Variable}{variable name}
   \item{Value}{measured value}
   \item{Units}{reading units}
   \item{DetectionLimit}{minimum value of method}

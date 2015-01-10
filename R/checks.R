@@ -1,7 +1,5 @@
 check_rows <- function (x) {
-  if(nrow(x) == 0)
-    stop("x must contain at least one row of data")
-  NULL
+  if(nrow(x) == 0) stop("x must contain at least one row of data")
 }
 
 check_columns <- function (x, colnames) {
@@ -11,13 +9,11 @@ check_columns <- function (x, colnames) {
   if("Code" %in% colnames) {
     if(!"Code" %in% colnames(x))
       stop("x must contain a Code column.
-Codes can be generated from variable names using
-         the get_codes() function.")
+Codes can be generated from variable names using the get_codes() function.")
     colnames <- colnames[colnames != "Code"]
   }
   if(!all(colnames %in% colnames(x)))
     stop("x must contain columns ", punctuate_strings(by, "and"), ".")
-  NULL
 }
 
 check_class_columns <- function (x, columns) {

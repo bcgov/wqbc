@@ -10,7 +10,7 @@
 get_units <- function () {
   c("ug/L", "mg/L", "g/L", "kg/L",
     "mm", "cm", "m", "km",
-    "/dL", "pH", "NTU")
+    "CFU/100mL", "pH", "NTU")
 }
 
 get_unit_multiplier <- function (x) {
