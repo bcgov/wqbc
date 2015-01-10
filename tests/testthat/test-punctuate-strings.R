@@ -1,4 +1,3 @@
-library(wqbc)
 context("punctuate-strings")
 
 test_that("punctuate_strings", {

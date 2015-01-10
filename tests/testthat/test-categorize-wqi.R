@@ -1,4 +1,3 @@
-library(wqbc)
 context("categorize-wqi")
 
 test_that("categorize_wqi ", {

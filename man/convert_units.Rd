@@ -4,7 +4,7 @@
 \alias{convert_units}
 \title{Convert Units}
 \usage{
-convert_units(x, from, to, messages = TRUE)
+convert_units(x, from, to)
 }
 \arguments{
 \item{x}{numeric vector of values to convert}
@@ -12,8 +12,6 @@ convert_units(x, from, to, messages = TRUE)
 \item{from}{character vector of original units}
 
 \item{to}{character vector new units}
-
-\item{messages}{flag indicating whether to print messages}
 }
 \value{
 numeric vector of values in new units

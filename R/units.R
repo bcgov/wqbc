@@ -46,15 +46,13 @@ get_unit_type <- function (x) {
 #' possible values
 #'
 #' @param x character vector of units to substitute
-#' @param messages flag indicating whether to provide messages
 #' @return character vector of substituted units where
 #' match or NA
 #' @examples
-#' substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "kg.l"), FALSE)
+#' substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l"))
 #' @export
-substitute_units <-function (x, messages = TRUE) {
+substitute_units <-function (x) {
   assert_that(is.character(x) || is.factor(x))
-  assert_that(is.flag(messages) && noNA(messages))
 
   x <- as.character(x)
   x <- tolower(x)
@@ -63,12 +61,10 @@ substitute_units <-function (x, messages = TRUE) {
 
   bol <- !is.na(x) & !x %in% tolower(units)
   if(any(bol)) {
-    if(messages) {
-
-      message("The following units are unrecognised and are replaced with a missing value: ",
-              punctuate_strings(unique(x[bol]), "and"))
-      message("To see possible units type get_units()")
-    }
+    warning("The following units are unrecognised and are replaced
+              with a missing value: ",
+            punctuate_strings(unique(x[bol]), "and"), ".
+              To see possible units type get_units()")
     is.na(x[bol]) <- TRUE
   }
   if(all(is.na(x)))
@@ -89,28 +85,24 @@ substitute_units <-function (x, messages = TRUE) {
 #' @param x numeric vector of values to convert
 #' @param from character vector of original units
 #' @param to character vector new units
-#' @param messages flag indicating whether to print messages
 #' @return numeric vector of values in new units
 #' @examples
 #' convert_units(1:10, from = "mg/L", to = "ug/L")
 #' @export
-convert_units <- function (x, from, to, messages = TRUE) {
+convert_units <- function (x, from, to) {
   assert_that(is.numeric(x))
   assert_that(is.character(from) || is.factor(from))
   assert_that(is.character(to) || is.factor(to))
-  assert_that(is.flag(messages) && noNA(messages))
 
-  from <- substitute_units(from, messages)
-  to <- substitute_units(to, messages)
+  from <- substitute_units(from)
+  to <- substitute_units(to)
 
   x <- x * get_unit_multiplier(from) / get_unit_multiplier(to)
 
   bol <- get_unit_type(from) != get_unit_type(to)
 
   if(any(bol, na.rm = TRUE)) {
-    if(messages) {
-      message(sum(bol, na.rm = TRUE), " values have inconvertible units")
-    }
+    warning(sum(bol, na.rm = TRUE), " values have inconvertible units")
     is.na(x[!is.na(bol) & bol]) <- TRUE
   }
   x

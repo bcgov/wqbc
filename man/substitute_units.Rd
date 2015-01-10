@@ -4,12 +4,10 @@
 \alias{substitute_units}
 \title{Substitute Units}
 \usage{
-substitute_units(x, messages = TRUE)
+substitute_units(x)
 }
 \arguments{
 \item{x}{character vector of units to substitute}
-
-\item{messages}{flag indicating whether to provide messages}
 }
 \value{
 character vector of substituted units where
@@ -20,6 +18,6 @@ Where possible substitute units with
 possible values
 }
 \examples{
-substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "kg.l"), FALSE)
+substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l"))
 }
 
