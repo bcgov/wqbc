@@ -1,7 +1,7 @@
 context("plot")
 
 test_that("plot_wqis", {
-  require(ggplot2)
+  require(ggplot2, quietly = TRUE)
 
   data(ccme)
   x <- plot_wqis(calc_wqis(ccme))
@@ -10,9 +10,9 @@ test_that("plot_wqis", {
 })
 
 test_that("plot_map", {
-  require(ggplot2)
-  require(sp)
-  require(rgdal)
+  require(ggplot2, quietly = TRUE)
+  require(sp, quietly = TRUE)
+  require(rgdal, quietly = TRUE)
 
   data(fraser)
   x <- plot_map(fraser)

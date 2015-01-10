@@ -42,19 +42,19 @@ Dissolved Oxygen,Dissolved,BC,Aquatic Life,NA,1,1,mean,NA,9,NA,mg/L,Approved,Bur
 Dissolved Oxygen,Dissolved,BC,Aquatic Life,NA,5,30,mean,NA,11,NA,mg/L,Approved,Buried embryo/alevin life stages -- water column NA,bc_pdf,18
 Dissolved Oxygen,Dissolved,BC,Aquatic Life,NA,1,1,mean,NA,6,NA,mg/L,Approved,Buried embryo/alevin life stages -- Interstitial water NA,bc_pdf,18
 Dissolved Oxygen,Dissolved,BC,Aquatic Life,NA,5,30,mean,NA,8,NA,mg/L,Approved,Buried embryo/alevin life stages -- Interstitial water NA,bc_pdf,18
-E.coli,,BC,Drinking,NA,1,1,geomean1,NA,1.2,NA,CFU/100mL,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-Enterococci,,BC,Drinking,NA,1,1,geomean1,NA,NA,0,CFU/100mL,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-E.coli,,BC,Livestock,NA,1,1,geomean1,NA,NA,0,CFU/100mL,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-Enterococci,,BC,Livestock,NA,1,1,geomean1,NA,NA,200,CFU/100mL,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-E.coli,,BC,Recreation,NA,1,1,geomean1,NA,NA,50,CFU/100mL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-Enterococci,,BC,Recreation,NA,1,1,geomean1,NA,NA,77,CFU/100mL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-E.coli,,BC,Freshwater Life,NA,1,1,median,NA,NA,20,CFU/100mL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-Enterococci,,BC,Freshwater Life,NA,1,1,median,NA,NA,14,CFU/100mL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-Enterococci,,BC,Marine Life,NA,1,1,median,NA,NA,4,CFU/100mL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
-E.coli,,CA,Recreation,NA,1,1,geomean1,NA,NA,4,CFU/100mL,NA,NA Assumed geometric mean,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
-E.coli,,CA,Recreation,NA,5,30,geomean1,NA,NA,400,CFU/100mL,NA,NA Assumed sampling period of 30 days,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
-Enterococci,,CA,Recreation,NA,1,1,geomean1,NA,NA,200,CFU/100mL,NA,NA Assumed geometric mean,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
-Enterococci,,CA,Recreation,NA,5,30,geomean1,NA,NA,70,CFU/100mL,NA,NA Assumed sampling period of 30 days,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
+E.coli,,BC,Drinking,NA,1,1,geomean1,NA,1.2,NA,/100mL,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+Enterococci,,BC,Drinking,NA,1,1,geomean1,NA,NA,0,/100mL,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+E.coli,,BC,Livestock,NA,1,1,geomean1,NA,NA,0,/100mL,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+Enterococci,,BC,Livestock,NA,1,1,geomean1,NA,NA,200,/100mL,NA,NA Assumed geometric mean,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+E.coli,,BC,Recreation,NA,1,1,geomean1,NA,NA,50,/100mL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+Enterococci,,BC,Recreation,NA,1,1,geomean1,NA,NA,77,/100mL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+E.coli,,BC,Freshwater Life,NA,1,1,median,NA,NA,20,/100mL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+Enterococci,,BC,Freshwater Life,NA,1,1,median,NA,NA,14,/100mL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+Enterococci,,BC,Marine Life,NA,1,1,median,NA,NA,4,/100mL,NA,NA Assumed sampling period of 1 day,http://www.env.gov.bc.ca/wat/wq/BCguidelines/microbiology/microbiology.html,NA
+E.coli,,CA,Recreation,NA,1,1,geomean1,NA,NA,4,/100mL,NA,NA Assumed geometric mean,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
+E.coli,,CA,Recreation,NA,5,30,geomean1,NA,NA,400,/100mL,NA,NA Assumed sampling period of 30 days,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
+Enterococci,,CA,Recreation,NA,1,1,geomean1,NA,NA,200,/100mL,NA,NA Assumed geometric mean,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
+Enterococci,,CA,Recreation,NA,5,30,geomean1,NA,NA,70,/100mL,NA,NA Assumed sampling period of 30 days,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
 Fluoride,,BC,Drinking,NA,1,1,mean,NA,NA,1.5,mg/L,Approved,NA,bc_pdf,20
 Fluoride,,BC,Drinking,NA,5,30,mean,NA,NA,1,mg/L,Approved,NA,bc_pdf,20
 Fluoride,,BC,Freshwater Life,NA,1,1,mean,NA,NA,0.2,mg/L,Approved,water hardness is less than 50 mg/L as CaCO3 NA,bc_pdf,20

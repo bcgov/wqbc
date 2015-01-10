@@ -9,8 +9,8 @@ Clxx,Clarity,m
 CN?,Cyanide,ug/L
 Cu,Copper,ug/L
 DO,Dissolved Oxygen,mg/L
-ECxx,E.coli,CFU/100mL
-Enxx,Enterococci,CFU/100mL
+ECxx,E.coli,/100mL
+Enxx,Enterococci,/100mL
 Fe,Iron,mg/L
 Fxx,Fluoride,mg/L
 Hg,Mercury,ug/L

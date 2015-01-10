@@ -11,7 +11,7 @@ test_that("get_units", {
 })
 
 test_that("get_unit_type", {
-  expect_equal(get_unit_type(c("mg/L", "ug/L", "/dL", "m", "pH", "NTU")),
+  expect_equal(get_unit_type(c("mg/L", "ug/L", "/100mL", "m", "pH", "NTU")),
                c("concentration", "concentration", "individuals", "length", "pH",
                  "turbidity"))
 })
