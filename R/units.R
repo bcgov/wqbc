@@ -40,43 +40,7 @@ get_unit_type <- function (x) {
   x
 }
 
-#' Substitute Units
-#'
-#' Where possible substitute units with
-#' possible values
-#'
-#' @param x character vector of units to substitute
-#' @return character vector of substituted units where
-#' match or NA
-#' @examples
-#' substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l"))
-#' @export
-substitute_units <-function (x) {
-  assert_that(is.character(x) || is.factor(x))
 
-  x <- as.character(x)
-  x <- tolower(x)
-  x <- gsub(" ", "", x)
-  units <- get_units()
-
-  bol <- !is.na(x) & !x %in% tolower(units)
-  if(any(bol)) {
-    warning("The following units are unrecognised and are replaced
-              with a missing value: ",
-            punctuate_strings(unique(x[bol]), "and"), ".
-              To see possible units type get_units()")
-    is.na(x[bol]) <- TRUE
-  }
-  if(all(is.na(x)))
-    return (x)
-
-  x <- data.frame(x = x)
-  units <- data.frame(x = tolower(units), units = units)
-
-  x <- dplyr::left_join(x, units, by = "x")
-  x <- as.character(x$units)
-  x
-}
 
 #' Convert Units
 #'

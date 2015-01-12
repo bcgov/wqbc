@@ -16,14 +16,6 @@ test_that("get_unit_type", {
                  "turbidity"))
 })
 
-test_that("get_unit_type", {
-  expect_equal(substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l")),
-               c("mg/L", "mg/L", "mg/L", "kg/L"))
-  expect_warning(x <- substitute_units("mg.L"))
-  expect_true(is.na(x))
-  expect_identical(substitute_units(c("MG /L", NA)), c("mg/L", NA))
-})
-
 test_that("convert_units", {
   expect_equal(convert_units(1, "mg/L", "mg/L"), 1)
   expect_equal(convert_units(10, "mg/L", "mg/L"), 10)
@@ -40,5 +32,5 @@ test_that("convert_units", {
   expect_warning(convert_units(c(0.1, 1, 10), "ug/L", c("mg/L", "ug/L")))
   expect_true(is.na(convert_units(NA_real_, "ug/L", "ug/L")))
   expect_equal(convert_units(c(1, NA), "ug/L", "mg/L"), c(10^-3, NA))
-  expect_warning(convert_units(c(0.1, 1, 10), "ug/L", "xx"))
+#  expect_warning(convert_units(c(0.1, 1, 10), "ug/L", "xx"))
 })

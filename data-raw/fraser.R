@@ -12,8 +12,8 @@ fraser %<>% select(
   Units = unit_code,
   DetectionLimit = method_detect_limit,
   Site = station_name,
-  Latitude = latitude,
-  Longitude = longitude
+  Lat = latitude,
+  Long = longitude
 )
 
 is.na(fraser$Value[fraser$Value == -999.999]) <- TRUE
@@ -33,7 +33,7 @@ fraser %<>% filter(Variable %in% c("ALUMINUN DISSOLVED", "ALUMINUM TOTAL",
                                    "HARDNESS TOTAL CACO3"))
 
 # check for and flip sign of positive longitude values
-fraser$Longitude <- ifelse(fraser$Longitude > 0, fraser$Longitude * -1, fraser$Longitude)
+fraser$Long <- ifelse(fraser$Long > 0, fraser$Long * -1, fraser$Long)
 
 fraser$SiteID %<>% droplevels
 fraser$Variable %<>% droplevels

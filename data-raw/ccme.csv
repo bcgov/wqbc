@@ -1,4 +1,4 @@
-Date,DO,pH,TP,TN,FC,As,Pb,Hg,"2,4-D",Lindane
+"Date","Dissolved Oxygen", "pH","Total Phosphorus","Total Nitrogen","Fecal Coliforms","Arsenic", "Lead", "Mercury", "2,4-D", "Lindane"
 1997-01-07,11.4,8,0.006,0.16,4,0.0002,0.0004,L0.05,L0.005,L0.005
 1997-02-04,11,7.9,0.005,0.17,L4,L0.0002,0.0094,L0.05,NA,NA
 1994-03-04,11.5,7.9,0.006,0.132,4,L0.0002,L0.0003,L0.05,NA,NA

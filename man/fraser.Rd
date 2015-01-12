@@ -13,8 +13,8 @@
   \item{Units}{reading units}
   \item{DetectionLimit}{minimum value of method}
   \item{Site}{full station name}
-  \item{Latitude}{latitude in decimal degrees}
-  \item{Longitude}{longitude in decimal degrees}
+  \item{Lat}{latitude in decimal degrees}
+  \item{Long}{longitude in decimal degrees}
 }}
 \source{
 \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}

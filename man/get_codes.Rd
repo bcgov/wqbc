@@ -4,10 +4,13 @@
 \alias{get_codes}
 \title{Get Water Quality Codes}
 \usage{
-get_codes(variables = NULL)
+get_codes(variables = NULL, add_na = TRUE)
 }
 \arguments{
 \item{variables}{optional character vector of variables to get codes for}
+
+\item{add_na}{flag indicating whether to replace variables without codes
+with NAs}
 }
 \description{
 Returns a character vector of the water quality codes for which
@@ -15,6 +18,8 @@ limits are currently defined in the wqbc package.
 }
 \examples{
 get_codes()
-get_codes(c("Silver", "Kryptonite", "Arsenic", NA, "pH", "Total Phosphorus"))
+variables <- c("Silver", "Kryptonite", "Arsenic", NA, "pH", "Total Phosphorus")
+get_codes(variables)
+get_codes(variables, add_na = FALSE)
 }
 

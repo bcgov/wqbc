@@ -1,7 +1,7 @@
 # percent of failed variables
 F1 <- function (x) {
-  nfv <- length(unique(x$Code[x$Failed]))
-  nv <- length(unique(x$Code))
+  nfv <- length(unique(x$Variable[x$Failed]))
+  nv <- length(unique(x$Variable))
   nfv / nv * 100
 }
 
@@ -58,7 +58,7 @@ calc_wqi <- function (x) {
   WQI <- 100 - sqrt(F1^2 + F2^2 + F3^2) / 1.732
   Category <- categorize_wqi(WQI)
   data.frame(WQI = round(WQI), Category = Category,
-             Variables = length(unique(x$Code)), Tests = nrow(x),
+             Variables = length(unique(x$Variable)), Tests = nrow(x),
              F1 = signif(F1, 3), F2 = signif(F2, 3), F3 = signif(F3, 3))
 }
 
@@ -66,7 +66,7 @@ calc_wqi <- function (x) {
 #'
 #' Calculates WQIs for x.
 #'
-#' @param x data.frame with Code, Value, UpperLimit and if defined
+#' @param x data.frame with Variable, Value, UpperLimit and if defined
 #' LowerLimit columns
 #' @param by character vector of columns to calculate WQIs by.
 #' @examples
@@ -80,18 +80,18 @@ calc_wqis <- function (x, by = NULL) {
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
   check_rows(x)
-  check_columns(x, c("Code", "Value", "UpperLimit"))
+  check_columns(x, c("Variable", "Value", "UpperLimit"))
   x <- add_missing_columns(x, list("LowerLimit" = NA_real_))
 
   check_class_columns(x, list("Value" = "numeric",
                               "LowerLimit" = "numeric",
                               "UpperLimit" = "numeric"))
 
-  x <- delete_rows_with_missing_values(x, list("Value", "Code",
+  x <- delete_rows_with_missing_values(x, list("Value", "Variable",
                                           c("LowerLimit", "UpperLimit")))
   check_rows(x)
 
-  check_by(by, x, res_names = c("Code", "Value", "LowerLimit", "UpperLimit"))
+  check_by(by, x, res_names = c("Variable", "Value", "LowerLimit", "UpperLimit"))
 
   if(is.null(by))
     return(calc_wqi(x))

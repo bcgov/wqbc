@@ -6,7 +6,7 @@
 \title{CCME Water Quality Index User's Manual Example Data}
 \format{A data frame with 103 rows and 6 variables:
 \describe{
-  \item{Code}{parameter code}
+  \item{Variable}{parameter variable name}
   \item{Date}{date of reading}
   \item{Value}{value of reading}
   \item{DetectionLimit}{detection limit of method}
@@ -19,6 +19,32 @@ ccme
 \description{
 A tidy data.frame of the CCME Water Quality Index 1.0 User's Manual
 example dataset.
+}
+\examples{
+library(tidyr)
+
+data(ccme)
+ccme$Code <- get_codes(ccme$Variable, add_na = FALSE)
+ccme$Code[ccme$Code == "Fecal Coliforms"] <- "FC"
+ccme$Code <- factor(ccme$Code, levels = unique(ccme$Code))
+tidyr::spread(dplyr::select(ccme, Code, Value, Date), "Code", "Value")
+
+library(ggplot2)
+
+wqis <- calc_wqis(ccme)
+plot_wqis(wqis)
+
+wqis <- calc_wqis(ccme, by = "Date")
+plot_wqis(wqis)
+plot_wqis(wqis, x = "Date")
+
+library(lubridate)
+
+wqis$Year <- year(wqis$Date)
+wqis$Dayte <- wqis$Date
+year(wqis$Dayte) <- 2000
+plot_wqis(wqis, x = "Dayte", size = "Tests") +
+facet_wrap(~Year) + xlab("Day of the Year") + theme_bw()
 }
 \keyword{datasets}
 

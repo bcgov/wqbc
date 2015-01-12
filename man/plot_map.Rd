@@ -4,8 +4,8 @@
 \alias{plot_map}
 \title{Plot Map}
 \usage{
-plot_map(data, x = "Longitude", y = "Latitude", colour = NULL,
-  shape = NULL, size = 2, drop = TRUE, input_proj = NULL)
+plot_map(data, x = "Long", y = "Lat", colour = NULL, shape = NULL,
+  size = 2, drop = TRUE, input_proj = NULL)
 }
 \arguments{
 \item{data}{data.frame to plot}
@@ -47,7 +47,7 @@ library(lubridate)
 
 data(fraser)
 fraser$Year <- year(fraser$Date)
-fraser <- unique(fraser[c("Longitude","Latitude","Year")])
+fraser <- unique(fraser[c("Long","Lat","Year")])
 fraser <- fraser[fraser$Year <= 1990,]
 plot_map(fraser, drop = FALSE) + facet_wrap(~Year)
 }

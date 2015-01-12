@@ -84,12 +84,12 @@ plot_wqis <- function (data, x = "Tests", size = NULL, shape = NULL) {
 #'
 #' data(fraser)
 #' fraser$Year <- year(fraser$Date)
-#' fraser <- unique(fraser[c("Longitude","Latitude","Year")])
+#' fraser <- unique(fraser[c("Long","Lat","Year")])
 #' fraser <- fraser[fraser$Year <= 1990,]
 #' plot_map(fraser, drop = FALSE) + facet_wrap(~Year)
 #'
 #' @export
-plot_map <- function (data,  x = "Longitude", y = "Latitude", colour = NULL,
+plot_map <- function (data,  x = "Long", y = "Lat", colour = NULL,
                       shape = NULL, size = 2, drop = TRUE, input_proj = NULL) {
   assert_that(is.data.frame(data))
   assert_that(is.string(x))
@@ -116,7 +116,7 @@ plot_map <- function (data,  x = "Longitude", y = "Latitude", colour = NULL,
   ggplot2::ggplot(data, ggplot2::aes_string(x = x, y = y)) +
     ggplot2::geom_polygon(
       data = wqbc::map,
-      ggplot2::aes_string(x = "Longitude", y = "Latitude", group = "Group"),
+      ggplot2::aes_string(x = "Long", y = "Lat", group = "Group"),
       fill = "grey80", size = 0.5, colour = "grey50"
     ) +
     ggplot2::coord_fixed() +

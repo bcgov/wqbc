@@ -7,7 +7,7 @@
 calc_wqis(x, by = NULL)
 }
 \arguments{
-\item{x}{data.frame with Code, Value, UpperLimit and if defined
+\item{x}{data.frame with Variable, Value, UpperLimit and if defined
 LowerLimit columns}
 
 \item{by}{character vector of columns to calculate WQIs by.}

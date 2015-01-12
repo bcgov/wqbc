@@ -6,8 +6,8 @@
 \title{Borders of British Columbia}
 \format{A data frame with 4,920 rows and 3 variables:
 \describe{
-  \item{Longitude}{longitude}
-  \item{Latitude}{latitude}
+  \item{Long}{longitude}
+  \item{Lat}{latitude}
   \item{Group}{grouping variable for plotting to ensure discrete polygons}
 }}
 \usage{

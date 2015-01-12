@@ -9,9 +9,10 @@ test_that("get_variables", {
 
 test_that("get_codes", {
   expect_is(get_codes(), "character")
-  expect_identical(get_codes(c("Silver", "Kryptonite", "Arsenic", NA, "pH",
-                               "Total Phosphorus")),
-                   c("Ag", NA, "As", NA, "pH", "TP"))
+
+  variables <- c("Silver", "Kryptonite", "Arsenic", NA, "pH", "Total Phosphorus")
+  expect_identical(get_codes(variables), c("Ag", NA, "As", NA, "pH", "TP"))
+  expect_identical(get_codes(variables, add_na = FALSE), c("Ag", "Kryptonite", "As", NA, "pH", "TP"))
 })
 
 test_that("get_category_colours", {
