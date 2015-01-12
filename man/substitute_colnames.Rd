@@ -16,7 +16,7 @@ character vector of substituted or original names
 }
 \description{
 Where possible substitute column names
-with recognised names
+with recognised column names
 }
 \examples{
 substitute_colnames(c("dates", "variables", "latitude", "longitude"))
