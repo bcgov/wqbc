@@ -139,15 +139,17 @@ calc_wqis <- function (x, by = NULL) {
   check_columns(x, c("Variable", "Value", "UpperLimit"))
   x <- add_missing_columns(x, list("LowerLimit" = NA_real_))
 
+  check_by(by, colnames(x), res_names = c("Variable", "Value", "LowerLimit", "UpperLimit"))
+
   check_class_columns(x, list("Value" = "numeric",
                               "LowerLimit" = "numeric",
                               "UpperLimit" = "numeric"))
 
+  x$Value <- replace_negative_values_with_na(x$Value)
+
   x <- delete_rows_with_missing_values(x, list("Value", "Variable",
                                                c("LowerLimit", "UpperLimit")))
   check_rows(x)
-
-  check_by(by, x, res_names = c("Variable", "Value", "LowerLimit", "UpperLimit"))
 
   if(is.null(by))
     return(calc_wqi(x))

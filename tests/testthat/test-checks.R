@@ -18,4 +18,10 @@ test_that("check_class_columns", {
   expect_error(check_class_columns(ccme, list(Date = "factor")))
   expect_true(check_class_columns(ccme, list(Variable = c("character", "factor"))))
 })
-check_class_columns
+
+test_that("check_by", {
+  expect_true(check_by(NULL, "x", "y"))
+  expect_true(check_by("x", "x", "y"))
+  expect_error(check_by("y", "x", "y"))
+  expect_error(check_by("z", "x", "y"))
+})

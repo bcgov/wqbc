@@ -23,16 +23,14 @@ check_class_columns <- function (x, columns) {
   TRUE
 }
 
-check_by <- function (by, x, res_names) {
+check_by <- function (by, colnames, res_names) {
   if(is.null(by))
-    return (NULL)
+    return (TRUE)
 
-  if(!all(by %in% colnames(x)))
+  if(!all(by %in% colnames))
     stop("x must contain columns ", punctuate_strings(by, "and"), " in by")
 
   if(any(by %in% res_names))
     stop("by must not include ", punctuate_strings(res_names, "and"))
-
-  NULL
+  TRUE
 }
-

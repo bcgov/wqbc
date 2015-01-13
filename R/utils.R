@@ -42,11 +42,20 @@ delete_rows_with_missing_values <- function (x, columns, messages = TRUE) {
     }
     if(any(bol)) {
       if(messages) {
-        message("filtered ", length(bol), " rows with missing values
+        message("deleting ", length(bol), " rows with missing values
                 from column(s) ", punctuate_strings(col, "and"), " in x")
       }
       x <- x[!bol, , drop = FALSE]
     }
+  }
+  x
+}
+
+replace_negative_values_with_na <- function (x, messages = TRUE) {
+  bol <- !is.na(x) & x < 0
+  if(any(bol)) {
+    if(messages) message("replacing ", sum(bol), "negative values with missing values")
+    is.na(x[bol]) <- TRUE
   }
   x
 }

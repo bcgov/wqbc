@@ -14,6 +14,11 @@ add_limits_use <- function (x, use) {
   x
 }
 
+calc_limit <- function (x) {
+  #convert_units..
+  x <- x[,c("Variable", "Date", "Value", "Units"),]
+}
+
 #' Calculates Water Quality limits
 #'
 #' Calculates the approved lower and upper water quality thresholds for
@@ -34,6 +39,11 @@ calc_limits <- function (x, by = NULL) {
   check_rows(x)
   check_columns(x, c("Variable", "Value", "Units"))
   x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")))
+
+  check_by(by, colnames(x), res_names = unique(
+    c("Variable", "Value", "Units", "Date"),
+    colnames(wqbc::limits), colnames(wqbc::codes)))
+
   check_class_columns(x, list("Variable" = c("character", "factor"),
                               "Value" = "numeric",
                               "Units" = c("character", "factor"),
@@ -43,18 +53,13 @@ calc_limits <- function (x, by = NULL) {
   x$Units <- substitute_units(x$Units, messages = TRUE)
   is.na(x$Variable[!x$Variable %in% get_variables()]) <- TRUE
   is.na(x$Units[!x$Units %in% get_units()]) <- TRUE
+  x$Value <- replace_negative_values_with_na(x$Value)
 
-  x <- delete_rows_with_missing_values(x, list("Variable", "Value", "Units", "Date"))
-  #check_rows(x)
-  #
-  #   check_by(by, x, res_names = c("Variable", "Value", "Units", "Date"))
+#  x <- delete_rows_with_missing_values(x, list("Variable", "Value", "Units", "Date"))
+ # check_rows(x)
 
-  #   x <- add_limits_use(x, use)
-  #   x <- delete_rows_with_missing_values(x, list("Value", "Units"))
-  #
-  #   # also need to check not in limits....
-  #   check_by(by, x, res_names = c("Code", "Value", "Units", "Date"))
+  if(is.null(by))
+    return(calc_limit(x))
 
-  #  x <- tidy_up_values (x)
-  x
+  plyr::ddply(x, .variables = by, .fun = calc_limit)
 }
