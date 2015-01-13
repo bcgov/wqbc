@@ -8,8 +8,7 @@
 #' @param x string of column in data to plot on x axis
 #' @param size string of column in data to plot size of points
 #' @param shape string of column in data to plot shape of points
-#' @param palette string indicating palette to use. Possible values are
-#' "default" and "classic"
+#' @inheritParams get_category_colours
 #' @return ggplot2 object
 #' @examples
 #' library(ggplot2)
