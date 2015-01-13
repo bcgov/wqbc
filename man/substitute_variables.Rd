@@ -19,6 +19,8 @@ Where possible substitute variable names
 with recognised variable names
 }
 \examples{
-substitute_variables(c("aluminum", "totalNitrogen"))
+substitute_variables(c("ALUMINIUM SOMETHING", "FLUORIDE DISSOLVED",
+"FLUORIDE", "NITROGEN DISSOLVED NITRATE", "PHOSPHORUS - TOTAL",
+"KRYPTONITE", "OXYGEN", "OXYGEN DISSOLVED"))
 }
 

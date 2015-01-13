@@ -1,3 +1,4 @@
+library(wqbc)
 library(devtools)
 library(dplyr)
 library(magrittr)
@@ -19,18 +20,10 @@ fraser %<>% select(
 is.na(fraser$Value[fraser$Value == -999.999]) <- TRUE
 fraser$Date %<>% as.Date
 
-fraser %<>% filter(Units %in% c("UG/L", "MG/L", "CFU/100ML", "PH UNITS", "NTU"))
+fraser %<>% filter(substitute_units(Units) %in% get_units())
+fraser %<>% filter(substitute_variables(Variable) %in% get_variables())
 
 print(sort(unique(fraser$Variable)))
-
-fraser %<>% filter(Variable %in% c("ALUMINUN DISSOLVED", "ALUMINUM TOTAL",
-                                   "ARSENIC TOTAL", "LEAD TOTAL",
-                                   "HARDNESS TOTAL CACO3", "PH",
-                                   "OXYGEN DISSOLVED", "NITROGEN TOTAL",
-                                   "ESCHERICHIA COLI",
-                                   "ENTEROCOCUS",
-                                   "HARDNESS TOTAL (CALCD.) CACO3",
-                                   "HARDNESS TOTAL CACO3"))
 
 # check for and flip sign of positive longitude values
 fraser$Long <- ifelse(fraser$Long > 0, fraser$Long * -1, fraser$Long)

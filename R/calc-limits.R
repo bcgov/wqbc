@@ -44,7 +44,7 @@ calc_limits <- function (x, by = NULL) {
     c("Variable", "Value", "Units", "Date"),
     colnames(wqbc::limits), colnames(wqbc::codes)))
 
-  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "Units", "Date", by)])
+  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "Units", "Date", by)], messages = FALSE)
 
   check_class_columns(x, list("Variable" = c("character", "factor"),
                               "Value" = "numeric",
