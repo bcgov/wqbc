@@ -52,10 +52,20 @@ get_codes<- function (variables = NULL, add_na = TRUE) {
 #'
 #' Returns a named vector of the category colours to use when
 #' plotting water quality index values.
+#' @param palette string indicating palette to use. Possible values are
+#' "default" and "classic"
+#' @return named character vector of colours for water quality index categories
 #' @seealso \code{\link{calc_wqis}}
 #' @examples
 #' get_category_colours()
 #' @export
-get_category_colours <- function () {
-  c(Excellent = "green", Good = "blue", Fair = "yellow", Marginal = "brown", Poor = "red")
+get_category_colours <- function (palette = "default") {
+  assert_that(is.string(palette))
+  if(!palette %in% c("default", "classic"))
+    stop("palette must be default or classic")
+  if(palette == "classic") {
+    return (c(Excellent = "green", Good = "blue", Fair = "yellow", Marginal = "brown", Poor = "red"))
+  }
+  # stephanie to add default palette here
+  return (c(Excellent = "green", Good = "blue", Fair = "yellow", Marginal = "brown", Poor = "red"))
 }

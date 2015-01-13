@@ -20,17 +20,19 @@ add_missing_columns <- function (x, columns, messages = TRUE) {
 }
 
 delete_columns <- function (x, colnames, messages = TRUE) {
-
   colnames <- colnames(x)[colnames(x) %in% colnames]
   if(length(colnames) >= 1) {
     if(messages)
-      message("Removed columns ", punctuate_strings(colnames, "and"), " from x")
+      message("deleting columns ", punctuate_strings(colnames, "and"), " from x")
   }
   x <- x[, !colnames(x) %in% colnames, drop = FALSE]
   x
 }
 
 delete_rows_with_missing_values <- function (x, columns, messages = TRUE) {
+  if(missing(columns))
+    columns <- as.list(colnames(x))
+
   check_columns(x, unlist(columns))
 
   for(col in columns) {

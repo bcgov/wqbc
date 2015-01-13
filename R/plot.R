@@ -8,6 +8,8 @@
 #' @param x string of column in data to plot on x axis
 #' @param size string of column in data to plot size of points
 #' @param shape string of column in data to plot shape of points
+#' @param palette string indicating palette to use. Possible values are
+#' "default" and "classic"
 #' @return ggplot2 object
 #' @examples
 #' library(ggplot2)
@@ -32,7 +34,7 @@
 #' plot_wqis(test, x = "WQI") + xlab("Water Quality Index")
 #'
 #' @export
-plot_wqis <- function (data, x = "Tests", size = NULL, shape = NULL) {
+plot_wqis <- function (data, x = "Tests", size = NULL, shape = NULL, palette = "default") {
   assert_that(is.data.frame(data))
   assert_that(is.string(x))
   assert_that(is.null(size) || is.string(size))
@@ -50,7 +52,7 @@ plot_wqis <- function (data, x = "Tests", size = NULL, shape = NULL) {
   ggplot2:: ggplot(data = data, ggplot2::aes_string(x = x, y = "WQI")) +
     ggplot2::geom_point(ggplot2::aes_string(colour = "Category", size = size, shape = shape)) +
     ggplot2::expand_limits(y = c(0, 100)) +
-    ggplot2::scale_colour_manual(values = get_category_colours()) +
+    ggplot2::scale_colour_manual(values = get_category_colours(palette = palette)) +
     ggplot2::ylab("Water Quality Index")
 }
 

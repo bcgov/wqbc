@@ -4,7 +4,8 @@
 \alias{plot_wqis}
 \title{Plot Water Quality Indices}
 \usage{
-plot_wqis(data, x = "Tests", size = NULL, shape = NULL)
+plot_wqis(data, x = "Tests", size = NULL, shape = NULL,
+  palette = "default")
 }
 \arguments{
 \item{data}{data.frame to plot}
@@ -14,6 +15,9 @@ plot_wqis(data, x = "Tests", size = NULL, shape = NULL)
 \item{size}{string of column in data to plot size of points}
 
 \item{shape}{string of column in data to plot shape of points}
+
+\item{palette}{string indicating palette to use. Possible values are
+"default" and "classic"}
 }
 \value{
 ggplot2 object

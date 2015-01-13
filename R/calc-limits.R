@@ -44,6 +44,8 @@ calc_limits <- function (x, by = NULL) {
     c("Variable", "Value", "Units", "Date"),
     colnames(wqbc::limits), colnames(wqbc::codes)))
 
+  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "Units", "Date", by)])
+
   check_class_columns(x, list("Variable" = c("character", "factor"),
                               "Value" = "numeric",
                               "Units" = c("character", "factor"),
@@ -55,7 +57,7 @@ calc_limits <- function (x, by = NULL) {
   is.na(x$Units[!x$Units %in% get_units()]) <- TRUE
   x$Value <- replace_negative_values_with_na(x$Value)
 
-#  x <- delete_rows_with_missing_values(x, list("Variable", "Value", "Units", "Date"))
+  x <- delete_rows_with_missing_values(x)
  # check_rows(x)
 
   if(is.null(by))

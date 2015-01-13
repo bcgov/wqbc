@@ -141,6 +141,8 @@ calc_wqis <- function (x, by = NULL) {
 
   check_by(by, colnames(x), res_names = c("Variable", "Value", "LowerLimit", "UpperLimit"))
 
+  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "LowerLimit", "UpperLimit", by)])
+
   check_class_columns(x, list("Value" = "numeric",
                               "LowerLimit" = "numeric",
                               "UpperLimit" = "numeric"))

@@ -4,7 +4,14 @@
 \alias{get_category_colours}
 \title{Get Category Colours}
 \usage{
-get_category_colours()
+get_category_colours(palette = "default")
+}
+\arguments{
+\item{palette}{string indicating palette to use. Possible values are
+"default" and "classic"}
+}
+\value{
+named character vector of colours for water quality index categories
 }
 \description{
 Returns a named vector of the category colours to use when
