@@ -1,8 +1,8 @@
 context("units")
 
 test_that("get_unit_multiplier", {
-  expect_equal(get_unit_multiplier(c("mg/L", "kg/L", "g/L", NA, "m")),
-               c(10^-3, 10^3, 1, NA, 1))
+  expect_equal(get_unit_multiplier(c("mg/L", "kg/L", "g/L", NA)),
+               c(10^-3, 10^3, 1, NA))
 
 })
 
@@ -11,9 +11,8 @@ test_that("get_units", {
 })
 
 test_that("get_unit_type", {
-  expect_equal(get_unit_type(c("mg/L", "ug/L", "/100mL", "m", "pH", "NTU")),
-               c("concentration", "concentration", "individuals", "length", "pH",
-                 "turbidity"))
+  expect_equal(get_unit_type(c("mg/L", "ug/L", "pH")),
+               c("concentration", "concentration", "pH"))
 })
 
 test_that("convert_units", {
@@ -22,7 +21,6 @@ test_that("convert_units", {
   expect_equal(convert_units(1, "ug/L", "mg/L"), 10^-3)
   expect_equal(convert_units(1, "ug/L", "kg/L"), 10^-9)
   expect_equal(convert_units(1, "kg/L", "ug/L"), 10^9)
-  expect_equal(convert_units(1, "mm", "m"), 10^-3)
   expect_equal(convert_units(1, "pH", "pH"), 1)
 
   expect_equal(convert_units(c(0.1, 1, 10), "mg/L", "ug/L"), c(10^2, 10^3, 10^4))

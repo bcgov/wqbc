@@ -109,6 +109,7 @@ substitute_variables <-function (x, messages = TRUE) {
 #' @export
 substitute_names <-function (x, messages = TRUE) {
   assert_that(is.data.frame(x))
+  # need more assertions for colnames
   colnames(x) <- substitute_colnames(colnames(x), messages = messages)
   x$Units <- substitute_units(x$Units, messages = messages)
   x$Variable <- substitute_variables(x$Variable, messages = messages)

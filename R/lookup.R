@@ -1,15 +1,3 @@
-#' Get Water Quality Uses
-#'
-#' Returns a character vector of the uses for which
-#' limits are currently defined in the wqbc package.
-#' @examples
-#' get_uses()
-#'
-#' @export
-get_uses <- function () {
-  levels(wqbc::limits$Use)
-}
-
 #' Get Water Quality Variables
 #'
 #' Returns a character vector of the water quality variables
@@ -47,7 +35,7 @@ get_codes<- function (variables = NULL, add_na = TRUE) {
   assert_that(is.null(variables) || is.character(variables) || is.factor(variables))
   assert_that(is.flag(add_na) && noNA(add_na))
 
-  if(is.null(variables)) return (levels(wqbc::codes$Code))
+  if(is.null(variables)) return (as.character(wqbc::codes$Code))
 
   variables <- as.character(variables)
   x <- dplyr::left_join(data.frame(Variable = variables), wqbc::codes, by = "Variable")

@@ -8,26 +8,21 @@
 #'
 #' @export
 get_units <- function () {
-  c("ug/L", "mg/L", "g/L", "kg/L",
-    "mm", "cm", "m", "km",
-    "/100mL", "pH", "NTU")
+  c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH")
 }
 
 get_unit_multiplier <- function (x) {
-  units <- c("ug/L" = 10^-6, "mg/L" = 10^-3, "g/L" = 1,  "kg/L" = 10^3,
-             "mm" = 10^-3, "cm" = 10^-2, "m" = 1, "km" = 10^3,
-             "/100mL" = 1,  "pH" = 1, "NTU" = 1)
+  units <- c("ng/L" = 10^-9, "ug/L" = 10^-6, "mg/L" = 10^-3,
+             "g/L" = 1,  "kg/L" = 10^3,
+             "pH" = 1)
   x <- units[x]
   names(x) <- NULL
   x
 }
 
 get_unit_type <- function (x) {
-  type <- list("concentration" = c("ug/L", "mg/L", "g/L", "kg/L"),
-               "length" = c("mm", "cm", "m", "km"),
-               "individuals" = "/100mL",
-               "pH" = "pH",
-               "turbidity" = "NTU")
+  type <- list("concentration" = c("ng/L", "ug/L", "mg/L", "g/L", "kg/L"),
+               "pH" = "pH")
 
   type <- unlist(type)
   names <- sub("\\d$", "", names(type))
@@ -39,8 +34,6 @@ get_unit_type <- function (x) {
   names(x) <- NULL
   x
 }
-
-
 
 #' Convert Units
 #'

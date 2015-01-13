@@ -4,7 +4,7 @@ add_limits_use <- function (x, use) {
 
   y <- dplyr::filter_(wqbc::limits, ~Use == use)
   y <- dplyr::select_(y, ~Code, ~LowerLimit, ~UpperLimit, ~Units, ~Samples, ~Period,
-                      ~Condition, ~Variable, ~Use, ~Jurisdiction)
+                      ~Condition, ~Variable, ~Use)
 
   x <- delete_columns(x, colnames(dplyr::select_(y, ~-Code)))
   x <- dplyr::left_join(x, y, by = "Code")
@@ -17,23 +17,20 @@ add_limits_use <- function (x, use) {
 #' Calculates Water Quality limits
 #'
 #' Calculates the approved lower and upper water quality thresholds for
-#' the jurisdiction of British Columbia. If the Date column is not
+#' British Columbia. If the Date column is not
 #' supplied the data is assumed to have been collected on the same date.
 #' Assumes values are individual readings.
 #'
 #' @param x data.frame with columns Code, Value and Units.
 #' @param by character vector of columns to calculate limits by
-#' @param use string of required use
 #' @examples
 #' data(fraser)
 #' fraser <- calc_limits(fraser)
 #' @export
-calc_limits <- function (x, by = NULL, use = "Freshwater Life") {
+calc_limits <- function (x, by = NULL) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
-  assert_that(is.string(use))
 
-  if(!use %in% get_uses()) stop("use must be ", punctuate_strings(get_uses()))
 
   check_rows(x)
 #   check_columns(x, c("Code", "Value", "Units"))

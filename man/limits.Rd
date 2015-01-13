@@ -8,36 +8,18 @@
 \describe{
   \item{Code}{short-hand code}
   \item{Variable}{name of water quality parameter}
-  \item{Form}{form of parameter}
-  \item{Jurisdiction}{regulatory jurisdiction in Canada (permitted values:
-  BC or CA)}
-  \item{Use}{intended use (permitted values: Drinking, Freshwater Life,
-   Marine Life, Wildlife, Livestock, Irrigation or Recreation)}
-  \item{SubUse}{additional information on use}
-  \item{Samples}{minimum number of samples required}
-  \item{Period}{period within which number of samples must be collected (permitted values: Day or Month)}
   \item{Average}{R function(s) to calculate "average" value for multiple samples}
   \item{Condition}{R logical expression to test required condition}
   \item{LowerLimit}{R expression defining lower limit}
   \item{UpperLimit}{R expression defining upper limit}
   \item{Units}{units for limit}
+  \item{Form}{variable form}
 }}
 \usage{
 limits
 }
 \description{
-Both the Canadian federal government and the
-province of British Columbia set limits for a range of
-water quality parameters. The data were taken from a
-range of federal and provincial websites. They represent
-long-term limits for samples taken from the water column.
-Limits which depend on conditions from other periods
-or locations are not included. For example some of the
-limits for turbidity are defined with respect to background
-levels and/or an upstream site.
-Where some interpretation of the information provided was required
-this is noted in the comments. Units are as defined in the \code{\link{codes}}
-data frame.
+Water Quality Limits for British Columbia and Canada
 }
 \keyword{datasets}
 
