@@ -56,7 +56,7 @@ delete_rows_with_missing_values <- function (x, columns, messages = TRUE) {
 replace_negative_values_with_na <- function (x, messages = TRUE) {
   bol <- !is.na(x) & x < 0
   if(any(bol)) {
-    if(messages) message("replacing ", sum(bol), "negative values with missing values")
+    if(messages) message("replacing ", sum(bol), " negative value(s) with missing values")
     is.na(x[bol]) <- TRUE
   }
   x

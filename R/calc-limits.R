@@ -15,8 +15,16 @@ add_limits_use <- function (x, use) {
 }
 
 calc_limit <- function (x) {
-  #convert_units..
-  x <- x[,c("Variable", "Date", "Value", "Units"),]
+  x <- dplyr::rename_(x, "..Units" = "Units")
+  x <- dplyr::left_join(x, wqbc::codes, by = "Variable")
+  stopifnot(!any(is.na(x$Units)))
+  x$Value <- convert_units(x$Value, from = x$..Units, to = x$Units)
+  x$..Units <- NULL
+
+  x$..ID <- 1:nrow(x)
+  x <- dplyr::left_join(x, wqbc::limits, by = c("Variable", "Code", "Units"))
+  # up to here
+  x
 }
 
 #' Calculates Water Quality limits
@@ -28,11 +36,12 @@ calc_limit <- function (x) {
 #'
 #' @param x data.frame with columns Code, Value and Units.
 #' @param by character vector of columns to calculate limits by
+#' @param messages flag indicating whether to print messages
 #' @examples
 #' data(fraser)
-#' fraser <- calc_limits(fraser)
+#' fraser <- calc_limits(fraser, messages = FALSE)
 #' @export
-calc_limits <- function (x, by = NULL) {
+calc_limits <- function (x, by = NULL, messages = TRUE) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
@@ -51,14 +60,14 @@ calc_limits <- function (x, by = NULL) {
                               "Units" = c("character", "factor"),
                               "Date" = "Date"))
 
-  x$Variable <- substitute_variables(x$Variable, messages = TRUE)
-  x$Units <- substitute_units(x$Units, messages = TRUE)
+  x$Variable <- substitute_variables(x$Variable, messages = messages)
+  x$Units <- substitute_units(x$Units, messages = messages)
   is.na(x$Variable[!x$Variable %in% get_variables()]) <- TRUE
   is.na(x$Units[!x$Units %in% get_units()]) <- TRUE
-  x$Value <- replace_negative_values_with_na(x$Value)
+  x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
 
-  x <- delete_rows_with_missing_values(x)
- # check_rows(x)
+  x <- delete_rows_with_missing_values(x, messages = messages)
+  check_rows(x)
 
   if(is.null(by))
     return(calc_limit(x))

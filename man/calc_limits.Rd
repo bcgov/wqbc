@@ -4,12 +4,14 @@
 \alias{calc_limits}
 \title{Calculates Water Quality limits}
 \usage{
-calc_limits(x, by = NULL)
+calc_limits(x, by = NULL, messages = TRUE)
 }
 \arguments{
 \item{x}{data.frame with columns Code, Value and Units.}
 
 \item{by}{character vector of columns to calculate limits by}
+
+\item{messages}{flag indicating whether to print messages}
 }
 \description{
 Calculates the approved lower and upper water quality thresholds for
@@ -19,6 +21,6 @@ Assumes values are individual readings.
 }
 \examples{
 data(fraser)
-fraser <- calc_limits(fraser)
+fraser <- calc_limits(fraser, messages = FALSE)
 }
 

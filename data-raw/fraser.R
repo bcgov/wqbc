@@ -23,8 +23,6 @@ fraser$Date %<>% as.Date
 fraser %<>% filter(substitute_units(Units) %in% get_units())
 fraser %<>% filter(substitute_variables(Variable) %in% get_variables())
 
-print(sort(unique(fraser$Variable)))
-
 # check for and flip sign of positive longitude values
 fraser$Long <- ifelse(fraser$Long > 0, fraser$Long * -1, fraser$Long)
 
