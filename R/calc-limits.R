@@ -31,23 +31,27 @@ calc_limits <- function (x, by = NULL) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
-
   check_rows(x)
-#   check_columns(x, c("Code", "Value", "Units"))
+#   x <- substitute_names(x, messages = TRUE)
+#   check_columns(x, c("Variable", "Value", "Units"))
 #   x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")))
-#   check_class_columns(x, list("Code" = c("character", "factor"),
+#
+#   check_class_columns(x, list("Variable" = c("character", "factor"),
 #                               "Value" = "numeric",
 #                               "Units" = c("character", "factor"),
 #                               "Date" = "Date"))
 #
-#   x$Units <- substitute_units(x$Units)
-#   x <- delete_rows_with_missing_values(x, list("Code", "Value", "Units", "Date"))
-#   x <- add_limits_use(x, use)
-#   x <- delete_rows_with_missing_values(x, list("Value", "Units"))
+#   x <- delete_rows_with_missing_values(x, list("Variable", "Value", "Units", "Date"))
+#   check_rows(x)
 #
-#   # also need to check not in limits....
-#   check_by(by, x, res_names = c("Code", "Value", "Units", "Date"))
+#   check_by(by, x, res_names = c("Variable", "Value", "Units", "Date"))
 
-#  x <- tidy_up_values (x)
+  #   x <- add_limits_use(x, use)
+  #   x <- delete_rows_with_missing_values(x, list("Value", "Units"))
+  #
+  #   # also need to check not in limits....
+  #   check_by(by, x, res_names = c("Code", "Value", "Units", "Date"))
+
+  #  x <- tidy_up_values (x)
   x
 }
