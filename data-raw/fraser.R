@@ -20,6 +20,7 @@ fraser %<>% select(
 is.na(fraser$Value[fraser$Value == -999.999]) <- TRUE
 fraser$Date %<>% as.Date
 
+fraser %<>% filter(!is.na(Value) & Value >= 0)
 fraser %<>% filter(substitute_units(Units) %in% get_units())
 fraser %<>% filter(substitute_variables(Variable) %in% get_variables())
 

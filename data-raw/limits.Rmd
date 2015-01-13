@@ -16,9 +16,8 @@ is stored in the `codes.csv` table in the `data-raw` directory.
 
 ## Reference Document
 
-**The `limits.csv` file  only contains the limits defined in the 
-reference document `data-raw/limits.pdf`.** The reference document 
-is the *British Columbia Approved Water Quality Guidelines 2006 Edition*.
+**The `limits.csv` file  contains the limits defined in the 
+reference documents `data-raw/BC_2006.pdf` (*British Columbia Approved Water Quality Guidelines 2006 Edition*) and `data-raw/EMAIL_2014.pdf`
 Although other limits
 are defined on the web the formats are inconsistent and 
 the stability of the links uncertain.
@@ -59,8 +58,8 @@ and/or dependence on background levels.
 
 The `limits.csv` file contains 8 columns: 
 
-- Variable - The name of the parameter of interest, i.e., Phosphate, Arsenic, Nitrogen etc.
-- Form - The form of the variable, i.e., Total, Dissolved, Nitrate etc.
+- Variable - The name of the parameter of interest, i.e., Total Phosphate, Arsenic, Nitrogen etc.
+- Form - Notes on the specific form where inclusion in the variable name seems too specific.
 - Average - Whether or not the limits are the maximum value or the mean from at least 5 weekly samples taken in a period of 30 days.
 - Condition	- Any conditions on the levels as a valid logical R expression.
 - LowerLimit - The minimum level as a valid R expression where other variables are referenced
@@ -68,11 +67,13 @@ by their code.
 - UpperLimit - The maximum level as a valid R expression where other variables are referenced
 by their code.
 - Units - The units for the lower and upper limits where the permitted values are
-ng/L, ug/L, mg/L and pH (in the case of the `codes.csv` table).
+ng/L, ug/L, mg/L, pH and /dL (in the case of the `codes.csv` table).
 - Table - The table in the reference document.
+- Reference - The reference document where the only permitted values are BC_2006 and EMAIL_2014.
+- Use - The use where currently the only permitted value is Freshwater Use.
 
-The `codes.csv` file contains 4 columns. The Variable, Form and Units columns
+The `codes.csv` file contains 3 columns. The Variable,  and Units columns
 contain the same information as the `limits.csv` table. The Code column
-contains the code for the Variable and Form which is used in the definitions
+contains the code for the Variable which is used in the definitions
 of some of the Conditions and Lower and Upper Limits in the `limits.csv` table.
 The code column is also useful for plotting purposes.

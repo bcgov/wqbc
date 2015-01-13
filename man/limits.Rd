@@ -13,7 +13,6 @@
   \item{LowerLimit}{R expression defining lower limit}
   \item{UpperLimit}{R expression defining upper limit}
   \item{Units}{units for limit}
-  \item{Form}{variable form}
 }}
 \usage{
 limits

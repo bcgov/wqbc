@@ -9,7 +9,7 @@ check_limits <- function (x) {
   }
 
   stopifnot(identical(colnames(x),
-                      c("Variable", "Form", "Average",
+                      c("Variable", "Average",
                         "Condition", "LowerLimit", "UpperLimit", "Units", "Table",
                         "Reference", "Use")))
 
@@ -17,8 +17,12 @@ check_limits <- function (x) {
   stopifnot(all(!is.na(x$LowerLimit) | !is.na(x$UpperLimit)))
   stopifnot(all(!is.na(x$Units)))
   stopifnot(all(!is.na(x$Table)))
+  stopifnot(all(!is.na(x$Reference)))
+  stopifnot(all(!is.na(x$Use)))
 
   stopifnot(all(x$Units %in% get_units()))
+  stopifnot(all(x$Reference %in% c("BC_2006", "EMAIL_2014")))
+  stopifnot(all(x$Use %in% c("Freshwater Life")))
 
   check_valid_expression(x$Condition)
   check_valid_expression(x$LowerLimit)
@@ -55,12 +59,11 @@ input_limits <- function () {
   limits %<>% arrange(Variable, Average)
 
   limits %<>% select(Variable, Code,
-                     Average, Condition, LowerLimit, UpperLimit, Units, Form)
+                     Average, Condition, LowerLimit, UpperLimit, Units)
 
   limits$Code %<>% factor
   limits$Average %<>% factor
   limits$Variable %<>% factor
-  limits$Form %<>% factor
   limits$Units %<>% droplevels
 
   limits

@@ -19,7 +19,7 @@ Where possible substitute units with
 recognised values
 }
 \examples{
-substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "gkl"))
+substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "gkl", "CFU/100ML"))
 substitute_units(c("MG/L", "MG/L", "MG/L"))
 substitute_units("gkl")
 substitute_units(c(NA, "mg/L"))

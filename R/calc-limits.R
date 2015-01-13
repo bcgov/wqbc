@@ -39,7 +39,7 @@ calc_limit <- function (x) {
 #' @param messages flag indicating whether to print messages
 #' @examples
 #' data(fraser)
-#' fraser <- calc_limits(fraser, messages = FALSE)
+#' fraser <- calc_limits(fraser, message = FALSE)
 #' @export
 calc_limits <- function (x, by = NULL, messages = TRUE) {
   assert_that(is.data.frame(x))

@@ -5,12 +5,13 @@ Boron,B,mg/L
 Cadmium Dissolved,Ca-D,ug/L
 Chlorate,ClO3,mg/L
 Chloride,Cl,mg/L
-Chlorine,TRC,ug/L
+Chlorine Total Residual,TRC,ug/L
 Cobalt,Co,ug/L
 Copper,Cu,ug/L
-Cyanide,CN,ug/L
+Cyanide Weak Acid Dissociable,CN,ug/L
 Diisopropanolamine,DIPA,mg/L
-E coli,FC,/dL
+Escherichia coli,FC,/dL
+Ethinylestradiol 17a,EE2,ng/L
 Ethylbenzene,C8H10,mg/L
 Fluoride Total,Fl-T,mg/L
 Hardness,CaCO3,mg/L
@@ -38,4 +39,3 @@ Sulphate,SO4,mg/L
 Sulpholane,C4H8O2S,mg/L
 Toluene,C7H8,mg/L
 Zinc,Zn,ug/L
-17a-ethinylestradiol,EE2,ng/L

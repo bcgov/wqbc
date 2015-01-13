@@ -19,7 +19,8 @@ Depends:
 Imports:
     assertthat (>= 0.1),
     plyr (>= 1.8.1),
-    dplyr (>= 0.3.0.2)
+    dplyr (>= 0.3.0.2),
+    stringr (>= 0.6.2)
 Suggests:
     testthat (>= 0.9.1),
     knitr (>= 1.8),

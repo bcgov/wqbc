@@ -4,10 +4,16 @@
 \alias{substitute_variables}
 \title{Substitute Variable Names}
 \usage{
-substitute_variables(x, messages = TRUE)
+substitute_variables(x, strict = TRUE, messages = TRUE)
 }
 \arguments{
 \item{x}{character vector of variable names to substitute}
+
+\item{strict}{flag indicating whether to require all words
+in a variable name to be present in (strict = TRUE) or only
+the first word (strict = FALSE). Note when strict = FALSE
+ambiguous variables such as "Polychlorinated Biphenyl Total"
+and "Polychlorinated Biphenyl 105" are dropped.}
 
 \item{messages}{flag indicating whether to print messages}
 }
