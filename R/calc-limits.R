@@ -23,7 +23,7 @@ calc_limit <- function (x) {
 
   x$..ID <- 1:nrow(x)
   x <- dplyr::left_join(x, wqbc::limits, by = c("Variable", "Code", "Units"))
-  # up to here
+  # up to here need to add geomean1
   x
 }
 
