@@ -2,6 +2,7 @@ Variable,Code,Units
 Aluminium Dissolved,Al-D,mg/L
 Arsenic,As,ug/L
 Boron,B,mg/L
+Cadmium Dissolved,Ca-D,ug/L
 Chlorate,ClO3,mg/L
 Chloride,Cl,mg/L
 Chlorine,TRC,ug/L
@@ -9,9 +10,12 @@ Cobalt,Co,ug/L
 Copper,Cu,ug/L
 Cyanide,CN,ug/L
 Diisopropanolamine,DIPA,mg/L
+E coli,FC,/dL
 Ethylbenzene,C8H10,mg/L
 Fluoride Total,Fl-T,mg/L
 Hardness,CaCO3,mg/L
+Iron Total,Fe-T,mg/L
+Iron Dissolved,Fe-D,mg/L
 Lead,Pb,ug/L
 Manganese,Mn,mg/L
 Mercury,Hg,ug/L
@@ -34,3 +38,4 @@ Sulphate,SO4,mg/L
 Sulpholane,C4H8O2S,mg/L
 Toluene,C7H8,mg/L
 Zinc,Zn,ug/L
+17a-ethinylestradiol,EE2,ng/L
