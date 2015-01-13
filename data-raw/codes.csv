@@ -16,18 +16,18 @@ Lead,Pb,ug/L
 Manganese,Mn,mg/L
 Mercury,Hg,ug/L
 Methyl Mercury,MeHg,ug/L
-Methyl Tertiary-Butyl Ether,MTBE,mg/L
+Methyl Tertiary Butyl Ether,MTBE,mg/L
 Molybdenum,Mo,mg/L
 Nitrate,NO3,mg/L
 Nitrite,NO2,mg/L
 Dissolved Oxygen,DO,mg/L
 pH,pH,pH
 Total Phosphorus,TP,ug/L
-Polychlorinated Biphenyl,PCB,ng/L
-Polychlorinated Biphenyl #105,PCB105,ng/L
-Polychlorinated Biphenyl #169,PCB169,ng/L
-Polychlorinated Biphenyl #77,PCB77,ng/L
-Polychlorinated Biphenyl #126,PCB126,ng/L
+Polychlorinated Biphenyl Total,PCB,ng/L
+Polychlorinated Biphenyl 105,PCB105,ng/L
+Polychlorinated Biphenyl 169,PCB169,ng/L
+Polychlorinated Biphenyl 77,PCB77,ng/L
+Polychlorinated Biphenyl 126,PCB126,ng/L
 Selenium,Se,ug/L
 Silver,Ag,ug/L
 Sulphate,SO4,mg/L

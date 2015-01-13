@@ -12,6 +12,62 @@ F2 <- function (x) {
   nft / nt * 100
 }
 
+#' Is Within Limits
+#'
+#' @param value numeric vector of values to test
+#' @param upper numeric vector of upper limits
+#' @param lower numeric vector of lower limits
+#' @return logical vector indicating whether within limits
+#' @examples
+#' library(dplyr)
+#' data(ccme)
+#' ccme$Within <- is_within_limits(ccme$Value, ccme$LowerLimit, ccme$UpperLimit)
+#' filter(ccme, !Within)
+#' @export
+is_within_limits <- function (value, lower = NA_real_, upper = NA_real_) {
+  get_excursion(value = value, lower = lower, upper = upper) == 0
+}
+
+#' Get Excursion
+#'
+#' @param value numeric vector of values to calculate excursion
+#' @param upper numeric vector of upper limits
+#' @param lower numeric vector of lower limits
+#' @return numeric vector of excursions
+#' @examples
+#' library(dplyr)
+#' data(ccme)
+#' ccme$Excursion <- get_excursion(ccme$Value, ccme$LowerLimit, ccme$UpperLimit)
+#' dplyr::filter(ccme, Excursion != 0)
+#' @export
+get_excursion <- function (value, lower = NA_real_, upper = NA_real_) {
+  assert_that(is.numeric(value))
+  assert_that(is.numeric(lower))
+  assert_that(is.numeric(upper))
+
+  x <- data.frame(Value = value, LowerLimit = lower, UpperLimit = upper)
+
+  x$LowerLimit[is.na(x$LowerLimit)] <- -Inf
+  x$UpperLimit[is.na(x$UpperLimit)] <- Inf
+
+  excursion <- rep(NA, nrow(x))
+
+  print(x)
+
+  for(i in 1:nrow(x)) {
+    if(x$Value[i] >= x$LowerLimit[i]) {
+      if(x$Value[i] <= x$UpperLimit[i]) {
+        excursion[i] <- 0
+      } else {
+        excursion[i] <- x$Value[i] / x$UpperLimit[i] - 1
+      }
+    } else {
+      excursion[i] <- x$LowerLimit[i] / x$Value[i] - 1
+    }
+  }
+  excursion
+}
+
 # the amount by which failed test values do not meet their objectives
 F3 <- function (x) {
   nt <- nrow(x)
@@ -88,7 +144,7 @@ calc_wqis <- function (x, by = NULL) {
                               "UpperLimit" = "numeric"))
 
   x <- delete_rows_with_missing_values(x, list("Value", "Variable",
-                                          c("LowerLimit", "UpperLimit")))
+                                               c("LowerLimit", "UpperLimit")))
   check_rows(x)
 
   check_by(by, x, res_names = c("Variable", "Value", "LowerLimit", "UpperLimit"))

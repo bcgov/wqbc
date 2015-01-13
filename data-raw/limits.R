@@ -8,8 +8,8 @@ check_limits <- function (x) {
   }
 
   stopifnot(identical(colnames(x),
-                      c("Variable", "Average",
-                        "Condition", "LowerLimit", "UpperLimit", "Units", "Table", "Form")))
+                      c("Variable", "Form", "Average",
+                        "Condition", "LowerLimit", "UpperLimit", "Units", "Table")))
 
   stopifnot(all(!is.na(x$Variable)))
   stopifnot(all(!is.na(x$LowerLimit) | !is.na(x$UpperLimit)))

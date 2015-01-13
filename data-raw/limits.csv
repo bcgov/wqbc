@@ -1,69 +1,69 @@
-Variable,Average,Condition,LowerLimit,UpperLimit,Units,Table,Form
-Aluminium,,pH >= 6.5,,0.1,mg/L,6,Dissolved
-Aluminium,mean,median(pH) >= 6.5,,0.05,mg/L,6,Dissolved
-Aluminium,,pH < 6.5,,exp(1.209 - 2.426 * pH + 0.286 * pH^2),mg/L,6,Dissolved
-Aluminium,mean,median(pH) < 6.5,,exp(1.6 - 3.327 * median(pH) + 0.402 * median(pH)^2),mg/L,6,Dissolved
-Arsenic,,,,5,ug/L,43,
-Boron,,,,1.2,mg/L,49,
-Chlorate,,,,30,mg/L,44,
-Chloride,,,,600,mg/L,47,
-Chloride,mean,,,150,mg/L,47,
-Chlorine,mean,,,2,ug/L,19,Total Residual
-Chlorine,,,,100,ug/L,19,Total Residual
-Cobalt,,,,110,ug/L,48,
-Cobalt,mean,,,4,ug/L,48,
-Copper,,CacO3 <= 50,,0.094 * CaCO3 + 2,ug/L,9,
-Copper,mean,CacO3 <= 50,,2,ug/L,9,
-Copper,,CacO3 > 50,,0.094 * CaCO3 + 2,ug/L,9,
-Copper,mean,CacO3 > 50,,0.04 * mean(CaCO3),ug/L,9,
-Cyanide,,,,10,ug/L,10,Weak-Acid Dissociable
-Cyanide,mean,,,5,ug/L,10,Weak-Acid Dissociable
-Diisopropanolamine,,,,1.6,mg/L,45,
-Ethylbenzene,,,,0.2,mg/L,34,
-Fluoride,,CaCO3 < 50,,0.2,mg/L,20,Total
-Fluoride,,CaCO3 >= 50,,0.3,mg/L,20,Total
-Lead,,CaCO3 <= 8,,3,ug/L,11,
-Lead,,CaCO3 > 8,,exp(1.273 * log(CaCO3) - 1.460),ug/L,11,
-Lead,mean,CaCO3 > 8,,exp(1.273 * log(mean(CaCO3)) - 4.704) + 3.31,ug/L,11,
-Manganese,,,,0.01102 * CaCO3 + 0.54,mg/L,37,
-Manganese,mean,,,0.0044 * CaCO3 + 0.605,mg/L,38,
-Mercury,,,,0.1,ug/L,13,
-Mercury,mean,MeHg / Hg * 100 <= 0.5,,0.02,ug/L,13a,
-Mercury,mean,MeHg / Hg * 100 > 0.5 & MeHg / Hg * 100 <= 1,,0.01,ug/L,13a,
-Mercury,mean,MeHg / Hg * 100 > 1 & MeHg / Hg * 100 <= 2.5,,0.004,ug/L,13a,
-Mercury,mean,MeHg / Hg * 100  <= 5,,0.002,ug/L,13a,
-Methyl Tertiary-Butyl Ether,,,,3.4,mg/L,39,
-Molybdenum,,,,2,mg/L,15,
-Molybdenum,mean,,,1,mg/L,15,
-Nitrate,,,,200,mg/L,16,
-Nitrite,,Cl < 2,,0.06,mg/L,16,
-Nitrate,mean,,,40,mg/L,16,
-Nitrite,mean,Cl < 2,,0.02,mg/L,16,
-Nitrite,,Cl >= 2 & Cl < 4,,0.12,mg/L,17,
-Nitrite,,Cl >= 4 & Cl < 6,,0.18,mg/L,17,
-Nitrite,,Cl >= 6 & Cl < 8,,0.24,mg/L,17,
-Nitrite,,Cl >= 8 & Cl <= 10,,0.3,mg/L,17,
-Nitrite,,Cl > 10,,0.6,mg/L,17,
-Nitrite,mean,Cl >= 2 & Cl < 4,,0.04,mg/L,17,
-Nitrite,mean,Cl >= 4 & Cl < 6,,0.06,mg/L,17,
-Nitrite,mean,Cl >= 6 & Cl < 8,,0.08,mg/L,17,
-Nitrite,mean,Cl >= 8 & Cl <= 10,,0.1,mg/L,17,
-Nitrite,mean,Cl > 10,,0.2,mg/L,17,
-Dissolved Oxygen,,,5,,mg/L,18,
-Dissolved Oxygen,mean,,8,,mg/L,18,
-Total Phosphorus,,,5,10,ug/L,3,
-Polychlorinated Biphenyl,,,,0.1,ng/L,23,
-Polychlorinated Biphenyl #105,,,,0.09,ng/L,23,
-Polychlorinated Biphenyl #169,,,,0.06,ng/L,23,
-Polychlorinated Biphenyl #77,,,,0.04,ng/L,23,
-Polychlorinated Biphenyl #126,,,,0.00025,ng/L,23,
-Selenium,mean,,,2,ug/L,40,
-Silver,mean,CaCO3 <= 100,,0.05,ug/L,29,
-Silver,,CaCO3 <= 100,,0.1,ug/L,29,
-Silver,mean,CaCO3 > 100,,1.5,ug/L,29,
-Silver,,CaCO3 > 100,,3,ug/L,29,
-Sulphate,,,,100,mg/L,36,
-Sulpholane,,,,50,mg/L,46,
-Toluene,,,,0.039,mg/L,35,
-Zinc,,,,0.75 * (CaCO3 - 90) + 33,ug/L,33,
-Zinc,mean,,,0.75 * (CaCO3 - 90) + 7.5,ug/L,33,
+Variable,Form,Average,Condition,LowerLimit,UpperLimit,Units,Table
+Aluminium,Dissolved,,pH >= 6.5,,0.1,mg/L,6
+Aluminium,Dissolved,mean,median(pH) >= 6.5,,0.05,mg/L,6
+Aluminium,Dissolved,,pH < 6.5,,exp(1.209 - 2.426 * pH + 0.286 * pH^2),mg/L,6
+Aluminium,Dissolved,mean,median(pH) < 6.5,,exp(1.6 - 3.327 * median(pH) + 0.402 * median(pH)^2),mg/L,6
+Arsenic,,,,,5,ug/L,43
+Boron,,,,,1.2,mg/L,49
+Chlorate,,,,,30,mg/L,44
+Chloride,,,,,600,mg/L,47
+Chloride,,mean,,,150,mg/L,47
+Chlorine,Total Residual,mean,,,2,ug/L,19
+Chlorine,Total Residual,,,,100,ug/L,19
+Cobalt,,,,,110,ug/L,48
+Cobalt,,mean,,,4,ug/L,48
+Copper,,,CacO3 <= 50,,0.094 * CaCO3 + 2,ug/L,9
+Copper,,mean,CacO3 <= 50,,2,ug/L,9
+Copper,,,CacO3 > 50,,0.094 * CaCO3 + 2,ug/L,9
+Copper,,mean,CacO3 > 50,,0.04 * mean(CaCO3),ug/L,9
+Cyanide,Weak-Acid Dissociable,,,,10,ug/L,10
+Cyanide,Weak-Acid Dissociable,mean,,,5,ug/L,10
+Diisopropanolamine,,,,,1.6,mg/L,45
+Ethylbenzene,,,,,0.2,mg/L,34
+Fluoride,Total,,CaCO3 < 50,,0.2,mg/L,20
+Fluoride,Total,,CaCO3 >= 50,,0.3,mg/L,20
+Lead,,,CaCO3 <= 8,,3,ug/L,11
+Lead,,,CaCO3 > 8,,exp(1.273 * log(CaCO3) - 1.460),ug/L,11
+Lead,,mean,CaCO3 > 8,,exp(1.273 * log(mean(CaCO3)) - 4.704) + 3.31,ug/L,11
+Manganese,,,,,0.01102 * CaCO3 + 0.54,mg/L,37
+Manganese,,mean,,,0.0044 * CaCO3 + 0.605,mg/L,38
+Mercury,,,,,0.1,ug/L,13
+Mercury,,mean,MeHg / Hg * 100 <= 0.5,,0.02,ug/L,13a
+Mercury,,mean,MeHg / Hg * 100 > 0.5 & MeHg / Hg * 100 <= 1,,0.01,ug/L,13a
+Mercury,,mean,MeHg / Hg * 100 > 1 & MeHg / Hg * 100 <= 2.5,,0.004,ug/L,13a
+Mercury,,mean,MeHg / Hg * 100  <= 5,,0.002,ug/L,13a
+Methyl Tertiary Butyl Ether,,,,,3.4,mg/L,39
+Molybdenum,,,,,2,mg/L,15
+Molybdenum,,mean,,,1,mg/L,15
+Nitrate,,,,,200,mg/L,16
+Nitrite,,,Cl < 2,,0.06,mg/L,16
+Nitrate,,mean,,,40,mg/L,16
+Nitrite,,mean,Cl < 2,,0.02,mg/L,16
+Nitrite,,,Cl >= 2 & Cl < 4,,0.12,mg/L,17
+Nitrite,,,Cl >= 4 & Cl < 6,,0.18,mg/L,17
+Nitrite,,,Cl >= 6 & Cl < 8,,0.24,mg/L,17
+Nitrite,,,Cl >= 8 & Cl <= 10,,0.3,mg/L,17
+Nitrite,,,Cl > 10,,0.6,mg/L,17
+Nitrite,,mean,Cl >= 2 & Cl < 4,,0.04,mg/L,17
+Nitrite,,mean,Cl >= 4 & Cl < 6,,0.06,mg/L,17
+Nitrite,,mean,Cl >= 6 & Cl < 8,,0.08,mg/L,17
+Nitrite,,mean,Cl >= 8 & Cl <= 10,,0.1,mg/L,17
+Nitrite,,mean,Cl > 10,,0.2,mg/L,17
+Dissolved Oxygen,,,,5,,mg/L,18
+Dissolved Oxygen,,mean,,8,,mg/L,18
+Total Phosphorus,,,,5,10,ug/L,3
+Polychlorinated Biphenyl Total,,,,,0.1,ng/L,23
+Polychlorinated Biphenyl 105,,,,,0.09,ng/L,23
+Polychlorinated Biphenyl 169,,,,,0.06,ng/L,23
+Polychlorinated Biphenyl 77,,,,,0.04,ng/L,23
+Polychlorinated Biphenyl 126,,,,,0.00025,ng/L,23
+Selenium,,mean,,,2,ug/L,40
+Silver,,mean,CaCO3 <= 100,,0.05,ug/L,29
+Silver,,,CaCO3 <= 100,,0.1,ug/L,29
+Silver,,mean,CaCO3 > 100,,1.5,ug/L,29
+Silver,,,CaCO3 > 100,,3,ug/L,29
+Sulphate,,,,,100,mg/L,36
+Sulpholane,,,,,50,mg/L,46
+Toluene,,,,,0.039,mg/L,35
+Zinc,,,,,0.75 * (CaCO3 - 90) + 33,ug/L,33
+Zinc,,mean,,,0.75 * (CaCO3 - 90) + 7.5,ug/L,33
