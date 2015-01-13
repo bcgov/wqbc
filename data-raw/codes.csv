@@ -1,5 +1,5 @@
 Variable,Code,Units
-Aluminium,Al,mg/L
+Aluminium Dissolved,Al-D,mg/L
 Arsenic,As,ug/L
 Boron,B,mg/L
 Chlorate,ClO3,mg/L
@@ -10,7 +10,7 @@ Copper,Cu,ug/L
 Cyanide,CN,ug/L
 Diisopropanolamine,DIPA,mg/L
 Ethylbenzene,C8H10,mg/L
-Fluoride,Fl,mg/L
+Fluoride Total,Fl-T,mg/L
 Hardness,CaCO3,mg/L
 Lead,Pb,ug/L
 Manganese,Mn,mg/L
@@ -20,9 +20,9 @@ Methyl Tertiary Butyl Ether,MTBE,mg/L
 Molybdenum,Mo,mg/L
 Nitrate,NO3,mg/L
 Nitrite,NO2,mg/L
-Dissolved Oxygen,DO,mg/L
+Oxygen Dissolved,DO,mg/L
 pH,pH,pH
-Total Phosphorus,TP,ug/L
+Phosphorus Total,TP,ug/L
 Polychlorinated Biphenyl Total,PCB,ng/L
 Polychlorinated Biphenyl 105,PCB105,ng/L
 Polychlorinated Biphenyl 169,PCB169,ng/L
