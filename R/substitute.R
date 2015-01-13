@@ -38,7 +38,10 @@ substitute_units <-function (x, messages = TRUE) {
   x <- as.character(x)
   x <- data.frame(x = tolower(x), original = x, stringsAsFactors = FALSE)
   x$x <- gsub("units", "", x$x, ignore.case = TRUE)
+  x$x <- gsub("CFU", "", x$x, ignore.case = TRUE)
   x$x <- gsub(" ", "", x$x)
+  x$x <- gsub("100mL", "dL", x$x)
+
 
   wqbc_substitute(x, sub = get_units(), messages)
 }

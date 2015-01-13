@@ -3,14 +3,14 @@ context("lookup")
 test_that("get_variables", {
   expect_is(get_variables(), "character")
   expect_identical(get_variables(c("Ag", "KR", "As", NA, "pH", "TP")),
-                   c("Silver", NA, "Arsenic", NA, "pH", "Total Phosphorus"))
+                   c("Silver", NA, "Arsenic", NA, "pH", "Phosphorus Total"))
 
 })
 
 test_that("get_codes", {
   expect_is(get_codes(), "character")
 
-  variables <- c("Silver", "Kryptonite", "Arsenic", NA, "pH", "Total Phosphorus")
+  variables <- c("Silver", "Kryptonite", "Arsenic", NA, "pH", "Phosphorus Total")
   expect_identical(get_codes(variables), c("Ag", NA, "As", NA, "pH", "TP"))
   expect_identical(get_codes(variables, add_na = FALSE), c("Ag", "Kryptonite", "As", NA, "pH", "TP"))
 })

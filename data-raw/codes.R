@@ -1,13 +1,9 @@
-## NOTE THIS SCRIPT IS SOURCED BY data-raw/limits.R TO ENSURE codes is identical
-
 library(dplyr)
 library(magrittr)
 library(devtools)
 
 rm(list = ls())
 graphics.off()
-
-source("R/units.R")
 
 input_codes <- function () {
 

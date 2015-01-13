@@ -8,13 +8,13 @@
 #'
 #' @export
 get_units <- function () {
-  c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH")
+  c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH", "/dL")
 }
 
 get_unit_multiplier <- function (x) {
   units <- c("ng/L" = 10^-9, "ug/L" = 10^-6, "mg/L" = 10^-3,
              "g/L" = 1,  "kg/L" = 10^3,
-             "pH" = 1)
+             "/dL" = 1, "pH" = 1)
   x <- units[x]
   names(x) <- NULL
   x
@@ -22,7 +22,8 @@ get_unit_multiplier <- function (x) {
 
 get_unit_type <- function (x) {
   type <- list("concentration" = c("ng/L", "ug/L", "mg/L", "g/L", "kg/L"),
-               "pH" = "pH")
+               "pH" = "pH",
+               "count" = "/dL")
 
   type <- unlist(type)
   names <- sub("\\d$", "", names(type))

@@ -1,4 +1,5 @@
-source("data-raw/codes.R")
+library(wqbc)
+library(dplyr)
 
 check_limits <- function (x) {
 
@@ -9,7 +10,8 @@ check_limits <- function (x) {
 
   stopifnot(identical(colnames(x),
                       c("Variable", "Form", "Average",
-                        "Condition", "LowerLimit", "UpperLimit", "Units", "Table")))
+                        "Condition", "LowerLimit", "UpperLimit", "Units", "Table",
+                        "Reference", "Use")))
 
   stopifnot(all(!is.na(x$Variable)))
   stopifnot(all(!is.na(x$LowerLimit) | !is.na(x$UpperLimit)))
@@ -22,10 +24,12 @@ check_limits <- function (x) {
   check_valid_expression(x$LowerLimit)
   check_valid_expression(x$UpperLimit)
 
-  NULL
+  TRUE
 }
 
-input_limits <- function (codes) {
+input_limits <- function () {
+
+  load("data/codes.rda")
   limits <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
   check_limits(limits)
@@ -61,5 +65,5 @@ input_limits <- function (codes) {
 
   limits
 }
-limits <- input_limits(codes)
+limits <- input_limits()
 devtools::use_data(limits, overwrite = TRUE, compress = "xz")
