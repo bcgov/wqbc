@@ -33,15 +33,17 @@ check_limits <- function (x) {
 
 input_limits <- function () {
 
-  load("data/codes.rda")
   limits <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
   check_limits(limits)
 
   # lapply(limits, FUN = function (limits) (sort(unique(limits))))
-  #   write.csv(limits, "data-raw/limits.csv", row.names = FALSE)
+  # limits %<>% arrange(Variable, Average, UpperLimit)
+  #   write.csv(limits, "data-raw/limits.csv", row.names = FALSE, na = "")
 
   limits <- rename_(limits, "..Units" = "Units")
+
+  load("data/codes.rda")
 
   n <- nrow(limits)
   limits <- left_join(limits, codes, by = "Variable")

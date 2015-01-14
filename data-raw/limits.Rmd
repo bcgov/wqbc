@@ -1,5 +1,5 @@
 ---
-title: "Instructions for adding data to the limits.csv file"
+title: "Limits Information"
 output: html_document
 ---
 
@@ -22,7 +22,8 @@ Although other limits
 are defined on the web the formats are inconsistent and 
 the stability of the links uncertain.
 Consequently, it was decided to define the limits with regard to a clearly-defined
-and dated reference document. If a similar document was produced in the future
+and dated reference document and associated email. 
+If a similar document was produced in the future
 then the `limits.csv` file could be updated to contain the information
 from both documents. The `calc_limits()` function could then be modified to allow 
 users to define which reference document
@@ -56,11 +57,11 @@ and/or dependence on background levels.
 
 ## Data
 
-The `limits.csv` file contains 8 columns: 
+The `limits.csv` file contains the following columns: 
 
 - Variable - The name of the parameter of interest, i.e., Total Phosphate, Arsenic, Nitrogen etc.
-- Form - Notes on the specific form where inclusion in the variable name seems too specific.
-- Average - Whether or not the limits are the maximum value or the mean from at least 5 weekly samples taken in a period of 30 days.
+- Average - Whether or not the limits are the maximum value (default leave cell blank) 
+or the mean or geomean or median from at least 5 weekly samples taken in a period of 30 days.
 - Condition	- Any conditions on the levels as a valid logical R expression.
 - LowerLimit - The minimum level as a valid R expression where other variables are referenced
 by their code.

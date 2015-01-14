@@ -1,41 +1,41 @@
-Variable,Code,Units
-Aluminium Dissolved,Al-D,mg/L
-Arsenic,As,ug/L
-Boron,B,mg/L
-Cadmium Dissolved,Cd-D,ug/L
-Chlorate,ClO3,mg/L
-Chloride,Cl,mg/L
-Chlorine Total Residual,TRC,ug/L
-Cobalt,Co,ug/L
-Copper,Cu,ug/L
-Cyanide Weak Acid Dissociable,CN,ug/L
-Diisopropanolamine,DIPA,mg/L
-Escherichia coli,EC,/dL
-Ethinylestradiol 17a,EE2,ng/L
-Ethylbenzene,C8H10,mg/L
-Fluoride Total,Fl-T,mg/L
-Hardness,CaCO3,mg/L
-Iron Total,Fe-T,mg/L
-Iron Dissolved,Fe-D,mg/L
-Lead,Pb,ug/L
-Manganese,Mn,mg/L
-Mercury,Hg,ug/L
-Methyl Mercury,MeHg,ug/L
-Methyl Tertiary Butyl Ether,MTBE,mg/L
-Molybdenum,Mo,mg/L
-Nitrate,NO3,mg/L
-Nitrite,NO2,mg/L
-Oxygen Dissolved,DO,mg/L
-pH,pH,pH
-Phosphorus Total,TP,ug/L
-Polychlorinated Biphenyl Total,PCB,ng/L
-Polychlorinated Biphenyl 105,PCB105,ng/L
-Polychlorinated Biphenyl 169,PCB169,ng/L
-Polychlorinated Biphenyl 77,PCB77,ng/L
-Polychlorinated Biphenyl 126,PCB126,ng/L
-Selenium Total,Se-T,mg/L
-Silver,Ag,ug/L
-Sulphate,SO4,mg/L
-Sulpholane,C4H8O2S,mg/L
-Toluene,C7H8,mg/L
-Zinc,Zn,ug/L
+"Variable","Code","Units"
+"Aluminium Dissolved","Al-D","mg/L"
+"Arsenic","As","ug/L"
+"Boron","B","mg/L"
+"Cadmium Dissolved","Cd-D","ug/L"
+"Chlorate","ClO3","mg/L"
+"Chloride","Cl","mg/L"
+"Chlorine Total Residual","TRC","ug/L"
+"Cobalt","Co","ug/L"
+"Copper","Cu","ug/L"
+"Cyanide Weak Acid Dissociable","CN","ug/L"
+"Diisopropanolamine","DIPA","mg/L"
+"Escherichia coli","EC","/dL"
+"Ethinylestradiol 17a","EE2","ng/L"
+"Ethylbenzene","C8H10","mg/L"
+"Fluoride Total","Fl-T","mg/L"
+"Hardness","CaCO3","mg/L"
+"Iron Dissolved","Fe-D","mg/L"
+"Iron Total","Fe-T","mg/L"
+"Lead","Pb","ug/L"
+"Manganese","Mn","mg/L"
+"Mercury","Hg","ug/L"
+"Methyl Mercury","MeHg","ug/L"
+"Methyl Tertiary Butyl Ether","MTBE","mg/L"
+"Molybdenum","Mo","mg/L"
+"Nitrate","NO3","mg/L"
+"Nitrite","NO2","mg/L"
+"Oxygen Dissolved","DO","mg/L"
+"Phosphorus Total","TP","ug/L"
+"Polychlorinated Biphenyl 105","PCB105","ng/L"
+"Polychlorinated Biphenyl 126","PCB126","ng/L"
+"Polychlorinated Biphenyl 169","PCB169","ng/L"
+"Polychlorinated Biphenyl 77","PCB77","ng/L"
+"Polychlorinated Biphenyl Total","PCB","ng/L"
+"Selenium Total","Se-T","mg/L"
+"Silver","Ag","ug/L"
+"Sulphate","SO4","mg/L"
+"Sulpholane","C4H8O2S","mg/L"
+"Toluene","C7H8","mg/L"
+"Zinc","Zn","ug/L"
+"pH","pH","pH"

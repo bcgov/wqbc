@@ -18,6 +18,9 @@ input_codes <- function () {
   stopifnot(!anyDuplicated(codes$Variable))
   stopifnot(all(codes$Units %in% get_units()))
 
+  # codes %<>% arrange(Variable)
+  # write.csv(codes, "data-raw/codes.csv", row.names = FALSE, na = "")
+
   codes$Variable %<>% factor
   codes$Code %<>% factor
   codes$Units %<>% factor(levels = get_units())
