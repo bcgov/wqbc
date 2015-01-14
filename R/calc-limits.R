@@ -1,19 +1,3 @@
-add_limits_use <- function (x, use) {
-  x$..ID <- 1:nrow(x)
-  x <- dplyr::rename_(x, "..Units" = "Units")
-
-  y <- dplyr::filter_(wqbc::limits, ~Use == use)
-  y <- dplyr::select_(y, ~Code, ~LowerLimit, ~UpperLimit, ~Units, ~Samples, ~Period,
-                      ~Condition, ~Variable, ~Use)
-
-  x <- delete_columns(x, colnames(dplyr::select_(y, ~-Code)))
-  x <- dplyr::left_join(x, y, by = "Code")
-
-  x$Value <- convert_units(x$Value, from = x$..Units, to = x$Units)
-  x$..Units <- NULL
-  x
-}
-
 calc_limit <- function (x) {
   x <- dplyr::rename_(x, "..Units" = "Units")
   x <- dplyr::left_join(x, wqbc::codes, by = "Variable")
@@ -23,7 +7,11 @@ calc_limit <- function (x) {
 
   x$..ID <- 1:nrow(x)
   x <- dplyr::left_join(x, wqbc::limits, by = c("Variable", "Code", "Units"))
-  # up to here need to add geomean1
+  # 1) determine in maximum and mean (keep both) if 5 measurements from 3 weeks in same month - actually calculate for everything by year and month....
+  # Note pH should be median....refernce by conditions
+  # 2) then see if conditions met (DROP if not)
+  # 3) calculate limits
+  #
   x
 }
 

@@ -1,3 +1,4 @@
+library(wqbc)
 library(dplyr)
 library(magrittr)
 library(devtools)

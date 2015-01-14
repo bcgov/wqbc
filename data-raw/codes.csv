@@ -2,7 +2,7 @@ Variable,Code,Units
 Aluminium Dissolved,Al-D,mg/L
 Arsenic,As,ug/L
 Boron,B,mg/L
-Cadmium Dissolved,Ca-D,ug/L
+Cadmium Dissolved,Cd-D,ug/L
 Chlorate,ClO3,mg/L
 Chloride,Cl,mg/L
 Chlorine Total Residual,TRC,ug/L
@@ -10,7 +10,7 @@ Cobalt,Co,ug/L
 Copper,Cu,ug/L
 Cyanide Weak Acid Dissociable,CN,ug/L
 Diisopropanolamine,DIPA,mg/L
-Escherichia coli,FC,/dL
+Escherichia coli,EC,/dL
 Ethinylestradiol 17a,EE2,ng/L
 Ethylbenzene,C8H10,mg/L
 Fluoride Total,Fl-T,mg/L
