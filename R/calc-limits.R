@@ -1,76 +1,134 @@
-is_condition_satisfied <- function (x, condition) {
-  # need to get symbol(s)....and then filter down...
-  TRUE
-}
-
-keep_conditions <- function (x) {
-  if(any(!x$..Keep)) {
-    wch <- which(!x$..Keep)
-    for(i in wch) {
-      x$..Keep[i] <- is_condition_satisfied(x, as.character(x$Condition[i]))
-    }
-  }
-  x
-}
-
-calc_limits_month <- function (x) {
-  x$Week <- lubridate::week(x$Date)
-x
-
-}
-
-calc_limits_date <- function (x) {
-  x$..Keep <- is.na(x$Condition)
-  x
-}
-
-mean_daily_value <- function (x) {
-  x$Value <- mean(x$Value)
-  x[1, , drop = FALSE]
-}
-
-calc_limits_by <- function (x) {
+join_codes <- function (x) {
   x <- dplyr::rename_(x, "..Units" = "Units")
   x <- dplyr::left_join(x, wqbc::codes, by = "Variable")
   stopifnot(!any(is.na(x$Units)))
   x$Value <- convert_units(x$Value, from = x$..Units, to = x$Units)
   x$..Units <- NULL
+  x
+}
 
-  x <- plyr::ddply(x, c("Date", "Variable"), mean_daily_value)
+average_daily_values_day_variable <- function (x) {
+  txt <- paste0("x$Value <- ", x$Average, "(x$Value)")
+  eval(parse(text = txt))
+  x[1,,drop = FALSE]
+}
+
+average_daily_values_day <- function (x) {
+  if(anyDuplicated(x$Variable))
+    x <- plyr::ddply(x, "Variable", average_daily_values_day_variable)
+  x
+}
+
+average_daily_values <- function (x) {
+  if(anyDuplicated(dplyr::select_(x, ~Date, ~Variable)))
+    x <- plyr::ddply(x, "Date", average_daily_values_day)
+  x
+}
+
+average_monthly_values_variable <- function (x) {
+  x$Weeks <- length(unique(lubridate::week(x$Date)))
+  x$Values <- nrow(x)
+  average_daily_values_day_variable(x)
+}
+
+average_monthly_values <- function (x) {
+  x <- plyr::ddply(x, "Variable", average_monthly_values_variable)
+  x
+}
+
+join_limits <- function (x) {
   x$..ID <- 1:nrow(x)
   x <- dplyr::left_join(x, wqbc::limits, by = c("Variable", "Units"))
+  x
+}
 
-  max <- dplyr::filter_(x, ~is.na(Average))
-  avg <- dplyr::filter_(x, ~!is.na(Average))
+get_code_values <- function (x) {
+  code_value <-  as.list(x$Value)
+  names(code_value) <- x$Code
+  code_value[!duplicated(names(code_value))]
+}
 
-  avg$Year <- lubridate::year(avg$Date)
-  avg$Month <- lubridate::month(avg$Date)
+test_condition <- function (x, cv) {
+  if(is.na(x))
+    return (TRUE)
+  x <- try(eval(parse(text = x), envir = cv), silent = TRUE)
+  if(class(x) != "logical")
+    return (FALSE)
+  return (x)
+}
 
-#  avg <- plyr::ddply(avg, c("Year", "Month"), .fun = avg_monthly_value)
+calc_limit <- function (x, cv) {
+  x <- try(eval(parse(text = as.character(x)), envir = cv), silent = TRUE)
+  if(class(x) != "numeric")
+    return (NA)
+  return (x)
+}
 
-#  max <- plyr::ddply(max, .variables = "Date", .fun = calc_limits_date)
+calc_limits_by_period <- function (x) {
+  cv <- get_code_values(x)
+  x$Condition <- vapply(x$Condition, FUN = test_condition,
+                        FUN.VALUE = logical(1), cv = cv)
 
-#  max <- plyr::ddply(max, .variables = "Date", .fun = calc_limits_date)
+  x <- x[x$Condition,,drop = FALSE]
+  x$Condition <- NULL
 
+  if(!nrow(x))
+    return (x)
 
-#  print(x)
-#  stop()
+  x$LowerLimit <- vapply(x$LowerLimit, FUN = calc_limit,
+                         FUN.VALUE = numeric(1), cv = cv)
 
+  x$UpperLimit <- vapply(x$UpperLimit, FUN = calc_limit,
+                         FUN.VALUE = numeric(1), cv = cv)
 
+  x <- x[!is.na(x$LowerLimit) | !is.na(x$UpperLimit),,drop = FALSE]
+  x
+}
 
-  x$..Keep <- FALSE
+calc_limits_by_day <- function (x) {
+  x <- dplyr::filter_(x, ~Period == "Day")
+  x <- plyr::ddply(x, "Date", calc_limits_by_period)
+  if(anyDuplicated(x$..ID)) {
+    warning("multiple limits")
+    x <- x[FALSE,,drop = FALSE]
+  }
+  x <- dplyr::select_(x, ~-..ID, ~-Code, ~-Average)
+  x
+}
 
-  avg$Year <- lubridate::year(avg$Date)
-  avg$Month <- lubridate::month(avg$Date)
+calc_limits_by_month <- function (x) {
+  x <- dplyr::filter_(x, ~Period == "Month")
+  x$Year <- lubridate::year(x$Date)
+  x$Month <- lubridate::month(x$Date)
 
-  max <- plyr::ddply(max, .variables = "Date", .fun = calc_limits_date)
-  avg <- plyr::ddply(avg, .variables = c("Year", "Month"), .fun = calc_limits_month)
+  x <- plyr::ddply(x, c("Year", "Month"), average_monthly_values)
+  x <- plyr::ddply(x, c("Year", "Month"), calc_limits_by_period)
+#  x <- dplyr::filter_(x, ~Values >= 5 & Weeks >= 3)
 
-  # 1) determine in maximum and mean (keep both) if 5 measurements from 3 weeks in same month - actually calculate for everything by year and month....
-  # Note pH should be median....refernce by conditions
-  # 2) then see if conditions met (DROP if not)
-  # 3) calculate limits
-  #
+  if(!nrow(x))
+    return (x)
+
+  x$Date <- as.Date(paste(x$Year, x$Month, "01", sep = "-"))
+
+  if(anyDuplicated(x$..ID)) {
+    warning("multiple limits")
+    x <- x[FALSE,,drop = FALSE]
+  }
+
+  x <- dplyr::select_(x, ~-..ID, ~-Code, ~-Average, ~-Year, ~-Month, ~-Values, ~-Weeks)
+  x
+}
+
+calc_limits_by <- function (x) {
+  x <- join_codes(x)
+  x <- average_daily_values(x)
+  x <- join_limits(x)
+
+  day <- calc_limits_by_day(x)
+  month <- calc_limits_by_month(x)
+
+  x <- rbind(day, month)
+  x <- dplyr::select_(x, ~Period, ~Date, ~Variable, ~Value, ~LowerLimit, ~UpperLimit, ~Units)
   x
 }
 
@@ -86,7 +144,7 @@ calc_limits_by <- function (x) {
 #' @param messages flag indicating whether to print messages
 #' @examples
 #' data(fraser)
-#' fraser <- calc_limits(fraser[1:100,], message = FALSE)
+#' fraser <- calc_limits(rbind(fraser[1:100,],fraser[1:100,]), message = FALSE)
 #' @export
 calc_limits <- function (x, by = NULL, messages = TRUE) {
   assert_that(is.data.frame(x))

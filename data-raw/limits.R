@@ -20,7 +20,7 @@ check_limits <- function (x) {
   stopifnot(all(!is.na(x$Reference)))
   stopifnot(all(!is.na(x$Use)))
 
-  stopifnot(all(x$Period[!is.na(x$Period)] %in% c("month")))
+  stopifnot(all(x$Period[!is.na(x$Period)] %in% c("Month")))
   stopifnot(all(x$Units %in% get_units()))
   stopifnot(all(x$Reference %in% c("BC_2006", "EMAIL_2014")))
   stopifnot(all(x$Use %in% c("Freshwater Life")))
@@ -63,7 +63,7 @@ input_limits <- function () {
 
   limits %<>% select(Variable, Period, Condition, LowerLimit, UpperLimit, Units)
 
-  limits$Period[is.na(limits$Period)] <- "day"
+  limits$Period[is.na(limits$Period)] <- "Day"
   limits$Period %<>% factor
   limits$Variable %<>% factor
   limits$Units %<>% droplevels
