@@ -5,7 +5,7 @@
 \title{Plot Map}
 \usage{
 plot_map(data, x = "Long", y = "Lat", colour = NULL, shape = NULL,
-  size = 2, drop = TRUE, input_proj = NULL)
+  size = 2, theme = theme_map(), drop = TRUE, input_proj = NULL)
 }
 \arguments{
 \item{data}{data.frame to plot}
@@ -19,6 +19,8 @@ plot_map(data, x = "Long", y = "Lat", colour = NULL, shape = NULL,
 \item{shape}{string of column in data to plot shape of points}
 
 \item{size}{number of size of points}
+
+\item{theme}{ggplot theme}
 
 \item{drop}{flag indicating whether to drop duplicated rows to
 avoid overplotting}

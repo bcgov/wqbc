@@ -7,6 +7,8 @@ check_columns <- function (x, colnames) {
   stopifnot(is.data.frame(x))
   stopifnot(is.character(colnames))
 
+  colnames <- unique(colnames)
+
   bol <- colnames %in% colnames(x)
   if(!all(bol))
     stop("x must contain columns ", punctuate_strings(colnames[!bol], "and"), ".")

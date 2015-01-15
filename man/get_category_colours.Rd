@@ -8,7 +8,7 @@ get_category_colours(palette = "default")
 }
 \arguments{
 \item{palette}{string indicating palette to use. Possible values are
-"default" and "classic"}
+"default" and "blue"}
 }
 \value{
 named character vector of colours for water quality index categories

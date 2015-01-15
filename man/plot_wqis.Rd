@@ -4,20 +4,22 @@
 \alias{plot_wqis}
 \title{Plot Water Quality Indices}
 \usage{
-plot_wqis(data, x = "Tests", size = NULL, shape = NULL,
-  palette = "default")
+plot_wqis(data, x = "Tests", size = 3, shape = 21, palette = "default",
+  theme = theme_wqis())
 }
 \arguments{
 \item{data}{data.frame to plot}
 
 \item{x}{string of column in data to plot on x axis}
 
-\item{size}{string of column in data to plot size of points}
+\item{size}{number of size or string of column in data to plot size of points}
 
-\item{shape}{string of column in data to plot shape of points}
+\item{shape}{integer of shape (permitted values are 21 to 25) or string of column in data to plot shape of points}
 
 \item{palette}{string indicating palette to use. Possible values are
-"default" and "classic"}
+"default" and "blue"}
+
+\item{theme}{ggplot theme}
 }
 \value{
 ggplot2 object
@@ -39,6 +41,7 @@ plot_wqis(wqis, x = "Date")
 
 library(lubridate)
 
+wqis <- calc_wqis(ccme, by = "Date")
 wqis$Year <- year(wqis$Date)
 wqis$Dayte <- wqis$Date
 year(wqis$Dayte) <- 2000
@@ -47,6 +50,8 @@ facet_wrap(~Year) + xlab("Day of the Year") + theme_bw()
 
 test <- data.frame(WQI = seq(0, 100, by = 5))
 test$Category = categorize_wqi(test$WQI)
-plot_wqis(test, x = "WQI") + xlab("Water Quality Index")
+for (palette in c("default", "blue")) {
+ print(plot_wqis(test, x = "WQI", palette = palette) + xlab(palette))
+}
 }
 

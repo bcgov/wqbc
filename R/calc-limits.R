@@ -1,4 +1,37 @@
-calc_limit <- function (x) {
+is_condition_satisfied <- function (x, condition) {
+#  print(x)
+ # print(condition)
+  # need to get symbol(s)....and then filter down...
+  TRUE
+}
+
+keep_conditions <- function (x) {
+  if(any(!x$..Keep)) {
+    wch <- which(!x$..Keep)
+    for(i in wch) {
+      x$..Keep[i] <- is_condition_satisfied(x, as.character(x$Condition[i]))
+    }
+  }
+  x
+}
+
+calc_limits_month <- function (x) {
+  x$Week <- lubridate::week(x$Date)
+#  print(x)
+#  stop()
+x
+
+}
+
+calc_limits_date <- function (x) {
+  x$..Keep <- is.na(x$Condition)
+  x <- keep_conditions(x)
+#  x$LowerLimit <- calc_limits_row(x, x$LowerLimit)
+#  x$UpperLimit <- calc_limits_row(x, x$UpperLimit)
+  x
+}
+
+calc_limits_by <- function (x) {
   x <- dplyr::rename_(x, "..Units" = "Units")
   x <- dplyr::left_join(x, wqbc::codes, by = "Variable")
   stopifnot(!any(is.na(x$Units)))
@@ -6,7 +39,20 @@ calc_limit <- function (x) {
   x$..Units <- NULL
 
   x$..ID <- 1:nrow(x)
+
   x <- dplyr::left_join(x, wqbc::limits, by = c("Variable", "Code", "Units"))
+
+  x$..Keep <- FALSE
+
+  max <- dplyr::filter_(x, ~is.na(Average))
+  avg <- dplyr::filter_(x, ~!is.na(Average))
+
+  avg$Year <- lubridate::year(avg$Date)
+  avg$Month <- lubridate::month(avg$Date)
+
+  max <- plyr::ddply(max, .variables = "Date", .fun = calc_limits_date)
+  avg <- plyr::ddply(avg, .variables = c("Year", "Month"), .fun = calc_limits_month)
+
   # 1) determine in maximum and mean (keep both) if 5 measurements from 3 weeks in same month - actually calculate for everything by year and month....
   # Note pH should be median....refernce by conditions
   # 2) then see if conditions met (DROP if not)
@@ -58,7 +104,7 @@ calc_limits <- function (x, by = NULL, messages = TRUE) {
   check_rows(x)
 
   if(is.null(by))
-    return(calc_limit(x))
+    return(calc_limits_by(x))
 
-  plyr::ddply(x, .variables = by, .fun = calc_limit)
+  plyr::ddply(x, .variables = by, .fun = calc_limits_by)
 }

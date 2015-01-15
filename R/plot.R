@@ -6,8 +6,9 @@
 #'
 #' @param data data.frame to plot
 #' @param x string of column in data to plot on x axis
-#' @param size string of column in data to plot size of points
-#' @param shape string of column in data to plot shape of points
+#' @param size number of size or string of column in data to plot size of points
+#' @param shape integer of shape (permitted values are 21 to 25) or string of column in data to plot shape of points
+#' @param theme ggplot theme
 #' @inheritParams get_category_colours
 #' @return ggplot2 object
 #' @examples
@@ -22,6 +23,7 @@
 #'
 #' library(lubridate)
 #'
+#' wqis <- calc_wqis(ccme, by = "Date")
 #' wqis$Year <- year(wqis$Date)
 #' wqis$Dayte <- wqis$Date
 #' year(wqis$Dayte) <- 2000
@@ -30,29 +32,58 @@
 #'
 #' test <- data.frame(WQI = seq(0, 100, by = 5))
 #' test$Category = categorize_wqi(test$WQI)
-#' plot_wqis(test, x = "WQI") + xlab("Water Quality Index")
-#'
+#' for (palette in c("default", "blue")) {
+#'  print(plot_wqis(test, x = "WQI", palette = palette) + xlab(palette))
+#' }
 #' @export
-plot_wqis <- function (data, x = "Tests", size = NULL, shape = NULL, palette = "default") {
+plot_wqis <- function (data, x = "Tests", size = 3, shape = 21, palette = "default", theme = theme_wqis()) {
   assert_that(is.data.frame(data))
   assert_that(is.string(x))
-  assert_that(is.null(size) || is.string(size))
-  assert_that(is.null(shape) || is.string(shape))
+  assert_that(is.number(size) || is.string(size))
+  assert_that(is.count(shape) || is.string(shape))
 
-  if(!"WQI" %in% colnames(data)) stop("data must contain WQI column")
-  if(!"Category" %in% colnames(data)) stop("data must contain Category column")
-  if(!x %in% colnames(data)) stop("data must contain ", x ," column")
-  if(is.string(size) && !size %in% colnames(data)) stop("data must contain ", size ," column")
-  if(is.string(shape) && !shape %in% colnames(data)) stop("data must contain ", shape ," column")
+  check_columns(data, unique(c("WQI", "Category", x,
+                               ifelse(is.string(size), size, "WQI"),
+                               ifelse(is.string(shape), shape, "WQI"))))
 
   if(!requireNamespace("ggplot2", quietly = TRUE))
     stop("ggplot2 package not installed")
 
-  ggplot2:: ggplot(data = data, ggplot2::aes_string(x = x, y = "WQI")) +
-    ggplot2::geom_point(ggplot2::aes_string(colour = "Category", size = size, shape = shape)) +
+  shape_values <- 21:25
+
+  if(is.count(shape) && !shape %in% shape_values)
+    stop("shape must be a character vector or ", punctuate_strings(shape_values))
+
+  fill_values <- get_category_colours(palette = palette)
+
+  gp <- ggplot2::ggplot(data = data, ggplot2::aes_string(x = x, y = "WQI")) +
     ggplot2::expand_limits(y = c(0, 100)) +
-    ggplot2::scale_colour_manual(values = get_category_colours(palette = palette)) +
-    ggplot2::ylab("Water Quality Index")
+    ggplot2::scale_fill_manual(values = fill_values) +
+    ggplot2::ylab("Water Quality Index") +
+    theme
+
+  point_colour <- "#081d58"
+
+  if(is.string(size) && is.string(shape)) {
+    gp <- gp + ggplot2::geom_point(
+      ggplot2::aes_string(fill = "Category", size = size, shape = shape),
+      colour = point_colour)
+  } else if (!is.string(size) && !is.string(shape)) {
+    gp <- gp + ggplot2::geom_point(
+      ggplot2::aes_string(fill = "Category"), size = size, shape = shape,
+      colour = point_colour)
+  } else if (is.string(size)) {
+    gp <- gp + ggplot2::geom_point(
+      ggplot2::aes_string(fill = "Category", size = size), shape = shape,
+      colour = point_colour)
+  } else {
+    gp <- gp + ggplot2::geom_point(
+      ggplot2::aes_string(fill = "Category", shape = shape), size = size,
+      colour = point_colour)
+  }
+  if(is.string(shape))
+    gp <- gp + ggplot2::scale_shape_manual(values = shape_values)
+  gp
 }
 
 #' Plot Map
@@ -66,6 +97,7 @@ plot_wqis <- function (data, x = "Tests", size = NULL, shape = NULL, palette = "
 #' @param colour string of column in data to plot colour of points
 #' @param shape string of column in data to plot shape of points
 #' @param size number of size of points
+#' @param theme ggplot theme
 #' @param drop flag indicating whether to drop duplicated rows to
 #' avoid overplotting
 #' @param input_proj a valid proj4string. Defaults to longlat/NAD83 (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})
@@ -91,7 +123,8 @@ plot_wqis <- function (data, x = "Tests", size = NULL, shape = NULL, palette = "
 #'
 #' @export
 plot_map <- function (data,  x = "Long", y = "Lat", colour = NULL,
-                      shape = NULL, size = 2, drop = TRUE, input_proj = NULL) {
+                      shape = NULL, size = 2, theme = theme_map(),
+                      drop = TRUE, input_proj = NULL) {
   assert_that(is.data.frame(data))
   assert_that(is.string(x))
   assert_that(is.string(y))
@@ -101,10 +134,9 @@ plot_map <- function (data,  x = "Long", y = "Lat", colour = NULL,
   assert_that(is.flag(drop) || noNA(drop))
   assert_that(is.null(input_proj) || is.string(input_proj))
 
-  if(!x %in% colnames(data)) stop("data must contain ", x ," column")
-  if(!y %in% colnames(data)) stop("data must contain ", y ," column")
-  if(is.string(colour) && !colour %in% colnames(data)) stop("data must contain ", colour ," column")
-  if(is.string(shape) && !shape %in% colnames(data)) stop("data must contain ", shape ," column")
+  check_columns(data, unique(c(x, y,
+                               ifelse(is.string(colour), colour, x),
+                               ifelse(is.string(shape), shape, x))))
 
   if(!requireNamespace("ggplot2", quietly = TRUE))
     stop("ggplot2 package not installed")
@@ -123,9 +155,5 @@ plot_map <- function (data,  x = "Long", y = "Lat", colour = NULL,
     ggplot2::coord_fixed() +
     ggplot2::geom_point(ggplot2::aes_string(colour = colour, shape = shape),
                         size = size) +
-    ggplot2::theme_minimal() +
-    ggplot2::theme(
-      axis.title = ggplot2::element_blank(), axis.text = ggplot2::element_blank(),
-      axis.ticks = ggplot2::element_blank(), panel.grid = ggplot2::element_blank()
-    )
+    theme
 }
