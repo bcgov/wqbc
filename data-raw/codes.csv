@@ -1,41 +1,41 @@
-"Variable","Code","Units"
-"Aluminium Dissolved","Al-D","mg/L"
-"Arsenic","As","ug/L"
-"Boron","B","mg/L"
-"Cadmium Dissolved","Cd-D","ug/L"
-"Chlorate","ClO3","mg/L"
-"Chloride","Cl","mg/L"
-"Chlorine Total Residual","TRC","ug/L"
-"Cobalt","Co","ug/L"
-"Copper","Cu","ug/L"
-"Cyanide Weak Acid Dissociable","CN","ug/L"
-"Diisopropanolamine","DIPA","mg/L"
-"Escherichia coli","EC","/dL"
-"Ethinylestradiol 17a","EE2","ng/L"
-"Ethylbenzene","C8H10","mg/L"
-"Fluoride Total","Fl-T","mg/L"
-"Hardness","CaCO3","mg/L"
-"Iron Dissolved","Fe-D","mg/L"
-"Iron Total","Fe-T","mg/L"
-"Lead","Pb","ug/L"
-"Manganese","Mn","mg/L"
-"Mercury","Hg","ug/L"
-"Methyl Mercury","MeHg","ug/L"
-"Methyl Tertiary Butyl Ether","MTBE","mg/L"
-"Molybdenum","Mo","mg/L"
-"Nitrate","NO3","mg/L"
-"Nitrite","NO2","mg/L"
-"Oxygen Dissolved","DO","mg/L"
-"Phosphorus Total","TP","ug/L"
-"Polychlorinated Biphenyl 105","PCB105","ng/L"
-"Polychlorinated Biphenyl 126","PCB126","ng/L"
-"Polychlorinated Biphenyl 169","PCB169","ng/L"
-"Polychlorinated Biphenyl 77","PCB77","ng/L"
-"Polychlorinated Biphenyl Total","PCB","ng/L"
-"Selenium Total","Se-T","mg/L"
-"Silver","Ag","ug/L"
-"Sulphate","SO4","mg/L"
-"Sulpholane","C4H8O2S","mg/L"
-"Toluene","C7H8","mg/L"
-"Zinc","Zn","ug/L"
-"pH","pH","pH"
+Variable,Code,Units,Average
+Aluminium Dissolved,Al-D,mg/L,mean
+Arsenic,As,ug/L,mean
+Boron,B,mg/L,mean
+Cadmium Dissolved,Cd-D,ug/L,mean
+Chlorate,ClO3,mg/L,mean
+Chloride,Cl,mg/L,mean
+Chlorine Total Residual,TRC,ug/L,mean
+Cobalt,Co,ug/L,mean
+Copper,Cu,ug/L,mean
+Cyanide Weak Acid Dissociable,CN,ug/L,mean
+Diisopropanolamine,DIPA,mg/L,mean
+Escherichia coli,EC,/dL,geomean1
+Ethinylestradiol 17a,EE2,ng/L,mean
+Ethylbenzene,C8H10,mg/L,mean
+Fluoride Total,Fl-T,mg/L,mean
+Hardness,CaCO3,mg/L,mean
+Iron Dissolved,Fe-D,mg/L,mean
+Iron Total,Fe-T,mg/L,mean
+Lead,Pb,ug/L,mean
+Manganese,Mn,mg/L,mean
+Mercury,Hg,ug/L,mean
+Mercury Methyl,MeHg,ug/L,mean
+Methyl Tertiary Butyl Ether,MTBE,mg/L,mean
+Molybdenum,Mo,mg/L,mean
+Nitrate,NO3,mg/L,mean
+Nitrite,NO2,mg/L,mean
+Oxygen Dissolved,DO,mg/L,mean
+Phosphorus Total,TP,ug/L,mean
+Polychlorinated Biphenyl 105,PCB105,ng/L,mean
+Polychlorinated Biphenyl 126,PCB126,ng/L,mean
+Polychlorinated Biphenyl 169,PCB169,ng/L,mean
+Polychlorinated Biphenyl 77,PCB77,ng/L,mean
+Polychlorinated Biphenyl Total,PCB,ng/L,mean
+Selenium Total,Se-T,mg/L,mean
+Silver,Ag,ug/L,mean
+Sulphate,SO4,mg/L,mean
+Sulpholane,C4H8O2S,mg/L,mean
+Toluene,C7H8,mg/L,mean
+Zinc,Zn,ug/L,mean
+pH,pH,pH,median

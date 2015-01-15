@@ -9,7 +9,7 @@ check_limits <- function (x) {
   }
 
   stopifnot(identical(colnames(x),
-                      c("Variable", "Average",
+                      c("Variable", "Period",
                         "Condition", "LowerLimit", "UpperLimit", "Units", "Table",
                         "Reference", "Use")))
 
@@ -20,6 +20,7 @@ check_limits <- function (x) {
   stopifnot(all(!is.na(x$Reference)))
   stopifnot(all(!is.na(x$Use)))
 
+  stopifnot(all(x$Period[!is.na(x$Period)] %in% c("month")))
   stopifnot(all(x$Units %in% get_units()))
   stopifnot(all(x$Reference %in% c("BC_2006", "EMAIL_2014")))
   stopifnot(all(x$Use %in% c("Freshwater Life")))
@@ -38,7 +39,7 @@ input_limits <- function () {
   check_limits(limits)
 
   # lapply(limits, FUN = function (limits) (sort(unique(limits))))
-  # limits %<>% arrange(Variable, Average, UpperLimit)
+  # limits %<>% arrange(Variable, Period, UpperLimit)
   #   write.csv(limits, "data-raw/limits.csv", row.names = FALSE, na = "")
 
   limits <- rename_(limits, "..Units" = "Units")
@@ -58,13 +59,12 @@ input_limits <- function () {
       !(is.na(LowerLimit) & is.na(UpperLimit)) &
       !is.na(Units))
 
-  limits %<>% arrange(Variable, Average)
+  limits %<>% arrange(Variable, Period)
 
-  limits %<>% select(Variable, Code,
-                     Average, Condition, LowerLimit, UpperLimit, Units)
+  limits %<>% select(Variable, Period, Condition, LowerLimit, UpperLimit, Units)
 
-  limits$Code %<>% factor
-  limits$Average %<>% factor
+  limits$Period[is.na(limits$Period)] <- "day"
+  limits$Period %<>% factor
   limits$Variable %<>% factor
   limits$Units %<>% droplevels
 

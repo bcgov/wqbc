@@ -78,6 +78,7 @@
 #'   \item{Code}{unique short-hand code}
 #'   \item{Variable}{unique name of water quality parameter}
 #'   \item{Units}{units for parameter}
+#'   \item{Average}{R function to calculate "average" value for multiple samples in a period}
 #' }
 "codes"
 
@@ -85,9 +86,12 @@
 #'
 #' @format A data frame with 13 variables:
 #' \describe{
-#'   \item{Code}{short-hand code}
 #'   \item{Variable}{name of water quality parameter}
-#'   \item{Average}{R function(s) to calculate "average" value for multiple samples}
+#'   \item{Period}{Period for which limit applies. When multiple values occur
+#'   within the same period the average function in the codes data.frame is
+#'   used to calculate the average value. Note in order for the month limits to
+#'   apply at least five values must have been recorded on five separate days
+#'   from at least three calendar weeks within the calendar month}
 #'   \item{Condition}{R logical expression to test required condition}
 #'   \item{LowerLimit}{R expression defining lower limit}
 #'   \item{UpperLimit}{R expression defining upper limit}

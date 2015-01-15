@@ -9,6 +9,7 @@
   \item{Code}{unique short-hand code}
   \item{Variable}{unique name of water quality parameter}
   \item{Units}{units for parameter}
+  \item{Average}{R function to calculate "average" value for multiple samples in a period}
 }}
 \usage{
 codes

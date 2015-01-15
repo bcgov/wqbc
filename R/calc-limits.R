@@ -1,6 +1,4 @@
 is_condition_satisfied <- function (x, condition) {
-#  print(x)
- # print(condition)
   # need to get symbol(s)....and then filter down...
   TRUE
 }
@@ -17,18 +15,18 @@ keep_conditions <- function (x) {
 
 calc_limits_month <- function (x) {
   x$Week <- lubridate::week(x$Date)
-#  print(x)
-#  stop()
 x
 
 }
 
 calc_limits_date <- function (x) {
   x$..Keep <- is.na(x$Condition)
-  x <- keep_conditions(x)
-#  x$LowerLimit <- calc_limits_row(x, x$LowerLimit)
-#  x$UpperLimit <- calc_limits_row(x, x$UpperLimit)
   x
+}
+
+mean_daily_value <- function (x) {
+  x$Value <- mean(x$Value)
+  x[1, , drop = FALSE]
 }
 
 calc_limits_by <- function (x) {
@@ -38,14 +36,29 @@ calc_limits_by <- function (x) {
   x$Value <- convert_units(x$Value, from = x$..Units, to = x$Units)
   x$..Units <- NULL
 
+  x <- plyr::ddply(x, c("Date", "Variable"), mean_daily_value)
   x$..ID <- 1:nrow(x)
-
-  x <- dplyr::left_join(x, wqbc::limits, by = c("Variable", "Code", "Units"))
-
-  x$..Keep <- FALSE
+  x <- dplyr::left_join(x, wqbc::limits, by = c("Variable", "Units"))
 
   max <- dplyr::filter_(x, ~is.na(Average))
   avg <- dplyr::filter_(x, ~!is.na(Average))
+
+  avg$Year <- lubridate::year(avg$Date)
+  avg$Month <- lubridate::month(avg$Date)
+
+#  avg <- plyr::ddply(avg, c("Year", "Month"), .fun = avg_monthly_value)
+
+#  max <- plyr::ddply(max, .variables = "Date", .fun = calc_limits_date)
+
+#  max <- plyr::ddply(max, .variables = "Date", .fun = calc_limits_date)
+
+
+#  print(x)
+#  stop()
+
+
+
+  x$..Keep <- FALSE
 
   avg$Year <- lubridate::year(avg$Date)
   avg$Month <- lubridate::month(avg$Date)
@@ -73,7 +86,7 @@ calc_limits_by <- function (x) {
 #' @param messages flag indicating whether to print messages
 #' @examples
 #' data(fraser)
-#' fraser <- calc_limits(fraser, message = FALSE)
+#' fraser <- calc_limits(fraser[1:100,], message = FALSE)
 #' @export
 calc_limits <- function (x, by = NULL, messages = TRUE) {
   assert_that(is.data.frame(x))

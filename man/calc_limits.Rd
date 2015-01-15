@@ -21,6 +21,6 @@ Assumes values are individual readings.
 }
 \examples{
 data(fraser)
-fraser <- calc_limits(fraser, message = FALSE)
+fraser <- calc_limits(fraser[1:100,], message = FALSE)
 }
 
