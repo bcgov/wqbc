@@ -8,8 +8,9 @@
 #' @param x string of column in data to plot on x axis
 #' @param size number of size or string of column in data to plot size of points
 #' @param shape integer of shape (permitted values are 21 to 25) or string of column in data to plot shape of points
+#' @param fill_values named character vector of fill values for wqi categories
+#'  - by default \code{\link{get_category_colours}}
 #' @param theme ggplot theme
-#' @inheritParams get_category_colours
 #' @return ggplot2 object
 #' @examples
 #' library(ggplot2)
@@ -32,11 +33,9 @@
 #'
 #' test <- data.frame(WQI = seq(0, 100, by = 5))
 #' test$Category = categorize_wqi(test$WQI)
-#' for (palette in c("default", "blue")) {
-#'  print(plot_wqis(test, x = "WQI", palette = palette) + xlab(palette))
-#' }
+#' print(plot_wqis(test, x = "WQI"))
 #' @export
-plot_wqis <- function (data, x = "Tests", size = 3, shape = 21, palette = "default", theme = theme_wqis()) {
+plot_wqis <- function (data, x = "Tests", size = 3, shape = 21, fill_values = get_category_colours(), theme = theme_wqis()) {
   assert_that(is.data.frame(data))
   assert_that(is.string(x))
   assert_that(is.number(size) || is.string(size))
@@ -53,8 +52,6 @@ plot_wqis <- function (data, x = "Tests", size = 3, shape = 21, palette = "defau
 
   if(is.count(shape) && !shape %in% shape_values)
     stop("shape must be a character vector or ", punctuate_strings(shape_values))
-
-  fill_values <- get_category_colours(palette = palette)
 
   gp <- ggplot2::ggplot(data = data, ggplot2::aes_string(x = x, y = "WQI")) +
     ggplot2::expand_limits(y = c(0, 100)) +

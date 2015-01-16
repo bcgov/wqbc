@@ -4,8 +4,8 @@
 \alias{plot_wqis}
 \title{Plot Water Quality Indices}
 \usage{
-plot_wqis(data, x = "Tests", size = 3, shape = 21, palette = "default",
-  theme = theme_wqis())
+plot_wqis(data, x = "Tests", size = 3, shape = 21,
+  fill_values = get_category_colours(), theme = theme_wqis())
 }
 \arguments{
 \item{data}{data.frame to plot}
@@ -16,8 +16,8 @@ plot_wqis(data, x = "Tests", size = 3, shape = 21, palette = "default",
 
 \item{shape}{integer of shape (permitted values are 21 to 25) or string of column in data to plot shape of points}
 
-\item{palette}{string indicating palette to use. Possible values are
-"default" and "blue"}
+\item{fill_values}{named character vector of fill values for wqi categories
+- by default \code{\link{get_category_colours}}}
 
 \item{theme}{ggplot theme}
 }
@@ -50,8 +50,6 @@ facet_wrap(~Year) + xlab("Day of the Year") + theme_bw()
 
 test <- data.frame(WQI = seq(0, 100, by = 5))
 test$Category = categorize_wqi(test$WQI)
-for (palette in c("default", "blue")) {
- print(plot_wqis(test, x = "WQI", palette = palette) + xlab(palette))
-}
+print(plot_wqis(test, x = "WQI"))
 }
 

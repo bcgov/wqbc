@@ -4,17 +4,13 @@
 \alias{get_category_colours}
 \title{Get Category Colours}
 \usage{
-get_category_colours(palette = "default")
-}
-\arguments{
-\item{palette}{string indicating palette to use. Possible values are
-"default" and "blue"}
+get_category_colours()
 }
 \value{
 named character vector of colours for water quality index categories
 }
 \description{
-Returns a named vector of the category colours to use when
+Returns a named vector of the default category colours to use when
 plotting water quality index values.
 }
 \examples{
