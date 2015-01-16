@@ -46,9 +46,7 @@ input_limits <- function () {
 
   load("data/codes.rda")
 
-  n <- nrow(limits)
-  limits <- left_join(limits, codes, by = "Variable")
-  stopifnot(n == nrow(limits))
+  limits <- inner_join(limits, codes, by = "Variable")
 
   stopifnot(all(limits$..Units == limits$Units))
   limits$..Unit <- NULL

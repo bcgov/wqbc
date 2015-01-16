@@ -1,41 +1,41 @@
 Variable,Code,Units,Average
-Aluminium Dissolved,Al-D,mg/L,mean
-Arsenic,As,ug/L,mean
-Boron,B,mg/L,mean
-Cadmium Dissolved,Cd-D,ug/L,mean
-Chlorate,ClO3,mg/L,mean
-Chloride,Cl,mg/L,mean
-Chlorine Total Residual,TRC,ug/L,mean
-Cobalt,Co,ug/L,mean
-Copper,Cu,ug/L,mean
-Cyanide Weak Acid Dissociable,CN,ug/L,mean
-Diisopropanolamine,DIPA,mg/L,mean
-Escherichia coli,EC,/dL,geomean1
-Ethinylestradiol 17a,EE2,ng/L,mean
-Ethylbenzene,C8H10,mg/L,mean
-Fluoride Total,Fl-T,mg/L,mean
-Hardness,CaCO3,mg/L,mean
-Iron Dissolved,Fe-D,mg/L,mean
-Iron Total,Fe-T,mg/L,mean
-Lead,Pb,ug/L,mean
-Manganese,Mn,mg/L,mean
-Mercury,Hg,ug/L,mean
-Mercury Methyl,MeHg,ug/L,mean
-Methyl Tertiary Butyl Ether,MTBE,mg/L,mean
-Molybdenum,Mo,mg/L,mean
-Nitrate,NO3,mg/L,mean
-Nitrite,NO2,mg/L,mean
-Oxygen Dissolved,DO,mg/L,mean
-Phosphorus Total,TP,ug/L,mean
-Polychlorinated Biphenyl 105,PCB105,ng/L,mean
-Polychlorinated Biphenyl 126,PCB126,ng/L,mean
-Polychlorinated Biphenyl 169,PCB169,ng/L,mean
-Polychlorinated Biphenyl 77,PCB77,ng/L,mean
-Polychlorinated Biphenyl Total,PCB,ng/L,mean
-Selenium Total,Se-T,mg/L,mean
-Silver,Ag,ug/L,mean
-Sulphate,SO4,mg/L,mean
-Sulpholane,C4H8O2S,mg/L,mean
-Toluene,C7H8,mg/L,mean
-Zinc,Zn,ug/L,mean
-pH,pH,pH,median
+Aluminium Dissolved,EMS_AL_D,mg/L,mean
+Arsenic Total,EMS_AS_T,ug/L,mean
+Boron,EMS_B__T,mg/L,mean
+Cadmium Dissolved,EMS_CD_D,ug/L,mean
+Chlorate,EMS_CL03,mg/L,mean
+Chloride Total,EMS_0104,mg/L,mean
+Chlorine Total Residual,EMS_1016,ug/L,mean
+Cobalt Total,EMS_CO_T,ug/L,mean
+Copper Total,EMS_CU_T,ug/L,mean
+Cyanide Weak Acid Dissociable,EMS_0157,ug/L,mean
+Diisopropanolamine,,mg/L,mean
+Escherichia coli,EMS_0147,CFU/dL,geomean1
+Ethinylestradiol 17a,EMS_ST13,ng/L,mean
+Ethylbenzene,EMS_B021,mg/L,mean
+Fluoride Total,EMS_FL_T,mg/L,mean
+Hardness Total,EMS_0107,mg/L,mean
+Iron Dissolved,EMS_FE_D,mg/L,mean
+Iron Total,EMS_FE_T,mg/L,mean
+Lead,EMS_PB_T,ug/L,mean
+Manganese,EMS_MN_T,mg/L,mean
+Mercury,EMS_HG_T,ug/L,mean
+Mercury Methyl,EMS_HGME,ug/L,mean
+Methyl Tertiary Butyl Ether,EMS_MTBE,mg/L,mean
+Molybdenum Total,EMS_MO_T,mg/L,mean
+Nitrate Total,EMS_0110,mg/L,mean
+Nitrite,EMS_0111,mg/L,mean
+Oxygen Dissolved,EMS_0014,mg/L,mean
+Phosphorus Total,EMS_P__T,ug/L,mean
+Polychlorinated Biphenyl 105,,ng/L,mean
+Polychlorinated Biphenyl 126,,ng/L,mean
+Polychlorinated Biphenyl 169,,ng/L,mean
+Polychlorinated Biphenyl 77,,ng/L,mean
+Polychlorinated Biphenyl Total,EMS_P019,ng/L,mean
+Selenium Total,EMS_SE_T,mg/L,mean
+Silver,EMS_AG_T,ug/L,mean
+Sulphate,EMS_0121,mg/L,mean
+Sulpholane,,mg/L,mean
+Toluene,EMS_T001,mg/L,mean
+Zinc Total,EMS_ZN_T,ug/L,mean
+pH,EMS_0004,pH,median

@@ -1,18 +1,10 @@
 context("lookup")
 
-test_that("get_variables", {
-  expect_is(get_variables(), "character")
-  expect_identical(get_variables(c("Ag", "KR", "As", NA, "pH", "TP")),
-                   c("Silver", NA, "Arsenic", NA, "pH", "Phosphorus Total"))
-
-})
-
-test_that("get_codes", {
-  expect_is(get_codes(), "character")
-
-  variables <- c("Silver", "Kryptonite", "Arsenic", NA, "pH", "Phosphorus Total")
-  expect_identical(get_codes(variables), c("Ag", NA, "As", NA, "pH", "TP"))
-  expect_identical(get_codes(variables, add_na = FALSE), c("Ag", "Kryptonite", "As", NA, "pH", "TP"))
+test_that("get_variables_codes", {
+  expect_identical(get_codes(get_variables(c(get_codes(),NA,"KR"))),
+                   c(get_codes(), NA, NA))
+  expect_identical(get_variables(get_codes(c(get_variables(),NA,"Kryptonite"))),
+                   c(get_variables(), NA, NA))
 })
 
 test_that("get_category_colours", {

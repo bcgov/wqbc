@@ -12,11 +12,11 @@ test_that("substitute_variables", {
                                       "TOTAL FLUORIDE", "NITROGEN DISSOLVED NITRATE",
                                       "PHOSPHORUS - TOTAL",
                                      "KRYPTONITE", "OXYGEN", "OXYGEN DISSOLVED"),
-               messages = FALSE), c("ALUMINIUM SOMETHING", "FLUORIDE DISSOLVED", "Fluoride Total", "Nitrate",
+               messages = FALSE), c("ALUMINIUM SOMETHING", "FLUORIDE DISSOLVED", "Fluoride Total", "NITROGEN DISSOLVED NITRATE",
                                     "Phosphorus Total", "KRYPTONITE", "OXYGEN",
                                     "Oxygen Dissolved"))
   expect_equal(substitute_variables("KRYPTONITE", messages = FALSE), "KRYPTONITE")
-  expect_equal(substitute_variables("NITROGEN DISSOLVED NITRATE", messages = FALSE), "Nitrate")
-  expect_message(substitute_variables("NITROGEN DISSOLVED NITRATE"), "Nitrate")
+  expect_equal(substitute_variables("DISSOLVED ALUMINIUM", messages = FALSE), "Aluminium Dissolved")
+  expect_message(substitute_variables("DISSOLVED ALUMINIUM"))
 })
 
