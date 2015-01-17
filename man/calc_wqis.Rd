@@ -4,13 +4,16 @@
 \alias{calc_wqis}
 \title{Calculate Water Quality Indices (WQIs)}
 \usage{
-calc_wqis(x, by = NULL)
+calc_wqis(x, by = NULL, parallel = getOption("wqbc.parallel", default =
+  FALSE))
 }
 \arguments{
 \item{x}{data.frame with Variable, Value, UpperLimit and if defined
 LowerLimit columns}
 
 \item{by}{character vector of columns to calculate WQIs by.}
+
+\item{parallel}{flag indicating whether to calculate limits by the by argument using the parallel backend provided by foreach}
 }
 \description{
 Calculates WQIs for x.

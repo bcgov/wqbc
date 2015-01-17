@@ -13,30 +13,7 @@
 #'   \item{UpperLimit}{maximum permitted value}
 #' }
 #' @examples
-#' library(tidyr)
-#'
-#' data(ccme)
-#' ccme$Code <- get_codes(ccme$Variable, add_na = FALSE)
-#' ccme$Code[ccme$Code == "Fecal Coliforms"] <- "FC"
-#' ccme$Code <- factor(ccme$Code, levels = unique(ccme$Code))
-#' tidyr::spread(dplyr::select(ccme, Code, Value, Date), "Code", "Value")
-#'
-#' library(ggplot2)
-#'
-#' wqis <- calc_wqis(ccme)
-#' plot_wqis(wqis)
-#'
-#' wqis <- calc_wqis(ccme, by = "Date")
-#' plot_wqis(wqis)
-#' plot_wqis(wqis, x = "Date")
-#'
-#' library(lubridate)
-#'
-#' wqis$Year <- year(wqis$Date)
-#' wqis$Dayte <- wqis$Date
-#' year(wqis$Dayte) <- 2000
-#' plot_wqis(wqis, x = "Dayte", size = "Tests") +
-#' facet_wrap(~Year) + xlab("Day of the Year") + theme_bw()
+#' demo(ccme)
 "ccme"
 
 #' Fraser River Basin Long-term Water Quality Monitoring 1979-Present
@@ -67,6 +44,10 @@
 #'   \item{Long}{longitude in decimal degrees}
 #' }
 #' @source \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}
+#' @examples
+#' \dontrun{
+#' demo(fraser, ask = FALSE)
+#' }
 "fraser"
 
 #' Water Quality Parameter codes and units

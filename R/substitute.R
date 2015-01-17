@@ -1,8 +1,58 @@
+#' Get Water Quality Variables
+#'
+#' Returns a character vector of the water quality variables
+#' recognised by the wqbc package.
+#' @param codes optional character vector of codes to get variables for
+#' @examples
+#' get_variables()
+#' get_variables(c("Ag", "KR", "As", NA, "pH", "TP"))
+#' @export
+get_variables<- function (codes = NULL) {
+  if(is.null(codes)) return (levels(wqbc::codes$Variable))
+
+  assert_that(is.vector(codes))
+  codes <- as.character(codes)
+
+  x <- dplyr::left_join(data.frame(Code = codes), wqbc::codes, by = "Code")
+  as.character(x$Variable)
+}
+
+#' Get Water Quality Codes
+#'
+#' Returns a character vector of the water quality codes for which
+#' limits are currently defined in the wqbc package.
+#'
+#' @param variables optional character vector of variables to get codes for
+#' @param add_na flag indicating whether to replace variables without codes
+#' with NAs
+#'@examples
+#' get_codes()
+#' variables <- c("Silver", "Kryptonite", "Arsenic", NA, "pH", "Total Phosphorus")
+#' get_codes(variables)
+#' get_codes(variables, add_na = FALSE)
+#' @export
+get_codes<- function (variables = NULL, add_na = TRUE) {
+  assert_that(is.null(variables) || is.character(variables) || is.factor(variables))
+  assert_that(is.flag(add_na) && noNA(add_na))
+
+  if(is.null(variables)) return (as.character(wqbc::codes$Code))
+
+  variables <- as.character(variables)
+  x <- dplyr::left_join(data.frame(Variable = variables), wqbc::codes, by = "Variable")
+  x$Code <- as.character(x$Code)
+  x$Variable <- as.character(x$Variable)
+  if(!add_na) {
+    bol <- is.na(x$Code)
+    x$Code[bol] <- x$Variable[bol]
+  }
+  x$Code
+}
+
 substitute_messages <- function (x, bol) {
   if(any(bol)) {
     x <- unique(x[bol,,drop = FALSE])
     x <- dplyr::arrange_(x, ~sub)
-    message("substituting ", punctuate_strings(paste(x$sub, "for", x$original), "and"))
+    message("Substituting ", punctuate_strings(paste(x$sub, "for", x$original), "and"), ".")
   }
 }
 
@@ -106,7 +156,7 @@ substitute_variables <-function (x, strict = TRUE, messages = TRUE) {
 
   if(length(y)) {
     if(messages) {
-      message("substituting ", punctuate_strings(paste(y, "for", names(y)), "and"))
+      message("Substituting ", punctuate_strings(paste(y, "for", names(y)), "and"), ".")
     }
     bol <- x %in% names(y)
     x[bol] <- y[x[bol]]

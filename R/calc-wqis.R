@@ -125,13 +125,15 @@ calc_wqi <- function (x) {
 #' @param x data.frame with Variable, Value, UpperLimit and if defined
 #' LowerLimit columns
 #' @param by character vector of columns to calculate WQIs by.
+#' @param parallel flag indicating whether to calculate limits by the by argument using the parallel backend provided by foreach
 #' @examples
 #' data(ccme)
 #' calc_wqis(ccme)
 #' calc_wqis(ccme, by = "Date")
 #'
 #' @export
-calc_wqis <- function (x, by = NULL) {
+calc_wqis <- function (x, by = NULL,
+                       parallel = getOption("wqbc.parallel", default = FALSE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
@@ -156,5 +158,5 @@ calc_wqis <- function (x, by = NULL) {
   if(is.null(by))
     return(calc_wqi(x))
 
-  plyr::ddply(x, .variables = by, .fun = calc_wqi)
+  plyr::ddply(x, .variables = by, .fun = calc_wqi, .parallel = parallel)
 }

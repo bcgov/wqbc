@@ -4,8 +4,8 @@
 \alias{plot_map}
 \title{Plot Map}
 \usage{
-plot_map(data, x = "Long", y = "Lat", colour = NULL, shape = NULL,
-  size = 2, theme = theme_map(), drop = TRUE, input_proj = NULL)
+plot_map(data, x = "Long", y = "Lat", size = 3, shape = 21, fill = 10,
+  theme = theme_map(), drop = TRUE, input_proj = NULL)
 }
 \arguments{
 \item{data}{data.frame to plot}
@@ -14,21 +14,19 @@ plot_map(data, x = "Long", y = "Lat", colour = NULL, shape = NULL,
 
 \item{y}{string of column in data to plot on y axis}
 
-\item{colour}{string of column in data to plot colour of points}
+\item{size}{number of point size or string of column in data to plot size of points}
 
-\item{shape}{string of column in data to plot shape of points}
+\item{shape}{integer of point shape (permitted values are 21 to 25) or string of column in data to plot shape of points}
 
-\item{size}{number of size of points}
+\item{fill}{integer of point fill or string of column in data to plot fill of points}
 
 \item{theme}{ggplot theme}
 
 \item{drop}{flag indicating whether to drop duplicated rows to
 avoid overplotting}
 
-\item{input_proj}{a valid proj4string. Defaults to longlat/NAD83 (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})}
-}
-\value{
-ggplot2 object
+\item{input_proj}{a valid proj4string. Defaults to longlat/NAD83
+(\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})}
 }
 \description{
 Creates ggplot2 object with map polygon,
@@ -42,15 +40,8 @@ library(rgdal)
 data(fraser)
 plot_map(fraser)
 
-fraser <- fraser[fraser$SiteID \%in\% levels(fraser$SiteID)[1:5],]
-plot_map(fraser, colour = "SiteID")
-
-library(lubridate)
-
-data(fraser)
-fraser$Year <- year(fraser$Date)
-fraser <- unique(fraser[c("Long","Lat","Year")])
-fraser <- fraser[fraser$Year <= 1990,]
-plot_map(fraser, drop = FALSE) + facet_wrap(~Year)
+\dontrun{
+ demo(fraser)
+}
 }
 

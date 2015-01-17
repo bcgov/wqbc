@@ -72,26 +72,21 @@ calc_limits_by_period <- function (x) {
   x <- x[x$Condition,,drop = FALSE]
   x$Condition <- NULL
 
-  if(!nrow(x))
-    return (x)
-
   x$LowerLimit <- vapply(x$LowerLimit, FUN = calc_limit,
                          FUN.VALUE = numeric(1), cv = cv)
 
   x$UpperLimit <- vapply(x$UpperLimit, FUN = calc_limit,
                          FUN.VALUE = numeric(1), cv = cv)
 
-  x <- x[!is.na(x$LowerLimit) | !is.na(x$UpperLimit),,drop = FALSE]
-  x
+  x[!is.na(x$LowerLimit) | !is.na(x$UpperLimit),,drop = FALSE]
 }
 
 calc_limits_by_day <- function (x) {
   x <- dplyr::filter_(x, ~Period == "Day")
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
-  if(anyDuplicated(x$..ID)) {
-    warning("multiple limits")
-    x <- x[FALSE,,drop = FALSE]
-  }
+
+  stopifnot(!anyDuplicated(x$..ID))
+
   x <- dplyr::select_(x, ~-..ID, ~-Code, ~-Average)
   x
 }
@@ -103,17 +98,14 @@ calc_limits_by_month <- function (x) {
 
   x <- plyr::ddply(x, c("Year", "Month"), average_monthly_values)
   x <- plyr::ddply(x, c("Year", "Month"), calc_limits_by_period)
-#  x <- dplyr::filter_(x, ~Values >= 5 & Weeks >= 3)
+  x <- dplyr::filter_(x, ~Values >= 5 & Weeks >= 3)
 
   if(!nrow(x))
     return (x)
 
   x$Date <- as.Date(paste(x$Year, x$Month, "01", sep = "-"))
 
-  if(anyDuplicated(x$..ID)) {
-    warning("multiple limits")
-    x <- x[FALSE,,drop = FALSE]
-  }
+  stopifnot(!anyDuplicated(x$..ID))
 
   x <- dplyr::select_(x, ~-..ID, ~-Code, ~-Average, ~-Year, ~-Month, ~-Values, ~-Weeks)
   x
@@ -142,21 +134,25 @@ calc_limits_by <- function (x) {
 #' @param x data.frame with columns Code, Value and Units.
 #' @param by character vector of columns to calculate limits by
 #' @param messages flag indicating whether to print messages
-#' @examples
+#' @param parallel flag indicating whether to calculate limits by the by argument using the parallel backend provided by foreach
 #' data(fraser)
 #' fraser <- calc_limits(rbind(fraser[1:100,],fraser[1:100,]), message = FALSE)
 #' @export
-calc_limits <- function (x, by = NULL, messages = TRUE) {
+calc_limits <- function (x, by = NULL,
+                         messages = getOption("wqbc.messages", default = TRUE),
+                         parallel = getOption("wqbc.parallel", default = FALSE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
+  assert_that(is.flag(messages) && noNA(messages))
+  assert_that(is.flag(parallel) && noNA(parallel))
 
   check_rows(x)
   check_columns(x, c("Variable", "Value", "Units"))
   x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")))
 
   check_by(by, colnames(x), res_names = unique(
-    c("Variable", "Value", "Units", "Date"),
-    colnames(wqbc::limits), colnames(wqbc::codes)))
+    c("Variable", "Value", "Units", "Date",
+      colnames(wqbc::limits), colnames(wqbc::codes))))
 
   x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "Units", "Date", by)], messages = FALSE)
 
@@ -167,8 +163,10 @@ calc_limits <- function (x, by = NULL, messages = TRUE) {
 
   x$Variable <- substitute_variables(x$Variable, messages = messages)
   x$Units <- substitute_units(x$Units, messages = messages)
+
   is.na(x$Variable[!x$Variable %in% get_variables()]) <- TRUE
   is.na(x$Units[!x$Units %in% get_units()]) <- TRUE
+
   x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
 
   x <- delete_rows_with_missing_values(x, messages = messages)
@@ -177,5 +175,5 @@ calc_limits <- function (x, by = NULL, messages = TRUE) {
   if(is.null(by))
     return(calc_limits_by(x))
 
-  plyr::ddply(x, .variables = by, .fun = calc_limits_by)
+  plyr::ddply(x, .variables = by, .fun = calc_limits_by, .parallel = parallel)
 }

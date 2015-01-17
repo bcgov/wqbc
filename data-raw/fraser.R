@@ -1,6 +1,7 @@
 library(wqbc)
 library(devtools)
 library(dplyr)
+library(plyr)
 library(magrittr)
 
 fraser <- read.csv("data-raw/fraser.csv")
@@ -26,6 +27,14 @@ fraser %<>% filter(substitute_variables(Variable) %in% get_variables())
 
 # check for and flip sign of positive longitude values
 fraser$Long <- ifelse(fraser$Long > 0, fraser$Long * -1, fraser$Long)
+
+mean_lat_long <- function (x) {
+  x$Lat <- mean(x$Lat)
+  x$Long <- mean(x$Long)
+  x
+}
+
+fraser %<>% ddply("Site", mean_lat_long)
 
 fraser$SiteID %<>% droplevels
 fraser$Variable %<>% droplevels

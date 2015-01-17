@@ -37,5 +37,10 @@ variables are referenced
 by code, unimportant columns have been dropped and the remaining
 columns renamed.
 }
+\examples{
+\dontrun{
+demo(fraser, ask = FALSE)
+}
+}
 \keyword{datasets}
 
