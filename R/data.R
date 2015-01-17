@@ -13,7 +13,7 @@
 #'   \item{UpperLimit}{maximum permitted value}
 #' }
 #' @examples
-#' demo(ccme)
+#' demo(ccme, ask = FALSE)
 "ccme"
 
 #' Fraser River Basin Long-term Water Quality Monitoring 1979-Present
@@ -46,7 +46,7 @@
 #' @source \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}
 #' @examples
 #' \dontrun{
-#' demo(fraser, ask = FALSE)
+#' demo(fraser)
 #' }
 "fraser"
 
