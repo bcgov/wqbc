@@ -15,14 +15,14 @@ test_that("add_missing_columns", {
   x <- add_missing_columns(ccme, list(Test = NA_real_), messages = FALSE)
   expect_is(x, "data.frame")
   expect_equal(colnames(x), c(colnames(ccme), "Test"))
-  expect_message(add_missing_columns(ccme, list(Test = NA_real_)))
-  expect_equal(ccme, add_missing_columns(ccme, list(Date = as.Date("2000-01-01"))))
+  expect_message(add_missing_columns(ccme, list(Test = NA_real_), messages = TRUE))
+  expect_equal(ccme, add_missing_columns(ccme, list(Date = as.Date("2000-01-01")), messages = FALSE))
 })
 
 test_that("delete_rows_with_missing_values", {
   x <- data.frame(X = c(1,2,NA,4,NA), Y = c(1,NA,NA,4,5), Z = 1:5)
 
-  expect_message(delete_rows_with_missing_values(x, list("X", "Y")))
+  expect_message(delete_rows_with_missing_values(x, list("X", "Y"), messages = TRUE))
   z <- delete_rows_with_missing_values(x, list("X", "Y"), messages = FALSE)
   expect_identical(x[!is.na(x$X) & !is.na(x$Y),,drop = FALSE], z)
   z <- delete_rows_with_missing_values(x, list(c("X", "Y")), messages = FALSE)
@@ -30,7 +30,7 @@ test_that("delete_rows_with_missing_values", {
 })
 
 test_that("replace_negative_values_with_na", {
-  expect_message(replace_negative_values_with_na(-1))
+  expect_message(replace_negative_values_with_na(-1, messages = TRUE))
   expect_equal(replace_negative_values_with_na(c(1,NA,-1,2), messages = FALSE), c(1,NA,NA,2))
 })
 

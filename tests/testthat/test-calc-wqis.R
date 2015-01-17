@@ -17,7 +17,7 @@ test_that("categorize_wqi ", {
 
 test_that("calc_wqis", {
   data(ccme)
-  x <- calc_wqis(ccme)
+  x <- calc_wqis(ccme, messages = FALSE)
 
   expect_is(x, "data.frame")
   expect_equal(nrow(x), 1)
@@ -28,7 +28,7 @@ test_that("calc_wqis", {
 
 test_that("calc_wqis by", {
   data(ccme)
-  x <- calc_wqis(ccme, by = "Date")
+  x <- calc_wqis(ccme, by = "Date", messages = FALSE)
 
   expect_is(x, "data.frame")
   expect_equal(nrow(x), 12)

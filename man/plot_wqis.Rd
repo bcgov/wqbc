@@ -35,10 +35,6 @@ library(ggplot2)
 
 data(ccme)
 plot_wqis(calc_wqis(ccme))
-
-\dontrun{
- demo(ccme)
-}
 }
 \seealso{
 \code{\link{get_category_colours}}

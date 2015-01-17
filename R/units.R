@@ -1,5 +1,3 @@
-## NOTE THIS FILE IS SOURCED BY SCRIPT data-raw/codes.R TO GET UNITS
-#
 #' Get Units
 #'
 #' @return character vector of the recognised units.

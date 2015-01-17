@@ -5,7 +5,6 @@
 #' @param codes optional character vector of codes to get variables for
 #' @examples
 #' get_variables()
-#' get_variables(c("Ag", "KR", "As", NA, "pH", "TP"))
 #' @export
 get_variables<- function (codes = NULL) {
   if(is.null(codes)) return (levels(wqbc::codes$Variable))
@@ -27,9 +26,6 @@ get_variables<- function (codes = NULL) {
 #' with NAs
 #'@examples
 #' get_codes()
-#' variables <- c("Silver", "Kryptonite", "Arsenic", NA, "pH", "Total Phosphorus")
-#' get_codes(variables)
-#' get_codes(variables, add_na = FALSE)
 #' @export
 get_codes<- function (variables = NULL, add_na = TRUE) {
   assert_that(is.null(variables) || is.character(variables) || is.factor(variables))
@@ -81,7 +77,9 @@ wqbc_substitute <- function (x, sub, messages) {
 #' substitute_units("gkl")
 #' substitute_units(c(NA, "mg/L"))
 #' @export
-substitute_units <-function (x, messages = TRUE) {
+substitute_units <- function (
+  x, messages = getOption("wqbc.messages", default = TRUE)
+) {
   assert_that(is.character(x) || is.factor(x))
   assert_that(is.flag(messages) && noNA(messages))
 
@@ -125,7 +123,8 @@ split_words_tolower <- function (x) {
 #' "FLUORIDE", "NITROGEN DISSOLVED NITRATE", "PHOSPHORUS - TOTAL",
 #' "KRYPTONITE", "OXYGEN", "OXYGEN DISSOLVED"))
 #' @export
-substitute_variables <-function (x, strict = TRUE, messages = TRUE) {
+substitute_variables <-function (x, strict = TRUE,
+                                 messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.character(x) || is.factor(x))
   assert_that(is.flag(strict) && noNA(strict))
   assert_that(is.flag(messages) && noNA(messages))

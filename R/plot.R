@@ -11,7 +11,8 @@ paste_sep_collapse <- function (x, string = FALSE) {
     return (NULL)
 
   if(string)
-    return (paste(paste(names(x), paste0("'", x, "'"), sep = " = "), collapse = ", "))
+    return (paste(paste(names(x), paste0("'", x, "'"), sep = " = "),
+                  collapse = ", "))
   paste(paste(names(x), x, sep = " = "), collapse = ", ")
 }
 
@@ -77,10 +78,6 @@ get_category_colours <- function () {
 #'
 #' data(ccme)
 #' plot_wqis(calc_wqis(ccme))
-#'
-#' \dontrun{
-#'  demo(ccme)
-#' }
 #' @export
 plot_wqis <- function (
   data, x = "Tests", size = 3, shape = 21, theme = theme_wqis(),

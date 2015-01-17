@@ -18,8 +18,5 @@ limits are currently defined in the wqbc package.
 }
 \examples{
 get_codes()
-variables <- c("Silver", "Kryptonite", "Arsenic", NA, "pH", "Total Phosphorus")
-get_codes(variables)
-get_codes(variables, add_na = FALSE)
 }
 

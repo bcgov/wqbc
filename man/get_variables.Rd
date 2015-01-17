@@ -15,6 +15,5 @@ recognised by the wqbc package.
 }
 \examples{
 get_variables()
-get_variables(c("Ag", "KR", "As", NA, "pH", "TP"))
 }
 

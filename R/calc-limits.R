@@ -1,3 +1,26 @@
+#' Geometric Mean Plus-Minus 1
+#'
+#' Calculates geometric mean by adding 1 before logging
+#' and subtracting 1 before exponentiating so that
+#' geometric mean of
+#' @param x numeric vector of non-negative numbers
+#' @param na.rm flag indicating whether to remove missing values
+#' @return number
+#' @examples
+#' mean(0:9)
+#' geomean1(0:9)
+#' @export
+geomean1 <- function (x, na.rm = FALSE) {
+  assert_that(is.vector(x))
+  assert_that(is.flag(na.rm) && noNA(na.rm))
+  x <- as.numeric(x)
+
+  if(any(x < 0, na.rm = TRUE))
+    stop("x must not be negative")
+
+  expm1(mean(log1p(as.numeric(x)), na.rm = na.rm))
+}
+
 join_codes <- function (x) {
   x <- dplyr::rename_(x, "..Units" = "Units")
   x <- dplyr::left_join(x, wqbc::codes, by = "Variable")
@@ -148,13 +171,13 @@ calc_limits <- function (x, by = NULL,
 
   check_rows(x)
   check_columns(x, c("Variable", "Value", "Units"))
-  x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")))
+  x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")), messages = messages)
 
   check_by(by, colnames(x), res_names = unique(
     c("Variable", "Value", "Units", "Date",
       colnames(wqbc::limits), colnames(wqbc::codes))))
 
-  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "Units", "Date", by)], messages = FALSE)
+  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "Units", "Date", by)], messages = messages)
 
   check_class_columns(x, list("Variable" = c("character", "factor"),
                               "Value" = "numeric",

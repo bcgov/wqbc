@@ -9,11 +9,9 @@
 Water Quality Thresholds and Index Calculation for British Columbia
 }
 \examples{
-data(ccme)
-calc_wqis(ccme)
-calc_wqis(ccme, by = "Date")
+\dontrun{
+ demo(ccme)
+ demo(fraser)
 }
-\seealso{
-\code{\link{plot_map}} and \code{\link{plot_wqis}}
 }
 

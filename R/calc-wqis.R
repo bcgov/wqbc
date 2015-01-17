@@ -124,7 +124,8 @@ calc_wqi <- function (x) {
 #'
 #' @param x data.frame with Variable, Value, UpperLimit and if defined
 #' LowerLimit columns
-#' @param by character vector of columns to calculate WQIs by.
+#' @param by character vector of columns to calculate WQIs by
+#' @param messages flag indicating whether to print messages
 #' @param parallel flag indicating whether to calculate limits by the by argument using the parallel backend provided by foreach
 #' @examples
 #' data(ccme)
@@ -133,26 +134,28 @@ calc_wqi <- function (x) {
 #'
 #' @export
 calc_wqis <- function (x, by = NULL,
+                       messages = getOption("wqbc.messages", default = TRUE),
                        parallel = getOption("wqbc.parallel", default = FALSE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
   check_rows(x)
   check_columns(x, c("Variable", "Value", "UpperLimit"))
-  x <- add_missing_columns(x, list("LowerLimit" = NA_real_))
+  x <- add_missing_columns(x, list("LowerLimit" = NA_real_), messages = messages)
 
   check_by(by, colnames(x), res_names = c("Variable", "Value", "LowerLimit", "UpperLimit"))
 
-  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "LowerLimit", "UpperLimit", by)], messages = FALSE)
+  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "LowerLimit", "UpperLimit", by)], messages = messages)
 
   check_class_columns(x, list("Value" = "numeric",
                               "LowerLimit" = "numeric",
                               "UpperLimit" = "numeric"))
 
-  x$Value <- replace_negative_values_with_na(x$Value)
+  x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
 
   x <- delete_rows_with_missing_values(x, list("Value", "Variable",
-                                               c("LowerLimit", "UpperLimit")))
+                                               c("LowerLimit", "UpperLimit")),
+                                       messages = messages)
   check_rows(x)
 
   if(is.null(by))

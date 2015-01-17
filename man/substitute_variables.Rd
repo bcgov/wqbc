@@ -4,7 +4,8 @@
 \alias{substitute_variables}
 \title{Substitute Variable Names}
 \usage{
-substitute_variables(x, strict = TRUE, messages = TRUE)
+substitute_variables(x, strict = TRUE, messages = getOption("wqbc.messages",
+  default = TRUE))
 }
 \arguments{
 \item{x}{character vector of variable names to substitute}

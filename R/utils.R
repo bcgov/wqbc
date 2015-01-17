@@ -5,7 +5,7 @@ punctuate_strings <- function (x, qualifier = "or") {
   paste(paste(x[-n], collapse = ", "), qualifier, x[n])
 }
 
-add_missing_columns <- function (x, columns, messages = TRUE) {
+add_missing_columns <- function (x, columns, messages) {
   assert_that(is.data.frame(x))
   assert_that(is.list(columns))
   assert_that(is.flag(messages) && noNA(messages))
@@ -19,7 +19,7 @@ add_missing_columns <- function (x, columns, messages = TRUE) {
   x
 }
 
-delete_columns <- function (x, colnames, messages = TRUE) {
+delete_columns <- function (x, colnames, messages) {
   colnames <- colnames(x)[colnames(x) %in% colnames]
   if(length(colnames) >= 1) {
     if(messages)
@@ -29,7 +29,7 @@ delete_columns <- function (x, colnames, messages = TRUE) {
   x
 }
 
-delete_rows_with_missing_values <- function (x, columns, messages = TRUE) {
+delete_rows_with_missing_values <- function (x, columns, messages) {
   if(missing(columns))
     columns <- as.list(colnames(x))
 
@@ -53,7 +53,7 @@ delete_rows_with_missing_values <- function (x, columns, messages = TRUE) {
   x
 }
 
-replace_negative_values_with_na <- function (x, messages = TRUE) {
+replace_negative_values_with_na <- function (x, messages) {
   bol <- !is.na(x) & x < 0
   if(any(bol)) {
     if(messages) message("replacing ", sum(bol), " negative value(s) with missing values")
@@ -80,27 +80,4 @@ proj_bc <- function (data, x, y, input_proj = NULL) {
   sp::proj4string(data) <- sp::CRS(input_proj)
   data <- sp::spTransform(data, sp::CRS(output_proj))
   as.data.frame(data)
-}
-
-#' Geometric Mean Plus-Minus 1
-#'
-#' Calculates geometric mean by adding 1 before logging
-#' and subtracting 1 before exponentiating so that
-#' geometric mean of
-#' @param x numeric vector of non-negative numbers
-#' @param na.rm flag indicating whether to remove missing values
-#' @return number
-#' @examples
-#' mean(0:9)
-#' geomean1(0:9)
-#' @export
-geomean1 <- function (x, na.rm = FALSE) {
-  assert_that(is.vector(x))
-  assert_that(is.flag(na.rm) && noNA(na.rm))
-  x <- as.numeric(x)
-
-  if(any(x < 0, na.rm = TRUE))
-    stop("x must not be negative")
-
-  expm1(mean(log1p(as.numeric(x)), na.rm = na.rm))
 }
