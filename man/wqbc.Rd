@@ -8,4 +8,10 @@
 \description{
 Water Quality Thresholds and Index Calculation for British Columbia
 }
+\examples{
+\dontrun{
+ demo(ccme)
+ demo(fraser)
+}
+}
 

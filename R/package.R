@@ -3,5 +3,9 @@
 #' @docType package
 #' @name wqbc
 #' @import assertthat
-#' @import zyp
+#' @examples
+#' \dontrun{
+#'  demo(ccme)
+#'  demo(fraser)
+#' }
 NULL

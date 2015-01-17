@@ -1,6 +1,6 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "wqbc: an R Package to Compute Water Quality Thresholds and Indices for British Columbia Rivers"
+author: "Joe Thorley et al."
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -9,50 +9,56 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+## Abstract
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+This R package implements a procedure for the calculation of the CCME Water Quality Index (1.0). The index is based on a combination of three factors:
 
-## Vignette Info
+* [Scope] the number of variables whose objectives are not met,
+* [Frequency] the frequency with which the objectives are not met, and
+* [Amplitude] the amount by which the objectives are not met.
 
-Note the various macros within the `vignette` setion of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+These are combined to produce a single value (between 0 and 100) that is intended to describe overall water quality. 
 
-## Styles
 
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
+# Overview
 
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
+Water quality is assessed by the monitoring of a range of quantites known as parameters.  Examples of water quality parameters are, in the main, concentrations of chemicals, however, quantities such as water turbidity are also important.  Comprehensive water quality monitoring has been undertaken in the Fraser RIver Basin (BC, Canada) since 1979, and this data is provided in the package, however the tools in this package can be applied to any suitable data set provided it meets specific restrictions detailed in SSS
 
-## Figures
+This package provides three methods of analysing water quality using such data:
 
-The figure sizes have been customised so that you can easily put two images side-by-side. 
+1. Calculation of the CCME water qualty index
+2. Exceedance analysis based on appropriate guidline threshold values
+3. Trend tests for individual parameters
+4. Methods for visualisation of water quality
 
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
-```
+The package is intended to be easy to use and provide a flexible means for the exploration of the Fraser River long-term monitoring data.  
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+### Water Quality Indice (WQI)
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
+The (CCME) WQI is used across Canada as a standardized approach to roll-up the status of multiple water quality parameters at a site and communicate the ‘state’ in a simple manner. The WQI focuses on water quality with respect to the health of freshwater aquatic health. The WQI approach is documented on the CCME website, including detailed methods, a list of established national parameter guidelines/thresholds, and a point and click MS Excel Calculator (http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html). The number of parameters with exceedances, the number of exceedances and the magnitude of exceedances (from (1), above) are used to generate a score (0 to 100) which is then converted to a ranking of quality (poor, marginal, fair, good, and excellent).
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+### Water Quality Thresholds
 
-## More Examples
+The exceedance analysis entails determining the appropriate parameter guideline threshold values for a given time-series dataset (e.g. data for set of parameters for each station/site) and then comparing the time-series data against the established guideline thresholds for each parameter. Guideline thresholds are established provincially by the BC Ministry of Environment (http://www2.gov.bc.ca/gov/topic.page?id=044DD64C7E24415D83D07430964113C9) and nationally by the Canadian Council of Ministers of the Environment (CCME; http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html). Provincial guidelines are used if there are (differing) guideline thresholds for a parameter.
 
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
 
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
 
-Also a quote using `>`:
+### Analysing Trends in Water Chemistry
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+The standard approach for trend analysis on water quality time-series data is the Mann-Kendall Trend Test with methods to accommodate for autocorrelation. The outputs of the trend analysis include: summary results table for parameter trends by site, facet graphs of parameters with trend lines (e.g. data, trend line visible), and, a British Columbia map with colour-coded points denoting water quality trends (e.g. colour 1: one or more parameter significantly deteriorating; colour 2: all parameters stable; colour 3: one or more parameter significantly improving; colour 4: mixed significant results).
+
+----------
+
+# Examples
+
+## Water Quality Threshold
+
+
+## Water Quality Indice (WQI)
+
+
+## Analysing Trends in Water Chemistry
+
+
+
+## Discussion

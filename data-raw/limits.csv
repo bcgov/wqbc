@@ -1,0 +1,81 @@
+Variable,Period,Condition,LowerLimit,UpperLimit,Units,Table,Reference,Use
+Aluminium Dissolved,Month,pH >= 6.5,,0.05,mg/L,6,BC_2006,Freshwater Life
+Aluminium Dissolved,Month,pH < 6.5,,exp(1.6 - 3.327 * pH + 0.402 * pH^2),mg/L,6,BC_2006,Freshwater Life
+Aluminium Dissolved,,pH >= 6.5,,0.1,mg/L,6,BC_2006,Freshwater Life
+Aluminium Dissolved,,pH < 6.5,,exp(1.209 - 2.426 * pH + 0.286 * pH^2),mg/L,6,BC_2006,Freshwater Life
+Arsenic Total,,,,5,ug/L,43,BC_2006,Freshwater Life
+Boron,,,,1.2,mg/L,49,BC_2006,Freshwater Life
+Cadmium Dissolved,Month,CaCO3 >= 3.4 & CaCO3 <= 285,,exp(0.736 * log(CaCO3) - 4.943),ug/L,A1,EMAIL_2014,Freshwater Life
+Cadmium Dissolved,,CaCO3 >= 7 & CaCO3 <= 455,,exp(1.03 * log(CaCO3) - 5.274),ug/L,A1,EMAIL_2014,Freshwater Life
+Chlorate,,,,30,mg/L,44,BC_2006,Freshwater Life
+Chloride Total,Month,,,150,mg/L,47,BC_2006,Freshwater Life
+Chloride Total,,,,600,mg/L,47,BC_2006,Freshwater Life
+Chlorine Total Residual,Month,,,2,ug/L,19,BC_2006,Freshwater Life
+Chlorine Total Residual,,,,100,ug/L,19,BC_2006,Freshwater Life
+Cobalt Total,Month,,,4,ug/L,48,BC_2006,Freshwater Life
+Cobalt Total,,,,110,ug/L,48,BC_2006,Freshwater Life
+Copper Total,Month,CaCO3 > 50,,0.04 * CaCO3,ug/L,9,BC_2006,Freshwater Life
+Copper Total,Month,CaCO3 <= 50,,2,ug/L,9,BC_2006,Freshwater Life
+Copper Total,,CaCO3 <= 50,,0.094 * CaCO3 + 2,ug/L,9,BC_2006,Freshwater Life
+Copper Total,,CaCO3 > 50,,0.094 * CaCO3 + 2,ug/L,9,BC_2006,Freshwater Life
+Cyanide Weak Acid Dissociable,Month,,,5,ug/L,10,BC_2006,Freshwater Life
+Cyanide Weak Acid Dissociable,,,,10,ug/L,10,BC_2006,Freshwater Life
+Diisopropanolamine,,,,1.6,mg/L,45,BC_2006,Freshwater Life
+Escherichia coli,Month,,,200,CFU/dL,B2,EMAIL_2014,Freshwater Life
+Escherichia coli,,,,400,CFU/dL,B2,EMAIL_2014,Freshwater Life
+Ethinylestradiol 17a,Month,,,0.5,ng/L,A2,EMAIL_2014,Freshwater Life
+Ethinylestradiol 17a,,,,0.75,ng/L,A2,EMAIL_2014,Freshwater Life
+Ethylbenzene,,,,0.2,mg/L,34,BC_2006,Freshwater Life
+Fluoride Total,,CaCO3 <= 10,,0.4,mg/L,B1,EMAIL_2014,Freshwater Life
+Fluoride Total,,CaCO3 > 10,,"92.57 * log(CaCO3, base = 10) - 51.73",mg/L,B1,EMAIL_2014,Freshwater Life
+Iron Dissolved,,,,0.35,mg/L,A3,EMAIL_2014,Freshwater Life
+Iron Total,,,,1,mg/L,A3,EMAIL_2014,Freshwater Life
+Lead,Month,CaCO3 > 8,,exp(1.273 * log(CaCO3) - 4.704) + 3.31,ug/L,11,BC_2006,Freshwater Life
+Lead,,CaCO3 <= 8,,3,ug/L,11,BC_2006,Freshwater Life
+Lead,,CaCO3 > 8,,exp(1.273 * log(CaCO3) - 1.460),ug/L,11,BC_2006,Freshwater Life
+Manganese,Month,,,0.0044 * CaCO3 + 0.605,mg/L,38,BC_2006,Freshwater Life
+Manganese,,,,0.01102 * CaCO3 + 0.54,mg/L,37,BC_2006,Freshwater Life
+Mercury,Month,MeHg / Hg * 100  <= 5,,0.002,ug/L,13a,BC_2006,Freshwater Life
+Mercury,Month,MeHg / Hg * 100 > 1 & MeHg / Hg * 100 <= 2.5,,0.004,ug/L,13a,BC_2006,Freshwater Life
+Mercury,Month,MeHg / Hg * 100 > 0.5 & MeHg / Hg * 100 <= 1,,0.01,ug/L,13a,BC_2006,Freshwater Life
+Mercury,Month,MeHg / Hg * 100 <= 0.5,,0.02,ug/L,13a,BC_2006,Freshwater Life
+Mercury,,,,0.1,ug/L,13,BC_2006,Freshwater Life
+Methyl Tertiary Butyl Ether,,,,3.4,mg/L,39,BC_2006,Freshwater Life
+Molybdenum Total,Month,,,1,mg/L,15,BC_2006,Freshwater Life
+Molybdenum Total,,,,2,mg/L,15,BC_2006,Freshwater Life
+Nitrate Total,Month,,,3,mg/L,B3,EMAIL_2014,Freshwater Life
+Nitrate Total,,,,32.8,mg/L,B3,EMAIL_2014,Freshwater Life
+Nitrite,Month,Cl < 2,,0.02,mg/L,16,BC_2006,Freshwater Life
+Nitrite,Month,Cl >= 2 & Cl < 4,,0.04,mg/L,17,BC_2006,Freshwater Life
+Nitrite,Month,Cl >= 4 & Cl < 6,,0.06,mg/L,17,BC_2006,Freshwater Life
+Nitrite,Month,Cl >= 6 & Cl < 8,,0.08,mg/L,17,BC_2006,Freshwater Life
+Nitrite,Month,Cl >= 8 & Cl <= 10,,0.1,mg/L,17,BC_2006,Freshwater Life
+Nitrite,Month,Cl > 10,,0.2,mg/L,17,BC_2006,Freshwater Life
+Nitrite,,Cl < 2,,0.06,mg/L,16,BC_2006,Freshwater Life
+Nitrite,,Cl >= 2 & Cl < 4,,0.12,mg/L,17,BC_2006,Freshwater Life
+Nitrite,,Cl >= 4 & Cl < 6,,0.18,mg/L,17,BC_2006,Freshwater Life
+Nitrite,,Cl >= 6 & Cl < 8,,0.24,mg/L,17,BC_2006,Freshwater Life
+Nitrite,,Cl >= 8 & Cl <= 10,,0.3,mg/L,17,BC_2006,Freshwater Life
+Nitrite,,Cl > 10,,0.6,mg/L,17,BC_2006,Freshwater Life
+Oxygen Dissolved,Month,,8,,mg/L,18,BC_2006,Freshwater Life
+Oxygen Dissolved,,,5,,mg/L,18,BC_2006,Freshwater Life
+Phosphorus Total,,,5,10,ug/L,3,BC_2006,Freshwater Life
+Polychlorinated Biphenyl 105,,,,0.09,ng/L,23,BC_2006,Freshwater Life
+Polychlorinated Biphenyl 126,,,,0.00025,ng/L,23,BC_2006,Freshwater Life
+Polychlorinated Biphenyl 169,,,,0.06,ng/L,23,BC_2006,Freshwater Life
+Polychlorinated Biphenyl 77,,,,0.04,ng/L,23,BC_2006,Freshwater Life
+Polychlorinated Biphenyl Total,,,,0.1,ng/L,23,BC_2006,Freshwater Life
+Selenium Total,Month,,,0.002,mg/L,B4,EMAIL_2014,Freshwater Life
+Silver,Month,CaCO3 <= 100,,0.05,ug/L,29,BC_2006,Freshwater Life
+Silver,Month,CaCO3 > 100,,1.5,ug/L,29,BC_2006,Freshwater Life
+Silver,,CaCO3 <= 100,,0.1,ug/L,29,BC_2006,Freshwater Life
+Silver,,CaCO3 > 100,,3,ug/L,29,BC_2006,Freshwater Life
+Sulphate,Month,CaCO3 <= 30,,128,mg/L,B5,EMAIL_2014,Freshwater Life
+Sulphate,Month,CaCO3 > 30 & CaCO3 <= 75,,218,mg/L,B5,EMAIL_2014,Freshwater Life
+Sulphate,Month,CaCO3 > 76 & CaCO3 <= 180,,309,mg/L,B5,EMAIL_2014,Freshwater Life
+Sulphate,Month,CaCO3 > 180 & CaCO3 <= 250,,429,mg/L,B5,EMAIL_2014,Freshwater Life
+Sulphate,,,,100,mg/L,36,BC_2006,Freshwater Life
+Sulpholane,,,,50,mg/L,46,BC_2006,Freshwater Life
+Toluene,,,,0.039,mg/L,35,BC_2006,Freshwater Life
+Zinc Total,Month,,,0.75 * (CaCO3 - 90) + 7.5,ug/L,33,BC_2006,Freshwater Life
+Zinc Total,,,,0.75 * (CaCO3 - 90) + 33,ug/L,33,BC_2006,Freshwater Life

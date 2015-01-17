@@ -1,3 +1,21 @@
+#' CCME Water Quality Index User's Manual Example Data
+#'
+#' A tidy data.frame of the CCME Water Quality Index 1.0 User's Manual
+#' example dataset.
+#'
+#' @format A data frame with 103 rows and 6 variables:
+#' \describe{
+#'   \item{Variable}{parameter variable name}
+#'   \item{Date}{date of reading}
+#'   \item{Value}{value of reading}
+#'   \item{DetectionLimit}{detection limit of method}
+#'   \item{LowerLimit}{minimum permitted value}
+#'   \item{UpperLimit}{maximum permitted value}
+#' }
+#' @examples
+#' demo(ccme, ask = FALSE)
+"ccme"
+
 #' Fraser River Basin Long-term Water Quality Monitoring 1979-Present
 #'
 #' Surface freshwater quality monitoring in the Fraser River Basin
@@ -7,54 +25,69 @@
 #' establish water quality guidelines and track the effectiveness
 #' of remedial measures and regulatory decisions.
 #'
-#' @format A data frame with 249079 rows and 12 variables:
+#' @details The original dataset has been filtered to remove values
+#' for variables without currently defined limits. In addition,
+#' variables are referenced
+#' by code, unimportant columns have been dropped and the remaining
+#' columns renamed.
+#'
+#' @format A data frame with 9 variables:
 #' \describe{
-#'   \item{station_no}{unique water quality station number}
-#'   \item{sample_datetime}{ISO 8601 time of captured water quality sample}
-#'   \item{value}{value of observed measurement}
-#'   \item{method_detect_limit}{lower measurable limit of method}
-#'   \item{unit_code}{unit of variable measured}
-#'   \item{vmv_code}{unique variable and method code}
-#'   \item{variable_name}{observed phenonomenon variable name}
-#'   \item{flag}{measurement quality assurance flag by laboratory}
-#'   \item{station_name}{full station name}
-#'   \item{latitude}{latitude in decimal degrees}
-#'   \item{longitude}{longitude in decimal degrees}
-#'   \item{status}{post-analysis quality assurance flag}
+#'   \item{SiteID}{unique water quality station number}
+#'   \item{Date}{date of water quality sample}
+#'   \item{Variable}{variable name}
+#'   \item{Value}{measured value}
+#'   \item{Units}{reading units}
+#'   \item{DetectionLimit}{minimum value of method}
+#'   \item{Site}{full station name}
+#'   \item{Lat}{latitude in decimal degrees}
+#'   \item{Long}{longitude in decimal degrees}
 #' }
 #' @source \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}
-"waterq"
+#' @examples
+#' \dontrun{
+#' demo(fraser)
+#' }
+"fraser"
 
-#' Water Quality Guidelines for British Columbia and Canada
+#' Water Quality Parameter codes and units
 #'
-#' Both the Canadian federal government and the
-#' province of British Columbia set guidelines for a range of
-#' water quality parameters. The data were taken from a
-#' range of federal and provincial websites. They represent
-#' long-term guidelines for samples taken from the water column.
-#' Guidelines which depend on conditions from other periods
-#' or locations are not included. For example some of the
-#' guidelines for turbidity are defined with respect to background
-#' levels and/or an upstream site.
-#' Where some interpretation of the information provided was required
-#' this is noted in the comments.
+#' @details Water Quality Parameter codes and units
+#'
+#' @format A data frame with 3 variables:
+#' \describe{
+#'   \item{Code}{unique short-hand code}
+#'   \item{Variable}{unique name of water quality parameter}
+#'   \item{Units}{units for parameter}
+#'   \item{Average}{R function to calculate "average" value for multiple samples in a period}
+#' }
+"codes"
+
+#' Water Quality Limits for British Columbia and Canada
 #'
 #' @format A data frame with 13 variables:
 #' \describe{
 #'   \item{Variable}{name of water quality parameter}
-#'   \item{Code}{short-hand code}
-#'   \item{Jurisdiction}{regulatory jurisdiction in Canada (permitted values:
-#'   BC, CA)}
-#'   \item{Use}{intended use (permitted values: Drinking, Freshwater Life,
-#'    Marine Life, Wildlife, Livestock, Irrigation, Recreation)}
-#'   \item{Samples}{minimum number of samples required}
-#'   \item{Days}{period within which number of samples must be collected}
-#'   \item{Average}{R function(s) to calculate "average" value for multiple samples}
+#'   \item{Period}{Period for which limit applies. When multiple values occur
+#'   within the same period the average function in the codes data.frame is
+#'   used to calculate the average value. Note in order for the month limits to
+#'   apply at least five values must have been recorded on five separate days
+#'   from at least three calendar weeks within the calendar month}
 #'   \item{Condition}{R logical expression to test required condition}
-#'   \item{Guideline}{R logical expression to test whether guideline fulfilled}
-#'   \item{Unit}{units for guideline (permitted values: mg/L, ug/L, /dL, m, NTU, pH)}
-#'   \item{Comments}{comments regarding the interpretation of the online documentation}
-#'   \item{Date}{YYYY-MM-DD format date online documentation last checked}
-#'   \item{URL}{online documentation from which guideline extracted}
+#'   \item{LowerLimit}{R expression defining lower limit}
+#'   \item{UpperLimit}{R expression defining upper limit}
+#'   \item{Units}{units for limit}
 #' }
-"guidelines"
+"limits"
+
+#' Borders of British Columbia
+#'
+#' Borders of British Columbia used by \code{\link{plot_map}} function.
+#'
+#' @format A data frame with 4,920 rows and 3 variables:
+#' \describe{
+#'   \item{Long}{longitude}
+#'   \item{Lat}{latitude}
+#'   \item{Group}{grouping variable for plotting to ensure discrete polygons}
+#' }
+"map"

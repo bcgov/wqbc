@@ -4,3 +4,6 @@
 
 .DS_Store
 inst/doc
+
+.~lock*
+*.html

@@ -5,23 +5,79 @@ punctuate_strings <- function (x, qualifier = "or") {
   paste(paste(x[-n], collapse = ", "), qualifier, x[n])
 }
 
-filter_select_guidelines <- function (use, jurisdiction) {
-  guidelines <- dplyr::filter_(guidelines, ~Use == use & Jurisdiction == jurisdiction)
-  guidelines <- dplyr::select_(guidelines, ~Code, ~Guideline, ~Unit, ~Samples, ~Days,
-                               ~Condition, ~Variable, ~Use, ~Jurisdiction)
+add_missing_columns <- function (x, columns, messages) {
+  assert_that(is.data.frame(x))
+  assert_that(is.list(columns))
+  assert_that(is.flag(messages) && noNA(messages))
 
-  guidelines
-}
-
-remove_use_jurisdiction_columns <- function (x, use, jurisdiction) {
-  if("Use" %in% colnames(x)) {
-    message("Use column in x replaced with ", use)
-    x$Use <- NULL
-  }
-  if("Jurisdiction" %in% colnames(x)) {
-    message("Jurisdiction column in x replaced with ", jurisdiction)
-    x$Jurisdiction <- NULL
+  for(column in names(columns)) {
+    if(!column %in% colnames(x)) {
+      if(messages) message("adding missing column ", column, " to x")
+      x[[column]] <-  columns[[column]]
+    }
   }
   x
 }
 
+delete_columns <- function (x, colnames, messages) {
+  colnames <- colnames(x)[colnames(x) %in% colnames]
+  if(length(colnames) >= 1) {
+    if(messages)
+      message("deleting columns ", punctuate_strings(colnames, "and"), " from x")
+  }
+  x <- x[, !colnames(x) %in% colnames, drop = FALSE]
+  x
+}
+
+delete_rows_with_missing_values <- function (x, columns, messages) {
+  if(missing(columns))
+    columns <- as.list(colnames(x))
+
+  check_columns(x, unlist(columns))
+
+  for(col in columns) {
+    bol <- is.na(x[[col[1]]])
+
+    if(length(col) > 1) {
+      for(i in 2:length(col))
+        bol <- bol & is.na(x[[col[i]]])
+    }
+    if(any(bol)) {
+      if(messages) {
+        message("deleting ", length(bol), " rows with missing values
+                from column(s) ", punctuate_strings(col, "and"), " in x")
+      }
+      x <- x[!bol, , drop = FALSE]
+    }
+  }
+  x
+}
+
+replace_negative_values_with_na <- function (x, messages) {
+  bol <- !is.na(x) & x < 0
+  if(any(bol)) {
+    if(messages) message("replacing ", sum(bol), " negative value(s) with missing values")
+    is.na(x[bol]) <- TRUE
+  }
+  x
+}
+
+## Assign and transform the coordinate system/projection to match the base BC map
+proj_bc <- function (data, x, y, input_proj = NULL) {
+
+  if(!requireNamespace("sp", quietly = TRUE))
+    stop("sp package not installed")
+
+  if(!requireNamespace("rgdal", quietly = TRUE))
+    stop("rgdal package not installed")
+
+  if (is.null(input_proj)) {
+    input_proj <- "+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"
+  }
+  output_proj <- "+proj=aea +lat_1=50 +lat_2=58.5 +lat_0=45 +lon_0=-126 +x_0=1000000 +y_0=0 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0"
+
+  sp::coordinates(data) <- c(x,y)
+  sp::proj4string(data) <- sp::CRS(input_proj)
+  data <- sp::spTransform(data, sp::CRS(output_proj))
+  as.data.frame(data)
+}
