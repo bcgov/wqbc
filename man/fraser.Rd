@@ -39,7 +39,7 @@ columns renamed.
 }
 \examples{
 \dontrun{
-demo(fraser, ask = FALSE)
+demo(fraser)
 }
 }
 \keyword{datasets}

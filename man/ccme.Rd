@@ -21,7 +21,7 @@ A tidy data.frame of the CCME Water Quality Index 1.0 User's Manual
 example dataset.
 }
 \examples{
-demo(ccme)
+demo(ccme, ask = FALSE)
 }
 \keyword{datasets}
 
