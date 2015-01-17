@@ -21,8 +21,7 @@ Cadmium,CA,Irrigation,NA,1,1,mean,NA,<= 0.12,ug/L,NA,2014-12-21,http://st-ts.ccm
 Cadmium,CA,Livestock,NA,1,1,mean,NA,<= 5.1,ug/L,NA,2014-12-21,http://st-ts.ccme.ca/en/index.html?chems=all&chapters=2&pdf=1,NA
 Clarity,CA,Recreation,NA,1,1,mean,NA,<= 80,m,NA,2014-12-21,http://www.hc-sc.gc.ca/ewh-semt/pubs/water-eau/guide_water-2012-guide_eau/index-eng.php,NA
 Copper,BC,Drinking,NA,1,1,mean,NA,<= 500,ug/L,NA,2006--1-8,bc_pdf,9
-Copper,BC,Freshwater Life,NA,1,1,mean,average water hardness as CaC03 <= 50 mg/L,"(0.094(hardness)+2) ?g/L
-(hardness as mg/L CaCO3)",ug/L,NA,2006--1-8,bc_pdf,9
+Copper,BC,Freshwater Life,NA,1,1,mean,average water hardness as CaC03 <= 50 mg/L,(0.094(hardness)+2) ?g/L,ug/L,NA,2006--1-8,bc_pdf,9
 Copper,BC,Freshwater Life,NA,5,30,mean,average water hardness as CaC03 <= 50 mg/L,<= 2,ug/L,NA,2006--1-8,bc_pdf,9
 Copper,BC,Freshwater Life,NA,1,1,mean,average water hardness as CaC03 > 50 mg/L,"(0.094(hardness)+2) ?g/L
 (hardness as mg/L CaCO3)",ug/L,NA,2006--1-8,bc_pdf,9
