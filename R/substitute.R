@@ -45,6 +45,7 @@ get_codes<- function (variables = NULL, add_na = TRUE) {
 }
 
 substitute_messages <- function (x, bol) {
+  bol <- bol & x$sub != x$original
   if(any(bol)) {
     x <- unique(x[bol,,drop = FALSE])
     x <- dplyr::arrange_(x, ~sub)
@@ -155,7 +156,11 @@ substitute_variables <-function (x, strict = TRUE,
 
   if(length(y)) {
     if(messages) {
-      message("Substituting ", punctuate_strings(paste(y, "for", names(y)), "and"), ".")
+      yy <- y[y != names(y)]
+      if(length(yy)) {
+        message("Substituting ",
+                punctuate_strings(paste(yy, "for", names(yy)), "and"), ".")
+      }
     }
     bol <- x %in% names(y)
     x[bol] <- y[x[bol]]
