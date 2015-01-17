@@ -140,10 +140,10 @@ calc_limits_by <- function (x) {
   x <- join_limits(x)
 
   day <- calc_limits_by_day(x)
-  month <- calc_limits_by_month(x)
-
-  x <- rbind(day, month)
-  x <- dplyr::select_(x, ~Period, ~Date, ~Variable, ~Value, ~LowerLimit, ~UpperLimit, ~Units)
+ # month <- calc_limits_by_month(x)
+#  x <- rbind(day, month)
+  x <- day
+  x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~LowerLimit, ~UpperLimit, ~Units)
   x
 }
 
