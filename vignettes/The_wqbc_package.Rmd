@@ -19,6 +19,25 @@ This R package implements a procedure for the calculation of the CCME Water Qual
 
 These are combined to produce a single value (between 0 and 100) that is intended to describe overall water quality. 
 
+# Data
+
+There are two datasets provided with the package
+
+
+* [ccme] This dataset contains the CCME (Canadian Council of Ministers of the Environment) Water Quality Index 1.0 [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf") example dataset.  The data is a timeseries of water chemistry measurements taken from North Saskatchewan river at Devon throughout 1997.
+
+* [fraser] This dataset contains long term surface freshwater quality monitoring data from the Fraser River Basin (the data was extracted from [here](http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18 "data")) carried out under the Canada-British Columbia Water Quality Monitoring Agreement. Water quality monitoring is conducted to assess water quality status and long-term trends, detect emerging issues, establish water quality guidelines and track the effectiveness of remedial measures and regulatory decisions
+
+    The original dataset has been filtered to remove values for variables without currently defined limits. In addition, variables are referenced by code, unimportant columns have been dropped and the remaining columns renamed.
+
+
+There is also two other lookup tables
+
+* [codes] which provides the link between the code used to define type of water quality measurement and the full name (e.g. Aluminium Dissolved or pH).  The table also provides the units used for measurement and the type of summary measure used to summarise more than one value (i.e. the mean, the median or the geometric mean).
+
+* [limits] which provides the link between the type of measurement (e.g. Aluminium Dissolved or pH) and the agreed water quality limmits for Brittish Columbia and Canada.  The table contains the upper and lower limits (where defined), the time scale at which the limit is defined (i.e. Month or Day) and any conditions on when the limits apply, for example there are different limits for dissolved aluminium depending on the whether the pH is above or below 6.5.
+
+
 
 # Overview
 
@@ -46,6 +65,22 @@ The exceedance analysis entails determining the appropriate parameter guideline 
 ### Analysing Trends in Water Chemistry
 
 The standard approach for trend analysis on water quality time-series data is the Mann-Kendall Trend Test with methods to accommodate for autocorrelation. The outputs of the trend analysis include: summary results table for parameter trends by site, facet graphs of parameters with trend lines (e.g. data, trend line visible), and, a British Columbia map with colour-coded points denoting water quality trends (e.g. colour 1: one or more parameter significantly deteriorating; colour 2: all parameters stable; colour 3: one or more parameter significantly improving; colour 4: mixed significant results).
+
+----------
+
+# Data
+
+## ccme
+
+
+## fraser
+
+
+## codes
+
+
+## limits
+
 
 ----------
 
