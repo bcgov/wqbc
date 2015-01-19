@@ -5,7 +5,7 @@
 \title{Plot Map}
 \usage{
 plot_map(data, x = "Long", y = "Lat", size = 3, shape = 21, fill = 10,
-  theme = theme_map(), drop = TRUE, input_proj = NULL)
+  theme = theme_map(), keep = NULL, input_proj = NULL)
 }
 \arguments{
 \item{data}{data.frame to plot}
@@ -22,15 +22,17 @@ plot_map(data, x = "Long", y = "Lat", size = 3, shape = 21, fill = 10,
 
 \item{theme}{ggplot theme}
 
-\item{drop}{flag indicating whether to drop duplicated rows to
-avoid overplotting}
+\item{keep}{NULL or character vector indicating which columns to keep
+in addition to x and y before avoiding overplotting by dropping duplicated rows}
 
 \item{input_proj}{a valid proj4string. Defaults to longlat/NAD83
 (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})}
 }
 \description{
 Creates ggplot2 object with map polygon,
-coord_fixed and theme_minimal.
+coord_fixed and theme_minimal. If any columns are required
+for additional layers in the plot or facetting then
+they should be specified in the keep argument.
 }
 \examples{
 library(ggplot2)

@@ -5,7 +5,7 @@
 \title{Plot Map of Water Quality Indices}
 \usage{
 plot_map_wqis(data, x = "Long", y = "Lat", size = 3, shape = 21,
-  theme = theme_map(), drop = TRUE, input_proj = NULL,
+  theme = theme_map(), keep = NULL, input_proj = NULL,
   palette = getOption("wqbc.category_colours", get_category_colours()))
 }
 \arguments{
@@ -23,8 +23,8 @@ or string of column in data to plot shape of points}
 
 \item{theme}{ggplot theme}
 
-\item{drop}{flag indicating whether to drop duplicated rows to
-avoid overplotting}
+\item{keep}{NULL or character vector indicating which columns to keep
+in addition to x and y before avoiding overplotting by dropping duplicated rows.}
 
 \item{input_proj}{a valid proj4string. Defaults to longlat/NAD83
 (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})}
@@ -40,5 +40,8 @@ on WQI categories.
 \dontrun{
  demo(fraser)
 }
+}
+\seealso{
+\code{\link{plot_map}}
 }
 

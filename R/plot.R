@@ -120,7 +120,9 @@ plot_wqis <- function (
 #' Plot Map
 #'
 #' Creates ggplot2 object with map polygon,
-#' coord_fixed and theme_minimal.
+#' coord_fixed and theme_minimal. If any columns are required
+#' for additional layers in the plot or facetting then
+#' they should be specified in the keep argument.
 #'
 #' @param data data.frame to plot
 #' @param x string of column in data to plot on x axis
@@ -129,8 +131,8 @@ plot_wqis <- function (
 #' @param shape integer of point shape (permitted values are 21 to 25) or string of column in data to plot shape of points
 #' @param fill integer of point fill or string of column in data to plot fill of points
 #' @param theme ggplot theme
-#' @param drop flag indicating whether to drop duplicated rows to
-#' avoid overplotting
+#' @param keep NULL or character vector indicating which columns to keep
+#' in addition to x and y before avoiding overplotting by dropping duplicated rows
 #' @param input_proj a valid proj4string. Defaults to longlat/NAD83
 #' (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})
 #' @examples
@@ -146,7 +148,7 @@ plot_wqis <- function (
 #' }
 #' @export
 plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill = 10,
-                      theme = theme_map(), drop = TRUE, input_proj = NULL) {
+                      theme = theme_map(), keep = NULL, input_proj = NULL) {
 
   assert_that(is.data.frame(data))
   assert_that(is.string(x))
@@ -155,13 +157,13 @@ plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill =
   assert_that(is.count(shape) || is.string(shape))
   assert_that(is.count(fill) || is.string(fill))
   assert_that(ggplot2::is.theme(theme))
-  assert_that(is.flag(drop) && noNA(drop))
+  assert_that(is.null(keep) || is.character(keep))
   assert_that(is.null(input_proj) || is.string(input_proj))
 
   if(!requireNamespace("ggplot2", quietly = TRUE))
     stop("ggplot2 package not installed")
 
-  columns <- unique(c(x, y, ifelse(is.string(size), size, x),
+  columns <- unique(c(x, y, keep, ifelse(is.string(size), size, x),
                       ifelse(is.string(shape), shape, x),
                       ifelse(is.string(fill), fill, x)))
 
@@ -171,8 +173,7 @@ plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill =
     stop("Shape must be a character vector or ",
          punctuate_strings(shape_values()), ".")
   }
-  if(drop)
-    data <- unique(data[columns])
+  data <- unique(data[columns])
 
   data <- proj_bc(data, x = x, y = y, input_proj = input_proj)
 
@@ -198,10 +199,11 @@ plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill =
 #'
 #' @inheritParams plot_wqis
 #' @param y string of column in data to plot on y axis
-#' @param drop flag indicating whether to drop duplicated rows to
-#' avoid overplotting
+#' @param keep NULL or character vector indicating which columns to keep
+#' in addition to x and y before avoiding overplotting by dropping duplicated rows.
 #' @param input_proj a valid proj4string. Defaults to longlat/NAD83
 #' (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})
+#' @seealso \code{\link{plot_map}}
 #' @examples
 #' \dontrun{
 #'  demo(fraser)
@@ -209,13 +211,13 @@ plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill =
 #' @export
 plot_map_wqis <- function (
   data,  x = "Long", y = "Lat", size = 3, shape = 21,
-  theme = theme_map(), drop = TRUE, input_proj = NULL,
+  theme = theme_map(), keep = NULL, input_proj = NULL,
   palette = getOption("wqbc.category_colours", get_category_colours())) {
 
   assert_that(is.character(palette))
 
   gp <- plot_map( data = data, x = x, y = y, size = size, shape = shape,
-                  fill = "Category", theme = theme, drop = drop,
+                  fill = "Category", theme = theme, keep = keep,
                   input_proj = input_proj)
 
   gp + ggplot2::scale_fill_manual(values = palette)
