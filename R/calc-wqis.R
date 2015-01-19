@@ -62,47 +62,42 @@ resample_x <- function (x) {
   x
 }
 
-resample_wqi <- function (x, v, nt = nt, nv = nv) {
-
-  x <- plyr::ddply(data.frame(x = x, v = v), "v", resample_x)$x
-  wqi(x, v = v, nt = nt, nv = nv)["WQI"]
+resample_wqi <- function (x, i, v, nt = nt, nv = nv) {
+  x <- x[i,,drop = FALSE]
+  wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)["WQI"]
 }
 
 calc_wqi <- function (x, ci) {
 
   x$Excursion <- get_excursions(x$Value, x$LowerLimit, x$UpperLimit)
-
   nt <- nrow(x)
   nv <- length(unique(x$Variable))
 
   wqi <- wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)
 
-  Lower <- NA
-  Upper <- NA
-
-  R <- 1000
   if(ci) {
     x <- x[x$Variable %in% x$Variable[x$Excursion != 0],,drop = FALSE]
+
     if(nrow(x)) {
-      wqis <- rep(NA, R)
-      wqis[1] <- wqi["WQI"]
-      for(i in 2:R) {
-        wqis[i] <- resample_wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)
-      }
-      qs <- quantile(wqis, c(0.025, 0.975))
+      boot <- boot::boot(data = x, statistic = resample_wqi, R = 1000,
+                         stype = "i", strata = x$Variable, nt = nt, nv = nv)
+      qs <- quantile(boot$t, c(0.025, 0.975))
       Lower <- round(qs[1])
       Upper <- round(qs[2])
     } else {
       Lower <- 100
       Upper <- 100
     }
+  } else {
+    Lower <- NA
+    Upper <- NA
   }
 
-  data.frame(WQI = round(wqi["WQI"]), Lower = Lower, Upper = Upper,
-             Category = categorize_wqi(wqi["WQI"]),
-             Variables = nv, Tests = nt,
-             F1 = signif(wqi["F1"], 3), F2 = signif(wqi["F2"], 3),
-             F3 = signif(wqi["F3"], 3))
+data.frame(WQI = round(wqi["WQI"]), Lower = Lower, Upper = Upper,
+           Category = categorize_wqi(wqi["WQI"]),
+           Variables = nv, Tests = nt,
+           F1 = signif(wqi["F1"], 3), F2 = signif(wqi["F2"], 3),
+           F3 = signif(wqi["F3"], 3))
 }
 
 #' Calculate Water Quality Indices (WQIs)
