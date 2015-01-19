@@ -1,33 +1,3 @@
-# percent of failed variables
-F1 <- function (x) {
-  nfv <- length(unique(x$Variable[x$Failed]))
-  nv <- length(unique(x$Variable))
-  nfv / nv * 100
-}
-
-# percentage of failed tests
-F2 <- function (x) {
-  nft <- sum(x$Failed)
-  nt <- nrow(x)
-  nft / nt * 100
-}
-
-#' Is Within Limits
-#'
-#' @param value numeric vector of values to test
-#' @param upper numeric vector of upper limits
-#' @param lower numeric vector of lower limits
-#' @return logical vector indicating whether within limits
-#' @examples
-#' library(dplyr)
-#' data(ccme)
-#' ccme$Within <- is_within_limits(ccme$Value, ccme$LowerLimit, ccme$UpperLimit)
-#' filter(ccme, !Within)
-#' @export
-is_within_limits <- function (value, lower = NA_real_, upper = NA_real_) {
-  get_excursion(value = value, lower = lower, upper = upper) == 0
-}
-
 #' Get Excursion
 #'
 #' @param value numeric vector of values to calculate excursion
@@ -45,43 +15,37 @@ get_excursion <- function (value, lower = NA_real_, upper = NA_real_) {
   assert_that(is.numeric(lower))
   assert_that(is.numeric(upper))
 
-  x <- data.frame(Value = value, LowerLimit = lower, UpperLimit = upper)
+  less <- !is.na(lower) & value <= lower
+  more <- !is.na(upper) & value >= upper
 
-  x$LowerLimit[is.na(x$LowerLimit)] <- -Inf
-  x$UpperLimit[is.na(x$UpperLimit)] <- Inf
+  if(any(less & more))
+    stop("lower must be less than upper.")
 
-  excursion <- rep(NA, nrow(x))
-
-  print(x)
-
-  for(i in 1:nrow(x)) {
-    if(x$Value[i] >= x$LowerLimit[i]) {
-      if(x$Value[i] <= x$UpperLimit[i]) {
-        excursion[i] <- 0
-      } else {
-        excursion[i] <- x$Value[i] / x$UpperLimit[i] - 1
-      }
-    } else {
-      excursion[i] <- x$LowerLimit[i] / x$Value[i] - 1
-    }
-  }
+  excursion <- rep(0, length(value))
+  excursion[more] <- value[more] / upper[more] - 1
+  excursion[less] <- lower[less] / value[less] - 1
   excursion
 }
 
+# percent of failed variables
+F1 <- function (excursions, variables) {
+  nfv <- length(unique(variables[excursions != 0]))
+  nv <- length(unique(variables))
+  nfv / nv * 100
+}
+
+# percentage of failed tests
+F2 <- function (excursions) {
+  nft <- sum(excursions != 0)
+  nt <- length(excursions)
+  nft / nt * 100
+}
+
 # the amount by which failed test values do not meet their objectives
-F3 <- function (x) {
-  nt <- nrow(x)
+F3 <- function (excursions) {
+  nt <- length(excursions)
 
-  x <- x[x$Failed,,drop = FALSE]
-
-  if(nrow(x) == 0)
-    return (0)
-
-  bol <- x$Value > x$UpperLimit
-  excursion1 <- x$Value[bol] / x$UpperLimit[bol] - 1
-  excursion2 <- x$LowerLimit[!bol] / x$Value[!bol] - 1
-
-  nse <-  sum(excursion1, excursion2) / nt
+  nse <-  sum(excursions) / nt
   nse / (0.01 * nse + 0.01)
 }
 
@@ -104,13 +68,11 @@ categorize_wqi <- function (x) {
 
 calc_wqi <- function (x) {
 
-  x$UpperLimit[is.na(x$UpperLimit)] <- Inf
-  x$LowerLimit[is.na(x$LowerLimit)] <- -Inf
-  x$Failed <- x$Value < x$LowerLimit | x$Value > x$UpperLimit
+  x$Excursion <- get_excursion(x$Value, x$LowerLimit, x$UpperLimit)
 
-  F1 <- F1(x)
-  F2 <- F2(x)
-  F3 <- F3(x)
+  F1 <- F1(x$Excursion, x$Variable)
+  F2 <- F2(x$Excursion)
+  F3 <- F3(x$Excursion)
   WQI <- 100 - sqrt(F1^2 + F2^2 + F3^2) / 1.732
   Category <- categorize_wqi(WQI)
   data.frame(WQI = round(WQI), Category = Category,
