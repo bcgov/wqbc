@@ -4,10 +4,14 @@
 \alias{get_category_colours}
 \title{Get Category Colours}
 \usage{
-get_category_colours()
+get_category_colours(palette = "gradient")
+}
+\arguments{
+\item{palette}{string of palette name. Possible values are "gradient"
+or "divergent"}
 }
 \value{
-named character vector of colours for water quality index categories
+named character vector of colours for water quality index categories.
 }
 \description{
 Returns a named vector of the default category colours to use when

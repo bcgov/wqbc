@@ -5,7 +5,7 @@
 \title{Plot Water Quality Indices}
 \usage{
 plot_wqis(data, x = "Tests", size = 3, shape = 21, theme = theme_wqis(),
-  palette = getOption("wqbc.category_colours", get_category_colours()))
+  palette = "gradient")
 }
 \arguments{
 \item{data}{data.frame to plot}
@@ -20,7 +20,7 @@ or string of column in data to plot shape of points}
 
 \item{theme}{ggplot theme}
 
-\item{palette}{named character vector of palette for fill of points}
+\item{palette}{string of \code{\link{get_category_colours}} palette to use.}
 }
 \value{
 ggplot2 object
