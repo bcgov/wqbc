@@ -45,9 +45,8 @@ categorize_wqi <- function (x) {
 }
 
 wqi <- function (x, v, nv, nt) {
-  bol <- x != 0
-  nft <- length(x[bol])
-  nfv <- length(unique(v[bol]))
+  nft <- sum(x != 0)
+  nfv <- length(unique(v[x != 0]))
   nse <-  sum(x) / nt
 
   F1 <- nfv / nv * 100
@@ -71,10 +70,10 @@ resample_wqi <- function (x, v, nt = nt, nv = nv) {
 
 calc_wqi <- function (x, ci) {
 
+  x$Excursion <- get_excursions(x$Value, x$LowerLimit, x$UpperLimit)
+
   nt <- nrow(x)
   nv <- length(unique(x$Variable))
-
-  x$Excursion <- get_excursions(x$Value, x$LowerLimit, x$UpperLimit)
 
   wqi <- wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)
 
@@ -83,14 +82,20 @@ calc_wqi <- function (x, ci) {
 
   R <- 1000
   if(ci) {
-    wqis <- rep(NA, R)
-    wqis[1] <- wqi["WQI"]
-    for(i in 2:R) {
-      wqis[i] <- resample_wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)
+    x <- x[x$Variable %in% x$Variable[x$Excursion != 0],,drop = FALSE]
+    if(nrow(x)) {
+      wqis <- rep(NA, R)
+      wqis[1] <- wqi["WQI"]
+      for(i in 2:R) {
+        wqis[i] <- resample_wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)
+      }
+      qs <- quantile(wqis, c(0.025, 0.975))
+      Lower <- round(qs[1])
+      Upper <- round(qs[2])
+    } else {
+      Lower <- 100
+      Upper <- 100
     }
-    qs <- quantile(wqis, c(0.025, 0.975))
-    Lower <- round(qs[1])
-    Upper <- round(qs[2])
   }
 
   data.frame(WQI = round(wqi["WQI"]), Lower = Lower, Upper = Upper,
