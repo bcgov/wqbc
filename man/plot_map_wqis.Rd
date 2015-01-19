@@ -5,8 +5,7 @@
 \title{Plot Map of Water Quality Indices}
 \usage{
 plot_map_wqis(data, x = "Long", y = "Lat", size = 3, shape = 21,
-  theme = theme_map(), keep = NULL, palette = "gradient",
-  input_proj = NULL)
+  theme = theme_map(), keep = NULL, input_proj = NULL)
 }
 \arguments{
 \item{data}{data.frame to plot}
@@ -25,8 +24,6 @@ or string of column in data to plot shape of points}
 
 \item{keep}{NULL or character vector indicating which columns to keep
 in addition to x and y before avoiding overplotting by dropping duplicated rows.}
-
-\item{palette}{string of \code{\link{get_category_colours}} palette to use.}
 
 \item{input_proj}{a valid proj4string. Defaults to longlat/NAD83
 (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})}

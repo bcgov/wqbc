@@ -20,5 +20,5 @@ fraser_wqis <- calc_wqis(fraser_limits, by = c("SiteID", "Year", "Lat", "Long"))
 
 plot_wqis(fraser_wqis, x = "Year") + ggplot2::facet_wrap(~SiteID)
 
-plot_map_wqis(filter(fraser_wqis, Year %in% c(1990, 2010)), keep = "Year", palette = "divergent") +
+plot_map_wqis(filter(fraser_wqis, Year %in% c(1990, 2010)), keep = "Year") +
   ggplot2::facet_wrap(~Year, ncol = 1)

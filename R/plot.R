@@ -47,23 +47,14 @@ aes_string_point <- function (head = "ggplot2::geom_point(ggplot2::aes_string(",
 #'
 #' Returns a named vector of the default category colours to use when
 #' plotting water quality index values.
-#' @param palette string of palette name. Possible values are "gradient"
-#' or "divergent"
 #' @return named character vector of colours for water quality index categories.
 #' @seealso \code{\link{calc_wqis}}
 #' @examples
 #' get_category_colours()
 #' @export
-get_category_colours <- function (palette = "gradient") {
-  assert_that(is.string(palette))
-  if(!palette %in% c("gradient", "divergent"))
-    stop("Palette must be \"gradient\" or \"divergent\".")
-  if(palette == "gradient") {
-    return (c(Excellent = "#081d58", Good = "#225ea8", Fair = "#41b6c4",
-              Marginal = "#c7e9b4", Poor = "#edf8b1"))
-  }
-  c(Excellent = "green", Good = "blue", Fair = "yellow",
-    Marginal = "brown", Poor = "red")
+get_category_colours <- function () {
+  c(Excellent = "#081d58", Good = "#225ea8", Fair = "#41b6c4",
+              Marginal = "#c7e9b4", Poor = "#edf8b1")
 }
 
 #' Plot Water Quality Indices
@@ -79,7 +70,6 @@ get_category_colours <- function (palette = "gradient") {
 #' @param shape integer of point shape (permitted values are 21 to 25)
 #' or string of column in data to plot shape of points
 #' @param theme ggplot theme
-#' @param palette string of \code{\link{get_category_colours}} palette to use.
 #' @return ggplot2 object
 #' @seealso \code{\link{get_category_colours}}
 #' @examples
@@ -89,15 +79,13 @@ get_category_colours <- function (palette = "gradient") {
 #' plot_wqis(calc_wqis(ccme))
 #' @export
 plot_wqis <- function (
-  data, x = "Tests", size = 3, shape = 21, theme = theme_wqis(),
-  palette = "gradient") {
+  data, x = "Tests", size = 3, shape = 21, theme = theme_wqis()) {
 
   assert_that(is.data.frame(data))
   assert_that(is.string(x))
   assert_that(is.number(size) || is.string(size))
   assert_that(is.count(shape) || is.string(shape))
   assert_that(ggplot2::is.theme(theme))
-  assert_that(is.string(palette))
 
   if(!requireNamespace("ggplot2", quietly = TRUE))
     stop("ggplot2 package not installed")
@@ -114,7 +102,7 @@ plot_wqis <- function (
 
   gp <- ggplot2::ggplot(data = data, ggplot2::aes_string(x = x, y = "WQI")) +
     ggplot2::expand_limits(y = c(0, 100)) +
-    ggplot2::scale_fill_manual(values = get_category_colours(palette = palette)) +
+    ggplot2::scale_fill_manual(values = get_category_colours()) +
     ggplot2::ylab("Water Quality Index") + theme
 
   gp <- gp + aes_string_point(
@@ -220,13 +208,11 @@ plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill =
 #' @export
 plot_map_wqis <- function (
   data,  x = "Long", y = "Lat", size = 3, shape = 21,
-  theme = theme_map(), keep = NULL, palette = "gradient", input_proj = NULL) {
-
-  assert_that(is.character(palette))
+  theme = theme_map(), keep = NULL, input_proj = NULL) {
 
   gp <- plot_map( data = data, x = x, y = y, size = size, shape = shape,
                   fill = "Category", theme = theme, keep = keep,
                   input_proj = input_proj)
 
-  gp + ggplot2::scale_fill_manual(values = get_category_colours(palette = palette))
+  gp + ggplot2::scale_fill_manual(values = get_category_colours())
 }
