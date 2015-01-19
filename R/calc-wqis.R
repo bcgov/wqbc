@@ -7,10 +7,10 @@
 #' @examples
 #' library(dplyr)
 #' data(ccme)
-#' ccme$Excursion <- get_excursion(ccme$Value, ccme$LowerLimit, ccme$UpperLimit)
+#' ccme$Excursion <- get_excursions(ccme$Value, ccme$LowerLimit, ccme$UpperLimit)
 #' dplyr::filter(ccme, Excursion != 0)
 #' @export
-get_excursion <- function (value, lower = NA_real_, upper = NA_real_) {
+get_excursions <- function (value, lower = NA_real_, upper = NA_real_) {
   assert_that(is.numeric(value))
   assert_that(is.numeric(lower))
   assert_that(is.numeric(upper))
@@ -25,28 +25,6 @@ get_excursion <- function (value, lower = NA_real_, upper = NA_real_) {
   excursion[more] <- value[more] / upper[more] - 1
   excursion[less] <- lower[less] / value[less] - 1
   excursion
-}
-
-# percent of failed variables
-F1 <- function (excursions, variables) {
-  nfv <- length(unique(variables[excursions != 0]))
-  nv <- length(unique(variables))
-  nfv / nv * 100
-}
-
-# percentage of failed tests
-F2 <- function (excursions) {
-  nft <- sum(excursions != 0)
-  nt <- length(excursions)
-  nft / nt * 100
-}
-
-# the amount by which failed test values do not meet their objectives
-F3 <- function (excursions) {
-  nt <- length(excursions)
-
-  nse <-  sum(excursions) / nt
-  nse / (0.01 * nse + 0.01)
 }
 
 #' Categorize WQI Values
@@ -66,53 +44,58 @@ categorize_wqi <- function (x) {
   x
 }
 
-wqi <- function (x) {
+wqi <- function (x, v, nv, nt) {
+  bol <- x != 0
+  nft <- length(x[bol])
+  nfv <- length(unique(v[bol]))
+  nse <-  sum(x) / nt
 
-  Variables = length(unique(x$Variable))
-  F1 <- F1(x$Excursion, x$Variable)
-  F2 <- F2(x$Excursion)
-  F3 <- F3(x$Excursion)
+  F1 <- nfv / nv * 100
+  F2 <- nft / nt * 100
+  F3 <- nse / (0.01 * nse + 0.01)
+
   WQI <- 100 - sqrt(F1^2 + F2^2 + F3^2) / 1.732
-  return(c(WQI = WQI, Variables = Variables, Tests = nrow(x),
-           F1 = F1, F2 = F2, F3 = F3))
+  return(c(WQI = WQI, F1 = F1, F2 = F2, F3 = F3))
 }
 
-resample_variable <- function (x) {
-  x$Excursion <- sample(x$Excursion, size = length(x$Excursion), replace = TRUE)
+resample_x <- function (x) {
+  x$x <- sample(x$x, size = length(x$x), replace = TRUE)
   x
 }
 
-resample_wqi <- function (x) {
-  x <- plyr::ddply(x, "Variable", resample_variable)
-  wqi(x)["WQI"]
+resample_wqi <- function (x, v, nt = nt, nv = nv) {
+
+  x <- plyr::ddply(data.frame(x = x, v = v), "v", resample_x)$x
+  wqi(x, v = v, nt = nt, nv = nv)["WQI"]
 }
 
 calc_wqi <- function (x, ci) {
 
-  x$Excursion <- get_excursion(x$Value, x$LowerLimit, x$UpperLimit)
+  nt <- nrow(x)
+  nv <- length(unique(x$Variable))
 
-  x <- x[c("Date", "Variable", "Excursion")]
+  x$Excursion <- get_excursions(x$Value, x$LowerLimit, x$UpperLimit)
 
-  wqi <- wqi(x)
+  wqi <- wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)
 
   Lower <- NA
   Upper <- NA
 
+  R <- 1000
   if(ci) {
-    wqis <- rep(NA, 1000)
+    wqis <- rep(NA, R)
     wqis[1] <- wqi["WQI"]
-    for(i in 2:1000) {
-      wqis[i] <- resample_wqi(x)
+    for(i in 2:R) {
+      wqis[i] <- resample_wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)
     }
     qs <- quantile(wqis, c(0.025, 0.975))
     Lower <- round(qs[1])
     Upper <- round(qs[2])
   }
 
-  Category <- categorize_wqi(wqi["WQI"])
   data.frame(WQI = round(wqi["WQI"]), Lower = Lower, Upper = Upper,
              Category = categorize_wqi(wqi["WQI"]),
-             Variables = wqi["Variables"], Tests = wqi["Tests"],
+             Variables = nv, Tests = nt,
              F1 = signif(wqi["F1"], 3), F2 = signif(wqi["F2"], 3),
              F3 = signif(wqi["F3"], 3))
 }
