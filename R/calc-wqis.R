@@ -66,18 +66,55 @@ categorize_wqi <- function (x) {
   x
 }
 
-calc_wqi <- function (x) {
+wqi <- function (x) {
 
-  x$Excursion <- get_excursion(x$Value, x$LowerLimit, x$UpperLimit)
-
+  Variables = length(unique(x$Variable))
   F1 <- F1(x$Excursion, x$Variable)
   F2 <- F2(x$Excursion)
   F3 <- F3(x$Excursion)
   WQI <- 100 - sqrt(F1^2 + F2^2 + F3^2) / 1.732
-  Category <- categorize_wqi(WQI)
-  data.frame(WQI = round(WQI), Category = Category,
-             Variables = length(unique(x$Variable)), Tests = nrow(x),
-             F1 = signif(F1, 3), F2 = signif(F2, 3), F3 = signif(F3, 3))
+  return(c(WQI = WQI, Variables = Variables, Tests = nrow(x),
+           F1 = F1, F2 = F2, F3 = F3))
+}
+
+resample_variable <- function (x) {
+  x$Excursion <- sample(x$Excursion, size = length(x$Excursion), replace = TRUE)
+  x
+}
+
+resample_wqi <- function (x) {
+  x <- plyr::ddply(x, "Variable", resample_variable)
+  wqi(x)["WQI"]
+}
+
+calc_wqi <- function (x, ci) {
+
+  x$Excursion <- get_excursion(x$Value, x$LowerLimit, x$UpperLimit)
+
+  x <- x[c("Date", "Variable", "Excursion")]
+
+  wqi <- wqi(x)
+
+  Lower <- NA
+  Upper <- NA
+
+  if(ci) {
+    wqis <- rep(NA, 1000)
+    wqis[1] <- wqi["WQI"]
+    for(i in 2:1000) {
+      wqis[i] <- resample_wqi(x)
+    }
+    qs <- quantile(wqis, c(0.025, 0.975))
+    Lower <- round(qs[1])
+    Upper <- round(qs[2])
+  }
+
+  Category <- categorize_wqi(wqi["WQI"])
+  data.frame(WQI = round(wqi["WQI"]), Lower = Lower, Upper = Upper,
+             Category = categorize_wqi(wqi["WQI"]),
+             Variables = wqi["Variables"], Tests = wqi["Tests"],
+             F1 = signif(wqi["F1"], 3), F2 = signif(wqi["F2"], 3),
+             F3 = signif(wqi["F3"], 3))
 }
 
 #' Calculate Water Quality Indices (WQIs)
@@ -87,6 +124,9 @@ calc_wqi <- function (x) {
 #' @param x data.frame with Variable, Value, UpperLimit and if defined
 #' LowerLimit columns
 #' @param by character vector of columns to calculate WQIs by
+#' @param ci flag indicating whether to generate bootstrap
+#' 95% confidence intervals using Method 1 of
+#' Environmental Indicators: Their Development and Application.
 #' @param messages flag indicating whether to print messages
 #' @param parallel flag indicating whether to calculate limits by the by argument using the parallel backend provided by foreach
 #' @examples
@@ -95,33 +135,37 @@ calc_wqi <- function (x) {
 #' calc_wqis(ccme, by = "Date")
 #'
 #' @export
-calc_wqis <- function (x, by = NULL,
+calc_wqis <- function (x, by = NULL, ci = FALSE,
                        messages = getOption("wqbc.messages", default = TRUE),
                        parallel = getOption("wqbc.parallel", default = FALSE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
+  assert_that(is.flag(ci) && noNA(ci))
 
   check_rows(x)
   check_columns(x, c("Variable", "Value", "UpperLimit"))
-  x <- add_missing_columns(x, list("LowerLimit" = NA_real_), messages = messages)
+
+  x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01"),
+                                   "LowerLimit" = NA_real_), messages = messages)
 
   check_by(by, colnames(x), res_names = c("Variable", "Value", "LowerLimit", "UpperLimit"))
 
-  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "LowerLimit", "UpperLimit", by)], messages = FALSE)
+  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Date", "Variable", "Value", "LowerLimit", "UpperLimit", by)], messages = FALSE)
 
-  check_class_columns(x, list("Value" = "numeric",
+  check_class_columns(x, list("Date" = "Date",
+                              "Value" = "numeric",
                               "LowerLimit" = "numeric",
                               "UpperLimit" = "numeric"))
 
   x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
 
-  x <- delete_rows_with_missing_values(x, list("Value", "Variable",
+  x <- delete_rows_with_missing_values(x, list("Date", "Value", "Variable",
                                                c("LowerLimit", "UpperLimit")),
                                        messages = messages)
   check_rows(x)
 
   if(is.null(by))
-    return(calc_wqi(x))
+    return(calc_wqi(x, ci = ci))
 
-  plyr::ddply(x, .variables = by, .fun = calc_wqi, .parallel = parallel)
+  plyr::ddply(x, .variables = by, ci = ci, .fun = calc_wqi, .parallel = parallel)
 }
