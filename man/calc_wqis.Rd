@@ -4,7 +4,7 @@
 \alias{calc_wqis}
 \title{Calculate Water Quality Indices (WQIs)}
 \usage{
-calc_wqis(x, by = NULL, ci = FALSE, messages = getOption("wqbc.messages",
+calc_wqis(x, by = NULL, ci = TRUE, messages = getOption("wqbc.messages",
   default = TRUE), parallel = getOption("wqbc.parallel", default = FALSE))
 }
 \arguments{
@@ -13,16 +13,14 @@ LowerLimit columns}
 
 \item{by}{character vector of columns to calculate WQIs by}
 
-\item{ci}{flag indicating whether to generate bootstrap
-95% confidence intervals using Method 1 of
-Environmental Indicators: Their Development and Application.}
+\item{ci}{flag indicating whether to generate bootstrap 95\% confidence intervals}
 
 \item{messages}{flag indicating whether to print messages}
 
-\item{parallel}{flag indicating whether to calculate limits by the by argument using the parallel backend provided by foreach}
+\item{parallel}{flag indicating whether to use the parallel backend provided by foreach}
 }
 \description{
-Calculates WQIs for x.
+Calculate Water Quality Indices (WQIs)
 }
 \examples{
 data(ccme)
