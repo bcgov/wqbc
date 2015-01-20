@@ -25,6 +25,7 @@ input_codes <- function () {
   codes %<>% filter(!is.na(Code))
 
   stopifnot(all(nchar(codes$Code) == 8))
+  codes$Code %<>% sub("EMS-", "", .)
   codes$Code %<>% factor
   codes$Variable %<>% factor
   codes$Units %<>% factor(levels = get_units())
