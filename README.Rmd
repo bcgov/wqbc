@@ -16,13 +16,16 @@ knitr::opts_chunk$set(
   )
 ```
 
-# wqbc
+# Water Quality Thresholds and Index Calculations for British Columbia
 
-Water Quality Thresholds and Index Calculations for British Columbia
-
-The wqbc R package calculates water quality thresholds and water quality indices
+The `wqbc` R package calculates water quality thresholds and water quality indices
 and plots water quality indices spatially and temporally for
-British Columbia.
+British Columbia. 
+
+## Useage
+
+For additional information on use, the reader is referred to the
+vignette and `demo(fraser)`.
 
 ## Install
 
@@ -40,4 +43,4 @@ library(wqbc)
 You are welcome to:
 
 * submit suggestions and bug-reports at: https://github.com/poissonconsulting/wqbc/issues
-* send a pull request on: https://github.com/poissonconsulting/wqbc/
+* send a pull request on: https://github.com/poissonconsulting/wqbc
