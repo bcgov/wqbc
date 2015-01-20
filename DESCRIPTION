@@ -1,8 +1,8 @@
 Package: wqbc
 Type: Package
 Title: Water Quality Thresholds and Index Calculation for British Columbia
-Version: 0.0.0.9000
-Date: 2015-01-16
+Version: 0.0.0.9001
+Date: 2015-01-19
 Authors@R: as.person(c(
     "Joe Thorley <joe@poissonconsulting.ca> [aut, cre]",
     "Colin Millar <colinpmillar@gmail.com> [aut]",
@@ -10,8 +10,8 @@ Authors@R: as.person(c(
     "Andy Teucher [ctb]",
     "Stephanie Hazlitt [ctb]",
     "Robyn Irvine [ctb]"))
-Description: Gets water quality thresholds, calculates water quality indices,
-    and tests for water quality trends and plots water quality sites for
+Description: Calculates water quality thresholds and water quality indices
+    and plots water quality indices spatially and temporally for
     British Columbia.
 License: file LICENSE
 LazyData: true
@@ -20,7 +20,7 @@ Depends:
 Imports:
     assertthat (>= 0.1),
     plyr (>= 1.8.1),
-    dplyr (>= 0.3.0.2),
+    dplyr (>= 0.4.1),
     stringr (>= 0.6.2),
     lubridate (>= 1.3.3),
     boot (>= 1.3-14)
@@ -29,6 +29,6 @@ Suggests:
     knitr (>= 1.8),
     tidyr (>= 0.2.0),
     ggplot2 (>= 1.0.0),
-    sp (>= 1.0-16),
+    sp (>= 1.0-17),
     rgdal (>= 0.9-1)
 VignetteBuilder: knitr
