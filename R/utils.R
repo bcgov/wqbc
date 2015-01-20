@@ -1,3 +1,7 @@
+plural <- function (x, s = FALSE, end = "") {
+  paste0(x, ifelse(s, "s", ""), end)
+}
+
 punctuate_strings <- function (x, qualifier = "or") {
   if(length(x) == 1)
     return (x)
@@ -12,7 +16,7 @@ add_missing_columns <- function (x, columns, messages) {
 
   for(column in names(columns)) {
     if(!column %in% colnames(x)) {
-      if(messages) message("adding missing column ", column, " to x")
+      if(messages) message("Adding missing column ", column, " to x.")
       x[[column]] <-  columns[[column]]
     }
   }
@@ -23,7 +27,8 @@ delete_columns <- function (x, colnames, messages) {
   colnames <- colnames(x)[colnames(x) %in% colnames]
   if(length(colnames) >= 1) {
     if(messages)
-      message("deleting columns ", punctuate_strings(colnames, "and"), " from x")
+      message("Deleting ", plural("column", length(colnames) > 1, " "),
+              punctuate_strings(colnames, "and"), " from x.")
   }
   x <- x[, !colnames(x) %in% colnames, drop = FALSE]
   x
@@ -44,9 +49,10 @@ delete_rows_with_missing_values <- function (x, columns, messages) {
     }
     if(any(bol)) {
       if(messages) {
-        message("deleting ", length(bol),
-                " rows with missing values from column(s) ",
-                punctuate_strings(col, "and"), " in x")
+        message("Deleting ", sum(bol),
+                plural(" row", sum(bol) > 1), " with NAs in ",
+                plural("column", length(col) > 1), " ",
+                punctuate_strings(col, "or"), " from x.")
       }
       x <- x[!bol, , drop = FALSE]
     }
@@ -57,7 +63,8 @@ delete_rows_with_missing_values <- function (x, columns, messages) {
 replace_negative_values_with_na <- function (x, messages) {
   bol <- !is.na(x) & x < 0
   if(any(bol)) {
-    if(messages) message("Replacing ", sum(bol), " negative values with missing values.")
+    if(messages) message("Replacing ", sum(bol), " negative ",
+                         plural("value", sum(bol) > 1), " with NA.")
     is.na(x[bol]) <- TRUE
   }
   x
@@ -66,7 +73,8 @@ replace_negative_values_with_na <- function (x, messages) {
 replace_zero_values_with_na <- function (x, messages) {
   bol <- !is.na(x) & x == 0
   if(any(bol)) {
-    if(messages) message("replacing ", sum(bol), " zero value(s) with missing values")
+    if(messages) message("Replacing ", sum(bol), " zero ",
+                         plural("value", sum(bol) > 1), " with NA.")
     is.na(x[bol]) <- TRUE
   }
   x

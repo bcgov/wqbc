@@ -86,7 +86,7 @@ calc_wqi <- function (x, ci) {
 
   x$Excursion <- get_excursions(x$Value, x$LowerLimit, x$UpperLimit)
 
-  #  x <- dplyr::select_(x, ~Excursion, ~Variable)
+  x <- dplyr::select_(x, ~Excursion, ~Variable)
 
   nt <- nrow(x)
   nv <- length(unique(x$Variable))
@@ -138,7 +138,7 @@ calc_wqis <- function (x, by = NULL, ci = TRUE,
 
   check_by(by, colnames(x), res_names = c("Variable", "Value", "LowerLimit", "UpperLimit"))
 
-  # x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Date", "Variable", "Value", "LowerLimit", "UpperLimit", by)], messages = FALSE)
+  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Date", "Variable", "Value", "LowerLimit", "UpperLimit", by)], messages = FALSE)
 
   check_class_columns(x, list("Date" = "Date",
                               "Value" = "numeric",
