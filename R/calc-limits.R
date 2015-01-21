@@ -23,7 +23,8 @@ geomean1 <- function (x, na.rm = FALSE) {
 
 join_codes <- function (x) {
   x <- dplyr::rename_(x, "..Units" = "Units")
-  x <- dplyr::left_join(x, wqbc::codes, by = "Variable")
+  x$Variable <- as.character(x$Variable)
+  x <- dplyr::left_join(x, wqbc_codes(), by = "Variable")
   stopifnot(!any(is.na(x$Units)))
   x$Value <- convert_units(x$Value, from = x$..Units, to = x$Units)
   x$..Units <- NULL
@@ -61,7 +62,7 @@ average_monthly_values <- function (x) {
 
 join_limits <- function (x) {
   x$..ID <- 1:nrow(x)
-  x <- dplyr::left_join(x, wqbc::limits, by = c("Variable", "Units"))
+  x <- dplyr::left_join(x, wqbc_limits(), by = c("Variable", "Units"))
   x
 }
 
@@ -175,7 +176,7 @@ calc_limits <- function (x, by = NULL,
 
   check_by(by, colnames(x), res_names = unique(
     c("Variable", "Value", "Units", "Date",
-      colnames(wqbc::limits), colnames(wqbc::codes))))
+      colnames(wqbc_limits()), colnames(wqbc_codes()))))
 
   x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "Units", "Date", by)], messages = FALSE)
 

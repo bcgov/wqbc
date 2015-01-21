@@ -1,3 +1,18 @@
+wqbc_codes <- function () {
+  codes <- wqbc::codes
+  codes$Code <- as.character(codes$Code)
+  codes$Variable <- as.character(codes$Variable)
+  codes$Units <- as.character(codes$Units)
+  codes
+}
+
+wqbc_limits <- function () {
+  limits <- wqbc::limits
+  limits$Variable <- as.character(limits$Variable)
+  limits$Units <- as.character(limits$Units)
+  limits
+}
+
 #' Get Water Quality Variables
 #'
 #' Returns a character vector of the water quality variables
@@ -12,7 +27,8 @@ get_variables<- function (codes = NULL) {
   assert_that(is.vector(codes))
   codes <- as.character(codes)
 
-  x <- dplyr::left_join(data.frame(Code = codes), wqbc::codes, by = "Code")
+  x <- dplyr::left_join(data.frame(Code = codes, stringsAsFactors = FALSE),
+                        wqbc_codes(), by = "Code")
   as.character(x$Variable)
 }
 
@@ -31,10 +47,11 @@ get_codes<- function (variables = NULL, add_na = TRUE) {
   assert_that(is.null(variables) || is.character(variables) || is.factor(variables))
   assert_that(is.flag(add_na) && noNA(add_na))
 
-  if(is.null(variables)) return (as.character(wqbc::codes$Code))
+  if(is.null(variables)) return (levels(wqbc::codes$Code))
 
   variables <- as.character(variables)
-  x <- dplyr::left_join(data.frame(Variable = variables), wqbc::codes, by = "Variable")
+  x <- dplyr::left_join(data.frame(Variable = variables, stringsAsFactors = FALSE),
+                        wqbc_codes(), by = "Variable")
   x$Code <- as.character(x$Code)
   x$Variable <- as.character(x$Variable)
   if(!add_na) {
