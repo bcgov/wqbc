@@ -8,6 +8,7 @@ test_that("get_unit_multiplier", {
 
 test_that("get_units", {
   expect_is(get_units(), "character")
+
 })
 
 test_that("get_unit_type", {
