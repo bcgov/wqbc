@@ -16,8 +16,7 @@ Cobalt Total,Month,,,4,ug/L,48,BC_2006,Freshwater Life
 Cobalt Total,,,,110,ug/L,48,BC_2006,Freshwater Life
 Copper Total,Month,EMS-0107 > 50,,0.04 * EMS-0107,ug/L,9,BC_2006,Freshwater Life
 Copper Total,Month,EMS-0107 <= 50,,2,ug/L,9,BC_2006,Freshwater Life
-Copper Total,,EMS-0107 <= 50,,0.094 * EMS-0107 + 2,ug/L,9,BC_2006,Freshwater Life
-Copper Total,,EMS-0107 > 50,,0.094 * EMS-0107 + 2,ug/L,9,BC_2006,Freshwater Life
+Copper Total,,,,0.094 * EMS-0107 + 2,ug/L,9,BC_2006,Freshwater Life
 Cyanide Weak Acid Dissociable,Month,,,5,ug/L,10,BC_2006,Freshwater Life
 Cyanide Weak Acid Dissociable,,,,10,ug/L,10,BC_2006,Freshwater Life
 Diisopropanolamine,,,,1.6,mg/L,45,BC_2006,Freshwater Life
