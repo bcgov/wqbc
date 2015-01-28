@@ -1,7 +1,7 @@
 library(wqbc)
 library(devtools)
-library(dplyr)
 library(plyr)
+library(dplyr)
 library(magrittr)
 
 fraser <- read.csv("data-raw/fraser.csv")
