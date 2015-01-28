@@ -65,7 +65,6 @@ Sulphate,Month,EMS-0107 <= 30,,128,mg/L,B5,EMAIL_2014,Freshwater Life
 Sulphate,Month,EMS-0107 > 30 & EMS-0107 <= 75,,218,mg/L,B5,EMAIL_2014,Freshwater Life
 Sulphate,Month,EMS-0107 > 76 & EMS-0107 <= 180,,309,mg/L,B5,EMAIL_2014,Freshwater Life
 Sulphate,Month,EMS-0107 > 180 & EMS-0107 <= 250,,429,mg/L,B5,EMAIL_2014,Freshwater Life
-Sulphate,,,,100,mg/L,36,BC_2006,Freshwater Life
 Toluene,,,,0.039,mg/L,35,BC_2006,Freshwater Life
 Zinc Total,Month,,,0.75 * (EMS-0107 - 90) + 7.5,ug/L,33,BC_2006,Freshwater Life
 Zinc Total,,,,0.75 * (EMS-0107 - 90) + 33,ug/L,33,BC_2006,Freshwater Life
