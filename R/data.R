@@ -74,7 +74,6 @@
 #'   apply at least five values must have been recorded on five separate days
 #'   from at least three calendar weeks within the calendar month}
 #'   \item{Condition}{R logical expression to test required condition}
-#'   \item{LowerLimit}{R expression defining lower limit}
 #'   \item{UpperLimit}{R expression defining upper limit}
 #'   \item{Units}{units for limit}
 #' }
