@@ -63,8 +63,6 @@ The `limits.csv` file contains the following columns:
 - Average - Whether or not the limits are the maximum value (default leave cell blank) 
 or the mean or geomean or median from at least 5 weekly samples taken in a period of 30 days.
 - Condition	- Any conditions on the levels as a valid logical R expression.
-- LowerLimit - The minimum level as a valid R expression where other variables are referenced
-by their code.
 - UpperLimit - The maximum level as a valid R expression where other variables are referenced
 by their code.
 - Units - The units for the lower and upper limits where the permitted values are

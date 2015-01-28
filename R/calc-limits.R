@@ -96,13 +96,10 @@ calc_limits_by_period <- function (x) {
   x <- x[x$Condition,,drop = FALSE]
   x$Condition <- NULL
 
-  x$LowerLimit <- vapply(x$LowerLimit, FUN = calc_limit,
-                         FUN.VALUE = numeric(1), cv = cv)
-
   x$UpperLimit <- vapply(x$UpperLimit, FUN = calc_limit,
                          FUN.VALUE = numeric(1), cv = cv)
 
-  x[!is.na(x$LowerLimit) | !is.na(x$UpperLimit),,drop = FALSE]
+  x[!is.na(x$UpperLimit),,drop = FALSE]
 }
 
 calc_limits_by_day <- function (x) {
@@ -144,7 +141,7 @@ calc_limits_by <- function (x) {
  # month <- calc_limits_by_month(x)
 #  x <- rbind(day, month)
   x <- day
-  x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~LowerLimit, ~UpperLimit, ~Units)
+  x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units)
   x
 }
 
