@@ -1,8 +1,8 @@
 Variable,Period,Condition,LowerLimit,UpperLimit,Units,Table,Reference,Use
-Aluminium Dissolved,Month,pH >= 6.5,,0.05,mg/L,6,BC_2006,Freshwater Life
-Aluminium Dissolved,Month,pH < 6.5,,exp(1.6 - 3.327 * pH + 0.402 * pH^2),mg/L,6,BC_2006,Freshwater Life
-Aluminium Dissolved,,pH >= 6.5,,0.1,mg/L,6,BC_2006,Freshwater Life
-Aluminium Dissolved,,pH < 6.5,,exp(1.209 - 2.426 * pH + 0.286 * pH^2),mg/L,6,BC_2006,Freshwater Life
+Aluminium Dissolved,Month,EMS-0004 >= 6.5,,0.05,mg/L,6,BC_2006,Freshwater Life
+Aluminium Dissolved,Month,EMS-0004 < 6.5,,exp(1.6 - 3.327 * EMS-0004 + 0.402 * EMS-0004^2),mg/L,6,BC_2006,Freshwater Life
+Aluminium Dissolved,,EMS-0004 >= 6.5,,0.1,mg/L,6,BC_2006,Freshwater Life
+Aluminium Dissolved,,EMS-0004 < 6.5,,exp(1.209 - 2.426 * EMS-0004 + 0.286 * EMS-0004^2),mg/L,6,BC_2006,Freshwater Life
 Arsenic Total,,,,5,ug/L,43,BC_2006,Freshwater Life
 Boron,,,,1.2,mg/L,49,BC_2006,Freshwater Life
 Cadmium Dissolved,Month,EMS-0107 >= 3.4 & EMS-0107 <= 285,,exp(0.736 * log(EMS-0107) - 4.943),ug/L,A1,EMAIL_2014,Freshwater Life
