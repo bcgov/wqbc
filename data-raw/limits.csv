@@ -33,10 +33,8 @@ Lead,,EMS-0107 <= 8,,3,ug/L,11,BC_2006,Freshwater Life
 Lead,,EMS-0107 > 8,,exp(1.273 * log(EMS-0107) - 1.460),ug/L,11,BC_2006,Freshwater Life
 Manganese,Month,,,0.0044 * EMS-0107 + 0.605,mg/L,38,BC_2006,Freshwater Life
 Manganese,,,,0.01102 * EMS-0107 + 0.54,mg/L,37,BC_2006,Freshwater Life
-Mercury,Month,MeHg / Hg * 100  <= 5,,0.002,ug/L,13a,BC_2006,Freshwater Life
-Mercury,Month,MeHg / Hg * 100 > 1 & MeHg / Hg * 100 <= 2.5,,0.004,ug/L,13a,BC_2006,Freshwater Life
-Mercury,Month,MeHg / Hg * 100 > 0.5 & MeHg / Hg * 100 <= 1,,0.01,ug/L,13a,BC_2006,Freshwater Life
-Mercury,Month,MeHg / Hg * 100 <= 0.5,,0.02,ug/L,13a,BC_2006,Freshwater Life
+Mercury,Month,EMS-HGME / EMS-HG-T * 100 <= 0.5,,0.02,ug/L,13a,BC_2006,Freshwater Life
+Mercury,Month,EMS-HGME / EMS-HG-T * 100 > 0.5,, EMS-HGME / (EMS-HGME / EMS-HG-T),ug/L,13a,EMAIL_2015,Freshwater Life
 Mercury,,,,0.1,ug/L,13,BC_2006,Freshwater Life
 Methyl Tertiary Butyl Ether,,,,3.4,mg/L,39,BC_2006,Freshwater Life
 Molybdenum Total,Month,,,1,mg/L,15,BC_2006,Freshwater Life
