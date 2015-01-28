@@ -43,18 +43,18 @@ Molybdenum Total,Month,,,1,mg/L,15,BC_2006,Freshwater Life
 Molybdenum Total,,,,2,mg/L,15,BC_2006,Freshwater Life
 Nitrate Total,Month,,,3,mg/L,B3,EMAIL_2014,Freshwater Life
 Nitrate Total,,,,32.8,mg/L,B3,EMAIL_2014,Freshwater Life
-Nitrite,Month,Cl < 2,,0.02,mg/L,16,BC_2006,Freshwater Life
-Nitrite,Month,Cl >= 2 & Cl < 4,,0.04,mg/L,17,BC_2006,Freshwater Life
-Nitrite,Month,Cl >= 4 & Cl < 6,,0.06,mg/L,17,BC_2006,Freshwater Life
-Nitrite,Month,Cl >= 6 & Cl < 8,,0.08,mg/L,17,BC_2006,Freshwater Life
-Nitrite,Month,Cl >= 8 & Cl <= 10,,0.1,mg/L,17,BC_2006,Freshwater Life
-Nitrite,Month,Cl > 10,,0.2,mg/L,17,BC_2006,Freshwater Life
-Nitrite,,Cl < 2,,0.06,mg/L,16,BC_2006,Freshwater Life
-Nitrite,,Cl >= 2 & Cl < 4,,0.12,mg/L,17,BC_2006,Freshwater Life
-Nitrite,,Cl >= 4 & Cl < 6,,0.18,mg/L,17,BC_2006,Freshwater Life
-Nitrite,,Cl >= 6 & Cl < 8,,0.24,mg/L,17,BC_2006,Freshwater Life
-Nitrite,,Cl >= 8 & Cl <= 10,,0.3,mg/L,17,BC_2006,Freshwater Life
-Nitrite,,Cl > 10,,0.6,mg/L,17,BC_2006,Freshwater Life
+Nitrite,Month,EMS-0104 < 2,,0.02,mg/L,16,BC_2006,Freshwater Life
+Nitrite,Month,EMS-0104 >= 2 & EMS-0104 < 4,,0.04,mg/L,17,BC_2006,Freshwater Life
+Nitrite,Month,EMS-0104 >= 4 & EMS-0104 < 6,,0.06,mg/L,17,BC_2006,Freshwater Life
+Nitrite,Month,EMS-0104 >= 6 & EMS-0104 < 8,,0.08,mg/L,17,BC_2006,Freshwater Life
+Nitrite,Month,EMS-0104 >= 8 & EMS-0104 <= 10,,0.1,mg/L,17,BC_2006,Freshwater Life
+Nitrite,Month,EMS-0104 > 10,,0.2,mg/L,17,BC_2006,Freshwater Life
+Nitrite,,EMS-0104 < 2,,0.06,mg/L,16,BC_2006,Freshwater Life
+Nitrite,,EMS-0104 >= 2 & EMS-0104 < 4,,0.12,mg/L,17,BC_2006,Freshwater Life
+Nitrite,,EMS-0104 >= 4 & EMS-0104 < 6,,0.18,mg/L,17,BC_2006,Freshwater Life
+Nitrite,,EMS-0104 >= 6 & EMS-0104 < 8,,0.24,mg/L,17,BC_2006,Freshwater Life
+Nitrite,,EMS-0104 >= 8 & EMS-0104 <= 10,,0.3,mg/L,17,BC_2006,Freshwater Life
+Nitrite,,EMS-0104 > 10,,0.6,mg/L,17,BC_2006,Freshwater Life
 Oxygen Dissolved,Month,,8,,mg/L,18,BC_2006,Freshwater Life
 Oxygen Dissolved,,,5,,mg/L,18,BC_2006,Freshwater Life
 Phosphorus Total,,,5,10,ug/L,3,BC_2006,Freshwater Life
