@@ -9,8 +9,6 @@ Chlorine Total Residual,EMS-1016,ug/L,mean
 Cobalt Total,EMS-CO-T,ug/L,mean
 Copper Total,EMS-CU-T,ug/L,mean
 Cyanide Weak Acid Dissociable,EMS-0157,ug/L,mean
-Diisopropanolamine,,mg/L,mean
-Escherichia coli,EMS-0147,CFU/dL,geomean1
 Ethinylestradiol 17a,EMS-ST13,ng/L,mean
 Ethylbenzene,EMS-B021,mg/L,mean
 Fluoride Total,EMS-FL-T,mg/L,mean
@@ -25,8 +23,6 @@ Methyl Tertiary Butyl Ether,EMS-MTBE,mg/L,mean
 Molybdenum Total,EMS-MO-T,mg/L,mean
 Nitrate Total,EMS-0110,mg/L,mean
 Nitrite,EMS-0111,mg/L,mean
-Oxygen Dissolved,EMS-0014,mg/L,mean
-Phosphorus Total,EMS-P--T,ug/L,mean
 Polychlorinated Biphenyl Total,EMS-P019,ng/L,mean
 Selenium Total,EMS-SE-T,mg/L,mean
 Silver,EMS-AG-T,ug/L,mean
