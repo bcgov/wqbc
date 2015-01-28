@@ -55,8 +55,6 @@ Nitrite,,EMS-0104 >= 4 & EMS-0104 < 6,,0.18,mg/L,17,BC_2006,Freshwater Life
 Nitrite,,EMS-0104 >= 6 & EMS-0104 < 8,,0.24,mg/L,17,BC_2006,Freshwater Life
 Nitrite,,EMS-0104 >= 8 & EMS-0104 <= 10,,0.3,mg/L,17,BC_2006,Freshwater Life
 Nitrite,,EMS-0104 > 10,,0.6,mg/L,17,BC_2006,Freshwater Life
-Oxygen Dissolved,Month,,8,,mg/L,18,BC_2006,Freshwater Life
-Oxygen Dissolved,,,5,,mg/L,18,BC_2006,Freshwater Life
 Phosphorus Total,,,5,10,ug/L,3,BC_2006,Freshwater Life
 Polychlorinated Biphenyl Total,,,,0.1,ng/L,23,BC_2006,Freshwater Life
 Selenium Total,Month,,,0.002,mg/L,B4,EMAIL_2014,Freshwater Life
