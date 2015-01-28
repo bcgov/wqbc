@@ -27,15 +27,10 @@ Nitrate Total,EMS-0110,mg/L,mean
 Nitrite,EMS-0111,mg/L,mean
 Oxygen Dissolved,EMS-0014,mg/L,mean
 Phosphorus Total,EMS-P--T,ug/L,mean
-Polychlorinated Biphenyl 105,,ng/L,mean
-Polychlorinated Biphenyl 126,,ng/L,mean
-Polychlorinated Biphenyl 169,,ng/L,mean
-Polychlorinated Biphenyl 77,,ng/L,mean
 Polychlorinated Biphenyl Total,EMS-P019,ng/L,mean
 Selenium Total,EMS-SE-T,mg/L,mean
 Silver,EMS-AG-T,ug/L,mean
 Sulphate,EMS-0121,mg/L,mean
-Sulpholane,,mg/L,mean
 Toluene,EMS-T001,mg/L,mean
 Zinc Total,EMS-ZN-T,ug/L,mean
 pH,EMS-0004,pH,median
