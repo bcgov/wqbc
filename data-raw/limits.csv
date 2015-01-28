@@ -21,8 +21,6 @@ Copper Total,,CaCO3 > 50,,0.094 * CaCO3 + 2,ug/L,9,BC_2006,Freshwater Life
 Cyanide Weak Acid Dissociable,Month,,,5,ug/L,10,BC_2006,Freshwater Life
 Cyanide Weak Acid Dissociable,,,,10,ug/L,10,BC_2006,Freshwater Life
 Diisopropanolamine,,,,1.6,mg/L,45,BC_2006,Freshwater Life
-Escherichia coli,Month,,,200,CFU/dL,B2,EMAIL_2014,Freshwater Life
-Escherichia coli,,,,400,CFU/dL,B2,EMAIL_2014,Freshwater Life
 Ethinylestradiol 17a,Month,,,0.5,ng/L,A2,EMAIL_2014,Freshwater Life
 Ethinylestradiol 17a,,,,0.75,ng/L,A2,EMAIL_2014,Freshwater Life
 Ethylbenzene,,,,0.2,mg/L,34,BC_2006,Freshwater Life
