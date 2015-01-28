@@ -25,7 +25,7 @@ Ethinylestradiol 17a,Month,,,0.5,ng/L,A2,EMAIL_2014,Freshwater Life
 Ethinylestradiol 17a,,,,0.75,ng/L,A2,EMAIL_2014,Freshwater Life
 Ethylbenzene,,,,0.2,mg/L,34,BC_2006,Freshwater Life
 Fluoride Total,,CaCO3 <= 10,,0.4,mg/L,B1,EMAIL_2014,Freshwater Life
-Fluoride Total,,CaCO3 > 10,,"92.57 * log(CaCO3, base = 10) - 51.73",mg/L,B1,EMAIL_2014,Freshwater Life
+Fluoride Total,,CaCO3 > 10,,"(92.57 * log(CaCO3, base = 10) – 51.73) * 0.01",mg/L,B1,EMAIL_2014,Freshwater Life
 Iron Dissolved,,,,0.35,mg/L,A3,EMAIL_2014,Freshwater Life
 Iron Total,,,,1,mg/L,A3,EMAIL_2014,Freshwater Life
 Lead,Month,CaCO3 > 8,,exp(1.273 * log(CaCO3) - 4.704) + 3.31,ug/L,11,BC_2006,Freshwater Life
