@@ -1,6 +1,6 @@
-# wqbc 0.0.0.9001
+# wqbc 0.0.0.9002
 
-- No changes to date.
+- Finalized limits.csv and codes.csv files
 
 # wqbc 0.0.0.9000
 
