@@ -32,7 +32,7 @@ Lead,Short-term,EMS_0107 > 8,exp(1.273 * log(EMS_0107) - 1.460),ug/L,11,BC_2006,
 Manganese,Long-term,,0.0044 * EMS_0107 + 0.605,mg/L,38,BC_2006,Freshwater Life
 Manganese,Short-term,,0.01102 * EMS_0107 + 0.54,mg/L,37,BC_2006,Freshwater Life
 Mercury,Long-term,EMS_HGME / EMS_HG_T * 100 <= 0.5,0.02,ug/L,13a,BC_2006,Freshwater Life
-Mercury,Long-term,EMS_HGME / EMS_HG_T * 100 > 0.5, EMS_HGME / (EMS_HGME / EMS_HG_T),ug/L,13a,EMAIL_2015,Freshwater Life
+Mercury,Long-term,EMS_HGME / EMS_HG_T * 100 > 0.5,10^(-4) / (EMS_HGME / EMS_HG_T),ug/L,13a,EMAIL_2015,Freshwater Life
 Mercury,Short-term,,0.1,ug/L,13,BC_2006,Freshwater Life
 Methyl Tertiary Butyl Ether,Long-term,,3.4,mg/L,39,BC_2006,Freshwater Life
 Molybdenum Total,Long-term,,1,mg/L,15,BC_2006,Freshwater Life
