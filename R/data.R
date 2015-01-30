@@ -16,6 +16,22 @@
 #' demo(ccme, ask = FALSE)
 "ccme"
 
+#' Dummy Water Quality Data
+#'
+#' A dummy data set to illustrate various data cleaning functions.
+#'
+#' @format A data frame with 5 columns:
+#' \describe{
+#'   \item{ID}{row identifier}
+#'   \item{Variable}{parameter variable name}
+#'   \item{Date}{date of reading}
+#'   \item{Value}{value of reading}
+#'   \item{Units}{units of reading}
+#' }
+#' @examples
+#' demo(dummy, ask = FALSE)
+"dummy"
+
 #' Fraser River Basin Long-term Water Quality Monitoring 1979-Present
 #'
 #' Surface freshwater quality monitoring in the Fraser River Basin

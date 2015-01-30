@@ -23,21 +23,7 @@ If possible replicates with inconsistent units are converted to the same
 units - otherwse
 }
 \examples{
-data <- data.frame(Variable = "A Variable", Date = as.Date("2000-01-01"),
-                   Value = c(20, 1, 2), Units = c("mg/L", "mg/L", "mg/L"))
-
-data <- rbind(data, data.frame(Variable = "Another Variable", Date = as.Date("2000-01-02"),
-                   Value = c(1, 10^3), Units = c("mg/L", "ug/L")))
-
-data <- rbind(data, data.frame(Variable = "Another Variable", Date = as.Date("2000-01-04"),
-                   Value = c(1, 10^3), Units = c("ug/L", "mg/L")))
-
-data <- rbind(data, data.frame(Variable = "Yet Another Variable", Date = as.Date("1977-05-25"),
-                   Value = c(1, 10^3), Units = c("ug/L", "midichlorians")))
-
-data <- rbind(data, data.frame(Variable = "Kryptonite", Date = as.Date("1978-12-01"),
-                   Value = 1, Units = "ug/L"))
-
-calc_rcvs(data, messages = TRUE)
+data(dummy)
+calc_rcvs(dummy, messages = TRUE)
 }
 
