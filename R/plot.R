@@ -165,7 +165,7 @@ plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill =
 
   gp <- ggplot2::ggplot(data, ggplot2::aes_string(x = x, y = y)) +
     ggplot2::geom_polygon(
-      data = wqbc::map,
+      data = map,
       ggplot2::aes_string(x = "Long", y = "Lat", group = "Group"),
       fill = "grey80", size = 0.5, colour = "grey50"
     ) + ggplot2::coord_fixed() + theme

@@ -38,4 +38,4 @@ ggplot(map, aes(x = Long, y = Lat, group = Group)) +
   theme(axis.title = element_blank(), axis.text = element_blank(),
         axis.ticks = element_blank(), panel.grid = element_blank())
 
-use_data(map, pkg = as.package("."), overwrite = TRUE, compress = "xz")
+use_data(map, pkg = as.package("."), internal = TRUE, overwrite = TRUE, compress = "xz")
