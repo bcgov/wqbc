@@ -3,18 +3,33 @@
 #' A tidy data.frame of the CCME Water Quality Index 1.0 User's Manual
 #' example dataset.
 #'
-#' @format A data frame with 103 rows and 6 variables:
+#' @format A data frame with 103 rows and 6 columns:
 #' \describe{
-#'   \item{Variable}{parameter variable name}
-#'   \item{Date}{date of reading}
-#'   \item{Value}{value of reading}
-#'   \item{DetectionLimit}{detection limit of method}
-#'   \item{LowerLimit}{minimum permitted value}
-#'   \item{UpperLimit}{maximum permitted value}
+#'   \item{Date}{The date of the reading.}
+#'   \item{Variable}{The name of the variable.}
+#'   \item{Value}{The value of the reading.}
+#'   \item{LowerLimit}{The minimum permitted value.}
+#'   \item{UpperLimit}{The maximum permitted value.}
 #' }
 #' @examples
 #' demo(ccme, ask = FALSE)
 "ccme"
+
+#' Dummy Water Quality Data
+#'
+#' A dummy data set to illustrate various data cleaning functions.
+#'
+#' @format A data frame with 5 columns:
+#' \describe{
+#'   \item{ID}{A row identifier.}
+#'   \item{Date}{The date of the reading.}
+#'   \item{Variable}{The name of the variable.}
+#'   \item{Value}{The value of the reading.}
+#'   \item{Units}{The value's units.}
+#' }
+#' @examples
+#' demo(dummy, ask = FALSE)
+"dummy"
 
 #' Fraser River Basin Long-term Water Quality Monitoring 1979-Present
 #'
@@ -26,26 +41,24 @@
 #' of remedial measures and regulatory decisions.
 #'
 #' @details The original dataset has been filtered to remove values
-#' for variables without currently defined limits. In addition,
-#' variables are referenced
-#' by code, unimportant columns have been dropped and the remaining
+#' for variables without currently defined limits.
+#' In addition, unimportant columns have been dropped and the remaining
 #' columns renamed.
 #'
-#' @format A data frame with 9 variables:
+#' @format A data frame with 9 columns:
 #' \describe{
-#'   \item{SiteID}{unique water quality station number}
-#'   \item{Date}{date of water quality sample}
-#'   \item{Variable}{variable name}
-#'   \item{Value}{measured value}
-#'   \item{Units}{reading units}
-#'   \item{DetectionLimit}{minimum value of method}
-#'   \item{Site}{full station name}
-#'   \item{Lat}{latitude in decimal degrees}
-#'   \item{Long}{longitude in decimal degrees}
+#'   \item{SiteID}{The unique water quality station number.}
+#'   \item{Date}{The date of the reading.}
+#'   \item{Variable}{The name of the variable.}
+#'   \item{Value}{The value of the reading.}
+#'   \item{Units}{The value's units.}
+#'   \item{Site}{The full name of the station.}
+#'   \item{Lat}{The latitude of the station in decimal degrees.}
+#'   \item{Long}{The longitude of the station in decimal degrees.}
 #' }
 #' @source \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}
 #' @examples
 #' \dontrun{
-#' demo(fraser)
+#' demo(fraser, ask = FALSE)
 #' }
 "fraser"

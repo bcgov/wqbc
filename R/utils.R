@@ -49,10 +49,9 @@ delete_rows_with_missing_values <- function (x, columns, messages) {
     }
     if(any(bol)) {
       if(messages) {
-        message("Deleting ", sum(bol),
-                plural(" row", sum(bol) > 1), " with NAs in ",
-                plural("column", length(col) > 1), " ",
-                punctuate_strings(col, "or"), " from x.")
+        message("Deleted ", sum(bol),
+                plural(" row", sum(bol) > 1), " with unrecognised values in ",
+                punctuate_strings(col, "or"), ".")
       }
       x <- x[!bol, , drop = FALSE]
     }
@@ -63,14 +62,13 @@ delete_rows_with_missing_values <- function (x, columns, messages) {
 replace_negative_values_with_na <- function (x, messages) {
   bol <- !is.na(x) & x < 0
   if(any(bol)) {
-    if(messages) message("Replacing ", sum(bol), " negative ",
-                         plural("value", sum(bol) > 1), " with NA.")
+    if(messages) message("Replaced ", sum(bol), " negative ",
+                         plural("value", sum(bol) > 1), " with missing values")
     is.na(x[bol]) <- TRUE
   }
   x
 }
 
-## Assign and transform the coordinate system/projection to match the base BC map
 proj_bc <- function (data, x, y, input_proj = NULL) {
 
   if(!requireNamespace("sp", quietly = TRUE))
@@ -91,27 +89,3 @@ proj_bc <- function (data, x, y, input_proj = NULL) {
 }
 
 is.error <- function (x) inherits (x, "try-error")
-
-#' Geometric Mean Plus-Minus 1
-#'
-#' Calculates geometric mean by adding 1 before logging
-#' and subtracting 1 before exponentiating so that
-#' geometric mean of
-#' @param x numeric vector of non-negative numbers
-#' @param na.rm flag indicating whether to remove missing values
-#' @return number
-#' @examples
-#' mean(0:9)
-#' geomean1(0:9)
-#' @export
-geomean1 <- function (x, na.rm = FALSE) {
-  assert_that(is.vector(x))
-  assert_that(is.flag(na.rm) && noNA(na.rm))
-  x <- as.numeric(x)
-
-  if(any(x < 0, na.rm = TRUE))
-    stop("x must not be negative")
-
-  expm1(mean(log1p(as.numeric(x)), na.rm = na.rm))
-}
-

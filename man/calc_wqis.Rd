@@ -4,23 +4,20 @@
 \alias{calc_wqis}
 \title{Calculate Water Quality Indices (WQIs)}
 \usage{
-calc_wqis(x, by = NULL, ci = TRUE, messages = getOption("wqbc.messages",
-  default = TRUE), parallel = getOption("wqbc.parallel", default = FALSE))
+calc_wqis(x, by = NULL, messages = getOption("wqbc.messages", default =
+  TRUE), parallel = getOption("wqbc.parallel", default = FALSE))
 }
 \arguments{
-\item{x}{data.frame with Variable, Value, UpperLimit and if defined
-LowerLimit columns}
+\item{x}{The data.frame to perform the calculations on.}
 
-\item{by}{character vector of columns to calculate WQIs by}
+\item{by}{A character vector of the columns to perform the calculations by.}
 
-\item{ci}{flag indicating whether to generate bootstrap 95\% confidence intervals}
+\item{messages}{A flag indicating whether to print messages.}
 
-\item{messages}{flag indicating whether to print messages}
-
-\item{parallel}{flag indicating whether to use the parallel backend provided by foreach}
+\item{parallel}{A flag indicating whether to use the parallel backend provided by foreach.}
 }
 \description{
-Calculate Water Quality Indices (WQIs)
+Calculates water quality indices.
 }
 \examples{
 data(ccme)

@@ -6,6 +6,7 @@
 #' @examples
 #' \dontrun{
 #'  demo(ccme)
+#'  demo(dummy)
 #'  demo(fraser)
 #' }
 NULL
