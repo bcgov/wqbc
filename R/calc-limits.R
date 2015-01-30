@@ -1,26 +1,3 @@
-#' Geometric Mean Plus-Minus 1
-#'
-#' Calculates geometric mean by adding 1 before logging
-#' and subtracting 1 before exponentiating so that
-#' geometric mean of
-#' @param x numeric vector of non-negative numbers
-#' @param na.rm flag indicating whether to remove missing values
-#' @return number
-#' @examples
-#' mean(0:9)
-#' geomean1(0:9)
-#' @export
-geomean1 <- function (x, na.rm = FALSE) {
-  assert_that(is.vector(x))
-  assert_that(is.flag(na.rm) && noNA(na.rm))
-  x <- as.numeric(x)
-
-  if(any(x < 0, na.rm = TRUE))
-    stop("x must not be negative")
-
-  expm1(mean(log1p(as.numeric(x)), na.rm = na.rm))
-}
-
 join_codes <- function (x) {
   x <- dplyr::rename_(x, "..Units" = "Units")
   x$Variable <- as.character(x$Variable)
@@ -31,28 +8,28 @@ join_codes <- function (x) {
   x
 }
 
-average_daily_values_day_variable <- function (x) {
+average_daily_values_date_variable <- function (x) {
   txt <- paste0("x$Value <- ", x$Average, "(x$Value)")
   eval(parse(text = txt))
   x[1,,drop = FALSE]
 }
 
-average_daily_values_day <- function (x) {
+average_daily_values_date <- function (x) {
   if(anyDuplicated(x$Variable))
-    x <- plyr::ddply(x, "Variable", average_daily_values_day_variable)
+    x <- plyr::ddply(x, "Variable", average_daily_values_date_variable)
   x
 }
 
 average_daily_values <- function (x) {
   if(anyDuplicated(dplyr::select_(x, ~Date, ~Variable)))
-    x <- plyr::ddply(x, "Date", average_daily_values_day)
+    x <- plyr::ddply(x, "Date", average_daily_values_date)
   x
 }
 
 average_monthly_values_variable <- function (x) {
   x$Weeks <- length(unique(lubridate::week(x$Date)))
   x$Values <- nrow(x)
-  average_daily_values_day_variable(x)
+  average_daily_values_date_variable(x)
 }
 
 average_monthly_values <- function (x) {
@@ -103,17 +80,15 @@ calc_limits_by_period <- function (x) {
 }
 
 calc_limits_by_day <- function (x) {
-  x <- dplyr::filter_(x, ~Period == "Day")
+  x <- dplyr::filter_(x, ~!is.na(Period) & Period == "Short-term")
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
-
   stopifnot(!anyDuplicated(x$..ID))
-
-  x <- dplyr::select_(x, ~-..ID, ~-Code, ~-Average)
+  x$Term <- factor("Short", levels = c("Short", "Long"))
   x
 }
 
-calc_limits_by_month <- function (x) {
-  x <- dplyr::filter_(x, ~Period == "Month")
+calc_limits_by_30day <- function (x) {
+  x <- dplyr::filter_(x, ~!is.na(Period) & Period == "Short-term")
   x$Year <- lubridate::year(x$Date)
   x$Month <- lubridate::month(x$Date)
 
@@ -138,11 +113,11 @@ calc_limits_by <- function (x, term) {
   x <- join_limits(x)
 
   if(term == "long") {
-    x <- calc_limits_by_month(x)
+    x <- calc_limits_by_30day(x)
   } else {
     x <- calc_limits_by_day(x)
   }
-  x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units)
+  x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units, ~Term)
   x
 }
 
@@ -166,7 +141,7 @@ empty_limits <- function (x) {
 #' data(fraser)
 #' fraser <- calc_limits(rbind(fraser[1:100,],fraser[1:100,]), message = FALSE)
 #' @export
-calc_limits <- function (x, by = NULL, term = "long",
+calc_limits <- function (x, by = NULL, term = "short",
                          messages = getOption("wqbc.messages", default = TRUE),
                          parallel = getOption("wqbc.parallel", default = FALSE)) {
   assert_that(is.data.frame(x))
@@ -175,6 +150,7 @@ calc_limits <- function (x, by = NULL, term = "long",
   assert_that(is.flag(messages) && noNA(messages))
   assert_that(is.flag(parallel) && noNA(parallel))
 
+  term <- tolower(term)
   if(!term %in% c("long", "short"))
     stop("term must be \"long\" or \"short\"")
 
@@ -208,8 +184,8 @@ calc_limits <- function (x, by = NULL, term = "long",
   if(!nrow(x)) return (empty_limits(x))
 
   cv <- calc_replicates_cv(x, messages = TRUE)
-  if(messages)
-    message("The maximum coefficient of variation for replicates is ")
+  if(messages) message("The maximum replicate coefficient of variation is ",
+                       max(cv$CV, na.rm = TRUE))
 
   if(is.null(by)) return(calc_limits_by(x, term = term))
 

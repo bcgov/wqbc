@@ -4,7 +4,7 @@
 \alias{calc_limits}
 \title{Calculates Water Quality limits}
 \usage{
-calc_limits(x, by = NULL, term = "long",
+calc_limits(x, by = NULL, term = "short",
   messages = getOption("wqbc.messages", default = TRUE),
   parallel = getOption("wqbc.parallel", default = FALSE))
 }
