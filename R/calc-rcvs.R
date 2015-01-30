@@ -5,7 +5,7 @@ calc_cv_variable_date <- function (x, messages) {
     w <- getOption("warn")
     on.exit(options(warn = w))
     options(warn = 2)
-    y <- try(convert_units(x$Value, from = x$Units, to = x$Units[1]), silent = TRUE)
+    y <- try(convert_values(x$Value, from = x$Units, to = x$Units[1]), silent = TRUE)
     options(warn = w)
     if(is.error(y)) {
       warning("Unable to convert inconsistent units for ", x$Variable[1], " on ", x$Date[1])
@@ -30,7 +30,7 @@ calc_cv_variable <- function (x, messages) {
   x
 }
 
-#' Calculates Replicates Coefficient of Variation
+#' Calculates Replicates Coefficients of Variation
 #'
 #' Calculates the coefficient of variation for values for
 #' the same variable collected on the same date. Useful for identifying dates
@@ -59,9 +59,9 @@ calc_cv_variable <- function (x, messages) {
 #' data <- rbind(data, data.frame(Variable = "Kryptonite", Date = as.Date("1978-12-01"),
 #'                    Value = 1, Units = "ug/L"))
 #'
-#' calc_replicates_cv(data, messages = TRUE)
+#' calc_rcvs(data, messages = TRUE)
 #' @export
-calc_replicates_cv <- function (x, messages = getOption("wqbc.messages", default = TRUE),
+calc_rcvs <- function (x, messages = getOption("wqbc.messages", default = TRUE),
                                 parallel = getOption("wqbc.parallel", default = FALSE)) {
 
   assert_that(is.data.frame(x))

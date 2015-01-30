@@ -33,21 +33,21 @@ get_unit_type <- function (x) {
   x
 }
 
-#' Convert Units
+#' Convert Values
 #'
-#' Converts units
+#' Converts values from original units to new units
 #'
 #' @param x numeric vector of values to convert
 #' @param from character vector of original units
 #' @param to character vector new units
 #' @return numeric vector of values in new units
 #' @examples
-#' convert_units(1:2, from = "mg/L", to = "mg/L")
-#' convert_units(1:2, from = "mg/L", to = "ug/L")
-#' convert_units(1:2, from = "mg/L", to = "midichlorians")
-#' convert_units(1:2, from = "midichlorians", to = "midichlorians")
+#' convert_values(1:2, from = "mg/L", to = "mg/L")
+#' convert_values(1:2, from = "mg/L", to = "ug/L")
+#' convert_values(1:2, from = "mg/L", to = "midichlorians")
+#' convert_values(1:2, from = "midichlorians", to = "midichlorians")
 #' @export
-convert_units <- function (x, from, to) {
+convert_values <- function (x, from, to) {
   assert_that(is.numeric(x))
   assert_that(is.character(from) || is.factor(from))
   assert_that(is.character(to) || is.factor(to))

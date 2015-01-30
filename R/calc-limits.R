@@ -3,7 +3,7 @@ join_codes <- function (x) {
   x$Variable <- as.character(x$Variable)
   x <- dplyr::left_join(x, wqbc_codes(), by = "Variable")
   stopifnot(!any(is.na(x$Units)))
-  x$Value <- convert_units(x$Value, from = x$..Units, to = x$Units)
+  x$Value <- convert_values(x$Value, from = x$..Units, to = x$Units)
   x$..Units <- NULL
   x
 }
@@ -183,7 +183,7 @@ calc_limits <- function (x, by = NULL, term = "short",
 
   if(!nrow(x)) return (empty_limits(x))
 
-  cv <- calc_replicates_cv(x, messages = TRUE)
+  cv <- calc_rcvs(x, messages = TRUE)
   if(messages) message("The maximum replicate coefficient of variation is ",
                        max(cv$CV, na.rm = TRUE))
 
