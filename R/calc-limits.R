@@ -80,7 +80,7 @@ calc_limits_by_period <- function (x) {
 }
 
 calc_limits_by_day <- function (x) {
-  x <- dplyr::filter_(x, ~!is.na(Period) & Period == "Short-term")
+  x <- dplyr::filter_(x, ~!is.na(Term) & Term == "Short")
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
   stopifnot(!anyDuplicated(x$..ID))
   x$Term <- factor("Short", levels = c("Short", "Long"))
@@ -88,7 +88,7 @@ calc_limits_by_day <- function (x) {
 }
 
 calc_limits_by_30day <- function (x) {
-  x <- dplyr::filter_(x, ~!is.na(Period) & Period == "Short-term")
+  x <- dplyr::filter_(x, ~!is.na(Term) & Term == "Short")
   x$Year <- lubridate::year(x$Date)
   x$Month <- lubridate::month(x$Date)
 

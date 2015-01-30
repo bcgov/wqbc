@@ -9,14 +9,16 @@ input_limits <- function () {
 
   limits <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
+  stopifnot(nrow(limits) == 65)
+
   stopifnot(identical(colnames(limits),
-                      c("Variable", "Period",
+                      c("Variable", "Term",
                         "Condition", "UpperLimit", "Units", "Table",
                         "Reference", "Use")))
 
   stopifnot(all(!is.na(select(limits, -Condition))))
 
-  stopifnot(all(limits$Period %in% c("Short-term", "Long-term")))
+  stopifnot(all(limits$Term %in% c("Short", "Long")))
   stopifnot(all(limits$Units %in% get_units()))
   stopifnot(all(limits$Reference %in% c("BC_2006", "EMAIL_2014", "EMAIL_2015")))
   stopifnot(all(limits$Use %in% c("Freshwater Life")))
@@ -41,11 +43,11 @@ input_limits <- function () {
   stopifnot(all(limits$..Units == limits$Units))
   limits$..Units <- NULL
 
-  limits %<>% arrange(Variable, Period)
+  limits %<>% arrange(Variable, Term)
 
-  limits %<>% select(Variable, Period, Condition, UpperLimit, Units)
+  limits %<>% select(Variable, Term, Condition, UpperLimit, Units)
 
-  limits$Period %<>% factor
+  limits$Term %<>% factor
   limits$Units %<>% droplevels
   limits
 }
