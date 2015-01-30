@@ -1,5 +1,5 @@
 wqbc_codes <- function () {
-  codes <- wqbc::codes
+  codes <- codes
   codes$Code <- as.character(codes$Code)
   codes$Variable <- as.character(codes$Variable)
   codes$Units <- as.character(codes$Units)
@@ -7,7 +7,7 @@ wqbc_codes <- function () {
 }
 
 wqbc_limits <- function () {
-  limits <- wqbc::limits
+  limits <- limits
   limits$Variable <- as.character(limits$Variable)
   limits$Units <- as.character(limits$Units)
   limits
@@ -22,7 +22,7 @@ wqbc_limits <- function () {
 #' get_variables()
 #' @export
 get_variables<- function (codes = NULL) {
-  if(is.null(codes)) return (levels(wqbc::codes$Variable))
+  if(is.null(codes)) return (wqbc_codes()$Variable)
 
   assert_that(is.vector(codes))
   codes <- as.character(codes)
@@ -47,7 +47,7 @@ get_codes<- function (variables = NULL, add_na = TRUE) {
   assert_that(is.null(variables) || is.character(variables) || is.factor(variables))
   assert_that(is.flag(add_na) && noNA(add_na))
 
-  if(is.null(variables)) return (levels(wqbc::codes$Code))
+  if(is.null(variables)) return (wqbc_codes()$Code)
 
   variables <- as.character(variables)
   x <- dplyr::left_join(data.frame(Variable = variables, stringsAsFactors = FALSE),
