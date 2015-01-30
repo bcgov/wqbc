@@ -132,55 +132,68 @@ calc_limits_by_month <- function (x) {
   x
 }
 
-calc_limits_by <- function (x) {
+calc_limits_by <- function (x, term) {
   x <- join_codes(x)
   x <- average_daily_values(x)
   x <- join_limits(x)
 
-  day <- calc_limits_by_day(x)
- # month <- calc_limits_by_month(x)
-#  x <- rbind(day, month)
-  x <- day
+  if(term == "long") {
+    x <- calc_limits_by_month(x)
+  } else {
+    x <- calc_limits_by_day(x)
+  }
   x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units)
   x
+}
+
+empty_limits <- function (x) {
+  x <- cbind(x, data.frame(Term = character(), UpperLimit = numeric()))
+  x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units)
 }
 
 #' Calculates Water Quality limits
 #'
 #' Calculates the approved lower and upper water quality thresholds for
-#' British Columbia. If the Date column is not
-#' supplied the data is assumed to have been collected on the same date.
-#' Assumes values are individual readings.
+#' British Columbia.
 #'
-#' @param x data.frame with columns Code, Value and Units.
+#' @param x data.frame with columns Variable, Value and Units and Date.
 #' @param by character vector of columns to calculate limits by
+#' @param term string indicating whether to calculate long-term limits
+#' the default or short-term limits (term = "short")
 #' @param messages flag indicating whether to print messages
 #' @param parallel flag indicating whether to calculate limits by the by argument using the parallel backend provided by foreach
+#' @examples
 #' data(fraser)
 #' fraser <- calc_limits(rbind(fraser[1:100,],fraser[1:100,]), message = FALSE)
 #' @export
-calc_limits <- function (x, by = NULL,
+calc_limits <- function (x, by = NULL, term = "long",
                          messages = getOption("wqbc.messages", default = TRUE),
                          parallel = getOption("wqbc.parallel", default = FALSE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
+  assert_that(is.string(term))
   assert_that(is.flag(messages) && noNA(messages))
   assert_that(is.flag(parallel) && noNA(parallel))
 
-  check_rows(x)
-  check_columns(x, c("Variable", "Value", "Units"))
-  x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")), messages = messages)
+  if(!term %in% c("long", "short"))
+    stop("term must be \"long\" or \"short\"")
 
-  check_by(by, colnames(x), res_names = unique(
-    c("Variable", "Value", "Units", "Date",
-      colnames(wqbc_limits()), colnames(wqbc_codes()))))
-
-  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "Units", "Date", by)], messages = FALSE)
+  check_columns(x, c("Variable", "Value", "Units", "Date"))
 
   check_class_columns(x, list("Variable" = c("character", "factor"),
                               "Value" = "numeric",
                               "Units" = c("character", "factor"),
                               "Date" = "Date"))
+
+  check_by(by, colnames(x), res_names = unique(
+    c("Variable", "Value", "Units", "Date",
+      colnames(wqbc_limits()), colnames(wqbc_codes()))))
+
+  x <- delete_columns(x, colnames(x)[!colnames(x) %in%
+                                       c("Variable", "Value", "Units", "Date", by)],
+                      messages = FALSE)
+
+  if(!nrow(x)) return (empty_limits(x))
 
   x$Variable <- substitute_variables(x$Variable, messages = messages)
   x$Units <- substitute_units(x$Units, messages = messages)
@@ -191,10 +204,14 @@ calc_limits <- function (x, by = NULL,
   x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
 
   x <- delete_rows_with_missing_values(x, messages = messages)
-  check_rows(x)
 
-  if(is.null(by))
-    return(calc_limits_by(x))
+  if(!nrow(x)) return (empty_limits(x))
 
-  plyr::ddply(x, .variables = by, .fun = calc_limits_by, .parallel = parallel)
+  cv <- calc_replicates_cv(x, messages = TRUE)
+  if(messages)
+    message("The maximum coefficient of variation for replicates is ")
+
+  if(is.null(by)) return(calc_limits_by(x, term = term))
+
+  plyr::ddply(x, .variables = by, .fun = calc_limits_by, .parallel = parallel, term = term)
 }

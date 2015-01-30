@@ -4,24 +4,28 @@
 \alias{calc_limits}
 \title{Calculates Water Quality limits}
 \usage{
-calc_limits(x, by = NULL, messages = getOption("wqbc.messages", default =
-  TRUE), parallel = getOption("wqbc.parallel", default = FALSE))
+calc_limits(x, by = NULL, term = "long",
+  messages = getOption("wqbc.messages", default = TRUE),
+  parallel = getOption("wqbc.parallel", default = FALSE))
 }
 \arguments{
-\item{x}{data.frame with columns Code, Value and Units.}
+\item{x}{data.frame with columns Variable, Value and Units and Date.}
 
 \item{by}{character vector of columns to calculate limits by}
 
+\item{term}{string indicating whether to calculate long-term limits
+the default or short-term limits (term = "short")}
+
 \item{messages}{flag indicating whether to print messages}
 
-\item{parallel}{flag indicating whether to calculate limits by the by argument using the parallel backend provided by foreach
-data(fraser)
-fraser <- calc_limits(rbind(fraser[1:100,],fraser[1:100,]), message = FALSE)}
+\item{parallel}{flag indicating whether to calculate limits by the by argument using the parallel backend provided by foreach}
 }
 \description{
 Calculates the approved lower and upper water quality thresholds for
-British Columbia. If the Date column is not
-supplied the data is assumed to have been collected on the same date.
-Assumes values are individual readings.
+British Columbia.
+}
+\examples{
+data(fraser)
+fraser <- calc_limits(rbind(fraser[1:100,],fraser[1:100,]), message = FALSE)
 }
 

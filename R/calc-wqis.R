@@ -147,8 +147,6 @@ calc_wqis <- function (x, by = NULL, ci = TRUE,
                               "UpperLimit" = "numeric"))
 
   x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
-  x$Value <- replace_zero_values_with_na(x$Value, messages = messages)
-
   x <- delete_rows_with_missing_values(x, list("Date", "Value", "Variable",
                                                c("LowerLimit", "UpperLimit")),
                                        messages = messages)

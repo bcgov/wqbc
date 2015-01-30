@@ -20,6 +20,9 @@ numeric vector of values in new units
 Converts units
 }
 \examples{
-convert_units(1:10, from = "mg/L", to = "ug/L")
+convert_units(1:2, from = "mg/L", to = "mg/L")
+convert_units(1:2, from = "mg/L", to = "ug/L")
+convert_units(1:2, from = "mg/L", to = "midichlorians")
+convert_units(1:2, from = "midichlorians", to = "midichlorians")
 }
 

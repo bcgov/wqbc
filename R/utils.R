@@ -70,16 +70,6 @@ replace_negative_values_with_na <- function (x, messages) {
   x
 }
 
-replace_zero_values_with_na <- function (x, messages) {
-  bol <- !is.na(x) & x == 0
-  if(any(bol)) {
-    if(messages) message("Replacing ", sum(bol), " zero ",
-                         plural("value", sum(bol) > 1), " with NA.")
-    is.na(x[bol]) <- TRUE
-  }
-  x
-}
-
 ## Assign and transform the coordinate system/projection to match the base BC map
 proj_bc <- function (data, x, y, input_proj = NULL) {
 
@@ -99,3 +89,5 @@ proj_bc <- function (data, x, y, input_proj = NULL) {
   data <- sp::spTransform(data, sp::CRS(output_proj))
   as.data.frame(data)
 }
+
+is.error <- function (x) inherits (x, "try-error")

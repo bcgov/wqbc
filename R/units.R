@@ -42,7 +42,10 @@ get_unit_type <- function (x) {
 #' @param to character vector new units
 #' @return numeric vector of values in new units
 #' @examples
-#' convert_units(1:10, from = "mg/L", to = "ug/L")
+#' convert_units(1:2, from = "mg/L", to = "mg/L")
+#' convert_units(1:2, from = "mg/L", to = "ug/L")
+#' convert_units(1:2, from = "mg/L", to = "midichlorians")
+#' convert_units(1:2, from = "midichlorians", to = "midichlorians")
 #' @export
 convert_units <- function (x, from, to) {
   assert_that(is.numeric(x))
@@ -54,11 +57,12 @@ convert_units <- function (x, from, to) {
 
   x <- x * get_unit_multiplier(from) / get_unit_multiplier(to)
 
-  bol <- get_unit_type(from) != get_unit_type(to)
+  bol <- from != to & get_unit_type(from) != get_unit_type(to)
+  bol <- is.na(bol) | bol
 
-  if(any(bol, na.rm = TRUE)) {
-    warning(sum(bol, na.rm = TRUE), " values have inconvertible units")
-    is.na(x[!is.na(bol) & bol]) <- TRUE
+  if(any(bol)) {
+    warning(sum(bol), " values have inconvertible units")
+    is.na(x[bol]) <- TRUE
   }
   x
 }
