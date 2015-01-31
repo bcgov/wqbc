@@ -3,6 +3,7 @@
 export(calc_limits)
 export(calc_wqis)
 export(clean_wqdata)
+export(convert_ems_data)
 export(geomean1)
 export(get_codes)
 export(get_units)

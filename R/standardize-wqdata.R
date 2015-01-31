@@ -74,6 +74,8 @@ convert_values <- function (x, from, to, messages) {
 #' @return A character vector of the water quality variables.
 #' @examples
 #' get_variables()
+#' get_variables(get_codes())
+#' get_variables(c(get_codes()[1], "EMS_WTF_"))
 #' @export
 get_variables<- function (codes = NULL) {
   if(is.null(codes)) return (wqbc_codes()$Variable)
