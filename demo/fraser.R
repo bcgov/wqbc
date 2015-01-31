@@ -9,10 +9,8 @@ data(fraser)
 fraser$SiteID <-  factor(sub("BC08", "", as.character(fraser$SiteID)))
 plot_map(fraser, fill = "SiteID")
 
-fraser_cleansed <- clean_wqdata(fraser, by = c("SiteID", "Lat", "Long"),
-                                messages = TRUE)
-
-fraser_limits <- calc_limits(fraser_cleansed, by = c("SiteID", "Lat", "Long"))
+fraser_limits <- calc_limits(fraser, by = c("SiteID", "Lat", "Long"),
+                             messages = TRUE)
 
 fraser_limits$Year <- year(fraser_limits$Date)
 fraser_wqis <- calc_wqis(fraser_limits, by = c("SiteID", "Year", "Lat", "Long"))
