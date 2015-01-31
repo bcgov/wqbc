@@ -1,6 +1,6 @@
-# wqbc 0.0.0.9003
+# wqbc 0.0.0.9005
 
-- Completed coding of all functionality.
+- Released new version number as wqdata now dependent
 
 # wqbc 0.0.0.9002
 
