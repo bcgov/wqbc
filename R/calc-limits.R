@@ -185,7 +185,7 @@ calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
 
   x <- clean_wqdata(x, by = by, messages = messages)
 
-  if(messages) message("Calculating water quality limits...")
+  if(messages) message("Calculating ", paste0(term, "-term") ," water quality limits...")
 
   if(is.null(by)) {
     x <- calc_limits_by(x, term = term, dates = dates)

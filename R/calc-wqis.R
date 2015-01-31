@@ -104,7 +104,7 @@ calc_wqis <- function (x, by = NULL,
 
   check_columns(x, c("Variable", "Value", "UpperLimit"))
 
-  if(messages) message("Calculating Water Quality Indices...")
+  if(messages) message("Calculating water quality indices...")
 
   x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01"),
                                    "LowerLimit" = NA_real_), messages = messages)
