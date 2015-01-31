@@ -59,7 +59,17 @@ bootstrap_wqi <- function (x, nt, nv) {
   quantile(boot$t, c(0.025, 0.975))
 }
 
-calc_wqi <- function (x) {
+four <- function (x) {
+  data.frame(Four = nrow(x) >= 4)
+}
+
+fourtimesfour <- function (x) {
+  x <- plyr::ddply(x, .variables = "Variable", .fun = four)
+  x <- x[x$Four,,drop = FALSE]
+  nrow(x) >= 4
+}
+
+calc_wqi <- function (x, messages) {
 
   x$Excursion <- get_excursions(x$Value, x$LowerLimit, x$UpperLimit)
   x <- dplyr::select_(x, ~Excursion, ~Variable)
@@ -73,11 +83,17 @@ calc_wqi <- function (x) {
   Lower <- round(limits[1])
   Upper <- round(limits[2])
 
-  data.frame(WQI = round(wqi["WQI"]), Lower = Lower, Upper = Upper,
-             Category = categorize_wqi(wqi["WQI"]),
-             Variables = nv, Tests = nt,
-             F1 = signif(wqi["F1"], 3), F2 = signif(wqi["F2"], 3),
-             F3 = signif(wqi["F3"], 3))
+  wqi <- data.frame(WQI = round(wqi["WQI"]), Lower = Lower, Upper = Upper,
+                  Category = categorize_wqi(wqi["WQI"]),
+                  Variables = nv, Tests = nt,
+                  F1 = signif(wqi["F1"], 3), F2 = signif(wqi["F2"], 3),
+                  F3 = signif(wqi["F3"], 3))
+
+  if(!fourtimesfour(x)) {
+    if(messages) message("Dropped WQI with less than four variables sampled at least four times.")
+    wqi <- wqi[F,,drop = FALSE]
+  }
+  wqi
 }
 
 #' Calculate Water Quality Indices (WQIs)
@@ -127,9 +143,9 @@ calc_wqis <- function (x, by = NULL,
   check_rows(x)
 
   if(is.null(by)) {
-    x <- calc_wqi(x)
+    x <- calc_wqi(x, messages = messages)
   } else {
-    x <- plyr::ddply(x, .variables = by, .fun = calc_wqi)
+    x <- plyr::ddply(x, .variables = by, .fun = calc_wqi, messages = messages)
   }
   if(messages) message("Calculated.")
   x
