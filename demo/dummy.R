@@ -1,16 +1,15 @@
 library(dplyr)
 
-msgs <- TRUE
+options(wqbc.messages = TRUE)
 
 data(dummy)
 print(dummy)
 
-dummy_standardized <- standardize_wqdata(dummy, messages = msgs)
-print(dummy_standardized)
-print(filter(dummy, !ID %in% dummy_standardized$ID))
+dummy <- standardize_wqdata(dummy)
+print(dummy)
 
-dummy_cleansed <- clean_wqdata(dummy_standardized, messages = msgs)
-print(dummy_cleansed)
+dummy <- clean_wqdata(dummy)
+print(dummy)
 
-dummy_limits <- calc_limits(dummy_cleansed, term = "short", messages = msgs)
-print(dummy_limits)
+dummy <- calc_limits(dummy, term = "short")
+print(dummy)

@@ -100,6 +100,10 @@ calc_wqis <- function (x, by = NULL,
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
   check_rows(x)
+
+  if(!all(c("LowerLimit", "UpperLimit") %in% colnames(x)))
+    x <- calc_limits(x, by = by, messages = messages, parallel = parallel)
+
   check_columns(x, c("Variable", "Value", "UpperLimit"))
 
   if(messages) message("Calculating Water Quality Indices...")
