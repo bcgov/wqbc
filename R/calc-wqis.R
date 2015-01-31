@@ -87,22 +87,20 @@ calc_wqi <- function (x) {
 #' @param x The data.frame to perform the calculations on.
 #' @param by A character vector of the columns to perform the calculations by.
 #' @param messages A flag indicating whether to print messages.
-#' @param parallel A flag indicating whether to use the parallel backend provided by foreach.
 #' @examples
 #' data(ccme)
 #' calc_wqis(ccme)
 #' calc_wqis(ccme, by = "Date")
 #' @export
 calc_wqis <- function (x, by = NULL,
-                       messages = getOption("wqbc.messages", default = TRUE),
-                       parallel = getOption("wqbc.parallel", default = FALSE)) {
+                       messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
   check_rows(x)
 
   if(!all(c("LowerLimit", "UpperLimit") %in% colnames(x)))
-    x <- calc_limits(x, by = by, messages = messages, parallel = parallel)
+    x <- calc_limits(x, by = by, messages = messages)
 
   check_columns(x, c("Variable", "Value", "UpperLimit"))
 
@@ -131,7 +129,7 @@ calc_wqis <- function (x, by = NULL,
   if(is.null(by)) {
     x <- calc_wqi(x)
   } else {
-    x <- plyr::ddply(x, .variables = by, .fun = calc_wqi, .parallel = parallel)
+    x <- plyr::ddply(x, .variables = by, .fun = calc_wqi)
   }
   if(messages) message("Calculated.")
   x

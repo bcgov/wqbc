@@ -172,15 +172,13 @@ calc_limits_by <- function (x, term, dates) {
 #' }
 #' @export
 calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
-                         messages = getOption("wqbc.messages", default = TRUE),
-                         parallel = getOption("wqbc.parallel", default = FALSE)) {
+                         messages = getOption("wqbc.messages", default = TRUE)) {
 
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   assert_that(is.string(term))
   assert_that(is.null(dates) || (is.Date(dates) && noNA(dates)))
   assert_that(is.flag(messages) && noNA(messages))
-  assert_that(is.flag(parallel) && noNA(parallel))
 
   term <- tolower(term)
   if(!term %in% c("long", "short")) stop("term must be \"long\" or \"short\"")
@@ -192,7 +190,7 @@ calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
   if(is.null(by)) {
     x <- calc_limits_by(x, term = term, dates = dates)
   } else {
-    x <- plyr::ddply(x, .variables = by, .fun = calc_limits_by, .parallel = parallel,
+    x <- plyr::ddply(x, .variables = by, .fun = calc_limits_by,
                      term = term, dates = dates)
   }
   if(messages) message("Calculated.")

@@ -5,8 +5,7 @@
 \title{Clean Water Quality Data}
 \usage{
 clean_wqdata(x, by = NULL, max_cv = 1.29,
-  messages = getOption("wqbc.messages", default = TRUE),
-  parallel = getOption("wqbc.parallel", default = FALSE))
+  messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{x}{The data.frame to perform the calculations on.}
@@ -17,8 +16,6 @@ clean_wqdata(x, by = NULL, max_cv = 1.29,
 of variation for replicates.}
 
 \item{messages}{A flag indicating whether to print messages.}
-
-\item{parallel}{A flag indicating whether to use the parallel backend provided by foreach.}
 }
 \description{
 Cleans water quality data. After standardization replicates are averaged.

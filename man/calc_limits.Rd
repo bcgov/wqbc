@@ -5,8 +5,7 @@
 \title{Calculates Water Quality limits}
 \usage{
 calc_limits(x, by = NULL, term = "long", dates = NULL,
-  messages = getOption("wqbc.messages", default = TRUE),
-  parallel = getOption("wqbc.parallel", default = FALSE))
+  messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{x}{The data.frame to perform the calculations on.}
@@ -18,8 +17,6 @@ calc_limits(x, by = NULL, term = "long", dates = NULL,
 \item{dates}{A date vector indicating the start of each 30 day period.}
 
 \item{messages}{A flag indicating whether to print messages.}
-
-\item{parallel}{A flag indicating whether to use the parallel backend provided by foreach.}
 }
 \description{
 Calculates the approved upper water quality thresholds for

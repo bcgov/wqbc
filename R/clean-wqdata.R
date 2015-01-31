@@ -62,14 +62,12 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 #' clean_wqdata(wqbc::dummy, messages = TRUE)
 #' @export
 clean_wqdata <- function (x, by = NULL, max_cv = 1.29,
-                          messages = getOption("wqbc.messages", default = TRUE),
-                          parallel = getOption("wqbc.parallel", default = FALSE)) {
+                          messages = getOption("wqbc.messages", default = TRUE)) {
 
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   assert_that(is.number(max_cv))
   assert_that(is.flag(messages) && noNA(messages))
-  assert_that(is.flag(parallel) && noNA(parallel))
 
   x <- standardize_wqdata(x, messages = messages)
 
@@ -87,8 +85,8 @@ clean_wqdata <- function (x, by = NULL, max_cv = 1.29,
   if(is.null(by)) {
     x <- clean_wqdata_by(x, max_cv = max_cv, messages = messages)
   } else {
-    x <- plyr::ddply(x, .variables = by, .fun = clean_wqdata_by,
-                     .parallel = parallel, max_cv = max_cv, messages = messages)
+    x <- plyr::ddply(x, .variables = by, .fun = clean_wqdata_by, max_cv = max_cv,
+                     messages = messages)
   }
   message("Cleansed.")
   x

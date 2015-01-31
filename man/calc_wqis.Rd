@@ -5,7 +5,7 @@
 \title{Calculate Water Quality Indices (WQIs)}
 \usage{
 calc_wqis(x, by = NULL, messages = getOption("wqbc.messages", default =
-  TRUE), parallel = getOption("wqbc.parallel", default = FALSE))
+  TRUE))
 }
 \arguments{
 \item{x}{The data.frame to perform the calculations on.}
@@ -13,8 +13,6 @@ calc_wqis(x, by = NULL, messages = getOption("wqbc.messages", default =
 \item{by}{A character vector of the columns to perform the calculations by.}
 
 \item{messages}{A flag indicating whether to print messages.}
-
-\item{parallel}{A flag indicating whether to use the parallel backend provided by foreach.}
 }
 \description{
 Calculates water quality indices.
