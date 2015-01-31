@@ -33,7 +33,7 @@ input_limits <- function () {
 
   limits <- rename_(limits, "..Units" = "Units")
 
-  load("data-raw/codes.rda")
+  load("data/codes.rda")
 
   limits$Variable <- factor(limits$Variable, levels = levels(codes$Variable))
   stopifnot(all(!is.na(limits$Variable)))
@@ -52,4 +52,4 @@ input_limits <- function () {
   limits
 }
 limits <- input_limits()
-save(limits, file = "data-raw/limits.rda")
+use_data(limits, overwrite = TRUE, compress = "xz")

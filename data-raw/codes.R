@@ -26,4 +26,4 @@ input_codes <- function () {
   codes
 }
 codes <- input_codes()
-save(codes, file = "data-raw/codes.rda")
+devtools::use_data(codes, overwrite = TRUE, compress = "xz")
