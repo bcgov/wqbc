@@ -19,7 +19,7 @@ dummy
 A dummy data set to illustrate various data cleaning functions.
 }
 \examples{
-demo(dummy, ask = FALSE)
+demo(dummy)
 }
 \keyword{datasets}
 

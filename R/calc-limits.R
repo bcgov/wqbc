@@ -168,7 +168,7 @@ calc_limits_by <- function (x, term, dates) {
 #' @param dates A date vector indicating the start of each 30 day period.
 #' @examples
 #' \dontrun{
-#' demo(fraser, ask = FALSE)
+#' demo(fraser)
 #' }
 #' @export
 calc_limits <- function (x, by = NULL, term = "long", dates = NULL,

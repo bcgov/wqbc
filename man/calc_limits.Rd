@@ -24,7 +24,7 @@ British Columbia.
 }
 \examples{
 \dontrun{
-demo(fraser, ask = FALSE)
+demo(fraser)
 }
 }
 

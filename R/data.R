@@ -12,7 +12,7 @@
 #'   \item{UpperLimit}{The maximum permitted value.}
 #' }
 #' @examples
-#' demo(ccme, ask = FALSE)
+#' demo(ccme)
 "ccme"
 
 #' Water Quality Parameter codes and units
@@ -41,7 +41,7 @@
 #'   \item{Units}{The value's units.}
 #' }
 #' @examples
-#' demo(dummy, ask = FALSE)
+#' demo(dummy)
 "dummy"
 
 #' Fraser River Basin Long-term Water Quality Monitoring 1979-Present
@@ -72,7 +72,7 @@
 #' @source \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}
 #' @examples
 #' \dontrun{
-#' demo(fraser, ask = FALSE)
+#' demo(fraser)
 #' }
 "fraser"
 
