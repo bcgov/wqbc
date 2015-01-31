@@ -29,9 +29,4 @@ dummy %<>% rbind(data.frame(Date = as.Date("1978-12-01"), Variable = "Kryptonite
 dummy %<>% rbind(data.frame(Date = as.Date("1978-12-01"), Variable = "pH",
                                Value = 7, Units = "PH UNITS"))
 
-
-dummy$ID <- 1:nrow(dummy)
-
-dummy %<>% select(ID, Date, Variable, Value, Units)
-
 use_data(dummy, pkg = as.package("."), overwrite = TRUE, compress = "xz")

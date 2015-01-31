@@ -136,7 +136,22 @@ wqbc_substitute <- function (x, sub, messages) {
   x$original
 }
 
-substitute_units <- function (x, messages) {
+#' Substitute Units
+#'
+#' Where possible substitute units with
+#' recognised values.
+#'
+#' @param x The character vector of units to substitute.
+#' @param messages A flag indicating whether to print messages.
+#' @return A character vector of the substituted or original units.
+#' @examples
+#' substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "gkl", "CFU/100ML"))
+#' substitute_units(c("MG/L", "MG/L", "MG/L"))
+#' substitute_units("gkl")
+#' substitute_units(c(NA, "mg/L"))
+#' @export
+substitute_units <- function (
+  x, messages = getOption("wqbc.messages", default = TRUE)) {
   x <- as.character(x)
   x <- data.frame(x = tolower(x), original = x, stringsAsFactors = FALSE)
   x$x <- gsub("units", "", x$x, ignore.case = TRUE)
@@ -159,7 +174,26 @@ split_words_tolower <- function (x) {
   tolower(unlist(strsplit(unlist(x), " ")))
 }
 
-substitute_variables <-function (x, strict, messages) {
+#' Substitute Variable Names
+#'
+#' Where possible substitute variable names
+#' with recognised variable names
+#'
+#' @param x The character vector of variable names to substitute.
+#' @param strict A flag indicating whether to require all words
+#' in a variable name to be present in or only
+#' the first word one. Note when strict = FALSE
+#' ambiguous variables such as "Iron Dissolved"
+#' and "Iron Total" are dropped.
+#' @param messages A flag indicating whether to print messages.
+#' @return A character vector of the substituted or original names.
+#' @examples
+#' substitute_variables(c("ALUMINIUM SOMETHING", "FLUORIDE DISSOLVED",
+#' "FLUORIDE", "NITROGEN DISSOLVED NITRATE", "PHOSPHORUS - TOTAL",
+#' "KRYPTONITE", "OXYGEN", "OXYGEN DISSOLVED"))
+#' @export
+substitute_variables <-function (
+  x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
   x <- as.character(x)
   x <- gsub("ALUMINUM","ALUMINIUM", x)
   x <- gsub("Aluminum","Aluminium", x)

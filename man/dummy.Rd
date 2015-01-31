@@ -6,7 +6,6 @@
 \title{Dummy Water Quality Data}
 \format{A data frame with 5 columns:
 \describe{
-  \item{ID}{A row identifier.}
   \item{Date}{The date of the reading.}
   \item{Variable}{The name of the variable.}
   \item{Value}{The value of the reading.}
