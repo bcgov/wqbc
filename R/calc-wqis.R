@@ -41,11 +41,7 @@ wqi <- function (x, v, nv, nt) {
 resample_wqi <- function (x, i, nt = nt, nv = nv) {
   x <- x[i,,drop = FALSE]
   wqi <- wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)["WQI"]
-  if(is.na(wqi) || is.nan(wqi)) {
-    print(x)
-    stop()
-    print(wqi)
-  }
+  stopifnot(!is.na(wqi) && !is.nan(wqi))
   wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)["WQI"]
 }
 
@@ -66,7 +62,6 @@ bootstrap_wqi <- function (x, nt, nv) {
 calc_wqi <- function (x) {
 
   x$Excursion <- get_excursions(x$Value, x$LowerLimit, x$UpperLimit)
-
   x <- dplyr::select_(x, ~Excursion, ~Variable)
 
   nt <- nrow(x)
@@ -106,6 +101,9 @@ calc_wqis <- function (x, by = NULL,
 
   check_rows(x)
   check_columns(x, c("Variable", "Value", "UpperLimit"))
+
+  if(messages) message("Calculating Water Quality Indices...")
+
   x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01"),
                                    "LowerLimit" = NA_real_), messages = messages)
   check_class_columns(x, list("Date" = "Date",
@@ -118,15 +116,19 @@ calc_wqis <- function (x, by = NULL,
 
   x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Date", "Variable", "Value", "LowerLimit", "UpperLimit", by)], messages = FALSE)
 
-
   x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
+  x$LowerLimit <- replace_negative_values_with_na(x$LowerLimit, messages = messages)
+  x$UpperLimit <- replace_negative_values_with_na(x$UpperLimit, zero = TRUE, messages = messages)
   x <- delete_rows_with_missing_values(x, list("Date", "Value", "Variable",
                                                c("LowerLimit", "UpperLimit")),
                                        messages = messages)
   check_rows(x)
 
-  if(is.null(by))
-    return(calc_wqi(x))
-
-  plyr::ddply(x, .variables = by, .fun = calc_wqi, .parallel = parallel)
+  if(is.null(by)) {
+    x <- calc_wqi(x)
+  } else {
+    x <- plyr::ddply(x, .variables = by, .fun = calc_wqi, .parallel = parallel)
+  }
+  if(messages) message("Calculated.")
+  x
 }

@@ -16,7 +16,7 @@ add_missing_columns <- function (x, columns, messages) {
 
   for(column in names(columns)) {
     if(!column %in% colnames(x)) {
-      if(messages) message("Adding missing column ", column, " to x.")
+      if(messages) message("Added missing column ", column, " to x.")
       x[[column]] <-  columns[[column]]
     }
   }
@@ -59,11 +59,15 @@ delete_rows_with_missing_values <- function (x, columns, messages) {
   x
 }
 
-replace_negative_values_with_na <- function (x, messages) {
-  bol <- !is.na(x) & x < 0
+replace_negative_values_with_na <- function (x, zero = FALSE, messages) {
+  if(!zero) {
+    bol <- !is.na(x) & x < 0
+  } else {
+    bol <- !is.na(x) & x <= 0
+  }
   if(any(bol)) {
-    if(messages) message("Replaced ", sum(bol), " negative ",
-                         plural("value", sum(bol) > 1), " with missing values")
+    if(messages) message("Replaced ", sum(bol), " negative ", ifelse(zero, "or zero ", ""),
+                         plural("value", sum(bol) > 1), " with a missing value.")
     is.na(x[bol]) <- TRUE
   }
   x
