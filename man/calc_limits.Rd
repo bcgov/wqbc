@@ -4,7 +4,7 @@
 \alias{calc_limits}
 \title{Calculates Water Quality limits}
 \usage{
-calc_limits(x, by = NULL, term = "long",
+calc_limits(x, by = NULL, term = "long", dates = NULL,
   messages = getOption("wqbc.messages", default = TRUE),
   parallel = getOption("wqbc.parallel", default = FALSE))
 }
@@ -14,6 +14,8 @@ calc_limits(x, by = NULL, term = "long",
 \item{by}{A character vector of the columns to perform the calculations by.}
 
 \item{term}{A string indicating whether to calculate long-term or short-term limits.}
+
+\item{dates}{A date vector indicating the start of each 30 day period.}
 
 \item{messages}{A flag indicating whether to print messages.}
 

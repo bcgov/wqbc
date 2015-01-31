@@ -89,3 +89,4 @@ proj_bc <- function (data, x, y, input_proj = NULL) {
 }
 
 is.error <- function (x) inherits (x, "try-error")
+is.Date <- function (x) inherits (x, "Date")
