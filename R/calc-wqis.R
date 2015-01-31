@@ -80,14 +80,14 @@ calc_wqi <- function (x, messages) {
   wqi <- wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)
 
   limits <- bootstrap_wqi(x, nt = nt, nv = nv)
-  Lower <- round(limits[1])
-  Upper <- round(limits[2])
+  Lower <- round(limits[1], 1)
+  Upper <- round(limits[2], 1)
 
-  wqi <- data.frame(WQI = round(wqi["WQI"]), Lower = Lower, Upper = Upper,
+  wqi <- data.frame(WQI = round(wqi["WQI"], 1), Lower = Lower, Upper = Upper,
                   Category = categorize_wqi(wqi["WQI"]),
                   Variables = nv, Tests = nt,
-                  F1 = signif(wqi["F1"], 3), F2 = signif(wqi["F2"], 3),
-                  F3 = signif(wqi["F3"], 3))
+                  F1 = round(wqi["F1"], 1), F2 = round(wqi["F2"], 1),
+                  F3 = round(wqi["F3"], 1))
 
   if(!fourtimesfour(x)) {
     if(messages) message("Dropped WQI with less than four variables sampled at least four times.")

@@ -22,9 +22,9 @@ test_that("calc_wqis", {
   expect_is(x, "data.frame")
   expect_equal(nrow(x), 1)
   expect_equal(colnames(x), c("WQI", "Lower", "Upper", "Category", "Variables", "Tests", "F1", "F2", "F3"))
-  expect_equal(x$WQI, 88)
-  expect_equal(x$Lower, 87)
-  expect_equal(x$Upper, 94)
+  expect_equal(round(x$WQI), 88)
+  expect_equal(round(x$Lower), 87)
+  expect_equal(round(x$Upper), 94)
   expect_equal(as.character(x$Category), "Good")
 })
 
