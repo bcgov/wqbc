@@ -17,7 +17,11 @@ add_missing_columns <- function (x, columns, messages) {
   for(column in names(columns)) {
     if(!column %in% colnames(x)) {
       if(messages) message("Added missing column ", column, " to x.")
-      x[[column]] <-  columns[[column]]
+      if(nrow(x)) {
+        x[[column]] <-  columns[[column]]
+      } else {
+        x[[column]] <-  columns[[column]][-1]
+      }
     }
   }
   x

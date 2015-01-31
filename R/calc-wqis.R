@@ -114,8 +114,7 @@ calc_wqis <- function (x, by = NULL,
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
   check_rows(x)
-
-  if(!all(c("LowerLimit", "UpperLimit") %in% colnames(x)))
+  if(!any(c("LowerLimit", "UpperLimit") %in% colnames(x)))
     x <- calc_limits(x, by = by, messages = messages)
 
   check_columns(x, c("Variable", "Value", "UpperLimit"))
@@ -124,6 +123,7 @@ calc_wqis <- function (x, by = NULL,
 
   x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01"),
                                    "LowerLimit" = NA_real_), messages = messages)
+
   check_class_columns(x, list("Date" = "Date",
                               "Variable" = c("character","factor"),
                               "Value" = "numeric",
@@ -137,6 +137,7 @@ calc_wqis <- function (x, by = NULL,
   x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
   x$LowerLimit <- replace_negative_values_with_na(x$LowerLimit, messages = messages)
   x$UpperLimit <- replace_negative_values_with_na(x$UpperLimit, zero = TRUE, messages = messages)
+
   x <- delete_rows_with_missing_values(x, list("Date", "Value", "Variable",
                                                c("LowerLimit", "UpperLimit")),
                                        messages = messages)

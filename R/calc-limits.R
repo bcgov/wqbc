@@ -163,9 +163,11 @@ calc_limits_by <- function (x, term, dates) {
 #' Calculates the approved upper water quality thresholds for
 #' British Columbia.
 #'
-#' @inheritParams calc_wqis
+#' @param x The data.frame to perform the calculations on.
+#' @param by A character vector of the columns to perform the calculations by.
 #' @param term A string indicating whether to calculate long-term or short-term limits.
 #' @param dates A date vector indicating the start of each 30 day period.
+#' @param messages A flag indicating whether to print messages.
 #' @examples
 #' \dontrun{
 #' demo(fraser)

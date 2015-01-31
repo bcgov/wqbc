@@ -55,9 +55,11 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 #' or magnitude greater (CV = 1.30). It is not exceed by one zero
 #' and two identical positive values (CV = 0.87).
 #'
-#' @inheritParams calc_wqis
+#' @param x The data.frame to perform the calculations on.
+#' @param by A character vector of the columns to perform the calculations by.
 #' @param max_cv A number indicating the maximum permitted coefficient
 #' of variation for replicates.
+#' @param messages A flag indicating whether to print messages.
 #' @examples
 #' clean_wqdata(wqbc::dummy, messages = TRUE)
 #' @export
