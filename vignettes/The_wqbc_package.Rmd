@@ -1,5 +1,5 @@
 ---
-title: "wqbc: an R Package to Compute Water Quality Thresholds and Indices for British Columbia Rivers"
+title: "wqbc: an R Package to Compute Water Quality Thresholds and Indices for British Columbia Water Bodies"
 author: "Joe Thorley et al."
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -10,33 +10,38 @@ vignette: >
 ---
 
 
-The main function of the `wqbc` (water quality for Brittish Columbia) package is to calculate water quality indices for water bodies in Brittish Columbia according to the procedure set out in ....  Water quality indices are calculated through the function `calc_limits`.  For the visual display of the calculated water quality indices over a map of Brittish Columbia, the function `plot_map` is provided.
+The main function of the `wqbc` (water quality for Brittish Columbia) package is to calculate the Canadian Council of Ministers of the Environment (CCME) water quality index (WQI) for water bodies in Brittish Columbia, the procedure is set out in the CCME WQI (1.0) [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf").  
+
+the `wqbc` package provides several functions, the two most important being`calc_limits` and `plot_map`. Water quality indices are calculated through the function `calc_limits`.  For the visual display of the calculated water quality indices over a map of Brittish Columbia, the function `plot_map` is provided.
 
 The purpose of this document is to provide some background to the calculation of indices, provide worked examples of the calculation of indices and and to show how various summaries of the indices can be displayed visually.  In addition there are also some examples of more advanced methods to calculate confidence intervals for water quality indices, using code from within the package, but also from an additional pacakage YY.
 
-The data used in the examples are from the fraser river basin and an example taken from the index definition document itself.  Additional data is available from a sister package `wqbc-data`.  This package will serve as a repository for a number of datasets on water quality monitoring in Brittish Columbia.
+The data used in the examples are from the fraser river basin and an example taken from the CCME WQI [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf").  Additional data is available from a sister package `wqbc-data`.  This package is to serve as a repository for a number of datasets on water quality monitoring in Brittish Columbia.
 
-The document is split into four sections:
+Three methods of analysing water quality are provided:
 
+1. Calculation of the CCME water qualty index
+2. Exceedance analysis based on appropriate guidline threshold values
+%3. Trend tests for individual parameters
+4. Methods for visualisation of water quality
+
+The package is intended to be easy to use and provide a flexible means for the exploration of water quality monitoring data. The document is split into the following sections:
+
+* [Preliminaries]
+* [The CCME Water Quality Index (1.0)]
 * [Data format] 
 * [Water quality index calculation]
 * [Visual display of indices] 
 * [Advanced examples]
 
+# Preliminaries
 
-# Data format
+Water quality is assessed by the monitoring of a range of quantites known as _parameters_.  The majority of water quality parameters are concentrations of various chemicals, however, quantities such as water turbidity and pH are also important.  Comprehensive water quality monitoring has been undertaken in the Fraser RIver Basin (BC, Canada) since 1979, and this data is provided in the package, however the tools in this package can be applied to any suitable data set provided it meets specific restrictions detailed in the [Data format] section.  
 
-# Water quality index calculation
 
-# Visual display of indices
+# The CCME Water Quality Index (1.0)
 
-# Advanced examples
-
-<!--
-
-## Abstract
-
-This R package implements a procedure for the calculation of the CCME Water Quality Index (1.0). The index is based on a combination of three factors:
+The CCME Water Quality Index (1.0) is based on a combination of three factors:
 
 * [Scope] the number of variables whose objectives are not met,
 * [Frequency] the frequency with which the objectives are not met, and
@@ -44,16 +49,41 @@ This R package implements a procedure for the calculation of the CCME Water Qual
 
 These are combined to produce a single value (between 0 and 100) that is intended to describe overall water quality. 
 
-# Data
+To see the WQI in action consider the following made up data:
 
-There are two datasets provided with the package
+```{r WQIexample}
+wqi <- c(5, 4, 7, 2, 3, 5, 7, 5, 3, 4)
+```
+this data represents concentrations of lead in UNITS observed on mid July over ten years.
 
+
+# Data format
+
+There are two datasets provided with the package which follow the data format required by the index calculation routines:
 
 * [ccme] This dataset contains the CCME (Canadian Council of Ministers of the Environment) Water Quality Index 1.0 [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf") example dataset.  The data is a timeseries of water chemistry measurements taken from North Saskatchewan river at Devon throughout 1997.
 
 * [fraser] This dataset contains long term surface freshwater quality monitoring data from the Fraser River Basin (the data was extracted from [here](http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18 "data")) carried out under the Canada-British Columbia Water Quality Monitoring Agreement. Water quality monitoring is conducted to assess water quality status and long-term trends, detect emerging issues, establish water quality guidelines and track the effectiveness of remedial measures and regulatory decisions
 
     The original dataset has been filtered to remove values for variables without currently defined limits. In addition, variables are referenced by code, unimportant columns have been dropped and the remaining columns renamed.
+
+
+# Water quality index calculation
+
+The (CCME) WQI is used across Canada as a standardized approach to roll-up the status of multiple water quality parameters at a site and communicate the ‘state’ in a simple manner. The WQI focuses on water quality with respect to the health of freshwater aquatic health. The WQI approach is documented on the CCME website, including detailed methods, a list of established national parameter guidelines/thresholds, and a point and click MS Excel Calculator (http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html). The number of parameters with exceedances, the number of exceedances and the magnitude of exceedances (from (1), above) are used to generate a score (0 to 100) which is then converted to a ranking of quality (poor, marginal, fair, good, and excellent).
+
+
+
+# Visual display of indices
+
+
+# Advanced examples
+
+
+<!--
+
+
+# Data
 
 
 There is also two other lookup tables
@@ -63,65 +93,15 @@ There is also two other lookup tables
 * [limits] which provides the link between the type of measurement (e.g. Aluminium Dissolved or pH) and the agreed water quality limmits for Brittish Columbia and Canada.  The table contains the upper and lower limits (where defined), the time scale at which the limit is defined (i.e. Month or Day) and any conditions on when the limits apply, for example there are different limits for dissolved aluminium depending on the whether the pH is above or below 6.5.
 
 
-
-# Overview
-
-Water quality is assessed by the monitoring of a range of quantites known as parameters.  Examples of water quality parameters are, in the main, concentrations of chemicals, however, quantities such as water turbidity are also important.  Comprehensive water quality monitoring has been undertaken in the Fraser RIver Basin (BC, Canada) since 1979, and this data is provided in the package, however the tools in this package can be applied to any suitable data set provided it meets specific restrictions detailed in SSS
-
-This package provides three methods of analysing water quality using such data:
-
-1. Calculation of the CCME water qualty index
-2. Exceedance analysis based on appropriate guidline threshold values
-3. Trend tests for individual parameters
-4. Methods for visualisation of water quality
-
-The package is intended to be easy to use and provide a flexible means for the exploration of the Fraser River long-term monitoring data.  
-
-### Water Quality Indice (WQI)
-
-The (CCME) WQI is used across Canada as a standardized approach to roll-up the status of multiple water quality parameters at a site and communicate the ‘state’ in a simple manner. The WQI focuses on water quality with respect to the health of freshwater aquatic health. The WQI approach is documented on the CCME website, including detailed methods, a list of established national parameter guidelines/thresholds, and a point and click MS Excel Calculator (http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html). The number of parameters with exceedances, the number of exceedances and the magnitude of exceedances (from (1), above) are used to generate a score (0 to 100) which is then converted to a ranking of quality (poor, marginal, fair, good, and excellent).
-
 ### Water Quality Thresholds
 
 The exceedance analysis entails determining the appropriate parameter guideline threshold values for a given time-series dataset (e.g. data for set of parameters for each station/site) and then comparing the time-series data against the established guideline thresholds for each parameter. Guideline thresholds are established provincially by the BC Ministry of Environment (http://www2.gov.bc.ca/gov/topic.page?id=044DD64C7E24415D83D07430964113C9) and nationally by the Canadian Council of Ministers of the Environment (CCME; http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html). Provincial guidelines are used if there are (differing) guideline thresholds for a parameter.
-
 
 
 ### Analysing Trends in Water Chemistry
 
 The standard approach for trend analysis on water quality time-series data is the Mann-Kendall Trend Test with methods to accommodate for autocorrelation. The outputs of the trend analysis include: summary results table for parameter trends by site, facet graphs of parameters with trend lines (e.g. data, trend line visible), and, a British Columbia map with colour-coded points denoting water quality trends (e.g. colour 1: one or more parameter significantly deteriorating; colour 2: all parameters stable; colour 3: one or more parameter significantly improving; colour 4: mixed significant results).
 
-----------
-
-# Data
-
-## ccme
-
-
-## fraser
-
-
-## codes
-
-
-## limits
-
-
-----------
-
-# Examples
-
-## Water Quality Threshold
-
-
-## Water Quality Indice (WQI)
-
-
-## Analysing Trends in Water Chemistry
-
-
-
-## Discussion
 
 -->
 
