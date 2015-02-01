@@ -9,6 +9,31 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+
+The main function of the `wqbc` (water quality for Brittish Columbia) package is to calculate water quality indices for water bodies in Brittish Columbia according to the procedure set out in ....  Water quality indices are calculated through the function `calc_limits`.  For the visual display of the calculated water quality indices over a map of Brittish Columbia, the function `plot_map` is provided.
+
+The purpose of this document is to provide some background to the calculation of indices, provide worked examples of the calculation of indices and and to show how various summaries of the indices can be displayed visually.  In addition there are also some examples of more advanced methods to calculate confidence intervals for water quality indices, using code from within the package, but also from an additional pacakage YY.
+
+The data used in the examples are from the fraser river basin and an example taken from the index definition document itself.  Additional data is available from a sister package `wqbc-data`.  This package will serve as a repository for a number of datasets on water quality monitoring in Brittish Columbia.
+
+The document is split into four sections:
+
+* [Data format] 
+* [Water quality index calculation]
+* [Visual display of indices] 
+* [Advanced examples]
+
+
+# Data format
+
+# Water quality index calculation
+
+# Visual display of indices
+
+# Advanced examples
+
+<!--
+
 ## Abstract
 
 This R package implements a procedure for the calculation of the CCME Water Quality Index (1.0). The index is based on a combination of three factors:
@@ -97,3 +122,6 @@ The standard approach for trend analysis on water quality time-series data is th
 
 
 ## Discussion
+
+-->
+
