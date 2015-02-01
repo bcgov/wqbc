@@ -47,14 +47,7 @@ The CCME Water Quality Index (1.0) is based on a combination of three factors:
 * [Frequency] the frequency with which the objectives are not met, and
 * [Amplitude] the amount by which the objectives are not met.
 
-These are combined to produce a single value (between 0 and 100) that is intended to describe overall water quality. 
-
-To see the WQI in action consider the following made up data:
-
-```{r WQIexample}
-wqi <- c(5, 4, 7, 2, 3, 5, 7, 5, 3, 4)
-```
-this data represents concentrations of lead in UNITS observed on mid July over ten years.
+These are combined to produce a single value (between 0 and 100) that is intended to describe overall water quality.   In the [Water quality index calculation] section you can see examples of the CCME WQI in action.
 
 
 # Data format
@@ -67,24 +60,42 @@ There are two datasets provided with the package which follow the data format re
 
     The original dataset has been filtered to remove values for variables without currently defined limits. In addition, variables are referenced by code, unimportant columns have been dropped and the remaining columns renamed.
 
+Specifically the data format is: ...
+
 
 # Water quality index calculation
 
 The (CCME) WQI is used across Canada as a standardized approach to roll-up the status of multiple water quality parameters at a site and communicate the ‘state’ in a simple manner. The WQI focuses on water quality with respect to the health of freshwater aquatic health. The WQI approach is documented on the CCME website, including detailed methods, a list of established national parameter guidelines/thresholds, and a point and click MS Excel Calculator (http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html). The number of parameters with exceedances, the number of exceedances and the magnitude of exceedances (from (1), above) are used to generate a score (0 to 100) which is then converted to a ranking of quality (poor, marginal, fair, good, and excellent).
+
+To see the WQI in action consider the following made up data:
+
+```{r WQIexample}
+wqi <- c(5, 4, 7, 2, 3, 5, 7, 5, 3, 4)
+```
+this data represents concentrations of lead in UNITS observed on mid July over ten years.
 
 
 
 # Visual display of indices
 
 
+
+
 # Advanced examples
+
+## confidence intervals for water quality indices
+
+
+## the wq package for analysing trends in water chemistry
+
+The standard approach for trend analysis on water quality time-series data is the Mann-Kendall Trend Test with methods to accommodate for autocorrelation. 
 
 
 <!--
 
+% some text that could come in useful... 
 
 # Data
-
 
 There is also two other lookup tables
 
