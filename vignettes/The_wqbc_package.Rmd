@@ -1,10 +1,9 @@
 ---
-title: "wqbc: an R Package to Compute Water Quality Thresholds and Indices for British Columbia Water Bodies"
-author: "Joe Thorley et al."
+title: "wqbc: Water Quality Thresholds and Indices for British Columbia"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{wqbc: Water Quality Thresholds and Indices for BC}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
