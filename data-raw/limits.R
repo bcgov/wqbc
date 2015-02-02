@@ -9,7 +9,7 @@ input_limits <- function () {
 
   limits <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
-  stopifnot(nrow(limits) == 65)
+  stopifnot(nrow(limits) == 67)
 
   stopifnot(identical(colnames(limits),
                       c("Variable", "Term",
