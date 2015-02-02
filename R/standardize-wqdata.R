@@ -71,13 +71,15 @@ convert_values <- function (x, from, to, messages) {
 #' Gets recognised water quality variables.
 #'
 #' @param codes An optional character vector of the codes to get the variables for.
+#' @param messages A flag indicating whether to print messages.
 #' @return A character vector of the water quality variables.
 #' @examples
 #' get_variables()
 #' get_variables(get_codes())
 #' get_variables(c(get_codes()[1], "EMS_WTF_"))
 #' @export
-get_variables<- function (codes = NULL) {
+get_variables<- function (
+  codes = NULL, messages = getOption("wqbc.messages", default = TRUE)) {
   if(is.null(codes)) return (wqbc_codes()$Variable)
 
   assert_that(is.vector(codes))
@@ -85,7 +87,14 @@ get_variables<- function (codes = NULL) {
 
   x <- dplyr::left_join(data.frame(Code = codes, stringsAsFactors = FALSE),
                         wqbc_codes(), by = "Code")
-  as.character(x$Variable)
+  x <- as.character(x$Variable)
+
+  if(messages) {
+
+  }
+
+
+  x
 }
 
 #' Get Codes
@@ -260,7 +269,8 @@ standardize_wqdata_variable <- function (x, messages) {
 #' @examples
 #' standardize_wqdata(wqbc::dummy, messages = TRUE)
 #' @export
-standardize_wqdata <- function (x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
+standardize_wqdata <- function (
+  x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.flag(strict) && noNA(strict))
   assert_that(is.flag(messages) && noNA(messages))

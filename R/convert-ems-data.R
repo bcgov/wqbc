@@ -34,6 +34,7 @@ convert_ems_data <- function (x, date = "date", code = "code",
   x$Code <- gsub("[-]", "_", x$Code)
   x$Code <- paste0("EMS_", x$Code)
   x$Variable <- get_variables(x$Code)
+  if(messages) messages_match_substitution(x$Code, x$Variable, "replace")
 
   x$Units <- substitute_units(x$Units, messages = messages)
   x <- delete_rows_with_missing_values(

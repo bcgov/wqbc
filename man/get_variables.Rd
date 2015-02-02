@@ -4,10 +4,13 @@
 \alias{get_variables}
 \title{Get Variables}
 \usage{
-get_variables(codes = NULL)
+get_variables(codes = NULL, messages = getOption("wqbc.messages", default =
+  TRUE))
 }
 \arguments{
 \item{codes}{An optional character vector of the codes to get the variables for.}
+
+\item{messages}{A flag indicating whether to print messages.}
 }
 \value{
 A character vector of the water quality variables.

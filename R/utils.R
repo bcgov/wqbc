@@ -122,3 +122,7 @@ geomean1 <- function (x, na.rm = FALSE) {
   expm1(mean(log1p(as.numeric(x)), na.rm = na.rm))
 }
 
+capitalize <- function (x) {
+    gsub(pattern = "\\b([a-z])", replacement = "\\U\\1", x, perl = TRUE)
+}
+
