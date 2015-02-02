@@ -11,7 +11,7 @@ vignette: >
 
 The main function of the `wqbc` (water quality for Brittish Columbia) package is to calculate the Canadian Council of Ministers of the Environment (CCME) water quality index (WQI) for water bodies in Brittish Columbia, the procedure is set out in the CCME WQI (1.0) [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf").  
 
-the `wqbc` package provides several functions, the two most important being`calc_limits` and `plot_map`. Water quality indices are calculated through the function `calc_limits`.  For the visual display of the calculated water quality indices over a map of Brittish Columbia, the function `plot_map` is provided.
+the `wqbc` package provides several functions, the two most important being`calc_limits` and `plot_map`. Water quality indices are calculated through the function `calc_limits`.  For the visual display of the calculated water quality indices over a map of British Columbia, the function `plot_map` is provided.
 
 The purpose of this document is to provide some background to the calculation of indices, provide worked examples of the calculation of indices and and to show how various summaries of the indices can be displayed visually.  In addition there are also some examples of more advanced methods to calculate confidence intervals for water quality indices, using code from within the package, but also from an additional pacakage YY.
 
