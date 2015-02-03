@@ -8,13 +8,13 @@ messages_match_substitution <- function (x, y, txt = "substitute") {
   if(any(b)) {
     db <- d[b,,drop = FALSE]
     message(capitalize(txt), "d ",
-            punctuate_strings(paste(db$x, "with", db$y), "and"), ".")
+            punctuate_strings(paste0("'", db$x, "' with '", db$y, "'"), "and"), ".")
   }
   b <- !is.na(d$x) & is.na(d$y)
   if(any(b)) {
     db <- d[b,,drop = FALSE]
     message("Failed to ", txt, " ",
-            punctuate_strings(db$x, "and"), ".")
+            punctuate_strings(paste0("'", db$x, "'"), "and"), ".")
   }
   NULL
 }

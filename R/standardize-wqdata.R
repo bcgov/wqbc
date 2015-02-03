@@ -82,19 +82,19 @@ get_variables<- function (
   codes = NULL, messages = getOption("wqbc.messages", default = TRUE)) {
   if(is.null(codes)) return (wqbc_codes()$Variable)
 
-  assert_that(is.vector(codes))
+  assert_that(is.character(codes) || is.factor(codes))
   codes <- as.character(codes)
 
-  x <- dplyr::left_join(data.frame(Code = codes, stringsAsFactors = FALSE),
+  y <- gsub("[-]", "_", codes)
+  bol <- !is.na(y) & substr(y,1,4) != "EMS_"
+  y[bol] <- paste0("EMS_", y[bol])
+
+  d <- dplyr::left_join(data.frame(Code = y, stringsAsFactors = FALSE),
                         wqbc_codes(), by = "Code")
-  x <- as.character(x$Variable)
 
-  if(messages) {
+  if(messages) messages_match_substitution(codes, d$Variable, "replace")
 
-  }
-
-
-  x
+  as.character(d$Variable)
 }
 
 #' Get Codes
@@ -147,6 +147,21 @@ wqbc_substitute <- function (x, sub, messages) {
   x$original
 }
 
+wqbc_substitute2 <- function (org, mod = org, sub, messages) {
+  org <- as.character(org)
+  mod <- as.character(mod)
+  sub <- as.character(sub)
+
+  orgd <- data.frame(org = org, match = tolower(mod), stringsAsFactors = FALSE)
+  subd <- data.frame(sub = sub, match = tolower(sub), stringsAsFactors = FALSE)
+
+  combd <- dplyr::left_join(orgd, subd, by = "match")
+
+  if(messages) messages_match_substitution(combd$org, combd$sub)
+
+  combd$sub
+}
+
 #' Substitute Units
 #'
 #' Where possible substitute units with
@@ -163,13 +178,15 @@ wqbc_substitute <- function (x, sub, messages) {
 #' @export
 substitute_units <- function (
   x, messages = getOption("wqbc.messages", default = TRUE)) {
-  x <- as.character(x)
-  x <- data.frame(x = tolower(x), original = x, stringsAsFactors = FALSE)
-  x$x <- gsub("units", "", x$x, ignore.case = TRUE)
-  x$x <- gsub(" ", "", x$x)
-  x$x <- gsub("100mL", "dL", x$x, ignore.case = TRUE)
+  assert_that(is.character(x) || is.factor(x))
 
-  wqbc_substitute(x, sub = get_units(), messages)
+  x <- as.character(x)
+
+  y <- gsub("units", "", x, ignore.case = TRUE)
+  y <- gsub(" ", "", y)
+  y <- gsub("100mL", "dL", y, ignore.case = TRUE)
+
+  wqbc_substitute2(x, y, sub = get_units(), messages)
 }
 
 is_match_words <- function (var, x, strict) {

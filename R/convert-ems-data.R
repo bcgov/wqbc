@@ -31,14 +31,15 @@ convert_ems_data <- function (x, date = "date", code = "code",
   x <- x[c(date, code, value, units)]
   colnames(x) <- c("Date", "Code", "Value", "Units")
   x$Date <- as.Date(x$Date)
-  x$Code <- gsub("[-]", "_", x$Code)
-  x$Code <- paste0("EMS_", x$Code)
-  x$Variable <- get_variables(x$Code)
-  if(messages) messages_match_substitution(x$Code, x$Variable, "replace")
 
+  x <- delete_rows_with_missing_values(
+    x, columns = c("Date", "Code", "Value", "Units"), messages = messages)
+
+  x$Variable <- get_variables(x$Code, messages = messages)
   x$Units <- substitute_units(x$Units, messages = messages)
   x <- delete_rows_with_missing_values(
-    x, columns = c("Date", "Variable", "Value", "Units"), messages = messages
+    x, columns = c("Date", "Variable", "Value", "Units"), messages = messages,
+    txt = "unrecognised"
   )
   x$Variable <- factor(x$Variable)
   x$Code <- factor(x$Code)

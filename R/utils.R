@@ -38,7 +38,7 @@ delete_columns <- function (x, colnames, messages) {
   x
 }
 
-delete_rows_with_missing_values <- function (x, columns, messages) {
+delete_rows_with_missing_values <- function (x, columns, messages, txt = "missing") {
   if(missing(columns))
     columns <- as.list(colnames(x))
 
@@ -54,7 +54,7 @@ delete_rows_with_missing_values <- function (x, columns, messages) {
     if(any(bol)) {
       if(messages) {
         message("Deleted ", sum(bol),
-                plural(" row", sum(bol) > 1), " with unrecognised values in ",
+                plural(" row", sum(bol) > 1), " with ", txt, " values in ",
                 punctuate_strings(col, "or"), ".")
       }
       x <- x[!bol, , drop = FALSE]
