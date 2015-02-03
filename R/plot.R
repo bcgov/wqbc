@@ -43,6 +43,10 @@ aes_string_point <- function (head = "ggplot2::geom_point(ggplot2::aes_string(",
   expr
 }
 
+#' Get Category Colours
+#'
+#' Returns a named vector of the WQI category colours used for plotting.
+#' @export
 get_category_colours <- function () {
   c(Excellent = "#081d58", Good = "#225ea8", Fair = "#41b6c4",
               Marginal = "#c7e9b4", Poor = "#edf8b1")

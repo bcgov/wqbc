@@ -15,6 +15,14 @@ get_excursions <- function (value, lower = NA_real_, upper = NA_real_) {
   excursion
 }
 
+#' Categorize Water Quality Indices
+#'
+#' Categorizes WQI values between 1 and 100 into
+#' the CCME categories.
+#' @param x A numeric vector of the WQI values to categorize.
+#' @examples
+#' categorize_wqi(seq(1,100,by = 5))
+#' @export
 categorize_wqi <- function (x) {
   assert_that(is.numeric(x))
 
