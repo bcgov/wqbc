@@ -126,3 +126,16 @@ capitalize <- function (x) {
     gsub(pattern = "\\b([a-z])", replacement = "\\U\\1", x, perl = TRUE)
 }
 
+is_match_words <- function (var, x, strict) {
+  if(!strict) return (var[1] %in% x)
+  all(var %in% x)
+}
+
+sub_vars <- function (x, vars, strict) {
+  names(which(sapply(vars, FUN = is_match_words, x = x, strict = strict)))
+}
+
+split_words_tolower <- function (x) {
+  tolower(unlist(strsplit(unlist(x), " ")))
+}
+
