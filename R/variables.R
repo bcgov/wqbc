@@ -24,8 +24,10 @@ get_variables<- function (
   assert_that(is.character(codes) || is.factor(codes))
   codes <- as.character(codes)
 
+  codes <- compress_ems_codes(codes)
+
   d <- dplyr::left_join(data.frame(Code = codes, stringsAsFactors = FALSE),
-                        wqbc_codes(), by = "Code")
+                        wqbc_codes(compress = TRUE), by = "Code")
 
   if(messages) messages_match_substitution(codes, d$Variable, "replace")
 

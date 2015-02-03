@@ -84,6 +84,7 @@ calc_limits_by_date <- function (x) {
   x <- dplyr::filter_(x, ~(!is.na(Term) & Term == "Short") | Code %in% ccodes)
   x <- fill_in_conditional_codes(x, ccodes)
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
+  x <- dplyr::filter_(x, ~Term == "Short")
   x <- dplyr::filter_(x, ~!Conditional)
   stopifnot(!anyDuplicated(x$..ID))
   x
@@ -140,8 +141,10 @@ calc_limits_by_30day <- function (x, dates) {
   x <- fill_in_conditional_codes(x, ccodes)
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
 
+  x <- dplyr::filter_(x, ~Term == "Long")
+  x <- dplyr::filter_(x, ~!Conditional)
+  x <- dplyr::filter_(x, ~Samples >= 5 & Span >= 21)
   stopifnot(!anyDuplicated(x$..ID))
-  x <- dplyr::filter_(x, ~Samples >= 5 & Span >= 21 & !Conditional)
   x
 }
 
