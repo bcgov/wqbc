@@ -18,11 +18,13 @@ plot(map)
 ## Subset to get only BC
 map <- map[map$NAME_E == "British Columbia" & !is.na(map$NAME_E),]
 
-## Set the projection as original is unprojected:
-proj4string(map) <- CRS("+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs")
+## Set the coordinate system to NAD 83 (CSRS) as it is unprojected:
+## http://epsg.io/4617
+proj4string(map) <- CRS("+init=epsg:4617")
 
-## Change projection to BC Albers (an equal-area projection)
-map <- spTransform(map, CRS("+proj=aea +lat_1=50 +lat_2=58.5 +lat_0=45 +lon_0=-126 +x_0=1000000 +y_0=0 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0"))
+## Project to BC Albers (Standard in BC; an equal-area projection:
+## http://epsg.io/3005)
+map <- spTransform(map, CRS("+init=epsg:3005"))
 
 plot(map)
 
