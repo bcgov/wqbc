@@ -11,12 +11,9 @@ substitute_units(x, messages = getOption("wqbc.messages", default = TRUE))
 
 \item{messages}{A flag indicating whether to print messages.}
 }
-\value{
-A character vector of the substituted or original units.
-}
 \description{
 Where possible substitute units with
-recognised values.
+recognised values. Returns a character vector of the substituted or original units.
 }
 \examples{
 substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "gkl", "CFU/100ML"))

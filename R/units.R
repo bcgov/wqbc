@@ -1,8 +1,7 @@
 #' Get Units
 #'
-#' Gets recognised units.
+#' Gets a character vector of the recognised units.
 #'
-#' @return A character vector of the recognised units.
 #' @examples
 #' get_units()
 #' @export
@@ -54,11 +53,10 @@ convert_values <- function (x, from, to, messages) {
 #' Substitute Units
 #'
 #' Where possible substitute units with
-#' recognised values.
+#' recognised values. Returns a character vector of the substituted or original units.
 #'
 #' @param x The character vector of units to substitute.
 #' @param messages A flag indicating whether to print messages.
-#' @return A character vector of the substituted or original units.
 #' @examples
 #' substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "gkl", "CFU/100ML"))
 #' substitute_units(c("MG/L", "MG/L", "MG/L"))

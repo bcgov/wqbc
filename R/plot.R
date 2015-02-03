@@ -60,7 +60,6 @@ get_category_colours <- function () {
 #' @param shape integer of point shape (permitted values are 21 to 25)
 #' or string of column in data to plot shape of points
 #' @param theme ggplot theme
-#' @return ggplot2 object
 #' @examples
 #' library(ggplot2)
 #'

@@ -18,9 +18,6 @@ and "Iron Total" are dropped.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
-\value{
-A character vector of the substituted or original names.
-}
 \description{
 Where possible substitute variable names
 with recognised variable names

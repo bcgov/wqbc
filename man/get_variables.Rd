@@ -12,11 +12,9 @@ get_variables(codes = NULL, messages = getOption("wqbc.messages", default =
 
 \item{messages}{A flag indicating whether to print messages.}
 }
-\value{
-A character vector of the water quality variables.
-}
 \description{
 Gets recognised water quality variables.
+Returns character vector of the water quality variables.
 }
 \examples{
 get_variables()

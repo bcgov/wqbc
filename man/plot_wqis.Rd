@@ -19,9 +19,6 @@ or string of column in data to plot shape of points}
 
 \item{theme}{ggplot theme}
 }
-\value{
-ggplot2 object
-}
 \description{
 Creates ggplot2 object with
 y-limits expanded to include 0 and 100.

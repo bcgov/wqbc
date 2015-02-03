@@ -8,10 +8,10 @@ wqbc_limits <- function () {
 #' Get Variables
 #'
 #' Gets recognised water quality variables.
+#' Returns character vector of the water quality variables.
 #'
 #' @param codes An optional character vector of the codes to get the variables for.
 #' @param messages A flag indicating whether to print messages.
-#' @return A character vector of the water quality variables.
 #' @examples
 #' get_variables()
 #' get_variables(get_codes())

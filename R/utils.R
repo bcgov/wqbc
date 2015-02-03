@@ -104,9 +104,8 @@ is.Date <- function (x) inherits (x, "Date")
 #' Calculates geometric mean by adding 1 before logging
 #' and subtracting 1 before exponentiating so that
 #' geometric mean of
-#' @param x numeric vector of non-negative numbers
-#' @param na.rm flag indicating whether to remove missing values
-#' @return number
+#' @param x A numeric vector of non-negative numbers.
+#' @param na.rm A flag indicating whether to remove missing values.
 #' @examples
 #' mean(0:9)
 #' geomean1(0:9)

@@ -46,7 +46,6 @@ wqbc_substitute <- function (org, mod = org, sub, messages) {
 #' ambiguous variables such as "Iron Dissolved"
 #' and "Iron Total" are dropped.
 #' @param messages A flag indicating whether to print messages.
-#' @return A character vector of the substituted or original names.
 #' @examples
 #' substitute_variables(c("ALUMINIUM SOMETHING", "FLUORIDE DISSOLVED",
 #' "FLUORIDE", "NITROGEN DISSOLVED NITRATE", "PHOSPHORUS - TOTAL",

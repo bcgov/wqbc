@@ -6,11 +6,8 @@
 \usage{
 get_units()
 }
-\value{
-A character vector of the recognised units.
-}
 \description{
-Gets recognised units.
+Gets a character vector of the recognised units.
 }
 \examples{
 get_units()

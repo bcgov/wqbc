@@ -11,9 +11,7 @@ standardize_wqdata_variable <- function (x, messages) {
 #'
 #' Standardizes a water quality data set so that only recognised
 #' variables and units remain and values have consistent units.
-#' Negative or missing values are removed.
-#'
-#' @details Note when strict = FALSE
+#' Negative or missing values are removed. When strict = FALSE
 #' ambiguous variables such as "Iron Dissolved"
 #' and "Iron Total" are dropped.
 #'

@@ -7,12 +7,9 @@
 geomean1(x, na.rm = FALSE)
 }
 \arguments{
-\item{x}{numeric vector of non-negative numbers}
+\item{x}{A numeric vector of non-negative numbers.}
 
-\item{na.rm}{flag indicating whether to remove missing values}
-}
-\value{
-number
+\item{na.rm}{A flag indicating whether to remove missing values.}
 }
 \description{
 Calculates geometric mean by adding 1 before logging
