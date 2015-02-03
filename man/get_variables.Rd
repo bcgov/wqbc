@@ -21,6 +21,6 @@ Gets recognised water quality variables.
 \examples{
 get_variables()
 get_variables(get_codes())
-get_variables(c(get_codes()[1], "EMS_WTF_"))
+get_variables(c(get_codes()[1:3], "KRYP"))
 }
 

@@ -66,6 +66,14 @@ convert_values <- function (x, from, to, messages) {
   x
 }
 
+# used by data-raw scripts
+strip_ems_codes <- function (x) {
+  assert_that(is.character(x) || is.factor(x))
+  x <- as.character(x)
+  x <- gsub("_", "-", x)
+  sub("^EMS[-]", "", x)
+}
+
 #' Get Variables
 #'
 #' Gets recognised water quality variables.
@@ -76,7 +84,7 @@ convert_values <- function (x, from, to, messages) {
 #' @examples
 #' get_variables()
 #' get_variables(get_codes())
-#' get_variables(c(get_codes()[1], "EMS_WTF_"))
+#' get_variables(c(get_codes()[1:3], "KRYP"))
 #' @export
 get_variables<- function (
   codes = NULL, messages = getOption("wqbc.messages", default = TRUE)) {
@@ -85,11 +93,7 @@ get_variables<- function (
   assert_that(is.character(codes) || is.factor(codes))
   codes <- as.character(codes)
 
-  y <- gsub("[-]", "_", codes)
-  bol <- !is.na(y) & substr(y,1,4) != "EMS_"
-  y[bol] <- paste0("EMS_", y[bol])
-
-  d <- dplyr::left_join(data.frame(Code = y, stringsAsFactors = FALSE),
+  d <- dplyr::left_join(data.frame(Code = codes, stringsAsFactors = FALSE),
                         wqbc_codes(), by = "Code")
 
   if(messages) messages_match_substitution(codes, d$Variable, "replace")
@@ -102,27 +106,24 @@ get_variables<- function (
 #' Gets the recognised water quality codes.
 #'
 #' @param variables An optional character vector of variables to get codes for.
-#' @param add_na A flag indicating whether to replace variables without codes
-#' with missing values.
-#'@examples
+#' @param messages A flag indicating whether to print messages.
+#' @examples
 #' get_codes()
+#' get_codes(c(get_variables()[1:3], "Kryptonite"))
 #' @export
-get_codes <- function (variables = NULL, add_na = TRUE) {
-  assert_that(is.null(variables) || is.character(variables) || is.factor(variables))
-  assert_that(is.flag(add_na) && noNA(add_na))
-
+get_codes <- function (
+  variables = NULL, messages = getOption("wqbc.messages", default = TRUE)) {
   if(is.null(variables)) return (wqbc_codes()$Code)
 
+  assert_that(is.character(variables) || is.factor(variables))
   variables <- as.character(variables)
-  x <- dplyr::left_join(data.frame(Variable = variables, stringsAsFactors = FALSE),
+
+  d <- dplyr::left_join(data.frame(Variable = variables, stringsAsFactors = FALSE),
                         wqbc_codes(), by = "Variable")
-  x$Code <- as.character(x$Code)
-  x$Variable <- as.character(x$Variable)
-  if(!add_na) {
-    bol <- is.na(x$Code)
-    x$Code[bol] <- x$Variable[bol]
-  }
-  x$Code
+
+  if(messages) messages_match_substitution(variables, d$Code, "replace")
+
+  as.character(d$Code)
 }
 
 substitute_messages <- function (x, bol) {
@@ -134,20 +135,7 @@ substitute_messages <- function (x, bol) {
   }
 }
 
-wqbc_substitute <- function (x, sub, messages) {
-  sub <- data.frame(x = tolower(sub), sub = sub, stringsAsFactors = FALSE)
-  x$sub <- NULL
-  x$x <- tolower(x$x)
-  x <- dplyr::left_join(x, sub, by = "x")
-  bol <- !is.na(x$sub) & x$original != x$sub
-
-  if(messages) substitute_messages(x, bol)
-  x$original[bol] <- x$sub[bol]
-
-  x$original
-}
-
-wqbc_substitute2 <- function (org, mod = org, sub, messages) {
+wqbc_substitute <- function (org, mod = org, sub, messages) {
   org <- as.character(org)
   mod <- as.character(mod)
   sub <- as.character(sub)
@@ -186,7 +174,7 @@ substitute_units <- function (
   y <- gsub(" ", "", y)
   y <- gsub("100mL", "dL", y, ignore.case = TRUE)
 
-  wqbc_substitute2(x, y, sub = get_units(), messages)
+  wqbc_substitute(x, y, sub = get_units(), messages)
 }
 
 is_match_words <- function (var, x, strict) {

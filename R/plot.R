@@ -189,7 +189,6 @@ plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill =
 #' in addition to x and y before avoiding overplotting by dropping duplicated rows.
 #' @param input_proj a valid proj4string. Defaults to longlat/NAD83
 #' (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})
-#' @seealso \code{\link{plot_map}}
 #' @examples
 #' \dontrun{
 #'  demo(fraser)

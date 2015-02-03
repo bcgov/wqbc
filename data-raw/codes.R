@@ -17,7 +17,9 @@ input_codes <- function () {
   stopifnot(all(codes$Units %in% get_units()))
   stopifnot(all(codes$Average %in% c("mean", "median")))
 
-  codes$Code %<>% factor
+
+  codes$Code <- wqbc:::strip_ems_codes(codes$Code)
+  codes$Code %<>%  factor
   codes$Variable %<>% factor
   codes$Units %<>% factor(levels = get_units())
   codes$Units %<>% droplevels

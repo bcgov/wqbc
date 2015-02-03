@@ -4,18 +4,19 @@
 \alias{get_codes}
 \title{Get Codes}
 \usage{
-get_codes(variables = NULL, add_na = TRUE)
+get_codes(variables = NULL, messages = getOption("wqbc.messages", default =
+  TRUE))
 }
 \arguments{
 \item{variables}{An optional character vector of variables to get codes for.}
 
-\item{add_na}{A flag indicating whether to replace variables without codes
-with missing values.}
+\item{messages}{A flag indicating whether to print messages.}
 }
 \description{
 Gets the recognised water quality codes.
 }
 \examples{
 get_codes()
+get_codes(c(get_variables()[1:3], "Kryptonite"))
 }
 

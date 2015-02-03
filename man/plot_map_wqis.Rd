@@ -38,7 +38,4 @@ on WQI categories.
  demo(fraser)
 }
 }
-\seealso{
-\code{\link{plot_map}}
-}
 

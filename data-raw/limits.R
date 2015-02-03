@@ -38,6 +38,8 @@ input_limits <- function () {
   limits$Variable <- factor(limits$Variable, levels = levels(codes$Variable))
   stopifnot(all(!is.na(limits$Variable)))
 
+  codes$Code <- wqbc:::strip_ems_codes(codes$Code)
+
   limits <- inner_join(limits, codes, by = "Variable")
 
   stopifnot(all(limits$..Units == limits$Units))
