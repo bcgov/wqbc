@@ -2,11 +2,11 @@
 % Please edit documentation in R/plot.R
 \name{get_category_colours}
 \alias{get_category_colours}
-\title{Get Category Colors}
+\title{Get Category Colours}
 \usage{
 get_category_colours()
 }
 \description{
-Returns a named vector of the WQI category colors used for plotting.
+Returns a named vector of the WQI category colours used for plotting.
 }
 
