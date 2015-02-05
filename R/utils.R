@@ -38,6 +38,10 @@ delete_columns <- function (x, colnames, messages) {
   x
 }
 
+del_cols_not_in_y <- function (x, y) {
+  delete_columns(x, colnames(x)[!colnames(x) %in% y], messages = FALSE)
+}
+
 delete_rows_with_missing_values <- function (x, columns, messages, txt = "missing") {
   if(missing(columns))
     columns <- as.list(colnames(x))

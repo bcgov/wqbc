@@ -120,6 +120,7 @@ calc_wqis <- function (x, by = NULL,
                        messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
+  assert_that(is.flag(messages) && noNA(messages))
 
   check_rows(x)
   if(!any(c("LowerLimit", "UpperLimit") %in% colnames(x)))
@@ -129,8 +130,8 @@ calc_wqis <- function (x, by = NULL,
 
   if(messages) message("Calculating water quality indices...")
 
-  x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01"),
-                                   "LowerLimit" = NA_real_), messages = messages)
+  x <- add_missing_columns(x, list(
+    "Date" = as.Date("2000-01-01"), "LowerLimit" = NA_real_), messages = messages)
 
   check_class_columns(x, list("Date" = "Date",
                               "Variable" = c("character","factor"),
@@ -138,17 +139,21 @@ calc_wqis <- function (x, by = NULL,
                               "LowerLimit" = "numeric",
                               "UpperLimit" = "numeric"))
 
-  check_by(by, colnames(x), res_names = c("Variable", "Value", "LowerLimit", "UpperLimit"))
+  x$Variable <- as.character(x$Variable)
 
-  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Date", "Variable", "Value", "LowerLimit", "UpperLimit", by)], messages = FALSE)
+  check_by(by, colnames(x),
+           res_names = c("Variable", "Value", "LowerLimit", "UpperLimit"))
+
+  x <- del_cols_not_in_y(x, c("Date", "Variable", "Value", "LowerLimit", "UpperLimit", by))
+  x <- delete_rows_with_missing_values(x, list("Date", "Variable"))
 
   x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
+  x <- delete_rows_with_missing_values(x, list("Value"), messages = messages)
   x$LowerLimit <- replace_negative_values_with_na(x$LowerLimit, messages = messages)
   x$UpperLimit <- replace_negative_values_with_na(x$UpperLimit, zero = TRUE, messages = messages)
 
-  x <- delete_rows_with_missing_values(x, list("Date", "Value", "Variable",
-                                               c("LowerLimit", "UpperLimit")),
-                                       messages = messages)
+  x <- delete_rows_with_missing_values(x, list(c("LowerLimit", "UpperLimit")), messages = messages)
+
   check_rows(x)
 
   if(is.null(by)) {
@@ -156,6 +161,6 @@ calc_wqis <- function (x, by = NULL,
   } else {
     x <- plyr::ddply(x, .variables = by, .fun = calc_wqi, messages = messages)
   }
-  if(messages) message("Calculated.")
+  if(messages) message("Calculated water quality indices.")
   x
 }
