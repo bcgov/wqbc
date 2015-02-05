@@ -21,6 +21,9 @@ clean_wqdata_replicates <- function (x, max_cv, messages) {
   }
   x$Value <- mean(x$Value)
 
+  if(!is.null(x$DetectionLimit))
+    x$DetectionLimit <- mean(x$DetectionLimit)
+
   if(messages && n > nrow(x)) {
     message("Filtered ", n - nrow(x), " of ", n,
             " replicate values with a CV of ", signif(cv, 3), " for ", x$Variable[1],
@@ -71,18 +74,23 @@ clean_wqdata <- function (x, by = NULL, max_cv = 1.29,
   assert_that(is.number(max_cv))
   assert_that(is.flag(messages) && noNA(messages))
 
-  x <- standardize_wqdata(x, messages = messages)
-
-  if(messages) message("Cleaning water quality data...")
-
   x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")), messages = messages)
 
   check_class_columns(x, list("Date" = "Date"))
 
-  check_by(by, colnames(x), res_names = unique(c("Date", "Variable", "Value", "Units")))
+  if("DetectionLimit" %in% colnames(x)) {
+    check_class_columns(x, list("DetectionLimit" = "numeric"))
+  }
 
-  colnames <- colnames(x)[!colnames(x) %in% c("Date", "Variable", "Value", "Units", by)]
-  x <- delete_columns(x, colnames, messages = FALSE)
+  x <- standardize_wqdata(x, messages = messages)
+
+  if(messages) message("Cleaning water quality data...")
+
+  res <- c("Date", "Variable", "Value", "Units", "DetectionLimit")
+
+  check_by(by, colnames(x), res_names = res)
+
+  x <- del_cols_not_in_y(x, res)
 
   if(is.null(by)) {
     x <- clean_wqdata_by(x, max_cv = max_cv, messages = messages)

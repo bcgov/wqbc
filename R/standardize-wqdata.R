@@ -28,6 +28,14 @@ standardize_wqdata <- function (
   assert_that(is.flag(strict) && noNA(strict))
   assert_that(is.flag(messages) && noNA(messages))
 
+  if("Code" %in% colnames(x)) {
+    if(messages) message ("Converting Codes to Variables...")
+    x$Variable <- get_variables(x$Code, messages = messages)
+    x <- delete_rows_with_certain_values(
+      x, columns = c("Variable"), messages = messages)
+    if(messages) message ("Converted Codes to Variables.")
+  }
+
   if(messages) message("Standardizing water quality data...")
 
   check_columns(x, c("Variable", "Value", "Units"))
@@ -57,6 +65,7 @@ standardize_wqdata <- function (
   x <- plyr::ddply(x, .variables = "Variable",
                    .fun = standardize_wqdata_variable, messages = messages)
 
-  message("Standardized.")
+  message("Standardized water quality data.")
+
   x
 }
