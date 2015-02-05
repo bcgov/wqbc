@@ -104,6 +104,17 @@ calc_wqi <- function (x, messages) {
   wqi
 }
 
+half_detection_limits <- function (x, messages) {
+  bol <- x$Value == 0 & x$DetectionLimit > 0
+  if(any(bol)) {
+    x$Value[bol] <- x$DetectionLimit[bol] / 2
+    if(messages) message("Replaced ", sum(bol) ," of the ",
+                         plural("value", sum(bol) > 1, " "),
+    "in column Value with half the detection limit in column DetectionLimit.")
+  }
+  x
+}
+
 #' Calculate Water Quality Indices (WQIs)
 #'
 #' Calculates water quality indices.
@@ -131,28 +142,34 @@ calc_wqis <- function (x, by = NULL,
   if(messages) message("Calculating water quality indices...")
 
   x <- add_missing_columns(x, list(
-    "Date" = as.Date("2000-01-01"), "LowerLimit" = NA_real_), messages = messages)
+    "Date" = as.Date("2000-01-01"), "LowerLimit" = NA_real_, "DetectionLimit" = 0), messages = messages)
 
   check_class_columns(x, list("Date" = "Date",
                               "Variable" = c("character","factor"),
                               "Value" = "numeric",
                               "LowerLimit" = "numeric",
-                              "UpperLimit" = "numeric"))
+                              "UpperLimit" = "numeric",
+                              "DetectionLimit" = "numeric"))
+
+  res <- c("Date", "Variable", "Value", "LowerLimit", "UpperLimit",
+           "DetectionLimit")
 
   x$Variable <- as.character(x$Variable)
 
-  check_by(by, colnames(x),
-           res_names = c("Variable", "Value", "LowerLimit", "UpperLimit"))
+  check_by(by, colnames(x), res_names = res[res != "Date"])
 
-  x <- del_cols_not_in_y(x, c("Date", "Variable", "Value", "LowerLimit", "UpperLimit", by))
-  x <- delete_rows_with_missing_values(x, list("Date", "Variable"))
+  x <- del_cols_not_in_y(x, res)
+  x <- delete_rows_with_certain_values(x, list("Date", "Variable"),
+                                       messages = messages, txt = "missing")
 
-  x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
-  x <- delete_rows_with_missing_values(x, list("Value"), messages = messages)
-  x$LowerLimit <- replace_negative_values_with_na(x$LowerLimit, messages = messages)
-  x$UpperLimit <- replace_negative_values_with_na(x$UpperLimit, zero = TRUE, messages = messages)
+  x <- delete_rows_with_certain_values(
+    x, list("Value", c("LowerLimit", "UpperLimit"), "DetectionLimit"),
+    messages = messages, txt = c("missing or negative"))
 
-  x <- delete_rows_with_missing_values(x, list(c("LowerLimit", "UpperLimit")), messages = messages)
+  x <- delete_rows_with_certain_values(x, list("UpperLimit"),
+                                       messages = messages, txt = c("zero"))
+
+  x <- half_detection_limits(x)
 
   check_rows(x)
 

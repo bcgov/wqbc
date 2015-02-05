@@ -42,24 +42,34 @@ del_cols_not_in_y <- function (x, y) {
   delete_columns(x, colnames(x)[!colnames(x) %in% y], messages = FALSE)
 }
 
-delete_rows_with_missing_values <- function (x, columns, messages, txt = "missing") {
+delete_rows_with_certain_values <- function (x, columns, messages, txt = "missing") {
   if(missing(columns))
     columns <- as.list(colnames(x))
 
   check_columns(x, unlist(columns))
 
+  if(txt %in% c("missing", "unrecognised")) {
+    fun <- function (x) is.na(x)
+  } else if(txt == "negative") {
+    fun <- function (x) !is.na(x) & x < 0
+  }  else if(txt == "zero") {
+    fun <- function (x) !is.na(x) & x == 0
+  } else if (txt %in% c("missing or negative", "missing or negative")) {
+    fun <- function (x) is.na(x) | x < 0
+  } else stop()
+
   for(col in columns) {
-    bol <- is.na(x[[col[1]]])
+    bol <- fun(x[[col[1]]])
 
     if(length(col) > 1) {
       for(i in 2:length(col))
-        bol <- bol & is.na(x[[col[i]]])
+        bol <- bol & fun(x[[col[i]]])
     }
     if(any(bol)) {
       if(messages) {
         message("Deleted ", sum(bol),
                 plural(" row", sum(bol) > 1), " with ", txt, " values in ",
-                punctuate_strings(col, "or"), ".")
+                punctuate_strings(col, "and"), ".")
       }
       x <- x[!bol, , drop = FALSE]
     }

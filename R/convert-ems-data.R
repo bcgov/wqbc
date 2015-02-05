@@ -32,12 +32,12 @@ convert_ems_data <- function (x, date = "date", code = "code",
   colnames(x) <- c("Date", "Code", "Value", "Units")
   x$Date <- as.Date(x$Date)
 
-  x <- delete_rows_with_missing_values(
+  x <- delete_rows_with_certain_values(
     x, columns = c("Date", "Code", "Value", "Units"), messages = messages)
 
   x$Variable <- get_variables(x$Code, messages = messages)
   x$Units <- substitute_units(x$Units, messages = messages)
-  x <- delete_rows_with_missing_values(
+  x <- delete_rows_with_certain_values(
     x, columns = c("Date", "Variable", "Value", "Units"), messages = messages,
     txt = "unrecognised"
   )

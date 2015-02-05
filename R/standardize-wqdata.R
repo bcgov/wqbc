@@ -49,7 +49,7 @@ standardize_wqdata <- function (
 
   x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
 
-  x <- delete_rows_with_missing_values(x, columns = c("Variable", "Value", "Units"),
+  x <- delete_rows_with_certain_values(x, columns = c("Variable", "Value", "Units"),
                                        messages = messages)
 
   if(!nrow(x)) { message("Standardized."); return (x) }
