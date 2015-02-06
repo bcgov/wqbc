@@ -49,29 +49,3 @@ convert_values <- function (x, from, to, messages) {
   }
   x
 }
-
-#' Substitute Units
-#'
-#' Where possible substitute units with
-#' recognised values. Returns a character vector of the substituted or original units.
-#'
-#' @param x The character vector of units to substitute.
-#' @param messages A flag indicating whether to print messages.
-#' @examples
-#' substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "gkl", "CFU/100ML"))
-#' substitute_units(c("MG/L", "MG/L", "MG/L"))
-#' substitute_units("gkl")
-#' substitute_units(c(NA, "mg/L"))
-#' @export
-substitute_units <- function (
-  x, messages = getOption("wqbc.messages", default = TRUE)) {
-  assert_that(is.character(x) || is.factor(x))
-
-  x <- as.character(x)
-
-  y <- gsub("units", "", x, ignore.case = TRUE)
-  y <- gsub(" ", "", y)
-  y <- gsub("100mL", "dL", y, ignore.case = TRUE)
-
-  wqbc_substitute(x, y, sub = get_units(), messages)
-}
