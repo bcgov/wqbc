@@ -1,6 +1,15 @@
-context("standardize-wqdata")
+context("lookup")
 
-test_that("get_variables_codes", {
+test_that("lookup_units", {
+  opts <- options()
+  on.exit(options(opts))
+  options(wqbc.messages = FALSE)
+
+  expect_is(lookup_units(), "character")
+
+})
+
+test_that("lookup_codes lookup_variables", {
   opts <- options()
   on.exit(options(opts))
   options(wqbc.messages = FALSE)
