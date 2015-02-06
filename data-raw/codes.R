@@ -14,13 +14,13 @@ input_codes <- function () {
 
   stopifnot(!anyDuplicated(codes$Code))
   stopifnot(!anyDuplicated(codes$Variable))
-  stopifnot(all(codes$Units %in% get_units()))
+  stopifnot(all(codes$Units %in% lookup_units()))
   stopifnot(all(codes$Average %in% c("mean", "median")))
 
 
   codes$Code %<>%  factor
   codes$Variable %<>% factor
-  codes$Units %<>% factor(levels = get_units())
+  codes$Units %<>% factor(levels = lookup_units())
   codes$Units %<>% droplevels
   codes$Average %<>% factor
 

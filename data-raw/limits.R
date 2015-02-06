@@ -19,7 +19,7 @@ input_limits <- function () {
   stopifnot(all(!is.na(select(limits, -Condition))))
 
   stopifnot(all(limits$Term %in% c("Short", "Long")))
-  stopifnot(all(limits$Units %in% get_units()))
+  stopifnot(all(limits$Units %in% lookup_units()))
   stopifnot(all(limits$Reference %in% c("BC_2006", "EMAIL_2014", "EMAIL_2015")))
   stopifnot(all(limits$Use %in% c("Freshwater Life")))
 

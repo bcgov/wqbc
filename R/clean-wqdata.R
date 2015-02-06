@@ -68,28 +68,21 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 #' @export
 clean_wqdata <- function (x, by = NULL, max_cv = 1.29,
                           messages = getOption("wqbc.messages", default = TRUE)) {
-
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   assert_that(is.number(max_cv))
   assert_that(is.flag(messages) && noNA(messages))
 
   x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")), messages = messages)
-
   check_class_columns(x, list("Date" = "Date"))
 
-  if("DetectionLimit" %in% colnames(x)) {
+  if("DetectionLimit" %in% colnames(x))
     check_class_columns(x, list("DetectionLimit" = "numeric"))
-  }
 
   x <- standardize_wqdata(x, messages = messages)
-
   if(messages) message("Cleaning water quality data...")
-
   res <- c("Date", "Variable", "Value", "Units", "DetectionLimit")
-
   check_by(by, colnames(x), res_names = res)
-
   x <- del_cols_not_in_y(x, c(res, by))
 
   if(is.null(by)) {

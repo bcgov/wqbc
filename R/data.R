@@ -90,4 +90,3 @@
 #'   \item{Units}{units for limit}
 #' }
 "limits"
-

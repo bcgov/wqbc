@@ -6,12 +6,12 @@ test_that("get_unit_multiplier", {
 
 })
 
-test_that("get_units", {
+test_that("lookup_units", {
   opts <- options()
   on.exit(options(opts))
   options(wqbc.messages = FALSE)
 
-  expect_is(get_units(), "character")
+  expect_is(lookup_units(), "character")
 
 })
 

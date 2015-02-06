@@ -9,7 +9,7 @@ dummy$Units <- substitute_units(dummy$Units)
 dummy$Variable <- substitute_variables(dummy$Variable)
 print(dummy)
 
-dummy <- filter(dummy, Units %in% get_units() & Variable %in% get_variables())
+dummy <- filter(dummy, Units %in% lookup_units() & Variable %in% lookup_variables())
 print(dummy)
 
 dummy <- standardize_wqdata(dummy)

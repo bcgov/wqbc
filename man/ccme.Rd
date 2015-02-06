@@ -10,7 +10,7 @@
   \item{Variable}{The name of the variable.}
   \item{Value}{The value of the reading.}
   \item{DetectionLimit}{The detection limit.}
-  \item{UpperLimit}{The maximum permitted value.}
+  \item{LowerLimit}{The maximum permitted value.}
   \item{UpperLimit}{The maximum permitted value.}
   \item{Units}{The units.}
 }}

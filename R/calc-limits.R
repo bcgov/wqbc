@@ -1,3 +1,10 @@
+wqbc_limits <- function () {
+  limits <- limits
+  limits$Variable <- as.character(limits$Variable)
+  limits$Units <- as.character(limits$Units)
+  limits
+}
+
 join_codes <- function (x) {
   x <- dplyr::rename_(x, "..Units" = "Units")
   x$Variable <- as.character(x$Variable)
@@ -79,7 +86,6 @@ fill_in_conditional_codes <- function (x, ccodes) {
 }
 
 calc_limits_by_date <- function (x) {
-
   ccodes <- get_conditional_codes(x$Condition[x$Term == "Short"])
   x <- dplyr::filter_(x, ~(!is.na(Term) & Term == "Short") | Code %in% ccodes)
   x <- fill_in_conditional_codes(x, ccodes)

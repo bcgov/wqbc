@@ -1,14 +1,3 @@
-#' Get Units
-#'
-#' Gets a character vector of the recognised units.
-#'
-#' @examples
-#' get_units()
-#' @export
-get_units <- function () {
-  c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH")
-}
-
 get_unit_multiplier <- function (x) {
   units <- c("ng/L" = 10^-9, "ug/L" = 10^-6, "mg/L" = 10^-3,
              "g/L" = 1,  "kg/L" = 10^3,

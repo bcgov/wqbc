@@ -34,7 +34,7 @@ standardize_wqdata <- function (
 
   if("Code" %in% colnames(x)) {
     if(messages) message ("Converting Codes to Variables...")
-    x$Variable <- get_variables(x$Code, messages = messages)
+    x$Variable <- lookup_variables(x$Code, messages = messages)
     x <- delete_rows_with_certain_values(
       x, columns = c("Variable"), messages = messages)
     if(messages) message ("Converted Codes to Variables.")
@@ -51,25 +51,24 @@ standardize_wqdata <- function (
                               "Value" = "numeric",
                               "Units" = "character"))
 
-  if(!nrow(x)) { message("Standardized."); return (x) }
+  if(!nrow(x)) { if(messages) message("Standardized."); return (x) }
 
   x$Variable <- substitute_variables(x$Variable, strict = strict, messages = messages)
   x$Units <- substitute_units(x$Units, messages = messages)
 
-  is.na(x$Variable[!x$Variable %in% get_variables()]) <- TRUE
-  is.na(x$Units[!x$Units %in% get_units()]) <- TRUE
+  is.na(x$Variable[!x$Variable %in% lookup_variables()]) <- TRUE
+  is.na(x$Units[!x$Units %in% lookup_units()]) <- TRUE
 
   x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
 
   x <- delete_rows_with_certain_values(x, columns = c("Variable", "Value", "Units"),
                                        messages = messages)
 
-  if(!nrow(x)) { message("Standardized."); return (x) }
+  if(!nrow(x)) { if(messages) message("Standardized."); return (x) }
 
   x <- plyr::ddply(x, .variables = "Variable",
                    .fun = standardize_wqdata_variable, messages = messages)
 
-  message("Standardized water quality data.")
-
+  if(messages) message("Standardized water quality data.")
   x
 }

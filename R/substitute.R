@@ -73,7 +73,7 @@ substitute_units <- function (
   y <- gsub(" ", "", y)
   y <- gsub("100mL", "dL", y, ignore.case = TRUE)
 
-  wqbc_substitute(org = x, mod = y, sub = get_units(), messages = messages)
+  wqbc_substitute(org = x, mod = y, sub = lookup_units(), messages = messages)
 }
 
 #' Substitute Variable Names
@@ -104,7 +104,7 @@ substitute_variables <-function (
 
   y <- gsub("Aluminum", "Aluminium", x, ignore.case = TRUE)
 
-  sub <- get_variables()
+  sub <- lookup_variables()
   sub_mod <- sub
   if(!strict) { # pull out first word and remove duplicates
     sub_mod <- stringr::word(sub)
@@ -114,5 +114,3 @@ substitute_variables <-function (
   }
   wqbc_substitute(org = x, mod = y, sub = sub, sub_mod = sub_mod, messages = messages)
 }
-
-
