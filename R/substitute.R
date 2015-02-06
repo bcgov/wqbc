@@ -19,19 +19,61 @@ messages_match_substitution <- function (x, y, txt = "substitute") {
   NULL
 }
 
-wqbc_substitute <- function (org, mod = org, sub, messages) {
+all_words_in_x_in_y_one <- function (x) {
+  all(strsplit(x[1], " ")[[1]] %in% strsplit(x[2], " ")[[1]])
+}
+
+all_words_in_x_in_y <- function (x, y) {
+  mat <- as.matrix(data.frame(x = x, y = y))
+  apply(mat, MARGIN = 1, all_words_in_x_in_y_one)
+}
+
+wqbc_substitute <- function (org, mod = org, sub, sub_mod = sub, messages) {
   org <- as.character(org)
   mod <- as.character(mod)
   sub <- as.character(sub)
+  sub_mod <- as.character(sub_mod)
 
   orgd <- data.frame(org = org, match = tolower(mod), stringsAsFactors = FALSE)
-  subd <- data.frame(sub = sub, match = tolower(sub), stringsAsFactors = FALSE)
+  subd <- data.frame(sub = sub, match = tolower(sub_mod), stringsAsFactors = FALSE)
 
-  combd <- dplyr::left_join(orgd, subd, by = "match")
+  orgd$sub <- NA_character_
+  for(i in 1:nrow(subd)) {
+    bol <- all_words_in_x_in_y(subd$match[i], orgd$match)
+    if(any(bol)) {
+      stopifnot(all(is.na(orgd$sub[bol])))
+      orgd$sub[bol] <- subd$sub[i]
+    }
+  }
+  if(messages) messages_match_substitution(orgd$org, orgd$sub)
+  orgd$sub
+}
 
-  if(messages) messages_match_substitution(combd$org, combd$sub)
+#' Substitute Units
+#'
+#' Where possible substitute units with
+#' recognised values. Returns a character vector of the substituted or original units.
+#'
+#' @param x The character vector of units to substitute.
+#' @param messages A flag indicating whether to print messages.
+#' @examples
+#' substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "gkl", "CFU/100ML"))
+#' substitute_units(c("MG/L", "MG/L", "MG/L"))
+#' substitute_units("gkl")
+#' substitute_units(c(NA, "mg/L"))
+#' @export
+substitute_units <- function (
+  x, messages = getOption("wqbc.messages", default = TRUE)) {
+  assert_that(is.character(x) || is.factor(x))
+  assert_that(is.flag(messages) && noNA(messages))
 
-  combd$sub
+  x <- as.character(x)
+
+  y <- gsub("units", "", x, ignore.case = TRUE)
+  y <- gsub(" ", "", y)
+  y <- gsub("100mL", "dL", y, ignore.case = TRUE)
+
+  wqbc_substitute(org = x, mod = y, sub = get_units(), messages = messages)
 }
 
 #' Substitute Variable Names
@@ -53,41 +95,24 @@ wqbc_substitute <- function (org, mod = org, sub, messages) {
 #' @export
 substitute_variables <-function (
   x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
+
+  assert_that(is.character(x) || is.factor(x))
+  assert_that(is.flag(strict) && noNA(strict))
+  assert_that(is.flag(messages) && noNA(messages))
+
   x <- as.character(x)
-  x <- gsub("ALUMINUM","ALUMINIUM", x)
-  x <- gsub("Aluminum","Aluminium", x)
-  x <- gsub("aluminum","aluminium", x)
 
-  y <- unique(x)
-  y <- as.list(y)
-  names(y) <- y
+  y <- gsub("Aluminum", "Aluminium", x, ignore.case = TRUE)
 
-  vars <- get_variables()
-  if(!strict) {
-    first_words <- stringr::word(vars)
-    first_words <- unique(first_words[duplicated(first_words)])
-    vars <- vars[!stringr::word(vars) %in% first_words]
+  sub <- get_variables()
+  sub_mod <- sub
+  if(!strict) { # pull out first word and remove duplicates
+    sub_mod <- stringr::word(sub)
+    bol <- sub_mod %in% unique(sub_mod[duplicated(sub_mod)])
+    sub <- sub[!bol]
+    sub_mod <- sub_mod[!bol]
   }
-  vars <- as.list(vars)
-  names(vars) <- vars
-
-  y <- lapply(y, FUN = split_words_tolower)
-  vars <- lapply(vars, FUN = split_words_tolower)
-
-  y <- lapply(y, FUN = sub_vars, vars = vars, strict = strict)
-  y <- unlist(y)
-
-  if(length(y)) {
-    if(messages) {
-      yy <- y[y != names(y)]
-      if(length(yy)) {
-        message("Substituted ",
-                punctuate_strings(paste(yy, "for", names(yy)), "and"), ".")
-      }
-    }
-    bol <- x %in% names(y)
-    x[bol] <- y[x[bol]]
-  }
-  x
+  wqbc_substitute(org = x, mod = y, sub = sub, sub_mod = sub_mod, messages = messages)
 }
+
 
