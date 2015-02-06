@@ -41,7 +41,9 @@ wqbc_substitute <- function (org, mod = org, sub, sub_mod = sub, messages) {
   for(i in 1:nrow(subd)) {
     bol <- all_words_in_x_in_y(subd$match[i], orgd$match)
     if(any(bol)) {
-      stopifnot(all(is.na(orgd$sub[bol])))
+      if(!all(is.na(orgd$sub[bol]))) {
+        stop(unique(orgd$sub[!is.na(orgd$sub) & bol]), " has multiple matches")
+      }
       orgd$sub[bol] <- subd$sub[i]
     }
   }

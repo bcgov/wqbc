@@ -91,6 +91,6 @@ clean_wqdata <- function (x, by = NULL, max_cv = 1.29,
     x <- plyr::ddply(x, .variables = by, .fun = clean_wqdata_by, max_cv = max_cv,
                      messages = messages)
   }
-  message("Cleansed.")
+  if(messages) message("Cleansed water quality data.")
   x
 }

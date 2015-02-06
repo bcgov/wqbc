@@ -57,6 +57,27 @@ lookup_variables<- function (
   as.character(d$Variable)
 }
 
+if_null_NA <- function (x) {
+  ifelse(is.null(x), NA, x)
+}
+
+setup_condition_values <- function (codes, ph, hardness, chloride, methyl_mercury) {
+
+  codes$Value[codes$Variable == "pH"] <- if_null_NA(ph)
+  codes$Value[codes$Variable == "Hardness Total"] <- if_null_NA(hardness)
+  codes$Value[codes$Variable == "Chloride Total"] <- if_null_NA(chloride)
+  codes$Value[codes$Variable == "Mercury Methyl"] <- if_null_NA(methyl_mercury)
+
+  dplyr::filter_(codes, ~!is.na(Value))
+}
+
+setup_codes <- function () {
+  codes <- wqbc_codes()
+  codes$Date <- as.Date("2000-01-01")
+  codes$Value <- 1
+  dplyr::select_(codes, ~Date, ~Variable, ~Value, ~Units)
+}
+
 #' Lookup Limits
 #'
 #' Looks up the long or short-term water quality limits for BC. If the limits depend on
@@ -73,16 +94,21 @@ lookup_variables<- function (
 #' lookup_limits(ph = 8, hardness = 100, chloride = 50, methyl_mercury = 2)
 #' lookup_limits(ph = 8, hardness = 100, chloride = 50, methyl_mercury = 2, term = "short")
 #' @export
-lookup_limits <- function (ph = NA_real_, hardness = NA_real_ ,
-                           chloride = NA_real_, methyl_mercury =  NA_real_,
-                           term = "long") {
-  assert_that(is.number(ph))
-  assert_that(is.number(hardness))
-  assert_that(is.number(chloride))
-  assert_that(is.number(methyl_mercury))
+lookup_limits <- function (ph = NULL, hardness = NULL, chloride = NULL,
+                           methyl_mercury =  NULL, term = "long") {
+  assert_that(is.null(ph) || (is.number(ph) && noNA(ph)))
+  assert_that(is.null(hardness) || (is.number(hardness) && noNA(hardness)))
+  assert_that(is.null(chloride) || (is.number(chloride) && noNA(chloride)))
+  assert_that(is.null(methyl_mercury) || (is.number(methyl_mercury) && noNA(methyl_mercury)))
   assert_that(is.string(term))
 
   if(!term %in% c("short", "long")) stop("term must be \"short\" or \"long\"")
 
-  data <- data.frame()
+  codes <- setup_codes()
+  codes <- setup_condition_values(codes, ph = ph, hardness = hardness,
+                                  chloride = chloride, methyl_mercury = methyl_mercury)
+
+#  if(term == "short")
+  limits <- calc_limits(codes, term = term)
+  dplyr::select_(limits, ~Variable, ~UpperLimit, ~Units)
 }
