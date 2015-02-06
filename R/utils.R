@@ -151,4 +151,3 @@ sub_vars <- function (x, vars, strict) {
 split_words_tolower <- function (x) {
   tolower(unlist(strsplit(unlist(x), " ")))
 }
-
