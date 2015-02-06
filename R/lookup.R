@@ -78,6 +78,26 @@ setup_codes <- function () {
   dplyr::select_(codes, ~Date, ~Variable, ~Value, ~Units)
 }
 
+tidyup_limits <- function (x) {
+  x <- dplyr::select_(x, ~Variable, ~UpperLimit, ~Units)
+  x$Variable <- factor(x$Variable, levels = lookup_variables())
+  x$Units <- factor(x$Units, levels = lookup_units())
+  x <- dplyr::arrange_(x, ~Variable)
+  x
+}
+
+add_missing_limits <- function (x, term) {
+  limits <- wqbc_limits()
+  limits <- dplyr::filter_(limits, ~tolower(Term) == tolower(term))
+  limits <- dplyr::filter_(limits, ~!Variable %in% x$Variable)
+  limits <- dplyr::select_(limits, ~Variable, ~Units)
+  if(!nrow(limits))
+    return (x)
+  limits <- unique(limits)
+  limits$UpperLimit <- NA_real_
+  plyr::rbind.fill(x, limits)
+}
+
 #' Lookup Limits
 #'
 #' Looks up the long or short-term water quality limits for BC. If the limits depend on
@@ -108,7 +128,14 @@ lookup_limits <- function (ph = NULL, hardness = NULL, chloride = NULL,
   codes <- setup_condition_values(codes, ph = ph, hardness = hardness,
                                   chloride = chloride, methyl_mercury = methyl_mercury)
 
-#  if(term == "short")
-  limits <- calc_limits(codes, term = term)
-  dplyr::select_(limits, ~Variable, ~UpperLimit, ~Units)
+  if(term == "long") {
+    dates <- codes$Date
+    codes <- rbind(codes, codes, codes, codes, codes)
+    codes$Date <- c(dates, dates + 1, dates + 2, dates + 3, dates + 21)
+  }
+
+  limits <- calc_limits(codes, term = term, messages = FALSE)
+  limits <- add_missing_limits(limits, term = term)
+  limits <- tidyup_limits(limits)
+  limits
 }

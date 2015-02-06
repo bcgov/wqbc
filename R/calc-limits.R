@@ -150,6 +150,9 @@ calc_limits_by_30day <- function (x, dates) {
   x <- fill_in_conditional_codes(x, ccodes)
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
 
+  print("calc_limits_by_30day")
+  print(x)
+
   x <- dplyr::filter_(x, ~Term == "Long")
   x <- dplyr::filter_(x, ~!Conditional)
   x <- dplyr::filter_(x, ~Samples >= 5 & Span >= 21)
@@ -167,9 +170,9 @@ calc_limits_by <- function (x, term, dates) {
     x <- calc_limits_by_date(x)
   }
   if(!is.null(x$DetectionLimit)) {
-    x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~DetectionLimit, ~Units, ~Term)
+    x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~DetectionLimit, ~Units)
   } else
-    x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units, ~Term)
+    x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units)
   x
 }
 
@@ -202,6 +205,7 @@ calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
 
   x <- clean_wqdata(x, by = by, messages = messages)
 
+  print(x)
   if(messages) message("Calculating ", paste0(term, "-term") ," water quality limits...")
 
   if(is.null(by)) {
@@ -210,6 +214,6 @@ calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
     x <- plyr::ddply(x, .variables = by, .fun = calc_limits_by,
                      term = term, dates = dates)
   }
-  if(messages) message("Calculated.")
+  if(messages) message("Calculated ", paste0(term, "-term") ," water quality limits.")
   x
 }
