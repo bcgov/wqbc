@@ -104,13 +104,13 @@ calc_wqi <- function (x, messages) {
   wqi
 }
 
-half_detection_limits <- function (x, messages) {
-  bol <- x$Value == 0 & x$DetectionLimit > 0
+set_detection_limits <- function (x, messages) {
+  bol <- x$Value == 0 & !is.na(x$DetectionLimit) & x$DetectionLimit > 0
   if(any(bol)) {
-    x$Value[bol] <- x$DetectionLimit[bol] / 2
+    x$Value[bol] <- x$DetectionLimit[bol]
     if(messages) message("Replaced ", sum(bol) ," of the ",
                          plural("value", sum(bol) > 1, " "),
-    "in column Value with half the detection limit in column DetectionLimit.")
+    "in column Value with the detection limit in column DetectionLimit.")
   }
   x
 }
@@ -158,18 +158,18 @@ calc_wqis <- function (x, by = NULL,
 
   check_by(by, colnames(x), res_names = res[res != "Date"])
 
-  x <- del_cols_not_in_y(x, res)
+  x <- del_cols_not_in_y(x, c(res, by))
   x <- delete_rows_with_certain_values(x, list("Date", "Variable"),
                                        messages = messages, txt = "missing")
 
   x <- delete_rows_with_certain_values(
-    x, list("Value", c("LowerLimit", "UpperLimit"), "DetectionLimit"),
+    x, list("Value", c("LowerLimit", "UpperLimit")),
     messages = messages, txt = c("missing or negative"))
 
   x <- delete_rows_with_certain_values(x, list("UpperLimit"),
                                        messages = messages, txt = c("zero"))
 
-  x <- half_detection_limits(x)
+  x <- set_detection_limits(x, messages = messages)
 
   check_rows(x)
 

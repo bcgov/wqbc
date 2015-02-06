@@ -122,6 +122,9 @@ assign_30day_periods <- function (x, dates) {
 average_30day_values_variable <- function (x) {
   stopifnot(!is.unsorted(x$Date))
   x$Samples <- nrow(x)
+  if(!is.null(x$DetectionLimit))
+    x$DetectionLimit <- mean(x$DetectionLimit)
+
   x$Span <- abs_days_diff(x$Date[1], x$Date[x$Samples])
   txt <- paste0("x$Value <- ", x$Average[1], "(x$Value)")
   eval(parse(text = txt))
@@ -157,7 +160,10 @@ calc_limits_by <- function (x, term, dates) {
   } else {
     x <- calc_limits_by_date(x)
   }
-  x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units, ~Term)
+  if(!is.null(x$DetectionLimit)) {
+    x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~DetectionLimit, ~Units, ~Term)
+  } else
+    x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units, ~Term)
   x
 }
 

@@ -32,25 +32,17 @@ test_that("ccme", {
   expect_equal(round(x$Upper), 94)
   expect_equal(as.character(x$Category), "Good")
 
-  is.na(ccme$Value[ccme$Variable == "Dissolved Oxygen" & ccme$Date == as.Date("1994-03-04")]) <- TRUE
+  is.na(ccme$Value[ccme$Variable == "DO" & ccme$Date == as.Date("1994-03-04")]) <- TRUE
   x <- calc_wqis(ccme)
   expect_equal(x$Variables, 10)
   expect_equal(x$Tests, 102)
   expect_equal(x$WQI, 88.1)
-  is.na(ccme$Value[ccme$Variable == "Arsenic"]) <- TRUE
+  is.na(ccme$Value[ccme$Variable == "As"]) <- TRUE
   x <- calc_wqis(ccme)
   expect_equal(x$Variables, 9)
   expect_equal(x$Tests, 90)
   expect_equal(x$WQI, 86.8)
-  is.na(ccme$Value[ccme$Variable == "Arsenic"]) <- TRUE
-  ccme$Value[ccme$Variable == "Lindane"] <- 0
-  x <- calc_wqis(ccme)
-  expect_equal(x$Variables, 9)
-  expect_equal(x$Tests, 90)
-  expect_equal(x$WQI, 86.8)
-
-  ccme$Value[ccme$Variable == "Dissolved Oxygen" & ccme$Date == as.Date("1997-04-08")] <- 0
-  expect_error(calc_wqis(ccme))
+  is.na(ccme$Value[ccme$Variable == "As"]) <- TRUE
 })
 
 test_that("calc_wqis by", {

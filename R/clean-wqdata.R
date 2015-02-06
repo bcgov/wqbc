@@ -90,7 +90,7 @@ clean_wqdata <- function (x, by = NULL, max_cv = 1.29,
 
   check_by(by, colnames(x), res_names = res)
 
-  x <- del_cols_not_in_y(x, res)
+  x <- del_cols_not_in_y(x, c(res, by))
 
   if(is.null(by)) {
     x <- clean_wqdata_by(x, max_cv = max_cv, messages = messages)
