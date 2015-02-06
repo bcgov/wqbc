@@ -29,11 +29,16 @@ test_that("substitute_variables not strict", {
   on.exit(options(opts))
   options(wqbc.messages = FALSE)
 
-#   expect_equal(substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-#                                       "dissolved aluminium", "BORON Total",
-#                                      "KRYPTONITE"),
-#                strict = FALSE), c(NA, "Aluminium Dissolved", "Aluminium Dissolved", "Boron", NA))
+   expect_equal(substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
+                                       "dissolved aluminium", "BORON Total",
+                                      "KRYPTONITE"),
+                strict = FALSE), c("Aluminium Dissolved", "Aluminium Dissolved", "Aluminium Dissolved", "Boron", NA))
   expect_equal(substitute_variables("KRYPTONITE", strict = FALSE), NA_character_)
-  expect_message(substitute_variables("DISSOLVED ALUMINIUM", strict = FALSE, messages = TRUE))
+  expect_equal(substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum"), strict = TRUE),
+               c("Iron Total", "Iron Dissolved", NA))
+  expect_equal(substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum"), strict = FALSE),
+               c(NA, NA, "Aluminium Dissolved"))
+  expect_equal(substitute_variables("KRYPTONITE", strict = FALSE), NA_character_)
+
 })
 
