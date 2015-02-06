@@ -37,7 +37,7 @@ wqbc_substitute <- function (org, mod = org, sub, sub_mod = sub, messages) {
   orgd <- data.frame(org = org, match = tolower(mod), stringsAsFactors = FALSE)
   subd <- data.frame(sub = sub, match = tolower(sub_mod), stringsAsFactors = FALSE)
 
-  orgd$sub <- NA
+  orgd$sub <- NA_character_
   for(i in 1:nrow(subd)) {
     bol <- all_words_in_x_in_y(subd$match[i], orgd$match)
     if(any(bol)) {
