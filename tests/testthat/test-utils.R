@@ -29,11 +29,6 @@ test_that("delete_rows_with_certain_values", {
   expect_identical(x[!(is.na(x$X) & is.na(x$Y)),,drop = FALSE], z)
 })
 
-test_that("replace_negative_values_with_na", {
-  expect_message(replace_negative_values_with_na(-1, messages = TRUE))
-  expect_equal(replace_negative_values_with_na(c(1,NA,-1,2), messages = FALSE), c(1,NA,NA,2))
-})
-
 test_that("geomean1", {
   expect_equal(geomean1(1), 1)
   expect_equal(geomean1(100), 100)

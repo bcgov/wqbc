@@ -59,10 +59,10 @@ standardize_wqdata <- function (
   is.na(x$Variable[!x$Variable %in% lookup_variables()]) <- TRUE
   is.na(x$Units[!x$Units %in% lookup_units()]) <- TRUE
 
-  x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
-
   x <- delete_rows_with_certain_values(x, columns = c("Variable", "Value", "Units"),
                                        messages = messages)
+  x <- delete_rows_with_certain_values(x, columns = c("Variable", "Value", "Units"),
+                                       messages = messages, txt = "negative")
 
   if(!nrow(x)) { if(messages) message("Standardized."); return (x) }
 

@@ -77,20 +77,6 @@ delete_rows_with_certain_values <- function (x, columns, messages, txt = "missin
   x
 }
 
-replace_negative_values_with_na <- function (x, zero = FALSE, messages) {
-  if(!zero) {
-    bol <- !is.na(x) & x < 0
-  } else {
-    bol <- !is.na(x) & x <= 0
-  }
-  if(any(bol)) {
-    if(messages) message("Replaced ", sum(bol), " negative ", ifelse(zero, "or zero ", ""),
-                         plural("value", sum(bol) > 1), " with a missing value.")
-    is.na(x[bol]) <- TRUE
-  }
-  x
-}
-
 proj_bc <- function (data, x, y, input_proj = NULL) {
 
   if(!requireNamespace("sp", quietly = TRUE))
