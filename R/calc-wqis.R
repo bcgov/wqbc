@@ -50,10 +50,23 @@ resample_wqi <- function (x, i, nt = nt, nv = nv) {
   x <- x[i,,drop = FALSE]
   wqi <- wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)["WQI"]
   stopifnot(!is.na(wqi) && !is.nan(wqi))
-  wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)["WQI"]
+  wqi
+}
+
+resample_cesi_wqi <- function (x, i, nct = nct, ncv = ncv) {
+  x <- x[i,,drop = FALSE]
+  vars <- unique(x$Variable[!is.na(x$Excursion)])
+  x <- dplyr::filter_(x, ~Variable %in% vars)
+  nt <- nct + sum(!is.na(x$Excursion))
+  nv <- ncv + length(vars)
+  x <- dplyr::filter_(x, ~!is.na(x$Excursion))
+  wqi <- wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)["WQI"]
+  stopifnot(!is.na(wqi) && !is.nan(wqi))
+  wqi
 }
 
 bootstrap_wqi <- function (x, nt, nv) {
+  x <- dplyr::select_(x, ~Excursion, ~Variable)
   x <- x[x$Variable %in% x$Variable[x$Excursion != 0],,drop = FALSE]
 
   if(!nrow(x))
@@ -61,10 +74,29 @@ bootstrap_wqi <- function (x, nt, nv) {
 
   x$Variable <- factor(as.character(x$Variable))
 
-  boot <- boot::boot(data = x, statistic = resample_wqi, R = 1000,
+  boot::boot(data = x, statistic = resample_wqi, R = 1000,
                      stype = "i", strata = x$Variable, nt = nt, nv = nv)
+}
 
-  quantile(boot$t, c(0.025, 0.975))
+bootstrap_wqi_cesi <- function (x) {
+  x <- dplyr::select_(x, ~Variable, ~Excursion, ~Date)
+  x <- tidyr::spread_(x, "Variable", "Excursion")
+
+  bol <- vapply(x, FUN=function (x) !all(!is.na(x) & x == 0), FUN.VALUE=FALSE)
+  x <- x[,bol]
+
+  if(ncol(x) == 1)
+    return (c(100, 100))
+
+  ncv <- sum(bol) - 1
+  nct <- ncv * nrow(x)
+
+  x <- tidyr::gather_(x, "Variable", "Excursion", colnames(x)[-1])
+
+  x$Variable <- factor(as.character(x$Variable))
+
+  boot::boot(data = x, statistic = resample_cesi_wqi, R = 1000,
+                     stype = "i", strata = x$Variable, nct = nct, ncv = ncv)
 }
 
 four <- function (x) {
@@ -80,22 +112,25 @@ fourtimesfour <- function (x) {
 calc_wqi <- function (x, messages) {
 
   x$Excursion <- get_excursions(x$Value, x$LowerLimit, x$UpperLimit)
-  x <- dplyr::select_(x, ~Excursion, ~Variable)
+  x <- dplyr::select_(x, ~Excursion, ~Variable, ~Date)
 
   nt <- nrow(x)
   nv <- length(unique(x$Variable))
 
   wqi <- wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)
 
-  limits <- bootstrap_wqi(x, nt = nt, nv = nv)
-  Lower <- round(limits[1], 1)
-  Upper <- round(limits[2], 1)
+  if(FALSE) {
+    boot <- bootstrap_wqi(x, nt = nt, nv = nv)
+  } else {
+    boot <- bootstrap_wqi_cesi(x)
+  }
+  boot <-  round(quantile(boot$t, c(0.025, 0.975)),1)
 
-  wqi <- data.frame(WQI = round(wqi["WQI"], 1), Lower = Lower, Upper = Upper,
-                  Category = categorize_wqi(wqi["WQI"]),
-                  Variables = nv, Tests = nt,
-                  F1 = round(wqi["F1"], 1), F2 = round(wqi["F2"], 1),
-                  F3 = round(wqi["F3"], 1))
+  wqi <- data.frame(WQI = round(wqi["WQI"], 1), Lower = boot[1], Upper = boot[2],
+                    Category = categorize_wqi(wqi["WQI"]),
+                    Variables = nv, Tests = nt,
+                    F1 = round(wqi["F1"], 1), F2 = round(wqi["F2"], 1),
+                    F3 = round(wqi["F3"], 1))
 
   if(!fourtimesfour(x)) {
     if(messages) message("Dropped WQI with less than four variables sampled at least four times.")
@@ -110,7 +145,7 @@ set_detection_limits <- function (x, messages) {
     x$Value[bol] <- x$DetectionLimit[bol]
     if(messages) message("Replaced ", sum(bol) ," of the ",
                          plural("value", sum(bol) > 1, " "),
-    "in column Value with the detection limit in column DetectionLimit.")
+                         "in column Value with the detection limit in column DetectionLimit.")
   }
   x
 }
