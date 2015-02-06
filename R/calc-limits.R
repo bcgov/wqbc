@@ -194,7 +194,7 @@ calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   assert_that(is.string(term))
-  assert_that(is.null(dates) || (is.Date(dates) && noNA(dates)))
+  assert_that(is.null(dates) || (is.date(dates) && noNA(dates)))
   assert_that(is.flag(messages) && noNA(messages))
 
   term <- tolower(term)

@@ -77,50 +77,6 @@ delete_rows_with_certain_values <- function (x, columns, messages, txt = "missin
   x
 }
 
-proj_bc <- function (data, x, y, input_proj = NULL) {
-
-  if(!requireNamespace("sp", quietly = TRUE))
-    stop("sp package not installed")
-
-  if(!requireNamespace("rgdal", quietly = TRUE))
-    stop("rgdal package not installed")
-
-  if (is.null(input_proj)) {
-    input_proj <- "+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"
-  }
-  output_proj <- "+proj=aea +lat_1=50 +lat_2=58.5 +lat_0=45 +lon_0=-126 +x_0=1000000 +y_0=0 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0"
-
-  sp::coordinates(data) <- c(x,y)
-  sp::proj4string(data) <- sp::CRS(input_proj)
-  data <- sp::spTransform(data, sp::CRS(output_proj))
-  as.data.frame(data)
-}
-
-is.error <- function (x) inherits (x, "try-error")
-is.Date <- function (x) inherits (x, "Date")
-
-#' Geometric Mean Plus-Minus 1
-#'
-#' Calculates geometric mean by adding 1 before logging
-#' and subtracting 1 before exponentiating so that
-#' geometric mean of
-#' @param x A numeric vector of non-negative numbers.
-#' @param na.rm A flag indicating whether to remove missing values.
-#' @examples
-#' mean(0:9)
-#' geomean1(0:9)
-#' @export
-geomean1 <- function (x, na.rm = FALSE) {
-  assert_that(is.vector(x))
-  assert_that(is.flag(na.rm) && noNA(na.rm))
-  x <- as.numeric(x)
-
-  if(any(x < 0, na.rm = TRUE))
-    stop("x must not be negative")
-
-  expm1(mean(log1p(as.numeric(x)), na.rm = na.rm))
-}
-
 capitalize <- function (x) {
     gsub(pattern = "\\b([a-z])", replacement = "\\U\\1", x, perl = TRUE)
 }

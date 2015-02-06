@@ -1,3 +1,13 @@
+wqbc_codes <- function (compress = FALSE) {
+  codes <- codes
+  codes$Code <- as.character(codes$Code)
+  if(compress)
+    codes$Code <- compress_ems_codes(codes$Code)
+  codes$Variable <- as.character(codes$Variable)
+  codes$Units <- as.character(codes$Units)
+  codes
+}
+
 #' Compress EMS Codes
 #'
 #' Compresses EMS codes by removing EMS_ from
@@ -30,14 +40,4 @@ expand_ems_codes <- function (x) {
   bol <- !grepl("^EMS[_-]", x)
   x[bol] <- paste0("EMS_", x[bol])
   x
-}
-
-wqbc_codes <- function (compress = FALSE) {
-  codes <- codes
-  codes$Code <- as.character(codes$Code)
-  if(compress)
-    codes$Code <- compress_ems_codes(codes$Code)
-  codes$Variable <- as.character(codes$Variable)
-  codes$Units <- as.character(codes$Units)
-  codes
 }
