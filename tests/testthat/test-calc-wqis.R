@@ -22,7 +22,7 @@ test_that("ccme", {
 
   data(ccme)
 
-  x <- calc_wqis(ccme)
+  x <- calc_wqis(ccme, ci = "column")
 
   expect_is(x, "data.frame")
   expect_equal(nrow(x), 1)
@@ -80,7 +80,7 @@ test_that("calc_wqis zero values", {
   x <- data.frame(Variable = "Zinc Total", Value = 0, Units = "ug/L")
   expect_is(calc_wqis(ccme), "data.frame")
   ccme$Value <- 0
-  expect_error(calc_wqis(ccme))
+  expect_error(calc_wqis(ccme), regexp = "Variables DO and pH have a LowerLimit and one or more zero Values with no defined DetectionLimit")
   ccme$DetectionLimit <- 1
   expect_is(calc_wqis(ccme), "data.frame")
 })

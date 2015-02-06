@@ -4,13 +4,20 @@
 \alias{calc_wqis}
 \title{Calculate Water Quality Indices (WQIs)}
 \usage{
-calc_wqis(x, by = NULL, messages = getOption("wqbc.messages", default =
-  TRUE))
+calc_wqis(x, by = NULL, ci = "none", ci_var_drop = FALSE,
+  messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{x}{The data.frame to perform the calculations on.}
 
 \item{by}{A character vector of the columns to perform the calculations by.}
+
+\item{ci}{A string indicating whether to calculate bootstrap confidence
+intervals by "row" or "column" or "none".}
+
+\item{ci_var_drop}{A flag indicating whether to drop sampled
+variables with all missing values from the calculation of
+the WQI for a particular replicate.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }

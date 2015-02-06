@@ -7,7 +7,7 @@ get_excursions <- function (value, lower = NA_real_, upper = NA_real_) {
   more <- !is.na(upper) & value >= upper
 
   if(any(less & more))
-    stop("lower must be less than upper.")
+    stop("the lower limit must be less than the upper limit")
 
   excursion <- rep(0, length(value))
   excursion[more] <- value[more] / upper[more] - 1
@@ -46,14 +46,14 @@ wqi <- function (x, v, nv, nt) {
   return(c(WQI = WQI, F1 = F1, F2 = F2, F3 = F3))
 }
 
-resample_wqi <- function (x, i, nt = nt, nv = nv) {
+resample_wqi_column <- function (x, i, nt = nt, nv = nv) {
   x <- x[i,,drop = FALSE]
   wqi <- wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)["WQI"]
   stopifnot(!is.na(wqi) && !is.nan(wqi))
   wqi
 }
 
-resample_cesi_wqi <- function (x, i, nct = nct, ncv = ncv) {
+resample_wqi_column_drop <- function (x, i, nct = nct, ncv = ncv) {
   x <- x[i,,drop = FALSE]
   vars <- unique(x$Variable[!is.na(x$Excursion)])
   x <- dplyr::filter_(x, ~Variable %in% vars)
@@ -65,7 +65,7 @@ resample_cesi_wqi <- function (x, i, nct = nct, ncv = ncv) {
   wqi
 }
 
-bootstrap_wqi <- function (x, nt, nv) {
+bootstrap_wqi_column <- function (x, nt, nv) {
   x <- dplyr::select_(x, ~Excursion, ~Variable)
   x <- x[x$Variable %in% x$Variable[x$Excursion != 0],,drop = FALSE]
 
@@ -74,11 +74,11 @@ bootstrap_wqi <- function (x, nt, nv) {
 
   x$Variable <- factor(as.character(x$Variable))
 
-  boot::boot(data = x, statistic = resample_wqi, R = 1000,
-                     stype = "i", strata = x$Variable, nt = nt, nv = nv)
+  boot::boot(data = x, statistic = resample_wqi_column, R = 1000,
+             stype = "i", strata = x$Variable, nt = nt, nv = nv)
 }
 
-bootstrap_wqi_cesi <- function (x) {
+bootstrap_wqi_column_drop <- function (x) {
   x <- dplyr::select_(x, ~Variable, ~Excursion, ~Date)
   x <- tidyr::spread_(x, "Variable", "Excursion")
 
@@ -95,8 +95,8 @@ bootstrap_wqi_cesi <- function (x) {
 
   x$Variable <- factor(as.character(x$Variable))
 
-  boot::boot(data = x, statistic = resample_cesi_wqi, R = 1000,
-                     stype = "i", strata = x$Variable, nct = nct, ncv = ncv)
+  boot::boot(data = x, statistic = resample_wqi_column_drop, R = 1000,
+             stype = "i", strata = x$Variable, nct = nct, ncv = ncv)
 }
 
 four <- function (x) {
@@ -109,22 +109,29 @@ fourtimesfour <- function (x) {
   nrow(x) >= 4
 }
 
-calc_wqi <- function (x, messages) {
+calc_wqi <- function (x, ci, ci_var_drop, messages) {
 
   x$Excursion <- get_excursions(x$Value, x$LowerLimit, x$UpperLimit)
+  check_excursions(x)
   x <- dplyr::select_(x, ~Excursion, ~Variable, ~Date)
 
   nt <- nrow(x)
   nv <- length(unique(x$Variable))
-
   wqi <- wqi(x = x$Excursion, v = x$Variable, nt = nt, nv = nv)
 
-  if(FALSE) {
-    boot <- bootstrap_wqi(x, nt = nt, nv = nv)
+  if(ci == "none") {
+    boot <- rep(NA_real_,2)
   } else {
-    boot <- bootstrap_wqi_cesi(x)
+    if(ci == "column") {
+      if(ci_var_drop) {
+        boot <- bootstrap_wqi_column_drop(x)
+      } else
+        boot <- bootstrap_wqi_column(x, nt = nt, nv = nv)
+    } else {
+      stop("not yet implemented")
+    }
+    boot <-  round(quantile(boot$t, c(0.025, 0.975)),1)
   }
-  boot <-  round(quantile(boot$t, c(0.025, 0.975)),1)
 
   wqi <- data.frame(WQI = round(wqi["WQI"], 1), Lower = boot[1], Upper = boot[2],
                     Category = categorize_wqi(wqi["WQI"]),
@@ -156,17 +163,27 @@ set_detection_limits <- function (x, messages) {
 #'
 #' @param x The data.frame to perform the calculations on.
 #' @param by A character vector of the columns to perform the calculations by.
+#' @param ci A string indicating whether to calculate bootstrap confidence
+#' intervals by "row" or "column" or "none".
+#' @param ci_var_drop A flag indicating whether to drop sampled
+#' variables with all missing values from the calculation of
+#' the WQI for a particular replicate.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' data(ccme)
 #' calc_wqis(ccme)
 #' calc_wqis(ccme, by = "Date")
 #' @export
-calc_wqis <- function (x, by = NULL,
+calc_wqis <- function (x, by = NULL, ci = "none", ci_var_drop = FALSE,
                        messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   assert_that(is.flag(messages) && noNA(messages))
+  assert_that(is.string(ci))
+  assert_that(is.flag(ci_var_drop) && noNA(ci_var_drop))
+
+  ci <- tolower(ci)
+  if(!ci %in% c("row", "column", "none")) stop("ci must be \"row\", \"column\", or \"none\"")
 
   check_rows(x)
   if(!any(c("LowerLimit", "UpperLimit") %in% colnames(x)))
@@ -209,9 +226,10 @@ calc_wqis <- function (x, by = NULL,
   check_rows(x)
 
   if(is.null(by)) {
-    x <- calc_wqi(x, messages = messages)
+    x <- calc_wqi(x, ci = ci, ci_var_drop = ci_var_drop, messages = messages)
   } else {
-    x <- plyr::ddply(x, .variables = by, .fun = calc_wqi, messages = messages)
+    x <- plyr::ddply(x, .variables = by, .fun = calc_wqi, ci = ci,
+                     ci_var_drop = ci_var_drop, messages = messages)
   }
   if(messages) message("Calculated water quality indices.")
   x
