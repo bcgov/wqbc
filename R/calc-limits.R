@@ -138,21 +138,18 @@ average_30day_values_variable <- function (x) {
 }
 
 average_30day_values <- function (x) {
-  plyr::ddply(x, c("Variable"), average_30day_values_variable)
+  plyr::ddply(x, c("Variable", "Condition"), average_30day_values_variable)
 }
 
 calc_limits_by_30day <- function (x, dates) {
   ccodes <- get_conditional_codes(x$Condition[x$Term == "Long"])
   x <- dplyr::filter_(x, ~(!is.na(Term) & Term == "Long") | Code %in% ccodes)
   x <- dplyr::arrange_(x, ~Date)
+
   x <- assign_30day_periods(x, dates)
   x <- plyr::ddply(x, c("Period"), average_30day_values)
   x <- fill_in_conditional_codes(x, ccodes)
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
-
-  print("calc_limits_by_30day")
-  print(x)
-
   x <- dplyr::filter_(x, ~Term == "Long")
   x <- dplyr::filter_(x, ~!Conditional)
   x <- dplyr::filter_(x, ~Samples >= 5 & Span >= 21)
@@ -205,7 +202,6 @@ calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
 
   x <- clean_wqdata(x, by = by, messages = messages)
 
-  print(x)
   if(messages) message("Calculating ", paste0(term, "-term") ," water quality limits...")
 
   if(is.null(by)) {
