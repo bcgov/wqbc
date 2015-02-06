@@ -11,7 +11,7 @@ check_columns <- function (x, colnames) {
 
   bol <- colnames %in% colnames(x)
   if(!all(bol))
-    stop("x must contain columns ", punctuate_strings(colnames[!bol], "and"), ".")
+    stop("x must contain ", plural("column", sum(!bol) > 1, " "), punctuate_strings(colnames[!bol], "and"))
   TRUE
 }
 
