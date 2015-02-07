@@ -85,3 +85,18 @@ test_that("calc_wqis zero values", {
   expect_is(calc_wqis(ccme), "data.frame")
 })
 
+test_that("calc_wqis boot", {
+
+  opts <- options()
+  on.exit(options(opts))
+  options(wqbc.messages = FALSE)
+
+  data(ccme)
+
+  calc_wqis(ccme, ci = "column", cesi_code = FALSE)
+  calc_wqis(ccme, ci = "row", cesi_code = FALSE)
+  calc_wqis(ccme, ci = "column", cesi_code = TRUE)
+  calc_wqis(ccme, ci = "row", cesi_code = TRUE)
+})
+
+
