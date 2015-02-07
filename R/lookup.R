@@ -1,30 +1,36 @@
 #' Lookup Units
 #'
-#' Looks up a character vector of the recognised units.
+#' Returns a character vector of the recognised units.
 #'
 #' @examples
 #' lookup_units()
+#' @seealso \code{\link{lookup_limits}}
 #' @export
 lookup_units <- function () {
   c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH")
 }
 
-#' Get Codes
+#' Lookup Codes
 #'
-#' Gets the recognised water quality codes.
+#' Returns compressed recognised water quality EMS codes.
+#' If \code{variables = NULL} the function returns all recognised codes.
+#' Otherwise it first substitutes the provided variables for recognised
+#' variables using \code{\link{substitute_variables}} and then
+#' looks up the matching codes from \code{\link{codes}}.
 #'
-#' @param variables An optional character vector of variables to get codes for.
+#' @param variables An optional character vector of variables to lookup codes.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' lookup_codes()
-#' lookup_codes(c(lookup_variables()[1:3], "Kryptonite"))
+#' lookup_codes(c("Aluminum", "Arsenic Total", "Boron Something", "Kryptonite"),
+#'                messages = TRUE)
+#' @seealso \code{\link{lookup_limits}} and \code{\link{expand_ems_codes}}
 #' @export
 lookup_codes <- function (
   variables = NULL, messages = getOption("wqbc.messages", default = TRUE)) {
   if(is.null(variables)) return (wqbc_codes(compress = TRUE)$Code)
 
-  assert_that(is.character(variables) || is.factor(variables))
-  variables <- as.character(variables)
+  variables <- substitute_variables(variables, messages = messages)
   d <- dplyr::left_join(data.frame(Variable = variables, stringsAsFactors = FALSE),
                         wqbc_codes(compress = TRUE), by = "Variable")
   if(messages) messages_match_substitution(variables, d$Code, "replace")
@@ -34,15 +40,18 @@ lookup_codes <- function (
 
 #' Lookup Variables
 #'
-#' Looks up recognised water quality variables.
-#' Returns character vector of the water quality variables.
+#' Returns recognised water quality variables.
+#' If \code{codes = NULL} the function returns all recognised variable names.
+#' Otherwise it
+#' looks up the matching variables from \code{\link{codes}}. Whether or
+#' not the codes are compressed or expanded is unimportant.
 #'
-#' @param codes An optional character vector of the codes to get the variables for.
+#' @param codes An optional character vector of codes to look up variables.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' lookup_variables()
-#' lookup_variables(lookup_codes())
-#' lookup_variables(c(lookup_codes()[1:3], "KRYP"))
+#' lookup_variables(c("AL-D", "EMS_AS_T", "B--T", "KRYP"), messages = TRUE)
+#' @seealso \code{\link{lookup_limits}} and \code{\link{expand_ems_codes}}
 #' @export
 lookup_variables<- function (
   codes = NULL, messages = getOption("wqbc.messages", default = TRUE)) {
@@ -112,7 +121,8 @@ add_missing_limits <- function (x, term) {
 #' @param term A string indicating whether to lookup the "long" or "short"-term limits.
 #' @examples
 #' lookup_limits(ph = 8, hardness = 100, chloride = 50, methyl_mercury = 2)
-#' lookup_limits(ph = 8, hardness = 100, chloride = 50, methyl_mercury = 2, term = "short")
+#' lookup_limits(term = "short")
+#' @seealso \code{\link{calc_limits}}
 #' @export
 lookup_limits <- function (ph = NULL, hardness = NULL, chloride = NULL,
                            methyl_mercury =  NULL, term = "long") {
@@ -122,6 +132,7 @@ lookup_limits <- function (ph = NULL, hardness = NULL, chloride = NULL,
   assert_that(is.null(methyl_mercury) || (is.number(methyl_mercury) && noNA(methyl_mercury)))
   assert_that(is.string(term))
 
+  term <- tolower(term)
   if(!term %in% c("short", "long")) stop("term must be \"short\" or \"long\"")
 
   codes <- setup_codes()

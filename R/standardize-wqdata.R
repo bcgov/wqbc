@@ -13,24 +13,30 @@ standardize_wqdata_variable <- function (x, messages) {
 
 #' Standardize Water Quality Data
 #'
-#' Standardizes a water quality data set so that only recognised
-#' variables and units remain and values have consistent units.
-#' Negative or missing values are removed. When strict = FALSE
-#' ambiguous variables such as "Iron Dissolved"
-#' and "Iron Total" are dropped.
+#' Standardizes a water quality data set using \code{\link{substitute_variables}}
+#' and \code{\link{substitute_units}} so that all remaining values have the
+#' recognised codes and variables in \code{\link{codes}} and the standard
+#' units. If column Code is present then a Variable column is created using
+#' \code{\link{lookup_variables}}. The \code{standardize_wqdata} function
+#' is called by \code{clean_wqdata} prior to cleaning.
 #'
-#' @param x The data.frame to standardize.
-#' @param strict A flag indicating whether to require all words
-#' in a variable name to be present or only the first word.
-#' @param messages A flag indicating whether to print messages.
+#' @inheritParams substitute_variables
+#' @param x A data.frame to standardize.
+#' @param strict A flag that is passed to substitute_variables indicating
+#' whether to require all words in a recognised variable name to be
+#' present in x (strict = TRUE) or only the first one (strict = FALSE)
 #' @examples
 #' standardize_wqdata(wqbc::dummy, messages = TRUE)
+#' @seealso \code{\link{clean_wqdata}}
+#' @aliases standardise_wqdata
 #' @export
 standardize_wqdata <- function (
   x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.flag(strict) && noNA(strict))
   assert_that(is.flag(messages) && noNA(messages))
+
+  check_rows(x)
 
   if("Code" %in% colnames(x)) {
     if(messages) message ("Converting Codes to Variables...")
@@ -44,14 +50,14 @@ standardize_wqdata <- function (
 
   check_columns(x, c("Variable", "Value", "Units"))
 
-  if(is.factor(x$Variable)) x$Variable <- as.character(x$Variable)
-  if(is.factor(x$Units)) x$Units <- as.character(x$Units)
-
-  check_class_columns(x, list("Variable" = "character",
+  check_class_columns(x, list("Variable" = c("character", "factor"),
                               "Value" = "numeric",
-                              "Units" = "character"))
+                              "Units" = c("character", "factor")))
 
-  if(!nrow(x)) { if(messages) message("Standardized."); return (x) }
+  x <- delete_rows_with_certain_values(x, columns = c("Value"),
+                                       messages = messages, txt = "negative or missing")
+
+  if(!nrow(x)) { if(messages) message("Standardized water quality data."); return (x) }
 
   x$Variable <- substitute_variables(x$Variable, strict = strict, messages = messages)
   x$Units <- substitute_units(x$Units, messages = messages)
@@ -59,12 +65,10 @@ standardize_wqdata <- function (
   is.na(x$Variable[!x$Variable %in% lookup_variables()]) <- TRUE
   is.na(x$Units[!x$Units %in% lookup_units()]) <- TRUE
 
-  x <- delete_rows_with_certain_values(x, columns = c("Variable", "Value", "Units"),
+  x <- delete_rows_with_certain_values(x, columns = c("Variable", "Units"),
                                        messages = messages)
-  x <- delete_rows_with_certain_values(x, columns = c("Variable", "Value", "Units"),
-                                       messages = messages, txt = "negative")
 
-  if(!nrow(x)) { if(messages) message("Standardized."); return (x) }
+  if(!nrow(x)) { if(messages) message("Standardized water quality data."); return (x) }
 
   x <- plyr::ddply(x, .variables = "Variable",
                    .fun = standardize_wqdata_variable, messages = messages)

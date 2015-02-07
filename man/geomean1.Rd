@@ -12,9 +12,10 @@ geomean1(x, na.rm = FALSE)
 \item{na.rm}{A flag indicating whether to remove missing values.}
 }
 \description{
-Calculates geometric mean by adding 1 before logging
-and subtracting 1 before exponentiating so that
-geometric mean of
+Calculates the geometric mean by adding 1 before logging
+and subtracting 1 before exponentiating so that provides results
+even with zero counts. Not used by any wqbc functions but provided
+as may be helpful if averaging bacterial counts.
 }
 \examples{
 mean(0:9)

@@ -17,8 +17,8 @@ get_excursions <- function (value, lower = NA_real_, upper = NA_real_) {
 
 #' Categorize Water Quality Indices
 #'
-#' Categorizes WQI values between 1 and 100 into
-#' the CCME categories.
+#' Categorizes numbers between 1 and 100 into
+#' the categories defined in the CCME Water Quality Index 1.0 User's Manual.
 #' @param x A numeric vector of the WQI values to categorize.
 #' @examples
 #' categorize_wqi(seq(1,100,by = 5))
@@ -113,7 +113,7 @@ fourtimesfour <- function (x) {
   nrow(x) >= 4
 }
 
-calc_wqi <- function (x, ci, cesi_code, messages) {
+calc_wqi_by <- function (x, ci, cesi_code, messages) {
 
   x$Excursion <- get_excursions(x$Value, x$LowerLimit, x$UpperLimit)
   check_excursions(x)
@@ -153,23 +153,38 @@ set_detection_limits <- function (x, messages) {
   x
 }
 
-#' Calculate Water Quality Indices (WQIs)
+#' Calculate Water Quality Index (WQI)
 #'
-#' Calculates water quality indices.
+#' Calculates a water quality index for a series of variables, values with upper limits
+#' and optionally lower limits using the method detailed in the
+#' CCME Water Quality Index 1.0 User's Manual.
 #'
-#' @param x The data.frame to perform the calculations on.
-#' @param by A character vector of the columns to perform the calculations by.
-#' @param ci A string indicating whether to calculate bootstrap confidence
-#' intervals by "row" or "column" or "none".
-#' @param cesi_code A flag indicating whether to use wqbc or cesi code to calculate the
-#' confidence intervals.
+#' @details The upper limits can be generated using the \code{\link{calc_limits}} function
+#' or can be provided by the user. In fact if x lacks both upper and lower limits
+#' then the \code{calc_limits} function is automatically called prior to
+#' calculating the WQI. If values are zero and detection limits are provided
+#' then the values are set to be the detection limits. This is important when
+#' the variable has lower limits because otherwise the excursion will be infinity
+#' and it will not be possible to calculate the WQI. In this case \code{calc_wqi}
+#' throws an informative error. Finally it is important to note that in order
+#' for the WQI to be calculated the data set must include four variables each
+#' with non-missing values on at least four separate days.
+#'
+#' @param x A data.frame to calculate the WQI for.
+#' @param by An optional character vector of the columns in x to calculate the WQI by.
+#' @param ci A string indicating whether to calculate 95% bootstrap confidence
+#' intervals by "row" or "column" or "none". Currently the confidence intervals are
+#' considered unreliable and should not be used.
+#' @param cesi_code A temporary flag indicating whether to use wqbc or cesi code to calculate the
+#' confidence intervals. This argument should be removed prior to release of the package.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' data(ccme)
-#' calc_wqis(ccme)
-#' calc_wqis(ccme, by = "Date")
+#' calc_wqi(ccme, messages = TRUE)
+#' calc_wqi(ccme, by = "Date", messages = TRUE)
+#' @seealso \code{\link{calc_limits}} and \code{\link{wqbc}}
 #' @export
-calc_wqis <- function (x, by = NULL, ci = "row", cesi_code = FALSE,
+calc_wqi <- function (x, by = NULL, ci = "row", cesi_code = FALSE,
                        messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
@@ -220,9 +235,9 @@ calc_wqis <- function (x, by = NULL, ci = "row", cesi_code = FALSE,
   check_rows(x)
 
   if(is.null(by)) {
-    x <- calc_wqi(x, ci = ci, cesi_code = cesi_code, messages = messages)
+    x <- calc_wqi_by(x, ci = ci, cesi_code = cesi_code, messages = messages)
   } else {
-    x <- plyr::ddply(x, .variables = by, .fun = calc_wqi, ci = ci, cesi_code = cesi_code,
+    x <- plyr::ddply(x, .variables = by, .fun = calc_wqi_by, ci = ci, cesi_code = cesi_code,
                      messages = messages)
   }
   if(messages) message("Calculated water quality indices.")

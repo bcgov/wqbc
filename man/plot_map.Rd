@@ -5,32 +5,34 @@
 \title{Plot Map}
 \usage{
 plot_map(data, x = "Long", y = "Lat", size = 3, shape = 21, fill = 10,
-  theme = theme_map(), keep = NULL, input_proj = NULL)
+  keep = NULL, input_proj = NULL)
 }
 \arguments{
-\item{data}{data.frame to plot}
+\item{data}{A data.frame with spatial information to map.}
 
-\item{x}{string of column in data to plot on x axis}
+\item{x}{A string of the column in data to plot on the x axis.}
 
-\item{y}{string of column in data to plot on y axis}
+\item{y}{A string of the column in data to plot on the y axis.}
 
-\item{size}{number of point size or string of column in data to plot size of points}
+\item{size}{A number of the point size or a string of the column in data
+to represent by the size of points.}
 
-\item{shape}{integer of point shape (permitted values are 21 to 25) or string of column in data to plot shape of points}
+\item{shape}{An integer of the point shape (permitted values are 21 to 25)
+or a string of the column in data to represent by the shape of points.}
 
-\item{fill}{integer of point fill or string of column in data to plot fill of points}
+\item{fill}{An integer of the point fill colour or a string of the column in data to represent
+by the fill colour of points.}
 
-\item{theme}{ggplot theme}
+\item{keep}{An optional character vector indicating which columns to keep
+in addition to x and y to keep before dropping duplicated rows to
+avoid overplotting.}
 
-\item{keep}{NULL or character vector indicating which columns to keep
-in addition to x and y before avoiding overplotting by dropping duplicated rows}
-
-\item{input_proj}{a valid proj4string. Defaults to longlat/NAD83
-(\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})}
+\item{input_proj}{An optional valid proj4string. Defaults to
+(\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"}).}
 }
 \description{
-Creates ggplot2 object with map polygon,
-coord_fixed and theme_minimal. If any columns are required
+Creates a ggplot2 object with a polygon of British Columbia.
+If any columns are required
 for additional layers in the plot or facetting then
 they should be specified in the keep argument.
 }
@@ -45,5 +47,8 @@ plot_map(fraser)
 \dontrun{
  demo(fraser)
 }
+}
+\seealso{
+\code{\link{plot_map_wqis}}
 }
 

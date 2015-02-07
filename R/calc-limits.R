@@ -101,7 +101,7 @@ abs_days_diff <- function (x, y) {
 }
 
 assign_30day_periods <- function (x, dates) {
-  dates <- unique(dates)
+  dates <- sort(unique(dates))
   y <- unique(dplyr::select_(x, ~Date))
   y <- dplyr::arrange_(y, ~Date)
   is.na(y$Period) <- NA
@@ -173,20 +173,40 @@ calc_limits_by <- function (x, term, dates) {
   x
 }
 
-#' Calculates Water Quality limits
+#' Calculate Limits
 #'
-#' Calculates the approved upper water quality thresholds for
-#' British Columbia.
+#' Calculates the approved "short" or "long"-term
+#' upper water quality thresholds for freshwater life in British Columbia.
+#' The water quality data is automatically cleaned using \code{\link{clean_wqdata}}
+#' prior to calculating the limits to ensure: all variables are recognised,
+#' all values are non-negative and in the standard units, divergent replicates
+#' are filtered and all remaining replicates are averaged. Only limits whose
+#' conditions are met are returned.
 #'
-#' @param x The data.frame to perform the calculations on.
-#' @param by A character vector of the columns to perform the calculations by.
-#' @param term A string indicating whether to calculate long-term or short-term limits.
-#' @param dates A date vector indicating the start of each 30 day period.
+#' @details If a limit depends on another variable
+#' such as pH or Total Hardness and no value was recorded for the date of interest
+#' then the pH or Total Hardness value is assumed to be the average recorded value.
+#' When considering long-term limits there must be at least 5 values
+#' spanning 21 days. As replicates are averaged prior to calculating the limits
+#' each of the 5 values must be on a separate day. The first 30 day period
+#' begin at the date of the first reading while the next 30 day period
+#' starts at the date of the first reading after the previous period and so on.
+#' The only exception to this is if the user provides dates in which case each
+#' period extends for 30 days or until a provided date is reached. It is important
+#' to note that the averaging of conditional variables, the 5 in 30 rule
+#' and the assignment of 30 day periods occurs independently for all combination
+#' of factor levels in the columns specified by by.
+#'
+#' @param x A data.frame of water quality readings to calculate the limits for.
+#' @param by A optional character vector of the columns in x to calculate the limits by.
+#' @param term A string indicating whether to calculate the "long" or "short"-term limits.
+#' @param dates A optional date vector indicating the start of 30 day long-term periods.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' \dontrun{
 #' demo(fraser)
 #' }
+#' @seealso \code{\link{calc_wqi}}, \code{\link{clean_wqdata}} and \code{\link{lookup_limits}}
 #' @export
 calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
                          messages = getOption("wqbc.messages", default = TRUE)) {

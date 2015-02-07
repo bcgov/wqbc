@@ -54,7 +54,7 @@ delete_rows_with_certain_values <- function (x, columns, messages, txt = "missin
     fun <- function (x) !is.na(x) & x < 0
   }  else if(txt == "zero") {
     fun <- function (x) !is.na(x) & x == 0
-  } else if (txt %in% c("missing or negative", "missing or negative")) {
+  } else if (txt %in% c("missing or negative", "negative or missing")) {
     fun <- function (x) is.na(x) | x < 0
   } else stop()
 

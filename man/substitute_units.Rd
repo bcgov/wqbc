@@ -12,13 +12,15 @@ substitute_units(x, messages = getOption("wqbc.messages", default = TRUE))
 \item{messages}{A flag indicating whether to print messages.}
 }
 \description{
-Where possible substitute units with
-recognised values. Returns a character vector of the substituted or original units.
+Substitutes provided unit names for recognised units.
+Before matching all spaces and "units" or "UNITS" are removed.
+The case is not important. Where
+there are no matches missing values are returned.
 }
 \examples{
-substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "gkl", "CFU/100ML"))
-substitute_units(c("MG/L", "MG/L", "MG/L"))
-substitute_units("gkl")
-substitute_units(c(NA, "mg/L"))
+substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "gkl"), messages = TRUE)
+}
+\seealso{
+\code{\link{substitute_variables}}
 }
 

@@ -54,30 +54,28 @@ get_category_colours <- function () {
 
 #' Plot Water Quality Indices
 #'
-#' Creates ggplot2 object with
-#' y-limits expanded to include 0 and 100.
+#' Creates a ggplot2 scatterplot object with the
+#' y-limits expanded to include 0 and 100. Water Quality Index categories are
+#' indicated by the fill colour of points.
 #'
-#' @param data data.frame to plot
-#' @param x string of column in data to plot on x axis
-#' @param size number of point size or string of column in data
-#' to plot size of points
-#' @param shape integer of point shape (permitted values are 21 to 25)
-#' or string of column in data to plot shape of points
-#' @param theme ggplot theme
+#' @param data A data.frame of WQI values to plot.
+#' @param x A string of the column in data to plot on the x axis.
+#' @param size A number of the point size or string of the column in data
+#' to represent by the size of points.
+#' @param shape An integer of the point shape (permitted values are 21 to 25)
+#' or string of the column in data to represent by the shape of points.
 #' @examples
-#' library(ggplot2)
-#'
-#' data(ccme)
-#' plot_wqis(calc_wqis(ccme))
+#' \dontrun{
+#'  demo(fraser)
+#' }
+#' @seealso \code{\link{plot_map_wqis}}
 #' @export
-plot_wqis <- function (
-  data, x = "Tests", size = 3, shape = 21, theme = theme_wqis()) {
+plot_wqis <- function (data, x = "Tests", size = 3, shape = 21) {
 
   assert_that(is.data.frame(data))
   assert_that(is.string(x))
   assert_that(is.number(size) || is.string(size))
   assert_that(is.count(shape) || is.string(shape))
-  assert_that(ggplot2::is.theme(theme))
 
   if(!requireNamespace("ggplot2", quietly = TRUE))
     stop("ggplot2 package not installed")
@@ -95,7 +93,7 @@ plot_wqis <- function (
   gp <- ggplot2::ggplot(data = data, ggplot2::aes_string(x = x, y = "WQI")) +
     ggplot2::expand_limits(y = c(0, 100)) +
     ggplot2::scale_fill_manual(values = get_category_colours()) +
-    ggplot2::ylab("Water Quality Index") + theme
+    ggplot2::ylab("Water Quality Index") + theme_wqis()
 
   gp <- gp + aes_string_point(
     head = "ggplot2::geom_point(ggplot2::aes_string(fill = 'Category'",
@@ -127,22 +125,25 @@ proj_bc <- function (data, x, y, input_proj = NULL) {
 
 #' Plot Map
 #'
-#' Creates ggplot2 object with map polygon,
-#' coord_fixed and theme_minimal. If any columns are required
+#' Creates a ggplot2 object with a polygon of British Columbia.
+#' If any columns are required
 #' for additional layers in the plot or facetting then
 #' they should be specified in the keep argument.
 #'
-#' @param data data.frame to plot
-#' @param x string of column in data to plot on x axis
-#' @param y string of column in data to plot on y axis
-#' @param size number of point size or string of column in data to plot size of points
-#' @param shape integer of point shape (permitted values are 21 to 25) or string of column in data to plot shape of points
-#' @param fill integer of point fill or string of column in data to plot fill of points
-#' @param theme ggplot theme
-#' @param keep NULL or character vector indicating which columns to keep
-#' in addition to x and y before avoiding overplotting by dropping duplicated rows
-#' @param input_proj a valid proj4string. Defaults to longlat/NAD83
-#' (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})
+#' @param data A data.frame with spatial information to map.
+#' @param x A string of the column in data to plot on the x axis.
+#' @param y A string of the column in data to plot on the y axis.
+#' @param size A number of the point size or a string of the column in data
+#' to represent by the size of points.
+#' @param shape An integer of the point shape (permitted values are 21 to 25)
+#' or a string of the column in data to represent by the shape of points.
+#' @param fill An integer of the point fill colour or a string of the column in data to represent
+#' by the fill colour of points.
+#' @param keep An optional character vector indicating which columns to keep
+#' in addition to x and y to keep before dropping duplicated rows to
+#' avoid overplotting.
+#' @param input_proj An optional valid proj4string. Defaults to
+#' (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"}).
 #' @examples
 #' library(ggplot2)
 #' library(sp)
@@ -154,9 +155,10 @@ proj_bc <- function (data, x, y, input_proj = NULL) {
 #' \dontrun{
 #'  demo(fraser)
 #' }
+#' @seealso \code{\link{plot_map_wqis}}
 #' @export
 plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill = 10,
-                      theme = theme_map(), keep = NULL, input_proj = NULL) {
+                      keep = NULL, input_proj = NULL) {
 
   assert_that(is.data.frame(data))
   assert_that(is.string(x))
@@ -164,7 +166,6 @@ plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill =
   assert_that(is.number(size) || is.string(size))
   assert_that(is.count(shape) || is.string(shape))
   assert_that(is.count(fill) || is.string(fill))
-  assert_that(ggplot2::is.theme(theme))
   assert_that(is.null(keep) || is.character(keep))
   assert_that(is.null(input_proj) || is.string(input_proj))
 
@@ -190,7 +191,7 @@ plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill =
       data = map,
       ggplot2::aes_string(x = "Long", y = "Lat", group = "Group"),
       fill = "grey80", size = 0.5, colour = "grey50"
-    ) + ggplot2::coord_fixed() + theme
+    ) + ggplot2::coord_fixed() + theme_map()
 
   gp <- gp + aes_string_point(size = size, shape = shape, fill = fill)
 
@@ -199,29 +200,24 @@ plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill =
   gp
 }
 
-#' Plot Map of Water Quality Indices
+#' Plot Map of Water Quality Index Categories.
 #'
-#' Creates ggplot2 object with map polygon,
-#' coord_fixed and theme_minimal and fill based
-#' on WQI categories.
+#' Creates a ggplot2 object with a polygon of British Columbia with
+#' the Water Quality Index categories indicated by the fill colour of points.
 #'
 #' @inheritParams plot_wqis
-#' @param y string of column in data to plot on y axis
-#' @param keep NULL or character vector indicating which columns to keep
-#' in addition to x and y before avoiding overplotting by dropping duplicated rows.
-#' @param input_proj a valid proj4string. Defaults to longlat/NAD83
-#' (\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})
+#' @inheritParams plot_map
 #' @examples
 #' \dontrun{
 #'  demo(fraser)
 #' }
+#' @seealso \code{\link{plot_wqis}} and \code{\link{plot_map}}
 #' @export
 plot_map_wqis <- function (
-  data,  x = "Long", y = "Lat", size = 3, shape = 21,
-  theme = theme_map(), keep = NULL, input_proj = NULL) {
+  data,  x = "Long", y = "Lat", size = 3, shape = 21, keep = NULL, input_proj = NULL) {
 
   gp <- plot_map( data = data, x = x, y = y, size = size, shape = shape,
-                  fill = "Category", theme = theme, keep = keep,
+                  fill = "Category", keep = keep,
                   input_proj = input_proj)
 
   gp + ggplot2::scale_fill_manual(values = get_category_colours())

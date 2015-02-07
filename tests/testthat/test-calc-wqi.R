@@ -22,7 +22,7 @@ test_that("ccme", {
 
   data(ccme)
 
-  x <- calc_wqis(ccme, ci = "column")
+  x <- calc_wqi(ccme, ci = "column")
 
   expect_is(x, "data.frame")
   expect_equal(nrow(x), 1)
@@ -33,44 +33,44 @@ test_that("ccme", {
   expect_equal(as.character(x$Category), "Good")
 
   is.na(ccme$Value[ccme$Variable == "DO" & ccme$Date == as.Date("1994-03-04")]) <- TRUE
-  x <- calc_wqis(ccme)
+  x <- calc_wqi(ccme)
   expect_equal(x$Variables, 10)
   expect_equal(x$Tests, 102)
   expect_equal(x$WQI, 88.1)
   is.na(ccme$Value[ccme$Variable == "As"]) <- TRUE
-  x <- calc_wqis(ccme)
+  x <- calc_wqi(ccme)
   expect_equal(x$Variables, 9)
   expect_equal(x$Tests, 90)
   expect_equal(x$WQI, 86.8)
   is.na(ccme$Value[ccme$Variable == "As"]) <- TRUE
 })
 
-test_that("calc_wqis by", {
+test_that("calc_wqi by", {
   opts <- options()
   on.exit(options(opts))
   options(wqbc.messages = FALSE)
 
   data(ccme)
-  x <- calc_wqis(ccme, by = "Date")
+  x <- calc_wqi(ccme, by = "Date")
 
   expect_is(x, "data.frame")
   expect_equal(nrow(x), 0)
   expect_equal(colnames(x), c("Date", "WQI", "Lower", "Upper", "Category", "Variables", "Tests", "F1", "F2", "F3"))
 })
 
-test_that("calc_wqis missing columns", {
+test_that("calc_wqi missing columns", {
   opts <- options()
   on.exit(options(opts))
   options(wqbc.messages = FALSE)
 
-  expect_error(calc_wqis(data.frame()), regexp = "x must contain at least one row of data")
-  expect_error(calc_wqis(data.frame(Value = 1)), regexp = "x must contain columns Variable and Units")
-  expect_error(calc_wqis(data.frame(Variable = 1)), regexp = "x must contain columns Value and Units")
-  expect_error(calc_wqis(data.frame(Units = 1)), regexp = "x must contain columns Variable and Value")
-  expect_error(calc_wqis(data.frame(Value = 1, Variable = 1)), regexp = "x must contain column Units")
+  expect_error(calc_wqi(data.frame()), regexp = "x must contain at least one row of data")
+  expect_error(calc_wqi(data.frame(Value = 1)), regexp = "x must contain columns Variable and Units")
+  expect_error(calc_wqi(data.frame(Variable = 1)), regexp = "x must contain columns Value and Units")
+  expect_error(calc_wqi(data.frame(Units = 1)), regexp = "x must contain columns Variable and Value")
+  expect_error(calc_wqi(data.frame(Value = 1, Variable = 1)), regexp = "x must contain column Units")
 })
 
-test_that("calc_wqis zero values", {
+test_that("calc_wqi zero values", {
 
   opts <- options()
   on.exit(options(opts))
@@ -78,14 +78,14 @@ test_that("calc_wqis zero values", {
 
   data(ccme)
   x <- data.frame(Variable = "Zinc Total", Value = 0, Units = "ug/L")
-  expect_is(calc_wqis(ccme), "data.frame")
+  expect_is(calc_wqi(ccme), "data.frame")
   ccme$Value <- 0
-  expect_error(calc_wqis(ccme), regexp = "Variables DO and pH have a LowerLimit and one or more zero Values with no defined DetectionLimit")
+  expect_error(calc_wqi(ccme), regexp = "Variables DO and pH have a LowerLimit and one or more zero Values with no defined DetectionLimit")
   ccme$DetectionLimit <- 1
-  expect_is(calc_wqis(ccme), "data.frame")
+  expect_is(calc_wqi(ccme), "data.frame")
 })
 
-test_that("calc_wqis boot", {
+test_that("calc_wqi boot", {
 
   opts <- options()
   on.exit(options(opts))
@@ -93,10 +93,10 @@ test_that("calc_wqis boot", {
 
   data(ccme)
 
-  calc_wqis(ccme, ci = "column", cesi_code = FALSE)
-  calc_wqis(ccme, ci = "row", cesi_code = FALSE)
-  calc_wqis(ccme, ci = "column", cesi_code = TRUE)
-  calc_wqis(ccme, ci = "row", cesi_code = TRUE)
+  calc_wqi(ccme, ci = "column", cesi_code = FALSE)
+  calc_wqi(ccme, ci = "row", cesi_code = FALSE)
+  calc_wqi(ccme, ci = "column", cesi_code = TRUE)
+  calc_wqi(ccme, ci = "row", cesi_code = TRUE)
 })
 
 

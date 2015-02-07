@@ -11,9 +11,13 @@ compress_ems_codes(x)
 }
 \description{
 Compresses EMS codes by removing EMS_ from
-start and replacing all '_' with '-'.
+start and replacing all '_' with '-'. This function is provided
+because wqbc stored EMS codes in expanded form.
 }
 \examples{
 compress_ems_codes(c("EMS_0014", "EMS_KR-P", "0-15"))
+}
+\seealso{
+\code{\link{expand_ems_codes}}
 }
 

@@ -2,21 +2,29 @@
 % Please edit documentation in R/lookup.R
 \name{lookup_codes}
 \alias{lookup_codes}
-\title{Get Codes}
+\title{Lookup Codes}
 \usage{
 lookup_codes(variables = NULL, messages = getOption("wqbc.messages", default
   = TRUE))
 }
 \arguments{
-\item{variables}{An optional character vector of variables to get codes for.}
+\item{variables}{An optional character vector of variables to lookup codes.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
 \description{
-Gets the recognised water quality codes.
+Returns compressed recognised water quality EMS codes.
+If \code{variables = NULL} the function returns all recognised codes.
+Otherwise it first substitutes the provided variables for recognised
+variables using \code{\link{substitute_variables}} and then
+looks up the matching codes from \code{\link{codes}}.
 }
 \examples{
 lookup_codes()
-lookup_codes(c(lookup_variables()[1:3], "Kryptonite"))
+lookup_codes(c("Aluminum", "Arsenic Total", "Boron Something", "Kryptonite"),
+               messages = TRUE)
+}
+\seealso{
+\code{\link{lookup_limits}} and \code{\link{expand_ems_codes}}
 }
 

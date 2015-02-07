@@ -7,9 +7,12 @@
 lookup_units()
 }
 \description{
-Looks up a character vector of the recognised units.
+Returns a character vector of the recognised units.
 }
 \examples{
 lookup_units()
+}
+\seealso{
+\code{\link{lookup_limits}}
 }
 

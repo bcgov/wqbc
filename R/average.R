@@ -1,8 +1,9 @@
 #' Geometric Mean Plus-Minus 1
 #'
-#' Calculates geometric mean by adding 1 before logging
-#' and subtracting 1 before exponentiating so that
-#' geometric mean of
+#' Calculates the geometric mean by adding 1 before logging
+#' and subtracting 1 before exponentiating so that provides results
+#' even with zero counts. Not used by any wqbc functions but provided
+#' as may be helpful if averaging bacterial counts.
 #' @param x A numeric vector of non-negative numbers.
 #' @param na.rm A flag indicating whether to remove missing values.
 #' @examples

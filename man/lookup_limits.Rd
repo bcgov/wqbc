@@ -26,6 +26,9 @@ as missing values.
 }
 \examples{
 lookup_limits(ph = 8, hardness = 100, chloride = 50, methyl_mercury = 2)
-lookup_limits(ph = 8, hardness = 100, chloride = 50, methyl_mercury = 2, term = "short")
+lookup_limits(term = "short")
+}
+\seealso{
+\code{\link{calc_limits}}
 }
 

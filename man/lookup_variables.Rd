@@ -8,17 +8,22 @@ lookup_variables(codes = NULL, messages = getOption("wqbc.messages", default
   = TRUE))
 }
 \arguments{
-\item{codes}{An optional character vector of the codes to get the variables for.}
+\item{codes}{An optional character vector of codes to look up variables.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
 \description{
-Looks up recognised water quality variables.
-Returns character vector of the water quality variables.
+Returns recognised water quality variables.
+If \code{codes = NULL} the function returns all recognised variable names.
+Otherwise it
+looks up the matching variables from \code{\link{codes}}. Whether or
+not the codes are compressed or expanded is unimportant.
 }
 \examples{
 lookup_variables()
-lookup_variables(lookup_codes())
-lookup_variables(c(lookup_codes()[1:3], "KRYP"))
+lookup_variables(c("AL-D", "EMS_AS_T", "B--T", "KRYP"), messages = TRUE)
+}
+\seealso{
+\code{\link{lookup_limits}} and \code{\link{expand_ems_codes}}
 }
 

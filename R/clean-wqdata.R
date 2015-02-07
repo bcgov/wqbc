@@ -48,9 +48,16 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 
 #' Clean Water Quality Data
 #'
-#' Cleans water quality data. After standardization replicates are averaged.
-#' If there are three or more values with a coefficient of variation (CV) in
-#' exceedance of \code{max_cv} then the value with the highest absolute deviation
+#' Cleans water quality data. After standardization using \code{\link{standardize_wqdata}}
+#' replicates (two or more readings for the same variable on the same date) are averaged
+#' using the \code{mean} function.
+#' Readings for the same variable on the same date but at different levels of the
+#' columns specified in by are not considered replicates. The \code{clean_wqdata}
+#' function is automatically called by \code{\link{calc_limits}} prior
+#' to calculating limits.
+#'
+#' @details If there are three or more replicates with a coefficient of variation (CV) in
+#' exceedance of \code{max_cv} then the replicates with the highest absolute deviation
 #' is dropped until the CV is less than or equal to \code{max_cv}
 #' or only two values remain. The default value max_cv value of 1.29
 #' is exceeded by two zero and one positive value (CV = 1.73)
@@ -58,13 +65,14 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 #' or magnitude greater (CV = 1.30). It is not exceed by one zero
 #' and two identical positive values (CV = 0.87).
 #'
-#' @param x The data.frame to perform the calculations on.
-#' @param by A character vector of the columns to perform the calculations by.
+#' @param x The data.frame to clean.
+#' @param by A character vector of the columns in x to perform the cleaning by.
 #' @param max_cv A number indicating the maximum permitted coefficient
 #' of variation for replicates.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' clean_wqdata(wqbc::dummy, messages = TRUE)
+#' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
 #' @export
 clean_wqdata <- function (x, by = NULL, max_cv = 1.29,
                           messages = getOption("wqbc.messages", default = TRUE)) {

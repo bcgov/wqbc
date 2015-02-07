@@ -11,9 +11,13 @@ expand_ems_codes(x)
 }
 \description{
 Expands EMS codes by adding EMS_ to start if absent
-and replacing all '-' with '_'.
+and replacing all '-' with '_'. This function is provided
+because wqbc stored EMS codes in expanded form.
 }
 \examples{
 expand_ems_codes(c("0014", "KR-P", "0_15", "EMS_ZN_T"))
+}
+\seealso{
+\code{\link{compress_ems_codes}}
 }
 
