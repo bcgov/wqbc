@@ -1,3 +1,13 @@
+# This program is intended to find bootstrap confidence interval for
+
+# different components of WQI.
+
+#
+
+#library(boot) # needed for row-wise bootstrapping
+
+
+
 AllInd<-function(DtObj,i=1:nrow(DtObj)){
 
 # We find F1, F2, F3 and WQI. Here DtObj is the ratio of Data and Objective
@@ -23,24 +33,43 @@ AllInd<-function(DtObj,i=1:nrow(DtObj)){
   TestAllNA<-apply(DtObj,2,function(x) sum(is.na(x))!=N)
 
   ActP<-sum(TestAllNA) # Actual P, remove variables which have all
+
                        # entries as NA
 
   FailCases<-DtObj>1
+
   FailedVar<-apply(FailCases,2,any,na.rm=TRUE)
+
   F1<-sum(FailedVar, na.rm=TRUE)/ActP*100
+
   F2<-sum(FailCases, na.rm=TRUE)/NP1*100
+
   nse<-(sum(DtObj[DtObj>1],na.rm=TRUE)-sum(DtObj>1,na.rm=TRUE))/NP1
+
   F3<-nse/(nse+1)*100
+
   WQI<-100-sqrt(F1^2+F2^2+F3^2)/1.732
+
   c(F1=F1,F2=F2,F3=F3,WQI=WQI)
+
 }
+
+
+
+
+
+
 
 BootIndex<-function(DataByObj, R=10000){
 
 # This function finds the estimates in column-wise bootstraping procedure.
+
 #
+
 # DataByObj : Data divided by objective (accordingly)
+
 # R         : Number of bootstrap simulations
+
 #
 
   N<-nrow(DataByObj)
