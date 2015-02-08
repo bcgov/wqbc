@@ -21,15 +21,16 @@ test_that("lookup_codes lookup_variables", {
 })
 test_that("lookup_limits", {
   x<-lookup_limits()
-  expect_is(x,"data.frame")
-  expect_equal(nrow(x),23)
-  expect_equal(ncol(x),3)
+  expect_is(x,"data.frame")                                                 #check if lookup_limits is a data frame
+  expect_equal(nrow(x),23)                                                  #check if lookup_limits has 23 rows
+  expect_equal(ncol(x),3)                                                   #check if loopup_limits has 3 columns
   y<-lookup_limits(term="long")
-
-  expect_identical(x,y)
-  expect_equal(x$UpperLimit[x$Variable=="Arsenic Total"],5)
-  expect_equal(as.character(x$Unit[x$Variable=="Arsenic Total"]),"ug/L")
+  expect_identical(x,y)                                                     #check if lookup_limits() and lookup_limits(term="long")
+  expect_equal(x$UpperLimit[x$Variable=="Arsenic Total"],5)                 #check if Arsenic Total has an upperlimits with 5
+  expect_equal(as.character(x$Unit[x$Variable=="Arsenic Total"]),"ug/L")    #check if Arsenic Total has unit ug/L
   z<-lookup_limits(term="long", ph=9)
+  expect_equal(z$UpperLimit[z$Variable=="Aluminium Dissolved"],0.050)       #check if Aluminium Dissolved with ph=9 and long term
 
-  expect_equal(z$UpperLimit[z$Variable=="Aluminium Dissolved"],0.050)
+
+
 })
