@@ -1,7 +1,7 @@
 library(wqbc)
 library(devtools)
-library(dplyr)
 library(plyr)
+library(dplyr)
 library(magrittr)
 
 fraser <- read.csv("data-raw/fraser.csv")
@@ -12,18 +12,16 @@ fraser %<>% select(
   Variable = variable_name,
   Value = value,
   Units = unit_code,
-  DetectionLimit = method_detect_limit,
   Site = station_name,
   Lat = latitude,
   Long = longitude
 )
 
-is.na(fraser$Value[fraser$Value == -999.999]) <- TRUE
 fraser$Date %<>% as.Date
 
-fraser %<>% filter(!is.na(Value))
-fraser %<>% filter(substitute_units(Units) %in% get_units())
-fraser %<>% filter(substitute_variables(Variable) %in% get_variables())
+fraser <- na.omit(fraser)
+fraser %<>% filter(wqbc:::substitute_units(Units, messages = TRUE) %in% get_units())
+fraser %<>% filter(wqbc:::substitute_variables(Variable, strict = TRUE, messages = TRUE) %in% get_variables())
 
 # check for and flip sign of positive longitude values
 fraser$Long <- ifelse(fraser$Long > 0, fraser$Long * -1, fraser$Long)

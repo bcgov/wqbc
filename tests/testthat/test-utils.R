@@ -46,4 +46,3 @@ test_that("geomean1", {
   expect_error(geomean1(-1))
   expect_equal(geomean1(0:9), 3.528729, tolerance = 10^-6)
 })
-

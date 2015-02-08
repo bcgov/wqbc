@@ -1,7 +1,3 @@
-#' Water Quality Index Theme
-#'
-#' @seealso \code{\link{plot_wqis}}
-#' @export
 theme_wqis <- function () {
   if(!requireNamespace("ggplot2", quietly = TRUE))
     stop("ggplot2 package not installed")
@@ -9,10 +5,6 @@ theme_wqis <- function () {
   ggplot2::theme_bw()
 }
 
-#' Map Theme
-#'
-#' @seealso \code{\link{plot_map}}
-#' @export
 theme_map <- function () {
   if(!requireNamespace("ggplot2", quietly = TRUE))
     stop("ggplot2 package not installed")

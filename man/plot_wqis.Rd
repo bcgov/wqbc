@@ -24,16 +24,12 @@ ggplot2 object
 }
 \description{
 Creates ggplot2 object with
-y-limits expanded to include 0 and 100 and defined fill scale
-for the WQI values corresponding by default to get_category_colours()
+y-limits expanded to include 0 and 100.
 }
 \examples{
 library(ggplot2)
 
 data(ccme)
 plot_wqis(calc_wqis(ccme))
-}
-\seealso{
-\code{\link{get_category_colours}}
 }
 

@@ -1,6 +1,7 @@
 context("calc-limits")
 
 test_that("calc_limits single limit", {
+
   expect_error(calc_limits(1))
   date <- as.Date("2000-01-01")
   variable <- "Phosphorus Total"
@@ -25,6 +26,7 @@ test_that("calc_limits single limit", {
   expect_identical(x$Value, 5)
   expect_true(is.na(x$LowerLimit))
   expect_identical(x$UpperLimit, 5)
+
 
 })
 

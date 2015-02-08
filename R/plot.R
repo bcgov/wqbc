@@ -43,15 +43,6 @@ aes_string_point <- function (head = "ggplot2::geom_point(ggplot2::aes_string(",
   expr
 }
 
-#' Get Category Colours
-#'
-#' Returns a named vector of the default category colours to use when
-#' plotting water quality index values.
-#' @return named character vector of colours for water quality index categories.
-#' @seealso \code{\link{calc_wqis}}
-#' @examples
-#' get_category_colours()
-#' @export
 get_category_colours <- function () {
   c(Excellent = "#081d58", Good = "#225ea8", Fair = "#41b6c4",
               Marginal = "#c7e9b4", Poor = "#edf8b1")
@@ -60,8 +51,7 @@ get_category_colours <- function () {
 #' Plot Water Quality Indices
 #'
 #' Creates ggplot2 object with
-#' y-limits expanded to include 0 and 100 and defined fill scale
-#' for the WQI values corresponding by default to get_category_colours()
+#' y-limits expanded to include 0 and 100.
 #'
 #' @param data data.frame to plot
 #' @param x string of column in data to plot on x axis
@@ -71,7 +61,6 @@ get_category_colours <- function () {
 #' or string of column in data to plot shape of points
 #' @param theme ggplot theme
 #' @return ggplot2 object
-#' @seealso \code{\link{get_category_colours}}
 #' @examples
 #' library(ggplot2)
 #'
@@ -176,7 +165,7 @@ plot_map <- function (data,  x = "Long", y = "Lat", size = 3, shape = 21, fill =
 
   gp <- ggplot2::ggplot(data, ggplot2::aes_string(x = x, y = y)) +
     ggplot2::geom_polygon(
-      data = wqbc::map,
+      data = map,
       ggplot2::aes_string(x = "Long", y = "Lat", group = "Group"),
       fill = "grey80", size = 0.5, colour = "grey50"
     ) + ggplot2::coord_fixed() + theme

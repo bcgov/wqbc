@@ -1,62 +1,9 @@
-#' Geometric Mean Plus-Minus 1
-#'
-#' Calculates geometric mean by adding 1 before logging
-#' and subtracting 1 before exponentiating so that
-#' geometric mean of
-#' @param x numeric vector of non-negative numbers
-#' @param na.rm flag indicating whether to remove missing values
-#' @return number
-#' @examples
-#' mean(0:9)
-#' geomean1(0:9)
-#' @export
-geomean1 <- function (x, na.rm = FALSE) {
-  assert_that(is.vector(x))
-  assert_that(is.flag(na.rm) && noNA(na.rm))
-  x <- as.numeric(x)
-
-  if(any(x < 0, na.rm = TRUE))
-    stop("x must not be negative")
-
-  expm1(mean(log1p(as.numeric(x)), na.rm = na.rm))
-}
-
 join_codes <- function (x) {
   x <- dplyr::rename_(x, "..Units" = "Units")
   x$Variable <- as.character(x$Variable)
   x <- dplyr::left_join(x, wqbc_codes(), by = "Variable")
-  stopifnot(!any(is.na(x$Units)))
-  x$Value <- convert_units(x$Value, from = x$..Units, to = x$Units)
+  stopifnot(all(x$Units == x$..Units))
   x$..Units <- NULL
-  x
-}
-
-average_daily_values_day_variable <- function (x) {
-  txt <- paste0("x$Value <- ", x$Average, "(x$Value)")
-  eval(parse(text = txt))
-  x[1,,drop = FALSE]
-}
-
-average_daily_values_day <- function (x) {
-  if(anyDuplicated(x$Variable))
-    x <- plyr::ddply(x, "Variable", average_daily_values_day_variable)
-  x
-}
-
-average_daily_values <- function (x) {
-  if(anyDuplicated(dplyr::select_(x, ~Date, ~Variable)))
-    x <- plyr::ddply(x, "Date", average_daily_values_day)
-  x
-}
-
-average_monthly_values_variable <- function (x) {
-  x$Weeks <- length(unique(lubridate::week(x$Date)))
-  x$Values <- nrow(x)
-  average_daily_values_day_variable(x)
-}
-
-average_monthly_values <- function (x) {
-  x <- plyr::ddply(x, "Variable", average_monthly_values_variable)
   x
 }
 
@@ -72,132 +19,182 @@ get_code_values <- function (x) {
   code_value[!duplicated(names(code_value))]
 }
 
-test_condition <- function (x, cv) {
+test_condition <- function (x, cvalues) {
   if(is.na(x))
     return (TRUE)
-  x <- try(eval(parse(text = x), envir = cv), silent = TRUE)
+  x <- try(eval(parse(text = x), envir = cvalues), silent = TRUE)
   if(class(x) != "logical")
     return (FALSE)
   return (x)
 }
 
-calc_limit <- function (x, cv) {
-  x <- try(eval(parse(text = as.character(x)), envir = cv), silent = TRUE)
+calc_limit <- function (x, cvalues) {
+  x <- try(eval(parse(text = as.character(x)), envir = cvalues), silent = TRUE)
   if(class(x) != "numeric")
     return (NA)
   return (x)
 }
 
 calc_limits_by_period <- function (x) {
-  cv <- get_code_values(x)
+  cvalues <- get_code_values(x)
+
   x$Condition <- vapply(x$Condition, FUN = test_condition,
-                        FUN.VALUE = logical(1), cv = cv)
+                        FUN.VALUE = logical(1), cvalues = cvalues)
 
   x <- x[x$Condition,,drop = FALSE]
   x$Condition <- NULL
-
-  x$LowerLimit <- vapply(x$LowerLimit, FUN = calc_limit,
-                         FUN.VALUE = numeric(1), cv = cv)
-
   x$UpperLimit <- vapply(x$UpperLimit, FUN = calc_limit,
-                         FUN.VALUE = numeric(1), cv = cv)
+                         FUN.VALUE = numeric(1), cvalues = cvalues)
 
-  x[!is.na(x$LowerLimit) | !is.na(x$UpperLimit),,drop = FALSE]
+  x[!is.na(x$UpperLimit),,drop = FALSE]
 }
 
-calc_limits_by_day <- function (x) {
-  x <- dplyr::filter_(x, ~Period == "Day")
+get_conditional_codes <- function (x) {
+  x <- stringr::str_extract_all(x, "EMS_[[:alnum:]][[:alnum:]_]{3,3}")
+  unique(unlist(x))
+}
+
+average_conditional_code_values <- function (x) {
+  txt <- paste0("x$Value <- ", x$Average[1], "(x$Value)")
+  eval(parse(text = txt))
+  x[1,,drop = FALSE]
+}
+
+fill_in_conditional_codes <- function (x, ccodes) {
+  y <- dplyr::filter_(x, ~Code %in% ccodes)
+  y <- plyr::ddply(y, .variables = "Code", .fun = average_conditional_code_values)
+  x$Conditional <- FALSE
+  if(nrow(y)) {
+    dates <- expand.grid(Date = unique(x$Date), Variable = unique(y$Variable),
+                         stringsAsFactors = FALSE)
+    y$Date <- NULL
+    y <- dplyr::inner_join(dates, y, by = "Variable")
+    y <- dplyr::anti_join(y, x, by = c("Date", "Variable"))
+    if(nrow(y)) {
+      y$Conditional <- TRUE
+      x <- rbind(x, y)
+    }
+  }
+  x
+}
+
+calc_limits_by_date <- function (x) {
+
+  ccodes <- get_conditional_codes(x$Condition[x$Term == "Short"])
+  x <- dplyr::filter_(x, ~(!is.na(Term) & Term == "Short") | Code %in% ccodes)
+  x <- fill_in_conditional_codes(x, ccodes)
+  x <- plyr::ddply(x, "Date", calc_limits_by_period)
+  x <- dplyr::filter_(x, ~!Conditional)
+  stopifnot(!anyDuplicated(x$..ID))
+  x
+}
+
+abs_days_diff <- function (x, y) {
+  abs(as.integer(diff(c(x, y))))
+}
+
+assign_30day_periods <- function (x, dates) {
+  dates <- unique(dates)
+  y <- unique(dplyr::select_(x, ~Date))
+  y <- dplyr::arrange_(y, ~Date)
+  is.na(y$Period) <- NA
+
+  period <- 1
+  start_date <- y$Date[1]
+  y$Period[1] <- period
+
+  if(nrow(y) > 1) {
+    for(i in 2:nrow(y)) {
+      if(abs_days_diff(start_date, y$Date[i]) > 30 | y$Date[i] %in% dates) {
+        period <- period + 1
+        start_date <- y$Date[i]
+      }
+      y$Period[i] <- period
+    }
+  }
+  x <- dplyr::left_join(x, y, by = "Date")
+  stopifnot(noNA(x$Period))
+  x$Period <- factor(x$Period)
+  x
+}
+
+average_30day_values_variable <- function (x) {
+  stopifnot(!is.unsorted(x$Date))
+  x$Samples <- nrow(x)
+  x$Span <- abs_days_diff(x$Date[1], x$Date[x$Samples])
+  txt <- paste0("x$Value <- ", x$Average[1], "(x$Value)")
+  eval(parse(text = txt))
+  x[1,,drop = FALSE]
+}
+
+average_30day_values <- function (x) {
+  plyr::ddply(x, c("Variable"), average_30day_values_variable)
+}
+
+calc_limits_by_30day <- function (x, dates) {
+  ccodes <- get_conditional_codes(x$Condition[x$Term == "Long"])
+  x <- dplyr::filter_(x, ~(!is.na(Term) & Term == "Long") | Code %in% ccodes)
+  x <- dplyr::arrange_(x, ~Date)
+  x <- assign_30day_periods(x, dates)
+  x <- plyr::ddply(x, c("Period"), average_30day_values)
+  x <- fill_in_conditional_codes(x, ccodes)
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
 
   stopifnot(!anyDuplicated(x$..ID))
-
-  x <- dplyr::select_(x, ~-..ID, ~-Code, ~-Average)
+  x <- dplyr::filter_(x, ~Samples >= 5 & Span >= 21 & !Conditional)
   x
 }
 
-calc_limits_by_month <- function (x) {
-  x <- dplyr::filter_(x, ~Period == "Month")
-  x$Year <- lubridate::year(x$Date)
-  x$Month <- lubridate::month(x$Date)
-
-  x <- plyr::ddply(x, c("Year", "Month"), average_monthly_values)
-  x <- plyr::ddply(x, c("Year", "Month"), calc_limits_by_period)
-  x <- dplyr::filter_(x, ~Values >= 5 & Weeks >= 3)
-
-  if(!nrow(x))
-    return (x)
-
-  x$Date <- as.Date(paste(x$Year, x$Month, "01", sep = "-"))
-
-  stopifnot(!anyDuplicated(x$..ID))
-
-  x <- dplyr::select_(x, ~-..ID, ~-Code, ~-Average, ~-Year, ~-Month, ~-Values, ~-Weeks)
-  x
-}
-
-calc_limits_by <- function (x) {
+calc_limits_by <- function (x, term, dates) {
   x <- join_codes(x)
-  x <- average_daily_values(x)
   x <- join_limits(x)
 
-  day <- calc_limits_by_day(x)
- # month <- calc_limits_by_month(x)
-#  x <- rbind(day, month)
-  x <- day
-  x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~LowerLimit, ~UpperLimit, ~Units)
+  if(term == "long") {
+    x <- calc_limits_by_30day(x, dates)
+  } else {
+    x <- calc_limits_by_date(x)
+  }
+  x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units, ~Term)
   x
 }
 
 #' Calculates Water Quality limits
 #'
-#' Calculates the approved lower and upper water quality thresholds for
-#' British Columbia. If the Date column is not
-#' supplied the data is assumed to have been collected on the same date.
-#' Assumes values are individual readings.
+#' Calculates the approved upper water quality thresholds for
+#' British Columbia.
 #'
-#' @param x data.frame with columns Code, Value and Units.
-#' @param by character vector of columns to calculate limits by
-#' @param messages flag indicating whether to print messages
-#' @param parallel flag indicating whether to calculate limits by the by argument using the parallel backend provided by foreach
-#' data(fraser)
-#' fraser <- calc_limits(rbind(fraser[1:100,],fraser[1:100,]), message = FALSE)
+#' @param x The data.frame to perform the calculations on.
+#' @param by A character vector of the columns to perform the calculations by.
+#' @param term A string indicating whether to calculate long-term or short-term limits.
+#' @param dates A date vector indicating the start of each 30 day period.
+#' @param messages A flag indicating whether to print messages.
+#' @examples
+#' \dontrun{
+#' demo(fraser)
+#' }
 #' @export
-calc_limits <- function (x, by = NULL,
-                         messages = getOption("wqbc.messages", default = TRUE),
-                         parallel = getOption("wqbc.parallel", default = FALSE)) {
+calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
+                         messages = getOption("wqbc.messages", default = TRUE)) {
+
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
+  assert_that(is.string(term))
+  assert_that(is.null(dates) || (is.Date(dates) && noNA(dates)))
   assert_that(is.flag(messages) && noNA(messages))
-  assert_that(is.flag(parallel) && noNA(parallel))
 
-  check_rows(x)
-  check_columns(x, c("Variable", "Value", "Units"))
-  x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")), messages = messages)
+  term <- tolower(term)
+  if(!term %in% c("long", "short")) stop("term must be \"long\" or \"short\"")
 
-  check_by(by, colnames(x), res_names = unique(
-    c("Variable", "Value", "Units", "Date",
-      colnames(wqbc_limits()), colnames(wqbc_codes()))))
+  x <- clean_wqdata(x, by = by, messages = messages)
 
-  x <- delete_columns(x, colnames(x)[!colnames(x) %in% c("Variable", "Value", "Units", "Date", by)], messages = FALSE)
+  if(messages) message("Calculating ", paste0(term, "-term") ," water quality limits...")
 
-  check_class_columns(x, list("Variable" = c("character", "factor"),
-                              "Value" = "numeric",
-                              "Units" = c("character", "factor"),
-                              "Date" = "Date"))
-
-  x$Variable <- substitute_variables(x$Variable, messages = messages)
-  x$Units <- substitute_units(x$Units, messages = messages)
-
-  is.na(x$Variable[!x$Variable %in% get_variables()]) <- TRUE
-  is.na(x$Units[!x$Units %in% get_units()]) <- TRUE
-
-  x$Value <- replace_negative_values_with_na(x$Value, messages = messages)
-
-  x <- delete_rows_with_missing_values(x, messages = messages)
-  check_rows(x)
-
-  if(is.null(by))
-    return(calc_limits_by(x))
-
-  plyr::ddply(x, .variables = by, .fun = calc_limits_by, .parallel = parallel)
+  if(is.null(by)) {
+    x <- calc_limits_by(x, term = term, dates = dates)
+  } else {
+    x <- plyr::ddply(x, .variables = by, .fun = calc_limits_by,
+                     term = term, dates = dates)
+  }
+  if(messages) message("Calculated.")
+  x
 }

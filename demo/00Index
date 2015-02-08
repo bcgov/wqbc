@@ -1,2 +1,3 @@
 fraser  	Fraser River Example Analysis
-ccme      CCME Example Analysis
+dummy     Demonstrates data standardization and cleaning using dummy data
+ccme      Calculate WQIs using ccme data
