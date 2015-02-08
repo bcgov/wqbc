@@ -4,12 +4,12 @@
 \name{dummy}
 \alias{dummy}
 \title{Dummy Water Quality Data}
-\format{A data frame with 5 columns:
+\format{A data frame with 4 columns:
 \describe{
   \item{Date}{The date of the reading.}
   \item{Variable}{The name of the variable.}
   \item{Value}{The value of the reading.}
-  \item{Units}{The value's units.}
+  \item{Units}{The units of the value.}
 }}
 \usage{
 dummy
@@ -19,6 +19,9 @@ A dummy data set to illustrate various data cleaning functions.
 }
 \examples{
 demo(dummy)
+}
+\seealso{
+\code{\link{clean_wqdata}}
 }
 \keyword{datasets}
 

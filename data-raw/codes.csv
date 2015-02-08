@@ -17,7 +17,7 @@ Iron Dissolved,EMS_FE_D,mg/L,mean
 Iron Total,EMS_FE_T,mg/L,mean
 Lead,EMS_PB_T,ug/L,mean
 Manganese,EMS_MN_T,mg/L,mean
-Mercury,EMS_HG_T,ug/L,mean
+Mercury Total,EMS_HG_T,ug/L,mean
 Mercury Methyl,EMS_HGME,ug/L,mean
 Methyl Tertiary Butyl Ether,EMS_MTBE,mg/L,mean
 Molybdenum Total,EMS_MO_T,mg/L,mean

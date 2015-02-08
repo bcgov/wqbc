@@ -2,29 +2,52 @@
 % Please edit documentation in R/calc-limits.R
 \name{calc_limits}
 \alias{calc_limits}
-\title{Calculates Water Quality limits}
+\title{Calculate Limits}
 \usage{
 calc_limits(x, by = NULL, term = "long", dates = NULL,
   messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
-\item{x}{The data.frame to perform the calculations on.}
+\item{x}{A data.frame of water quality readings to calculate the limits for.}
 
-\item{by}{A character vector of the columns to perform the calculations by.}
+\item{by}{A optional character vector of the columns in x to calculate the limits by.}
 
-\item{term}{A string indicating whether to calculate long-term or short-term limits.}
+\item{term}{A string indicating whether to calculate the "long" or "short"-term limits.}
 
-\item{dates}{A date vector indicating the start of each 30 day period.}
+\item{dates}{A optional date vector indicating the start of 30 day long-term periods.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
 \description{
-Calculates the approved upper water quality thresholds for
-British Columbia.
+Calculates the approved "short" or "long"-term
+upper water quality thresholds for freshwater life in British Columbia.
+The water quality data is automatically cleaned using \code{\link{clean_wqdata}}
+prior to calculating the limits to ensure: all variables are recognised,
+all values are non-negative and in the standard units, divergent replicates
+are filtered and all remaining replicates are averaged. Only limits whose
+conditions are met are returned.
+}
+\details{
+If a limit depends on another variable
+such as pH or Total Hardness and no value was recorded for the date of interest
+then the pH or Total Hardness value is assumed to be the average recorded value.
+When considering long-term limits there must be at least 5 values
+spanning 21 days. As replicates are averaged prior to calculating the limits
+each of the 5 values must be on a separate day. The first 30 day period
+begin at the date of the first reading while the next 30 day period
+starts at the date of the first reading after the previous period and so on.
+The only exception to this is if the user provides dates in which case each
+period extends for 30 days or until a provided date is reached. It is important
+to note that the averaging of conditional variables, the 5 in 30 rule
+and the assignment of 30 day periods occurs independently for all combination
+of factor levels in the columns specified by by.
 }
 \examples{
 \dontrun{
 demo(fraser)
 }
+}
+\seealso{
+\code{\link{calc_wqi}}, \code{\link{clean_wqdata}} and \code{\link{lookup_limits}}
 }
 

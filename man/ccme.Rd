@@ -4,20 +4,22 @@
 \name{ccme}
 \alias{ccme}
 \title{CCME Water Quality Index User's Manual Example Data}
-\format{A data frame with 103 rows and 6 columns:
+\format{A data frame with 120 rows and 7 columns:
 \describe{
   \item{Date}{The date of the reading.}
   \item{Variable}{The name of the variable.}
   \item{Value}{The value of the reading.}
+  \item{DetectionLimit}{The detection limit.}
   \item{LowerLimit}{The minimum permitted value.}
   \item{UpperLimit}{The maximum permitted value.}
+  \item{Units}{The units of the value, detection limit and lower and upper limits.}
 }}
 \usage{
 ccme
 }
 \description{
-A tidy data.frame of the CCME Water Quality Index 1.0 User's Manual
-example dataset.
+The Canadian Council of Ministers of the Environment (CCME)
+Water Quality Index 1.0 User's Manual example dataset in tidy format.
 }
 \examples{
 demo(ccme)

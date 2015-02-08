@@ -3,22 +3,23 @@
 \docType{data}
 \name{codes}
 \alias{codes}
-\title{Water Quality Parameter codes and units}
-\format{A data frame with 3 variables:
+\title{Water Quality Parameter Codes and Units for British Columbia}
+\format{A data frame with 4 variables:
 \describe{
-  \item{Code}{unique short-hand code}
-  \item{Variable}{unique name of water quality parameter}
-  \item{Units}{units for parameter}
-  \item{Average}{R function to calculate "average" value for multiple samples in a period}
+  \item{Variable}{The name of the variable.}
+  \item{Code}{The EMS code in expanded form.}
+  \item{Units}{The standard units for the variable.}
+  \item{Average}{R function to calculate "average" value.}
 }}
 \usage{
 codes
 }
 \description{
-Water Quality Parameter codes and units
+The standard variables and codes recognised by the wqbc package with their
+standard units and the R function to use when averaging multiple samples.
 }
-\details{
-Water Quality Parameter codes and units
+\seealso{
+\code{\link{calc_limits}}
 }
 \keyword{datasets}
 

@@ -31,9 +31,9 @@ Lead,Short,EMS_0107 <= 8,3,ug/L,11,BC_2006,Freshwater Life
 Lead,Short,EMS_0107 > 8,exp(1.273 * log(EMS_0107) - 1.460),ug/L,11,BC_2006,Freshwater Life
 Manganese,Long,,0.0044 * EMS_0107 + 0.605,mg/L,38,BC_2006,Freshwater Life
 Manganese,Short,,0.01102 * EMS_0107 + 0.54,mg/L,37,BC_2006,Freshwater Life
-Mercury,Long,EMS_HGME / EMS_HG_T * 100 <= 0.5,0.02,ug/L,13a,BC_2006,Freshwater Life
-Mercury,Long,EMS_HGME / EMS_HG_T * 100 > 0.5,10^(-4) / (EMS_HGME / EMS_HG_T),ug/L,13a,EMAIL_2015,Freshwater Life
-Mercury,Short,,0.1,ug/L,13,BC_2006,Freshwater Life
+Mercury Total,Long,EMS_HGME / EMS_HG_T * 100 <= 0.5,0.02,ug/L,13a,BC_2006,Freshwater Life
+Mercury Total,Long,EMS_HGME / EMS_HG_T * 100 > 0.5,10^(-4) / (EMS_HGME / EMS_HG_T),ug/L,13a,EMAIL_2015,Freshwater Life
+Mercury Total,Short,,0.1,ug/L,13,BC_2006,Freshwater Life
 Methyl Tertiary Butyl Ether,Long,,3.4,mg/L,39,BC_2006,Freshwater Life
 Molybdenum Total,Long,,1,mg/L,15,BC_2006,Freshwater Life
 Molybdenum Total,Short,,2,mg/L,15,BC_2006,Freshwater Life
@@ -62,5 +62,7 @@ Sulphate,Long,EMS_0107 > 30 & EMS_0107 <= 75,218,mg/L,B5,EMAIL_2014,Freshwater L
 Sulphate,Long,EMS_0107 > 76 & EMS_0107 <= 180,309,mg/L,B5,EMAIL_2014,Freshwater Life
 Sulphate,Long,EMS_0107 > 180 & EMS_0107 <= 250,429,mg/L,B5,EMAIL_2014,Freshwater Life
 Toluene,Long,,0.039,mg/L,35,BC_2006,Freshwater Life
-Zinc Total,Long,,0.75 * (EMS_0107 - 90) + 7.5,ug/L,33,BC_2006,Freshwater Life
-Zinc Total,Short,,0.75 * (EMS_0107 - 90) + 33,ug/L,33,BC_2006,Freshwater Life
+Zinc Total,Long,EMS_0107 <= 90,7.5,ug/L,33,BC_2006,Freshwater Life
+Zinc Total,Long,EMS_0107 > 90,0.75 * (EMS_0107 - 90) + 7.5,ug/L,33,BC_2006,Freshwater Life
+Zinc Total,Short,EMS_0107 <= 90,33,ug/L,33,BC_2006,Freshwater Life
+Zinc Total,Short,EMS_0107 > 90,0.75 * (EMS_0107 - 90) + 33,ug/L,33,BC_2006,Freshwater Life

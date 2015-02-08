@@ -4,13 +4,13 @@
 \name{fraser}
 \alias{fraser}
 \title{Fraser River Basin Long-term Water Quality Monitoring 1979-Present}
-\format{A data frame with 9 columns:
+\format{A data frame with 8 columns:
 \describe{
   \item{SiteID}{The unique water quality station number.}
   \item{Date}{The date of the reading.}
   \item{Variable}{The name of the variable.}
   \item{Value}{The value of the reading.}
-  \item{Units}{The value's units.}
+  \item{Units}{The units of the value.}
   \item{Site}{The full name of the station.}
   \item{Lat}{The latitude of the station in decimal degrees.}
   \item{Long}{The longitude of the station in decimal degrees.}
@@ -28,12 +28,6 @@ Monitoring Agreement. Monitoring is conducted to assess water
 quality status and long-term trends, detect emerging issues,
 establish water quality guidelines and track the effectiveness
 of remedial measures and regulatory decisions.
-}
-\details{
-The original dataset has been filtered to remove values
-for variables without currently defined limits.
-In addition, unimportant columns have been dropped and the remaining
-columns renamed.
 }
 \examples{
 \dontrun{

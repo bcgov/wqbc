@@ -3,22 +3,24 @@
 \docType{data}
 \name{limits}
 \alias{limits}
-\title{Water Quality Limits for British Columbia and Canada}
-\format{A data frame with 13 variables:
+\title{Water Quality Limits for British Columbia}
+\format{A data frame with 5 variables:
 \describe{
-  \item{Variable}{name of water quality parameter}
-  \item{Term}{Period for which limit applies. Either Short which
-  indicates any individual measurement or Long which indicates
-  average of at least 5 values within a 30 day period.}
-  \item{Condition}{R logical expression to test required condition}
-  \item{UpperLimit}{R expression defining upper limit}
-  \item{Units}{units for limit}
+  \item{Variable}{The name of the variable.}
+  \item{Term}{The term of the limit i.e. "Short" versus "Long".}
+  \item{Condition}{A logical R expression to test for the required condition.}
+  \item{UpperLimit}{The upper limit or an R expression defining the upper limit.}
+  \item{Units}{The units of the upper limit.}
 }}
 \usage{
 limits
 }
 \description{
-Water Quality Limits for British Columbia and Canada
+The short and long term water quality limits for British Columbia recognised
+by the wqbc package.
+}
+\seealso{
+\code{\link{calc_limits}}
 }
 \keyword{datasets}
 

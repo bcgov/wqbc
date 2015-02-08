@@ -19,10 +19,6 @@ fraser %<>% select(
 
 fraser$Date %<>% as.Date
 
-fraser <- na.omit(fraser)
-fraser %<>% filter(wqbc:::substitute_units(Units, messages = TRUE) %in% get_units())
-fraser %<>% filter(wqbc:::substitute_variables(Variable, strict = TRUE, messages = TRUE) %in% get_variables())
-
 # check for and flip sign of positive longitude values
 fraser$Long <- ifelse(fraser$Long > 0, fraser$Long * -1, fraser$Long)
 

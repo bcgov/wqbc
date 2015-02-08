@@ -1,3 +1,10 @@
+wqbc_limits <- function () {
+  limits <- limits
+  limits$Variable <- as.character(limits$Variable)
+  limits$Units <- as.character(limits$Units)
+  limits
+}
+
 join_codes <- function (x) {
   x <- dplyr::rename_(x, "..Units" = "Units")
   x$Variable <- as.character(x$Variable)
@@ -79,11 +86,11 @@ fill_in_conditional_codes <- function (x, ccodes) {
 }
 
 calc_limits_by_date <- function (x) {
-
   ccodes <- get_conditional_codes(x$Condition[x$Term == "Short"])
   x <- dplyr::filter_(x, ~(!is.na(Term) & Term == "Short") | Code %in% ccodes)
   x <- fill_in_conditional_codes(x, ccodes)
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
+  x <- dplyr::filter_(x, ~Term == "Short")
   x <- dplyr::filter_(x, ~!Conditional)
   stopifnot(!anyDuplicated(x$..ID))
   x
@@ -94,7 +101,7 @@ abs_days_diff <- function (x, y) {
 }
 
 assign_30day_periods <- function (x, dates) {
-  dates <- unique(dates)
+  dates <- sort(unique(dates))
   y <- unique(dplyr::select_(x, ~Date))
   y <- dplyr::arrange_(y, ~Date)
   is.na(y$Period) <- NA
@@ -121,6 +128,9 @@ assign_30day_periods <- function (x, dates) {
 average_30day_values_variable <- function (x) {
   stopifnot(!is.unsorted(x$Date))
   x$Samples <- nrow(x)
+  if(!is.null(x$DetectionLimit))
+    x$DetectionLimit <- mean(x$DetectionLimit)
+
   x$Span <- abs_days_diff(x$Date[1], x$Date[x$Samples])
   txt <- paste0("x$Value <- ", x$Average[1], "(x$Value)")
   eval(parse(text = txt))
@@ -128,20 +138,22 @@ average_30day_values_variable <- function (x) {
 }
 
 average_30day_values <- function (x) {
-  plyr::ddply(x, c("Variable"), average_30day_values_variable)
+  plyr::ddply(x, c("Variable", "Condition"), average_30day_values_variable)
 }
 
 calc_limits_by_30day <- function (x, dates) {
   ccodes <- get_conditional_codes(x$Condition[x$Term == "Long"])
   x <- dplyr::filter_(x, ~(!is.na(Term) & Term == "Long") | Code %in% ccodes)
   x <- dplyr::arrange_(x, ~Date)
+
   x <- assign_30day_periods(x, dates)
   x <- plyr::ddply(x, c("Period"), average_30day_values)
   x <- fill_in_conditional_codes(x, ccodes)
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
-
+  x <- dplyr::filter_(x, ~Term == "Long")
+  x <- dplyr::filter_(x, ~!Conditional)
+  x <- dplyr::filter_(x, ~Samples >= 5 & Span >= 21)
   stopifnot(!anyDuplicated(x$..ID))
-  x <- dplyr::filter_(x, ~Samples >= 5 & Span >= 21 & !Conditional)
   x
 }
 
@@ -154,24 +166,47 @@ calc_limits_by <- function (x, term, dates) {
   } else {
     x <- calc_limits_by_date(x)
   }
-  x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units, ~Term)
+  if(!is.null(x$DetectionLimit)) {
+    x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~DetectionLimit, ~Units)
+  } else
+    x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units)
   x
 }
 
-#' Calculates Water Quality limits
+#' Calculate Limits
 #'
-#' Calculates the approved upper water quality thresholds for
-#' British Columbia.
+#' Calculates the approved "short" or "long"-term
+#' upper water quality thresholds for freshwater life in British Columbia.
+#' The water quality data is automatically cleaned using \code{\link{clean_wqdata}}
+#' prior to calculating the limits to ensure: all variables are recognised,
+#' all values are non-negative and in the standard units, divergent replicates
+#' are filtered and all remaining replicates are averaged. Only limits whose
+#' conditions are met are returned.
 #'
-#' @param x The data.frame to perform the calculations on.
-#' @param by A character vector of the columns to perform the calculations by.
-#' @param term A string indicating whether to calculate long-term or short-term limits.
-#' @param dates A date vector indicating the start of each 30 day period.
+#' @details If a limit depends on another variable
+#' such as pH or Total Hardness and no value was recorded for the date of interest
+#' then the pH or Total Hardness value is assumed to be the average recorded value.
+#' When considering long-term limits there must be at least 5 values
+#' spanning 21 days. As replicates are averaged prior to calculating the limits
+#' each of the 5 values must be on a separate day. The first 30 day period
+#' begin at the date of the first reading while the next 30 day period
+#' starts at the date of the first reading after the previous period and so on.
+#' The only exception to this is if the user provides dates in which case each
+#' period extends for 30 days or until a provided date is reached. It is important
+#' to note that the averaging of conditional variables, the 5 in 30 rule
+#' and the assignment of 30 day periods occurs independently for all combination
+#' of factor levels in the columns specified by by.
+#'
+#' @param x A data.frame of water quality readings to calculate the limits for.
+#' @param by A optional character vector of the columns in x to calculate the limits by.
+#' @param term A string indicating whether to calculate the "long" or "short"-term limits.
+#' @param dates A optional date vector indicating the start of 30 day long-term periods.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' \dontrun{
 #' demo(fraser)
 #' }
+#' @seealso \code{\link{calc_wqi}}, \code{\link{clean_wqdata}} and \code{\link{lookup_limits}}
 #' @export
 calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
                          messages = getOption("wqbc.messages", default = TRUE)) {
@@ -179,7 +214,7 @@ calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   assert_that(is.string(term))
-  assert_that(is.null(dates) || (is.Date(dates) && noNA(dates)))
+  assert_that(is.null(dates) || (is.date(dates) && noNA(dates)))
   assert_that(is.flag(messages) && noNA(messages))
 
   term <- tolower(term)
@@ -195,6 +230,6 @@ calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
     x <- plyr::ddply(x, .variables = by, .fun = calc_limits_by,
                      term = term, dates = dates)
   }
-  if(messages) message("Calculated.")
+  if(messages) message("Calculated ", paste0(term, "-term") ," water quality limits.")
   x
 }

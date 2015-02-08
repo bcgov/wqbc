@@ -2,36 +2,34 @@
 % Please edit documentation in R/plot.R
 \name{plot_map_wqis}
 \alias{plot_map_wqis}
-\title{Plot Map of Water Quality Indices}
+\title{Plot Map of Water Quality Index Categories.}
 \usage{
 plot_map_wqis(data, x = "Long", y = "Lat", size = 3, shape = 21,
-  theme = theme_map(), keep = NULL, input_proj = NULL)
+  keep = NULL, input_proj = NULL)
 }
 \arguments{
-\item{data}{data.frame to plot}
+\item{data}{A data.frame of WQI values to plot.}
 
-\item{x}{string of column in data to plot on x axis}
+\item{x}{A string of the column in data to plot on the x axis.}
 
-\item{y}{string of column in data to plot on y axis}
+\item{y}{A string of the column in data to plot on the y axis.}
 
-\item{size}{number of point size or string of column in data
-to plot size of points}
+\item{size}{A number of the point size or string of the column in data
+to represent by the size of points.}
 
-\item{shape}{integer of point shape (permitted values are 21 to 25)
-or string of column in data to plot shape of points}
+\item{shape}{An integer of the point shape (permitted values are 21 to 25)
+or string of the column in data to represent by the shape of points.}
 
-\item{theme}{ggplot theme}
+\item{keep}{An optional character vector indicating which columns to keep
+in addition to x and y to keep before dropping duplicated rows to
+avoid overplotting.}
 
-\item{keep}{NULL or character vector indicating which columns to keep
-in addition to x and y before avoiding overplotting by dropping duplicated rows.}
-
-\item{input_proj}{a valid proj4string. Defaults to longlat/NAD83
-(\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"})}
+\item{input_proj}{An optional valid proj4string. Defaults to
+(\code{"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"}).}
 }
 \description{
-Creates ggplot2 object with map polygon,
-coord_fixed and theme_minimal and fill based
-on WQI categories.
+Creates a ggplot2 object with a polygon of British Columbia with
+the Water Quality Index categories indicated by the fill colour of points.
 }
 \examples{
 \dontrun{
@@ -39,6 +37,6 @@ on WQI categories.
 }
 }
 \seealso{
-\code{\link{plot_map}}
+\code{\link{plot_wqis}} and \code{\link{plot_map}}
 }
 

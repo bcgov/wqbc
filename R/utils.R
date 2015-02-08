@@ -38,24 +38,38 @@ delete_columns <- function (x, colnames, messages) {
   x
 }
 
-delete_rows_with_missing_values <- function (x, columns, messages) {
+del_cols_not_in_y <- function (x, y) {
+  delete_columns(x, colnames(x)[!colnames(x) %in% y], messages = FALSE)
+}
+
+delete_rows_with_certain_values <- function (x, columns, messages, txt = "missing") {
   if(missing(columns))
     columns <- as.list(colnames(x))
 
   check_columns(x, unlist(columns))
 
+  if(txt %in% c("missing", "unrecognised")) {
+    fun <- function (x) is.na(x)
+  } else if(txt == "negative") {
+    fun <- function (x) !is.na(x) & x < 0
+  }  else if(txt == "zero") {
+    fun <- function (x) !is.na(x) & x == 0
+  } else if (txt %in% c("missing or negative", "negative or missing")) {
+    fun <- function (x) is.na(x) | x < 0
+  } else stop()
+
   for(col in columns) {
-    bol <- is.na(x[[col[1]]])
+    bol <- fun(x[[col[1]]])
 
     if(length(col) > 1) {
       for(i in 2:length(col))
-        bol <- bol & is.na(x[[col[i]]])
+        bol <- bol & fun(x[[col[i]]])
     }
     if(any(bol)) {
       if(messages) {
         message("Deleted ", sum(bol),
-                plural(" row", sum(bol) > 1), " with unrecognised values in ",
-                punctuate_strings(col, "or"), ".")
+                plural(" row", sum(bol) > 1), " with ", txt, " values in ",
+                punctuate_strings(col, "and"), ".")
       }
       x <- x[!bol, , drop = FALSE]
     }
@@ -63,62 +77,19 @@ delete_rows_with_missing_values <- function (x, columns, messages) {
   x
 }
 
-replace_negative_values_with_na <- function (x, zero = FALSE, messages) {
-  if(!zero) {
-    bol <- !is.na(x) & x < 0
-  } else {
-    bol <- !is.na(x) & x <= 0
-  }
-  if(any(bol)) {
-    if(messages) message("Replaced ", sum(bol), " negative ", ifelse(zero, "or zero ", ""),
-                         plural("value", sum(bol) > 1), " with a missing value.")
-    is.na(x[bol]) <- TRUE
-  }
-  x
+capitalize <- function (x) {
+    gsub(pattern = "\\b([a-z])", replacement = "\\U\\1", x, perl = TRUE)
 }
 
-proj_bc <- function (data, x, y, input_proj = NULL) {
-
-  if(!requireNamespace("sp", quietly = TRUE))
-    stop("sp package not installed")
-
-  if(!requireNamespace("rgdal", quietly = TRUE))
-    stop("rgdal package not installed")
-
-  if (is.null(input_proj)) {
-    input_proj <- "+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"
-  }
-  output_proj <- "+proj=aea +lat_1=50 +lat_2=58.5 +lat_0=45 +lon_0=-126 +x_0=1000000 +y_0=0 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0"
-
-  sp::coordinates(data) <- c(x,y)
-  sp::proj4string(data) <- sp::CRS(input_proj)
-  data <- sp::spTransform(data, sp::CRS(output_proj))
-  as.data.frame(data)
+is_match_words <- function (var, x, strict) {
+  if(!strict) return (var[1] %in% x)
+  all(var %in% x)
 }
 
-is.error <- function (x) inherits (x, "try-error")
-is.Date <- function (x) inherits (x, "Date")
-
-#' Geometric Mean Plus-Minus 1
-#'
-#' Calculates geometric mean by adding 1 before logging
-#' and subtracting 1 before exponentiating so that
-#' geometric mean of
-#' @param x numeric vector of non-negative numbers
-#' @param na.rm flag indicating whether to remove missing values
-#' @return number
-#' @examples
-#' mean(0:9)
-#' geomean1(0:9)
-#' @export
-geomean1 <- function (x, na.rm = FALSE) {
-  assert_that(is.vector(x))
-  assert_that(is.flag(na.rm) && noNA(na.rm))
-  x <- as.numeric(x)
-
-  if(any(x < 0, na.rm = TRUE))
-    stop("x must not be negative")
-
-  expm1(mean(log1p(as.numeric(x)), na.rm = na.rm))
+sub_vars <- function (x, vars, strict) {
+  names(which(sapply(vars, FUN = is_match_words, x = x, strict = strict)))
 }
 
+split_words_tolower <- function (x) {
+  tolower(unlist(strsplit(unlist(x), " ")))
+}

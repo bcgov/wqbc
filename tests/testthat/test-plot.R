@@ -40,7 +40,7 @@ test_that("plot_wqis", {
   require(ggplot2, quietly = TRUE)
 
   data(ccme)
-  x <- plot_wqis(calc_wqis(ccme, messages = FALSE))
+  x <- plot_wqis(calc_wqi(ccme, messages = FALSE))
   expect_is(x, "gg")
   expect_is(x, "ggplot")
 })

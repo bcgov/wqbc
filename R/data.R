@@ -1,46 +1,51 @@
 #' CCME Water Quality Index User's Manual Example Data
 #'
-#' A tidy data.frame of the CCME Water Quality Index 1.0 User's Manual
-#' example dataset.
+#' The Canadian Council of Ministers of the Environment (CCME)
+#' Water Quality Index 1.0 User's Manual example dataset in tidy format.
 #'
-#' @format A data frame with 103 rows and 6 columns:
+#' @format A data frame with 120 rows and 7 columns:
 #' \describe{
 #'   \item{Date}{The date of the reading.}
 #'   \item{Variable}{The name of the variable.}
 #'   \item{Value}{The value of the reading.}
+#'   \item{DetectionLimit}{The detection limit.}
 #'   \item{LowerLimit}{The minimum permitted value.}
 #'   \item{UpperLimit}{The maximum permitted value.}
+#'   \item{Units}{The units of the value, detection limit and lower and upper limits.}
 #' }
 #' @examples
 #' demo(ccme)
 "ccme"
 
-#' Water Quality Parameter codes and units
+#' Water Quality Parameter Codes and Units for British Columbia
 #'
-#' @details Water Quality Parameter codes and units
+#' The standard variables and codes recognised by the wqbc package with their
+#' standard units and the R function to use when averaging multiple samples.
 #'
-#' @format A data frame with 3 variables:
+#' @format A data frame with 4 variables:
 #' \describe{
-#'   \item{Code}{unique short-hand code}
-#'   \item{Variable}{unique name of water quality parameter}
-#'   \item{Units}{units for parameter}
-#'   \item{Average}{R function to calculate "average" value for multiple samples in a period}
+#'   \item{Variable}{The name of the variable.}
+#'   \item{Code}{The EMS code in expanded form.}
+#'   \item{Units}{The standard units for the variable.}
+#'   \item{Average}{R function to calculate "average" value.}
 #' }
+#' @seealso \code{\link{calc_limits}}
 "codes"
 
 #' Dummy Water Quality Data
 #'
 #' A dummy data set to illustrate various data cleaning functions.
 #'
-#' @format A data frame with 5 columns:
+#' @format A data frame with 4 columns:
 #' \describe{
 #'   \item{Date}{The date of the reading.}
 #'   \item{Variable}{The name of the variable.}
 #'   \item{Value}{The value of the reading.}
-#'   \item{Units}{The value's units.}
+#'   \item{Units}{The units of the value.}
 #' }
 #' @examples
 #' demo(dummy)
+#' @seealso \code{\link{clean_wqdata}}
 "dummy"
 
 #' Fraser River Basin Long-term Water Quality Monitoring 1979-Present
@@ -52,18 +57,13 @@
 #' establish water quality guidelines and track the effectiveness
 #' of remedial measures and regulatory decisions.
 #'
-#' @details The original dataset has been filtered to remove values
-#' for variables without currently defined limits.
-#' In addition, unimportant columns have been dropped and the remaining
-#' columns renamed.
-#'
-#' @format A data frame with 9 columns:
+#' @format A data frame with 8 columns:
 #' \describe{
 #'   \item{SiteID}{The unique water quality station number.}
 #'   \item{Date}{The date of the reading.}
 #'   \item{Variable}{The name of the variable.}
 #'   \item{Value}{The value of the reading.}
-#'   \item{Units}{The value's units.}
+#'   \item{Units}{The units of the value.}
 #'   \item{Site}{The full name of the station.}
 #'   \item{Lat}{The latitude of the station in decimal degrees.}
 #'   \item{Long}{The longitude of the station in decimal degrees.}
@@ -75,17 +75,18 @@
 #' }
 "fraser"
 
-#' Water Quality Limits for British Columbia and Canada
+#' Water Quality Limits for British Columbia
 #'
-#' @format A data frame with 13 variables:
+#' The short and long term water quality limits for British Columbia recognised
+#' by the wqbc package.
+#'
+#' @format A data frame with 5 variables:
 #' \describe{
-#'   \item{Variable}{name of water quality parameter}
-#'   \item{Term}{Period for which limit applies. Either Short which
-#'   indicates any individual measurement or Long which indicates
-#'   average of at least 5 values within a 30 day period.}
-#'   \item{Condition}{R logical expression to test required condition}
-#'   \item{UpperLimit}{R expression defining upper limit}
-#'   \item{Units}{units for limit}
+#'   \item{Variable}{The name of the variable.}
+#'   \item{Term}{The term of the limit i.e. "Short" versus "Long".}
+#'   \item{Condition}{A logical R expression to test for the required condition.}
+#'   \item{UpperLimit}{The upper limit or an R expression defining the upper limit.}
+#'   \item{Units}{The units of the upper limit.}
 #' }
+#' @seealso \code{\link{calc_limits}}
 "limits"
-
