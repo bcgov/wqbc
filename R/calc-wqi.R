@@ -81,6 +81,10 @@ bootstrap_wqis_column <- function (x, R) {
 }
 
 boot_wqis <- function (x, ci, cesi_code) {
+
+  if (cesi_code) {
+    x <- dplyr::mutate_(x, Excursion = ~Excursion + 1)
+  }
   x <- dplyr::select_(x, ~Variable, ~Excursion, ~Date)
   x <- tidyr::spread_(x, "Variable", "Excursion")
   x <- dplyr::select_(x, ~-Date)
