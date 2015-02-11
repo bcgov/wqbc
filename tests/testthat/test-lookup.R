@@ -42,19 +42,18 @@ test_that("lookup_limits", {
   expect_equal(as.character(n$UpperLimit[n$Variable=="Cadmium Dissolved"]), as.character(NA)) #upperlimit with NA
   expect_equal(as.character(n$UpperLimit[n$Variable=="Copper Total"]), as.character(NA))
   expect_equal(as.character(n$UpperLimit[n$Variable=="Sulphate"]), as.character(NA))
-  #expect_false(is.na(n$UpperLimit[n$Variable=="zinc Total"]))
-  #expect_true(is.na(n$UpperLimit[n$Variable=="zinc Total"]))
+
 
   q<-lookup_limits(term="short")
   expect_equal(as.character(q$UpperLimit[q$Variable=="Aluminium Dissolved"]),as.character(NA))
   expect_equal(q$UpperLimit[q$Variable=="Polychlorinated Biphenyl Total"],0.10)
-  #expect_equal(as.character(q$Unit[x$Variable=="Polychlorinated Biphenyl Total"]),"ng/L")
+  expect_equal(as.character(q$Unit[q$Variable=="Polychlorinated Biphenyl Total"]),"ng/L")
 
   p<-lookup_limits(term="short",ph=9)
   expect_equal(as.character(p$Unit[p$Variable=="Aluminium Dissolved"]),"mg/L")
   expect_equal(p$UpperLimit[p$Variable=="Aluminium Dissolved"],0.10)
   expect_equal(p$UpperLimit[p$Variable=="Cobalt Total"],110.00)
-  #expect_equal(as.character(p$UpperLimit[p$Variable=="zinc Total"]),as.character(NA)) #NA upperlimits
+  expect_equal(as.character(p$UpperLimit[p$Variable=="zinc Total"]),as.character(NA)) #NA upperlimits
 
   i<-lookup_limits(term="short",ph=6.5)
   expect_equal(as.character(p$Unit[p$Variable=="Aluminium Dissolved"]),"mg/L")
