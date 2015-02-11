@@ -24,6 +24,11 @@ test_that("lookup_limits", {
   expect_is(x,"data.frame")                                                 #check if lookup_limits is a data frame
   expect_equal(nrow(x),23)                                                  #check if lookup_limits has 23 rows
   expect_equal(ncol(x),3)                                                   #check if loopup_limits has 3 columns
+ expect_equal(x$Condition==as.character(NA),28)             #check 28 rows has NA conditions
+ #expect_equal(x$UpperLimit[x$Condition==as.character("mg/L")],#)
+ #expect_equal(x$UpperLimit[x$Condition==as.character("ug/L")],#)
+ #expect_equal(x$UpperLimit[x$Condition==as.character("ng/L")],#)
+
 
   y<-lookup_limits(term="long")
   expect_identical(x,y)                                                     #check if lookup_limits() and lookup_limits(term="long")
@@ -62,7 +67,13 @@ test_that("lookup_limits", {
 
 
   i<-lookup_limits(term="short",ph=6.5)
-  expect_equal(as.character(p$Unit[p$Variable=="Aluminium Dissolved"]),"mg/L")
+  expect_equal(as.character(i$Unit[i$Variable=="Aluminium Dissolved"]),"mg/L")
+  expect_equal(as.character(i$Unit[i$Variable=="Cyanide Weak Acid Dissociable"]),"ug/L")
+  expect_equal(as.character(i$Unit[i$Variable=="Polychlorinated Biphenyl Total"]),"ng/L")
+  expect_equal(i$UpperLimit[i$Variable=="Aluminium Dissolved"],0.1)
+  expect_equal(as.character(i$UpperLimit[i$Variable=="Copper Total"]),as.character(NA))
+  expect_equal(as.character(i$UpperLimit[i$Variable=="Silver"]),as.character(NA))
+  expect_equal(as.character(i$UpperLimit[i$Variable=="Zinc Total"]),as.character(NA))
 
 
 })
