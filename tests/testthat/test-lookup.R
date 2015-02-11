@@ -37,13 +37,13 @@ test_that("lookup_limits", {
   expect_equal(z$UpperLimit[z$Variable=="Aluminium Dissolved"],0.050)       #check if Aluminium Dissolved with ph=9 and long term equals to 0.05 upperlimits
 
   n<-lookup_limits(term="long", ph=5)
-  expect_equal(as.character(x$Unit[x$Variable=="Aluminium Dissolved"]),"mg/L")  #check units with different conditions
-  #expect_equal(z$UpperLimit[z$Variable=="Aluminium Dissolved"],0.006839778)
-  expect_equal(as.character(z$UpperLimit[z$Variable=="Cadmium Dissolved"]), as.character(NA)) #upperlimit with NA
-  expect_equal(as.character(z$UpperLimit[z$Variable=="Copper Total"]), as.character(NA))
-  expect_equal(as.character(z$UpperLimit[z$Variable=="Sulphate"]), as.character(NA))
-  expect_false(is.na(z$UpperLimit[z$Variable=="zinc Total"]))
-  #expect_true(is.na(z$UpperLimit[z$Variable=="zinc Total"]))
+  expect_equal(as.character(n$Unit[n$Variable=="Aluminium Dissolved"]),"mg/L")  #check units with different conditions
+  expect_equal(n$UpperLimit[n$Variable=="Aluminium Dissolved"],0.006839778)
+  expect_equal(as.character(n$UpperLimit[n$Variable=="Cadmium Dissolved"]), as.character(NA)) #upperlimit with NA
+  expect_equal(as.character(n$UpperLimit[n$Variable=="Copper Total"]), as.character(NA))
+  expect_equal(as.character(n$UpperLimit[n$Variable=="Sulphate"]), as.character(NA))
+  #expect_false(is.na(n$UpperLimit[n$Variable=="zinc Total"]))
+  #expect_true(is.na(n$UpperLimit[n$Variable=="zinc Total"]))
 
   q<-lookup_limits(term="short")
   expect_equal(as.character(q$UpperLimit[q$Variable=="Aluminium Dissolved"]),as.character(NA))
