@@ -74,6 +74,9 @@ test_that("lookup_limits", {
   expect_equal(as.character(i$UpperLimit[i$Variable=="Copper Total"]),as.character(NA))
   expect_equal(as.character(i$UpperLimit[i$Variable=="Silver"]),as.character(NA))
   expect_equal(as.character(i$UpperLimit[i$Variable=="Zinc Total"]),as.character(NA))
-
+ #next todo:
+ #figure out the MG labels representation - do testings
+ #figure out how to write equals in words
+ #use different conditions to compare limits
 
 })
