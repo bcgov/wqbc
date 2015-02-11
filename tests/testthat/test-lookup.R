@@ -42,7 +42,7 @@ test_that("lookup_limits", {
   expect_equal(as.character(z$UpperLimit[z$Variable=="Cadmium Dissolved"]), as.character(NA)) #upperlimit with NA
   expect_equal(as.character(z$UpperLimit[z$Variable=="Copper Total"]), as.character(NA))
   expect_equal(as.character(z$UpperLimit[z$Variable=="Sulphate"]), as.character(NA))
-  #expect_false(is.na(z$UpperLimit[z$Variable=="zinc Total"]))
+  expect_false(is.na(z$UpperLimit[z$Variable=="zinc Total"]))
   #expect_true(is.na(z$UpperLimit[z$Variable=="zinc Total"]))
 
   q<-lookup_limits(term="short")
