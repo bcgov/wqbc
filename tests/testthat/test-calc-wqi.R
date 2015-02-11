@@ -22,7 +22,7 @@ test_that("ccme", {
 
   data(ccme)
 
-  x <- calc_wqi(ccme, ci = "column")
+  x <- calc_wqi(ccme)
 
   expect_is(x, "data.frame")
   expect_equal(nrow(x), 1)
@@ -84,19 +84,3 @@ test_that("calc_wqi zero values", {
   ccme$DetectionLimit <- 1
   expect_is(calc_wqi(ccme), "data.frame")
 })
-
-test_that("calc_wqi boot", {
-
-  opts <- options()
-  on.exit(options(opts))
-  options(wqbc.messages = FALSE)
-
-  data(ccme)
-
-  calc_wqi(ccme, ci = "column", cesi_code = FALSE)
-  calc_wqi(ccme, ci = "row", cesi_code = FALSE)
-  calc_wqi(ccme, ci = "column", cesi_code = TRUE)
-  calc_wqi(ccme, ci = "row", cesi_code = TRUE)
-})
-
-

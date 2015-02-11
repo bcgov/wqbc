@@ -1,13 +1,13 @@
 Package: wqbc
 Type: Package
 Title: Water Quality Thresholds and Index Calculation for British Columbia
-Version: 0.0.0.9005
-Date: 2015-01-31
+Version: 0.0.0.9006
+Date: 2015-02-10
 Authors@R: as.person(c(
     "Joe Thorley <joe@poissonconsulting.ca> [aut, cre]",
     "Colin Millar <colinpmillar@gmail.com> [aut]",
+    "Andy Teucher [aut]",
     "Wendy Wang [ctb]",
-    "Andy Teucher [ctb]",
     "Stephanie Hazlitt [ctb]",
     "Robyn Irvine [ctb]"))
 Description: Calculates water quality thresholds and water quality indices
