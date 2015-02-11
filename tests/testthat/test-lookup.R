@@ -51,9 +51,15 @@ test_that("lookup_limits", {
 
   p<-lookup_limits(term="short",ph=9)
   expect_equal(as.character(p$Unit[p$Variable=="Aluminium Dissolved"]),"mg/L")
+  expect_equal(as.character(p$Unit[p$Variable=="Lead"]),"ug/L")
+  expect_equal(as.character(p$Unit[p$Variable=="Ethinylestradiol 17a"]),"ng/L")
   expect_equal(p$UpperLimit[p$Variable=="Aluminium Dissolved"],0.10)
   expect_equal(p$UpperLimit[p$Variable=="Cobalt Total"],110.00)
-  expect_equal(as.character(p$UpperLimit[p$Variable=="zinc Total"]),as.character(NA)) #NA upperlimits
+  expect_equal(as.character(p$UpperLimit[p$Variable=="Lead"]),as.character(NA))
+  expect_equal(as.character(p$UpperLimit[p$Variable=="Manganese"]),as.character(NA))
+  expect_equal(as.character(p$UpperLimit[p$Variable=="Zinc Total"]),as.character(NA)) #NA upperlimits
+  #expect_equal(as.character(p$UpperLimit[p$Variable=="zinc Total"]),as.character(NA)) #case sensitive?
+
 
   i<-lookup_limits(term="short",ph=6.5)
   expect_equal(as.character(p$Unit[p$Variable=="Aluminium Dissolved"]),"mg/L")
