@@ -24,10 +24,6 @@ test_that("lookup_limits", {
   expect_is(x,"data.frame")                                                 #check if lookup_limits is a data frame
   expect_equal(nrow(x),23)                                                  #check if lookup_limits has 23 rows
   expect_equal(ncol(x),3)                                                   #check if loopup_limits has 3 columns
- #expect_equal(x$Condition==as.character(NA),28)                            #check 28 rows has NA conditions
- #expect_equal(x$Unit==as.character("mg/L"),#)                              #check # rows has mg/L unit
- #expect_equal(x$Unit==as.character("ug/L"),#)                              #check # rows has ug/L unit
- #expect_equal(x$Unit==as.character("ng/L"),#)                              #check # rows has ng/L unit
 
 
   y<-lookup_limits(term="long")
@@ -35,13 +31,13 @@ test_that("lookup_limits", {
   expect_equal(x$UpperLimit[x$Variable=="Arsenic Total"],5)                 #check if Arsenic Total has an upperlimits with 5
   expect_equal(as.character(x$Unit[x$Variable=="Arsenic Total"]),"ug/L")    #check if Arsenic Total has unit ug/L
 
-  z<-lookup_limits(term="long", ph=9)
+  z<-lookup_limits(term="long", ph=9) #EMS_0004
   expect_equal(z$UpperLimit[z$Variable=="Aluminium Dissolved"],0.050)       #check if Aluminium Dissolved with ph=9 and long term equals to 0.05 upperlimits
 
-  m<-lookup_limits(term="long", ph=6.5)
+  m<-lookup_limits(term="long", ph=6.5)#EMS_0004
   expect_equal(z$UpperLimit[z$Variable=="Aluminium Dissolved"],0.050)       #check if Aluminium Dissolved with ph=9 and long term equals to 0.05 upperlimits
 
-  n<-lookup_limits(term="long", ph=5)
+  n<-lookup_limits(term="long", ph=5)#EMS_0004
   expect_equal(as.character(n$Unit[n$Variable=="Aluminium Dissolved"]),"mg/L")  #check units with different conditions
   expect_equal(n$UpperLimit[n$Variable=="Aluminium Dissolved"],0.006839778)
   expect_equal(as.character(n$UpperLimit[n$Variable=="Cadmium Dissolved"]), as.character(NA)) #upperlimit with NA
@@ -54,7 +50,7 @@ test_that("lookup_limits", {
   expect_equal(q$UpperLimit[q$Variable=="Polychlorinated Biphenyl Total"],0.10)
   expect_equal(as.character(q$Unit[q$Variable=="Polychlorinated Biphenyl Total"]),"ng/L")
 
-  p<-lookup_limits(term="short",ph=9)
+  p<-lookup_limits(term="short",ph=9)#EMS_0004
   expect_equal(as.character(p$Unit[p$Variable=="Aluminium Dissolved"]),"mg/L")
   expect_equal(as.character(p$Unit[p$Variable=="Lead"]),"ug/L")
   expect_equal(as.character(p$Unit[p$Variable=="Ethinylestradiol 17a"]),"ng/L")
@@ -63,10 +59,9 @@ test_that("lookup_limits", {
   expect_equal(as.character(p$UpperLimit[p$Variable=="Lead"]),as.character(NA))
   expect_equal(as.character(p$UpperLimit[p$Variable=="Manganese"]),as.character(NA))
   expect_equal(as.character(p$UpperLimit[p$Variable=="Zinc Total"]),as.character(NA)) #NA upperlimits
-  #expect_equal(as.character(p$UpperLimit[p$Variable=="zinc Total"]),as.character(NA)) #case sensitive?
 
 
-  i<-lookup_limits(term="short",ph=6.5)
+  i<-lookup_limits(term="short",ph=6.5)#EMS_0004
   expect_equal(as.character(i$Unit[i$Variable=="Aluminium Dissolved"]),"mg/L")
   expect_equal(as.character(i$Unit[i$Variable=="Cyanide Weak Acid Dissociable"]),"ug/L")
   expect_equal(as.character(i$Unit[i$Variable=="Polychlorinated Biphenyl Total"]),"ng/L")
@@ -74,9 +69,53 @@ test_that("lookup_limits", {
   expect_equal(as.character(i$UpperLimit[i$Variable=="Copper Total"]),as.character(NA))
   expect_equal(as.character(i$UpperLimit[i$Variable=="Silver"]),as.character(NA))
   expect_equal(as.character(i$UpperLimit[i$Variable=="Zinc Total"]),as.character(NA))
- #next todo:
- #figure out the MG labels representation - do testings
- #figure out how to write equals in words
- #use different conditions to compare limits
+
+  #k<-lookup_limits(term="long",Hardness Total=1.3)                             #out of bound
+  #exp(0.736 * log(EMS_0107) - 4.943)
+  #expect_equal(as.character(k$Unit[k$Variable=="Cadmium Dissolved"]),as.character(NA))
+  #expect_equal(as.character(k$UpperLimit[k$Variable=="Cadmium Dissolved"]),as.character(NA))
+
+
+  #a<-lookup_limits(term="long",Hardness Total=3.4)                             #boundary case for Cadmium Dissolved
+  #exp(0.736 * log(EMS_0107) - 4.943)
+  #expect_equal(as.character(a$Unit[a$Variable=="Cadmium Dissolved"]),"ug/L")
+  #expect_equal(a$UpperLimit[a$Variable=="Cadmium Dissolved"]),0.0105)
+
+
+  #b<-lookup_limits(term="long",Hardness Total=100)
+  #expect_equal(as.character(b$Unit[b$Variable=="Cadmium Dissolved"]),"ug/L")
+  #exp(0.736 * log(EMS_0107) - 4.943)
+  #expect_equal(b$UpperLimit[b$Variable=="Cadmium Dissolved"]),0.03109)
+
+  #c<-lookup_limits(term="long",Hardness Total=285)                             #boundary case for Cadmium Dissolved
+  #exp(0.736 * log(EMS_0107) - 4.943)
+  #expect_equal(as.character(c$Unit[c$Variable=="Cadmium Dissolved"]),"ug/L")
+  #expect_equal(c$UpperLimit[c$Variable=="Cadmium Dissolved"]),0.043446)
+
+  #d<-lookup_limits(term="long",Hardness Total=300)                             #out of bound
+  #exp(0.736 * log(EMS_0107) - 4.943)
+  #expect_equal(as.character(d$Unit[d$Variable=="Cadmium Dissolved"]),as.character(NA))
+  #expect_equal(as.character(d$UpperLimit[d$Variable=="Cadmium Dissolved"]),as.character(NA))
+
+  #e<-lookup_limits(term="long",Hardness Total=30)                             # out of bound for Copper Total
+  # 0.04 * EMS_0107
+  #expect_equal(as.character(e$Unit[e$Variable=="Copper Total"]),"ug/L")
+  #expect_equal(as.character(e$UpperLimit[e$Variable=="Copper Total"]),2)
+
+  #e<-lookup_limits(term="long",Hardness Total=50)                             # out of bound for Copper Total
+  # 0.04 * EMS_0107
+  #expect_equal(as.character(e$Unit[e$Variable=="Copper Total"]),"ug/L")
+  #expect_equal(as.character(e$UpperLimit[e$Variable=="Copper Total"]),2)
+
+  #f<-lookup_limits(term="long",Hardness Total=51)                             # boundary case for Copper Total
+  # 0.04 * EMS_0107
+  #expect_equal(as.character(f$Unit[f$Variable=="Copper Total"]), "ug/L")
+  #expect_equal(as.character(f$UpperLimit[f$Variable=="Copper Total"]),2.04)
+
+  #g<-lookup_limits(term="long",Hardness Total=10000)
+  # 0.04 * EMS_0107
+  #expect_equal(as.character(e$Unit[e$Variable=="Copper Total"]), "ug/L")
+  #expect_equal(as.character(e$UpperLimit[e$Variable=="Copper Total"]),400)
+
 
 })
