@@ -136,7 +136,7 @@ test_that("lookup_limits", {
   g<-lookup_limits(term="long",hardness=10000)
   # 0.04 * EMS_0107
   expect_equal(as.character(e$Unit[e$Variable=="Copper Total"]), "ug/L")
-  #expect_equal(e$UpperLimit[e$Variable=="Copper Total"],round(400,3))
+  #expect_equal(e$UpperLimit[e$Variable=="Copper Total"],400.0000000)
 
   FluorideTotal<-lookup_limits(term="short",hardness=-1)               #negative hardness total
   expect_equal(as.character(FluorideTotal$Unit[FluorideTotal$Variable=="Fluoride Total"]), "mg/L")
@@ -159,7 +159,7 @@ test_that("lookup_limits", {
   Lead<-lookup_limits(term="long",hardness=9)
   #exp(1.273 * log(EMS_0107) - 4.704) + 3.31
   expect_equal(as.character(Lead$Unit[Lead$Variable=="Lead"]), "ug/L")
-  #expect_equal(Lead$UpperLimit[Lead$Variable=="Lead"],3.3405)
+  expect_equal(Lead$UpperLimit[Lead$Variable=="Lead"],3.45853523)
 
   Lead_short<-lookup_limits(term="short",hardness=3)
   #3
@@ -169,7 +169,7 @@ test_that("lookup_limits", {
   Lead_morethan8<-lookup_limits(term="short",hardness=10)
   #  exp(1.273 * log(EMS_0107) - 1.460)
   expect_equal(as.character(Lead_morethan8$Unit[Lead_morethan8$Variable=="Lead"]), "ug/L")
-  #expect_equal(Lead_morethan8$UpperLimit[Lead_morethan8$Variable=="Lead"],0.829)
+  expect_equal(Lead_morethan8$UpperLimit[Lead_morethan8$Variable=="Lead"],4.354417397)
 
 
 
