@@ -149,5 +149,26 @@ test_that("lookup_limits", {
   #expect_equal(as.character(FluorideTotal_morethan10$Unit[FluorideTotal_morethan10$Variable=="Fluoride Total"]), "mg/L")
   #expect_equal(as.character(FluorideTotal_morethan10$UpperLimit[FluorideTotal_morethan10$Variable=="Fluoride Total"]),0.85)
 
+  #Lead_outofbound<-lookup_limits(term="long",Hardness Total=3)
+  #NA
+  #expect_equal(as.character(Lead_outofbound$Unit[Lead_outofbound$Variable=="Lead"]), as.character(NA))
+  #expect_equal(as.character(Lead_outofbound$UpperLimit[Lead_outofbound$Variable=="Lead"]),as.character(NA))
+
+  #Lead<-lookup_limits(term="long",Hardness Total=9)
+  #exp(1.273 * log(EMS_0107) - 4.704) + 3.31
+  #expect_equal(as.character(Lead$Unit[Lead$Variable=="Lead"]), "ug/L")
+  #expect_equal(as.character(Lead$UpperLimit[Lead$Variable=="Lead"]),3.3405)
+
+  #Lead_short<-lookup_limits(term="short",Hardness Total=3)
+  #3
+  #expect_equal(as.character(Lead_short$Unit[Lead_short$Variable=="Lead"]), "ug/L")
+  #expect_equal(as.character(Lead_short$UpperLimit[Lead_short$Variable=="Lead"]),3)
+
+  #Lead_morethan8<-lookup_limits(term="short",Hardness Total=10)
+  #  exp(1.273 * log(EMS_0107) - 1.460)
+  #expect_equal(as.character(Lead_morethan8$Unit[Lead_morethan8$Variable=="Lead"]), "ug/L")
+  #expect_equal(as.character(Lead_morethan8$UpperLimit[Lead_morethan8$Variable=="Lead"]),0.829)
+
+
 
 })
