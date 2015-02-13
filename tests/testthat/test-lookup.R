@@ -70,104 +70,104 @@ test_that("lookup_limits", {
   expect_equal(as.character(i$UpperLimit[i$Variable=="Silver"]),as.character(NA))
   expect_equal(as.character(i$UpperLimit[i$Variable=="Zinc Total"]),as.character(NA))
 
-  #k<-lookup_limits(term="long",Hardness Total=1.3)                             #out of bound
+  k<-lookup_limits(term="long",hardness=1.3)                             #out of bound
   #exp(0.736 * log(EMS_0107) - 4.943)
-  #expect_equal(as.character(k$Unit[k$Variable=="Cadmium Dissolved"]),as.character(NA))
-  #expect_equal(as.character(k$UpperLimit[k$Variable=="Cadmium Dissolved"]),as.character(NA))
+  expect_equal(as.character(k$Unit[k$Variable=="Cadmium Dissolved"]),"ug/L")
+  expect_equal(as.character(k$UpperLimit[k$Variable=="Cadmium Dissolved"]),as.character(NA))
 
 
-  #a<-lookup_limits(term="long",Hardness Total=3.4)                             #boundary case for Cadmium Dissolved
+  a<-lookup_limits(term="long",hardness=3.4)                             #boundary case for Cadmium Dissolved
   #exp(0.736 * log(EMS_0107) - 4.943)
-  #expect_equal(as.character(a$Unit[a$Variable=="Cadmium Dissolved"]),"ug/L")
+  expect_equal(as.character(a$Unit[a$Variable=="Cadmium Dissolved"]),"ug/L")
   #expect_equal(a$UpperLimit[a$Variable=="Cadmium Dissolved"]),0.0105)
 
 
-  #b<-lookup_limits(term="long",Hardness Total=100)
-  #expect_equal(as.character(b$Unit[b$Variable=="Cadmium Dissolved"]),"ug/L")
+  b<-lookup_limits(term="long",hardness=100)
+  expect_equal(as.character(b$Unit[b$Variable=="Cadmium Dissolved"]), "ug/L")
   #exp(0.736 * log(EMS_0107) - 4.943)
   #expect_equal(b$UpperLimit[b$Variable=="Cadmium Dissolved"]),0.03109)
 
-  #c<-lookup_limits(term="long",Hardness Total=285)                             #boundary case for Cadmium Dissolved
+  c<-lookup_limits(term="long",hardness=285)                             #boundary case for Cadmium Dissolved
   #exp(0.736 * log(EMS_0107) - 4.943)
-  #expect_equal(as.character(c$Unit[c$Variable=="Cadmium Dissolved"]),"ug/L")
+  expect_equal(as.character(c$Unit[c$Variable=="Cadmium Dissolved"]),"ug/L")
   #expect_equal(c$UpperLimit[c$Variable=="Cadmium Dissolved"]),0.043446)
 
-  #d<-lookup_limits(term="long",Hardness Total=300)                             #out of bound
+  d<-lookup_limits(term="long",hardness=300)                             #out of bound
   #exp(0.736 * log(EMS_0107) - 4.943)
-  #expect_equal(as.character(d$Unit[d$Variable=="Cadmium Dissolved"]),as.character(NA))
+  expect_equal(as.character(d$Unit[d$Variable=="Cadmium Dissolved"]),"ug/L")
   #expect_equal(as.character(d$UpperLimit[d$Variable=="Cadmium Dissolved"]),as.character(NA))
 
-  #Cadmium<-lookup_limits(term="short",Hardness Total=3)                             #out of bound
-  #expect_equal(as.character(Cadmium$Unit[Cadmium$Variable=="Cadmium Dissolved"]),as.character(NA))
+  Cadmium<-lookup_limits(term="short",hardness=3)                             #out of bound
+  expect_equal(as.character(Cadmium$Unit[Cadmium$Variable=="Cadmium Dissolved"]),"ug/L")
   #expect_equal(as.character(Cadmium$UpperLimit[Cadmium$Variable=="Cadmium Dissolved"]),as.character(NA))
 
-  #Cadmium_lowerboundary<-lookup_limits(term="short",Hardness Total=7)                     #boundary for Cadmium Dissolved
+  Cadmium_lowerboundary<-lookup_limits(term="short",hardness=7)                     #boundary for Cadmium Dissolved
   # exp(1.03 * log(EMS_0107) - 5.274)
-  #expect_equal(as.character(Cadmium_boundary$Unit[Cadmium_boundary$Variable=="Cadmium Dissolved"]),"ug/L")
-  #expect_equal(as.character(Cadmium_boundary$UpperLimit[Cadmium_boundary$Variable=="Cadmium Dissolved"]),0.0122338)
+  expect_equal(as.character(Cadmium_lowerboundary$Unit[Cadmium_lowerboundary$Variable=="Cadmium Dissolved"]),"ug/L")
+  #expect_equal(as.character(Cadmium_lowerboundar$UpperLimit[Cadmium_lowerboundar$Variable=="Cadmium Dissolved"]),0.0122338)
 
-  #Cadmium_range<-lookup_limits(term="short",Hardness Total=300)
+  Cadmium_range<-lookup_limits(term="short",hardness=300)
   # exp(1.03 * log(EMS_0107) - 5.274)
-  #expect_equal(as.character(Cadmium_range$Unit[Cadmium_range$Variable=="Cadmium Dissolved"]),"ug/L")
+  expect_equal(as.character(Cadmium_range$Unit[Cadmium_range$Variable=="Cadmium Dissolved"]),"ug/L")
   #expect_equal(as.character(Cadmium_range$UpperLimit[Cadmium_range$Variable=="Cadmium Dissolved"]),0.0657)
 
-  #Cadmium_upperbound<-lookup_limits(term="short",Hardness Total=455)                     #boundary for Cadmium Dissolved
+  Cadmium_upperbound<-lookup_limits(term="short",hardness=455)                     #boundary for Cadmium Dissolved
   # exp(1.03 * log(EMS_0107) - 5.274)
-  #expect_equal(as.character(Cadmium_upperbound$Unit[Cadmium_upperbound$Variable=="Cadmium Dissolved"]),"ug/L")
+  expect_equal(as.character(Cadmium_upperbound$Unit[Cadmium_upperbound$Variable=="Cadmium Dissolved"]),"ug/L")
   #expect_equal(as.character(Cadmium_upperbound$UpperLimit[Cadmium_upperbound$Variable=="Cadmium Dissolved"]),0.07916)
 
-  #e<-lookup_limits(term="long",Hardness Total=30)
+  e<-lookup_limits(term="long",hardness=30)
   # 0.04 * EMS_0107
-  #expect_equal(as.character(e$Unit[e$Variable=="Copper Total"]),"ug/L")
+  expect_equal(as.character(e$Unit[e$Variable=="Copper Total"]),"ug/L")
   #expect_equal(as.character(e$UpperLimit[e$Variable=="Copper Total"]),2)
 
-  #e<-lookup_limits(term="long",Hardness Total=50)
+  e<-lookup_limits(term="long",hardness=50)
   # 0.04 * EMS_0107
-  #expect_equal(as.character(e$Unit[e$Variable=="Copper Total"]),"ug/L")
+  expect_equal(as.character(e$Unit[e$Variable=="Copper Total"]),"ug/L")
   #expect_equal(as.character(e$UpperLimit[e$Variable=="Copper Total"]),2)
 
-  #f<-lookup_limits(term="long",Hardness Total=51)                             # boundary case for Copper Total
+  f<-lookup_limits(term="long",hardness=51)                             # boundary case for Copper Total
   # 0.04 * EMS_0107
-  #expect_equal(as.character(f$Unit[f$Variable=="Copper Total"]), "ug/L")
+  expect_equal(as.character(f$Unit[f$Variable=="Copper Total"]), "ug/L")
   #expect_equal(as.character(f$UpperLimit[f$Variable=="Copper Total"]),2.04)
 
-  #g<-lookup_limits(term="long",Hardness Total=10000)
+  g<-lookup_limits(term="long",hardness=10000)
   # 0.04 * EMS_0107
-  #expect_equal(as.character(e$Unit[e$Variable=="Copper Total"]), "ug/L")
+  expect_equal(as.character(e$Unit[e$Variable=="Copper Total"]), "ug/L")
   #expect_equal(as.character(e$UpperLimit[e$Variable=="Copper Total"]),400)
 
-  # FluorideTotal<-lookup_limits(term="short",Hardness Total=-1)               #negative hardness total
-  #expect_equal(as.character(FluorideTotal$Unit[FluorideTotal$Variable=="Fluoride Total"]), as.character(NA))
+  FluorideTotal<-lookup_limits(term="short",hardness=-1)               #negative hardness total
+  expect_equal(as.character(FluorideTotal$Unit[FluorideTotal$Variable=="Fluoride Total"]), "mg/L")
   #expect_equal(as.character(FluorideTotal$UpperLimit[FluorideTotal$Variable=="Fluoride Total"]),as.character(NA))
 
-  # FluorideTotal_inrange<-lookup_limits(term="short",Hardness Total=10)               #boundary
-  #expect_equal(as.character(FluorideTotal_inrange$Unit[FluorideTotal_inrange$Variable=="Fluoride Total"]), "mg/L")
+  FluorideTotal_inrange<-lookup_limits(term="short",hardness=10)               #boundary
+  expect_equal(as.character(FluorideTotal_inrange$Unit[FluorideTotal_inrange$Variable=="Fluoride Total"]), "mg/L")
   #expect_equal(as.character(FluorideTotal_inrange$UpperLimit[FluorideTotal_inrange$Variable=="Fluoride Total"]),0.4)
 
-  #FluorideTotal_morethan10<-lookup_limits(term="short",Hardness Total=30)
+  FluorideTotal_morethan10<-lookup_limits(term="short",hardness=30)
   #(92.57 * log(EMS_0107, base = 10) - 51.73) * 0.01
-  #expect_equal(as.character(FluorideTotal_morethan10$Unit[FluorideTotal_morethan10$Variable=="Fluoride Total"]), "mg/L")
+  expect_equal(as.character(FluorideTotal_morethan10$Unit[FluorideTotal_morethan10$Variable=="Fluoride Total"]), "mg/L")
   #expect_equal(as.character(FluorideTotal_morethan10$UpperLimit[FluorideTotal_morethan10$Variable=="Fluoride Total"]),0.85)
 
-  #Lead_outofbound<-lookup_limits(term="long",Hardness Total=3)
+  Lead_outofbound<-lookup_limits(term="long",hardness=3)
   #NA
-  #expect_equal(as.character(Lead_outofbound$Unit[Lead_outofbound$Variable=="Lead"]), as.character(NA))
+  expect_equal(as.character(Lead_outofbound$Unit[Lead_outofbound$Variable=="Lead"]), "ug/L")
   #expect_equal(as.character(Lead_outofbound$UpperLimit[Lead_outofbound$Variable=="Lead"]),as.character(NA))
 
-  #Lead<-lookup_limits(term="long",Hardness Total=9)
+  Lead<-lookup_limits(term="long",hardness=9)
   #exp(1.273 * log(EMS_0107) - 4.704) + 3.31
-  #expect_equal(as.character(Lead$Unit[Lead$Variable=="Lead"]), "ug/L")
+  expect_equal(as.character(Lead$Unit[Lead$Variable=="Lead"]), "ug/L")
   #expect_equal(as.character(Lead$UpperLimit[Lead$Variable=="Lead"]),3.3405)
 
-  #Lead_short<-lookup_limits(term="short",Hardness Total=3)
+  Lead_short<-lookup_limits(term="short",hardness=3)
   #3
-  #expect_equal(as.character(Lead_short$Unit[Lead_short$Variable=="Lead"]), "ug/L")
+  expect_equal(as.character(Lead_short$Unit[Lead_short$Variable=="Lead"]), "ug/L")
   #expect_equal(as.character(Lead_short$UpperLimit[Lead_short$Variable=="Lead"]),3)
 
-  #Lead_morethan8<-lookup_limits(term="short",Hardness Total=10)
+  Lead_morethan8<-lookup_limits(term="short",hardness=10)
   #  exp(1.273 * log(EMS_0107) - 1.460)
-  #expect_equal(as.character(Lead_morethan8$Unit[Lead_morethan8$Variable=="Lead"]), "ug/L")
-  #expect_equal(as.character(Lead_morethan8$UpperLimit[Lead_morethan8$Variable=="Lead"]),0.829)
+  expect_equal(as.character(Lead_morethan8$Unit[Lead_morethan8$Variable=="Lead"]), "ug/L")
+  #expect_equal(Lead_morethan8$UpperLimit[Lead_morethan8$Variable=="Lead"],0.829)
 
 
 
