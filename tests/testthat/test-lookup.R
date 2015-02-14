@@ -106,7 +106,7 @@ test_that("lookup_limits", {
   Cadmium_lowerboundary<-lookup_limits(term="short",hardness=7)                     #boundary for Cadmium Dissolved
   # exp(1.03 * log(EMS_0107) - 5.274)
   expect_equal(as.character(Cadmium_lowerboundary$Unit[Cadmium_lowerboundary$Variable=="Cadmium Dissolved"]),"ug/L")
-  expect_equal(Cadmium_lowerboundary$UpperLimit[Cadmium_lowerboundary$Variable=="Cadmium Dissolved"],0.038017353,tolerance=10^7)
+  expect_equal(Cadmium_lowerboundary$UpperLimit[Cadmium_lowerboundary$Variable=="Cadmium Dissolved"],0.038017353,tolerance=10^(-7))
 
   Cadmium_range<-lookup_limits(term="short",hardness=300)
   # exp(1.03 * log(EMS_0107) - 5.274)
