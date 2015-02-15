@@ -101,10 +101,10 @@ abs_days_diff <- function (x, y) {
 }
 
 assign_30day_periods <- function (x, dates) {
-  dates <- sort(unique(dates))
+  if (!is.null(dates)) dates <- sort(unique(dates))
   y <- unique(dplyr::select_(x, ~Date))
   y <- dplyr::arrange_(y, ~Date)
-  is.na(y$Period) <- NA
+  y$Period <- NA
 
   period <- 1
   start_date <- y$Date[1]
