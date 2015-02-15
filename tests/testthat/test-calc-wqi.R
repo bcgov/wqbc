@@ -32,7 +32,7 @@ test_that("ccme", {
   expect_equal(round(x$Upper), 94)
   expect_equal(as.character(x$Category), "Good")
 
-  is.na(ccme$Value[ccme$Variable == "DO" & ccme$Date == as.Date("1994-03-04")]) <- TRUE
+  is.na(ccme$Value[ccme$Variable == "DO" & ccme$Date == as.Date("1997-03-04")]) <- TRUE
   x <- calc_wqi(ccme)
   expect_equal(x$Variables, 10)
   expect_equal(x$Tests, 102)
