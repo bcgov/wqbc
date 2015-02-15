@@ -14,7 +14,7 @@ For additional information on use, the reader is referred to the vignette and `d
 Install
 -------
 
-To install the latest version of jaggernaut:
+To install the latest version of wqbc:
 
     # install.packages("devtools")
     library(devtools)

@@ -29,7 +29,7 @@ vignette and `demo(fraser)`.
 
 ## Install
 
-To install the latest version of jaggernaut:
+To install the latest version of wqbc:
 
 ```
 # install.packages("devtools")
