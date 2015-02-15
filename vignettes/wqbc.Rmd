@@ -3,11 +3,23 @@ title: "wqbc: Water Quality Thresholds and Indices for British Columbia"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{wqbc: Water Quality Thresholds and Indices for BC}
+  %\VignetteIndexEntry{wqbc}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
 
+
+```{r, echo = FALSE, message = FALSE}
+library(wqbc)
+library(lubridate)
+library(xtable)
+library(tidyr)
+library(dplyr)
+knitr::opts_chunk$set(
+  comment = "#>",
+  error = FALSE,
+  tidy = FALSE)
+```
 
 # Introduction
 
