@@ -31,4 +31,5 @@ Suggests:
     ggplot2 (>= 1.0.0),
     sp (>= 1.0-17),
     rgdal (>= 0.9-1)
+    xtable
 VignetteBuilder: knitr
