@@ -99,7 +99,7 @@ bootstrap_wqis_tidy <- function (x, R) {
   x$Variable <- factor(x$Variable)
 
   boot::boot(data = x, statistic = resample_wqi_tidy, R = R,
-                     strata = x$Variable, nt = nt, nv = nv)
+             strata = x$Variable, nt = nt, nv = nv)
 }
 
 lower_upper <- function (x) {
@@ -154,6 +154,11 @@ fourtimesfour <- function (x) {
 }
 
 calc_wqi_by <- function (x, messages) {
+  by <- colnames(x)
+  by <- by[!by %in% c("Date", "Variable", "Value", "UpperLimit", "LowerLimit",
+                          "DetectionLimit")]
+  if(length(by))
+    byc <- as.character(x[1,by,drop = FALSE])
 
   x$Excursion <- get_excursions(x$Value, x$LowerLimit, x$UpperLimit)
   check_excursions(x)
@@ -172,7 +177,15 @@ calc_wqi_by <- function (x, messages) {
                     F3 = round(wqi["F3"], 1))
 
   if(!fourtimesfour(x)) {
-    if(messages) message("Dropped WQI with less than four variables sampled at least four times.")
+
+    if(messages) {
+
+      if(length(by)) {
+        message("Dropped WQI with less than four variables sampled at least four times by ",
+                punctuate_strings(paste(by, byc, sep = ": "), qualifier = "and"), ".")
+      } else
+        message("Dropped WQI with less than four variables sampled at least four times.")
+    }
     wqi <- wqi[F,,drop = FALSE]
   }
   wqi
