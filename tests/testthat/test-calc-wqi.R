@@ -45,6 +45,23 @@ test_that("ccme", {
   is.na(ccme$Value[ccme$Variable == "As"]) <- TRUE
 })
 
+test_that("ccme 4x4", {
+  opts <- options()
+  on.exit(options(opts))
+  options(wqbc.messages = FALSE)
+
+  data(ccme)
+
+  expect_equal(nrow(calc_wqi(ccme)), 1)
+  expect_equal(nrow(calc_wqi(ccme[ccme$Variable == "DO",])), 0)
+  expect_equal(nrow(calc_wqi(ccme[ccme$Variable %in% c("DO","pH","TP"),])), 0)
+  expect_equal(nrow(calc_wqi(ccme[ccme$Variable %in% c("DO","pH","TP","TN"),])), 1)
+  ccme <- plyr::ddply(ccme, "Variable", function (x) x[1:4,])
+  ccme <- ccme[ccme$Variable %in% c("DO","pH","TP","TN"),]
+  expect_equal(nrow(calc_wqi(ccme)), 1)
+  expect_equal(nrow(calc_wqi(ccme[-1,])), 0)
+})
+
 test_that("calc_wqi by", {
   opts <- options()
   on.exit(options(opts))
