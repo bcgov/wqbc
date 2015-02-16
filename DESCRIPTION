@@ -32,5 +32,5 @@ Suggests:
     sp (>= 1.0-17),
     rgdal (>= 0.9-1),
     wq (>= 0.4-1),
-    xtable
+    xtable (>= 1.7-4)
 VignetteBuilder: knitr
