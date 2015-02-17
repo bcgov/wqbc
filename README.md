@@ -9,7 +9,7 @@ The `wqbc` R package calculates water quality thresholds and water quality indic
 Useage
 ------
 
-For additional information on use, the reader is referred to the vignette and `demo(fraser)`.
+For additional information on use, the reader is referred to the vignette.
 
 Install
 -------
