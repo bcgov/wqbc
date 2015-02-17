@@ -54,18 +54,24 @@ standardize_wqdata <- function (
                               "Value" = "numeric",
                               "Units" = c("character", "factor")))
 
-  x <- delete_rows_with_certain_values(x, columns = c("Value"),
-                                       messages = messages, txt = "negative or missing")
+  x <- delete_rows_with_certain_values(x, columns = c("Variable", "Value", "Units"),
+                                       messages = messages, txt = "missing")
+
+  x <- delete_rows_with_certain_values(x, columns = "Value",
+                                       messages = messages, txt = "negative")
 
   if(!nrow(x)) { if(messages) message("Standardized water quality data."); return (x) }
 
   x$Variable <- substitute_variables(x$Variable, strict = strict, messages = messages)
-  x$Units <- substitute_units(x$Units, messages = messages)
-
   is.na(x$Variable[!x$Variable %in% lookup_variables()]) <- TRUE
+
+  x <- delete_rows_with_certain_values(x, columns = c("Variable"),
+                                       messages = messages)
+
+  x$Units <- substitute_units(x$Units, messages = messages)
   is.na(x$Units[!x$Units %in% lookup_units()]) <- TRUE
 
-  x <- delete_rows_with_certain_values(x, columns = c("Variable", "Units"),
+  x <- delete_rows_with_certain_values(x, columns = c("Units"),
                                        messages = messages)
 
   if(!nrow(x)) { if(messages) message("Standardized water quality data."); return (x) }
