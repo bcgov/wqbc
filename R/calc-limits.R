@@ -144,6 +144,7 @@ average_30day_values <- function (x) {
 calc_limits_by_30day <- function (x, dates) {
   ccodes <- get_conditional_codes(x$Condition[x$Term == "Long"])
   x <- dplyr::filter_(x, ~(!is.na(Term) & Term == "Long") | Code %in% ccodes)
+  check_rows(x)
   x <- dplyr::arrange_(x, ~Date)
 
   x <- assign_30day_periods(x, dates)
