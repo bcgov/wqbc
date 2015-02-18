@@ -440,17 +440,17 @@ Sites could be grouped based on other attributes if these were available, such a
 
 This example calculates short term water quality indices over multiple years (in this case from 2002 to 2012), and by site.  The function `facet_wrap` is then used to produce a grided plot output showing multiple years
 
-```{r, eval = FALSE}
-options(wqbc.messages = FALSE)
-data02to12 <- subset(fraser, year(Date) %in% 2002:2012)
-data02to12 $ year <- year(data02to12 $ Date)
-limits02to12 <- calc_limits(data02to12, by = c("year", "SiteID"), term = "short") 
-wqi02to12 <- calc_wqi(limits02to12, by = c("year", "SiteID")) 
+```{r}
+options(wqbc.messages = TRUE)
+data07to12 <- subset(fraser, year(Date) %in% 2007:2012)
+data07to12 $ year <- year(data07to12 $ Date)
+limits07to12 <- calc_limits(data07to12, by = c("year", "SiteID", "Lat", "Long"), term = "short") 
+wqi07to12 <- calc_wqi(limits07to12, by = c("year", "SiteID", "Lat", "Long")) 
 ```
 To visualize the water quality indices over the years, a handy function from the `ggplot2` package called `facet_wrap` can be used.  This is because the plotting functions return a ggplot2 object which can be replotted and adapted - see the [ggplot2 webpage](http://ggplot2.org/) for lots of helpful ideas on how to add to and customize these type of plots.
 
-```{r, fig.width = 7, fig.height = 7, dpi = 100, eval = FALSE}
-p <- plot_map_wqis(wqi02to12) 
+```{r, fig.width = 7, fig.height = 5, dpi = 100}
+p <- plot_map_wqis(wqi07to12, keep = "year") 
 p + facet_wrap(~year)
 ```
 
