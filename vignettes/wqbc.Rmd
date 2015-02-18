@@ -1,9 +1,9 @@
 ---
-title: "wqbc: Water Quality Thresholds and Indices for British Columbia"
+title: "Water Quality Thresholds and Indices for British Columbia"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{wqbc}
+  %\VignetteIndexEntry{Water Quality Thresholds and Indices for British Columbia}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
