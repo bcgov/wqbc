@@ -1,6 +1,4 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://magnum.travis-ci.com/poissonconsulting/wqbc.svg?token=LCuTqqVUfUECxm1xTQLb&branch=master)](https://magnum.travis-ci.com/poissonconsulting/wqbc)
-
 Water Quality Thresholds and Index Calculations for British Columbia
 ====================================================================
 
@@ -9,7 +7,7 @@ The `wqbc` R package calculates water quality thresholds and water quality indic
 Useage
 ------
 
-For additional information on use, the reader is referred to the vignette.
+For information on use, the reader is referred to vignette("wqbc").
 
 Install
 -------

@@ -6,7 +6,6 @@ output:
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![Build Status](https://magnum.travis-ci.com/poissonconsulting/wqbc.svg?token=LCuTqqVUfUECxm1xTQLb&branch=master)](https://magnum.travis-ci.com/poissonconsulting/wqbc)
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
@@ -24,8 +23,8 @@ British Columbia.
 
 ## Useage
 
-For additional information on use, the reader is referred to the
-vignette.
+For information on use, the reader is referred to
+vignette("wqbc").
 
 ## Install
 
