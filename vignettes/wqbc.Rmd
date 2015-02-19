@@ -6,6 +6,7 @@ vignette: >
   %\VignetteIndexEntry{Water Quality Thresholds and Indices for British Columbia}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
+bibliography: bibliography.bib
 ---
 
 
@@ -28,7 +29,7 @@ knitr::opts_chunk$set(
 # Introduction
 
 
-The main function of the `wqbc` (water quality for British Columbia) package is to calculate the Canadian Council of Ministers of the Environment (CCME) water quality index (WQI) for water bodies in British Columbia, the procedure is set out in the CCME WQI (1.0) [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf").  
+The main function of the `wqbc` (water quality for British Columbia) package is to calculate the Canadian Council of Ministers of the Environment (CCME) water quality index (WQI) for water bodies in British Columbia, the procedure is set out in the CCME WQI (1.0) [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf") [@ccmeWQI2001].  
 
 Water quality indices are calculated using the `calc_wqi` function. 
 In addition water quality thresholds can be calculated with `calc_limits`. In this document, _thresholds_ and _limits_ are used interchangeably to describe environmental benchmarks for safe levels of specific substances.
@@ -38,7 +39,7 @@ a map of British Columbia, the function `plot_map` is provided.
 The purpose of this document is to provide some background to the calculation of indices, 
 provide worked examples of the calculation of indices and and to show how various summaries of the indices can be displayed visually.
 
-The data used in the examples are from the Fraser River basin (data available [here](http://data.gc.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18) under the [Candian Open Government License](http://open.canada.ca/en/open-government-licence-canada), and an example taken from the CCME WQI [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf").
+The data used in the examples are from the Fraser River basin (data available [here](http://data.gc.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18) under the [Candian Open Government License](http://open.canada.ca/en/open-government-licence-canada), and an example taken from the CCME WQI [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf") [@ccmeWQI2001].
 
 The following methods of analyzing water quality are provided:
 
@@ -511,3 +512,5 @@ fraser <- calc_limits(fraser, by = "Year", term = "short")
 fraser <- calc_wqi(fraser, by = "Year")
 plot_wqis(fraser, x = "Year")
 ```
+
+# References
