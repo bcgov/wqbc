@@ -31,18 +31,18 @@ knitr::opts_chunk$set(
 The main function of the `wqbc` (water quality for British Columbia) package is to calculate the Canadian Council of Ministers of the Environment (CCME) water quality index (WQI) for water bodies in British Columbia, the procedure is set out in the CCME WQI (1.0) [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf").  
 
 Water quality indices are calculated using the `calc_wqi` function. 
-In addition water quality thresholds can be calculated with `calc_limits`. 
+In addition water quality thresholds can be calculated with `calc_limits`. In this document, _thresholds_ and _limits_ are used interchangeably to describe environmental benchmarks for safe levels of specific substances.
 For the visual display of the calculated water quality indices over 
 a map of British Columbia, the function `plot_map` is provided.
 
 The purpose of this document is to provide some background to the calculation of indices, 
 provide worked examples of the calculation of indices and and to show how various summaries of the indices can be displayed visually.
 
-The data used in the examples are from the Fraser River basin and an example taken from the CCME WQI [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf").
+The data used in the examples are from the Fraser River basin (data available [here](http://data.gc.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18) under the [Candian Open Government License](http://open.canada.ca/en/open-government-licence-canada), and an example taken from the CCME WQI [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf").
 
 The following methods of analyzing water quality are provided:
 
-1. Calculation of compliance thresholds for water quality variables
+1. Calculation of thresholds for water quality variables
 2. Calculation of the CCME water quality index
 3. Methods for visualization of water quality indices
 
@@ -65,13 +65,13 @@ ____________________________________________________
 
 # The CCME Water Quality Index (1.0)
 
-Water quality is assessed by the monitoring of a range of quantities referred to in this document as _variables_.  The majority of water quality variables are concentrations of various chemicals, however, quantities such as water turbidity and pH are also important.  Comprehensive water quality monitoring has been undertaken in the Fraser River Basin (BC, Canada) since 1979, and this data is provided in the package, however the tools in this package can be applied to any suitable data set provided it meets specific requirements detailed in the [Data Format] section.
+Water quality is assessed by the monitoring of a range of parameters referred to in this document as _variables_.  The majority of water quality variables are concentrations of various chemicals, however, quantities such as water turbidity and pH are also important.  Comprehensive water quality monitoring has been undertaken in the Fraser River Basin (BC, Canada) since 1979, and this data is provided in the package, however the tools in this package can be applied to any suitable data set provided it meets specific requirements detailed in the [Data Format] section.
 
 The CCME Water Quality Index (1.0) is based on a combination of three factors (F1 to F3):
 
-* F1: **Scope** the number of variables whose objectives are not met,
-* F2: **Frequency** the frequency with which the objectives are not met, and
-* F3: **Amplitude** the amount by which the objectives are not met.
+* F1: **Scope** the percent of variables where thresholds are exceeded at least once,
+* F2: **Frequency** the percent of individual tests in which thresholds are exceeded, and
+* F3: **Amplitude** the amount by which the thresholds are exceeded.
 
 These are combined to produce a single value (between 0 and 100) which is then converted to a ranking of quality (poor, marginal, fair, good, and excellent) intended to describe overall water quality.   In the [Water Quality Index Calculation] section you can see examples of the CCME WQI in action.
 
@@ -164,7 +164,7 @@ however, this data can only be used if there are water quality limits defined.  
 lookup_limits()
 ```
 
-This function will be discussed further in the following section, but note for now that the variable listed as `DO` in the `ccme` data does not have a corresponding limit defined in `lookup_limits` and so for water quality indices to be calculated for the `ccme` data, there must be compliance thresholds provided for each observation. This should be included by providing 
+This function will be discussed further in the following section, but note for now that the variable listed as `DO` (Dissolved Oxygen) in the `ccme` data does not have a corresponding limit defined in `lookup_limits` and so for water quality indices to be calculated for the `ccme` data, there must be thresholds provided for each observation. This should be included by providing 
 upper limits in a column called `UpperLimit`, and optionally 
 lower limits in `LowerLimit`, for example
 
@@ -180,7 +180,7 @@ ccme2 $ UpperLimit <- 50
 calc_wqi(ccme2)
 ```
 
-And as expected by setting the compliance thresholds arbitrarily high, we get no failures and an Excellent marking!
+And as expected by setting the  thresholds arbitrarily high, we get no failures and an Excellent marking!
 
 
 
@@ -263,7 +263,7 @@ data2012 <- standardize_wqdata(data2012)
 head(data2012)
 ```
 
-Note that the effect of running `standardize_wqdata` is to convert some variable names to a standard form, for example, 'ALUMINUM DISSOLVED' has been replaced with 'Aluminium Dissolved'.  The messages output by the function relay this information, along with all the other substitutions made.  In addition, there are a number of variable names which are not part of the standard list of variables and were removed from the dataset. Unit names are also standardized, for example 'MG/L' has been replaced with 'mg/L', there are also some unrecognized units which result in the related observations being removed from the dataset.  As a result of the standardization, the 2012 Fraser dataset has been reduced from 18062 recorded observations, to 4194 standard observations, which can all be matched with the compliance thresholds.
+Note that the effect of running `standardize_wqdata` is to convert some variable names to a standard form, for example, 'ALUMINUM DISSOLVED' has been replaced with 'Aluminium Dissolved'.  The messages output by the function relay this information, along with all the other substitutions made.  In addition, there are a number of variable names which are not part of the standard list of variables and were removed from the dataset. Unit names are also standardized, for example 'MG/L' has been replaced with 'mg/L', there are also some unrecognized units which result in the related observations being removed from the dataset.  As a result of the standardization, the 2012 Fraser dataset has been reduced from 18062 recorded observations, to 4194 standard observations, which can all be matched with the  thresholds.
 
 After standardization, it is necessary to ensure that there are only single values for each date for a given variable and this is done using the function `clean_wqdata`.  If the data is to be considered as observations of one entity, i.e. the whole Fraser river basin, then this function will average over all data occurring on a given day. If this was desired, the following code would be used 
 
@@ -282,15 +282,15 @@ In this case there are no problems, and the data is ready for the next step. Not
 
 <!-- ____________________________________________________ -->
 
-## Calculating compliance limits
+## Calculating limits
 
-Now that we have observations for a range of standard variables it is possible to calculate the relevant limits with which to assess compliance.  Taking into account the various rules for calculating compliance thresholds for the standard variables, the function `calc_limits` calculates the limits required to evaluate the water quality index.  Again, if it is required to calculate the water quality index for each site, then the `by` argument is used
+Now that we have observations for a range of standard variables it is possible to calculate the relevant limits with which to assess exceedances.  Taking into account the various rules for calculating thresholds for the standard variables, the function `calc_limits` calculates the limits required to evaluate the water quality index.  Again, if it is required to calculate the water quality index for each site, then the `by` argument is used
 
 ```{r}
 calc_limits(data2012, by = "SiteID", term = "long")
 ```
 
-Now the 2012 Fraser river basin data has been reduced to daily means of the standard variables, and compliance thresholds have been attributed to each observation.  A visual inspection of the data shows that for the period starting the 11th April, several variables at the `BC08MC0001` site are above their long-term limits, i.e. Cobalt Total, Copper Total, Silver and Zinc Total.
+Now the 2012 Fraser river basin data has been reduced to daily means of the standard variables, and  thresholds have been attributed to each observation.  A visual inspection of the data shows that for the period starting the 11th April, several variables at the `BC08MC0001` site are above their long-term limits, i.e. Cobalt Total, Copper Total, Silver and Zinc Total.
 
 <!-- ____________________________________________________ -->
 
@@ -302,10 +302,10 @@ In the previous output, the `calc_limits` function returned a total of ten limit
 qplot(Date, SiteID, xlab = "", ylab = "", data = data2012, colour = SiteID == "BC08MC0001")
 ```
 
-The point here is that the `calc_limits` function can calculate long or short-term limits.  For long-term limits, thresholds are calculated for each 30 day period.  Then in the water quality calculation, these 30 day periods are treated as individual test units for compliance. There are strict rules applied to whether a 30 day period is considered valid for limit calculation: there must be at least 5 values spanning at least 21 days in a 30 day period for that period to be valid, and since replicates are averaged (by the `clean_wqdata` function) prior to calculating the limits each of the 5 values must occur on a separate date.  This explains why the long term limits, by site are so few for the 2012 data: only the `BC08MC0001` site has sufficiently frequent observations, occurring once in the year in the 30 day period following the 11th of April, to be considered valid for the calculation of long-term limits.
+The point here is that the `calc_limits` function can calculate long or short-term limits.  For long-term limits, thresholds are calculated for each 30 day period.  Then in the water quality calculation, these 30 day periods are treated as individual test units for exceedances. There are strict rules applied to whether a 30 day period is considered valid for limit calculation: there must be at least 5 values spanning at least 21 days in a 30 day period for that period to be valid, and since replicates are averaged (by the `clean_wqdata` function) prior to calculating the limits each of the 5 values must occur on a separate date.  This explains why the long term limits, by site are so few for the 2012 data: only the `BC08MC0001` site has sufficiently frequent observations, occurring once in the year in the 30 day period following the 11th of April, to be considered valid for the calculation of long-term limits.
 
 
-The strict conditions required for long-term limits are not required when calculating short-term limits, where instead individual days are considered as the test units for compliance.  
+The strict conditions required for long-term limits are not required when calculating short-term limits, where instead individual days are considered as the test units for exceedances.  
 
 ```{r}
 data2012 <- calc_limits(data2012, by = "SiteID", term = "short") 
@@ -318,7 +318,7 @@ head(data2012, 12)
 
 ## Calculating the Water Quality Index
 
-Note that the default for calculating the water quality index is the use of long-term limits, but for the sake of continuing the example, we will keep with the 2012 data.  Lets begin by summarizing the steps so far: The full Fraser river basin dataset was subset to retain only the data from 2012.  Then this data (which we have called `data2012`) was first, standardized, cleaned and then the compliance limits were calculated for daily values.
+Note that the default for calculating the water quality index is the use of long-term limits, but for the sake of continuing the example, we will keep with the 2012 data.  Lets begin by summarizing the steps so far: The full Fraser river basin dataset was subset to retain only the data from 2012.  Then this data (which we have called `data2012`) was first, standardized, cleaned and then the  limits were calculated for daily values.
 
 ```{r, eval = FALSE}
 data2012 <- subset(fraser, year(Date) == 2012)
@@ -438,7 +438,7 @@ Sites could be grouped based on other attributes if these were available, such a
 
 ## An example over multiple years
 
-This example calculates short term water quality indices over multiple years (in this case from 2002 to 2012), and by site.  The function `facet_wrap` is then used to produce a grided plot output showing multiple years
+This example calculates short term water quality indices over multiple years (in this case from 2002 to 2012), and by site.  The function `facet_wrap` is then used to produce a gridded plot output showing multiple years
 
 ```{r}
 options(wqbc.messages = TRUE)
