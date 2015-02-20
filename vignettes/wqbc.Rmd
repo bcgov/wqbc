@@ -66,7 +66,7 @@ ____________________________________________________
 
 # The CCME Water Quality Index (1.0)
 
-Water quality is assessed by the monitoring of a range of parameters referred to in this document as _variables_.  The majority of water quality variables are concentrations of various chemicals, however, quantities such as water turbidity and pH are also important.  Comprehensive water quality monitoring has been undertaken in the Fraser River Basin (BC, Canada) since 1979, and this data is provided in the package, however the tools in this package can be applied to any suitable data set provided it meets specific requirements detailed in the [Data Format] section.
+Water quality is assessed by the monitoring of a range of parameters, referred to in this document as _variables_.  The majority of water quality variables are concentrations of various chemicals, however, quantities such as water turbidity and pH are also important.  Comprehensive water quality monitoring has been undertaken in the Fraser River Basin (BC, Canada) since 1979, and this data is provided in the package, however the tools in this package can be applied to any suitable data set provided it meets specific requirements detailed in the [Data Format] section.
 
 The CCME Water Quality Index (1.0) is based on a combination of three factors (F1 to F3):
 
@@ -149,9 +149,9 @@ ____________________________________________________
 
 There are two datasets provided with the package which follow the data format required by the index calculation routines:
 
-* [ccme] This dataset contains the CCME (Canadian Council of Ministers of the Environment) Water Quality Index 1.0 [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf") example dataset.  The data is a time series of water chemistry measurements taken from North Saskatchewan river at Devon throughout 1997.
+* [ccme] This dataset contains the CCME (Canadian Council of Ministers of the Environment) Water Quality Index 1.0 [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf") example dataset [@ccmeWQI2001].  The data is a time series of water chemistry measurements taken from North Saskatchewan river at Devon throughout 1997.
 
-* [Fraser] This dataset contains long term surface freshwater quality monitoring data from the Fraser River Basin (the data was extracted from [here](http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18 "data")) carried out under the Canada-British Columbia Water Quality Monitoring Agreement. Water quality monitoring is conducted to assess water quality status and long-term trends, detect emerging issues, establish water quality guidelines and track the effectiveness of remedial measures and regulatory decisions
+* [Fraser] This dataset contains long term surface freshwater quality monitoring data from the Fraser River Basin (the data was extracted from [here](http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18 "data") where it is provided under the [Candian Open Government License](http://open.canada.ca/en/open-government-licence-canada)) carried out under the Canada-British Columbia Water Quality Monitoring Agreement. Water quality monitoring is conducted to assess water quality status and long-term trends, detect emerging issues, establish water quality guidelines and track the effectiveness of remedial measures and regulatory decisions
 
 The minimal data format is a data frame with columns named, `Variable`, `Value` and `Units`:
 
@@ -249,7 +249,7 @@ calc_wqi(data2012)
 
 The function `calc_wqi` performs a number of tasks.  The first of these is to check if the dataset contains user defined limits in columns called `UpperLimit` or `LowerLimit`.  If the dataset has these columns, the function proceeds directly to calculating the water quality index.  
 
-If the data do not contain user defined limits, as is the case for the `fraser` dataset, the next steps are to check and standardize the data so that they can be matched with known water quality limits. The list of known water quality limits can be queried using the function `lookup_limits`, which has arguments to help evaluate the limit.  Because some limits are dependent on the concentrations of other chemicals, `lookup_limits` has the following arguments: `ph`, `hardness`, `chloride` and `methyl_mercury`.  In addition because limits are different depending on the time scale, there is a further argument `term` which can take the values "short" or "long". 
+If the data do not contain user defined limits, as is the case for the `fraser` dataset, the next steps are to check and standardize the data so that they can be matched with known water quality limits. The list of known water quality limits can be queried using the function `lookup_limits`, which has arguments to help evaluate the limit.  Because some limits are dependent on the concentrations of other chemicals, `lookup_limits` has the following arguments: `ph`, `hardness`, `chloride` and `methyl_mercury`.  In addition because limits are different depending on the time scale, there is a further argument `term` which can take the values "short" or "long" (defined later in [Calculating limits]). 
 
 ```{r}
 lookup_limits(ph = 7)
@@ -291,7 +291,7 @@ Now that we have observations for a range of standard variables it is possible t
 calc_limits(data2012, by = "SiteID", term = "long")
 ```
 
-Now the 2012 Fraser river basin data has been reduced to daily means of the standard variables, and  thresholds have been attributed to each observation.  A visual inspection of the data shows that for the period starting the 11th April, several variables at the `BC08MC0001` site are above their long-term limits, i.e. Cobalt Total, Copper Total, Silver and Zinc Total.
+Now the 2012 Fraser River basin data has been reduced to daily means of the standard variables, and  thresholds have been attributed to each observation.  A visual inspection of the data shows that for the period starting the 11th April, several variables at the `BC08MC0001` site are above their long-term limits, i.e. Cobalt Total, Copper Total, Silver and Zinc Total.
 
 <!-- ____________________________________________________ -->
 
