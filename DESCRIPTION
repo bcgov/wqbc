@@ -13,7 +13,7 @@ Authors@R: as.person(c(
 Description: Calculates water quality thresholds and water quality indices
     and plots water quality indices spatially and temporally for
     British Columbia.
-License: file LICENSE
+License: Apache License (== 2.0) | file LICENSE
 LazyData: true
 Depends:
     R (>= 3.1.2)
