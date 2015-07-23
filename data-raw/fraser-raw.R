@@ -13,6 +13,7 @@
 ## This script pulls the data from the Fraser River Basin Long-term Water Quality Monitoring dataset,
 ## available at: http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18
 ## under the Open Government License - Canada version 2.0 (http://open.canada.ca/en/open-government-licence-canada)
+## The data is saved in fraser/fraser.csv
 
 #
 # Utility function
