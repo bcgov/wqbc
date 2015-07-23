@@ -1,0 +1,1 @@
+The example data in ccme.csv are from the North Saskatchewan River at Devon - 1997, and were taken from the Canadian Council of Ministers of Environment (CCME) Water Quality Index Users Manual 1.0, available here: http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf.
