@@ -4,9 +4,9 @@ Aluminium Dissolved,Long,EMS_0004 < 6.5,exp(1.6 - 3.327 * EMS_0004 + 0.402 * EMS
 Aluminium Dissolved,Short,EMS_0004 >= 6.5,0.1,mg/L,6,BC_2006,Freshwater Life
 Aluminium Dissolved,Short,EMS_0004 < 6.5,exp(1.209 - 2.426 * EMS_0004 + 0.286 * EMS_0004^2),mg/L,6,BC_2006,Freshwater Life
 Arsenic Total,Long,,5,ug/L,43,BC_2006,Freshwater Life
-Boron,Long,,1.2,mg/L,49,EMAIL_2015,Freshwater Life
-Cadmium Dissolved,Long,EMS_0107 >= 3.4 & EMS_0107 <= 285,exp(0.736 * log(EMS_0107) - 4.943),ug/L,A1,EMAIL_2014,Freshwater Life
-Cadmium Dissolved,Short,EMS_0107 >= 7 & EMS_0107 <= 455,exp(1.03 * log(EMS_0107) - 5.274),ug/L,A1,EMAIL_2014,Freshwater Life
+Boron,Long,,1.2,mg/L,49,MOE_PERS_COMM_2015,Freshwater Life
+Cadmium Dissolved,Long,EMS_0107 >= 3.4 & EMS_0107 <= 285,exp(0.736 * log(EMS_0107) - 4.943),ug/L,A1,MOE_PERS_COMM_2014,Freshwater Life
+Cadmium Dissolved,Short,EMS_0107 >= 7 & EMS_0107 <= 455,exp(1.03 * log(EMS_0107) - 5.274),ug/L,A1,MOE_PERS_COMM_2014,Freshwater Life
 Chlorate,Short,,30,mg/L,44,BC_2006,Freshwater Life
 Chloride Total,Long,,150,mg/L,47,BC_2006,Freshwater Life
 Chloride Total,Short,,600,mg/L,47,BC_2006,Freshwater Life
@@ -19,26 +19,26 @@ Copper Total,Long,EMS_0107 <= 50,2,ug/L,9,BC_2006,Freshwater Life
 Copper Total,Short,,0.094 * EMS_0107 + 2,ug/L,9,BC_2006,Freshwater Life
 Cyanide Weak Acid Dissociable,Long,,5,ug/L,10,BC_2006,Freshwater Life
 Cyanide Weak Acid Dissociable,Short,,10,ug/L,10,BC_2006,Freshwater Life
-Ethinylestradiol 17a,Long,,0.5,ng/L,A2,EMAIL_2014,Freshwater Life
-Ethinylestradiol 17a,Short,,0.75,ng/L,A2,EMAIL_2014,Freshwater Life
+Ethinylestradiol 17a,Long,,0.5,ng/L,A2,MOE_PERS_COMM_2014,Freshwater Life
+Ethinylestradiol 17a,Short,,0.75,ng/L,A2,MOE_PERS_COMM_2014,Freshwater Life
 Ethylbenzene,Long,,0.2,mg/L,34,BC_2006,Freshwater Life
-Fluoride Total,Short,EMS_0107 <= 10,0.4,mg/L,B1,EMAIL_2014,Freshwater Life
-Fluoride Total,Short,EMS_0107 > 10,"(92.57 * log(EMS_0107, base = 10) - 51.73) * 0.01",mg/L,B1,EMAIL_2014,Freshwater Life
-Iron Dissolved,Short,,0.35,mg/L,A3,EMAIL_2014,Freshwater Life
-Iron Total,Short,,1,mg/L,A3,EMAIL_2014,Freshwater Life
+Fluoride Total,Short,EMS_0107 <= 10,0.4,mg/L,B1,MOE_PERS_COMM_2014,Freshwater Life
+Fluoride Total,Short,EMS_0107 > 10,"(92.57 * log(EMS_0107, base = 10) - 51.73) * 0.01",mg/L,B1,MOE_PERS_COMM_2014,Freshwater Life
+Iron Dissolved,Short,,0.35,mg/L,A3,MOE_PERS_COMM_2014,Freshwater Life
+Iron Total,Short,,1,mg/L,A3,MOE_PERS_COMM_2014,Freshwater Life
 Lead,Long,EMS_0107 > 8,exp(1.273 * log(EMS_0107) - 4.704) + 3.31,ug/L,11,BC_2006,Freshwater Life
 Lead,Short,EMS_0107 <= 8,3,ug/L,11,BC_2006,Freshwater Life
 Lead,Short,EMS_0107 > 8,exp(1.273 * log(EMS_0107) - 1.460),ug/L,11,BC_2006,Freshwater Life
 Manganese,Long,,0.0044 * EMS_0107 + 0.605,mg/L,38,BC_2006,Freshwater Life
 Manganese,Short,,0.01102 * EMS_0107 + 0.54,mg/L,37,BC_2006,Freshwater Life
 Mercury Total,Long,EMS_HGME / EMS_HG_T * 100 <= 0.5,0.02,ug/L,13a,BC_2006,Freshwater Life
-Mercury Total,Long,EMS_HGME / EMS_HG_T * 100 > 0.5,10^(-4) / (EMS_HGME / EMS_HG_T),ug/L,13a,EMAIL_2015,Freshwater Life
+Mercury Total,Long,EMS_HGME / EMS_HG_T * 100 > 0.5,10^(-4) / (EMS_HGME / EMS_HG_T),ug/L,13a,MOE_PERS_COMM_2015,Freshwater Life
 Mercury Total,Short,,0.1,ug/L,13,BC_2006,Freshwater Life
 Methyl Tertiary Butyl Ether,Long,,3.4,mg/L,39,BC_2006,Freshwater Life
 Molybdenum Total,Long,,1,mg/L,15,BC_2006,Freshwater Life
 Molybdenum Total,Short,,2,mg/L,15,BC_2006,Freshwater Life
-Nitrate Total,Long,,3,mg/L,B3,EMAIL_2014,Freshwater Life
-Nitrate Total,Short,,32.8,mg/L,B3,EMAIL_2014,Freshwater Life
+Nitrate Total,Long,,3,mg/L,B3,MOE_PERS_COMM_2014,Freshwater Life
+Nitrate Total,Short,,32.8,mg/L,B3,MOE_PERS_COMM_2014,Freshwater Life
 Nitrite,Long,EMS_0104 < 2,0.02,mg/L,16,BC_2006,Freshwater Life
 Nitrite,Long,EMS_0104 >= 2 & EMS_0104 < 4,0.04,mg/L,17,BC_2006,Freshwater Life
 Nitrite,Long,EMS_0104 >= 4 & EMS_0104 < 6,0.06,mg/L,17,BC_2006,Freshwater Life
@@ -52,15 +52,15 @@ Nitrite,Short,EMS_0104 >= 6 & EMS_0104 < 8,0.24,mg/L,17,BC_2006,Freshwater Life
 Nitrite,Short,EMS_0104 >= 8 & EMS_0104 <= 10,0.3,mg/L,17,BC_2006,Freshwater Life
 Nitrite,Short,EMS_0104 > 10,0.6,mg/L,17,BC_2006,Freshwater Life
 Polychlorinated Biphenyl Total,Short,,0.1,ng/L,23,BC_2006,Freshwater Life
-Selenium Total,Long,,0.002,mg/L,B4,EMAIL_2014,Freshwater Life
+Selenium Total,Long,,0.002,mg/L,B4,MOE_PERS_COMM_2014,Freshwater Life
 Silver,Long,EMS_0107 <= 100,0.05,ug/L,29,BC_2006,Freshwater Life
 Silver,Long,EMS_0107 > 100,1.5,ug/L,29,BC_2006,Freshwater Life
 Silver,Short,EMS_0107 <= 100,0.1,ug/L,29,BC_2006,Freshwater Life
 Silver,Short,EMS_0107 > 100,3,ug/L,29,BC_2006,Freshwater Life
-Sulphate,Long,EMS_0107 <= 30,128,mg/L,B5,EMAIL_2014,Freshwater Life
-Sulphate,Long,EMS_0107 > 30 & EMS_0107 <= 75,218,mg/L,B5,EMAIL_2014,Freshwater Life
-Sulphate,Long,EMS_0107 > 76 & EMS_0107 <= 180,309,mg/L,B5,EMAIL_2014,Freshwater Life
-Sulphate,Long,EMS_0107 > 180 & EMS_0107 <= 250,429,mg/L,B5,EMAIL_2014,Freshwater Life
+Sulphate,Long,EMS_0107 <= 30,128,mg/L,B5,MOE_PERS_COMM_2014,Freshwater Life
+Sulphate,Long,EMS_0107 > 30 & EMS_0107 <= 75,218,mg/L,B5,MOE_PERS_COMM_2014,Freshwater Life
+Sulphate,Long,EMS_0107 > 76 & EMS_0107 <= 180,309,mg/L,B5,MOE_PERS_COMM_2014,Freshwater Life
+Sulphate,Long,EMS_0107 > 180 & EMS_0107 <= 250,429,mg/L,B5,MOE_PERS_COMM_2014,Freshwater Life
 Toluene,Long,,0.039,mg/L,35,BC_2006,Freshwater Life
 Zinc Total,Long,EMS_0107 <= 90,7.5,ug/L,33,BC_2006,Freshwater Life
 Zinc Total,Long,EMS_0107 > 90,0.75 * (EMS_0107 - 90) + 7.5,ug/L,33,BC_2006,Freshwater Life
