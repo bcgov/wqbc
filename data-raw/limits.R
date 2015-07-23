@@ -10,6 +10,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
+## Process the wq limits (guidelines) in limits.csv for inclusion in the
+## package. See limits.Rmd for details
+
 library(wqbc)
 library(dplyr)
 library(magrittr)

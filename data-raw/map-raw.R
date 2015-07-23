@@ -11,8 +11,10 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 ###############################################################################
-## Get map of BC from Govt of Canada Open Data site:
-## (http://open.canada.ca/data/en/dataset/f77c2027-ed4a-5f6e-9395-067af3e9fc1e)
+## This script pulls the national and provincial base maps from the Govt of Canada Open Data site,
+## available at: http://open.canada.ca/data/en/dataset/f77c2027-ed4a-5f6e-9395-067af3e9fc1e
+## under the Open Government License - Canada version 2.0 (http://open.canada.ca/en/open-government-licence-canada)
+## The data is saved in data-raw/map
 
 map_zip <- "data-raw/map/map.zip"
 map_dir <- "data-raw/map"
