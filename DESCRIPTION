@@ -4,12 +4,13 @@ Title: Water Quality Thresholds and Index Calculation for British Columbia
 Version: 0.1.0
 Date: 2015-02-19
 Authors@R: as.person(c(
-    "Joe Thorley <joe@poissonconsulting.ca> [aut, cre]",
+    "Joe Thorley <joe@poissonconsulting.ca> [aut]",
     "Colin Millar <colinpmillar@gmail.com> [aut]",
-    "Andy Teucher [aut]",
+    "Andy Teucher <andy.teucher@gov.bc.ca> [aut, cre]",
     "Wendy Wang [ctb]",
-    "Stephanie Hazlitt [ctb]",
-    "Robyn Irvine [ctb]"))
+    "Stephanie Hazlitt <stephanie.hazlitt@gov.bc.ca> [ctb]",
+    "Robyn Irvine [ctb]",
+    "Province of British Columbia [cph]"))
 Description: Calculates water quality thresholds and water quality indices
     and plots water quality indices spatially and temporally for
     British Columbia.
