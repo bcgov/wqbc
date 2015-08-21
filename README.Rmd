@@ -15,21 +15,17 @@ knitr::opts_chunk$set(
   )
 ```
 
-<div id="devex-badge">
-  <a rel="Exploration"  href="https://github.com/BCDevExchange/docs/blob/master/discussion/projectstates.md">
-  <img
-  alt="Being designed and built, but in the lab. May change, disappear, or be 
-  buggy." style="border-width:0" src="http://bcdevexchange.org/badge/2.svg" 
-  title="Being designed and built, but in the lab. May change, disappear, or be 
-  buggy." />
-  </a>
-</div>
+```{r, echo=FALSE, results='asis'}
+envreportutils::devex_badge("exploration")
+```
 
 # Water Quality Thresholds and Index Calculations for British Columbia
 
 The `wqbc` R package calculates water quality thresholds and water quality indices
 and plots water quality indices spatially and temporally for
-British Columbia. 
+British Columbia.
+
+This package was written for the B.C. Ministry of Environment by [Poisson Consulting](http://www.poissonconsulting.ca/).
 
 ## Useage
 
