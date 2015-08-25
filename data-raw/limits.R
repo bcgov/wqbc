@@ -35,7 +35,8 @@ input_limits <- function () {
 
   stopifnot(all(limits$Term %in% c("Short", "Long")))
   stopifnot(all(limits$Units %in% lookup_units()))
-  stopifnot(all(limits$Reference %in% c("BC_2006", "MOE_PERS_COMM_2014", "MOE_PERS_COMM_2015")))
+  stopifnot(all(limits$Reference %in% c("BC_2006", "BC_2007", "MOE_PERS_COMM_2014",
+                                        "MOE_PERS_COMM_2015")))
   stopifnot(all(limits$Use %in% c("Freshwater Life")))
 
   check_valid_expression <- function (x) {
