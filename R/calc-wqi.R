@@ -1,11 +1,11 @@
 # Copyright 2015 Province of British Columbia
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
@@ -134,7 +134,8 @@ boot_wqis <- function (x) {
   }
 
   if (cesi_code) {
-    x <- dplyr::mutate_(x, Excursion = ~Excursion + 1)
+    stop("cesi_code not available at this time")
+    # x <- dplyr::mutate_(x, Excursion = ~Excursion + 1)
   }
   x <- dplyr::select_(x, ~Variable, ~Excursion, ~Date)
   x <- tidyr::spread_(x, "Variable", "Excursion")
@@ -142,9 +143,9 @@ boot_wqis <- function (x) {
   x <- as.matrix(x)
 
   if(cesi_code) {
-    stopifnot(ci %in% c("row", "column"))
-    boot <- BootCICol(x, Column = (ci == "column"), Par = 4, CL = 0.95, R = R)
-    names(boot) <- NULL
+#     stopifnot(ci %in% c("row", "column"))
+#     boot <- BootCICol(x, Column = (ci == "column"), Par = 4, CL = 0.95, R = R)
+#     names(boot) <- NULL
   } else {
     if(ci == "row") {
       boot <- boot::boot(x, statistic = wqi_matrix, R = R)
