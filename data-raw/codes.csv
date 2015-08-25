@@ -32,3 +32,4 @@ Zinc Total,EMS_ZN_T,ug/L,mean
 pH,EMS_0004,pH,median
 Benzene,EMS_B020,ug/L,mean
 Naphthalene,EMS_PA14,ug/L,mean
+Xylene,EMS_X001,mg/L,mean
