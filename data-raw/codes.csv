@@ -24,7 +24,7 @@ Molybdenum Total,EMS_MO_T,mg/L,mean
 Nitrate Total,EMS_0110,mg/L,mean
 Nitrite,EMS_0111,mg/L,mean
 Polychlorinated Biphenyl Total,EMS_P019,ng/L,mean
-Selenium Total,EMS_SE_T,mg/L,mean
+Selenium Total,EMS_SE_T,ug/L,mean
 Silver,EMS_AG_T,ug/L,mean
 Sulphate,EMS_0121,mg/L,mean
 Toluene,EMS_T001,ug/L,mean
