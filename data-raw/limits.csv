@@ -66,3 +66,4 @@ Zinc Total,Long,EMS_0107 > 90,0.75 * (EMS_0107 - 90) + 7.5,ug/L,33,BC_2006,Fresh
 Zinc Total,Short,EMS_0107 <= 90,33,ug/L,33,BC_2006,Freshwater Life
 Zinc Total,Short,EMS_0107 > 90,0.75 * (EMS_0107 - 90) + 33,ug/L,33,BC_2006,Freshwater Life
 Benzene,Long,,40,ug/L,3,BC_2007,Freshwater Life
+Naphthalene,Short,,1,ug/L,25,BC_2007,Freshwater Life
