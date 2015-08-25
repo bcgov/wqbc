@@ -27,6 +27,6 @@ Polychlorinated Biphenyl Total,EMS_P019,ng/L,mean
 Selenium Total,EMS_SE_T,mg/L,mean
 Silver,EMS_AG_T,ug/L,mean
 Sulphate,EMS_0121,mg/L,mean
-Toluene,EMS_T001,mg/L,mean
+Toluene,EMS_T001,ug/L,mean
 Zinc Total,EMS_ZN_T,ug/L,mean
 pH,EMS_0004,pH,median
