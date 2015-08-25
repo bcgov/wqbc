@@ -30,3 +30,4 @@ Sulphate,EMS_0121,mg/L,mean
 Toluene,EMS_T001,ug/L,mean
 Zinc Total,EMS_ZN_T,ug/L,mean
 pH,EMS_0004,pH,median
+Benzene,EMS_B020,ug/L,mean
