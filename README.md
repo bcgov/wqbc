@@ -20,7 +20,9 @@ To install the latest version of wqbc:
 
     # install.packages("devtools")
     library(devtools)
-    install_github("bcgov/wqbc")
+    install_github("bcgov/wqbc", build_vignettes = TRUE)
+    # Using `build_vignettes = TRUE` will slow down the install, but is necessary if 
+    # you want to read the vignette, which is recommended
     library(wqbc)
 
 Project Status
