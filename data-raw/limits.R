@@ -24,7 +24,7 @@ input_limits <- function () {
 
   limits <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
-  stopifnot(nrow(limits) == 67)
+  stopifnot(nrow(limits) == 69)
 
   stopifnot(identical(colnames(limits),
                       c("Variable", "Term",
@@ -35,7 +35,7 @@ input_limits <- function () {
 
   stopifnot(all(limits$Term %in% c("Short", "Long")))
   stopifnot(all(limits$Units %in% lookup_units()))
-  stopifnot(all(limits$Reference %in% c("BC_2006", "BC_2007", "MOE_PERS_COMM_2014",
+  stopifnot(all(limits$Reference %in% c("BC_2006", "BC_2015", "MOE_PERS_COMM_2014",
                                         "MOE_PERS_COMM_2015")))
   stopifnot(all(limits$Use %in% c("Freshwater Life")))
 
