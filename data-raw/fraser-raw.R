@@ -1,3 +1,20 @@
+# Copyright 2015 Province of British Columbia
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and limitations under the License.
+
+## This script pulls the data from the Fraser River Basin Long-term Water Quality Monitoring dataset,
+## available at: http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18
+## under the Open Government License - Canada version 2.0 (http://open.canada.ca/en/open-government-licence-canada)
+## The data is saved in fraser/fraser.csv
+
 #
 # Utility function
 #
@@ -87,4 +104,4 @@ fraser $ station_name <- fraser $ station_name[drop = TRUE]
 fraser $ status <- gsub(" ", "", as.character(fraser $ status))
 fraser $ status[fraser $ status == ""] <- NA
 
-write.csv(fraser_raw, "data-raw/fraser.csv", row.names = FALSE)
+write.csv(fraser_raw, "data-raw/fraser/fraser.csv", row.names = FALSE)

@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="date" content="2015-08-25" />
+
+<title>Water Quality Thresholds and Indices for British Columbia</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link href="data:text/css,body%20%7B%0A%20%20background%2Dcolor%3A%20%23fff%3B%0A%20%20margin%3A%201em%20auto%3B%0A%20%20max%2Dwidth%3A%20700px%3B%0A%20%20overflow%3A%20visible%3B%0A%20%20padding%2Dleft%3A%202em%3B%0A%20%20padding%2Dright%3A%202em%3B%0A%20%20font%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0A%20%20font%2Dsize%3A%2014px%3B%0A%20%20line%2Dheight%3A%201%2E35%3B%0A%7D%0A%0A%23header%20%7B%0A%20%20text%2Dalign%3A%20center%3B%0A%7D%0A%0A%23TOC%20%7B%0A%20%20clear%3A%20both%3B%0A%20%20margin%3A%200%200%2010px%2010px%3B%0A%20%20padding%3A%204px%3B%0A%20%20width%3A%20400px%3B%0A%20%20border%3A%201px%20solid%20%23CCCCCC%3B%0A%20%20border%2Dradius%3A%205px%3B%0A%0A%20%20background%2Dcolor%3A%20%23f6f6f6%3B%0A%20%20font%2Dsize%3A%2013px%3B%0A%20%20line%2Dheight%3A%201%2E3%3B%0A%7D%0A%20%20%23TOC%20%2Etoctitle%20%7B%0A%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20font%2Dsize%3A%2015px%3B%0A%20%20%20%20margin%2Dleft%3A%205px%3B%0A%20%20%7D%0A%0A%20%20%23TOC%20ul%20%7B%0A%20%20%20%20padding%2Dleft%3A%2040px%3B%0A%20%20%20%20margin%2Dleft%3A%20%2D1%2E5em%3B%0A%20%20%20%20margin%2Dtop%3A%205px%3B%0A%20%20%20%20margin%2Dbottom%3A%205px%3B%0A%20%20%7D%0A%20%20%23TOC%20ul%20ul%20%7B%0A%20%20%20%20margin%2Dleft%3A%20%2D2em%3B%0A%20%20%7D%0A%20%20%23TOC%20li%20%7B%0A%20%20%20%20line%2Dheight%3A%2016px%3B%0A%20%20%7D%0A%0Atable%20%7B%0A%20%20margin%3A%201em%20auto%3B%0A%20%20border%2Dwidth%3A%201px%3B%0A%20%20border%2Dcolor%3A%20%23DDDDDD%3B%0A%20%20border%2Dstyle%3A%20outset%3B%0A%20%20border%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0A%20%20border%2Dwidth%3A%202px%3B%0A%20%20padding%3A%205px%3B%0A%20%20border%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0A%20%20border%2Dwidth%3A%201px%3B%0A%20%20border%2Dstyle%3A%20inset%3B%0A%20%20line%2Dheight%3A%2018px%3B%0A%20%20padding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0A%20%20border%2Dleft%2Dstyle%3A%20none%3B%0A%20%20border%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0A%20%20background%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0A%0Ap%20%7B%0A%20%20margin%3A%200%2E5em%200%3B%0A%7D%0A%0Ablockquote%20%7B%0A%20%20background%2Dcolor%3A%20%23f6f6f6%3B%0A%20%20padding%3A%200%2E25em%200%2E75em%3B%0A%7D%0A%0Ahr%20%7B%0A%20%20border%2Dstyle%3A%20solid%3B%0A%20%20border%3A%20none%3B%0A%20%20border%2Dtop%3A%201px%20solid%20%23777%3B%0A%20%20margin%3A%2028px%200%3B%0A%7D%0A%0Adl%20%7B%0A%20%20margin%2Dleft%3A%200%3B%0A%7D%0A%20%20dl%20dd%20%7B%0A%20%20%20%20margin%2Dbottom%3A%2013px%3B%0A%20%20%20%20margin%2Dleft%3A%2013px%3B%0A%20%20%7D%0A%20%20dl%20dt%20%7B%0A%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%7D%0A%0Aul%20%7B%0A%20%20margin%2Dtop%3A%200%3B%0A%7D%0A%20%20ul%20li%20%7B%0A%20%20%20%20list%2Dstyle%3A%20circle%20outside%3B%0A%20%20%7D%0A%20%20ul%20ul%20%7B%0A%20%20%20%20margin%2Dbottom%3A%200%3B%0A%20%20%7D%0A%0Apre%2C%20code%20%7B%0A%20%20background%2Dcolor%3A%20%23f7f7f7%3B%0A%20%20border%2Dradius%3A%203px%3B%0A%20%20color%3A%20%23333%3B%0A%7D%0Apre%20%7B%0A%20%20white%2Dspace%3A%20pre%2Dwrap%3B%20%20%20%20%2F%2A%20Wrap%20long%20lines%20%2A%2F%0A%20%20border%2Dradius%3A%203px%3B%0A%20%20margin%3A%205px%200px%2010px%200px%3B%0A%20%20padding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0A%20%20background%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0A%0Acode%20%7B%0A%20%20font%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0A%20%20font%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0A%20%20padding%3A%202px%200px%3B%0A%7D%0A%0Adiv%2Efigure%20%7B%0A%20%20text%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0A%20%20background%2Dcolor%3A%20%23FFFFFF%3B%0A%20%20padding%3A%202px%3B%0A%20%20border%3A%201px%20solid%20%23DDDDDD%3B%0A%20%20border%2Dradius%3A%203px%3B%0A%20%20border%3A%201px%20solid%20%23CCCCCC%3B%0A%20%20margin%3A%200%205px%3B%0A%7D%0A%0Ah1%20%7B%0A%20%20margin%2Dtop%3A%200%3B%0A%20%20font%2Dsize%3A%2035px%3B%0A%20%20line%2Dheight%3A%2040px%3B%0A%7D%0A%0Ah2%20%7B%0A%20%20border%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0A%20%20padding%2Dtop%3A%2010px%3B%0A%20%20padding%2Dbottom%3A%202px%3B%0A%20%20font%2Dsize%3A%20145%25%3B%0A%7D%0A%0Ah3%20%7B%0A%20%20border%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0A%20%20padding%2Dtop%3A%2010px%3B%0A%20%20font%2Dsize%3A%20120%25%3B%0A%7D%0A%0Ah4%20%7B%0A%20%20border%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0A%20%20margin%2Dleft%3A%208px%3B%0A%20%20font%2Dsize%3A%20105%25%3B%0A%7D%0A%0Ah5%2C%20h6%20%7B%0A%20%20border%2Dbottom%3A%201px%20solid%20%23ccc%3B%0A%20%20font%2Dsize%3A%20105%25%3B%0A%7D%0A%0Aa%20%7B%0A%20%20color%3A%20%230033dd%3B%0A%20%20text%2Ddecoration%3A%20none%3B%0A%7D%0A%20%20a%3Ahover%20%7B%0A%20%20%20%20color%3A%20%236666ff%3B%20%7D%0A%20%20a%3Avisited%20%7B%0A%20%20%20%20color%3A%20%23800080%3B%20%7D%0A%20%20a%3Avisited%3Ahover%20%7B%0A%20%20%20%20color%3A%20%23BB00BB%3B%20%7D%0A%20%20a%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0A%20%20%20%20text%2Ddecoration%3A%20underline%3B%20%7D%0A%20%20a%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0A%20%20%20%20text%2Ddecoration%3A%20underline%3B%20%7D%0A%0A%2F%2A%20Class%20described%20in%20https%3A%2F%2Fbenjeffrey%2Ecom%2Fposts%2Fpandoc%2Dsyntax%2Dhighlighting%2Dcss%0A%20%20%20Colours%20from%20https%3A%2F%2Fgist%2Egithub%2Ecom%2Frobsimmons%2F1172277%20%2A%2F%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%2F%2A%20Keyword%20%2A%2F%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%2F%2A%20DataType%20%2A%2F%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%2F%2A%20DecVal%20%28decimal%20values%29%20%2A%2F%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20BaseN%20%2A%2F%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20Float%20%2A%2F%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20Char%20%2A%2F%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20String%20%2A%2F%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%2F%2A%20Comment%20%2A%2F%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%2F%2A%20OtherToken%20%2A%2F%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%2F%2A%20AlertToken%20%2A%2F%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%2F%2A%20Function%20calls%20%2A%2F%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%2F%2A%20ErrorTok%20%2A%2F%0A%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+<div id="header">
+<h1 class="title">Water Quality Thresholds and Indices for British Columbia</h1>
+<h4 class="date"><em>2015-08-25</em></h4>
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The main function of the <code>wqbc</code> (water quality for British Columbia) package is to calculate the Canadian Council of Ministers of the Environment (CCME) water quality index (WQI) for water bodies in British Columbia, the procedure is set out in the CCME WQI (1.0) <a href="http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf" title="download pdf">User’s Manual</a> <span class="citation">(Ministers of the Environment 2001)</span>.</p>
+<p>Water quality indices are calculated using the <code>calc_wqi</code> function. In addition water quality thresholds can be calculated with <code>calc_limits</code>. In this document, <em>thresholds</em> and <em>limits</em> are used interchangeably to describe environmental benchmarks for safe levels of specific substances. For the visual display of the calculated water quality indices over a map of British Columbia, the function <code>plot_map</code> is provided.</p>
+<p>The purpose of this document is to provide some background to the calculation of indices, provide worked examples of the calculation of indices and and to show how various summaries of the indices can be displayed visually.</p>
+<p>The data used in the examples are from the Fraser River basin (data available <a href="http://data.gc.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18">here</a> under the <a href="http://open.canada.ca/en/open-government-licence-canada">Candian Open Government License</a>, and an example taken from the CCME WQI <a href="http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf" title="download pdf">User’s Manual</a> <span class="citation">(Ministers of the Environment 2001)</span>.</p>
+<p>The following methods of analyzing water quality are provided:</p>
+<ol style="list-style-type: decimal">
+<li>Calculation of thresholds for water quality variables</li>
+<li>Calculation of the CCME water quality index</li>
+<li>Methods for visualization of water quality indices</li>
+</ol>
+<p>The package is intended to be easy to use and provide a flexible means for the exploration of water quality monitoring data. The document is split into the following sections:</p>
+<ul>
+<li><a href="#the-ccme-water-quality-index-1.0">The CCME Water Quality Index (1.0)</a></li>
+<li><a href="#the-ccme-example">The CCME Example</a></li>
+<li><a href="#data-format">Data Format</a></li>
+<li><a href="#water-quality-index-calculation">Water Quality Index Calculation</a></li>
+<li><a href="#visual-display-of-indices">Visual Display of Indices</a></li>
+</ul>
+<!--
+____________________________________________________
+
+     An overview of the index definition
+____________________________________________________
+
+-->
+</div>
+<div id="the-ccme-water-quality-index-1.0" class="section level1">
+<h1>The CCME Water Quality Index (1.0)</h1>
+<p>Water quality is assessed by the monitoring of a range of parameters, referred to in this document as <em>variables</em>. The majority of water quality variables are concentrations of various chemicals, however, quantities such as water turbidity and pH are also important. Comprehensive water quality monitoring has been undertaken in the Fraser River Basin (BC, Canada) since 1979, and this data is provided in the package, however the tools in this package can be applied to any suitable data set provided it meets specific requirements detailed in the <a href="#data-format">Data Format</a> section.</p>
+<p>The CCME Water Quality Index (1.0) is based on a combination of three factors (F1 to F3):</p>
+<ul>
+<li>F1: <strong>Scope</strong> the percent of variables where thresholds are exceeded at least once,</li>
+<li>F2: <strong>Frequency</strong> the percent of individual tests in which thresholds are exceeded, and</li>
+<li>F3: <strong>Amplitude</strong> the amount by which the thresholds are exceeded.</li>
+</ul>
+<p>These are combined to produce a single value (between 0 and 100) which is then converted to a ranking of quality (poor, marginal, fair, good, and excellent) intended to describe overall water quality. In the <a href="#water-quality-index-calculation">Water Quality Index Calculation</a> section you can see examples of the CCME WQI in action.</p>
+<p>The (CCME) WQI is used across Canada as a standardized approach to roll-up the status of multiple water quality parameters at a site and communicate the ‘state’ in a simple manner. The WQI focuses on water quality with respect to the health of freshwater aquatic health. The WQI approach is documented on the <a href="http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html">CCME website</a>, including detailed methods, a list of established national parameter guidelines/thresholds, and a point and click <a href="http://www.ccme.ca/files/Resources/calculators/WQI%20Calculator%201.2%20(en).xls">MS Excel Calculator</a>.</p>
+<!--
+____________________________________________________
+
+               Easy Example Section
+____________________________________________________
+
+-->
+</div>
+<div id="the-ccme-example" class="section level1">
+<h1>The CCME Example</h1>
+<p>Lets begin with an example to help understand how the wqbc package works in practice. To begin the package is loaded into R using</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(wqbc)</code></pre>
+<p>a good example dataset is that tabled in the CCME WQI (1.0) <a href="http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf" title="download pdf">User’s Manual</a>, which uses a simplified data set from the North Saskatchewan River at Devon, Alberta. A table of the data is given below</p>
+<!-- html table generated in R 3.2.2 by xtable 1.7-4 package -->
+<!-- Tue Aug 25 15:10:20 2015 -->
+<table border="1">
+<tr>
+<th>
+</th>
+<th>
+Date
+</th>
+<th>
+DO
+</th>
+<th>
+pH
+</th>
+<th>
+TP
+</th>
+<th>
+TN
+</th>
+<th>
+FC
+</th>
+<th>
+As
+</th>
+<th>
+Pb
+</th>
+<th>
+Hg
+</th>
+<th>
+2,4-D
+</th>
+<th>
+Lindane
+</th>
+</tr>
+<tr>
+<td align="right">
+1
+</td>
+<td>
+1997-01-07
+</td>
+<td align="right">
+11.40
+</td>
+<td align="right">
+8.00
+</td>
+<td align="right">
+0.01
+</td>
+<td align="right">
+0.16
+</td>
+<td align="right">
+4.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+</tr>
+<tr>
+<td align="right">
+2
+</td>
+<td>
+1997-02-04
+</td>
+<td align="right">
+11.00
+</td>
+<td align="right">
+7.90
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.17
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.01
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+</td>
+<td align="right">
+</td>
+</tr>
+<tr>
+<td align="right">
+3
+</td>
+<td>
+1997-03-04
+</td>
+<td align="right">
+11.50
+</td>
+<td align="right">
+7.90
+</td>
+<td align="right">
+0.01
+</td>
+<td align="right">
+0.13
+</td>
+<td align="right">
+4.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+</td>
+<td align="right">
+</td>
+</tr>
+<tr>
+<td align="right">
+4
+</td>
+<td>
+1997-04-08
+</td>
+<td align="right">
+12.50
+</td>
+<td align="right">
+7.90
+</td>
+<td align="right">
+0.06
+</td>
+<td align="right">
+0.43
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+</tr>
+<tr>
+<td align="right">
+5
+</td>
+<td>
+1997-05-06
+</td>
+<td align="right">
+10.40
+</td>
+<td align="right">
+8.10
+</td>
+<td align="right">
+0.04
+</td>
+<td align="right">
+0.25
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+</td>
+<td align="right">
+</td>
+</tr>
+<tr>
+<td align="right">
+6
+</td>
+<td>
+1997-06-03
+</td>
+<td align="right">
+8.90
+</td>
+<td align="right">
+8.20
+</td>
+<td align="right">
+0.11
+</td>
+<td align="right">
+0.71
+</td>
+<td align="right">
+26.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+</td>
+<td align="right">
+</td>
+</tr>
+<tr>
+<td align="right">
+7
+</td>
+<td>
+1997-07-08
+</td>
+<td align="right">
+8.50
+</td>
+<td align="right">
+8.30
+</td>
+<td align="right">
+0.02
+</td>
+<td align="right">
+0.15
+</td>
+<td align="right">
+9.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+</td>
+<td align="right">
+</td>
+<td align="right">
+</td>
+</tr>
+<tr>
+<td align="right">
+8
+</td>
+<td>
+1997-08-05
+</td>
+<td align="right">
+7.50
+</td>
+<td align="right">
+8.20
+</td>
+<td align="right">
+0.01
+</td>
+<td align="right">
+0.15
+</td>
+<td align="right">
+8.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+</tr>
+<tr>
+<td align="right">
+9
+</td>
+<td>
+1997-09-02
+</td>
+<td align="right">
+9.20
+</td>
+<td align="right">
+8.20
+</td>
+<td align="right">
+0.01
+</td>
+<td align="right">
+0.13
+</td>
+<td align="right">
+12.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+</td>
+<td align="right">
+</td>
+</tr>
+<tr>
+<td align="right">
+10
+</td>
+<td>
+1997-10-07
+</td>
+<td align="right">
+11.00
+</td>
+<td align="right">
+8.10
+</td>
+<td align="right">
+0.01
+</td>
+<td align="right">
+0.09
+</td>
+<td align="right">
+12.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+</tr>
+<tr>
+<td align="right">
+11
+</td>
+<td>
+1997-11-04
+</td>
+<td align="right">
+12.10
+</td>
+<td align="right">
+8.00
+</td>
+<td align="right">
+0.01
+</td>
+<td align="right">
+0.30
+</td>
+<td align="right">
+8.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.01
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+</td>
+<td align="right">
+</td>
+</tr>
+<tr>
+<td align="right">
+12
+</td>
+<td>
+1997-12-01
+</td>
+<td align="right">
+13.30
+</td>
+<td align="right">
+8.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.05
+</td>
+<td align="right">
+4.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+0.00
+</td>
+<td align="right">
+</td>
+<td align="right">
+</td>
+</tr>
+</table>
+<p>This data is shipped with the wqbc package and has been called <code>ccme</code>. To load the <code>ccme</code> data into the R session run</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(ccme)</code></pre>
+<p>The first 12 rows of the data contain all the data for Dissolved Oxygen (DO) as shown here</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ccme, <span class="dv">12</span>)</code></pre>
+<pre><code>#&gt;          Date Variable Value DetectionLimit LowerLimit UpperLimit Units
+#&gt; 1  1997-01-07       DO  11.4             NA          5         NA  Mg/L
+#&gt; 2  1997-02-04       DO  11.0             NA          5         NA  Mg/L
+#&gt; 3  1997-03-04       DO  11.5             NA          5         NA  Mg/L
+#&gt; 4  1997-04-08       DO  12.5             NA          5         NA  Mg/L
+#&gt; 5  1997-05-06       DO  10.4             NA          5         NA  Mg/L
+#&gt; 6  1997-06-03       DO   8.9             NA          5         NA  Mg/L
+#&gt; 7  1997-07-08       DO   8.5             NA          5         NA  Mg/L
+#&gt; 8  1997-08-05       DO   7.5             NA          5         NA  Mg/L
+#&gt; 9  1997-09-02       DO   9.2             NA          5         NA  Mg/L
+#&gt; 10 1997-10-07       DO  11.0             NA          5         NA  Mg/L
+#&gt; 11 1997-11-04       DO  12.1             NA          5         NA  Mg/L
+#&gt; 12 1997-12-01       DO  13.3             NA          5         NA  Mg/L</code></pre>
+<p>Not only are the observed water chemistry values, there is auxiliary information on the analysis methods used, i.e. the detection limits, as well as the lower and upper limits and the units of measurement. The water quality index based on all this data is calculated using the command</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">calc_wqi</span>(ccme)</code></pre>
+<pre><code>#&gt;      WQI Lower Upper Category Variables Tests F1  F2  F3
+#&gt; WQI 88.1  87.3  94.2     Good        10   103 20 3.9 2.8</code></pre>
+<p>Giving the result 88.1, and given the categories defined in the CCME WQI this equates to a score of ‘Good’. The <code>calc_wqi</code> function gives some additional information. The values for each component of the index are given, so, F1 = 20, F2 = 3.9, and F3 = 2.8. We are also told that there were 10 variables included in the index, which allows us to interpret F1=20 as there being 2 variables which did not meet objectives, however, the proportion of tests not meeting objectives (F2) and the excursions were small (F3) so that these failures are not considered to be a concern. In order to assess the certainty of the classification, confidence intervals are provided for the overall WQI. In this case, both confidence intervals lie within the definition of ‘Good’.</p>
+<!--
+____________________________________________________
+
+     Something on data?  Might put this to the end
+____________________________________________________
+
+-->
+</div>
+<div id="data-format" class="section level1">
+<h1>Data Format</h1>
+<p>There are two datasets provided with the package which follow the data format required by the index calculation routines:</p>
+<ul>
+<li><p>[ccme] This dataset contains the CCME (Canadian Council of Ministers of the Environment) Water Quality Index 1.0 <a href="http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf" title="download pdf">User’s Manual</a> example dataset <span class="citation">(Ministers of the Environment 2001)</span>. The data is a time series of water chemistry measurements taken from North Saskatchewan river at Devon throughout 1997.</p></li>
+<li><p>[Fraser] This dataset contains long term surface freshwater quality monitoring data from the Fraser River Basin (the data was extracted from <a href="http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18" title="data">here</a> where it is provided under the <a href="http://open.canada.ca/en/open-government-licence-canada">Candian Open Government License</a>) carried out under the Canada-British Columbia Water Quality Monitoring Agreement. Water quality monitoring is conducted to assess water quality status and long-term trends, detect emerging issues, establish water quality guidelines and track the effectiveness of remedial measures and regulatory decisions</p></li>
+</ul>
+<p>The minimal data format is a data frame with columns named, <code>Variable</code>, <code>Value</code> and <code>Units</code>:</p>
+<pre><code>#&gt;   Variable Value Units
+#&gt; 1       DO  11.4  Mg/L
+#&gt; 2       DO  11.0  Mg/L
+#&gt; 3       DO  11.5  Mg/L
+#&gt; 4       DO  12.5  Mg/L
+#&gt; 5       DO  10.4  Mg/L</code></pre>
+<p>however, this data can only be used if there are water quality limits defined. The list of variables for which limits are defined can be found using the <code>lookup_limits</code> function</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lookup_limits</span>()</code></pre>
+<pre><code>#&gt;                         Variable UpperLimit Units
+#&gt; 1            Aluminium Dissolved         NA  mg/L
+#&gt; 2                  Arsenic Total       5.00  ug/L
+#&gt; 3                          Boron       1.20  mg/L
+#&gt; 4              Cadmium Dissolved         NA  ug/L
+#&gt; 5                 Chloride Total         NA  mg/L
+#&gt; 6        Chlorine Total Residual       2.00  ug/L
+#&gt; 7                   Cobalt Total       4.00  ug/L
+#&gt; 8                   Copper Total         NA  ug/L
+#&gt; 9  Cyanide Weak Acid Dissociable       5.00  ug/L
+#&gt; 10          Ethinylestradiol 17a       0.50  ng/L
+#&gt; 11                  Ethylbenzene       0.20  mg/L
+#&gt; 12                          Lead         NA  ug/L
+#&gt; 13                     Manganese         NA  mg/L
+#&gt; 14                 Mercury Total         NA  ug/L
+#&gt; 15   Methyl Tertiary Butyl Ether       3.40  mg/L
+#&gt; 16              Molybdenum Total       1.00  mg/L
+#&gt; 17                 Nitrate Total       3.00  mg/L
+#&gt; 18                       Nitrite         NA  mg/L
+#&gt; 19                Selenium Total       2.00  ug/L
+#&gt; 20                        Silver         NA  ug/L
+#&gt; 21                      Sulphate         NA  mg/L
+#&gt; 22                       Toluene       0.50  ug/L
+#&gt; 23                    Zinc Total         NA  ug/L
+#&gt; 24                       Benzene      40.00  ug/L
+#&gt; 25                        Xylene       0.03  mg/L</code></pre>
+<p>This function will be discussed further in the following section, but note for now that the variable listed as <code>DO</code> (Dissolved Oxygen) in the <code>ccme</code> data does not have a corresponding limit defined in <code>lookup_limits</code> and so for water quality indices to be calculated for the <code>ccme</code> data, there must be thresholds provided for each observation. This should be included by providing upper limits in a column called <code>UpperLimit</code>, and optionally lower limits in <code>LowerLimit</code>, for example</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ccme, <span class="dv">5</span>)</code></pre>
+<pre><code>#&gt;         Date Variable Value DetectionLimit LowerLimit UpperLimit Units
+#&gt; 1 1997-01-07       DO  11.4             NA          5         NA  Mg/L
+#&gt; 2 1997-02-04       DO  11.0             NA          5         NA  Mg/L
+#&gt; 3 1997-03-04       DO  11.5             NA          5         NA  Mg/L
+#&gt; 4 1997-04-08       DO  12.5             NA          5         NA  Mg/L
+#&gt; 5 1997-05-06       DO  10.4             NA          5         NA  Mg/L</code></pre>
+<p>To show this in action, lets arbitrarily set all the upper limits in the ccme data to 50, and see what the water quality index is</p>
+<pre class="sourceCode r"><code class="sourceCode r">ccme2 &lt;-<span class="st"> </span>ccme
+ccme2 $<span class="st"> </span>UpperLimit &lt;-<span class="st"> </span><span class="dv">50</span>
+<span class="kw">calc_wqi</span>(ccme2)</code></pre>
+<pre><code>#&gt; Calculating water quality indices...
+#&gt; Deleted 17 rows with missing or negative values in Value.
+#&gt; Replaced 31 of the values in column Value with the detection limit in column DetectionLimit.
+#&gt; Calculated water quality indices.</code></pre>
+<pre><code>#&gt;     WQI Lower Upper  Category Variables Tests F1 F2 F3
+#&gt; WQI 100   100   100 Excellent        10   103  0  0  0</code></pre>
+<p>And as expected by setting the thresholds arbitrarily high, we get no failures and an Excellent marking!</p>
+<!--
+____________________________________________________
+
+     More in depth description and use of the calc_wqi function
+____________________________________________________
+
+-->
+</div>
+<div id="water-quality-index-calculation" class="section level1">
+<h1>Water Quality Index Calculation</h1>
+<p>To explore the functions in more detail a larger data set than <code>ccme</code> is required. Contained in the <code>wqbc</code> package is a second dataset: a copy of the Fraser Basin long term surface freshwater quality monitoring data. To load this data run</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(fraser)</code></pre>
+<p>As with the <code>ccme</code> data, the <code>fraser</code> data is organized so that each row corresponds to one observation. The first 10 observations in the <code>fraser</code> dataset are:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(fraser, <span class="dv">10</span>)</code></pre>
+<pre><code>#&gt;        SiteID       Date               Variable   Value Units
+#&gt; 1  BC08MB0007 2004-11-15 ALKALINITY TOTAL CACO3  36.900  MG/L
+#&gt; 2  BC08MB0007 2004-11-15   ALUMINUM EXTRACTABLE 736.000  UG/L
+#&gt; 3  BC08MB0007 2004-11-15         ALUMINUM TOTAL 747.000  UG/L
+#&gt; 4  BC08MB0007 2004-11-15      AMMONIA DISSOLVED   0.005  MG/L
+#&gt; 5  BC08MB0007 2004-11-15   ANTIMONY EXTRACTABLE   0.044  UG/L
+#&gt; 6  BC08MB0007 2004-11-15         ANTIMONY TOTAL   0.045  UG/L
+#&gt; 7  BC08MB0007 2004-11-15    ARSENIC EXTRACTABLE   0.430  UG/L
+#&gt; 8  BC08MB0007 2004-11-15          ARSENIC TOTAL   0.460  UG/L
+#&gt; 9  BC08MB0007 2004-11-15     BARIUM EXTRACTABLE  14.300  UG/L
+#&gt; 10 BC08MB0007 2004-11-15           BARIUM TOTAL  14.400  UG/L
+#&gt;                                                Site      Lat      Long
+#&gt; 1  Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 2  Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 3  Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 4  Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 5  Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 6  Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 7  Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 8  Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 9  Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 10 Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614</code></pre>
+<p>In this dataset the auxiliary data available are a site identifier (<code>SiteID</code>), the site name in full (<code>Site</code>), and the position in terms of latitude (<code>Lat</code>) and longitude (<code>Long</code>). This information can be used to visualize the site positions on a map, and through the use of coloured symbols, additional information, such as the site name, can be included.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_map</span>(fraser, <span class="dt">fill =</span> <span class="st">&quot;SiteID&quot;</span>)</code></pre>
+<p><img src="data:image/png;base64,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" /></p>
+<p>For more information on plotting see the section on <a href="#visual-display-of-indices">Visual Display of Indices</a>. This will be particularly useful when summarizing the results of the water quality index calculations.</p>
+<p>To calculate the long-term water quality index for each site all that needs to be done is to run</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">calc_wqi</span>(fraser, <span class="dt">by =</span> <span class="st">&quot;SiteID&quot;</span>)</code></pre>
+<p>But this does not help to explain what is going on which is the purpose of this section.</p>
+<!-- ____________________________________________________ -->
+<div id="cleaning-and-standardising-data" class="section level2">
+<h2>cleaning and standardising data</h2>
+<p>The <code>fraser</code> data is a large dataset, and to get things started we will use a <code>subset</code> of this data. Lets take the data from 2012. A useful package for working with the dates is the <code>lubridate</code> package. We will use the function <code>year</code> from the lubridate package to help subset the data. Before using the <code>year</code> function you should make sure the <code>lubridate</code> package is loaded by running <code>library(lubridate)</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)
+data2012 &lt;-<span class="st"> </span><span class="kw">subset</span>(fraser, <span class="kw">year</span>(Date) ==<span class="st"> </span><span class="dv">2012</span>)
+<span class="kw">head</span>(data2012)</code></pre>
+<pre><code>#&gt;           SiteID       Date               Variable    Value Units
+#&gt; 12659 BC08MB0007 2012-01-10 ALKALINITY TOTAL CACO3  55.2000  MG/L
+#&gt; 12660 BC08MB0007 2012-01-10         ALUMINUM TOTAL 318.0000  UG/L
+#&gt; 12661 BC08MB0007 2012-01-10      AMMONIA DISSOLVED   0.0103  MG/L
+#&gt; 12662 BC08MB0007 2012-01-10         ANTIMONY TOTAL   0.0470  UG/L
+#&gt; 12663 BC08MB0007 2012-01-10          ARSENIC TOTAL   0.4600  UG/L
+#&gt; 12664 BC08MB0007 2012-01-10           BARIUM TOTAL  11.2000  UG/L
+#&gt;                                                   Site      Lat      Long
+#&gt; 12659 Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 12660 Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 12661 Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 12662 Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 12663 Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614
+#&gt; 12664 Chilcotin River upstream of Christie Road Bridge 52.07197 -123.2614</code></pre>
+<p>We are now in a position to calculate the long term water quality index for 2012, and as previously stated, this is done using</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">calc_wqi</span>(data2012)</code></pre>
+<p>The function <code>calc_wqi</code> performs a number of tasks. The first of these is to check if the dataset contains user defined limits in columns called <code>UpperLimit</code> or <code>LowerLimit</code>. If the dataset has these columns, the function proceeds directly to calculating the water quality index.</p>
+<p>If the data do not contain user defined limits, as is the case for the <code>fraser</code> dataset, the next steps are to check and standardize the data so that they can be matched with known water quality limits. The list of known water quality limits can be queried using the function <code>lookup_limits</code>, which has arguments to help evaluate the limit. Because some limits are dependent on the concentrations of other chemicals, <code>lookup_limits</code> has the following arguments: <code>ph</code>, <code>hardness</code>, <code>chloride</code> and <code>methyl_mercury</code>. In addition because limits are different depending on the time scale, there is a further argument <code>term</code> which can take the values “short” or “long” (defined later in <a href="#calculating-limits">Calculating limits</a>).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lookup_limits</span>(<span class="dt">ph =</span> <span class="dv">7</span>)</code></pre>
+<pre><code>#&gt;                         Variable UpperLimit Units
+#&gt; 1            Aluminium Dissolved       0.05  mg/L
+#&gt; 2                  Arsenic Total       5.00  ug/L
+#&gt; 3                          Boron       1.20  mg/L
+#&gt; 4              Cadmium Dissolved         NA  ug/L
+#&gt; 5                 Chloride Total         NA  mg/L
+#&gt; 6        Chlorine Total Residual       2.00  ug/L
+#&gt; 7                   Cobalt Total       4.00  ug/L
+#&gt; 8                   Copper Total         NA  ug/L
+#&gt; 9  Cyanide Weak Acid Dissociable       5.00  ug/L
+#&gt; 10          Ethinylestradiol 17a       0.50  ng/L
+#&gt; 11                  Ethylbenzene       0.20  mg/L
+#&gt; 12                          Lead         NA  ug/L
+#&gt; 13                     Manganese         NA  mg/L
+#&gt; 14                 Mercury Total         NA  ug/L
+#&gt; 15   Methyl Tertiary Butyl Ether       3.40  mg/L
+#&gt; 16              Molybdenum Total       1.00  mg/L
+#&gt; 17                 Nitrate Total       3.00  mg/L
+#&gt; 18                       Nitrite         NA  mg/L
+#&gt; 19                Selenium Total       2.00  ug/L
+#&gt; 20                        Silver         NA  ug/L
+#&gt; 21                      Sulphate         NA  mg/L
+#&gt; 22                       Toluene       0.50  ug/L
+#&gt; 23                    Zinc Total         NA  ug/L
+#&gt; 24                       Benzene      40.00  ug/L
+#&gt; 25                        Xylene       0.03  mg/L</code></pre>
+<p>From this we can see that there are 23 standard variables with limits defined. Some variable in the previous example have <code>NA</code> because these limits require knowledge of hardness, chloride or methyl mercury concentrations.</p>
+<p>The first step in assigning these limits to observations involves converting any non-standard variable names, checking and converting the units, and removing any missing and negative values. Although this is done within the <code>calc_wqi</code> function, it can be useful to run a manual check on the data first. This is done using the <code>standardize_wqdata</code> function</p>
+<pre class="sourceCode r"><code class="sourceCode r">data2012 &lt;-<span class="st"> </span><span class="kw">standardize_wqdata</span>(data2012)</code></pre>
+<pre><code>#&gt; Standardizing water quality data...
+#&gt; Deleted 45 rows with negative values in Value.
+#&gt; Substituted 'ALUMINUM DISSOLVED' with 'Aluminium Dissolved', 'ARSENIC TOTAL' with 'Arsenic Total', 'BORON DISSOLVED' with 'Boron', 'BORON TOTAL' with 'Boron', 'CADMIUM DISSOLVED' with 'Cadmium Dissolved', 'COBALT TOTAL' with 'Cobalt Total', 'COPPER TOTAL' with 'Copper Total', 'CYANIDE WEAK ACID DISSOCIABLE' with 'Cyanide Weak Acid Dissociable', 'HARDNESS TOTAL (CALCD.) CACO3' with 'Hardness Total', 'IRON DISSOLVED' with 'Iron Dissolved', 'IRON TOTAL' with 'Iron Total', 'LEAD DISSOLVED' with 'Lead', 'LEAD TOTAL' with 'Lead', 'MANGANESE DISSOLVED' with 'Manganese', 'MANGANESE TOTAL' with 'Manganese', 'MOLYBDENUM TOTAL' with 'Molybdenum Total', 'NITROGEN NITRITE' with 'Nitrite', 'PH' with 'pH', 'PH - FIELD' with 'pH', 'SELENIUM TOTAL' with 'Selenium Total', 'SILVER DISSOLVED' with 'Silver', 'SILVER TOTAL' with 'Silver', 'SULPHATE DISSOLVED' with 'Sulphate' and 'ZINC TOTAL' with 'Zinc Total'.
+#&gt; Failed to substitute 'ALKALINITY GRAN CACO3', 'ALKALINITY TOTAL CACO3', 'ALUMINUM TOTAL', 'AMMONIA DISSOLVED', 'ANTIMONY DISSOLVED', 'ANTIMONY TOTAL', 'ARSENIC DISSOLVED', 'BARIUM DISSOLVED', 'BARIUM TOTAL', 'BERYLLIUM DISSOLVED', 'BERYLLIUM TOTAL', 'BISMUTH DISSOLVED', 'BISMUTH TOTAL', 'CADMIUM TOTAL', 'CALCIUM DISSOLVED', 'CALCIUM TOTAL', 'CARBON DISSOLVED INORGANIC', 'CARBON DISSOLVED ORGANIC', 'CARBON TOTAL INORGANIC', 'CARBON TOTAL ORGANIC', 'CERIUM DISSOLVED', 'CERIUM TOTAL', 'CESIUM DISSOLVED', 'CESIUM TOTAL', 'CHLORIDE DISSOLVED', 'CHROMIUM DISSOLVED', 'CHROMIUM TOTAL', 'COBALT DISSOLVED', 'COLIFORMS FECAL', 'COLOUR TRUE', 'COPPER DISSOLVED', 'CYANIDE TOTAL', 'ENTEROCOCUS', 'ESCHERICHIA COLI', 'FLUORIDE DISSOLVED', 'GALLIUM DISSOLVED', 'GALLIUM TOTAL', 'LANTHANUM DISSOLVED', 'LANTHANUM TOTAL', 'LITHIUM DISSOLVED', 'LITHIUM TOTAL', 'MAGNESIUM DISSOLVED', 'MAGNESIUM TOTAL', 'MOLYBDENUM DISSOLVED', 'NICKEL DISSOLVED', 'NICKEL TOTAL', 'NIOBIUM DISSOLVED', 'NIOBIUM TOTAL', 'NITROGEN DISSOLVED KJELDAHL', 'NITROGEN DISSOLVED NITRATE', 'NITROGEN DISSOLVED NO3 &amp; NO2', 'NITROGEN DISSOLVED ORGANIC (CALCD.)', 'NITROGEN TOTAL', 'NITROGEN TOTAL DISSOLVED', 'NITROGEN TOTAL KJELDAHL', 'NITROGEN TOTAL ORGANIC (CALCD.)', 'OXYGEN DISSOLVED', 'PHOSPHORUS DISSOLVED ORTHO', 'PHOSPHORUS TOTAL', 'PHOSPHORUS TOTAL DISSOLVED', 'PLATINUM DISSOLVED', 'PLATINUM TOTAL', 'POTASSIUM DISSOLVED', 'POTASSIUM TOTAL', 'RESIDUE FILTERABLE', 'RESIDUE NONFILTRABLE', 'RESIDUE TOTAL', 'RUBIDIUM DISSOLVED', 'RUBIDIUM TOTAL', 'SALINITY', 'SELENIUM DISSOLVED', 'SILICON DISSOLVED', 'SILICON TOTAL', 'SODIUM DISSOLVED', 'SODIUM TOTAL', 'SPECIFIC CONDUCTANCE', 'SPECIFIC CONDUCTANCE - FIELD', 'STRONTIUM DISSOLVED', 'STRONTIUM TOTAL', 'SULPHUR DISSOLVED', 'SULPHUR TOTAL', 'TEMPERATURE AIR', 'TEMPERATURE WATER', 'THALLIUM DISSOLVED', 'THALLIUM TOTAL', 'TIN DISSOLVED', 'TIN TOTAL', 'TITANIUM DISSOLVED', 'TITANIUM TOTAL', 'TUNGSTEN DISSOLVED', 'TUNGSTEN TOTAL', 'TURBIDITY', 'URANIUM DISSOLVED', 'URANIUM TOTAL', 'VANADIUM DISSOLVED', 'VANADIUM TOTAL', 'YTTRIUM DISSOLVED', 'YTTRIUM TOTAL', 'ZINC DISSOLVED', 'ZIRCONIUM DISSOLVED' and 'ZIRCONIUM TOTAL'.
+#&gt; Deleted 13823 rows with missing values in Variable.
+#&gt; Substituted 'MG/L' with 'mg/L', 'PH UNITS' with 'pH' and 'UG/L' with 'ug/L'.
+#&gt; Standardized water quality data.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(data2012)</code></pre>
+<pre><code>#&gt;       SiteID       Date            Variable  Value Units
+#&gt; 1 BC08MH0453 2012-04-13 Aluminium Dissolved 0.0511  mg/L
+#&gt; 2 BC08MH0453 2012-05-16 Aluminium Dissolved 0.0043  mg/L
+#&gt; 3 BC08MH0453 2012-06-21 Aluminium Dissolved 0.1320  mg/L
+#&gt; 4 BC08MH0453 2012-06-21 Aluminium Dissolved 0.1390  mg/L
+#&gt; 5 BC08MH0453 2012-06-21 Aluminium Dissolved 0.1310  mg/L
+#&gt; 6 BC08MH0453 2012-07-13 Aluminium Dissolved 0.0664  mg/L
+#&gt;                                                Site    Lat     Long
+#&gt; 1 Fraser River (Main Arm) at Gravesend Reach - Buoy 49.167 -123.035
+#&gt; 2 Fraser River (Main Arm) at Gravesend Reach - Buoy 49.167 -123.035
+#&gt; 3 Fraser River (Main Arm) at Gravesend Reach - Buoy 49.167 -123.035
+#&gt; 4 Fraser River (Main Arm) at Gravesend Reach - Buoy 49.167 -123.035
+#&gt; 5 Fraser River (Main Arm) at Gravesend Reach - Buoy 49.167 -123.035
+#&gt; 6 Fraser River (Main Arm) at Gravesend Reach - Buoy 49.167 -123.035</code></pre>
+<p>Note that the effect of running <code>standardize_wqdata</code> is to convert some variable names to a standard form, for example, ‘ALUMINUM DISSOLVED’ has been replaced with ‘Aluminium Dissolved’. The messages output by the function relay this information, along with all the other substitutions made. In addition, there are a number of variable names which are not part of the standard list of variables and were removed from the dataset. Unit names are also standardized, for example ‘MG/L’ has been replaced with ‘mg/L’, there are also some unrecognized units which result in the related observations being removed from the dataset. As a result of the standardization, the 2012 Fraser dataset has been reduced from 18062 recorded observations, to 4194 standard observations, which can all be matched with the thresholds.</p>
+<p>After standardization, it is necessary to ensure that there are only single values for each date for a given variable and this is done using the function <code>clean_wqdata</code>. If the data is to be considered as observations of one entity, i.e. the whole Fraser river basin, then this function will average over all data occurring on a given day. If this was desired, the following code would be used</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">clean_wqdata</span>(data2012)</code></pre>
+<p>However, with the Fraser river basin data it makes more sense to consider the data as observations of different sites within the river basin. To tell the <code>clean_wqdata</code> function to average observations within site, the argument <code>by</code> is used</p>
+<pre class="sourceCode r"><code class="sourceCode r">data2012 &lt;-<span class="st"> </span><span class="kw">clean_wqdata</span>(data2012, <span class="dt">by =</span> <span class="st">&quot;SiteID&quot;</span>)</code></pre>
+<pre><code>#&gt; Standardizing water quality data...
+#&gt; Standardized water quality data.
+#&gt; Cleaning water quality data...
+#&gt; Cleansed water quality data.</code></pre>
+<p>In this case there are no problems, and the data is ready for the next step. Note that, to be on the safe side, the function <code>clean_wqdata</code> runs a standardization again, in case it wasn’t done previously.</p>
+<!-- ____________________________________________________ -->
+</div>
+<div id="calculating-limits" class="section level2">
+<h2>Calculating limits</h2>
+<p>Now that we have observations for a range of standard variables it is possible to calculate the relevant limits with which to assess exceedances. Taking into account the various rules for calculating thresholds for the standard variables, the function <code>calc_limits</code> calculates the limits required to evaluate the water quality index. Again, if it is required to calculate the water quality index for each site, then the <code>by</code> argument is used</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">calc_limits</span>(data2012, <span class="dt">by =</span> <span class="st">&quot;SiteID&quot;</span>, <span class="dt">term =</span> <span class="st">&quot;long&quot;</span>)</code></pre>
+<pre><code>#&gt; Standardizing water quality data...
+#&gt; Standardized water quality data.
+#&gt; Cleaning water quality data...
+#&gt; Cleansed water quality data.
+#&gt; Calculating long-term water quality limits...
+#&gt; Calculated long-term water quality limits.</code></pre>
+<pre><code>#&gt;        SiteID       Date         Variable      Value UpperLimit Units
+#&gt; 1  BC08MC0001 2012-04-11    Arsenic Total  1.8500000   5.000000  ug/L
+#&gt; 2  BC08MC0001 2012-04-11            Boron  0.0024400   1.200000  mg/L
+#&gt; 3  BC08MC0001 2012-04-11     Cobalt Total  4.5840000   4.000000  ug/L
+#&gt; 4  BC08MC0001 2012-04-11     Copper Total 13.8340000   2.332800  ug/L
+#&gt; 5  BC08MC0001 2012-04-11             Lead  3.0680000   4.913114  ug/L
+#&gt; 6  BC08MC0001 2012-04-11        Manganese  0.2528000   0.861608  mg/L
+#&gt; 7  BC08MC0001 2012-04-11 Molybdenum Total  0.0005056   1.000000  mg/L
+#&gt; 8  BC08MC0001 2012-04-11   Selenium Total  0.1440000   2.000000  ug/L
+#&gt; 9  BC08MC0001 2012-04-11           Silver  0.0538000   0.050000  ug/L
+#&gt; 10 BC08MC0001 2012-04-11       Zinc Total 23.4400000   7.500000  ug/L</code></pre>
+<p>Now the 2012 Fraser River basin data has been reduced to daily means of the standard variables, and thresholds have been attributed to each observation. A visual inspection of the data shows that for the period starting the 11th April, several variables at the <code>BC08MC0001</code> site are above their long-term limits, i.e. Cobalt Total, Copper Total, Silver and Zinc Total.</p>
+<!-- ____________________________________________________ -->
+<div id="long-or-short-term" class="section level3">
+<h3>Long or Short term</h3>
+<p>In the previous output, the <code>calc_limits</code> function returned a total of ten limits, all with the same date and all from the same site. But what is going on? A plot of the 2012 data show that there are observations throughout the year from a number of different sites. (Note this plot requires the use of the library <code>ggplot2</code>, which is loaded using <code>library(ggplot2)</code>)</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(Date, SiteID, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">data =</span> data2012, <span class="dt">colour =</span> SiteID ==<span class="st"> &quot;BC08MC0001&quot;</span>)</code></pre>
+<p><img src="data:image/png;base64,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" /></p>
+<p>The point here is that the <code>calc_limits</code> function can calculate long or short-term limits. For long-term limits, thresholds are calculated for each 30 day period. Then in the water quality calculation, these 30 day periods are treated as individual test units for exceedances. There are strict rules applied to whether a 30 day period is considered valid for limit calculation: there must be at least 5 values spanning at least 21 days in a 30 day period for that period to be valid, and since replicates are averaged (by the <code>clean_wqdata</code> function) prior to calculating the limits each of the 5 values must occur on a separate date. This explains why the long term limits, by site are so few for the 2012 data: only the <code>BC08MC0001</code> site has sufficiently frequent observations, occurring once in the year in the 30 day period following the 11th of April, to be considered valid for the calculation of long-term limits.</p>
+<p>The strict conditions required for long-term limits are not required when calculating short-term limits, where instead individual days are considered as the test units for exceedances.</p>
+<pre class="sourceCode r"><code class="sourceCode r">data2012 &lt;-<span class="st"> </span><span class="kw">calc_limits</span>(data2012, <span class="dt">by =</span> <span class="st">&quot;SiteID&quot;</span>, <span class="dt">term =</span> <span class="st">&quot;short&quot;</span>) </code></pre>
+<pre><code>#&gt; Standardizing water quality data...
+#&gt; Standardized water quality data.
+#&gt; Cleaning water quality data...
+#&gt; Cleansed water quality data.
+#&gt; Calculating short-term water quality limits...
+#&gt; Calculated short-term water quality limits.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(data2012, <span class="dv">12</span>)</code></pre>
+<pre><code>#&gt;        SiteID       Date         Variable   Value UpperLimit Units
+#&gt; 1  BC08KA0007 2012-01-24     Cobalt Total 0.20000 110.000000  ug/L
+#&gt; 2  BC08KA0007 2012-01-24     Copper Total 0.45000   9.491800  ug/L
+#&gt; 3  BC08KA0007 2012-01-24       Iron Total 0.03030   1.000000  mg/L
+#&gt; 4  BC08KA0007 2012-01-24             Lead 0.01000  61.162679  ug/L
+#&gt; 5  BC08KA0007 2012-01-24        Manganese 0.01120   1.418294  mg/L
+#&gt; 6  BC08KA0007 2012-01-24 Molybdenum Total 0.00007   2.000000  mg/L
+#&gt; 7  BC08KA0007 2012-01-24           Silver 0.00100   0.100000  ug/L
+#&gt; 8  BC08KA0007 2012-01-24       Zinc Total 0.30000  33.000000  ug/L
+#&gt; 9  BC08KA0007 2012-04-11     Cobalt Total 0.20000 110.000000  ug/L
+#&gt; 10 BC08KA0007 2012-04-11     Copper Total 0.42000   9.679800  ug/L
+#&gt; 11 BC08KA0007 2012-04-11       Iron Total 0.04450   1.000000  mg/L
+#&gt; 12 BC08KA0007 2012-04-11             Lead 0.02100  63.123160  ug/L</code></pre>
+<!-- ____________________________________________________ -->
+</div>
+</div>
+<div id="calculating-the-water-quality-index" class="section level2">
+<h2>Calculating the Water Quality Index</h2>
+<p>Note that the default for calculating the water quality index is the use of long-term limits, but for the sake of continuing the example, we will keep with the 2012 data. Lets begin by summarizing the steps so far: The full Fraser river basin dataset was subset to retain only the data from 2012. Then this data (which we have called <code>data2012</code>) was first, standardized, cleaned and then the limits were calculated for daily values.</p>
+<pre class="sourceCode r"><code class="sourceCode r">data2012 &lt;-<span class="st"> </span><span class="kw">subset</span>(fraser, <span class="kw">year</span>(Date) ==<span class="st"> </span><span class="dv">2012</span>)
+data2012 &lt;-<span class="st"> </span><span class="kw">standardize_wqdata</span>(data2012)
+data2012 &lt;-<span class="st"> </span><span class="kw">clean_wqdata</span>(data2012, <span class="dt">by =</span> <span class="st">&quot;SiteID&quot;</span>)
+data2012 &lt;-<span class="st"> </span><span class="kw">calc_limits</span>(data2012, <span class="dt">by =</span> <span class="st">&quot;SiteID&quot;</span>, <span class="dt">term =</span> <span class="st">&quot;short&quot;</span>) </code></pre>
+<p>The data is now ready to have the water quality index calculated for each site, and this is done using</p>
+<pre class="sourceCode r"><code class="sourceCode r">wqi2012 &lt;-<span class="st"> </span><span class="kw">calc_wqi</span>(data2012, <span class="dt">by =</span> <span class="st">&quot;SiteID&quot;</span>) </code></pre>
+<pre><code>#&gt; Calculating water quality indices...
+#&gt; Added missing column LowerLimit to x.
+#&gt; Added missing column DetectionLimit to x.
+#&gt; Calculated water quality indices.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wqi2012</code></pre>
+<pre><code>#&gt;        SiteID   WQI Lower Upper  Category Variables Tests   F1   F2   F3
+#&gt; 1  BC08KA0007 100.0 100.0 100.0 Excellent         8   160  0.0  0.0  0.0
+#&gt; 2  BC08KE0010  92.7  92.3 100.0      Good         8   184 12.5  1.1  1.4
+#&gt; 3  BC08KH0012  89.5  85.4 100.0      Good        11   195 18.2  1.0  0.7
+#&gt; 4  BC08LC0005  93.6  93.5 100.0      Good         9   226 11.1  0.4  0.0
+#&gt; 5  BC08LE0004  86.8  85.8  93.5      Good         9   204 22.2  3.4  4.0
+#&gt; 6  BC08LF0001  85.5  85.2 100.0      Good         8   200 25.0  2.0  1.4
+#&gt; 7  BC08LG0001  85.2  83.8 100.0      Good         8    96 25.0  3.1  4.3
+#&gt; 8  BC08MB0007  85.0  83.4  92.6      Good         8   144 25.0  5.6  4.8
+#&gt; 9  BC08MC0001  73.1  68.4  83.2      Fair         8   208 37.5 12.0 24.8
+#&gt; 10 BC08MF0001  82.8  80.0  84.6      Good         8   216 25.0  9.3 13.4
+#&gt; 11 BC08MH0269 100.0 100.0 100.0 Excellent        10   212  0.0  0.0  0.0
+#&gt; 12 BC08MH0453  83.2  81.2  94.1      Good        11   140 27.3  7.9  6.8</code></pre>
+<p>Due to the sampling frequency in 2012, it is not possible to calculate long term limits, because there are not enough samples in each 30 day period for each site. A long-term water quality index for 2012 can be calculated for the whole river basin:</p>
+<pre class="sourceCode r"><code class="sourceCode r">data2012 &lt;-<span class="st"> </span><span class="kw">subset</span>(fraser, <span class="kw">year</span>(Date) ==<span class="st"> </span><span class="dv">2012</span>)
+<span class="kw">calc_wqi</span>(data2012) </code></pre>
+<pre><code>#&gt;     WQI Lower Upper Category Variables Tests   F1  F2  F3
+#&gt; WQI  90  88.4  95.1     Good        12   121 16.7 4.1 2.5</code></pre>
+<!--
+____________________________________________________
+
+     More in depth use of the plot functions
+____________________________________________________
+
+-->
+</div>
+</div>
+<div id="visual-display-of-indices" class="section level1">
+<h1>Visual Display of Indices</h1>
+<p>In order to display the indices, it is required to retain the spatial location of the sites through the analysis. This can be done by amending the code used previously to calculate WQI for 2012. We will take a short cut this time and use the fact that <code>calc_limits</code> standardizes and cleans the data before calculating limits. One way to keep the latitude and longitude information is to add it to the <code>by</code> argument. Because each <code>siteID</code> always has the same latitude and longitude, the effect of this will be to have additional columns in the output from <code>calc_limits</code>. We can also turn off messages about variable name substitution if desired</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">wqbc.messages =</span> <span class="ot">FALSE</span>)
+data2012 &lt;-<span class="st"> </span><span class="kw">subset</span>(fraser, <span class="kw">year</span>(Date) ==<span class="st"> </span><span class="dv">2012</span>)
+data2012 &lt;-<span class="st"> </span><span class="kw">calc_limits</span>(data2012, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;SiteID&quot;</span>, <span class="st">&quot;Lat&quot;</span>, <span class="st">&quot;Long&quot;</span>), <span class="dt">term =</span> <span class="st">&quot;short&quot;</span>) 
+<span class="kw">head</span>(data2012)</code></pre>
+<pre><code>#&gt;       SiteID     Lat      Long       Date         Variable   Value
+#&gt; 1 BC08KA0007 52.9878 -119.0101 2012-01-24     Cobalt Total 0.20000
+#&gt; 2 BC08KA0007 52.9878 -119.0101 2012-01-24     Copper Total 0.45000
+#&gt; 3 BC08KA0007 52.9878 -119.0101 2012-01-24       Iron Total 0.03030
+#&gt; 4 BC08KA0007 52.9878 -119.0101 2012-01-24             Lead 0.01000
+#&gt; 5 BC08KA0007 52.9878 -119.0101 2012-01-24        Manganese 0.01120
+#&gt; 6 BC08KA0007 52.9878 -119.0101 2012-01-24 Molybdenum Total 0.00007
+#&gt;   UpperLimit Units
+#&gt; 1 110.000000  ug/L
+#&gt; 2   9.491800  ug/L
+#&gt; 3   1.000000  mg/L
+#&gt; 4  61.162679  ug/L
+#&gt; 5   1.418294  mg/L
+#&gt; 6   2.000000  mg/L</code></pre>
+<p>Now when the water quality index is calculated, we have to pass the additional columns again to retain latitude and longitude in the output from <code>calc_wqi</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">wqi2012 &lt;-<span class="st"> </span><span class="kw">calc_wqi</span>(data2012, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;SiteID&quot;</span>, <span class="st">&quot;Lat&quot;</span>, <span class="st">&quot;Long&quot;</span>)) 
+wqi2012</code></pre>
+<pre><code>#&gt;        SiteID      Lat      Long   WQI Lower Upper  Category Variables
+#&gt; 1  BC08KA0007 52.98780 -119.0101 100.0 100.0 100.0 Excellent         8
+#&gt; 2  BC08KE0010 53.92722 -122.7650  92.7  92.3 100.0      Good         8
+#&gt; 3  BC08KH0012 52.40330 -121.4342  89.5  85.5 100.0      Good        11
+#&gt; 4  BC08LC0005 50.68484 -119.0700  93.6  93.5 100.0      Good         9
+#&gt; 5  BC08LE0004 50.69139 -119.3289  86.8  85.8  93.6      Good         9
+#&gt; 6  BC08LF0001 50.42083 -121.3414  85.5  85.2 100.0      Good         8
+#&gt; 7  BC08LG0001 50.42500 -121.3164  85.2  83.5 100.0      Good         8
+#&gt; 8  BC08MB0007 52.07197 -123.2614  85.0  83.5  92.7      Good         8
+#&gt; 9  BC08MC0001 52.52964 -122.4423  73.1  68.5  83.0      Fair         8
+#&gt; 10 BC08MF0001 49.38722 -121.4508  82.8  80.1  84.6      Good         8
+#&gt; 11 BC08MH0269 49.24211 -122.5961 100.0 100.0 100.0 Excellent        10
+#&gt; 12 BC08MH0453 49.16700 -123.0350  83.2  81.2  89.5      Good        11
+#&gt;    Tests   F1   F2   F3
+#&gt; 1    160  0.0  0.0  0.0
+#&gt; 2    184 12.5  1.1  1.4
+#&gt; 3    195 18.2  1.0  0.7
+#&gt; 4    226 11.1  0.4  0.0
+#&gt; 5    204 22.2  3.4  4.0
+#&gt; 6    200 25.0  2.0  1.4
+#&gt; 7     96 25.0  3.1  4.3
+#&gt; 8    144 25.0  5.6  4.8
+#&gt; 9    208 37.5 12.0 24.8
+#&gt; 10   216 25.0  9.3 13.4
+#&gt; 11   212  0.0  0.0  0.0
+#&gt; 12   140 27.3  7.9  6.8</code></pre>
+<p>Since this data now has the coordinates of each site, we can plot the index on a map using the function used at the start of the [Water quality index calculation] section.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_map</span>(wqi2012, <span class="dt">fill =</span> <span class="st">&quot;WQI&quot;</span>)</code></pre>
+<p><img src="data:image/png;base64,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" /></p>
+<p>However, there is a special plotting function designed especially for plotting the results of <code>calc_wqi</code>, and this is <code>plot_map_wqis</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_map_wqis</span>(wqi2012)</code></pre>
+<p><img src="data:image/png;base64,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" /></p>
+<!--
+____________________________________________________
+
+     Pull in analysis tools from other wq packages
+____________________________________________________
+
+-->
+</div>
+<div id="aditional-examples" class="section level1">
+<h1>Aditional Examples</h1>
+<!-- 
+* Show grouping sites together and plotting
+* Facet wrap results of yearly short-term WQIs by site 
+* trend analysis using wq package
+-->
+<!-- ____________________________________________________ -->
+<div id="an-example-calculating-water-quality-indices-for-grouped-sites" class="section level2">
+<h2>An example calculating water quality indices for grouped sites</h2>
+<p>This first example shows how it is possible to create a group of sites, in this case it is based on latitude, the group <code>South</code> is below 52 degrees latitude, while the sites above this line are in the <code>North</code> group. Short term water quality indices for 2012 are calculated for these groups using the following</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">wqbc.messages =</span> <span class="ot">FALSE</span>)
+dataNorthSouth &lt;-<span class="st"> </span><span class="kw">subset</span>(fraser, <span class="kw">year</span>(Date) %in%<span class="st"> </span><span class="dv">2012</span>)
+dataNorthSouth $<span class="st"> </span>NorthSouth &lt;-<span class="st"> </span><span class="kw">ifelse</span>(dataNorthSouth $<span class="st"> </span>Lat &lt;<span class="st"> </span><span class="dv">52</span>, <span class="st">&quot;South&quot;</span>, <span class="st">&quot;North&quot;</span>)
+limitsNorthSouth &lt;-<span class="st"> </span><span class="kw">calc_limits</span>(dataNorthSouth, <span class="dt">by =</span> <span class="st">&quot;NorthSouth&quot;</span>, <span class="dt">term =</span> <span class="st">&quot;short&quot;</span>) 
+wqiNorthSouth &lt;-<span class="st"> </span><span class="kw">calc_wqi</span>(limitsNorthSouth, <span class="dt">by =</span> <span class="st">&quot;NorthSouth&quot;</span>) </code></pre>
+<p>Then to attribute these grouped water quality indices back to the individual sites, a basic R function called <code>merge</code> is used, which merges based on column names. An additional trick is used here where the function <code>unique</code> keeps only the unique combinations of <code>NorthSouth</code>, <code>SiteID</code>, <code>Lat</code> and <code>Long</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">wqiNorthSouth &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="kw">unique</span>(dataNorthSouth[<span class="kw">c</span>(<span class="st">&quot;NorthSouth&quot;</span>, <span class="st">&quot;SiteID&quot;</span>, <span class="st">&quot;Lat&quot;</span>, <span class="st">&quot;Long&quot;</span>)]), wqiNorthSouth)
+wqiNorthSouth</code></pre>
+<pre><code>#&gt;    NorthSouth     SiteID      Lat      Long  WQI Lower Upper Category
+#&gt; 1       North BC08MB0007 52.07197 -123.2614 83.5  77.3  89.3     Good
+#&gt; 2       North BC08KH0012 52.40330 -121.4342 83.5  77.3  89.3     Good
+#&gt; 3       North BC08KE0010 53.92722 -122.7650 83.5  77.3  89.3     Good
+#&gt; 4       North BC08MC0001 52.52964 -122.4423 83.5  77.3  89.3     Good
+#&gt; 5       North BC08KA0007 52.98780 -119.0101 83.5  77.3  89.3     Good
+#&gt; 6       South BC08MH0453 49.16700 -123.0350 85.1  84.7  90.0     Good
+#&gt; 7       South BC08MF0001 49.38722 -121.4508 85.1  84.7  90.0     Good
+#&gt; 8       South BC08LG0001 50.42500 -121.3164 85.1  84.7  90.0     Good
+#&gt; 9       South BC08MH0269 49.24211 -122.5961 85.1  84.7  90.0     Good
+#&gt; 10      South BC08LE0004 50.69139 -119.3289 85.1  84.7  90.0     Good
+#&gt; 11      South BC08LC0005 50.68484 -119.0700 85.1  84.7  90.0     Good
+#&gt; 12      South BC08LF0001 50.42083 -121.3414 85.1  84.7  90.0     Good
+#&gt;    Variables Tests   F1  F2  F3
+#&gt; 1         11   683 27.3 4.0 7.4
+#&gt; 2         11   683 27.3 4.0 7.4
+#&gt; 3         11   683 27.3 4.0 7.4
+#&gt; 4         11   683 27.3 4.0 7.4
+#&gt; 5         11   683 27.3 4.0 7.4
+#&gt; 6         12   921 25.0 4.1 4.7
+#&gt; 7         12   921 25.0 4.1 4.7
+#&gt; 8         12   921 25.0 4.1 4.7
+#&gt; 9         12   921 25.0 4.1 4.7
+#&gt; 10        12   921 25.0 4.1 4.7
+#&gt; 11        12   921 25.0 4.1 4.7
+#&gt; 12        12   921 25.0 4.1 4.7</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_map</span>(wqiNorthSouth, <span class="dt">fill =</span> <span class="st">&quot;WQI&quot;</span>)</code></pre>
+<p><img src="data:image/png;base64,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" /></p>
+<p>Sites could be grouped based on other attributes if these were available, such as altitude for example.</p>
+<!-- ____________________________________________________ -->
+</div>
+<div id="an-example-over-multiple-years" class="section level2">
+<h2>An example over multiple years</h2>
+<p>This example calculates short term water quality indices over multiple years (in this case from 2002 to 2012), and by site. The function <code>facet_wrap</code> is then used to produce a gridded plot output showing multiple years</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">wqbc.messages =</span> <span class="ot">TRUE</span>)
+data07to12 &lt;-<span class="st"> </span><span class="kw">subset</span>(fraser, <span class="kw">year</span>(Date) %in%<span class="st"> </span><span class="dv">2007</span>:<span class="dv">2012</span>)
+data07to12 $<span class="st"> </span>year &lt;-<span class="st"> </span><span class="kw">year</span>(data07to12 $<span class="st"> </span>Date)
+limits07to12 &lt;-<span class="st"> </span><span class="kw">calc_limits</span>(data07to12, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;SiteID&quot;</span>, <span class="st">&quot;Lat&quot;</span>, <span class="st">&quot;Long&quot;</span>), <span class="dt">term =</span> <span class="st">&quot;short&quot;</span>) </code></pre>
+<pre><code>#&gt; Standardizing water quality data...
+#&gt; Deleted 253 rows with negative values in Value.
+#&gt; Substituted 'ALUMINUM DISSOLVED' with 'Aluminium Dissolved', 'ARSENIC TOTAL' with 'Arsenic Total', 'BORON DISSOLVED' with 'Boron', 'BORON EXTRACTABLE' with 'Boron', 'BORON TOTAL' with 'Boron', 'CADMIUM DISSOLVED' with 'Cadmium Dissolved', 'COBALT TOTAL' with 'Cobalt Total', 'COPPER TOTAL' with 'Copper Total', 'CYANIDE WEAK ACID DISSOCIABLE' with 'Cyanide Weak Acid Dissociable', 'HARDNESS TOTAL (CALCD.) CACO3' with 'Hardness Total', 'IRON DISSOLVED' with 'Iron Dissolved', 'IRON TOTAL' with 'Iron Total', 'LEAD DISSOLVED' with 'Lead', 'LEAD EXTRACTABLE' with 'Lead', 'LEAD TOTAL' with 'Lead', 'MANGANESE DISSOLVED' with 'Manganese', 'MANGANESE EXTRACTABLE' with 'Manganese', 'MANGANESE TOTAL' with 'Manganese', 'MOLYBDENUM TOTAL' with 'Molybdenum Total', 'NITROGEN NITRITE' with 'Nitrite', 'PH' with 'pH', 'PH - FIELD' with 'pH', 'SELENIUM TOTAL' with 'Selenium Total', 'SILVER DISSOLVED' with 'Silver', 'SILVER EXTRACTABLE' with 'Silver', 'SILVER TOTAL' with 'Silver', 'SULPHATE DISSOLVED' with 'Sulphate' and 'ZINC TOTAL' with 'Zinc Total'.
+#&gt; Failed to substitute 'ADSORBABLE ORGANIC HALIDE - AOX', 'ALKALINITY GRAN CACO3', 'ALKALINITY PHENOLPHTHALEIN CACO3', 'ALKALINITY TOTAL CACO3', 'ALUMINUM EXTRACTABLE', 'ALUMINUM TOTAL', 'ALUMINUM_27 TOTAL RECOVERABLE - AL', 'AMMONIA DISSOLVED', 'ANTIMONY DISSOLVED', 'ANTIMONY EXTRACTABLE', 'ANTIMONY TOTAL', 'ARSENIC DISSOLVED', 'ARSENIC EXTRACTABLE', 'BARIUM DISSOLVED', 'BARIUM EXTRACTABLE', 'BARIUM TOTAL', 'BERYLLIUM DISSOLVED', 'BERYLLIUM EXTRACTABLE', 'BERYLLIUM TOTAL', 'BICARBONATE (CALCD.)', 'BISMUTH DISSOLVED', 'BISMUTH EXTRACTABLE', 'BISMUTH TOTAL', 'BROMIDE DISSOLVED', 'CADMIUM EXTRACTABLE', 'CADMIUM TOTAL', 'CALCIUM DISSOLVED', 'CALCIUM EXTRACTABLE', 'CALCIUM TOTAL', 'CARBON DISSOLVED INORGANIC', 'CARBON DISSOLVED ORGANIC', 'CARBON TOTAL INORGANIC', 'CARBON TOTAL ORGANIC', 'CARBONATE (CALCD.)', 'CERIUM DISSOLVED', 'CERIUM EXTRACTABLE', 'CERIUM TOTAL', 'CESIUM DISSOLVED', 'CESIUM EXTRACTABLE', 'CESIUM TOTAL', 'CHLORIDE DISSOLVED', 'CHROMIUM DISSOLVED', 'CHROMIUM EXTRACTABLE', 'CHROMIUM TOTAL', 'COBALT DISSOLVED', 'COBALT EXTRACTABLE', 'COLIFORMS FECAL', 'COLOUR APPARENT', 'COLOUR TRUE', 'COPPER DISSOLVED', 'COPPER EXTRACTABLE', 'CYANIDE TOTAL', 'ENTEROCOCUS', 'ESCHERICHIA COLI', 'FLUORIDE DISSOLVED', 'GALLIUM DISSOLVED', 'GALLIUM EXTRACTABLE', 'GALLIUM TOTAL', 'HYDROXIDE (CALCD.)', 'IRON EXTRACTABLE', 'LANTHANUM DISSOLVED', 'LANTHANUM EXTRACTABLE', 'LANTHANUM TOTAL', 'LITHIUM DISSOLVED', 'LITHIUM EXTRACTABLE', 'LITHIUM TOTAL', 'MAGNESIUM DISSOLVED', 'MAGNESIUM EXTRACTABLE', 'MAGNESIUM TOTAL', 'MERCURY DISSOLVED', 'MOLYBDENUM DISSOLVED', 'MOLYBDENUM EXTRACTABLE', 'NICKEL DISSOLVED', 'NICKEL EXTRACTABLE', 'NICKEL TOTAL', 'NIOBIUM DISSOLVED', 'NIOBIUM EXTRACTABLE', 'NIOBIUM TOTAL', 'NITROGEN DISSOLVED KJELDAHL', 'NITROGEN DISSOLVED NITRATE', 'NITROGEN DISSOLVED NO3 &amp; NO2', 'NITROGEN DISSOLVED ORGANIC (CALCD.)', 'NITROGEN TOTAL', 'NITROGEN TOTAL DISSOLVED', 'NITROGEN TOTAL KJELDAHL', 'NITROGEN TOTAL ORGANIC (CALCD.)', 'OXYGEN DISSOLVED', 'PHOSPHORUS DISSOLVED ORTHO', 'PHOSPHORUS TOTAL', 'PHOSPHORUS TOTAL DISSOLVED', 'PLATINUM DISSOLVED', 'PLATINUM EXTRACTABLE', 'PLATINUM TOTAL', 'POTASSIUM DISSOLVED', 'POTASSIUM EXTRACTABLE', 'POTASSIUM TOTAL', 'RESIDUE FILTERABLE', 'RESIDUE NONFILTRABLE', 'RESIDUE TOTAL', 'RUBIDIUM DISSOLVED', 'RUBIDIUM EXTRACTABLE', 'RUBIDIUM TOTAL', 'SALINITY', 'SELENIUM DISSOLVED', 'SELENIUM EXTRACTABLE', 'SILICON DISSOLVED', 'SILICON EXTRACTABLE', 'SILICON TOTAL', 'SODIUM DISSOLVED', 'SODIUM EXTRACTABLE', 'SODIUM TOTAL', 'SPECIFIC CONDUCTANCE', 'SPECIFIC CONDUCTANCE - FIELD', 'STRONTIUM DISSOLVED', 'STRONTIUM EXTRACTABLE', 'STRONTIUM TOTAL', 'SULPHUR DISSOLVED', 'SULPHUR TOTAL', 'TEMPERATURE AIR', 'TEMPERATURE WATER', 'THALLIUM DISSOLVED', 'THALLIUM EXTRACTABLE', 'THALLIUM TOTAL', 'TIN DISSOLVED', 'TIN EXTRACTABLE', 'TIN TOTAL', 'TITANIUM DISSOLVED', 'TITANIUM TOTAL', 'TUNGSTEN DISSOLVED', 'TUNGSTEN EXTRACTABLE', 'TUNGSTEN TOTAL', 'TURBIDITY', 'URANIUM DISSOLVED', 'URANIUM EXTRACTABLE', 'URANIUM TOTAL', 'VANADIUM DISSOLVED', 'VANADIUM EXTRACTABLE', 'VANADIUM TOTAL', 'YTTRIUM DISSOLVED', 'YTTRIUM EXTRACTABLE', 'YTTRIUM TOTAL', 'ZINC DISSOLVED', 'ZINC EXTRACTABLE', 'ZIRCONIUM DISSOLVED' and 'ZIRCONIUM TOTAL'.
+#&gt; Deleted 70652 rows with missing values in Variable.
+#&gt; Substituted 'MG/L' with 'mg/L', 'PH UNITS' with 'pH' and 'UG/L' with 'ug/L'.
+#&gt; Standardized water quality data.
+#&gt; Cleaning water quality data...
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.4 for Boron on 2010-03-16.
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.3 for Silver on 2010-03-16.
+#&gt; Filtered 1 of 4 replicate values with a CV of 1.99 for Arsenic Total on 2010-08-04.
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.72 for Arsenic Total on 2010-11-03.
+#&gt; Filtered 1 of 4 replicate values with a CV of 1.96 for Cobalt Total on 2010-08-04.
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.71 for Cobalt Total on 2010-11-03.
+#&gt; Filtered 1 of 4 replicate values with a CV of 1.89 for Copper Total on 2010-08-04.
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.65 for Copper Total on 2010-11-03.
+#&gt; Filtered 1 of 4 replicate values with a CV of 2 for Lead on 2010-08-04.
+#&gt; Filtered 2 of 5 replicate values with a CV of 1.38 for Lead on 2010-11-03.
+#&gt; Filtered 1 of 4 replicate values with a CV of 1.81 for Molybdenum Total on 2010-08-04.
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.68 for Molybdenum Total on 2010-11-03.
+#&gt; Filtered 1 of 4 replicate values with a CV of 1.99 for Selenium Total on 2010-08-04.
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.72 for Selenium Total on 2010-11-03.
+#&gt; Filtered 1 of 4 replicate values with a CV of 1.99 for Silver on 2010-08-04.
+#&gt; Filtered 2 of 5 replicate values with a CV of 1.36 for Silver on 2010-11-03.
+#&gt; Filtered 1 of 4 replicate values with a CV of 1.86 for Zinc Total on 2010-08-04.
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.54 for Zinc Total on 2010-11-03.
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.72 for Arsenic Total on 2011-03-09.
+#&gt; Filtered 2 of 5 replicate values with a CV of 1.36 for Arsenic Total on 2011-06-01.
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.71 for Cobalt Total on 2011-03-09.
+#&gt; Filtered 2 of 5 replicate values with a CV of 1.36 for Cobalt Total on 2011-06-01.
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.66 for Copper Total on 2011-03-09.
+#&gt; Filtered 2 of 5 replicate values with a CV of 1.32 for Copper Total on 2011-06-01.
+#&gt; Filtered 2 of 5 replicate values with a CV of 1.38 for Lead on 2011-03-09.
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.65 for Molybdenum Total on 2011-03-09.
+#&gt; Filtered 2 of 5 replicate values with a CV of 1.34 for Molybdenum Total on 2011-06-01.
+#&gt; Filtered 1 of 3 replicate values with a CV of 1.72 for Selenium Total on 2011-03-09.
+#&gt; Filtered 2 of 5 replicate values with a CV of 1.36 for Selenium Total on 2011-06-01.
+#&gt; Filtered 2 of 5 replicate values with a CV of 1.36 for Silver on 2011-03-09.
+#&gt; Cleansed water quality data.
+#&gt; Calculating short-term water quality limits...
+#&gt; Calculated short-term water quality limits.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wqi07to12 &lt;-<span class="st"> </span><span class="kw">calc_wqi</span>(limits07to12, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;SiteID&quot;</span>, <span class="st">&quot;Lat&quot;</span>, <span class="st">&quot;Long&quot;</span>)) </code></pre>
+<pre><code>#&gt; Calculating water quality indices...
+#&gt; Added missing column LowerLimit to x.
+#&gt; Added missing column DetectionLimit to x.
+#&gt; Dropped WQI with less than four variables sampled at least four times by year: 2009, SiteID: 3, Lat: 53.02955 and Long: -119.23201.
+#&gt; Calculated water quality indices.</code></pre>
+<p>To visualize the water quality indices over the years, a handy function from the <code>ggplot2</code> package called <code>facet_wrap</code> can be used. This is because the plotting functions return a ggplot2 object which can be replotted and adapted - see the <a href="http://ggplot2.org/">ggplot2 webpage</a> for lots of helpful ideas on how to add to and customize these type of plots.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">plot_map_wqis</span>(wqi07to12, <span class="dt">keep =</span> <span class="st">&quot;year&quot;</span>) 
+p +<span class="st"> </span><span class="kw">facet_wrap</span>(~year)</code></pre>
+<p><img src="data:image/png;base64,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" /></p>
+<!-- ____________________________________________________ -->
+</div>
+<div id="the-ccme-example-data-demonstration" class="section level2">
+<h2>the CCME example data demonstration</h2>
+<p>The following example is taken from the demonstration of the <code>ccme</code> dataset. This can be run in your R session by typing <code>demo(ccme)</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
+<span class="kw">library</span>(dplyr)
+
+<span class="kw">options</span>(<span class="dt">wqbc.messages =</span> <span class="ot">TRUE</span>)
+
+<span class="kw">data</span>(ccme)
+
+<span class="kw">spread</span>(<span class="kw">select</span>(ccme, Variable, Value, Date), Variable, Value)</code></pre>
+<pre><code>#&gt;          Date   DO  pH    TP    TN FC    As     Pb Hg 2,4-D Lindane
+#&gt; 1  1997-01-07 11.4 8.0 0.006 0.160  4 2e-04 0.0004  0 0.000       0
+#&gt; 2  1997-02-04 11.0 7.9 0.005 0.170  0 0e+00 0.0094  0    NA      NA
+#&gt; 3  1997-03-04 11.5 7.9 0.006 0.132  4 0e+00 0.0000  0    NA      NA
+#&gt; 4  1997-04-08 12.5 7.9 0.058 0.428  0 0e+00 0.0008  0 0.004       0
+#&gt; 5  1997-05-06 10.4 8.1 0.042 0.250  0 2e-04 0.0008  0    NA      NA
+#&gt; 6  1997-06-03  8.9 8.2 0.108 0.707 26 6e-04 0.0013  0    NA      NA
+#&gt; 7  1997-07-08  8.5 8.3 0.017 0.153  9 2e-04 0.0004 NA    NA      NA
+#&gt; 8  1997-08-05  7.5 8.2 0.008 0.153  8 0e+00 0.0000  0 0.000       0
+#&gt; 9  1997-09-02  9.2 8.2 0.006 0.130 12 3e-04 0.0018  0    NA      NA
+#&gt; 10 1997-10-07 11.0 8.1 0.008 0.093 12 0e+00 0.0011  0 0.000       0
+#&gt; 11 1997-11-04 12.1 8.0 0.006 0.296  8 0e+00 0.0051  0    NA      NA
+#&gt; 12 1997-12-01 13.3 8.0 0.004 0.054  4 0e+00 0.0000  0    NA      NA</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">calc_wqi</span>(ccme)</code></pre>
+<pre><code>#&gt; Calculating water quality indices...
+#&gt; Deleted 17 rows with missing or negative values in Value.
+#&gt; Replaced 31 of the values in column Value with the detection limit in column DetectionLimit.
+#&gt; Calculated water quality indices.</code></pre>
+<pre><code>#&gt;      WQI Lower Upper Category Variables Tests F1  F2  F3
+#&gt; WQI 88.1  87.3  94.2     Good        10   103 20 3.9 2.8</code></pre>
+<!-- ____________________________________________________ -->
+</div>
+<div id="the-fraser-river-basin-data-demonstration" class="section level2">
+<h2>the Fraser river basin data demonstration</h2>
+<p>The following example is taken from the demonstration of the <code>fraser</code> dataset. This can be run in your R session by typing <code>demo(fraser)</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(lubridate)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(sp)
+<span class="kw">library</span>(rgdal)
+
+<span class="kw">options</span>(<span class="dt">wqbc.messages =</span> <span class="ot">TRUE</span>)
+
+<span class="kw">data</span>(fraser)
+<span class="kw">print</span>(<span class="kw">summary</span>(fraser))
+
+fraser$SiteID &lt;-<span class="st">  </span><span class="kw">factor</span>(<span class="kw">sub</span>(<span class="st">&quot;BC08&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">as.character</span>(fraser$SiteID)))
+fraser$Year &lt;-<span class="st"> </span><span class="kw">year</span>(fraser$Date)
+<span class="kw">plot_map</span>(fraser, <span class="dt">fill =</span> <span class="st">&quot;SiteID&quot;</span>)
+fraser &lt;-<span class="st"> </span><span class="kw">calc_wqi</span>(fraser, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;SiteID&quot;</span>, <span class="st">&quot;Lat&quot;</span>, <span class="st">&quot;Long&quot;</span>))
+<span class="kw">plot_map_wqis</span>(fraser, <span class="dt">shape =</span> <span class="st">&quot;SiteID&quot;</span>)
+
+<span class="kw">data</span>(fraser)
+fraser$Year &lt;-<span class="st"> </span><span class="kw">year</span>(fraser$Date)
+fraser &lt;-<span class="st"> </span><span class="kw">standardize_wqdata</span>(fraser, <span class="dt">strict =</span> <span class="ot">FALSE</span>)
+fraser &lt;-<span class="st"> </span><span class="kw">clean_wqdata</span>(fraser, <span class="dt">by =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">max_cv =</span> <span class="ot">Inf</span>)
+fraser &lt;-<span class="st"> </span><span class="kw">calc_limits</span>(fraser, <span class="dt">by =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">term =</span> <span class="st">&quot;short&quot;</span>)
+fraser &lt;-<span class="st"> </span><span class="kw">calc_wqi</span>(fraser, <span class="dt">by =</span> <span class="st">&quot;Year&quot;</span>)
+<span class="kw">plot_wqis</span>(fraser, <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>)</code></pre>
+<div class="references">
+<h1>References</h1>
+<p>Ministers of the Environment, Canadian Council of. 2001. <em>Canadian Water Quality Guidelines for the Protection of Aquatic Life, CCME Water Quality Index 1.0, Users Manual. in: Canadian Environmental Quality Guidelines, 1999</em>. Winnipeg: Canadian Council of Ministers of the Environment. <a href="http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf">http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf</a>.</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

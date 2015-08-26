@@ -1,3 +1,15 @@
+# Copyright 2015 Province of British Columbia
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and limitations under the License.
+
 context("lookup")
 
 test_that("lookup_units", {
@@ -22,7 +34,7 @@ test_that("lookup_codes lookup_variables", {
 test_that("lookup_limits", {
   x<-lookup_limits()
   expect_is(x,"data.frame")                                                 #check if lookup_limits is a data frame
-  expect_equal(nrow(x),23)                                                  #check if lookup_limits has 23 rows
+  expect_equal(nrow(x),25)                                                  #check if lookup_limits has 25 rows
   expect_equal(ncol(x),3)                                                   #check if loopup_limits has 3 columns
 
 

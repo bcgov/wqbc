@@ -17,7 +17,7 @@ is stored in the `codes.csv` table in the `data-raw` directory.
 ## Reference Document
 
 **The `limits.csv` file  contains the limits defined in the 
-reference documents `data-raw/BC_2006.pdf` (*British Columbia Approved Water Quality Guidelines 2006 Edition*) and `data-raw/EMAIL_2014.pdf`
+reference document [British Columbia Approved Water Quality Guidelines (2015)](http://www2.gov.bc.ca/assets/gov/environment/air-land-water/water/waterquality/waterqualityguidesobjs/approved-wat-qual-guides/wqg_summary_2015.pdf).
 Although other limits
 are defined on the web the formats are inconsistent and 
 the stability of the links uncertain.
@@ -52,7 +52,7 @@ in the `limits.csv` file.
 Finally, the limits for Turbidity, Sediment,
 Total Ammonia Nitrogen, Polycyclic Aromatic Hydrocarbons (PAHs), 
 Chlorophenols, pH, Total Gas Pressure (TGP), Color, Organic Carbon and
-Temperature are excluded due to their complexity, lack or clarity
+Temperature are excluded due to their complexity
 and/or dependence on background levels.
 
 ## Data
@@ -68,7 +68,7 @@ by their code.
 - Units - The units for the lower and upper limits where the permitted values are
 ng/L, ug/L, mg/L, pH and /dL (in the case of the `codes.csv` table).
 - Table - The table in the reference document.
-- Reference - The reference document where the only permitted values are BC_2006 and EMAIL_2014.
+- Reference - The reference document.
 - Use - The use where currently the only permitted value is Freshwater Use.
 
 The `codes.csv` file contains 3 columns. The Variable,  and Units columns

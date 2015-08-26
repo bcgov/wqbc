@@ -1,0 +1,516 @@
+---
+title: "Water Quality Thresholds and Indices for British Columbia"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Water Quality Thresholds and Indices for British Columbia}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+bibliography: bibliography.bib
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+library(wqbc)
+library(lubridate)
+library(xtable)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+
+options(wqbc.messages = TRUE)
+
+knitr::opts_chunk$set(
+  comment = "#>",
+  error = FALSE,
+  tidy = FALSE)
+```
+
+# Introduction
+
+
+The main function of the `wqbc` (water quality for British Columbia) package is to calculate the Canadian Council of Ministers of the Environment (CCME) water quality index (WQI) for water bodies in British Columbia, the procedure is set out in the CCME WQI (1.0) [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf") [@ccmeWQI2001].  
+
+Water quality indices are calculated using the `calc_wqi` function. 
+In addition water quality thresholds can be calculated with `calc_limits`. In this document, _thresholds_ and _limits_ are used interchangeably to describe environmental benchmarks for safe levels of specific substances.
+For the visual display of the calculated water quality indices over 
+a map of British Columbia, the function `plot_map` is provided.
+
+The purpose of this document is to provide some background to the calculation of indices, 
+provide worked examples of the calculation of indices and and to show how various summaries of the indices can be displayed visually.
+
+The data used in the examples are from the Fraser River basin (data available [here](http://data.gc.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18) under the [Candian Open Government License](http://open.canada.ca/en/open-government-licence-canada), and an example taken from the CCME WQI [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf") [@ccmeWQI2001].
+
+The following methods of analyzing water quality are provided:
+
+1. Calculation of thresholds for water quality variables
+2. Calculation of the CCME water quality index
+3. Methods for visualization of water quality indices
+
+The package is intended to be easy to use and provide a flexible means for the exploration of water quality monitoring data. The document is split into the following sections:
+
+* [The CCME Water Quality Index (1.0)]
+* [The CCME Example]
+* [Data Format] 
+* [Water Quality Index Calculation]
+* [Visual Display of Indices] 
+
+<!--
+____________________________________________________
+
+     An overview of the index definition
+____________________________________________________
+
+-->
+
+
+# The CCME Water Quality Index (1.0)
+
+Water quality is assessed by the monitoring of a range of parameters, referred to in this document as _variables_.  The majority of water quality variables are concentrations of various chemicals, however, quantities such as water turbidity and pH are also important.  Comprehensive water quality monitoring has been undertaken in the Fraser River Basin (BC, Canada) since 1979, and this data is provided in the package, however the tools in this package can be applied to any suitable data set provided it meets specific requirements detailed in the [Data Format] section.
+
+The CCME Water Quality Index (1.0) is based on a combination of three factors (F1 to F3):
+
+* F1: **Scope** the percent of variables where thresholds are exceeded at least once,
+* F2: **Frequency** the percent of individual tests in which thresholds are exceeded, and
+* F3: **Amplitude** the amount by which the thresholds are exceeded.
+
+These are combined to produce a single value (between 0 and 100) which is then converted to a ranking of quality (poor, marginal, fair, good, and excellent) intended to describe overall water quality.   In the [Water Quality Index Calculation] section you can see examples of the CCME WQI in action.
+
+The (CCME) WQI is used across Canada as a standardized approach to roll-up the status of multiple water quality parameters at a site and communicate the ‘state’ in a simple manner. The WQI focuses on water quality with respect to the health of freshwater aquatic health. The WQI approach is documented on the [CCME website](http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html), including detailed methods, a list of established national parameter guidelines/thresholds, and a point and click [MS Excel Calculator](http://www.ccme.ca/files/Resources/calculators/WQI%20Calculator%201.2%20(en).xls).
+
+
+
+
+
+<!--
+____________________________________________________
+
+               Easy Example Section
+____________________________________________________
+
+-->
+
+# The CCME Example
+
+Lets begin with an example to help understand how the wqbc package works in practice. To begin the package is loaded into R using
+
+```{r, eval = FALSE}
+library(wqbc)
+```
+
+a good example dataset is that tabled in the CCME WQI (1.0) [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf"), which uses a simplified data set from the North Saskatchewan River at Devon, Alberta. A table of the data is given below
+
+```{r ccmedata, echo=FALSE, results='asis'}
+data(ccme)
+tab <- spread(select(ccme, Variable, Value, Date), Variable, Value)
+tab $ Date <- as.character(tab $ Date)
+# Analysis of variance.
+print(xtable(tab), type = "html")
+```
+
+This data is shipped with the wqbc package and has been called `ccme`.  To load the `ccme` data into the R session run
+
+```{r}
+data(ccme)
+```
+The first 12 rows of the data contain all the data for Dissolved Oxygen (DO) as shown here
+
+```{r}
+head(ccme, 12)
+```
+
+Not only are the observed water chemistry values, there is auxiliary information 
+on the analysis methods used, i.e. the detection limits, as well as the 
+lower and upper limits and the units of measurement.  The water quality index based on all this data is calculated using the command
+
+```{r, echo = 2}
+options(wqbc.messages = FALSE)
+calc_wqi(ccme)
+options(wqbc.messages = TRUE)
+```
+
+Giving the result 88.1, and given the categories defined in the CCME WQI this equates to a score of 'Good'.  The `calc_wqi` function gives some additional information.  The values for each component of the index are given, so, F1 = 20, F2 = 3.9, and F3 = 2.8.  We are also told that there were 10 variables included in the index, which allows us to interpret F1=20 as there being 2 variables which did not meet objectives, however, the proportion of tests not meeting objectives (F2) and the excursions were small (F3) so that these failures are not considered to be a concern.  In order to assess the certainty of the classification, confidence intervals are provided for the overall WQI.  In this case, both confidence intervals lie within the definition of 'Good'.
+
+
+
+
+
+
+<!--
+____________________________________________________
+
+     Something on data?  Might put this to the end
+____________________________________________________
+
+-->
+
+
+# Data Format
+
+There are two datasets provided with the package which follow the data format required by the index calculation routines:
+
+* [ccme] This dataset contains the CCME (Canadian Council of Ministers of the Environment) Water Quality Index 1.0 [User's Manual](http://www.ccme.ca/files/Resources/calculators/WQI%20User%27s%20Manual%20%28en%29.pdf "download pdf") example dataset [@ccmeWQI2001].  The data is a time series of water chemistry measurements taken from North Saskatchewan river at Devon throughout 1997.
+
+* [Fraser] This dataset contains long term surface freshwater quality monitoring data from the Fraser River Basin (the data was extracted from [here](http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18 "data") where it is provided under the [Candian Open Government License](http://open.canada.ca/en/open-government-licence-canada)) carried out under the Canada-British Columbia Water Quality Monitoring Agreement. Water quality monitoring is conducted to assess water quality status and long-term trends, detect emerging issues, establish water quality guidelines and track the effectiveness of remedial measures and regulatory decisions
+
+The minimal data format is a data frame with columns named, `Variable`, `Value` and `Units`:
+
+```{r, echo = FALSE}
+head(ccme[c("Variable", "Value", "Units")], 5)
+```
+
+however, this data can only be used if there are water quality limits defined.  The list of variables for which limits are defined can be found using the `lookup_limits` function
+
+```{r}
+lookup_limits()
+```
+
+This function will be discussed further in the following section, but note for now that the variable listed as `DO` (Dissolved Oxygen) in the `ccme` data does not have a corresponding limit defined in `lookup_limits` and so for water quality indices to be calculated for the `ccme` data, there must be thresholds provided for each observation. This should be included by providing 
+upper limits in a column called `UpperLimit`, and optionally 
+lower limits in `LowerLimit`, for example
+
+```{r}
+head(ccme, 5)
+```
+
+To show this in action, lets arbitrarily set all the upper limits in the ccme data to 50, and see what the water quality index is
+
+```{r}
+ccme2 <- ccme
+ccme2 $ UpperLimit <- 50
+calc_wqi(ccme2)
+```
+
+And as expected by setting the  thresholds arbitrarily high, we get no failures and an Excellent marking!
+
+
+
+
+
+<!--
+____________________________________________________
+
+     More in depth description and use of the calc_wqi function
+____________________________________________________
+
+-->
+
+
+# Water Quality Index Calculation
+
+To explore the functions in more detail a larger data set than `ccme` is required. Contained in the `wqbc` package is a second dataset: a copy of the Fraser Basin long term surface freshwater quality monitoring data.  To load this data run
+
+```{r}
+data(fraser)
+```
+
+As with the `ccme` data, the `fraser` data is organized so that each row corresponds to one observation.  The first 10 observations in the `fraser` dataset are:
+
+```{r}
+head(fraser, 10)
+```
+
+In this dataset the auxiliary data available are a site identifier (`SiteID`), the site name in full (`Site`), and the position in terms of latitude (`Lat`) and longitude (`Long`).  This information can be used to visualize the site positions on a map, and through the use of coloured symbols, additional information, such as the site name, can be included.
+
+```{r, fig.width = 7, fig.height = 7, dpi = 100}
+plot_map(fraser, fill = "SiteID")
+```
+
+For more information on plotting see the section on [Visual Display of Indices].  This will be particularly useful when summarizing the results of the water quality index calculations.
+
+
+To calculate the long-term water quality index for each site all that needs to be done is to run
+
+```{r, eval = FALSE}
+calc_wqi(fraser, by = "SiteID")
+```
+
+But this does not help to explain what is going on which is the purpose of this section.
+
+
+
+<!-- ____________________________________________________ -->
+
+## cleaning and standardising data
+
+The `fraser` data is a large dataset, and to get things started we will use a `subset`  of this data.  Lets take the data from 2012.  A useful package for working with the dates is the `lubridate` package. We will use the function `year` from the lubridate package to help subset the data.  Before using the `year` function you should make sure the `lubridate` package is loaded by running `library(lubridate)`.
+
+```{r}
+library(lubridate)
+data2012 <- subset(fraser, year(Date) == 2012)
+head(data2012)
+```
+
+We are now in a position to calculate the long term water quality index for 2012, and as previously stated, this is done using
+
+```{r, eval = FALSE}
+calc_wqi(data2012)
+```
+
+The function `calc_wqi` performs a number of tasks.  The first of these is to check if the dataset contains user defined limits in columns called `UpperLimit` or `LowerLimit`.  If the dataset has these columns, the function proceeds directly to calculating the water quality index.  
+
+If the data do not contain user defined limits, as is the case for the `fraser` dataset, the next steps are to check and standardize the data so that they can be matched with known water quality limits. The list of known water quality limits can be queried using the function `lookup_limits`, which has arguments to help evaluate the limit.  Because some limits are dependent on the concentrations of other chemicals, `lookup_limits` has the following arguments: `ph`, `hardness`, `chloride` and `methyl_mercury`.  In addition because limits are different depending on the time scale, there is a further argument `term` which can take the values "short" or "long" (defined later in [Calculating limits]). 
+
+```{r}
+lookup_limits(ph = 7)
+```
+
+From this we can see that there are 23 standard variables with limits defined.  Some variable in the previous example have `NA` because these limits require knowledge of hardness, chloride or methyl mercury concentrations.
+
+The first step in assigning these limits to observations involves converting any non-standard variable names, checking and converting the units, and removing any missing and negative values.  Although this is done within the `calc_wqi` function, it can be useful to run a manual check on the data first.  This is done using the `standardize_wqdata` function
+
+```{r}
+data2012 <- standardize_wqdata(data2012)
+head(data2012)
+```
+
+Note that the effect of running `standardize_wqdata` is to convert some variable names to a standard form, for example, 'ALUMINUM DISSOLVED' has been replaced with 'Aluminium Dissolved'.  The messages output by the function relay this information, along with all the other substitutions made.  In addition, there are a number of variable names which are not part of the standard list of variables and were removed from the dataset. Unit names are also standardized, for example 'MG/L' has been replaced with 'mg/L', there are also some unrecognized units which result in the related observations being removed from the dataset.  As a result of the standardization, the 2012 Fraser dataset has been reduced from 18062 recorded observations, to 4194 standard observations, which can all be matched with the  thresholds.
+
+After standardization, it is necessary to ensure that there are only single values for each date for a given variable and this is done using the function `clean_wqdata`.  If the data is to be considered as observations of one entity, i.e. the whole Fraser river basin, then this function will average over all data occurring on a given day. If this was desired, the following code would be used 
+
+```{r, eval = FALSE}
+clean_wqdata(data2012)
+```
+
+However, with the Fraser river basin data it makes more sense to consider the data as observations of different sites within the river basin.  To tell the `clean_wqdata` function to average observations within site, the argument `by` is used 
+
+```{r}
+data2012 <- clean_wqdata(data2012, by = "SiteID")
+```
+
+In this case there are no problems, and the data is ready for the next step. Note that, to be on the safe side, the function `clean_wqdata` runs a standardization again, in case it wasn't done previously.  
+
+
+<!-- ____________________________________________________ -->
+
+## Calculating limits
+
+Now that we have observations for a range of standard variables it is possible to calculate the relevant limits with which to assess exceedances.  Taking into account the various rules for calculating thresholds for the standard variables, the function `calc_limits` calculates the limits required to evaluate the water quality index.  Again, if it is required to calculate the water quality index for each site, then the `by` argument is used
+
+```{r}
+calc_limits(data2012, by = "SiteID", term = "long")
+```
+
+Now the 2012 Fraser River basin data has been reduced to daily means of the standard variables, and  thresholds have been attributed to each observation.  A visual inspection of the data shows that for the period starting the 11th April, several variables at the `BC08MC0001` site are above their long-term limits, i.e. Cobalt Total, Copper Total, Silver and Zinc Total.
+
+<!-- ____________________________________________________ -->
+
+### Long or Short term
+
+In the previous output, the `calc_limits` function returned a total of ten limits, all with the same date and all from the same site.  But what is going on?  A plot of the 2012 data show that there are observations throughout the year from a number of different sites. (Note this plot requires the use of the library `ggplot2`, which is loaded using `library(ggplot2)`)
+
+```{r, fig.width = 7, fig.height = 7, dpi = 100}
+qplot(Date, SiteID, xlab = "", ylab = "", data = data2012, colour = SiteID == "BC08MC0001")
+```
+
+The point here is that the `calc_limits` function can calculate long or short-term limits.  For long-term limits, thresholds are calculated for each 30 day period.  Then in the water quality calculation, these 30 day periods are treated as individual test units for exceedances. There are strict rules applied to whether a 30 day period is considered valid for limit calculation: there must be at least 5 values spanning at least 21 days in a 30 day period for that period to be valid, and since replicates are averaged (by the `clean_wqdata` function) prior to calculating the limits each of the 5 values must occur on a separate date.  This explains why the long term limits, by site are so few for the 2012 data: only the `BC08MC0001` site has sufficiently frequent observations, occurring once in the year in the 30 day period following the 11th of April, to be considered valid for the calculation of long-term limits.
+
+
+The strict conditions required for long-term limits are not required when calculating short-term limits, where instead individual days are considered as the test units for exceedances.  
+
+```{r}
+data2012 <- calc_limits(data2012, by = "SiteID", term = "short") 
+head(data2012, 12)
+```
+
+
+<!-- ____________________________________________________ -->
+
+
+## Calculating the Water Quality Index
+
+Note that the default for calculating the water quality index is the use of long-term limits, but for the sake of continuing the example, we will keep with the 2012 data.  Lets begin by summarizing the steps so far: The full Fraser river basin dataset was subset to retain only the data from 2012.  Then this data (which we have called `data2012`) was first, standardized, cleaned and then the  limits were calculated for daily values.
+
+```{r, eval = FALSE}
+data2012 <- subset(fraser, year(Date) == 2012)
+data2012 <- standardize_wqdata(data2012)
+data2012 <- clean_wqdata(data2012, by = "SiteID")
+data2012 <- calc_limits(data2012, by = "SiteID", term = "short") 
+```
+The data is now ready to have the water quality index calculated for each site, and this is done using
+
+```{r}
+wqi2012 <- calc_wqi(data2012, by = "SiteID") 
+wqi2012
+```
+
+Due to the sampling frequency in 2012, it is not possible to calculate long term limits, because there are not enough samples in each 30 day period for each site.  A long-term water quality index for 2012 can be calculated for the whole river basin:
+
+```{r, echo = c(2:3)}
+options(wqbc.messages = FALSE)
+data2012 <- subset(fraser, year(Date) == 2012)
+calc_wqi(data2012) 
+```
+
+
+
+
+
+
+<!--
+____________________________________________________
+
+     More in depth use of the plot functions
+____________________________________________________
+
+-->
+
+
+# Visual Display of Indices
+
+
+In order to display the indices, it is required to retain the spatial location of the sites through the analysis.  This can be done by amending the code used previously to calculate  WQI for 2012.  We will take a short cut this time and use the fact that `calc_limits` standardizes and cleans the data before calculating limits.  One way to keep the latitude and longitude information is to add it to the `by` argument.  Because each `siteID` always has the same latitude and longitude, the effect of this will be to have additional columns in the output from `calc_limits`.  We can also turn off messages about variable name substitution if desired 
+
+```{r, message = FALSE}
+options(wqbc.messages = FALSE)
+data2012 <- subset(fraser, year(Date) == 2012)
+data2012 <- calc_limits(data2012, by = c("SiteID", "Lat", "Long"), term = "short") 
+head(data2012)
+```
+Now when the water quality index is calculated, we have to pass the additional columns again to retain latitude and longitude in the output from `calc_wqi`
+
+```{r, message = FALSE}
+wqi2012 <- calc_wqi(data2012, by = c("SiteID", "Lat", "Long")) 
+wqi2012
+```
+
+Since this data now has the coordinates of each site, we can plot the index on a map using the function used at the start of the [Water quality index calculation] section.
+
+```{r, fig.width = 7, fig.height = 7, dpi = 100}
+plot_map(wqi2012, fill = "WQI")
+```
+
+However, there is a special plotting function designed especially for plotting the results of `calc_wqi`, and this is `plot_map_wqis`
+
+```{r, fig.width = 7, fig.height = 7, dpi = 100}
+plot_map_wqis(wqi2012)
+```
+
+
+
+
+
+<!--
+____________________________________________________
+
+     Pull in analysis tools from other wq packages
+____________________________________________________
+
+-->
+
+
+# Aditional Examples
+
+<!-- 
+* Show grouping sites together and plotting
+* Facet wrap results of yearly short-term WQIs by site 
+* trend analysis using wq package
+-->
+
+
+<!-- ____________________________________________________ -->
+
+## An example calculating water quality indices for grouped sites
+
+This first example shows how it is possible to create a group of sites, in this case it is based on latitude, the group `South` is below 52 degrees latitude, while the sites above this line are in the `North` group.  Short term water quality indices for 2012 are calculated for these groups using the following
+
+```{r}
+options(wqbc.messages = FALSE)
+dataNorthSouth <- subset(fraser, year(Date) %in% 2012)
+dataNorthSouth $ NorthSouth <- ifelse(dataNorthSouth $ Lat < 52, "South", "North")
+limitsNorthSouth <- calc_limits(dataNorthSouth, by = "NorthSouth", term = "short") 
+wqiNorthSouth <- calc_wqi(limitsNorthSouth, by = "NorthSouth") 
+```
+
+Then to attribute these grouped water quality indices back to the individual sites, a basic R function called `merge` is used, which merges based on column names.  An additional trick is used here where the function `unique` keeps only the unique combinations of `NorthSouth`, `SiteID`, `Lat` and `Long`.
+
+```{r, fig.width = 7, fig.height = 7, dpi = 100}
+wqiNorthSouth <- merge(unique(dataNorthSouth[c("NorthSouth", "SiteID", "Lat", "Long")]), wqiNorthSouth)
+wqiNorthSouth
+plot_map(wqiNorthSouth, fill = "WQI")
+```
+
+Sites could be grouped based on other attributes if these were available, such as altitude for example.
+
+
+
+
+<!-- ____________________________________________________ -->
+
+## An example over multiple years
+
+This example calculates short term water quality indices over multiple years (in this case from 2002 to 2012), and by site.  The function `facet_wrap` is then used to produce a gridded plot output showing multiple years
+
+```{r}
+options(wqbc.messages = TRUE)
+data07to12 <- subset(fraser, year(Date) %in% 2007:2012)
+data07to12 $ year <- year(data07to12 $ Date)
+limits07to12 <- calc_limits(data07to12, by = c("year", "SiteID", "Lat", "Long"), term = "short") 
+wqi07to12 <- calc_wqi(limits07to12, by = c("year", "SiteID", "Lat", "Long")) 
+```
+To visualize the water quality indices over the years, a handy function from the `ggplot2` package called `facet_wrap` can be used.  This is because the plotting functions return a ggplot2 object which can be replotted and adapted - see the [ggplot2 webpage](http://ggplot2.org/) for lots of helpful ideas on how to add to and customize these type of plots.
+
+```{r, fig.width = 7, fig.height = 5, dpi = 100}
+p <- plot_map_wqis(wqi07to12, keep = "year") 
+p + facet_wrap(~year)
+```
+
+
+
+<!-- ____________________________________________________ -->
+
+
+## the CCME example data demonstration
+
+The following example is taken from the demonstration of the `ccme` dataset.  This can be run in your R session by typing `demo(ccme)`
+
+```{r}
+library(tidyr)
+library(dplyr)
+
+options(wqbc.messages = TRUE)
+
+data(ccme)
+
+spread(select(ccme, Variable, Value, Date), Variable, Value)
+
+calc_wqi(ccme)
+```
+
+
+
+
+<!-- ____________________________________________________ -->
+
+## the Fraser river basin data demonstration
+
+The following example is taken from the demonstration of the `fraser` dataset.  This can be run in your R session by typing `demo(fraser)`
+
+```{r, eval = FALSE, fig.width = 7, fig.height = 7, dpi = 100}
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(sp)
+library(rgdal)
+
+options(wqbc.messages = TRUE)
+
+data(fraser)
+print(summary(fraser))
+
+fraser$SiteID <-  factor(sub("BC08", "", as.character(fraser$SiteID)))
+fraser$Year <- year(fraser$Date)
+plot_map(fraser, fill = "SiteID")
+fraser <- calc_wqi(fraser, by = c("SiteID", "Lat", "Long"))
+plot_map_wqis(fraser, shape = "SiteID")
+
+data(fraser)
+fraser$Year <- year(fraser$Date)
+fraser <- standardize_wqdata(fraser, strict = FALSE)
+fraser <- clean_wqdata(fraser, by = "Year", max_cv = Inf)
+fraser <- calc_limits(fraser, by = "Year", term = "short")
+fraser <- calc_wqi(fraser, by = "Year")
+plot_wqis(fraser, x = "Year")
+```
+
+# References
