@@ -19,6 +19,10 @@ knitr::opts_chunk$set(
 envreportutils::devex_badge("exploration")
 ```
 
+[![Travis-CI Build Status](https://travis-ci.org/bcgov/wqbc.svg?branch=master)](https://travis-ci.org/bcgov/wqbc)
+
+---
+
 # wqbc
 ## Water Quality Thresholds and Index Calculations for British Columbia
 
