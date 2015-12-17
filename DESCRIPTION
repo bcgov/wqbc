@@ -39,3 +39,4 @@ Suggests:
     wq (>= 0.4-1),
     xtable (>= 1.7-4)
 VignetteBuilder: knitr
+RoxygenNote: 5.0.1
