@@ -115,7 +115,7 @@ bootstrap_wqis_tidy <- function (x, R) {
 }
 
 lower_upper <- function (x) {
-  round(quantile(x$t, c(0.025, 0.975)), 1)
+  round(stats::quantile(x$t, c(0.025, 0.975)), 1)
 }
 
 boot_wqis <- function (x) {
