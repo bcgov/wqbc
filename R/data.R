@@ -1,11 +1,11 @@
 # Copyright 2015 Province of British Columbia
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
@@ -59,6 +59,17 @@
 #' demo(dummy)
 #' @seealso \code{\link{clean_wqdata}}
 "dummy"
+
+#' Water Quality Parameter EMS Names and Codes for British Columbia
+#'
+#' The standard variables and codes stored in the EMS database.
+#'
+#' @format A tibble with 4 variables:
+#' \describe{
+#'   \item{Variable}{The name of the variable.}
+#'   \item{Code}{The EMS code.}
+#' }
+"ems_codes"
 
 #' Fraser River Basin Long-term Water Quality Monitoring 1979-Present
 #'

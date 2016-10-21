@@ -1,8 +1,8 @@
 Package: wqbc
 Type: Package
 Title: Water Quality Thresholds and Index Calculation for British Columbia
-Version: 0.1.0
-Date: 2015-08-26
+Version: 0.1.0.9000
+Date: 2016-10-21
 Authors@R: c(person("Joe", "Thorley", email = "joe@poissonconsulting.ca",
                     role = c("aut", "ctr"),
                     comment = "Primary author"),
@@ -35,9 +35,13 @@ Suggests:
     knitr (>= 1.8),
     lubridate (>= 1.3.3),
     ggplot2 (>= 1.0.0),
+    magrittr,
     sp (>= 1.0-17),
+    rems,
     rgdal (>= 0.9-1),
     wq (>= 0.4-1),
     xtable (>= 1.7-4)
+Remotes:
+    bcgov/rems
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
