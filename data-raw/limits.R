@@ -24,8 +24,6 @@ input_limits <- function () {
 
   limits <- read.csv("data-raw/limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
-  stopifnot(nrow(limits) == 71)
-
   stopifnot(identical(colnames(limits),
                       c("Variable", "Term",
                         "Condition", "UpperLimit", "Units", "Table",

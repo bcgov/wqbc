@@ -21,6 +21,7 @@ Mercury Total,EMS_HG_T,ug/L,mean
 Mercury Methyl,EMS_HGME,ug/L,mean
 Methyl Tertiary Butyl Ether,EMS_MTBE,mg/L,mean
 Molybdenum Total,EMS_MO_T,mg/L,mean
+Nickel Total,EMS_NI_T,ug/L,mean
 Nitrate Total,EMS_0110,mg/L,mean
 Nitrite,EMS_0111,mg/L,mean
 Polychlorinated Biphenyl Total,EMS_P019,ng/L,mean
