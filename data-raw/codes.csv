@@ -1,7 +1,11 @@
 Variable,Code,Units,Average
 Alkalinity Total,EMS_AK_T,mg/L,mean
 Aluminium Dissolved,EMS_AL_D,mg/L,mean
+Ammonia Dissolved,EMS_1108,mg/L,mean
 Arsenic Total,EMS_AS_T,ug/L,mean
+Barium Dissolved,EMS_BA_D,ug/L,mean
+Barium Total,EMS_BA_T,ug/L,mean
+Benzene,EMS_B020,ug/L,mean
 Boron,EMS_B__T,mg/L,mean
 Cadmium Dissolved,EMS_CD_D,ug/L,mean
 Chlorate,EMS_CL03,mg/L,mean
@@ -9,6 +13,7 @@ Chloride Total,EMS_0104,mg/L,mean
 Chlorine Total Residual,EMS_1016,ug/L,mean
 Chromium Total,EMS_CR_T,ug/L,mean
 Cobalt Total,EMS_CO_T,ug/L,mean
+Copper Dissolved,EMS_CO_D,ug/L,mean
 Copper Total,EMS_CU_T,ug/L,mean
 Cyanide Weak Acid Dissociable,EMS_0157,ug/L,mean
 Ethinylestradiol 17a,EMS_ST13,ng/L,mean
@@ -19,26 +24,26 @@ Iron Dissolved,EMS_FE_D,mg/L,mean
 Iron Total,EMS_FE_T,mg/L,mean
 Lead,EMS_PB_T,ug/L,mean
 Manganese,EMS_MN_T,mg/L,mean
-Mercury Total,EMS_HG_T,ug/L,mean
 Mercury Methyl,EMS_HGME,ug/L,mean
+Mercury Total,EMS_HG_T,ug/L,mean
 Methyl Tertiary Butyl Ether,EMS_MTBE,mg/L,mean
 Molybdenum Total,EMS_MO_T,mg/L,mean
+Naphthalene,EMS_PA14,ug/L,mean
 Nickel Total,EMS_NI_T,ug/L,mean
 Nitrate Total,EMS_0110,mg/L,mean
 Nitrite,EMS_0111,mg/L,mean
-Nitrogen Total,EMS_0114,mg/L,mean
 Nitrogen Dissolved,EMS_1114,mg/L,mean
-Polychlorinated Biphenyl Total,EMS_P019,ng/L,mean
-Phosphorus Total,EMS_P__T,mg/L,mean
+Nitrogen Total,EMS_0114,mg/L,mean
+Oxygen Dissolved,EMS_0014,mg/L,mean
+pH,EMS_0004,pH,median
 Phosphorus Dissolved,EMS_P__D,mg/L,mean
+Phosphorus Total,EMS_P__T,mg/L,mean
+Polychlorinated Biphenyl Total,EMS_P019,ng/L,mean
 Selenium Total,EMS_SE_T,ug/L,mean
 Silver,EMS_AG_T,ug/L,mean
 Sulphate,EMS_0121,mg/L,mean
-Toluene,EMS_T001,ug/L,mean
 Thallium Total,EMS_TL_T,ug/L,mean
+Toluene,EMS_T001,ug/L,mean
 Uranium Total,EMS_U__T,ug/L,mean
-Zinc Total,EMS_ZN_T,ug/L,mean
-pH,EMS_0004,pH,median
-Benzene,EMS_B020,ug/L,mean
-Naphthalene,EMS_PA14,ug/L,mean
 Xylene,EMS_X001,mg/L,mean
+Zinc Total,EMS_ZN_T,ug/L,mean
