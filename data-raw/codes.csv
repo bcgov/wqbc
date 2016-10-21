@@ -7,6 +7,7 @@ Cadmium Dissolved,EMS_CD_D,ug/L,mean
 Chlorate,EMS_CL03,mg/L,mean
 Chloride Total,EMS_0104,mg/L,mean
 Chlorine Total Residual,EMS_1016,ug/L,mean
+Chromium Total,EMS_CR_T,ug/L,mean
 Cobalt Total,EMS_CO_T,ug/L,mean
 Copper Total,EMS_CU_T,ug/L,mean
 Cyanide Weak Acid Dissociable,EMS_0157,ug/L,mean
