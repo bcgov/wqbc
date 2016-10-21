@@ -1,4 +1,5 @@
 Variable,Code,Units,Average
+Alkalinity Total,EMS_AK_T,mg/L,mean
 Aluminium Dissolved,EMS_AL_D,mg/L,mean
 Arsenic Total,EMS_AS_T,ug/L,mean
 Boron,EMS_B__T,mg/L,mean
