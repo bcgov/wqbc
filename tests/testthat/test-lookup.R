@@ -53,7 +53,7 @@ test_that("lookup_limits", {
   expect_equal(n$UpperLimit[n$Variable=="Aluminium Dissolved"],0.006839778)
   expect_equal(as.character(n$UpperLimit[n$Variable=="Cadmium Dissolved"]), as.character(NA)) #upperlimit with NA
   expect_equal(as.character(n$UpperLimit[n$Variable=="Copper Total"]), as.character(NA))
-  expect_equal(as.character(n$UpperLimit[n$Variable=="Sulphate"]), as.character(NA))
+  expect_equal(as.character(n$UpperLimit[n$Variable=="Sulphate Total"]), as.character(NA))
 
 
   q<-lookup_limits(term="short")
@@ -63,12 +63,12 @@ test_that("lookup_limits", {
 
   p<-lookup_limits(term="short",ph=9)#EMS_0004
   expect_equal(as.character(p$Unit[p$Variable=="Aluminium Dissolved"]),"mg/L")
-  expect_equal(as.character(p$Unit[p$Variable=="Lead"]),"ug/L")
+  expect_equal(as.character(p$Unit[p$Variable=="Lead Total"]),"ug/L")
   expect_equal(as.character(p$Unit[p$Variable=="Ethinylestradiol 17a"]),"ng/L")
   expect_equal(p$UpperLimit[p$Variable=="Aluminium Dissolved"],0.10)
   expect_equal(p$UpperLimit[p$Variable=="Cobalt Total"],110.00)
-  expect_equal(as.character(p$UpperLimit[p$Variable=="Lead"]),as.character(NA))
-  expect_equal(as.character(p$UpperLimit[p$Variable=="Manganese"]),as.character(NA))
+  expect_equal(as.character(p$UpperLimit[p$Variable=="Lead Total"]),as.character(NA))
+  expect_equal(as.character(p$UpperLimit[p$Variable=="Manganese Total"]),as.character(NA))
   expect_equal(as.character(p$UpperLimit[p$Variable=="Zinc Total"]),as.character(NA)) #NA upperlimits
 
 
@@ -78,7 +78,7 @@ test_that("lookup_limits", {
   expect_equal(as.character(i$Unit[i$Variable=="Polychlorinated Biphenyl Total"]),"ng/L")
   expect_equal(i$UpperLimit[i$Variable=="Aluminium Dissolved"],0.1)
   expect_equal(as.character(i$UpperLimit[i$Variable=="Copper Total"]),as.character(NA))
-  expect_equal(as.character(i$UpperLimit[i$Variable=="Silver"]),as.character(NA))
+  expect_equal(as.character(i$UpperLimit[i$Variable=="Silver Total"]),as.character(NA))
   expect_equal(as.character(i$UpperLimit[i$Variable=="Zinc Total"]),as.character(NA))
 
   k<-lookup_limits(term="long",hardness=1.3)                             #out of bound
@@ -166,23 +166,23 @@ test_that("lookup_limits", {
 
   Lead_outofbound<-lookup_limits(term="long",hardness=3)
   #NA
-  expect_equal(as.character(Lead_outofbound$Unit[Lead_outofbound$Variable=="Lead"]), "ug/L")
-  expect_equal(as.character(Lead_outofbound$UpperLimit[Lead_outofbound$Variable=="Lead"]),as.character(NA))
+  expect_equal(as.character(Lead_outofbound$Unit[Lead_outofbound$Variable=="Lead Total"]), "ug/L")
+  expect_equal(as.character(Lead_outofbound$UpperLimit[Lead_outofbound$Variable=="Lead Total"]),as.character(NA))
 
   Lead<-lookup_limits(term="long",hardness=9)
   #exp(1.273 * log(EMS_0107) - 4.704) + 3.31
-  expect_equal(as.character(Lead$Unit[Lead$Variable=="Lead"]), "ug/L")
-  expect_equal(Lead$UpperLimit[Lead$Variable=="Lead"],3.45853523)
+  expect_equal(as.character(Lead$Unit[Lead$Variable=="Lead Total"]), "ug/L")
+  expect_equal(Lead$UpperLimit[Lead$Variable=="Lead Total"],3.45853523)
 
   Lead_short<-lookup_limits(term="short",hardness=3)
   #3
-  expect_equal(as.character(Lead_short$Unit[Lead_short$Variable=="Lead"]), "ug/L")
-  expect_equal(Lead_short$UpperLimit[Lead_short$Variable=="Lead"],3)
+  expect_equal(as.character(Lead_short$Unit[Lead_short$Variable=="Lead Total"]), "ug/L")
+  expect_equal(Lead_short$UpperLimit[Lead_short$Variable=="Lead Total"],3)
 
   Lead_morethan8<-lookup_limits(term="short",hardness=10)
   #  exp(1.273 * log(EMS_0107) - 1.460)
-  expect_equal(as.character(Lead_morethan8$Unit[Lead_morethan8$Variable=="Lead"]), "ug/L")
-  expect_equal(Lead_morethan8$UpperLimit[Lead_morethan8$Variable=="Lead"],4.354417397)
+  expect_equal(as.character(Lead_morethan8$Unit[Lead_morethan8$Variable=="Lead Total"]), "ug/L")
+  expect_equal(Lead_morethan8$UpperLimit[Lead_morethan8$Variable=="Lead Total"],4.354417397)
 
 
 

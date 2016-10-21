@@ -1,11 +1,11 @@
 # Copyright 2015 Province of British Columbia
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
@@ -29,9 +29,9 @@ test_that("substitute_variables strict", {
   options(wqbc.messages = FALSE)
 
   expect_equal(substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-                                      "dissolved aluminium", "BORON Total",
+                                      "dissolved aluminium", "Benzene Total",
                                      "KRYPTONITE"),
-               strict = TRUE), c(NA, "Aluminium Dissolved", "Aluminium Dissolved", "Boron", NA))
+               strict = TRUE), c(NA, "Aluminium Dissolved", "Aluminium Dissolved", "Benzene", NA))
   expect_equal(substitute_variables("KRYPTONITE", strict = TRUE), NA_character_)
   expect_message(substitute_variables("DISSOLVED ALUMINIUM", strict = TRUE, messages = TRUE))
 })
@@ -42,9 +42,9 @@ test_that("substitute_variables not strict", {
   options(wqbc.messages = FALSE)
 
    expect_equal(substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-                                       "dissolved aluminium", "BORON Total",
+                                       "dissolved aluminium", "Benzene Total",
                                       "KRYPTONITE"),
-                strict = FALSE), c("Aluminium Dissolved", "Aluminium Dissolved", "Aluminium Dissolved", "Boron", NA))
+                strict = FALSE), c("Aluminium Dissolved", "Aluminium Dissolved", "Aluminium Dissolved", "Benzene", NA))
   expect_equal(substitute_variables("KRYPTONITE", strict = FALSE), NA_character_)
   expect_equal(substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum"), strict = TRUE),
                c("Iron Total", "Iron Dissolved", NA))
