@@ -69,6 +69,7 @@ Sulphate,Long,EMS_0107 > 76 & EMS_0107 <= 180,309,mg/L,40,BC_2015,Freshwater Lif
 Sulphate,Long,EMS_0107 > 180 & EMS_0107 <= 250,429,mg/L,40,BC_2015,Freshwater Life
 Thallium Total,Long,,0.8,ug/L,BC,CANADA_2014,Freshwater Life
 Toluene,Long,,0.5,ug/L,43,BC_2015,Freshwater Life
+Uranium Total,Long,,10,ug/L,BC,CANADA_2014,Freshwater Life
 Xylene,Long,,0.03,mg/L,45,BC_2015,Freshwater Life
 Zinc Total,Long,EMS_0107 <= 90,7.5,ug/L,46,BC_2015,Freshwater Life
 Zinc Total,Long,EMS_0107 > 90,0.75 * (EMS_0107 - 90) + 7.5,ug/L,46,BC_2015,Freshwater Life
