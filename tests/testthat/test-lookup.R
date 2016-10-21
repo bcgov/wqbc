@@ -34,7 +34,6 @@ test_that("lookup_codes lookup_variables", {
 test_that("lookup_limits", {
   x<-lookup_limits()
   expect_is(x,"data.frame")                                                 #check if lookup_limits is a data frame
-  expect_equal(nrow(x),25)                                                  #check if lookup_limits has 25 rows
   expect_equal(ncol(x),3)                                                   #check if loopup_limits has 3 columns
 
 
