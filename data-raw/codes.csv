@@ -30,6 +30,7 @@ Selenium Total,EMS_SE_T,ug/L,mean
 Silver,EMS_AG_T,ug/L,mean
 Sulphate,EMS_0121,mg/L,mean
 Toluene,EMS_T001,ug/L,mean
+Thallium Total,EMS_TL_T,ug/L,mean
 Zinc Total,EMS_ZN_T,ug/L,mean
 pH,EMS_0004,pH,median
 Benzene,EMS_B020,ug/L,mean
