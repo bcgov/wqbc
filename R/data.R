@@ -113,3 +113,16 @@
 #' }
 #' @seealso \code{\link{calc_limits}}
 "limits"
+
+#' Water Quality Stations for British Columbia
+#'
+#' The water quality stations for British Columbia with their coordinates.
+#'
+#' @format A tibble with 4 variables:
+#' \describe{
+#'   \item{EMS_ID}{The station ID (chr).}
+#'   \item{Station_Name}{The EMS name of the station (chr).}
+#'   \item{Latitude}{The station latitude in decimal degrees (dbl).}
+#'   \item{Longitude}{The station longitude in decimal degrees (dbl).}
+#' }
+"stations"
