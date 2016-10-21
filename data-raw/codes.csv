@@ -24,6 +24,8 @@ Molybdenum Total,EMS_MO_T,mg/L,mean
 Nickel Total,EMS_NI_T,ug/L,mean
 Nitrate Total,EMS_0110,mg/L,mean
 Nitrite,EMS_0111,mg/L,mean
+Nitrogen Total,EMS_0114,mg/L,mean
+Nitrogen Dissolved,EMS_1114,mg/L,mean
 Polychlorinated Biphenyl Total,EMS_P019,ng/L,mean
 Phosphorus Total,EMS_P__T,mg/L,mean
 Phosphorus Dissolved,EMS_P__D,mg/L,mean

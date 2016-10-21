@@ -38,7 +38,7 @@ Methyl Tertiary Butyl Ether,Long,,3.4,mg/L,23,BC_2015,Freshwater Life
 Molybdenum Total,Long,,1,mg/L,24,BC_2015,Freshwater Life
 Molybdenum Total,Short,,2,mg/L,24,BC_2015,Freshwater Life
 Naphthalene,Short,,1,ug/L,25,BC_2015,Freshwater Life
-Nickel,Long,,exp(0.76 * log(EMS_0107) + 1.06),ug/L,BC,CANADA_2014,Freshwater Life
+Nickel Total,Long,,exp(0.76 * log(EMS_0107) + 1.06),ug/L,BC,CANADA_2014,Freshwater Life
 Nitrate Total,Long,,3,mg/L,26A,BC_2015,Freshwater Life
 Nitrate Total,Short,,32.8,mg/L,26A,BC_2015,Freshwater Life
 Nitrite,Long,EMS_0104 < 2,0.02,mg/L,26B,BC_2015,Freshwater Life
@@ -53,6 +53,8 @@ Nitrite,Short,EMS_0104 >= 4 & EMS_0104 < 6,0.18,mg/L,26B,BC_2015,Freshwater Life
 Nitrite,Short,EMS_0104 >= 6 & EMS_0104 < 8,0.24,mg/L,26B,BC_2015,Freshwater Life
 Nitrite,Short,EMS_0104 >= 8 & EMS_0104 <= 10,0.3,mg/L,26B,BC_2015,Freshwater Life
 Nitrite,Short,EMS_0104 > 10,0.6,mg/L,26B,BC_2015,Freshwater Life
+Nitrogen Total,Long,,0.7,mg/L,BC,CANADA_2014,Freshwater Life
+Nitrogen Dissolved,Long,,0.7,mg/L,BC,CANADA_2014,Freshwater Life
 Polychlorinated Biphenyl Total,Short,,0.1,ng/L,34,BC_2015,Freshwater Life
 Phosphorus Total,Long,,0.025,mg/L,BC,CANADA_2014,Freshwater Life
 Phosphorus Dissolved,Long,,0.025,mg/L,BC,CANADA_2014,Freshwater Life

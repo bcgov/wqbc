@@ -131,7 +131,7 @@ substitute_variables <-function (
   x <- as.character(x)
 
   y <- gsub("Aluminum", "Aluminium", x, ignore.case = TRUE)
-  y <- gsub("Phosphorus Total Dissolved", "Phosphorus Dissolved", y, ignore.case = TRUE)
+  y <- gsub("Total Dissolved", "Dissolved", y, ignore.case = TRUE)
 
   sub <- lookup_variables()
   sub_mod <- sub
