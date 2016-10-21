@@ -6,7 +6,8 @@ Arsenic Total,EMS_AS_T,ug/L,mean
 Barium Dissolved,EMS_BA_D,ug/L,mean
 Barium Total,EMS_BA_T,ug/L,mean
 Benzene,EMS_B020,ug/L,mean
-Boron,EMS_B__T,mg/L,mean
+Boron Dissolved,EMS_B__D,mg/L,mean
+Boron Total,EMS_B__T,mg/L,mean
 Cadmium Dissolved,EMS_CD_D,ug/L,mean
 Chlorate,EMS_CL03,mg/L,mean
 Chloride Total,EMS_0104,mg/L,mean

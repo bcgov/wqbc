@@ -6,7 +6,7 @@ Aluminium Dissolved,Short,EMS_0004 >= 6.5,0.1,mg/L,1,BC_2015,Freshwater Life
 Aluminium Dissolved,Short,EMS_0004 < 6.5,exp(1.209 - 2.426 * EMS_0004 + 0.286 * EMS_0004^2),mg/L,1,BC_2015,Freshwater Life
 Arsenic Total,Long,,5,ug/L,2,BC_2015,Freshwater Life
 Benzene,Long,,40,ug/L,3,BC_2015,Freshwater Life
-Boron,Long,,1.2,mg/L,4A,BC_2015,Freshwater Life
+Boron Total,Long,,1.2,mg/L,4A,BC_2015,Freshwater Life
 Cadmium Dissolved,Long,EMS_0107 >= 3.4 & EMS_0107 <= 285,exp(0.736 * log(EMS_0107) - 4.943),ug/L,5,BC_2015,Freshwater Life
 Cadmium Dissolved,Short,EMS_0107 >= 7 & EMS_0107 <= 455,exp(1.03 * log(EMS_0107) - 5.274),ug/L,5,BC_2015,Freshwater Life
 Chlorate,Short,,30,mg/L,6,BC_2015,Freshwater Life
