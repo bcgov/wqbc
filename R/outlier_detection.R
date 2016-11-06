@@ -56,6 +56,7 @@ outlier_sense_check <- function(x) {
 #   on the log scale) away from the median
 #' @importFrom stats mad
 #' @importFrom stats median
+#' @importFrom stats sd
 outlier_id_mad <- function(x, threshold, max_cv, messages) {
 
   # check that it is sensible to look for outliers
