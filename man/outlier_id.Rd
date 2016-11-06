@@ -12,6 +12,10 @@ outlier_id(x, by = NULL, mad_threshold = 10, ts_threshold = 6,
 
 \item{by}{A character vector of the columns in x to perform the outlier detection by.}
 
+\item{mad_threshold}{A number indicating the maximum permitted coefficient}
+
+\item{ts_threshold}{A number indicating the maximum permitted coefficient}
+
 \item{max_cv}{A number indicating the maximum permitted coefficient
 of variation.}
 
@@ -32,7 +36,7 @@ combination of two tecniques:
 }
 \examples{
 x <- standardize_wqdata(wqbc::dummy)
-outlier_removal(x, by = "Variable", messages = TRUE)
+outlier_id(x, by = "Variable", messages = TRUE)
 }
 \seealso{
 \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}

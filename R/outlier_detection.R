@@ -23,6 +23,8 @@ weights_bisq <- function(x, k) {
 }
 
 # residual function
+#' @importFrom stats predict
+#' @importFrom stats fitted
 w_resid <- function (mod) {
   # uing the prediction standard deviation
   # means we keep observations that are poorly predicted
@@ -52,6 +54,8 @@ outlier_sense_check <- function(x) {
 
 # this function removes any observations that are more than 'threshold' mad's (calculated
 #   on the log scale) away from the median
+#' @importFrom stats mad
+#' @importFrom stats median
 outlier_id_mad <- function(x, threshold, max_cv, messages) {
 
   # check that it is sensible to look for outliers
@@ -67,12 +71,12 @@ outlier_id_mad <- function(x, threshold, max_cv, messages) {
   centered_x <- (x$Value[id_ok] - median(x$Value[id_ok]))
   if (FALSE && mad_x == 0) {
     # set the mad to something sensible ?
-    if (massages) message(x$Station_Number[id_ok][1], "-", x$Code[id_ok][1], ": Median absolute deviation is zero, increasing to 0.2.")
-    madx <- 0.2
+    if (messages) message(x$Station_Number[id_ok][1], "-", x$Code[id_ok][1], ": Median absolute deviation is zero, increasing to 0.2.")
+    mad_x <- 0.2
   }
 
   # identify outliers - note this is one sided, only too large values are removed.
-  x$is_outlier[id_ok] <- (centered_x[id_ok]/madx) > threshold
+  x$is_outlier[id_ok] <- (centered_x[id_ok]/mad_x) > threshold
   
   # return cleaned data
   x
@@ -86,6 +90,11 @@ outlier_id_mad <- function(x, threshold, max_cv, messages) {
 # The model fitted is a GAM, with a seasonal and long term component.  It is iteratively
 # refitted with weights based on the previous model fits residuals, much link the
 # robust linear regression fitting algorithm in MASS.
+#' @importFrom mgcv gam
+#' @importFrom stats as.formula
+#' @importFrom lubridate year
+#' @importFrom lubridate yday
+#' @importFrom lubridate decimal_date
 outlier_id_robust_ts <- function(x, threshold, trans = NULL, messages) {
   
   # check that it is sensible to look for outliers
@@ -116,14 +125,14 @@ outlier_id_robust_ts <- function(x, threshold, trans = NULL, messages) {
   weights[!id_ok] <- 0
   
   # setup model
-  ndays <- x$Date %>% year %>% table
-  nyears <- x$Date %>% year %>% table %>% length
+  ndays <- table(year(x$Date))
+  nyears <- length(ndays)
   nseasonal <- floor(mean(ndays))
   nunique <- length(unique(x$Value))
   
   # if too few data in each year, then this method won't work well
   if (all(ndays < 9)) {
-    if (message) message(x$Station_Number[1], "-", x$Code[1], ": Too few data data to find outliers")
+    if (messages) message(x$Station_Number[1], "-", x$Code[1], ": Too few data data to find outliers")
     return(x)
   }
   
@@ -168,7 +177,7 @@ outlier_id_robust_ts <- function(x, threshold, trans = NULL, messages) {
   x$is_outlier[id_ok] <- res[id_ok] > threshold
   
   # return cleaned data
-  out
+  x
 }
 
 
@@ -182,6 +191,8 @@ outlier_id_by <- function(x, mad_threshold, ts_threshold, max_cv, messages) {
     cat("doing Station", x$Station_Number[1], "Code", x$Code[1], "\n")
   }
   
+  n_outlier_start <- sum(x$is_outlier)
+  
   # find extreme values
   x <- outlier_id_mad(x, threshold = mad_threshold)
 
@@ -194,11 +205,14 @@ outlier_id_by <- function(x, mad_threshold, ts_threshold, max_cv, messages) {
     # identify outliers
     x <- outlier_id_robust_ts(x, threshold = ts_threshold, messages = messages)
   }
+
+  n_outlier_end <- sum(x$is_outlier)
   
   # assess the removals
-  if (ndata[1] - ndata[2] > 20 | ndata[2]/ndata[1] < 0.9) {
-    # do not proceed! and return origional data
-    warning(x$Station_Number[1], " ", x$Code[1], ": A large amount of data identified as outliers - please check!")
+  if (n_outlier_end - n_outlier_start > 20 | 
+      (nrow(x) - n_outlier_end)/ (nrow(x) - n_outlier_start) < 0.5) {
+    # warn
+    if (messages) message(x$Station_Number[1], " ", x$Code[1], ": A large amount of data identified as outliers - please check!")
   }
   
   x
@@ -221,20 +235,22 @@ outlier_id_by <- function(x, mad_threshold, ts_threshold, max_cv, messages) {
 #'
 #' @param x The data.frame to analyse.
 #' @param by A character vector of the columns in x to perform the outlier detection by.
+#' @param mad_threshold A number indicating the maximum permitted coefficient
+#' @param ts_threshold A number indicating the maximum permitted coefficient
 #' @param max_cv A number indicating the maximum permitted coefficient
 #' of variation.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' x <- standardize_wqdata(wqbc::dummy)
-#' outlier_removal(x, by = "Variable", messages = TRUE)
+#' outlier_id(x, by = "Variable", messages = TRUE)
 #' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
 #' @export
 outlier_id <- function(x, by = NULL, mad_threshold=10, ts_threshold=6, max_cv = 1.29,
                             messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
-  assert_that(is.number(w_threshold))
-  assert_that(is.number(threshold))
+  assert_that(is.number(mad_threshold))
+  assert_that(is.number(ts_threshold))
   assert_that(is.number(max_cv))
   assert_that(is.flag(messages) && noNA(messages))
   
@@ -242,14 +258,14 @@ outlier_id <- function(x, by = NULL, mad_threshold=10, ts_threshold=6, max_cv = 
   check_class_columns(x, list("Date" = "Date", "is_outlier" = "logical"))
 
   if(is.null(by)) {
-    x <- outlier_removal_by(x, 
+    x <- outlier_id_by(x, 
                             mad_threshold = mad_threshold, ts_threshold = ts_threshold, max_cv = max_cv, 
                             messages = messages)
   } else {
-    x <- plyr::ddply(x, .variables = by, .fun = outlier_removal_by, 
+    x <- plyr::ddply(x, .variables = by, .fun = outlier_id_by, 
                      mad_threshold = mad_threshold, ts_threshold = ts_threshold, max_cv = max_cv,
                      messages = messages)
   }
-  if(messages) message("Identified outliers in water quality data.")
+  if (messages) message("Identified outliers in water quality data.")
   x
 }
