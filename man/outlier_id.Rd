@@ -5,7 +5,7 @@
 \title{Identify Outliers In Water Quality Data}
 \usage{
 outlier_id(x, by = NULL, mad_threshold = 10, ts_threshold = 6,
-  max_cv = 1.29, messages = getOption("wqbc.messages", default = TRUE))
+  messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{x}{The data.frame to analyse.}
@@ -15,9 +15,6 @@ outlier_id(x, by = NULL, mad_threshold = 10, ts_threshold = 6,
 \item{mad_threshold}{A number indicating the maximum permitted coefficient}
 
 \item{ts_threshold}{A number indicating the maximum permitted coefficient}
-
-\item{max_cv}{A number indicating the maximum permitted coefficient
-of variation.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }

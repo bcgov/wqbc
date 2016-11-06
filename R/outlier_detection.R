@@ -57,7 +57,7 @@ outlier_sense_check <- function(x) {
 #' @importFrom stats mad
 #' @importFrom stats median
 #' @importFrom stats sd
-outlier_id_mad <- function(x, threshold, max_cv, messages) {
+outlier_id_mad <- function(x, threshold, messages) {
 
   # check that it is sensible to look for outliers
   if (!outlier_sense_check(x)) {
@@ -193,7 +193,7 @@ outlier_id_robust_ts <- function(x, threshold, messages) {
 #   outlier_removal_by - calls the two base removal methods:
 #      1) outlier_removal_mad
 #      2) outlier_removal_robust_ts
-outlier_id_by <- function(x, mad_threshold, ts_threshold, max_cv, messages) {
+outlier_id_by <- function(x, mad_threshold, ts_threshold, messages) {
   
   if (getOption("wqbc.debug", default = FALSE)) {
     cat("doing Station", x$Station_Number[1], "Code", x$Code[1], "\n")
@@ -245,21 +245,18 @@ outlier_id_by <- function(x, mad_threshold, ts_threshold, max_cv, messages) {
 #' @param by A character vector of the columns in x to perform the outlier detection by.
 #' @param mad_threshold A number indicating the maximum permitted coefficient
 #' @param ts_threshold A number indicating the maximum permitted coefficient
-#' @param max_cv A number indicating the maximum permitted coefficient
-#' of variation.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' x <- standardize_wqdata(wqbc::dummy)
 #' outlier_id(x, by = "Variable", messages = TRUE)
 #' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
 #' @export
-outlier_id <- function(x, by = NULL, mad_threshold=10, ts_threshold=6, max_cv = 1.29,
+outlier_id <- function(x, by = NULL, mad_threshold=10, ts_threshold=6,
                             messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   assert_that(is.number(mad_threshold))
   assert_that(is.number(ts_threshold))
-  assert_that(is.number(max_cv))
   assert_that(is.flag(messages) && noNA(messages))
   
   x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01"), "is_outlier" = FALSE), messages = messages)
@@ -267,11 +264,11 @@ outlier_id <- function(x, by = NULL, mad_threshold=10, ts_threshold=6, max_cv = 
 
   if(is.null(by)) {
     x <- outlier_id_by(x, 
-                            mad_threshold = mad_threshold, ts_threshold = ts_threshold, max_cv = max_cv, 
+                            mad_threshold = mad_threshold, ts_threshold = ts_threshold, 
                             messages = messages)
   } else {
     x <- plyr::ddply(x, .variables = by, .fun = outlier_id_by, 
-                     mad_threshold = mad_threshold, ts_threshold = ts_threshold, max_cv = max_cv,
+                     mad_threshold = mad_threshold, ts_threshold = ts_threshold,
                      messages = messages)
   }
   if (messages) message("Looked for outliers in water quality data.")
