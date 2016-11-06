@@ -69,10 +69,10 @@ outlier_id_mad <- function(x, threshold, max_cv, messages) {
   # calculate robust summaries
   mad_x <- mad(x$Value[id_ok])
   centered_x <- (x$Value[id_ok] - median(x$Value[id_ok]))
-  if (FALSE && mad_x == 0) {
+  if (mad_x == 0) {
     # set the mad to something sensible ?
-    if (messages) message(x$Station_Number[id_ok][1], "-", x$Code[id_ok][1], ": Median absolute deviation is zero, increasing to 0.2.")
-    mad_x <- 0.2
+    if (messages) message(x$Station_Number[id_ok][1], "-", x$Code[id_ok][1], ": Median absolute deviation is zero, using stdev instead")
+    mad_x <- sd(x$Value) # because of the sense checks sd(x) > 0
   }
 
   # identify outliers - note this is one sided, only too large values are removed.
@@ -95,7 +95,7 @@ outlier_id_mad <- function(x, threshold, max_cv, messages) {
 #' @importFrom lubridate year
 #' @importFrom lubridate yday
 #' @importFrom lubridate decimal_date
-outlier_id_robust_ts <- function(x, threshold, trans = NULL, messages) {
+outlier_id_robust_ts <- function(x, threshold, messages) {
   
   # check that it is sensible to look for outliers
   if (!outlier_sense_check(x)) {
@@ -111,7 +111,11 @@ outlier_id_robust_ts <- function(x, threshold, trans = NULL, messages) {
   # select a transformation
   # note - log transform runs into trouble due to
   # bimodal nature of some data - e.g. 50% very small and 50% positive
-  if (is.null(trans)) trans <- function(x) x^.5
+  trans <- function(x) x^.5
+  inv_trans <- function(x) x^2
+  # in the future could allow dofferent transformations, 
+  # so could check this just in case? assertthat .. sum(abs(inv_trans(trans(1:10)) - 1:10)) < 1e-9
+
   # in any case, it is still useful to replace zero values by half the minimum non-zero value
   # this is not generally a good thing for modelling, but we are only trying to define a method
   # to identify observations that are too big.
@@ -176,6 +180,9 @@ outlier_id_robust_ts <- function(x, threshold, trans = NULL, messages) {
   # but remember to maintian previously set outliers
   x$is_outlier[id_ok] <- res[id_ok] > threshold
   
+  # tag on final model fit
+  x$robust_ts_fit <- inv_trans(fitted(mod))
+  
   # return cleaned data
   x
 }
@@ -187,14 +194,14 @@ outlier_id_robust_ts <- function(x, threshold, trans = NULL, messages) {
 #      2) outlier_removal_robust_ts
 outlier_id_by <- function(x, mad_threshold, ts_threshold, max_cv, messages) {
   
-  if (messages) {
+  if (getOption("wqbc.debug", default = FALSE)) {
     cat("doing Station", x$Station_Number[1], "Code", x$Code[1], "\n")
   }
   
   n_outlier_start <- sum(x$is_outlier)
   
   # find extreme values
-  x <- outlier_id_mad(x, threshold = mad_threshold)
+  x <- outlier_id_mad(x, threshold = mad_threshold, messages = messages)
 
   # then fit a time series model
   # monitor changes
@@ -266,6 +273,6 @@ outlier_id <- function(x, by = NULL, mad_threshold=10, ts_threshold=6, max_cv = 
                      mad_threshold = mad_threshold, ts_threshold = ts_threshold, max_cv = max_cv,
                      messages = messages)
   }
-  if (messages) message("Identified outliers in water quality data.")
+  if (messages) message("Looked for outliers in water quality data.")
   x
 }
