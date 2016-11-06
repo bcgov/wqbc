@@ -1,40 +1,79 @@
-# Copyright 2016 Province of British Columbia
-# 
+# Copyright 2015 Province of British Columbia
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-# This script contains functions for identifying a certain type of outlier
-# 
-# The method is based on Hampels Mean Absolute Deviation approach for time series
-#
-# The method is a combination of two tecniques:
-#  1. remove large outliers when compared to the MAD of the whole time series
-#  2. 
-#     a. fit a reasonably flexible time series model to identify 
-#        trend in the data using a robust regression approach by iteratively reweighting
-#     b. delete observations with very large residuals from the robust fit
-#     c. repeat this procedure until all outliers have been removed.
 #
 
 # wrapper function, 
 #   outlier_removal_by - calls the two base removal methods:
 #      1) outlier_removal_mad
 #      2) outlier_removal_robust_ts
-outlier_removal_by <- function(wk, w_threshold=6, theshold=10, debug=FALSE) {
 
+#' Remove Outliers From Water Quality Data
+#'
+#' Removes outliers from water quality data.
+#'
+#' @details The method is based on Hampels Mean Absolute Deviation approach for time series. It is a 
+#' combination of two tecniques:
+#'   1. remove large outliers when compared to the MAD of the whole time series
+#'   2. 
+#'     a. fit a reasonably flexible time series model to identify 
+#'        trend in the data using a robust regression approach by iteratively reweighting
+#'     b. delete observations with very large residuals from the robust fit
+#'     c. repeat this procedure until all outliers have been removed.
+#'
+#' @param x The data.frame to clean.
+#' @param by A character vector of the columns in x to perform the cleaning by.
+#' @param max_cv A number indicating the maximum permitted coefficient
+#' of variation.
+#' @param messages A flag indicating whether to print messages.
+#' @examples
+#' outlier_removal(wqbc::dummy, by = "Variable", messages = TRUE)
+#' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
+#' @export
+outlier_removal <- function(x, by = NULL, w_threshold=6, theshold=10, max_cv = 1.29,
+                            messages = getOption("wqbc.messages", default = TRUE)) {
+  assert_that(is.data.frame(x))
+  assert_that(is.null(by) || (is.character(by) && noNA(by)))
+  assert_that(is.number(w_threshold))
+  assert_that(is.number(threshold))
+  assert_that(is.number(max_cv))
+  assert_that(is.flag(messages) && noNA(messages))
+  
+  x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")), messages = messages)
+  check_class_columns(x, list("Date" = "Date"))
+  
+  if(is.null(by)) {
+    x <- outlier_removal_by(x, 
+                            w_threshold = w_threshold, theshold = threshold, max_cv = max_cv, 
+                            messages = messages)
+  } else {
+    x <- plyr::ddply(x, .variables = by, .fun = outlier_removal_by, 
+                     w_threshold = w_threshold, theshold = threshold, max_cv = max_cv,
+                     messages = messages)
+  }
+  if(messages) message("Removed outliers from water quality data.")
+  x
+}
+
+
+
+outlier_removal_by <- function(x, w_threshold, theshold, max_cv, messages)) {
+  
   # track how many points are being removed
   wk_orig <- wk
   ndata <- nrow(wk)  
   
   # do by mad - finds extreme values
-  wk %<>% outlier_removal_mad(., threshold = theshold)
+  wk <- outlier_removal_mad(wk, threshold = theshold)
   ndata <- c(ndata, nrow(wk))
   
   if (ndata[1] - ndata[2] > 20 | ndata[2]/ndata[1] < 0.9) {
@@ -49,7 +88,7 @@ outlier_removal_by <- function(wk, w_threshold=6, theshold=10, debug=FALSE) {
   change <- TRUE
   while(change) {
     # identify outliers and drop
-    wk %<>% outlier_removal_robust_ts(., w_threshold = w_threshold, debug = debug)
+    wk <- outlier_removal_robust_ts(wk, w_threshold = w_threshold, debug = debug)
     ndata <- c(ndata, nrow(wk))
     change <- nrow(wk) < orig
     orig <- nrow(wk)
@@ -63,7 +102,7 @@ outlier_removal_by <- function(wk, w_threshold=6, theshold=10, debug=FALSE) {
 
 # this function removes any observations that are more than 'threshold' mad's (calculated
 #   on the log scale) away from the median
-outlier_removal_mad <- function(wk, threshold = 10) {
+outlier_removal_mad <- function(wk, threshold, max_cv, messages) {
 
   # if data is constant then no outliers
   if (nrow(wk) == 1 || sd(wk$Value) == 0) {
@@ -102,7 +141,7 @@ outlier_removal_mad <- function(wk, threshold = 10) {
 # The model fitted is a GAM, with a seasonal and long term component.  It is iteratively
 # refitted with weights based on the previous model fits residuals, much link the
 # robust linear regression fitting algorithm in MASS.
-outlier_removal_robust_ts <- function(wk,   w_threshold=6, debug=FALSE) {
+outlier_removal_robust_ts <- function(wk, w_threshold, messages) {
 
   # make working copy
   wkcopy <- wk
