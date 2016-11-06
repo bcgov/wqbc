@@ -10,129 +10,74 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-#
 
-# wrapper function, 
-#   outlier_removal_by - calls the two base removal methods:
-#      1) outlier_removal_mad
-#      2) outlier_removal_robust_ts
-
-#' Remove Outliers From Water Quality Data
-#'
-#' Removes outliers from water quality data.
-#'
-#' @details The method is based on Hampels Mean Absolute Deviation approach for time series. It is a 
-#' combination of two tecniques:
-#'   1. remove large outliers when compared to the MAD of the whole time series
-#'   2. 
-#'     a. fit a reasonably flexible time series model to identify 
-#'        trend in the data using a robust regression approach by iteratively reweighting
-#'     b. delete observations with very large residuals from the robust fit
-#'     c. repeat this procedure until all outliers have been removed.
-#'
-#' @param x The data.frame to clean.
-#' @param by A character vector of the columns in x to perform the cleaning by.
-#' @param max_cv A number indicating the maximum permitted coefficient
-#' of variation.
-#' @param messages A flag indicating whether to print messages.
-#' @examples
-#' outlier_removal(wqbc::dummy, by = "Variable", messages = TRUE)
-#' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
-#' @export
-outlier_removal <- function(x, by = NULL, w_threshold=6, theshold=10, max_cv = 1.29,
-                            messages = getOption("wqbc.messages", default = TRUE)) {
-  assert_that(is.data.frame(x))
-  assert_that(is.null(by) || (is.character(by) && noNA(by)))
-  assert_that(is.number(w_threshold))
-  assert_that(is.number(threshold))
-  assert_that(is.number(max_cv))
-  assert_that(is.flag(messages) && noNA(messages))
-  
-  x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")), messages = messages)
-  check_class_columns(x, list("Date" = "Date"))
-  
-  if(is.null(by)) {
-    x <- outlier_removal_by(x, 
-                            w_threshold = w_threshold, theshold = threshold, max_cv = max_cv, 
-                            messages = messages)
-  } else {
-    x <- plyr::ddply(x, .variables = by, .fun = outlier_removal_by, 
-                     w_threshold = w_threshold, theshold = threshold, max_cv = max_cv,
-                     messages = messages)
-  }
-  if(messages) message("Removed outliers from water quality data.")
-  x
+# re-weighting function
+# type used in MASS
+weights_mass <- function(x, k) {
+  ifelse(abs(x) <= k, 1, k / abs(x))
 }
 
+# bisquare weighting function i.e clevland
+weights_bisq <- function(x, k) {
+  ifelse(abs(x)>k, 0, (1 - x^2/k^2)^2)
+}
 
+# residual function
+w_resid <- function (mod) {
+  # uing the prediction standard deviation
+  # means we keep observations that are poorly predicted
+  sd.y <- predict(mod, se.fit = TRUE)$se.fit + sqrt(mod$sig2)
+  res <- (mod$y - fitted(mod)) / sd.y
+  unname(res)
+}
 
-outlier_removal_by <- function(x, w_threshold, theshold, max_cv, messages)) {
-  
-  # track how many points are being removed
-  wk_orig <- wk
-  ndata <- nrow(wk)  
-  
-  # do by mad - finds extreme values
-  wk <- outlier_removal_mad(wk, threshold = theshold)
-  ndata <- c(ndata, nrow(wk))
-  
-  if (ndata[1] - ndata[2] > 20 | ndata[2]/ndata[1] < 0.9) {
-    # do not proceed! and return origional data
-    warning(wk$Station_Number[1], " ", wk$Code[1], ": A large amount of data would be removed as outliers - please check!")
-    return(wk_orig)
+# need to think of a better name for this
+outlier_sense_check <- function(x) {
+
+    # first subset out values already identified as outliers
+  id_ok <- which(!x$is_outlier)
+  if (length(id_ok)  == 0) {
+    # no non outlier data left
+    return(FALSE)
   }
-    
-  # then fit a time series model
-  # monitor changes
-  orig <- nrow(wk)
-  change <- TRUE
-  while(change) {
-    # identify outliers and drop
-    wk <- outlier_removal_robust_ts(wk, w_threshold = w_threshold, debug = debug)
-    ndata <- c(ndata, nrow(wk))
-    change <- nrow(wk) < orig
-    orig <- nrow(wk)
-  }
-
-  # assess the removals?
   
-  wk
+  # if there are only a two unique values then we can't really say which are outliers
+  if (length(unique(x$Value[id_ok])) < 3) {
+    return(FALSE)
+  }
+  
+  TRUE
 }
 
 
 # this function removes any observations that are more than 'threshold' mad's (calculated
 #   on the log scale) away from the median
-outlier_removal_mad <- function(wk, threshold, max_cv, messages) {
+outlier_id_mad <- function(x, threshold, max_cv, messages) {
 
-  # if data is constant then no outliers
-  if (nrow(wk) == 1 || sd(wk$Value) == 0) {
-    return(wk)
+  # check that it is sensible to look for outliers
+  if (!outlier_sense_check(x)) {
+    return(x)
   }
   
-  if (mad(log(wk$Value)) == 0 && length(unique(wk$Value)) > 1) {
-      # only warn if mad is 0 and values are not all the same
-      # if values are all the same, then there are no outliers to remove
-      # and setting madx = 0.2 has no consequence.
-      message(wk$Station_Number[1], "-", wk$Code[1], ": Median absolute deviation is zero, increasing to 0.2.")
+  # first subset out values already identified as outliers
+  id_ok <- which(!x$is_outlier)
+
+  # calculate robust summaries
+  mad_x <- mad(x$Value[id_ok])
+  centered_x <- (x$Value[id_ok] - median(x$Value[id_ok]))
+  if (FALSE && mad_x == 0) {
+    # set the mad to something sensible ?
+    if (massages) message(x$Station_Number[id_ok][1], "-", x$Code[id_ok][1], ": Median absolute deviation is zero, increasing to 0.2.")
+    madx <- 0.2
   }
-    
-  # first identify scale problems
-  # work on the log scale as posotive observations tend to have constant CV behaviour
-  mad_resids <- function(x) {
-    x <- log(x)
-    madx <- mad(x)
-    if (madx == 0) {
-      madx <- 0.2
-    } 
-    (x - median(x))/madx
-  }
-  # what threshold to choose?
-  # 10 on the log scale?
-  wk %<>% filter(mad_resids(Value) < threshold)
+
+  # identify outliers - note this is one sided, only too large values are removed.
+  x$is_outlier[id_ok] <- (centered_x[id_ok]/madx) > threshold
   
   # return cleaned data
-  wk
+  x
 }
+
 
 
 # this function removed observations that are more than 'w_threshold' sd's (calculated 
@@ -141,73 +86,48 @@ outlier_removal_mad <- function(wk, threshold, max_cv, messages) {
 # The model fitted is a GAM, with a seasonal and long term component.  It is iteratively
 # refitted with weights based on the previous model fits residuals, much link the
 # robust linear regression fitting algorithm in MASS.
-outlier_removal_robust_ts <- function(wk, w_threshold, messages) {
-
-  # make working copy
-  wkcopy <- wk
+outlier_id_robust_ts <- function(x, threshold, trans = NULL, messages) {
   
-  # if data is constant then no outliers
-  if (nrow(wk) == 1 || sd(wk$Value) == 0) {
-    return(wk)
+  # check that it is sensible to look for outliers
+  if (!outlier_sense_check(x)) {
+    return(x)
   }
   
-  if (debug) {
-    cat("doing Station", wk$Station_Number[1], "Code", wk$Code[1], "\n")
-  }
+  # first subset out values already identified as outliers
+  id_ok <- which(!x$is_outlier)
   
-  # re-weighting function
-  # type used in MASS
-  w1 <- function(x, k) {
-    ifelse(abs(x) <= k, 1, k / abs(x))
-  }
-  # bisquare weighting function i.e clevland
-  w2 <- function(x, k) {
-    ifelse(abs(x)>k, 0, (1 - x^2/k^2)^2)
-  }
-  # select MASS version for now,
-  w <- w1
-  
-  # residual function
-  w_resid <- function (mod) {
-    # uing the prediction standard deviation
-    # means we keep observations that are poorly predicted
-    sd.y <- predict(mod, se.fit = TRUE)$se.fit + sqrt(mod$sig2)
-    res <- (mod$y - fitted(mod)) / sd.y
-    res
-  }
+  # select robust iterative reweighting function
+  weights_fun <- weights_mass
   
   # select a transformation
   # note - log transform runs into trouble due to
   # bimodal nature of some data - e.g. 50% very small and 50% positive
-  trans <- function(x) x^.5
+  if (is.null(trans)) trans <- function(x) x^.5
   # in any case, it is still useful to replace zero values by half the minimum non-zero value
   # this is not generally a good thing for modelling, but we are only trying to define a method
   # to identify observations that are too big.
-  if (any(wk$Value == 0)) {
-    wk$Value[wk$Value == 0] <- min(wk$Value[wk$Value>0])/2
+  tol <- 1e-6
+  if (any(x$Value < tol)) {
+    x$Value[x$Value < tol] <- min(x$Value[x$Value>=tol])/2
   }
   
-  # initialise weights and convergence criteria
-  weights <- rep(1, nrow(wk))
-  change <- 1
-  iterations <- 0
-  # These could be generalised in a control list
-  change_thresh <- 0.001
-  iter_max <- 10
+  # initialise weights
+  weights <- rep(1, nrow(x))
+  weights[!id_ok] <- 0
   
   # setup model
-  ndays <- wk$Date %>% year %>% table
-  nyears <- wk$Date %>% year %>% table %>% length
+  ndays <- x$Date %>% year %>% table
+  nyears <- x$Date %>% year %>% table %>% length
   nseasonal <- floor(mean(ndays))
-  #nunique <- length(unique(wk$Value))
+  nunique <- length(unique(x$Value))
   
   # if too few data in each year, then this method won't work well
   if (all(ndays < 9)) {
-    message(wk$Station_Number[1], "-", wk$Code[1], ": Too few data data to find outliers")
-    return(wk)
+    if (message) message(x$Station_Number[1], "-", x$Code[1], ": Too few data data to find outliers")
+    return(x)
   }
   
-  # choose model
+  # choose maximum degrees of freedom for model
   ns <- min(6, floor(nseasonal/2))
   nt <- min(9, ceiling(nyears/2)+1)
   formula <- 
@@ -222,27 +142,114 @@ outlier_removal_robust_ts <- function(wk, w_threshold, messages) {
   
   # redo until weights stabalise
   # or too many iterations
+  change <- TRUE
+  iterations <- 0
+  # These could be generalised in a control list
+  change_thresh <- 0.001
+  iter_max <- 10
   while (change > change_thresh && iterations < iter_max) {
     iterations <- iterations + 1
     # fit a timeseries model
-    mod <- mgcv::gam(formula, 
-                     data = wk,
-                     weights = weights)
+    mod <- mgcv::gam(formula, data = x, weights = weights)
     res <- w_resid(mod)
     # calculate re-weighting
-    # weight using residuals with a cut off at w_threshold
+    # weight using residuals with a cut off at threshold,
+    # but only set weights for those observations not already removed
     old_weights <- weights
-    weights <- w(res, w_threshold)
+    weights[weights>0] <- weights_fun(res[weights>0], threshold)
     # do not downweight small values
-    weights[res<0] <- 1
+    weights[weights>0][res[weights>0]<0] <- 1
     change <- sum(abs(weights - old_weights))
   }
   
   # now drop residuals larger than w_threshold
   # we could set a differnt value here ...
-  out <- wk %>% filter(res < w_threshold)
+  # but remember to maintian previously set outliers
+  x$is_outlier[id_ok] <- res[id_ok] > threshold
   
   # return cleaned data
   out
 }
 
+
+# wrapper function, 
+#   outlier_removal_by - calls the two base removal methods:
+#      1) outlier_removal_mad
+#      2) outlier_removal_robust_ts
+outlier_id_by <- function(x, mad_threshold, ts_threshold, max_cv, messages) {
+  
+  if (messages) {
+    cat("doing Station", x$Station_Number[1], "Code", x$Code[1], "\n")
+  }
+  
+  # find extreme values
+  x <- outlier_id_mad(x, threshold = mad_threshold)
+
+  # then fit a time series model
+  # monitor changes
+  n_outlier <- nrow(x)+1 # to get things going
+  while(sum(x$is_outlier) < n_outlier) {
+    # save number of outliers for comparison
+    n_outlier <- sum(x$is_outlier)
+    # identify outliers
+    x <- outlier_id_robust_ts(x, threshold = ts_threshold, messages = messages)
+  }
+  
+  # assess the removals
+  if (ndata[1] - ndata[2] > 20 | ndata[2]/ndata[1] < 0.9) {
+    # do not proceed! and return origional data
+    warning(x$Station_Number[1], " ", x$Code[1], ": A large amount of data identified as outliers - please check!")
+  }
+  
+  x
+}
+
+
+
+#' Identify Outliers In Water Quality Data
+#'
+#' Identifies outliers in water quality data.
+#'
+#' @details The method is motivated by Hampels Mean Absolute Deviation approach for time series. It is a 
+#' combination of two tecniques:
+#'   1. remove large outliers when compared to the MAD of the whole time series
+#'   2. 
+#'     a. fit a reasonably flexible time series model to identify 
+#'        trend in the data using a robust regression approach by iteratively reweighting
+#'     b. assign zero weight to observations with very large residuals from the robust fit
+#'     c. repeat this procedure until all outliers have been identified.
+#'
+#' @param x The data.frame to analyse.
+#' @param by A character vector of the columns in x to perform the outlier detection by.
+#' @param max_cv A number indicating the maximum permitted coefficient
+#' of variation.
+#' @param messages A flag indicating whether to print messages.
+#' @examples
+#' x <- standardize_wqdata(wqbc::dummy)
+#' outlier_removal(x, by = "Variable", messages = TRUE)
+#' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
+#' @export
+outlier_id <- function(x, by = NULL, mad_threshold=10, ts_threshold=6, max_cv = 1.29,
+                            messages = getOption("wqbc.messages", default = TRUE)) {
+  assert_that(is.data.frame(x))
+  assert_that(is.null(by) || (is.character(by) && noNA(by)))
+  assert_that(is.number(w_threshold))
+  assert_that(is.number(threshold))
+  assert_that(is.number(max_cv))
+  assert_that(is.flag(messages) && noNA(messages))
+  
+  x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01"), "is_outlier" = FALSE), messages = messages)
+  check_class_columns(x, list("Date" = "Date", "is_outlier" = "logical"))
+
+  if(is.null(by)) {
+    x <- outlier_removal_by(x, 
+                            mad_threshold = mad_threshold, ts_threshold = ts_threshold, max_cv = max_cv, 
+                            messages = messages)
+  } else {
+    x <- plyr::ddply(x, .variables = by, .fun = outlier_removal_by, 
+                     mad_threshold = mad_threshold, ts_threshold = ts_threshold, max_cv = max_cv,
+                     messages = messages)
+  }
+  if(messages) message("Identified outliers in water quality data.")
+  x
+}
