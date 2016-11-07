@@ -39,7 +39,6 @@ Suggests:
     sp (>= 1.0-17),
     rems,
     rgdal (>= 0.9-1),
-    wq (>= 0.4-1),
     xtable (>= 1.7-4)
 Remotes:
     bcgov/rems
