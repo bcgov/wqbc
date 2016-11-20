@@ -1,11 +1,11 @@
 # Copyright 2015 Province of British Columbia
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
@@ -90,12 +90,23 @@ delete_rows_with_certain_values <- function (x, columns, messages, txt = "missin
 }
 
 capitalize <- function (x) {
-    gsub(pattern = "\\b([a-z])", replacement = "\\U\\1", x, perl = TRUE)
+  gsub(pattern = "\\b([a-z])", replacement = "\\U\\1", x, perl = TRUE)
 }
 
 is_match_words <- function (var, x, strict) {
   if(!strict) return (var[1] %in% x)
   all(var %in% x)
+}
+
+# from http://stackoverflow.com/questions/13289009/check-if-character-string-is-a-valid-color-representation
+is_color <- function(x) {
+  check_vector(x, "")
+
+  fun <- function(x) {
+    tryCatch(is.matrix(grDevices::col2rgb(x)),
+             error = function(e) FALSE)
+  }
+  vapply(x, fun, TRUE)
 }
 
 sub_vars <- function (x, vars, strict) {

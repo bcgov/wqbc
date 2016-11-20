@@ -20,7 +20,7 @@ to represent by the size of points.}
 \item{shape}{An integer of the point shape (permitted values are 21 to 25)
 or string of the column in data to represent by the shape of points.}
 
-\item{keep}{An optional character vector indicating which columns to keep
+\item{keep}{An optional character vector indicating which columns
 in addition to x and y to keep before dropping duplicated rows to
 avoid overplotting.}
 

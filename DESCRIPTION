@@ -24,8 +24,10 @@ Depends:
     R (>= 3.1.2)
 Imports:
     assertthat (>= 0.1),
+    datacheckr,
     plyr (>= 1.8.1),
     dplyr (>= 0.4.1),
+    grDevices,
     stringr (>= 0.6.2),
     stats,
     boot (>= 1.3-14),
@@ -40,7 +42,6 @@ Suggests:
     sp (>= 1.0-17),
     rems,
     rgdal (>= 0.9-1),
-    wq (>= 0.4-1),
     xtable (>= 1.7-4)
 Remotes:
     bcgov/rems

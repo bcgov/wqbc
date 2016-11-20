@@ -23,7 +23,7 @@ or a string of the column in data to represent by the shape of points.}
 \item{fill}{An integer of the point fill colour or a string of the column in data to represent
 by the fill colour of points.}
 
-\item{keep}{An optional character vector indicating which columns to keep
+\item{keep}{An optional character vector indicating which columns
 in addition to x and y to keep before dropping duplicated rows to
 avoid overplotting.}
 

@@ -1,11 +1,11 @@
 # Copyright 2015 Province of British Columbia
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
@@ -61,7 +61,7 @@ aes_string_point <- function (head = "ggplot2::geom_point(ggplot2::aes_string(",
 #' @export
 get_category_colours <- function () {
   c(Excellent = "#081d58", Good = "#225ea8", Fair = "#41b6c4",
-              Marginal = "#c7e9b4", Poor = "#edf8b1")
+    Marginal = "#c7e9b4", Poor = "#edf8b1")
 }
 
 #' Plot Water Quality Indices
@@ -151,7 +151,7 @@ proj_bc <- function (data, x, y, input_proj = NULL) {
 #' or a string of the column in data to represent by the shape of points.
 #' @param fill An integer of the point fill colour or a string of the column in data to represent
 #' by the fill colour of points.
-#' @param keep An optional character vector indicating which columns to keep
+#' @param keep An optional character vector indicating which columns
 #' in addition to x and y to keep before dropping duplicated rows to
 #' avoid overplotting.
 #' @param input_proj An optional valid proj4string. Defaults to
@@ -233,4 +233,67 @@ plot_map_wqis <- function (
                   input_proj = input_proj)
 
   gp + ggplot2::scale_fill_manual(values = get_category_colours())
+}
+
+#' Plot Time Series
+#'
+#' @param data A data frame of the data to plot.
+#' @param x A string of the column to plot on the x-axis.
+#' @param y A string of the column to plot on the y-axis.
+#' @param xlab A string of the x-axis label.
+#' @param ylab A string of the y-axis label.
+#' @param title A string of the plot title.
+#' @param color A string specifying the color for the points or if not a color the name of the column to color the points by.
+#' @param y0 A flag indicating whether to expand the y-axis limits to include 0.
+#'
+#' @export
+plot_timeseries <- function(data, x = "Date", y = "Value", xlab = x, ylab = y, title = NULL,
+                            color = "black", y0 = TRUE) {
+  check_string(x)
+  check_string(y)
+  check_string(xlab)
+  check_string(ylab)
+  if (!is.null(title)) check_string(title)
+  check_string(color)
+  check_flag(y0)
+
+  if (!is_color(color)) {
+    check_cols(data, c(x, y, color))
+  } else
+    check_cols(data, c(x, y))
+
+  gp <- ggplot2::ggplot(data, ggplot2::aes_string(x = x, y = y)) +
+    ggplot2::xlab(xlab) +
+    ggplot2::ylab(ylab)
+
+  if (!is.null(title)) gp <- gp + ggplot2::ggtitle(title)
+
+  if (!is_color(color)) {
+    gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = color))
+  } else
+    gp <- gp + ggplot2::geom_point(color = color)
+  if (y0) gp <- gp + ggplot2::expand_limits(y = 0)
+  gp
+}
+
+plot_timeseries_fun <- function(data, by, x, y, xlab, ylab, color, y0) {
+  title <- paste(data[by][1,], collapse = " ")
+  plot_timeseries(data, x = x, y = y, xlab = xlab, ylab = ylab, title = title,
+                  color = color, y0 = y0)
+}
+
+#' Plot Data By
+#'
+#' @inheritParams plot_timeseries
+#' @param by A character vector of the columns to plot the time series by.
+#' @return A list of ggplot objects
+#' @export
+plot_timeseries_by <- function(data, by = c("Site", "Variable"), x = "Date", y = "Value",
+                               xlab = x, ylab = y, color = "black", y0 = TRUE) {
+  check_vector(by, "")
+  check_cols(data, by)
+
+  plyr::dlply(data, by, plot_timeseries_fun, by = by,
+              x = x, y = y, xlab = xlab, ylab = ylab,
+              color = color, y0 = y0)
 }
