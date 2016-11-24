@@ -2,13 +2,16 @@
 % Please edit documentation in R/plot.R
 \name{plot_timeseries}
 \alias{plot_timeseries}
-\title{Plot Time Series}
+\title{Plot Time Series Data}
 \usage{
-plot_timeseries(data, x = "Date", y = "Value", dl = "DetectionLimit",
-  xlab = x, ylab = y, title = NULL, color = "black", y0 = TRUE)
+plot_timeseries(data, by = NULL, x = "Date", y = "Value",
+  dl = "DetectionLimit", xlab = x, ylab = y, color = "black",
+  y0 = TRUE, messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{data}{A data frame of the data to plot.}
+
+\item{by}{A character vector of the columns to plot the time series by.}
 
 \item{x}{A string of the column to plot on the x-axis.}
 
@@ -20,17 +23,22 @@ plot_timeseries(data, x = "Date", y = "Value", dl = "DetectionLimit",
 
 \item{ylab}{A string of the y-axis label.}
 
-\item{title}{A string of the plot title.}
-
 \item{color}{A string specifying the color for the points or if not a color the name of the column to color the points by.}
 
 \item{y0}{A flag indicating whether to expand the y-axis limits to include 0.}
+
+\item{messages}{A flag indicating whether to print messages.}
 }
 \description{
 The plot includes the detection limits.
 To exclude detection limits. Set \code{dl = NULL}.
 }
+\details{
+If \code{by = NULL} plot_timeseries returns a ggplot object.
+Otherwise it returns a list of ggplot objects.
+}
 \examples{
 plot_timeseries(ccme[ccme$Variable == "As",])
+plot_timeseries(ccme, by = "Variable")
 }
 

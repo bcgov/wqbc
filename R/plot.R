@@ -235,34 +235,9 @@ plot_map_wqis <- function (
   gp + ggplot2::scale_fill_manual(values = get_category_colours())
 }
 
-#' Plot Time Series
-#'
-#' The plot includes the detection limits.
-#' To exclude detection limits. Set \code{dl = NULL}.
-#'
-#' @param data A data frame of the data to plot.
-#' @param x A string of the column to plot on the x-axis.
-#' @param y A string of the column to plot on the y-axis.
-#' @param dl A string of the column that provides the detection limit(s).
-#' @param xlab A string of the x-axis label.
-#' @param ylab A string of the y-axis label.
-#' @param title A string of the plot title.
-#' @param color A string specifying the color for the points or if not a color the name of the column to color the points by.
-#' @param y0 A flag indicating whether to expand the y-axis limits to include 0.
-#' @export
-#' @examples
-#' plot_timeseries(ccme[ccme$Variable == "As",])
-plot_timeseries <- function(data, x = "Date", y = "Value", dl = "DetectionLimit",
-                            xlab = x, ylab = y, title = NULL,
-                            color = "black", y0 = TRUE) {
-  check_string(x)
-  check_string(y)
-  if (!is.null(dl)) check_string(dl)
-  check_string(xlab)
-  check_string(ylab)
+plot_timeseries_by <- function(data, x, y, dl, xlab, ylab, title = NULL,
+                               color, y0, messages) {
   if (!is.null(title)) check_string(title)
-  check_string(color)
-  check_flag(y0)
 
   if (!is_color(color)) {
     check_cols(data, c(x, y, color, dl))
@@ -287,27 +262,58 @@ plot_timeseries <- function(data, x = "Date", y = "Value", dl = "DetectionLimit"
   gp
 }
 
-plot_timeseries_fun <- function(data, by, x, y, xlab, ylab, color, y0) {
+plot_timeseries_fun <- function(data, by, x, y, dl, xlab, ylab, color, y0, messages) {
   title <- paste(data[by][1,], collapse = " ")
-  plot_timeseries(data, x = x, y = y, xlab = xlab, ylab = ylab, title = title,
-                  color = color, y0 = y0)
+  plot_timeseries_by(data, x = x, y = y, dl = dl, xlab = xlab, ylab = ylab, title = title,
+                     color = color, y0 = y0, messages = messages)
 }
 
-#' Plot Data By
+#' Plot Time Series Data
 #'
-#' @inheritParams plot_timeseries
+#' The plot includes the detection limits.
+#' To exclude detection limits. Set \code{dl = NULL}.
+#'
+#' If \code{by = NULL} plot_timeseries returns a ggplot object.
+#' Otherwise it returns a list of ggplot objects.
+#'
+#' @param data A data frame of the data to plot.
 #' @param by A character vector of the columns to plot the time series by.
-#' @return A list of ggplot objects
+#' @param x A string of the column to plot on the x-axis.
+#' @param y A string of the column to plot on the y-axis.
+#' @param dl A string of the column that provides the detection limit(s).
+#' @param xlab A string of the x-axis label.
+#' @param ylab A string of the y-axis label.
+#' @param color A string specifying the color for the points or if not a color the name of the column to color the points by.
+#' @param y0 A flag indicating whether to expand the y-axis limits to include 0.
+#' @param messages A flag indicating whether to print messages.
 #' @export
 #' @examples
-#' plot_timeseries_by(ccme, by = "Variable")
-plot_timeseries_by <- function(data, by = c("Site", "Variable"), x = "Date", y = "Value",
-                               dl = "DetectionLimit",
-                               xlab = x, ylab = y, color = "black", y0 = TRUE) {
-  check_vector(by, "")
-  check_cols(data, by)
+#' plot_timeseries(ccme[ccme$Variable == "As",])
+#' plot_timeseries(ccme, by = "Variable")
+plot_timeseries <- function(data, by = NULL, x = "Date", y = "Value",
+                            dl = "DetectionLimit",
+                            xlab = x, ylab = y, color = "black", y0 = TRUE,
+                            messages = getOption("wqbc.messages", default = TRUE)) {
+  assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
-  plyr::dlply(data, by, plot_timeseries_fun, by = by,
-              x = x, y = y, xlab = xlab, ylab = ylab,
-              color = color, y0 = y0)
+  check_string(x)
+  check_string(y)
+  if (!is.null(dl)) check_string(dl)
+  check_string(xlab)
+  check_string(ylab)
+  check_string(color)
+  check_flag(y0)
+  check_flag(messages)
+
+  check_by(by, colnames(data))
+
+  if (is.null(by)) {
+    data %<>% plot_timeseries_by(x = x, y = y, dl = dl, xlab = xlab, ylab = ylab,
+                            color = color, y0 = y0, messages = messages)
+  } else {
+    data %<>% plyr::dlply(.variables = by, .fun = plot_timeseries_fun, by = by,
+                     x = x, y = y, dl = dl, xlab = xlab, ylab = ylab,
+                     color = color, y0 = y0, messages = messages)
+  }
+  data
 }
