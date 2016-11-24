@@ -23,6 +23,7 @@
 #' @docType package
 #' @name wqbc
 #' @import assertthat datacheckr
+#' @importFrom magrittr %<>% %>%
 #' @examples
 #' \dontrun{
 #'  demo(ccme)

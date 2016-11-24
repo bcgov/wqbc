@@ -69,5 +69,5 @@ test_that("plot_map", {
 })
 
 test_that("plot_timeseries", {
-  expect_is(plot_timeseries(wqbc::dummy), "ggplot")
+  expect_is(plot_timeseries(wqbc::dummy, dl = NULL), "ggplot")
 })

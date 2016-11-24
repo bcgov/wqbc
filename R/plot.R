@@ -237,20 +237,27 @@ plot_map_wqis <- function (
 
 #' Plot Time Series
 #'
+#' The plot includes the detection limits.
+#' To exclude detection limits. Set \code{dl = NULL}.
+#'
 #' @param data A data frame of the data to plot.
 #' @param x A string of the column to plot on the x-axis.
 #' @param y A string of the column to plot on the y-axis.
+#' @param dl A string of the column that provides the detection limit(s).
 #' @param xlab A string of the x-axis label.
 #' @param ylab A string of the y-axis label.
 #' @param title A string of the plot title.
 #' @param color A string specifying the color for the points or if not a color the name of the column to color the points by.
 #' @param y0 A flag indicating whether to expand the y-axis limits to include 0.
-#'
 #' @export
-plot_timeseries <- function(data, x = "Date", y = "Value", xlab = x, ylab = y, title = NULL,
+#' @examples
+#' plot_timeseries(ccme[ccme$Variable == "As",])
+plot_timeseries <- function(data, x = "Date", y = "Value", dl = "DetectionLimit",
+                            xlab = x, ylab = y, title = NULL,
                             color = "black", y0 = TRUE) {
   check_string(x)
   check_string(y)
+  if (!is.null(dl)) check_string(dl)
   check_string(xlab)
   check_string(ylab)
   if (!is.null(title)) check_string(title)
@@ -258,14 +265,18 @@ plot_timeseries <- function(data, x = "Date", y = "Value", xlab = x, ylab = y, t
   check_flag(y0)
 
   if (!is_color(color)) {
-    check_cols(data, c(x, y, color))
+    check_cols(data, c(x, y, color, dl))
   } else
-    check_cols(data, c(x, y))
+    check_cols(data, c(x, y, dl))
+
+  if (!is.null(dl))
+    data_dl <- data[dl] %>% unique()
 
   gp <- ggplot2::ggplot(data, ggplot2::aes_string(x = x, y = y)) +
     ggplot2::xlab(xlab) +
     ggplot2::ylab(ylab)
 
+  if (!is.null(dl)) gp <- gp + ggplot2::geom_hline(data = data_dl, ggplot2::aes_string(yintercept = dl))
   if (!is.null(title)) gp <- gp + ggplot2::ggtitle(title)
 
   if (!is_color(color)) {
@@ -288,7 +299,10 @@ plot_timeseries_fun <- function(data, by, x, y, xlab, ylab, color, y0) {
 #' @param by A character vector of the columns to plot the time series by.
 #' @return A list of ggplot objects
 #' @export
+#' @examples
+#' plot_timeseries_by(ccme, by = "Variable")
 plot_timeseries_by <- function(data, by = c("Site", "Variable"), x = "Date", y = "Value",
+                               dl = "DetectionLimit",
                                xlab = x, ylab = y, color = "black", y0 = TRUE) {
   check_vector(by, "")
   check_cols(data, by)

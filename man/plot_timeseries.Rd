@@ -4,8 +4,8 @@
 \alias{plot_timeseries}
 \title{Plot Time Series}
 \usage{
-plot_timeseries(data, x = "Date", y = "Value", xlab = x, ylab = y,
-  title = NULL, color = "black", y0 = TRUE)
+plot_timeseries(data, x = "Date", y = "Value", dl = "DetectionLimit",
+  xlab = x, ylab = y, title = NULL, color = "black", y0 = TRUE)
 }
 \arguments{
 \item{data}{A data frame of the data to plot.}
@@ -13,6 +13,8 @@ plot_timeseries(data, x = "Date", y = "Value", xlab = x, ylab = y,
 \item{x}{A string of the column to plot on the x-axis.}
 
 \item{y}{A string of the column to plot on the y-axis.}
+
+\item{dl}{A string of the column that provides the detection limit(s).}
 
 \item{xlab}{A string of the x-axis label.}
 
@@ -25,6 +27,10 @@ plot_timeseries(data, x = "Date", y = "Value", xlab = x, ylab = y,
 \item{y0}{A flag indicating whether to expand the y-axis limits to include 0.}
 }
 \description{
-Plot Time Series
+The plot includes the detection limits.
+To exclude detection limits. Set \code{dl = NULL}.
+}
+\examples{
+plot_timeseries(ccme[ccme$Variable == "As",])
 }
 

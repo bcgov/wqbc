@@ -5,7 +5,8 @@
 \title{Plot Data By}
 \usage{
 plot_timeseries_by(data, by = c("Site", "Variable"), x = "Date",
-  y = "Value", xlab = x, ylab = y, color = "black", y0 = TRUE)
+  y = "Value", dl = "DetectionLimit", xlab = x, ylab = y,
+  color = "black", y0 = TRUE)
 }
 \arguments{
 \item{data}{A data frame of the data to plot.}
@@ -15,6 +16,8 @@ plot_timeseries_by(data, by = c("Site", "Variable"), x = "Date",
 \item{x}{A string of the column to plot on the x-axis.}
 
 \item{y}{A string of the column to plot on the y-axis.}
+
+\item{dl}{A string of the column that provides the detection limit(s).}
 
 \item{xlab}{A string of the x-axis label.}
 
@@ -29,5 +32,8 @@ A list of ggplot objects
 }
 \description{
 Plot Data By
+}
+\examples{
+plot_timeseries_by(ccme, by = "Variable")
 }
 
