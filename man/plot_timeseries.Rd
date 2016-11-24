@@ -4,24 +4,13 @@
 \alias{plot_timeseries}
 \title{Plot Time Series Data}
 \usage{
-plot_timeseries(data, by = NULL, x = "Date", y = "Value",
-  dl = "DetectionLimit", xlab = x, ylab = y, color = "black",
-  y0 = TRUE, messages = getOption("wqbc.messages", default = TRUE))
+plot_timeseries(data, by = NULL, color = "black", y0 = TRUE,
+  messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{data}{A data frame of the data to plot.}
 
 \item{by}{A character vector of the columns to plot the time series by.}
-
-\item{x}{A string of the column to plot on the x-axis.}
-
-\item{y}{A string of the column to plot on the y-axis.}
-
-\item{dl}{A string of the column that provides the detection limit(s).}
-
-\item{xlab}{A string of the x-axis label.}
-
-\item{ylab}{A string of the y-axis label.}
 
 \item{color}{A string specifying the color for the points or if not a color the name of the column to color the points by.}
 

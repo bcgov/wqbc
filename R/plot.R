@@ -235,8 +235,11 @@ plot_map_wqis <- function (
   gp + ggplot2::scale_fill_manual(values = get_category_colours())
 }
 
-plot_timeseries_by <- function(data, x, y, dl, xlab, ylab, title = NULL,
-                               color, y0, messages) {
+plot_timeseries_by <- function(data, title = NULL, color, y0, messages) {
+  x <- "Date"
+  y <- "Value"
+  dl <- "DetectionLimit"
+
   if (!is.null(title)) check_string(title)
 
   if (!is_color(color)) {
@@ -248,10 +251,8 @@ plot_timeseries_by <- function(data, x, y, dl, xlab, ylab, title = NULL,
     data_dl <- data[dl] %>% unique()
 
   gp <- ggplot2::ggplot(data, ggplot2::aes_string(x = x, y = y)) +
-    ggplot2::xlab(xlab) +
-    ggplot2::ylab(ylab)
+    ggplot2::geom_hline(data = data_dl, ggplot2::aes_string(yintercept = dl))
 
-  if (!is.null(dl)) gp <- gp + ggplot2::geom_hline(data = data_dl, ggplot2::aes_string(yintercept = dl))
   if (!is.null(title)) gp <- gp + ggplot2::ggtitle(title)
 
   if (!is_color(color)) {
@@ -262,10 +263,9 @@ plot_timeseries_by <- function(data, x, y, dl, xlab, ylab, title = NULL,
   gp
 }
 
-plot_timeseries_fun <- function(data, by, x, y, dl, xlab, ylab, color, y0, messages) {
+plot_timeseries_fun <- function(data, by, color, y0, messages) {
   title <- paste(data[by][1,], collapse = " ")
-  plot_timeseries_by(data, x = x, y = y, dl = dl, xlab = xlab, ylab = ylab, title = title,
-                     color = color, y0 = y0, messages = messages)
+  plot_timeseries_by(data, title = title, color = color, y0 = y0, messages = messages)
 }
 
 #' Plot Time Series Data
@@ -278,11 +278,6 @@ plot_timeseries_fun <- function(data, by, x, y, dl, xlab, ylab, color, y0, messa
 #'
 #' @param data A data frame of the data to plot.
 #' @param by A character vector of the columns to plot the time series by.
-#' @param x A string of the column to plot on the x-axis.
-#' @param y A string of the column to plot on the y-axis.
-#' @param dl A string of the column that provides the detection limit(s).
-#' @param xlab A string of the x-axis label.
-#' @param ylab A string of the y-axis label.
 #' @param color A string specifying the color for the points or if not a color the name of the column to color the points by.
 #' @param y0 A flag indicating whether to expand the y-axis limits to include 0.
 #' @param messages A flag indicating whether to print messages.
@@ -290,30 +285,23 @@ plot_timeseries_fun <- function(data, by, x, y, dl, xlab, ylab, color, y0, messa
 #' @examples
 #' plot_timeseries(ccme[ccme$Variable == "As",])
 #' plot_timeseries(ccme, by = "Variable")
-plot_timeseries <- function(data, by = NULL, x = "Date", y = "Value",
-                            dl = "DetectionLimit",
-                            xlab = x, ylab = y, color = "black", y0 = TRUE,
+plot_timeseries <- function(data, by = NULL, color = "black", y0 = TRUE,
                             messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
-  check_string(x)
-  check_string(y)
-  if (!is.null(dl)) check_string(dl)
-  check_string(xlab)
-  check_string(ylab)
   check_string(color)
   check_flag(y0)
   check_flag(messages)
 
   check_by(by, colnames(data))
+  if (is.null(data$DetectionLimit))
+    data$DetectionLimit <- NA_real_
+  check_class_columns(data, list("Date" = "Date", "Value" = "numeric", "DetectionLimit" = "numeric"))
 
   if (is.null(by)) {
-    data %<>% plot_timeseries_by(x = x, y = y, dl = dl, xlab = xlab, ylab = ylab,
-                            color = color, y0 = y0, messages = messages)
+    data %<>% plot_timeseries_by(color = color, y0 = y0, messages = messages)
   } else {
-    data %<>% plyr::dlply(.variables = by, .fun = plot_timeseries_fun, by = by,
-                     x = x, y = y, dl = dl, xlab = xlab, ylab = ylab,
-                     color = color, y0 = y0, messages = messages)
+    data %<>% plyr::dlply(.variables = by, .fun = plot_timeseries_fun, by = by, color = color, y0 = y0, messages = messages)
   }
   data
 }
