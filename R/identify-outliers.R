@@ -37,7 +37,7 @@ w_resid <- function (mod) {
 outlier_sense_check <- function(x) {
 
     # first subset out values already identified as outliers
-  id_ok <- which(!x$is_outlier)
+  id_ok <- which(!x$Outlier)
   if (length(id_ok)  == 0) {
     # no non outlier data left
     return(FALSE)
@@ -59,7 +59,7 @@ outlier_sense_check <- function(x) {
 #' @importFrom stats sd
 outlier_id_mad <- function(x, threshold, messages) {
 
-  x$is_outlier <- FALSE
+  x$Outlier <- FALSE
 
   # check that it is sensible to look for outliers
   if (!outlier_sense_check(x)) {
@@ -67,7 +67,7 @@ outlier_id_mad <- function(x, threshold, messages) {
   }
 
   # first subset out values already identified as outliers
-  id_ok <- which(!x$is_outlier)
+  id_ok <- which(!x$Outlier)
 
   # calculate robust summaries
   mad_x <- mad(x$Value[id_ok])
@@ -79,7 +79,7 @@ outlier_id_mad <- function(x, threshold, messages) {
   }
 
   # identify outliers - note this is one sided, only too large values are removed.
-  x$is_outlier[id_ok] <- (centered_x[id_ok]/mad_x) > threshold
+  x$Outlier[id_ok] <- (centered_x[id_ok]/mad_x) > threshold
 
   # return cleaned data
   x
@@ -106,7 +106,7 @@ outlier_id_robust_ts <- function(x, threshold, messages) {
   }
 
   # first subset out values already identified as outliers
-  id_ok <- which(!x$is_outlier)
+  id_ok <- which(!x$Outlier)
 
   # select robust iterative reweighting function
   weights_fun <- weights_mass
@@ -181,7 +181,7 @@ outlier_id_robust_ts <- function(x, threshold, messages) {
   # now drop residuals larger than w_threshold
   # we could set a differnt value here ...
   # but remember to maintian previously set outliers
-  x$is_outlier[id_ok] <- res[id_ok] > threshold
+  x$Outlier[id_ok] <- res[id_ok] > threshold
 
   # tag on final model fit
   x$robust_ts_fit <- inv_trans(fitted(mod))
@@ -204,21 +204,21 @@ identify_outliers_by <- function(x, threshold, time_series, messages) {
   if (!time_series)
     return(outlier_id_mad(x, threshold = threshold, messages = messages))
 
-  x$is_outlier <- FALSE
+  x$Outlier <- FALSE
 
-  n_outlier_start <- sum(x$is_outlier)
+  n_outlier_start <- sum(x$Outlier)
 
   # then fit a time series model
   # monitor changes
   n_outlier <- nrow(x)+1 # to get things going
-  while(sum(x$is_outlier) < n_outlier) {
+  while(sum(x$Outlier) < n_outlier) {
     # save number of outliers for comparison
-    n_outlier <- sum(x$is_outlier)
+    n_outlier <- sum(x$Outlier)
     # identify outliers
     x <- outlier_id_robust_ts(x, threshold = threshold, messages = messages)
   }
 
-  n_outlier_end <- sum(x$is_outlier)
+  n_outlier_end <- sum(x$Outlier)
 
   # assess the removals
   if (n_outlier_end - n_outlier_start > 20 |
@@ -273,6 +273,6 @@ identify_outliers <- function(data, by = NULL, threshold = 10, time_series = FAL
                      threshold = threshold, time_series = time_series,
                             messages = messages)
   }
-  if (messages) message("Identified ", sum(data$is_outlier), " outliers in water quality data.")
+  if (messages) message("Identified ", sum(data$Outlier), " outliers in water quality data.")
   data
 }

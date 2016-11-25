@@ -14,10 +14,10 @@ context("identify-outliers")
 
 test_that("outlier_sense_check", {
 
-  x <- data.frame(Value = 1:10, is_outlier = TRUE)
+  x <- data.frame(Value = 1:10, Outlier = TRUE)
 
   expect_false(outlier_sense_check(x))
-  x$is_outlier <- FALSE
+  x$Outlier <- FALSE
   expect_true(outlier_sense_check(x))
   expect_false(outlier_sense_check(x[1:2,]))
   expect_true(outlier_sense_check(x[1:3,]))
