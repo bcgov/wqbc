@@ -59,6 +59,8 @@ outlier_sense_check <- function(x) {
 #' @importFrom stats sd
 outlier_id_mad <- function(x, threshold, messages) {
 
+  x$is_outlier <- FALSE
+
   # check that it is sensible to look for outliers
   if (!outlier_sense_check(x)) {
     return(x)
@@ -199,14 +201,12 @@ identify_outliers_by <- function(x, threshold, time_series, messages) {
     cat("doing Station", x$Station_Number[1], "Code", x$Code[1], "\n")
   }
 
+  if (!time_series)
+    return(outlier_id_mad(x, threshold = threshold, messages = messages))
+
   x$is_outlier <- FALSE
 
   n_outlier_start <- sum(x$is_outlier)
-
-  # find extreme values
-  x <- outlier_id_mad(x, threshold = threshold, messages = messages)
-
-  if (!time_series) return(x)
 
   # then fit a time series model
   # monitor changes
@@ -234,14 +234,13 @@ identify_outliers_by <- function(x, threshold, time_series, messages) {
 #'
 #' Identifies outliers in water quality data.
 #'
-#' The method is motivated by Hampels Mean Absolute Deviation approach for time series. It is a
-#' combination of two techniques.
-#' First it identifies outliers in exceedance of the threshold.
-#' Then if time_series = TRUE it
-#'     a. assigns zero weight to outliers.
-#'     b. fits a reasonably flexible time series model to identify
+#' The method is motivated by Hampels Mean Absolute Deviation approach for time series.
+#' It uses one of two techniques.
+#' By default it simply identifies outliers in exceedance of the threshold.
+#' But if \code{time_series = TRUE}
+#'     a. fits a reasonably flexible time series model to identify
 #'        trend in the data using a robust regression approach by iteratively reweighting
-#'     b. assign zero weight to observations with very large residuals from the robust fit
+#'     b. assign zero weight to observations with in exceedance of the threshold
 #'     c. repeat this procedure until all outliers have been identified.
 #'
 #' @param data The data.frame to analyse.
@@ -251,10 +250,10 @@ identify_outliers_by <- function(x, threshold, time_series, messages) {
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' data <- standardize_wqdata(wqbc::dummy)
-#' identify_outliers(data, by = "Variable", threshold = 10, messages = TRUE)
+#' identify_outliers(data, by = "Variable", messages = TRUE)
 #' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
 #' @export
-identify_outliers <- function(data, by = NULL, threshold = 100, time_series = FALSE,
+identify_outliers <- function(data, by = NULL, threshold = 10, time_series = FALSE,
                             messages = getOption("wqbc.messages", default = TRUE)) {
   check_data2(data)
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
@@ -274,6 +273,6 @@ identify_outliers <- function(data, by = NULL, threshold = 100, time_series = FA
                      threshold = threshold, time_series = time_series,
                             messages = messages)
   }
-  if (messages) message("Looked for outliers in water quality data.")
+  if (messages) message("Identified ", sum(data$is_outlier), " outliers in water quality data.")
   data
 }

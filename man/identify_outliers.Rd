@@ -4,7 +4,7 @@
 \alias{identify_outliers}
 \title{Identify Outliers In Water Quality Data}
 \usage{
-identify_outliers(data, by = NULL, threshold = 100, time_series = FALSE,
+identify_outliers(data, by = NULL, threshold = 10, time_series = FALSE,
   messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
@@ -22,19 +22,18 @@ identify_outliers(data, by = NULL, threshold = 100, time_series = FALSE,
 Identifies outliers in water quality data.
 }
 \details{
-The method is motivated by Hampels Mean Absolute Deviation approach for time series. It is a
-combination of two techniques.
-First it identifies outliers in exceedance of the threshold.
-Then if time_series = TRUE it
-    a. assigns zero weight to outliers.
-    b. fits a reasonably flexible time series model to identify
+The method is motivated by Hampels Mean Absolute Deviation approach for time series.
+It uses one of two techniques.
+By default it simply identifies outliers in exceedance of the threshold.
+But if \code{time_series = TRUE}
+    a. fits a reasonably flexible time series model to identify
        trend in the data using a robust regression approach by iteratively reweighting
-    b. assign zero weight to observations with very large residuals from the robust fit
+    b. assign zero weight to observations with in exceedance of the threshold
     c. repeat this procedure until all outliers have been identified.
 }
 \examples{
 data <- standardize_wqdata(wqbc::dummy)
-identify_outliers(data, by = "Variable", threshold = 10, messages = TRUE)
+identify_outliers(data, by = "Variable", messages = TRUE)
 }
 \seealso{
 \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
