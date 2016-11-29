@@ -10,6 +10,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
+#' Error
+#'
+#' Throws an error without the call as part of the error message.
+#'
+#' @inheritParams base::stop
+#' @seealso base::stop
+#' @export
+error <- function(...) {
+  stop(..., call. = FALSE)
+}
+
 plural <- function (x, s = FALSE, end = "") {
   paste0(x, ifelse(s, "s", ""), end)
 }

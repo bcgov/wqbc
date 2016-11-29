@@ -31,6 +31,7 @@ Imports:
     grDevices,
     stringr (>= 0.6.2),
     stats,
+    tibble,
     boot (>= 1.3-14),
     tidyr (>= 0.2.0),
     mgcv,

@@ -4,32 +4,29 @@
 \alias{identify_outliers}
 \title{Identify Outliers In Water Quality Data}
 \usage{
-identify_outliers(data, by = NULL, threshold = 10, time_series = FALSE,
-  messages = getOption("wqbc.messages", default = TRUE))
+identify_outliers(data, by = NULL, threshold = 10, ignore_zeros = TRUE,
+  large_only = TRUE, messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
-\item{data}{The data.frame to analyse.}
+\item{data}{A data.frame with a numeric Value column to identify the outliers for.}
 
 \item{by}{A character vector of the columns in x to perform the outlier detection by.}
 
-\item{threshold}{A number indicating the maximum permitted coefficient}
+\item{threshold}{A number indicating the number of average deviations above which a value is considered an outlier.}
 
-\item{time_series}{A flag indicating whether to identify outliers using a time series model.}
+\item{ignore_zeros}{A flag indicating whether to ignore zeros when calculating the average deviation and identifying outliers.}
+
+\item{large_only}{A flag indicating wether only large values which exceed the threshold should be identified as outliers.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
-\description{
-Identifies outliers in water quality data.
+\value{
+The data with an additional logical column Outlier which indicates which values were identified as outliers.
 }
-\details{
-The method is motivated by Hampels Mean Absolute Deviation approach for time series.
-It uses one of two techniques.
-By default it simply identifies outliers in exceedance of the threshold.
-But if \code{time_series = TRUE}
-    a. fits a reasonably flexible time series model to identify
-       trend in the data using a robust regression approach by iteratively reweighting
-    b. assign zero weight to observations with in exceedance of the threshold
-    c. repeat this procedure until all outliers have been identified.
+\description{
+Identifies outliers in water quality data based on the average deviation.
+If possible it uses the Mean Absolute Deviation (MAD)
+but if the MAD is zero then it uses the Standard Deviation.
 }
 \examples{
 data <- standardize_wqdata(wqbc::dummy)
