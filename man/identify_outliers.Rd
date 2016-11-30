@@ -4,8 +4,9 @@
 \alias{identify_outliers}
 \title{Identify Outliers In Water Quality Data}
 \usage{
-identify_outliers(data, by = NULL, threshold = 10, ignore_zeros = TRUE,
-  large_only = TRUE, messages = getOption("wqbc.messages", default = TRUE))
+identify_outliers(data, by = NULL, threshold = 100,
+  ignore_undetected = TRUE, large_only = TRUE,
+  messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{data}{A data.frame with a numeric Value column to identify the outliers for.}
@@ -14,7 +15,7 @@ identify_outliers(data, by = NULL, threshold = 10, ignore_zeros = TRUE,
 
 \item{threshold}{A number indicating the number of average deviations above which a value is considered an outlier.}
 
-\item{ignore_zeros}{A flag indicating whether to ignore zeros when calculating the average deviation and identifying outliers.}
+\item{ignore_undetected}{A flag indicating whether to ignore undetected values when calculating the average deviation and identifying outliers.}
 
 \item{large_only}{A flag indicating wether only large values which exceed the threshold should be identified as outliers.}
 

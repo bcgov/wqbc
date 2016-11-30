@@ -4,15 +4,13 @@
 \alias{plot_timeseries}
 \title{Plot Time Series Data}
 \usage{
-plot_timeseries(data, by = NULL, color = "black", y0 = TRUE,
+plot_timeseries(data, by = NULL, y0 = TRUE,
   messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{data}{A data frame of the data to plot.}
 
 \item{by}{A character vector of the columns to plot the time series by.}
-
-\item{color}{A string specifying the color for the points or if not a color the name of the column to color the points by.}
 
 \item{y0}{A flag indicating whether to expand the y-axis limits to include 0.}
 

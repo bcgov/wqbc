@@ -235,39 +235,44 @@ plot_map_wqis <- function (
   gp + ggplot2::scale_fill_manual(values = get_category_colours())
 }
 
-plot_timeseries_by <- function(data, title = NULL, color, y0, messages) {
+plot_timeseries_by <- function(data, title = NULL, y0, messages) {
   if (!is.null(title)) check_string(title)
-
-  if (!is_color(color)) check_cols(data, color)
 
   data %<>% dplyr::mutate_(Detected = ~detected(Value, DetectionLimit))
 
   data$Detected %<>% factor(levels = c(TRUE, FALSE))
+  data$Outlier %<>% factor(levels = c(TRUE, FALSE))
 
   gp <- ggplot2::ggplot(data, ggplot2::aes_string(x = "Date", y = "Value"))
 
   if (!is.null(title)) gp <- gp + ggplot2::ggtitle(title)
 
-  if (!is_color(color)) {
-    if (all(is.na(data$Detected))) {
-      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = color))
+  if (any(!is.na(data$Outlier))) {
+    if (any(!is.na(data$Detected))) {
+      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = "Outlier", alpha = "Detected"))
     } else
-      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = color, alpha = "Detected"))
+      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = "Outlier"))
+
   } else {
-    if (all(is.na(data$Detected))) {
-      gp <- gp + ggplot2::geom_point(color = color)
+    if (any(!is.na(data$Detected))) {
+      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(alpha = "Detected"))
     } else
-      gp <- gp + ggplot2::geom_point(color = color, ggplot2::aes_string(alpha = "Detected"))
+      gp <- gp + ggplot2::geom_point()
   }
-  if (!all(is.na(data$Detected)))
-    gp <- gp + ggplot2::scale_alpha_discrete(range = c(1, 0.1), drop = FALSE)
+
+  if (any(!is.na(data$Outlier)))
+    gp <- gp + ggplot2::scale_color_discrete(drop = FALSE)
+
+  if (any(!is.na(data$Detected)))
+    gp <- gp + ggplot2::scale_alpha_discrete(range = c(1, 1/3), drop = FALSE)
+
   if (y0) gp <- gp + ggplot2::expand_limits(y = 0)
   gp
 }
 
-plot_timeseries_fun <- function(data, by, color, y0, messages) {
+plot_timeseries_fun <- function(data, by, y0, messages) {
   title <- paste(data[by][1,], collapse = " ")
-  plot_timeseries_by(data, title = title, color = color, y0 = y0, messages = messages)
+  plot_timeseries_by(data, title = title, y0 = y0, messages = messages)
 }
 
 #' Plot Time Series Data
@@ -277,30 +282,31 @@ plot_timeseries_fun <- function(data, by, color, y0, messages) {
 #'
 #' @param data A data frame of the data to plot.
 #' @param by A character vector of the columns to plot the time series by.
-#' @param color A string specifying the color for the points or if not a color the name of the column to color the points by.
 #' @param y0 A flag indicating whether to expand the y-axis limits to include 0.
 #' @param messages A flag indicating whether to print messages.
 #' @export
 #' @examples
 #' plot_timeseries(ccme[ccme$Variable == "As",])
 #' plot_timeseries(ccme, by = "Variable")
-plot_timeseries <- function(data, by = NULL, color = "black", y0 = TRUE,
+plot_timeseries <- function(data, by = NULL, y0 = TRUE,
                             messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
-  check_string(color)
   check_flag(y0)
   check_flag(messages)
 
   check_by(by, colnames(data))
-  if (is.null(data$DetectionLimit))
-    data$DetectionLimit <- NA_real_
-  check_class_columns(data, list("Date" = "Date", "Value" = "numeric", "DetectionLimit" = "numeric"))
+  if (!tibble::has_name(data, "DetectionLimit")) data$DetectionLimit <- NA_real_
+  if (!tibble::has_name(data, "Outlier")) data$Outlier <- NA
+
+  check_class_columns(data, list("Date" = "Date", "Value" = "numeric",
+                                 "DetectionLimit" = "numeric",
+                                 "Outlier" = "logical"))
 
   if (is.null(by)) {
-    data %<>% plot_timeseries_by(color = color, y0 = y0, messages = messages)
+    data %<>% plot_timeseries_by(y0 = y0, messages = messages)
   } else {
-    data %<>% plyr::dlply(.variables = by, .fun = plot_timeseries_fun, by = by, color = color, y0 = y0, messages = messages)
+    data %<>% plyr::dlply(.variables = by, .fun = plot_timeseries_fun, by = by, y0 = y0, messages = messages)
   }
   data
 }
