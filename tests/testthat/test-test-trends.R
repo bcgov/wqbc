@@ -10,13 +10,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-context("test-trend")
+context("test-trends")
 
-test_that("test_trend", {
+test_that("test_trends", {
   dummy <- wqbc::dummy
-  expect_error(test_trend(dummy))
+  expect_error(test_trends(dummy))
   dummy$Station <- "Station"
-  trend <- test_trend(dummy)
+  trend <- test_trends(dummy)
   expect_identical(nrow(trend), 8L)
   expect_identical(ncol(trend), 6L)
   expect_identical(trend$Tau, rep(NA_real_, 8))

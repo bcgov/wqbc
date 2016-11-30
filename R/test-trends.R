@@ -15,7 +15,7 @@ smk <- function(x) {
   list(tau = x$tau, significance = x$sl)
 }
 
-do_test_trend <- function(data, use.median = TRUE) {
+do_test_trends <- function(data, use.median = TRUE) {
 
   data %<>% dplyr::mutate_(Month = ~lubridate::month(Date),
                          Year = ~lubridate::year(Date))
@@ -46,7 +46,7 @@ do_test_trend <- function(data, use.median = TRUE) {
 #' identify_outliers(data, by = "Variable", messages = TRUE)
 #' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
 #' @export
-test_trend <- function(data, messages = getOption("wqbc.messages", default = TRUE)) {
+test_trends <- function(data, messages = getOption("wqbc.messages", default = TRUE)) {
   check_flag(messages)
 
   check_cols(data, c("Station", "Date", "Variable", "Value", "Units"))
@@ -58,7 +58,7 @@ test_trend <- function(data, messages = getOption("wqbc.messages", default = TRU
 
   data %<>% tidyr::nest_("Data", c("Date", "Value"))
 
-  data %<>% dplyr::mutate_(Trend = ~purrr::map(Data, do_test_trend))
+  data %<>% dplyr::mutate_(Trend = ~purrr::map(Data, do_test_trends))
 
   data %<>% dplyr::mutate_(Years = ~purrr::map_dbl(Trend, function(x) x$years),
                            Tau = ~purrr::map_dbl(Trend, function(x) x$tau),
