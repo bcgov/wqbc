@@ -19,10 +19,6 @@ plot_timeseries(data, by = NULL, color = "black", y0 = TRUE,
 \item{messages}{A flag indicating whether to print messages.}
 }
 \description{
-The plot includes the detection limits.
-To exclude detection limits. Set \code{dl = NULL}.
-}
-\details{
 If \code{by = NULL} plot_timeseries returns a ggplot object.
 Otherwise it returns a list of ggplot objects.
 }

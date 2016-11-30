@@ -240,20 +240,26 @@ plot_timeseries_by <- function(data, title = NULL, color, y0, messages) {
 
   if (!is_color(color)) check_cols(data, color)
 
-  data_dl <- data["DetectionLimit"] %>% unique() %>%
-    dplyr::filter_(~!is.na(DetectionLimit))
+  data %<>% dplyr::mutate_(Detected = ~Value >= DetectionLimit)
+  data$Detected %<>% factor(levels = c(TRUE, FALSE))
 
   gp <- ggplot2::ggplot(data, ggplot2::aes_string(x = "Date", y = "Value"))
-
-  if(nrow(data_dl))
-    gp <- gp + ggplot2::geom_hline(data = data_dl, ggplot2::aes_string(yintercept = "DetectionLimit"))
 
   if (!is.null(title)) gp <- gp + ggplot2::ggtitle(title)
 
   if (!is_color(color)) {
-    gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = color))
-  } else
-    gp <- gp + ggplot2::geom_point(color = color)
+    if (all(is.na(data$Detected))) {
+      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = color))
+    } else
+      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = color, alpha = "Detected"))
+  } else {
+    if (all(is.na(data$Detected))) {
+      gp <- gp + ggplot2::geom_point(color = color)
+    } else
+      gp <- gp + ggplot2::geom_point(color = color, ggplot2::aes_string(alpha = "Detected"))
+  }
+  if (!all(is.na(data$Detected)))
+    gp <- gp + ggplot2::scale_alpha_discrete(range = c(1, 0.1), drop = FALSE)
   if (y0) gp <- gp + ggplot2::expand_limits(y = 0)
   gp
 }
@@ -264,9 +270,6 @@ plot_timeseries_fun <- function(data, by, color, y0, messages) {
 }
 
 #' Plot Time Series Data
-#'
-#' The plot includes the detection limits.
-#' To exclude detection limits. Set \code{dl = NULL}.
 #'
 #' If \code{by = NULL} plot_timeseries returns a ggplot object.
 #' Otherwise it returns a list of ggplot objects.
