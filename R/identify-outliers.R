@@ -15,7 +15,7 @@ adequate_unique_outliers <- function(x) {
   length(unique(x$Value[!x$Outlier])) > 2
 }
 
-identify_outliers_by <- function(x, threshold, ignore_undetected, large_only, messages) {
+identify_outliers_by <- function(x, sds, ignore_undetected, large_only, messages) {
   outlier <- x$Outlier
   missing <- is.na(x$Value)
   undetected <- !detected(x$Value, x$DetectionLimit)
@@ -29,15 +29,14 @@ identify_outliers_by <- function(x, threshold, ignore_undetected, large_only, me
     id_ok <- which(!x$Outlier)
 
     # calculate average deviation
-    mdev <- stats::mad(x$Value[id_ok])
-    if (mdev == 0) mdev <- stats::sd(x$Value[id_ok]) # because of adequate outliers sd(x) > 0
+    mdev <- stats::sd(x$Value[id_ok]) # because of adequate outliers sd(x) > 0
 
     scaled <- (x$Value[id_ok] - stats::median(x$Value[id_ok])) / mdev
 
     if (large_only) { # if large only then only only too large values are identified
-      x$Outlier[id_ok] <- scaled > threshold
+      x$Outlier[id_ok] <- scaled > sds
     } else
-      x$Outlier[id_ok] <- abs(scaled) > threshold
+      x$Outlier[id_ok] <- abs(scaled) > sds
   }
 
   x$Outlier[missing] <- FALSE
@@ -49,15 +48,13 @@ identify_outliers_by <- function(x, threshold, ignore_undetected, large_only, me
 
 #' Identify Outliers In Water Quality Data
 #'
-#' Identifies outliers in water quality data based on the average deviation.
-#' If possible it uses the Mean Absolute Deviation (MAD)
-#' but if the MAD is zero then it uses the Standard Deviation.
+#' Identifies outliers in water quality data based on the standard deviation.
 #'
 #' @param data A data.frame with a numeric Value column to identify the outliers for.
 #' @param by A character vector of the columns in x to perform the outlier detection by.
-#' @param threshold A number indicating the number of average deviations above which a value is considered an outlier.
+#' @param sds The number of standard deviations above which a value is considered an outlier.
 #' @param ignore_undetected A flag indicating whether to ignore undetected values when calculating the average deviation and identifying outliers.
-#' @param large_only A flag indicating wether only large values which exceed the threshold should be identified as outliers.
+#' @param large_only A flag indicating wether only large values which exceed the sds should be identified as outliers.
 #' @param messages A flag indicating whether to print messages.
 #' @return The data with an additional logical column Outlier which indicates which values were identified as outliers.
 #' @examples
@@ -65,11 +62,11 @@ identify_outliers_by <- function(x, threshold, ignore_undetected, large_only, me
 #' identify_outliers(data, by = "Variable", messages = TRUE)
 #' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
 #' @export
-identify_outliers <- function(data, by = NULL, threshold = 100, ignore_undetected = TRUE,
+identify_outliers <- function(data, by = NULL, sds = 6, ignore_undetected = TRUE,
                               large_only = TRUE,
                               messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
-  check_scalar(threshold, c(1, 1000))
+  check_scalar(sds, c(1, 100))
   check_flag(ignore_undetected)
   check_flag(large_only)
   check_flag(messages)
@@ -84,13 +81,13 @@ identify_outliers <- function(data, by = NULL, threshold = 100, ignore_undetecte
                                   Outlier = TRUE))
 
   if (is.null(by)) {
-    data %<>% identify_outliers_by(threshold = threshold,
+    data %<>% identify_outliers_by(sds = sds,
                                    ignore_undetected = ignore_undetected,
                                    large_only = large_only,
                                    messages = messages)
   } else {
     data %<>% plyr::ddply(.variables = by, .fun = identify_outliers_by,
-                          threshold = threshold, ignore_undetected = ignore_undetected,
+                          sds = sds, ignore_undetected = ignore_undetected,
                           large_only = large_only,
                           messages = messages)
   }

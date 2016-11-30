@@ -1,11 +1,11 @@
 # Copyright 2015 Province of British Columbia
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
@@ -97,8 +97,22 @@ fill_in_conditional_codes <- function (x, ccodes) {
   x
 }
 
-calc_limits_by_date <- function (x) {
+calc_limits_by_date <- function (x, messages) {
   ccodes <- get_conditional_codes(x$Condition[x$Term == "Short"])
+
+  dropped <- dplyr::filter_(x, ~!((!is.na(Term) & Term == "Short") | Code %in% ccodes))
+  x %<>% dplyr::filter_(~((!is.na(Term) & Term == "Short") | Code %in% ccodes))
+
+  if (messages) {
+    dropped %<>% dplyr::group_by_(~Variable) %>% dplyr::summarise_(n = ~n())
+    for (i in seq_along(dropped$Variable)) {
+      message("Dropped ", sum(dropped$n[i]),
+              " values without limits for ", dropped$Variable[i], ".")
+    }
+  }
+  if (!nrow(x))
+    return(NULL)
+
   x <- dplyr::filter_(x, ~(!is.na(Term) & Term == "Short") | Code %in% ccodes)
   x <- fill_in_conditional_codes(x, ccodes)
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
@@ -153,10 +167,22 @@ average_30day_values <- function (x) {
   plyr::ddply(x, c("Variable", "Condition"), average_30day_values_variable)
 }
 
-calc_limits_by_30day <- function (x, dates) {
+calc_limits_by_30day <- function(x, dates, messages) {
   ccodes <- get_conditional_codes(x$Condition[x$Term == "Long"])
-  x <- dplyr::filter_(x, ~(!is.na(Term) & Term == "Long") | Code %in% ccodes)
-  check_rows(x)
+
+  dropped <- dplyr::filter_(x, ~!((!is.na(Term) & Term == "Long") | Code %in% ccodes))
+  x %<>% dplyr::filter_(~((!is.na(Term) & Term == "Long") | Code %in% ccodes))
+
+  if (messages) {
+    dropped %<>% dplyr::group_by_(~Variable) %>% dplyr::summarise_(n = ~n())
+    for (i in seq_along(dropped$Variable)) {
+      message("Dropped ", sum(dropped$n[i]),
+              " values without limits for ", dropped$Variable[i], ".")
+    }
+  }
+
+  if (!nrow(x)) return(NULL)
+
   x <- dplyr::arrange_(x, ~Date)
 
   x <- assign_30day_periods(x, dates)
@@ -170,16 +196,18 @@ calc_limits_by_30day <- function (x, dates) {
   x
 }
 
-calc_limits_by <- function (x, term, dates) {
+calc_limits_by <- function (x, term, dates, messages) {
   x <- join_codes(x)
   x <- join_limits(x)
 
-  if(term == "long") {
-    x <- calc_limits_by_30day(x, dates)
+  if (term == "long") {
+    x <- calc_limits_by_30day(x, dates, messages)
   } else {
-    x <- calc_limits_by_date(x)
+    x <- calc_limits_by_date(x, messages)
   }
-  if(!is.null(x$DetectionLimit)) {
+  if (is.null(x)) return(NULL)
+
+  if (!is.null(x$DetectionLimit)) {
     x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~DetectionLimit, ~Units)
   } else
     x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units)
@@ -235,13 +263,13 @@ calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
 
   x <- clean_wqdata(x, by = by, messages = messages)
 
-  if(messages) message("Calculating ", paste0(term, "-term") ," water quality limits...")
+  if (messages) message("Calculating ", paste0(term, "-term") ," water quality limits...")
 
-  if(is.null(by)) {
-    x <- calc_limits_by(x, term = term, dates = dates)
+  if (is.null(by)) {
+    x <- calc_limits_by(x, term = term, dates = dates, messages = messages)
   } else {
     x <- plyr::ddply(x, .variables = by, .fun = calc_limits_by,
-                     term = term, dates = dates)
+                     term = term, dates = dates, messages = messages)
   }
   if(messages) message("Calculated ", paste0(term, "-term") ," water quality limits.")
   x

@@ -4,20 +4,19 @@
 \alias{identify_outliers}
 \title{Identify Outliers In Water Quality Data}
 \usage{
-identify_outliers(data, by = NULL, threshold = 100,
-  ignore_undetected = TRUE, large_only = TRUE,
-  messages = getOption("wqbc.messages", default = TRUE))
+identify_outliers(data, by = NULL, sds = 6, ignore_undetected = TRUE,
+  large_only = TRUE, messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{data}{A data.frame with a numeric Value column to identify the outliers for.}
 
 \item{by}{A character vector of the columns in x to perform the outlier detection by.}
 
-\item{threshold}{A number indicating the number of average deviations above which a value is considered an outlier.}
+\item{sds}{The number of standard deviations above which a value is considered an outlier.}
 
 \item{ignore_undetected}{A flag indicating whether to ignore undetected values when calculating the average deviation and identifying outliers.}
 
-\item{large_only}{A flag indicating wether only large values which exceed the threshold should be identified as outliers.}
+\item{large_only}{A flag indicating wether only large values which exceed the sds should be identified as outliers.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
@@ -25,9 +24,7 @@ identify_outliers(data, by = NULL, threshold = 100,
 The data with an additional logical column Outlier which indicates which values were identified as outliers.
 }
 \description{
-Identifies outliers in water quality data based on the average deviation.
-If possible it uses the Mean Absolute Deviation (MAD)
-but if the MAD is zero then it uses the Standard Deviation.
+Identifies outliers in water quality data based on the standard deviation.
 }
 \examples{
 data <- standardize_wqdata(wqbc::dummy)
