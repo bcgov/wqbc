@@ -236,22 +236,17 @@ plot_map_wqis <- function (
 }
 
 plot_timeseries_by <- function(data, title = NULL, color, y0, messages) {
-  x <- "Date"
-  y <- "Value"
-  dl <- "DetectionLimit"
-
   if (!is.null(title)) check_string(title)
 
-  if (!is_color(color)) {
-    check_cols(data, c(x, y, color, dl))
-  } else
-    check_cols(data, c(x, y, dl))
+  if (!is_color(color)) check_cols(data, color)
 
-  if (!is.null(dl))
-    data_dl <- data[dl] %>% unique()
+  data_dl <- data["DetectionLimit"] %>% unique() %>%
+    dplyr::filter_(~!is.na(DetectionLimit))
 
-  gp <- ggplot2::ggplot(data, ggplot2::aes_string(x = x, y = y)) +
-    ggplot2::geom_hline(data = data_dl, ggplot2::aes_string(yintercept = dl))
+  gp <- ggplot2::ggplot(data, ggplot2::aes_string(x = "Date", y = "Value"))
+
+  if(nrow(data_dl))
+    gp <- gp + ggplot2::geom_hline(data = data_dl, ggplot2::aes_string(yintercept = "DetectionLimit"))
 
   if (!is.null(title)) gp <- gp + ggplot2::ggtitle(title)
 
