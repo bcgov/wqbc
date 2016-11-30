@@ -65,6 +65,10 @@ del_cols_not_in_y <- function (x, y) {
   delete_columns(x, colnames(x)[!colnames(x) %in% y], messages = FALSE)
 }
 
+detected <- function(value, limit) {
+  !(!value | value <= limit)
+}
+
 delete_rows_with_certain_values <- function (x, columns, messages, txt = "missing") {
   if(missing(columns))
     columns <- as.list(colnames(x))
@@ -127,3 +131,5 @@ sub_vars <- function (x, vars, strict) {
 split_words_tolower <- function (x) {
   tolower(unlist(strsplit(unlist(x), " ")))
 }
+
+

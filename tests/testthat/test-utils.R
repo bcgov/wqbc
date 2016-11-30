@@ -12,6 +12,17 @@
 
 context("utils")
 
+test_that("detected", {
+  expect_identical(detected(1,1), FALSE)
+  expect_identical(detected(2,1), TRUE)
+  expect_identical(detected(0,NA), FALSE)
+  expect_identical(detected(1,NA), NA)
+  expect_identical(detected(1:2,1:2), c(FALSE,FALSE))
+  expect_identical(detected(2:3,1:2), c(TRUE, TRUE))
+  expect_identical(detected(1:2,1:1), c(FALSE, TRUE))
+  expect_identical(detected(0:3,c(NA,NA,2,2)), c(FALSE, NA, FALSE, TRUE))
+})
+
 test_that("punctuate_strings", {
   expect_identical(punctuate_strings(c("x")), "x")
   expect_identical(punctuate_strings(c("x","y")), "x or y")

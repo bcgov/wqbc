@@ -240,7 +240,8 @@ plot_timeseries_by <- function(data, title = NULL, color, y0, messages) {
 
   if (!is_color(color)) check_cols(data, color)
 
-  data %<>% dplyr::mutate_(Detected = ~Value >= DetectionLimit)
+  data %<>% dplyr::mutate_(Detected = ~detected(Value, DetectionLimit))
+
   data$Detected %<>% factor(levels = c(TRUE, FALSE))
 
   gp <- ggplot2::ggplot(data, ggplot2::aes_string(x = "Date", y = "Value"))
