@@ -39,12 +39,13 @@ rm(hydatzip)
 # requires DBI and RSQLite to be installed
 
 # connect HYDAT database
-hydat <- DBI::dbConnect(RSQLite::SQLite(),
-                        "data-raw/hydat/Hydat.sqlite3")
+hydat <- DBI::dbConnect(RSQLite::SQLite(), "data-raw/hydat/Hydat.sqlite3")
+
 # inspect contents
 if (FALSE) {
   DBI::dbListTables(hydat)
   DBI::dbListFields(hydat, 'DLY_FLOWS')
+  DBI::dbListFields(hydat, 'STATIONS')
 }
 
 # Fetch all columns from daily flows data for the 4 stations used in Yue Pilon
@@ -54,21 +55,69 @@ res <- DBI::dbSendQuery(hydat, 'SELECT * FROM DLY_FLOWS
                                       YEAR BETWEEN 1949 and 1999' )
 yuepilon <- DBI::dbFetch(res)
 DBI::dbClearResult(res)
-DBI::dbDisconnect(hydat)
 
+# get station info table
+res <- DBI::dbSendQuery(hydat, 'SELECT * FROM STATIONS
+                                WHERE STATION_NUMBER IN ("02FB007", "02KB001", "02EA005", "02GA010")' )
+stations <- DBI::dbFetch(res)
+DBI::dbClearResult(res)
+
+DBI::dbDisconnect(hydat)
 rm(hydat, res)
 
 
 # process data into appropriate format for wqbc -----------
+library(tidyr)
+library(dplyr)
 
 # summarise
 if (FALSE) {
   table(yuepilon$STATION_NUMBER, yuepilon$YEAR)
 }
 
+# column names to lower case
+names(yuepilon) <- tolower(names(yuepilon))
 
+# select only data columns
+yuepilon <-
+  yuepilon %>%
+    select(station_number:month, matches("^flow[0-9]+$")) %>%
+    as_data_frame()
+
+# restructure and filter out NA obs
+yuepilon <-
+  yuepilon %>%
+    gather(day, flow, -(1:3)) %>%
+    mutate(day = as.integer(sub("flow", "", day))) %>%
+    filter(!is.na(flow))
+
+# calculate annual means
+yuepilon <-
+  yuepilon %>%
+    select(station_number, year, flow) %>%
+    group_by(station_number, year) %>%
+    summarise(flow = mean(flow)) %>%
+    ungroup()
+
+# rename colmns
+yuepilon <-
+  yuepilon %>%
+    rename(SiteID = station_number, Date = year, Value = flow) %>%
+    mutate(Variable = "mean_annual_flow", Units = "m^3/s") %>%
+    select(SiteID, Date, Variable, Value, Units)
+
+# join on station info
+stations <-
+  stations %>%
+    rename(SiteID = STATION_NUMBER, Site = STATION_NAME, Lat = LATITUDE, Long = LONGITUDE) %>%
+    select(SiteID, Site, Lat, Long)
+
+yuepilon <-
+  yuepilon %>%
+    left_join(stations, by = "SiteID")
 
 # save data for use in package ---------------
+library(devtools)
 
 # save data as csv
 write.csv(yuepilon, "data-raw/hydat/yuepilon.csv", row.names = FALSE)

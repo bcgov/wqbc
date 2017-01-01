@@ -126,3 +126,42 @@
 #'   \item{Longitude}{The station longitude in decimal degrees (dbl).}
 #' }
 "stations"
+
+#' Example data used in Yue, Pilon et al. 2001 taken from the
+#'   Canadian National Water Data Archive (HYDAT) 1949-1998
+#'
+#' Hydrometric data are collected and compiled by Water Survey of
+#' Canada’s eight regional offices. The information is housed in
+#' two centrally-managed databases: HYDEX and HYDAT.
+#'
+#' HYDAT is a relational database that contains the actual computed
+#' data for the stations listed in HYDEX. These data include: daily and
+#' monthly means of flow, water levels and sediment concentrations
+#' (for sediment sites). For some sites, peaks and extremes are also
+#' recorded.
+#'
+#' WSC now offers hydrometric data and station information in a single
+#' downloadable file, either in Microsoft Access Database format or in
+#' SQLite format, updated on a quarterly basis.
+#'
+#' This database was used to derive the yuepilon dataset, which is a
+#' table of annual mean river flows for four sites: 02FB007, 02KB001,
+#' 02EA005 and 02GA010.
+#'
+#' @format A data frame with 5 columns:
+#' \describe{
+#'   \item{SiteID}{Unique 7-character station identification code.}
+#'   \item{Date}{The date of the reading.}
+#'   \item{Variable}{The name of the variable.}
+#'   \item{Value}{The value of the reading.}
+#'   \item{Units}{The units of the value.}
+#'   \item{Site}{The full name of the station.}
+#'   \item{Lat}{The latitude of the station in decimal degrees.}
+#'   \item{Long}{The longitude of the station in decimal degrees.}
+#' }
+#' @source \url{http://www.ec.gc.ca/rhc-wsc/default.asp?lang=En&n=9018B5EC-1}
+#' @examples
+#' \dontrun{
+#' demo(yuepilon)
+#' }
+"yuepilon"
