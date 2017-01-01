@@ -61,5 +61,20 @@ rm(hydat, res)
 
 # process data into appropriate format for wqbc -----------
 
-table(out$STATION_NUMBER, out$YEAR)
+# summarise
+if (FALSE) {
+  table(yuepilon$STATION_NUMBER, yuepilon$YEAR)
+}
+
+
+
+# save data for use in package ---------------
+
+# save data as csv
+write.csv(yuepilon, "data-raw/hydat/yuepilon.csv", row.names = FALSE)
+
+# add data to package
+use_data(yuepilon, pkg = as.package("."), overwrite = TRUE, compress = "xz")
+# improve compression
+#tools::resaveRdaFiles("data/yuepilon.rda")
 
