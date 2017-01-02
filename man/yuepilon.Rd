@@ -24,7 +24,7 @@ yuepilon
 }
 \description{
 Hydrometric data are collected and compiled by Water Survey of
-Canada’s eight regional offices. The information is housed in
+Canada's eight regional offices. The information is housed in
 two centrally-managed databases: HYDEX and HYDAT.
 }
 \details{
