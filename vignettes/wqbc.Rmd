@@ -23,8 +23,7 @@ options(wqbc.messages = TRUE)
 knitr::opts_chunk$set(
   comment = "#>",
   error = FALSE,
-  tidy = FALSE,
-  eval = FALSE)
+  tidy = FALSE)
 ```
 
 # Introduction

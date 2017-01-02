@@ -50,15 +50,17 @@ wqbc_substitute <- function (org, mod = org, sub, sub_mod = sub, messages) {
   subd <- data.frame(sub = sub, match = tolower(sub_mod), stringsAsFactors = FALSE)
 
   orgd$sub <- NA_character_
-  for(i in 1:nrow(subd)) {
+  orgd$multi <- FALSE
+  for (i in 1:nrow(subd)) {
     bol <- all_words_in_x_in_y(subd$match[i], orgd$match)
-    if(any(bol)) {
-      if(!all(is.na(orgd$sub[bol]))) {
-        stop(unique(orgd$sub[!is.na(orgd$sub) & bol]), " has multiple matches")
+    if (any(bol)) {
+      if (!all(is.na(orgd$sub[bol]))) {
+        orgd$multi <- orgd$multi | (bol & !is.na(orgd$sub))
       }
       orgd$sub[bol] <- subd$sub[i]
     }
   }
+  orgd$sub[orgd$multi] <- NA_character_
   if(messages) messages_match_substitution(orgd$org, orgd$sub)
   orgd$sub
 }
@@ -112,16 +114,15 @@ substitute_units <- function (
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-#'         "dissolved aluminium", "BORON Total", "KRYPTONITE"), messages = TRUE)
+#'         "dissolved aluminium", "BORON Total", "KRYPTONITE",
+#'         "Total Fluoride Hardness"), messages = TRUE)
 #' substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-#'                         "dissolved aluminium", "BORON Total", "KRYPTONITE"),
+#'                         "dissolved aluminium", "BORON Total", "KRYPTONITE",
+#'                         "Total Fluoride Hardness"),
 #'                         strict = FALSE, messages = TRUE)
-#' \dontrun{
-#' substitute_variables("Total Fluoride Hardness")
-#' }
 #' @seealso \code{\link{substitute_units}}
 #' @export
-substitute_variables <-function (
+substitute_variables <- function (
   x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
 
   assert_that(is.character(x) || is.factor(x))
