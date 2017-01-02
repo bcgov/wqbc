@@ -13,6 +13,12 @@ r:
 
 sudo: false
 
+addons:
+  apt:
+    packages:
+      - libgdal-dev
+      - libproj-dev
+
 repos:
   CRAN: https://cloud.r-project.org
 
