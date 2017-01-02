@@ -19,7 +19,7 @@ library(plyr)
 library(dplyr)
 library(magrittr)
 
-fraser <- read.csv("data-raw/fraser/fraser.csv")
+fraser <- read.csv("data-raw/fraser/fraser.csv", stringsAsFactors = TRUE)
 
 fraser %<>% select(
   SiteID = station_no,
