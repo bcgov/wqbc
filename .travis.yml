@@ -29,6 +29,7 @@ repos:
   CRAN: https://cloud.r-project.org
 
 r_packages:
+  - rgdal
   - rmarkdown
 
 r_github_packages:
