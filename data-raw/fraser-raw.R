@@ -104,4 +104,4 @@ fraser $ station_name <- fraser $ station_name[drop = TRUE]
 fraser $ status <- gsub(" ", "", as.character(fraser $ status))
 fraser $ status[fraser $ status == ""] <- NA
 
-write.csv(fraser_raw, "data-raw/fraser/fraser.csv", row.names = FALSE)
+write.csv(fraser, "data-raw/fraser/fraser.csv", row.names = FALSE)
