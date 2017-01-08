@@ -2,29 +2,35 @@
 % Please edit documentation in R/test-trends.R
 \name{test_trends}
 \alias{test_trends}
-\title{Seasonal Mann-Kendall Trend Teste}
+\title{Thiel-Sen Trend Teste}
 \usage{
-test_trends(data, messages = getOption("wqbc.messages", default = TRUE))
+test_trends(data, breaks = NULL, FUN = "median", level = 0.95,
+  messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{data}{The data.frame to analyse.}
 
+\item{breaks}{A numeric vector used to create groups of consecutive months, if NULL the full
+year is used.}
+
+\item{FUN}{The function to use for yearly summaries, e.g. median, mean, or max.}
+
+\item{level}{The confidence level to compute a confidence interval for the Thiel-Sen slope.}
+
 \item{messages}{A flag indicating whether to print messages.}
 }
 \value{
-A tibble data.frame with The data with an additional logical column Outlier which indicates which values were identified as outliers.
+A tibble data.frame with rows for each Station Variable, and month grouping, and
+        additional columns for the slope estinate and confidence intervals.
 }
 \description{
-Analyses time series using the Seasonal Mann-Kendall test.
+Analyses time series using the Thiel-Sen estimate of slope.
 }
 \details{
-The data must contain the columns Station_Name, Date, Variable, Value, and Units.
+The data must contain the columns Station, Date, Variable, Value, and Units.
 }
 \examples{
-data <- standardize_wqdata(wqbc::dummy)
-identify_outliers(data, by = "Variable", messages = TRUE)
-}
-\seealso{
-\code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
+#data <- standardize_wqdata(wqbc::dummy)
+#test_trends(data, breaks = 6, messages = TRUE)
 }
 

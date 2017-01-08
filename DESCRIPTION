@@ -27,7 +27,7 @@ Imports:
     datacheckr,
     plyr (>= 1.8.1),
     dplyr (>= 0.4.1),
-    Kendall,
+    zyp,
     magrittr,
     purrr,
     grDevices,

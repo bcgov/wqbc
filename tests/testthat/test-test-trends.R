@@ -13,11 +13,10 @@
 context("test-trends")
 
 test_that("test_trends", {
-  dummy <- wqbc::dummy
-  expect_error(test_trends(dummy))
-  dummy$Station <- "Station"
-  trend <- test_trends(dummy)
-  expect_identical(nrow(trend), 8L)
-  expect_identical(ncol(trend), 6L)
-  expect_identical(trend$Tau, rep(NA_real_, 8))
+  expect_error(test_trends(wqbc::dummy))
+  yuepilon <- wqbc::yuepilon
+  trend <- test_trends(yuepilon)
+  expect_identical(nrow(trend), 4L)
+  expect_identical(ncol(trend), 7L)
+  expect_is(trend$est, "numeric")
 })
