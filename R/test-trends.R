@@ -64,10 +64,10 @@ do_test_trends <- function(data, breaks = NULL, FUN = "median", level = 0.95) {
   # fit trend test by month grouping and return
   groups <- colnames(data)
   data %<>% apply(MARGIN = 2, sen, level = level) %>%
-            t() %>% 
-            tibble::as_data_frame() 
+            t() %>%
+            tibble::as_data_frame()
   data$months <- groups
-  
+
   data
 }
 
@@ -88,8 +88,8 @@ do_test_trends <- function(data, breaks = NULL, FUN = "median", level = 0.95) {
 #' @return A tibble data.frame with rows for each Station Variable, and month grouping, and
 #'         additional columns for the slope estinate and confidence intervals.
 #' @examples
-#' #data <- standardize_wqdata(wqbc::dummy)
-#' #test_trends(data, breaks = 6, messages = TRUE)
+#'  data <- wqbc::yuepilon
+#'  trend <- test_trends(data, breaks = 6, messages = TRUE)
 #' @export
 test_trends <- function(data, breaks = NULL, FUN = "median", level = 0.95,
                         messages = getOption("wqbc.messages", default = TRUE)) {

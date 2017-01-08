@@ -30,7 +30,7 @@ Analyses time series using the Thiel-Sen estimate of slope.
 The data must contain the columns Station, Date, Variable, Value, and Units.
 }
 \examples{
-#data <- standardize_wqdata(wqbc::dummy)
-#test_trends(data, breaks = 6, messages = TRUE)
+ data <- wqbc::yuepilon
+ trend <- test_trends(data, breaks = 6, messages = TRUE)
 }
 
