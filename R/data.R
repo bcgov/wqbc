@@ -150,8 +150,8 @@
 #'
 #' @format A data frame with 5 columns:
 #' \describe{
-#'   \item{SiteID}{Unique 7-character station identification code.}
-#'   \item{Date}{The date of the reading.}
+#'   \item{Station}{Unique 7-character station identification code.}
+#'   \item{Date}{The year of the data stored as if it was taken on the 1st Jan.}
 #'   \item{Variable}{The name of the variable.}
 #'   \item{Value}{The value of the reading.}
 #'   \item{Units}{The units of the value.}
