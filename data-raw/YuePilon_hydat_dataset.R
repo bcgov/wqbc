@@ -97,24 +97,25 @@ yuepilon <-
     select(station_number, year, flow) %>%
     group_by(station_number, year) %>%
     summarise(flow = mean(flow)) %>%
-    ungroup()
+    ungroup() %>%
+    mutate(Date = as.Date(as.character(year), format = "%Y"))
 
 # rename colmns
 yuepilon <-
   yuepilon %>%
-    rename(SiteID = station_number, Date = year, Value = flow) %>%
+    rename(Station = station_number, Value = flow) %>%
     mutate(Variable = "mean_annual_flow", Units = "m^3/s") %>%
-    select(SiteID, Date, Variable, Value, Units)
+    select(Station, Date, Variable, Value, Units)
 
 # join on station info
 stations <-
   stations %>%
-    rename(SiteID = STATION_NUMBER, Site = STATION_NAME, Lat = LATITUDE, Long = LONGITUDE) %>%
-    select(SiteID, Site, Lat, Long)
+    rename(Station = STATION_NUMBER, Site = STATION_NAME, Lat = LATITUDE, Long = LONGITUDE) %>%
+    select(Station, Site, Lat, Long)
 
 yuepilon <-
   yuepilon %>%
-    left_join(stations, by = "SiteID")
+    left_join(stations, by = "Station")
 
 # save data for use in package ---------------
 library(devtools)
