@@ -160,8 +160,4 @@
 #'   \item{Long}{The longitude of the station in decimal degrees.}
 #' }
 #' @source \url{http://www.ec.gc.ca/rhc-wsc/default.asp?lang=En&n=9018B5EC-1}
-#' @examples
-#' \dontrun{
-#' demo(yuepilon)
-#' }
 "yuepilon"
