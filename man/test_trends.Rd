@@ -2,9 +2,9 @@
 % Please edit documentation in R/test-trends.R
 \name{test_trends}
 \alias{test_trends}
-\title{Thiel-Sen Trend Teste}
+\title{Thiel-Sen Trend Test}
 \usage{
-test_trends(data, breaks = NULL, FUN = "median", level = 0.95,
+test_trends(data, breaks = NULL, FUN = "median", method = "yuepilon",
   messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
@@ -15,7 +15,7 @@ year is used.}
 
 \item{FUN}{The function to use for yearly summaries, e.g. median, mean, or max.}
 
-\item{level}{The confidence level to compute a confidence interval for the Thiel-Sen slope.}
+\item{method}{The method to use.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
@@ -28,9 +28,16 @@ Analyses time series using the Thiel-Sen estimate of slope.
 }
 \details{
 The data must contain the columns Station, Date, Variable, Value, and Units.
+
+
+
+This routine computes a prewhitened nonlinear trend on a vector of data, using either
+Zhang's (described in Wang and Swail, 2001) or Yue Pilon's (describe in Yue Pilon, 2002)
+method of prewhitening and Sen's slope, and use a Kendall test for significance.
 }
 \examples{
  data <- wqbc::yuepilon
  trend <- test_trends(data, breaks = 6, messages = TRUE)
+ trend <- test_trends(data, breaks = 6, messages = TRUE, method = "sen")
 }
 
