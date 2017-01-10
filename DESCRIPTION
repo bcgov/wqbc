@@ -28,6 +28,7 @@ Imports:
     plyr (>= 1.8.1),
     dplyr (>= 0.4.1),
     zyp,
+    Kendall,
     magrittr,
     purrr,
     grDevices,
