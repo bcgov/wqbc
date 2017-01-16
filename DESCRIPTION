@@ -32,6 +32,7 @@ Imports:
     magrittr,
     purrr,
     grDevices,
+    rems (>= 0.4.0.9999),
     stringr (>= 0.6.2),
     stats,
     tibble,
@@ -44,7 +45,6 @@ Suggests:
     knitr (>= 1.8),
     ggplot2 (>= 1.0.0),
     sp (>= 1.0-17),
-    rems,
     rgdal (>= 0.9-1),
     xtable (>= 1.7-4)
 Remotes:
