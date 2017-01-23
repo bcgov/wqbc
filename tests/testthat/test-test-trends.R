@@ -14,12 +14,20 @@ context("test-trends")
 
 test_that("test_trends", {
   expect_error(test_trends(wqbc::dummy))
-  trend <- test_trends(wqbc::yuepilon)
-  expect_identical(nrow(trend), 4L)
-  expect_identical(ncol(trend), 8L)
-  expect_is(trend$estimate, "numeric")
-  expect_is(trend$months, "character")
-  expect_lt(abs(trend$estimate[1] - 0.01350760), 1e-6)
+  trend1 <- test_trends(wqbc::yuepilon)
+  # test output structure
+  expect_identical(nrow(trend1), 4L)
+  expect_identical(ncol(trend1), 8L)
+  expect_is(trend1$estimate, "numeric")
+  expect_is(trend1$Month, "character")
+  # test values
+  expect_lt(abs(trend1$estimate[1] - 0.01350760), 1e-6)
+  # test breaks
+  trend2 <- test_trends(wqbc::yuepilon, breaks = c(1,4,12))
+  expect_identical(nrow(trend2), 4L * 3L)
+  expect_identical(ncol(trend2), 8L)
+  expect_identical(sum(is.na(trend2$estimate)), 4L * 2L)
+  expect_lt(abs(trend1$estimate[1] - trend2$estimate[1]), 1e-6)
 })
 
 
