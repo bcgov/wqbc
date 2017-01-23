@@ -12,7 +12,7 @@ get_wqdata <- function(emsid = NULL, param_code = NULL, from_date = NULL, to_dat
   check_flag(force)
   check_flag(ask)
 
-  cols <- c("EMS_ID", "PARAMETER_CODE", "COLLECTION_START", "LATITUDE", "LONGITUDE",
+  cols <- c("EMS_ID", "COLLECTION_START", "LATITUDE", "LONGITUDE",
             "PARAMETER_CODE", "PARAMETER", "RESULT", "UNIT", "METHOD_DETECTION_LIMIT")
 
   rems::download_historic_data(force = force, ask = ask)
