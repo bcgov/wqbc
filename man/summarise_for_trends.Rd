@@ -34,7 +34,7 @@ The data must contain the columns Station, Date, Variable, Value, and Units.
  trend <- test_trends(data, messages = TRUE, method = "sen")
  # get the data used in the test
  datasum <- summarise_for_trends(data)
- plot(datasum$Year, datasum$Value, 
+ plot(datasum$Year, datasum$Value,
       main = paste("p-value =", round(trend$sig, 3)),
       ylab = "Value", xlab = "Year", las = 1)
 }

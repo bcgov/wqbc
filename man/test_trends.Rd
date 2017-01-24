@@ -15,7 +15,7 @@ year is used.}
 
 \item{FUN}{The function to use for yearly summaries, e.g. median, mean, or max.}
 
-\item{method}{The method to use.}
+\item{method}{A string of the method to use. Values must be 'yuepilon', 'zhang' or 'sen'.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
@@ -42,6 +42,6 @@ method of prewhitening and Sen's slope, and use a Kendall test for significance.
 \dontrun{
   demo(test_trends)
 }
- 
+
 }
 

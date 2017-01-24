@@ -78,7 +78,7 @@ do_test_trends <- function(data, breaks, FUN, method) {
 #' @param breaks A numeric vector used to create groups of consecutive months, if NULL the full
 #'               year is used.
 #' @param FUN The function to use for yearly summaries, e.g. median, mean, or max.
-#' @param method A string of the method to use.
+#' @param method A string of the method to use. Values must be 'yuepilon', 'zhang' or 'sen'.
 #' @param messages A flag indicating whether to print messages.
 #'
 #' @return A tibble data.frame with rows for each Station Variable, and month grouping, and
