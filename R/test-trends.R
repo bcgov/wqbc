@@ -96,7 +96,11 @@ do_test_trends <- function(data, breaks, FUN, method) {
 #' @examples
 #'  data <- wqbc::yuepilon
 #'  trend <- test_trends(data, breaks = 6, messages = TRUE)
-#'  trend <- test_trends(data, breaks = 6, messages = TRUE, method = "sen")
+#'  trend <- test_trends(data, breaks = 6, messages = TRUE, method = "yuepilon")
+#' \dontrun{
+#'   demo(test_trends)
+#' }
+#'  
 #' @export
 test_trends <- function(data, breaks = NULL, FUN = "median", method = "yuepilon",
                         messages = getOption("wqbc.messages", default = TRUE)) {
@@ -168,16 +172,18 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
 #' @param messages A flag indicating whether to print messages.
 #'
 #' @return A tibble data.frame with rows for each Station Variable, year and month grouping.
-#' @details
-#'
-#' This routine computes a prewhitened nonlinear trend on a vector of data, using either
-#' Zhang's (described in Wang and Swail, 2001) or Yue Pilon's (describe in Yue Pilon, 2002)
-#' method of prewhitening and Sen's slope, and use a Kendall test for significance.
 #'
 #' @examples
-#'  data <- wqbc::yuepilon
-#'  trend <- summarise_for_trends(data, breaks = 6)
-#'  trend <- test_trends(data, breaks = 6, messages = TRUE, method = "sen")
+#'  # select one station
+#'  data(yuepilon)
+#'  data <- yuepilon[yuepilon$Station == "02EA005", ]
+#'  # estimate trend (using simple sen slope)
+#'  trend <- test_trends(data, messages = TRUE, method = "sen")
+#'  # get the data used in the test
+#'  datasum <- summarise_for_trends(data)
+#'  plot(datasum$Year, datasum$Value, 
+#'       main = paste("p-value =", round(trend$sig, 3)),
+#'       ylab = "Value", xlab = "Year", las = 1)
 #' @export
 
 # data <- ems %>% rename(Station = Station_Number) %>% filter(Station == "BC08HB0018");breaks = 6; FUN <- median

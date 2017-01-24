@@ -25,16 +25,17 @@ Compute annual summaries of water quality observations.
 }
 \details{
 The data must contain the columns Station, Date, Variable, Value, and Units.
-
-
-
-This routine computes a prewhitened nonlinear trend on a vector of data, using either
-Zhang's (described in Wang and Swail, 2001) or Yue Pilon's (describe in Yue Pilon, 2002)
-method of prewhitening and Sen's slope, and use a Kendall test for significance.
 }
 \examples{
- data <- wqbc::yuepilon
- trend <- summarise_for_trends(data, breaks = 6)
- trend <- test_trends(data, breaks = 6, messages = TRUE, method = "sen")
+ # select one station
+ data(yuepilon)
+ data <- yuepilon[yuepilon$Station == "02EA005", ]
+ # estimate trend (using simple sen slope)
+ trend <- test_trends(data, messages = TRUE, method = "sen")
+ # get the data used in the test
+ datasum <- summarise_for_trends(data)
+ plot(datasum$Year, datasum$Value, 
+      main = paste("p-value =", round(trend$sig, 3)),
+      ylab = "Value", xlab = "Year", las = 1)
 }
 

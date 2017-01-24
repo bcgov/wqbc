@@ -38,6 +38,10 @@ method of prewhitening and Sen's slope, and use a Kendall test for significance.
 \examples{
  data <- wqbc::yuepilon
  trend <- test_trends(data, breaks = 6, messages = TRUE)
- trend <- test_trends(data, breaks = 6, messages = TRUE, method = "sen")
+ trend <- test_trends(data, breaks = 6, messages = TRUE, method = "yuepilon")
+\dontrun{
+  demo(test_trends)
+}
+ 
 }
 
