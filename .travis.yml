@@ -1,17 +1,10 @@
-# .travis.yml
-
 language: r
+sudo: required
+cache: packages
 
 r:
   - release
 #  - devel breaking on devel rgdal - Jan 2017
-
-cache: packages
-
-os:
-  - linux
-
-sudo: required
 
 before_install:
   - sudo apt-get install libv8-dev
@@ -28,12 +21,12 @@ r_packages:
   - rgdal
   - rmarkdown
 
-r_github_packages:
-  - bcgov/rems
-
-warnings_are_errors: false
-
 notifications:
   email:
     on_success: change
     on_failure: change
+  slack:
+    rooms:
+      - poissonconsulting:BKjfn7jsVh8zXTu2rq7BEQEb
+    on_success: change
+    on_failure: always
