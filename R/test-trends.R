@@ -68,10 +68,6 @@ do_test_trends <- function(data, breaks, FUN, method) {
   data
 }
 
-
-
-
-
 #' Thiel-Sen Trend Test
 #'
 #' Analyses time series using the Thiel-Sen estimate of slope.
@@ -82,7 +78,7 @@ do_test_trends <- function(data, breaks, FUN, method) {
 #' @param breaks A numeric vector used to create groups of consecutive months, if NULL the full
 #'               year is used.
 #' @param FUN The function to use for yearly summaries, e.g. median, mean, or max.
-#' @param method The method to use.
+#' @param method A string of the method to use.
 #' @param messages A flag indicating whether to print messages.
 #'
 #' @return A tibble data.frame with rows for each Station Variable, and month grouping, and
@@ -107,7 +103,8 @@ test_trends <- function(data, breaks = NULL, FUN = "median", method = "yuepilon"
 
   # check inputs
   check_flag(messages)
-  match.arg(method, c("yuepilon", "zhang", "sen"))
+  check_string(method)
+  if (!method %in% c("yuepilon", "zhang", "sen")) error("method must be 'yuepilon', 'zhang' or 'sen'")
 
   check_cols(data, c("Station", "Date", "Variable", "Value", "Units"))
   check_data2(data, list(Date = Sys.Date(),

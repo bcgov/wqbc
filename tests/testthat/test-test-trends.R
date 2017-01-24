@@ -13,7 +13,6 @@
 context("test-trends")
 
 test_that("test_trends", {
-  expect_error(test_trends(wqbc::dummy))
   trend1 <- test_trends(wqbc::yuepilon)
   # test output structure
   expect_identical(nrow(trend1), 4L)
@@ -30,6 +29,10 @@ test_that("test_trends", {
   expect_lt(abs(trend1$estimate[1] - trend2$estimate[1]), 1e-6)
 })
 
+test_that("test_trends provides useful error messages", {
+  expect_error(test_trends(wqbc::dummy), "column names in data must include 'Station', 'Date', 'Variable', 'Value' and 'Units'")
+  expect_error(test_trends(wqbc::yuepilon, method = "yuepilon2"), "method must be 'yuepilon', 'zhang' or 'sen'")
+})
 
 # test values
 # test breaks
