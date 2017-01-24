@@ -1,4 +1,4 @@
-# Copyright 2015 Province of British Columbia
+# Copyright 2017 Province of British Columbia
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@ do_test_trends <- function(data, breaks, FUN, method) {
 #' \dontrun{
 #'   demo(test_trends)
 #' }
-#'  
+#'
 #' @export
 test_trends <- function(data, breaks = NULL, FUN = "median", method = "yuepilon",
                         messages = getOption("wqbc.messages", default = TRUE)) {
@@ -108,6 +108,7 @@ test_trends <- function(data, breaks = NULL, FUN = "median", method = "yuepilon"
   # check inputs
   check_flag(messages)
   match.arg(method, c("yuepilon", "zhang", "sen"))
+
   check_cols(data, c("Station", "Date", "Variable", "Value", "Units"))
   check_data2(data, list(Date = Sys.Date(),
                          Value = c(1, NA)))
@@ -125,12 +126,6 @@ test_trends <- function(data, breaks = NULL, FUN = "median", method = "yuepilon"
   # unnest and return
   data %>% tidyr::unnest_(unnest_cols = c("Trend"), .drop = TRUE)
 }
-
-
-
-
-
-
 
 do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
 
@@ -181,7 +176,7 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
 #'  trend <- test_trends(data, messages = TRUE, method = "sen")
 #'  # get the data used in the test
 #'  datasum <- summarise_for_trends(data)
-#'  plot(datasum$Year, datasum$Value, 
+#'  plot(datasum$Year, datasum$Value,
 #'       main = paste("p-value =", round(trend$sig, 3)),
 #'       ylab = "Value", xlab = "Year", las = 1)
 #' @export
