@@ -21,10 +21,10 @@ fraser$Station <-  factor(sub("BC08", "", as.character(fraser$SiteID)))
 fraser <- filter(fraser, Variable == "ARSENIC TOTAL")
 fraser <- clean_wqdata(fraser, by = "Station")
 
-trends <-  test_trends(fraser, FUN = median)
+trends <-  test_trends(fraser, FUN = "median")
 
 # add on annual summary data
-data <- summarise_for_trends(fraser, FUN = median)
+data <- summarise_for_trends(fraser, FUN = "median")
 data <- left_join(trends, data)
 
 data %>% ggplot(aes(x = Year, y = Value, color = sig < 0.05)) +

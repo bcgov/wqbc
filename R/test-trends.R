@@ -103,6 +103,7 @@ test_trends <- function(data, breaks = NULL, FUN = "median", method = "yuepilon"
 
   # check inputs
   check_flag(messages)
+  check_string(FUN)
   check_string(method)
   if (!method %in% c("yuepilon", "zhang", "sen")) error("method must be 'yuepilon', 'zhang' or 'sen'")
 
@@ -185,6 +186,7 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
 
   # check inputs
   check_flag(messages)
+  check_string(FUN)
   check_cols(data, c("Station", "Date", "Variable", "Value", "Units"))
   check_data2(data, list(Date = Sys.Date(),
                          Value = c(1, NA)))
@@ -202,7 +204,9 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
   # unnest
   data %<>% tidyr::unnest_(unnest_cols = c("Summary"), .drop = TRUE)
 
+  data %<>% dplyr::mutate_(FUN = ~FUN)
+
   # gather and return
-  gather_cols <- setdiff(names(data), c("Station", "Variable", "Units", "Year"))
+ gather_cols <- setdiff(names(data), c("Station", "Variable", "Units", "Year", "FUN"))
   data %>% tidyr::gather_("Month", "Value", gather_cols = gather_cols)
 }
