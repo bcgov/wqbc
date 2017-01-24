@@ -4,7 +4,7 @@ language: r
 
 r:
   - release
-  - devel
+#  - devel breaking on devel rgdal - Jan 2017
 
 cache: packages
 
