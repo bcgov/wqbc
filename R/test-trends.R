@@ -36,15 +36,15 @@ trend <- function(y, method = c("yuepilon", "zhang", "sen")) {
     out[2:3] <- ss.ci["Year",]
     out[4] <- Kendall::Kendall(y, Year)$sl
   } else
-  if (method %in% c("yuepilon", "zhang")) {
-    zs <- zyp::zyp.trend.vector(y, x = Year, method = method,
-                                conf.intervals = TRUE,
-                                preserve.range.for.sig.test = TRUE)
-    out[] <- zs[c("trend", "lbound", "ubound", "sig")]
-  } else {
-    # should never get here, but just in case:
-    stop("Unknown method :", method)
-  }
+    if (method %in% c("yuepilon", "zhang")) {
+      zs <- zyp::zyp.trend.vector(y, x = Year, method = method,
+                                  conf.intervals = TRUE,
+                                  preserve.range.for.sig.test = TRUE)
+      out[] <- zs[c("trend", "lbound", "ubound", "sig")]
+    } else {
+      # should never get here, but just in case:
+      stop("Unknown method :", method)
+    }
 
   # return
   out
@@ -61,8 +61,8 @@ do_test_trends <- function(data, breaks, FUN, method) {
   # fit trend test by month grouping and return
   groups <- colnames(data)
   data %<>% apply(MARGIN = 2, trend, method = method) %>%
-            t() %>%
-            tibble::as_data_frame()
+    t() %>%
+    tibble::as_data_frame()
   data$Month <- groups
 
   data
@@ -103,7 +103,6 @@ test_trends <- function(data, breaks = NULL, FUN = "median", method = "yuepilon"
 
   # check inputs
   check_flag(messages)
-  check_string(FUN)
   check_string(method)
   if (!method %in% c("yuepilon", "zhang", "sen")) error("method must be 'yuepilon', 'zhang' or 'sen'")
 
@@ -137,7 +136,7 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
   # add Month, Year and month grouping columns
   data %<>% dplyr::mutate_(Month = ~lubridate::month(Date),
                            Year  = ~lubridate::year(Date)) %>%
-            dplyr::mutate_(group = ~cut(Month, breaks))
+    dplyr::mutate_(group = ~cut(Month, breaks))
 
   # summarise by group
   data %<>% with(., tapply(Value, list(Year, group), FUN))
@@ -182,11 +181,10 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
 # data <- ems %>% rename(Station = Station_Number) %>% filter(Station == "BC08HB0018");breaks = 6; FUN <- median
 
 summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
-                        messages = getOption("wqbc.messages", default = TRUE)) {
+                                 messages = getOption("wqbc.messages", default = TRUE)) {
 
   # check inputs
   check_flag(messages)
-  check_string(FUN)
   check_cols(data, c("Station", "Date", "Variable", "Value", "Units"))
   check_data2(data, list(Date = Sys.Date(),
                          Value = c(1, NA)))
@@ -204,9 +202,7 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
   # unnest
   data %<>% tidyr::unnest_(unnest_cols = c("Summary"), .drop = TRUE)
 
-  data %<>% dplyr::mutate_(FUN = ~FUN)
-
   # gather and return
- gather_cols <- setdiff(names(data), c("Station", "Variable", "Units", "Year", "FUN"))
+  gather_cols <- setdiff(names(data), c("Station", "Variable", "Units", "Year"))
   data %>% tidyr::gather_("Month", "Value", gather_cols = gather_cols)
 }
