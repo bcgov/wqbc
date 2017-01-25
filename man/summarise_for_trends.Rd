@@ -18,7 +18,7 @@ year is used.}
 \item{messages}{A flag indicating whether to print messages.}
 }
 \value{
-A tibble data.frame with rows for each Station Variable, year and month grouping.
+A tibble data.frame with rows for each Station, Variable, Year and month grouping.
 }
 \description{
 Compute annual summaries of water quality observations.
@@ -34,7 +34,7 @@ The data must contain the columns Station, Date, Variable, Value, and Units.
  trend <- test_trends(data, messages = TRUE, method = "sen")
  # get the data used in the test
  datasum <- summarise_for_trends(data)
- plot(datasum$Year, datasum$Value, 
+ plot(datasum$Year, datasum$Value,
       main = paste("p-value =", round(trend$sig, 3)),
       ylab = "Value", xlab = "Year", las = 1)
 }

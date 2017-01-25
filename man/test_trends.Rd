@@ -15,13 +15,13 @@ year is used.}
 
 \item{FUN}{The function to use for yearly summaries, e.g. median, mean, or max.}
 
-\item{method}{The method to use.}
+\item{method}{The method to use, default is "yuepilon", see details.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
 \value{
-A tibble data.frame with rows for each Station Variable, and month grouping, and
-        additional columns for the slope estinate and confidence intervals.
+A tibble data.frame with rows for each Station, Variable, and month grouping, and
+        additional columns for the slope estinate, 95\% confidence intervals and p-value.
 }
 \description{
 Analyses time series using the Thiel-Sen estimate of slope.
@@ -31,9 +31,9 @@ The data must contain the columns Station, Date, Variable, Value, and Units.
 
 
 
-This routine computes a prewhitened nonlinear trend on a vector of data, using either
+This routine computes a prewhitened nonlinear trend on a vector of data, using
 Zhang's (described in Wang and Swail, 2001) or Yue Pilon's (describe in Yue Pilon, 2002)
-method of prewhitening and Sen's slope, and use a Kendall test for significance.
+method of prewhitening, or Sen's slope with a Kendall test for significance.
 }
 \examples{
  data <- wqbc::yuepilon
@@ -42,6 +42,26 @@ method of prewhitening and Sen's slope, and use a Kendall test for significance.
 \dontrun{
   demo(test_trends)
 }
- 
+
+}
+\references{
+Yue, S., Pilon, P., Phinney, B., & Cavadias, G. (2002). The influence of autocorrelation on the
+ability to detect trend in hydrological series. Hydrological Processes, 16(9), 1807-1829.
+
+Zhang, X., Harvey, K. D., Hogg, W. D., & Yuzyk, T. R. (2001). Trends in Canadian streamflow.
+Water Resources Research, 37(4), 987-998.
+
+Kendall, M. (1938). "A New Measure of Rank Correlation". Biometrika. 30 (1–2): 81–89.
+doi:10.1093/biomet/30.1-2.81
+
+Theil, H. (1950), "A rank-invariant method of linear and polynomial regression analysis. I, II,
+III", Nederl. Akad. Wetensch., Proc., 53: 386–392, 521–525, 1397–1412.
+
+Sen, Pranab Kumar (1968), "Estimates of the regression coefficient based on Kendall's tau",
+Journal of the American Statistical Association, 63 (324): 1379–1389, doi:10.2307/2285891
+}
+\seealso{
+\code{\link[zyp]{zyp.yuepilon}}, \code{\link[zyp]{zyp.zhang}}, \code{\link[zyp]{zyp.sen}}
+  and \code{\link[Kendall]{Kendall}} for the individual methods implmented.
 }
 

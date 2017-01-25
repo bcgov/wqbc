@@ -82,16 +82,36 @@ do_test_trends <- function(data, breaks, FUN, method) {
 #' @param breaks A numeric vector used to create groups of consecutive months, if NULL the full
 #'               year is used.
 #' @param FUN The function to use for yearly summaries, e.g. median, mean, or max.
-#' @param method The method to use.
+#' @param method The method to use, default is "yuepilon", see details.
 #' @param messages A flag indicating whether to print messages.
 #'
-#' @return A tibble data.frame with rows for each Station Variable, and month grouping, and
-#'         additional columns for the slope estinate and confidence intervals.
+#' @return A tibble data.frame with rows for each Station, Variable, and month grouping, and
+#'         additional columns for the slope estinate, 95\% confidence intervals and p-value.
 #' @details
 #'
-#' This routine computes a prewhitened nonlinear trend on a vector of data, using either
+#' This routine computes a prewhitened nonlinear trend on a vector of data, using
 #' Zhang's (described in Wang and Swail, 2001) or Yue Pilon's (describe in Yue Pilon, 2002)
-#' method of prewhitening and Sen's slope, and use a Kendall test for significance.
+#' method of prewhitening, or Sen's slope with a Kendall test for significance.
+#'
+#' @seealso \code{\link[zyp]{zyp.yuepilon}}, \code{\link[zyp]{zyp.zhang}}, \code{\link[zyp]{zyp.sen}}
+#'   and \code{\link[Kendall]{Kendall}} for the individual methods implmented.
+#'
+#' @references
+#'
+#' Yue, S., Pilon, P., Phinney, B., & Cavadias, G. (2002). The influence of autocorrelation on the
+#' ability to detect trend in hydrological series. Hydrological Processes, 16(9), 1807-1829.
+#'
+#' Zhang, X., Harvey, K. D., Hogg, W. D., & Yuzyk, T. R. (2001). Trends in Canadian streamflow.
+#' Water Resources Research, 37(4), 987-998.
+#'
+#' Kendall, M. (1938). "A New Measure of Rank Correlation". Biometrika. 30 (1–2): 81–89.
+#' doi:10.1093/biomet/30.1-2.81
+#'
+#' Theil, H. (1950), "A rank-invariant method of linear and polynomial regression analysis. I, II,
+#' III", Nederl. Akad. Wetensch., Proc., 53: 386–392, 521–525, 1397–1412.
+#'
+#' Sen, Pranab Kumar (1968), "Estimates of the regression coefficient based on Kendall's tau",
+#' Journal of the American Statistical Association, 63 (324): 1379–1389, doi:10.2307/2285891
 #'
 #' @examples
 #'  data <- wqbc::yuepilon
@@ -100,7 +120,7 @@ do_test_trends <- function(data, breaks, FUN, method) {
 #' \dontrun{
 #'   demo(test_trends)
 #' }
-#'  
+#'
 #' @export
 test_trends <- function(data, breaks = NULL, FUN = "median", method = "yuepilon",
                         messages = getOption("wqbc.messages", default = TRUE)) {
@@ -171,7 +191,7 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
 #' @param FUN The function to use for yearly summaries, e.g. median, mean, or max.
 #' @param messages A flag indicating whether to print messages.
 #'
-#' @return A tibble data.frame with rows for each Station Variable, year and month grouping.
+#' @return A tibble data.frame with rows for each Station, Variable, Year and month grouping.
 #'
 #' @examples
 #'  # select one station
@@ -181,7 +201,7 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
 #'  trend <- test_trends(data, messages = TRUE, method = "sen")
 #'  # get the data used in the test
 #'  datasum <- summarise_for_trends(data)
-#'  plot(datasum$Year, datasum$Value, 
+#'  plot(datasum$Year, datasum$Value,
 #'       main = paste("p-value =", round(trend$sig, 3)),
 #'       ylab = "Value", xlab = "Year", las = 1)
 #' @export
