@@ -15,7 +15,7 @@ year is used.}
 
 \item{FUN}{The function to use for yearly summaries, e.g. median, mean, or max.}
 
-\item{method}{The method to use, default is "yuepilon", see details.}
+\item{method}{A string of the method to use. Values must be 'yuepilon', 'zhang' or 'sen'.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
@@ -45,20 +45,20 @@ method of prewhitening, or Sen's slope with a Kendall test for significance.
 
 }
 \references{
-Yue, S., Pilon, P., Phinney, B., & Cavadias, G. (2002). The influence of autocorrelation on the
+Yue, S., Pilon, P., Phinney, B., and Cavadias, G. (2002). The influence of autocorrelation on the
 ability to detect trend in hydrological series. Hydrological Processes, 16(9), 1807-1829.
 
-Zhang, X., Harvey, K. D., Hogg, W. D., & Yuzyk, T. R. (2001). Trends in Canadian streamflow.
+Zhang, X., Harvey, K. D., Hogg, W. D., and Yuzyk, T. R. (2001). Trends in Canadian streamflow.
 Water Resources Research, 37(4), 987-998.
 
-Kendall, M. (1938). "A New Measure of Rank Correlation". Biometrika. 30 (1–2): 81–89.
+Kendall, M. (1938). A New Measure of Rank Correlation. Biometrika. 30 (1-2): 81-89.
 doi:10.1093/biomet/30.1-2.81
 
-Theil, H. (1950), "A rank-invariant method of linear and polynomial regression analysis. I, II,
-III", Nederl. Akad. Wetensch., Proc., 53: 386–392, 521–525, 1397–1412.
+Theil, H. (1950), A rank-invariant method of linear and polynomial regression analysis. I, II,
+III, Nederl. Akad. Wetensch., Proc., 53: 386-392, 521-525, 1397-1412.
 
-Sen, Pranab Kumar (1968), "Estimates of the regression coefficient based on Kendall's tau",
-Journal of the American Statistical Association, 63 (324): 1379–1389, doi:10.2307/2285891
+Sen, Pranab Kumar (1968), Estimates of the regression coefficient based on Kendall's tau,
+Journal of the American Statistical Association, 63 (324): 1379-1389, doi:10.2307/2285891
 }
 \seealso{
 \code{\link[zyp]{zyp.yuepilon}}, \code{\link[zyp]{zyp.zhang}}, \code{\link[zyp]{zyp.sen}}

@@ -1,4 +1,4 @@
-# Copyright 2015 Province of British Columbia
+# Copyright 2017 Province of British Columbia
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -36,15 +36,15 @@ trend <- function(y, method = c("yuepilon", "zhang", "sen")) {
     out[2:3] <- ss.ci["Year",]
     out[4] <- Kendall::Kendall(y, Year)$sl
   } else
-  if (method %in% c("yuepilon", "zhang")) {
-    zs <- zyp::zyp.trend.vector(y, x = Year, method = method,
-                                conf.intervals = TRUE,
-                                preserve.range.for.sig.test = TRUE)
-    out[] <- zs[c("trend", "lbound", "ubound", "sig")]
-  } else {
-    # should never get here, but just in case:
-    stop("Unknown method :", method)
-  }
+    if (method %in% c("yuepilon", "zhang")) {
+      zs <- zyp::zyp.trend.vector(y, x = Year, method = method,
+                                  conf.intervals = TRUE,
+                                  preserve.range.for.sig.test = TRUE)
+      out[] <- zs[c("trend", "lbound", "ubound", "sig")]
+    } else {
+      # should never get here, but just in case:
+      stop("Unknown method :", method)
+    }
 
   # return
   out
@@ -61,16 +61,12 @@ do_test_trends <- function(data, breaks, FUN, method) {
   # fit trend test by month grouping and return
   groups <- colnames(data)
   data %<>% apply(MARGIN = 2, trend, method = method) %>%
-            t() %>%
-            tibble::as_data_frame()
+    t() %>%
+    tibble::as_data_frame()
   data$Month <- groups
 
   data
 }
-
-
-
-
 
 #' Thiel-Sen Trend Test
 #'
@@ -82,7 +78,7 @@ do_test_trends <- function(data, breaks, FUN, method) {
 #' @param breaks A numeric vector used to create groups of consecutive months, if NULL the full
 #'               year is used.
 #' @param FUN The function to use for yearly summaries, e.g. median, mean, or max.
-#' @param method The method to use, default is "yuepilon", see details.
+#' @param method A string of the method to use. Values must be 'yuepilon', 'zhang' or 'sen'.
 #' @param messages A flag indicating whether to print messages.
 #'
 #' @return A tibble data.frame with rows for each Station, Variable, and month grouping, and
@@ -98,20 +94,20 @@ do_test_trends <- function(data, breaks, FUN, method) {
 #'
 #' @references
 #'
-#' Yue, S., Pilon, P., Phinney, B., & Cavadias, G. (2002). The influence of autocorrelation on the
+#' Yue, S., Pilon, P., Phinney, B., and Cavadias, G. (2002). The influence of autocorrelation on the
 #' ability to detect trend in hydrological series. Hydrological Processes, 16(9), 1807-1829.
 #'
-#' Zhang, X., Harvey, K. D., Hogg, W. D., & Yuzyk, T. R. (2001). Trends in Canadian streamflow.
+#' Zhang, X., Harvey, K. D., Hogg, W. D., and Yuzyk, T. R. (2001). Trends in Canadian streamflow.
 #' Water Resources Research, 37(4), 987-998.
 #'
-#' Kendall, M. (1938). "A New Measure of Rank Correlation". Biometrika. 30 (1–2): 81–89.
+#' Kendall, M. (1938). A New Measure of Rank Correlation. Biometrika. 30 (1-2): 81-89.
 #' doi:10.1093/biomet/30.1-2.81
 #'
-#' Theil, H. (1950), "A rank-invariant method of linear and polynomial regression analysis. I, II,
-#' III", Nederl. Akad. Wetensch., Proc., 53: 386–392, 521–525, 1397–1412.
+#' Theil, H. (1950), A rank-invariant method of linear and polynomial regression analysis. I, II,
+#' III, Nederl. Akad. Wetensch., Proc., 53: 386-392, 521-525, 1397-1412.
 #'
-#' Sen, Pranab Kumar (1968), "Estimates of the regression coefficient based on Kendall's tau",
-#' Journal of the American Statistical Association, 63 (324): 1379–1389, doi:10.2307/2285891
+#' Sen, Pranab Kumar (1968), Estimates of the regression coefficient based on Kendall's tau,
+#' Journal of the American Statistical Association, 63 (324): 1379-1389, doi:10.2307/2285891
 #'
 #' @examples
 #'  data <- wqbc::yuepilon
@@ -127,7 +123,9 @@ test_trends <- function(data, breaks = NULL, FUN = "median", method = "yuepilon"
 
   # check inputs
   check_flag(messages)
-  match.arg(method, c("yuepilon", "zhang", "sen"))
+  check_string(method)
+  if (!method %in% c("yuepilon", "zhang", "sen")) error("method must be 'yuepilon', 'zhang' or 'sen'")
+
   check_cols(data, c("Station", "Date", "Variable", "Value", "Units"))
   check_data2(data, list(Date = Sys.Date(),
                          Value = c(1, NA)))
@@ -146,12 +144,6 @@ test_trends <- function(data, breaks = NULL, FUN = "median", method = "yuepilon"
   data %>% tidyr::unnest_(unnest_cols = c("Trend"), .drop = TRUE)
 }
 
-
-
-
-
-
-
 do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
 
   # get function to use for summarise multiple observations
@@ -164,7 +156,7 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
   # add Month, Year and month grouping columns
   data %<>% dplyr::mutate_(Month = ~lubridate::month(Date),
                            Year  = ~lubridate::year(Date)) %>%
-            dplyr::mutate_(group = ~cut(Month, breaks))
+    dplyr::mutate_(group = ~cut(Month, breaks))
 
   # summarise by group
   data %<>% with(., tapply(Value, list(Year, group), FUN))
@@ -209,7 +201,7 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
 # data <- ems %>% rename(Station = Station_Number) %>% filter(Station == "BC08HB0018");breaks = 6; FUN <- median
 
 summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
-                        messages = getOption("wqbc.messages", default = TRUE)) {
+                                 messages = getOption("wqbc.messages", default = TRUE)) {
 
   # check inputs
   check_flag(messages)
