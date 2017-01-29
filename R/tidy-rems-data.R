@@ -18,5 +18,7 @@ tidy_rems_data <- function(x) {
                           DetectionLimit = ~METHOD_DETECTION_LIMIT, Variable = ~PARAMETER,
                           Latitude = ~LATITUDE, Longitude = ~LONGITUDE)
 
+  x$Value[!is.na(x$Value) & !is.na(x$DetectionLimit) & x$DetectionLimit > 0 & x$Value <= x$DetectionLimit] <- 0
+
   x
 }
