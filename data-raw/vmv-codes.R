@@ -8,7 +8,7 @@ vmv_codes <- read_csv("http://donnees.ec.gc.ca/data/substances/monitor/national-
 
 vmv_codes %<>% select(Variable = VARIABLE, VMV_Code = VMV_CODE, Variable_Code = VARIABLE_CODE)
 
-vmv_codes %>%  distinct() %>% arrange(Variable) %>% filter(!is.na(Variable))
+vmv_codes %<>%  distinct() %>% filter(!is.na(Variable)) %>% dplyr::arrange(Variable)
 
 vmv_codes %<>% as.tbl()
 use_data(vmv_codes, overwrite = TRUE)
