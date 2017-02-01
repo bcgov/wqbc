@@ -161,3 +161,17 @@
 #' }
 #' @source \url{http://www.ec.gc.ca/rhc-wsc/default.asp?lang=En&n=9018B5EC-1}
 "yuepilon"
+
+#' Water Quality Parameter VMV and Variable Codes for Canada
+#'
+#' The standard variables, VMV codes and Variable Codes provided by Environment Canada.
+#'
+#' There can be more than one VMV Code for a variable!
+#'
+#' @format A tibble
+#' \describe{
+#'   \item{Variable}{The name of the variable.}
+#'   \item{VMV_Code}{The VMV code.}
+#'   \item{Variable_Code}{The Variable Code.}
+#' }
+"vmv_codes"
