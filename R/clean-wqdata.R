@@ -71,7 +71,9 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 #' @details If there are three or more replicates with a coefficient of variation (CV) in
 #' exceedance of \code{max_cv} then the replicates with the highest absolute deviation
 #' is dropped until the CV is less than or equal to \code{max_cv}
-#' or only two values remain. The default value max_cv value of 1.29
+#' or only two values remain. By default all values are averaged.
+#'
+#' A max_cv value of 1.29
 #' is exceeded by two zero and one positive value (CV = 1.73)
 #' or by two identical positive values and a third value an order
 #' or magnitude greater (CV = 1.30). It is not exceed by one zero
@@ -86,14 +88,21 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 #' clean_wqdata(wqbc::dummy, messages = TRUE)
 #' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
 #' @export
-clean_wqdata <- function (x, by = NULL, max_cv = 1.29,
+clean_wqdata <- function(x, by = NULL, max_cv = Inf,
                           messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   assert_that(is.number(max_cv))
   assert_that(is.flag(messages) && noNA(messages))
 
-  x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")), messages = messages)
+  if (!tibble::has_name(x, "Date")) {
+    if (tibble::has_name(x, "DateTime")) {
+      if (messages) message("replacing DateTime column with Date")
+      x$Date <- lubridate::date(x$DateTime)
+      x$DateTime <- NULL
+    } else
+      x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")), messages = messages)
+  }
   check_class_columns(x, list("Date" = "Date"))
 
   if("DetectionLimit" %in% colnames(x))

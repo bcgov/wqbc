@@ -4,7 +4,7 @@
 \alias{clean_wqdata}
 \title{Clean Water Quality Data}
 \usage{
-clean_wqdata(x, by = NULL, max_cv = 1.29,
+clean_wqdata(x, by = NULL, max_cv = Inf,
   messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
@@ -30,7 +30,9 @@ to calculating limits.
 If there are three or more replicates with a coefficient of variation (CV) in
 exceedance of \code{max_cv} then the replicates with the highest absolute deviation
 is dropped until the CV is less than or equal to \code{max_cv}
-or only two values remain. The default value max_cv value of 1.29
+or only two values remain. By default all values are averaged.
+
+A max_cv value of 1.29
 is exceeded by two zero and one positive value (CV = 1.73)
 or by two identical positive values and a third value an order
 or magnitude greater (CV = 1.30). It is not exceed by one zero
