@@ -48,7 +48,7 @@ tidy_ec_data <- function(x) {
                         Value = ~VALUE_VALEUR,
                         DetectionLimit = ~SDL_LDE)
 
-  x$Unit <- unit[[1]]
+  x$Units <- unit[[1]]
 
   x %<>% dplyr::select_(~dplyr::everything(), ~DetectionLimit)
 
