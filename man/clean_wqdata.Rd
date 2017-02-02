@@ -4,7 +4,7 @@
 \alias{clean_wqdata}
 \title{Clean Water Quality Data}
 \usage{
-clean_wqdata(x, by = NULL, max_cv = Inf, sds = 6,
+clean_wqdata(x, by = NULL, max_cv = Inf, sds = 10,
   ignore_undetected = TRUE, large_only = TRUE, delete_outliers = FALSE,
   messages = getOption("wqbc.messages", default = TRUE))
 }

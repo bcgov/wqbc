@@ -93,7 +93,7 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 #' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
 #' @export
 clean_wqdata <- function(x, by = NULL, max_cv = Inf,
-                         sds = 6, ignore_undetected = TRUE,
+                         sds = 10, ignore_undetected = TRUE,
                          large_only = TRUE, delete_outliers = FALSE,
                           messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
