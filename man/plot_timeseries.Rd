@@ -4,7 +4,7 @@
 \alias{plot_timeseries}
 \title{Plot Time Series Data}
 \usage{
-plot_timeseries(data, by = NULL, y0 = TRUE,
+plot_timeseries(data, by = NULL, y0 = TRUE, size = 1,
   messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
@@ -13,6 +13,8 @@ plot_timeseries(data, by = NULL, y0 = TRUE,
 \item{by}{A character vector of the columns to plot the time series by.}
 
 \item{y0}{A flag indicating whether to expand the y-axis limits to include 0.}
+
+\item{size}{A number of the point size.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
