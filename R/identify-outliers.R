@@ -26,19 +26,24 @@ identify_outliers_by <- function(x, sds, ignore_undetected, large_only, messages
   if (adequate_unique_outliers(x)) {
 
     # only consider values which are not already outliers
-    id_ok <- which(!x$Outlier)
 
-    # calculate average deviation
-    mdev <- stats::sd(x$Value[id_ok]) # because of adequate outliers sd(x) > 0
+    new <- TRUE
+    while (new && adequate_unique_outliers(x)) {
+      id_ok <- which(!x$Outlier)
+      # calculate average deviation
+      mdev <- stats::sd(x$Value[id_ok]) # because of adequate outliers sd(x) > 0
 
-    scaled <- (x$Value[id_ok] - stats::median(x$Value[id_ok])) / mdev
+      scaled <- (x$Value[id_ok] - stats::median(x$Value[id_ok])) / mdev
 
-    if (large_only) { # if large only then only only too large values are identified
-      x$Outlier[id_ok] <- scaled > sds
-    } else
-      x$Outlier[id_ok] <- abs(scaled) > sds
+      if (large_only) { # if large only then only only too large values are identified
+        bol <- scaled > sds
+      } else
+        bol <- abs(scaled) > sds
+
+      x$Outlier[id_ok] <- bol
+      new <- any(bol)
+    }
   }
-
   x$Outlier[missing] <- FALSE
   if (ignore_undetected) x$Outlier[undetected] <- FALSE
   x$Outlier[outlier] <- TRUE
