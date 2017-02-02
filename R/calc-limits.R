@@ -263,6 +263,8 @@ calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
 
   x <- clean_wqdata(x, by = by, messages = messages)
 
+  x$DetectionLimit <- NULL
+
   if (messages) message("Calculating ", paste0(term, "-term") ," water quality limits...")
 
   if (is.null(by)) {

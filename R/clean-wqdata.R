@@ -83,17 +83,30 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 #' @param by A character vector of the columns in x to perform the cleaning by.
 #' @param max_cv A number indicating the maximum permitted coefficient
 #' of variation for replicates.
+#' @param sds The number of standard deviations above which a value is considered an outlier.
+#' @param ignore_undetected A flag indicating whether to ignore undetected values when calculating the average deviation and identifying outliers.
+#' @param large_only A flag indicating whether only large values which exceed the sds should be identified as outliers.
+#' @param delete_outliers A flag indicating whether to delete outliers or merely flag them.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' clean_wqdata(wqbc::dummy, messages = TRUE)
 #' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
 #' @export
 clean_wqdata <- function(x, by = NULL, max_cv = Inf,
+                         sds = 6, ignore_undetected = TRUE,
+                         large_only = TRUE, delete_outliers = FALSE,
                           messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   assert_that(is.number(max_cv))
   assert_that(is.flag(messages) && noNA(messages))
+
+  check_scalar(sds, c(1, 100))
+  check_flag(ignore_undetected)
+  check_flag(large_only)
+  check_flag(delete_outliers)
+
+  check_by(by, colnames(x), res_names = c("Value", "Outlier", "DetectionLimit"))
 
   if (!tibble::has_name(x, "Date")) {
     if (tibble::has_name(x, "DateTime")) {
@@ -120,6 +133,15 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
     x <- plyr::ddply(x, .variables = by, .fun = clean_wqdata_by, max_cv = max_cv,
                      messages = messages)
   }
-  if(messages) message("Cleansed water quality data.")
+
+  x %<>% identify_outliers(by = by, sds = sds, ignore_undetected = ignore_undetected, large_only = large_only,
+                           messages = messages)
+
+  if (delete_outliers) {
+    x %<>% dplyr::filter_(~!is.na(Outlier) & Outlier)
+    if (messages) message("Deleted outliers.")
+  }
+
+  if (messages) message("Cleansed water quality data.")
   x
 }

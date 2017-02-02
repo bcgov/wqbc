@@ -4,7 +4,8 @@
 \alias{clean_wqdata}
 \title{Clean Water Quality Data}
 \usage{
-clean_wqdata(x, by = NULL, max_cv = Inf,
+clean_wqdata(x, by = NULL, max_cv = Inf, sds = 6,
+  ignore_undetected = TRUE, large_only = TRUE, delete_outliers = FALSE,
   messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
@@ -14,6 +15,14 @@ clean_wqdata(x, by = NULL, max_cv = Inf,
 
 \item{max_cv}{A number indicating the maximum permitted coefficient
 of variation for replicates.}
+
+\item{sds}{The number of standard deviations above which a value is considered an outlier.}
+
+\item{ignore_undetected}{A flag indicating whether to ignore undetected values when calculating the average deviation and identifying outliers.}
+
+\item{large_only}{A flag indicating whether only large values which exceed the sds should be identified as outliers.}
+
+\item{delete_outliers}{A flag indicating whether to delete outliers or merely flag them.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
