@@ -16,7 +16,7 @@ test_that("test_trends", {
   trend1 <- test_trends(wqbc::yuepilon)
   # test output structure
   expect_identical(nrow(trend1), 4L)
-  expect_identical(ncol(trend1), 8L)
+  expect_identical(ncol(trend1), 9L)
   expect_is(trend1$estimate, "numeric")
   expect_is(trend1$Month, "character")
   # test values
@@ -24,7 +24,7 @@ test_that("test_trends", {
   # test breaks
   trend2 <- test_trends(wqbc::yuepilon, breaks = c(1,4,12))
   expect_identical(nrow(trend2), 4L * 3L)
-  expect_identical(ncol(trend2), 8L)
+  expect_identical(ncol(trend2), 9L)
   expect_identical(sum(is.na(trend2$estimate)), 4L * 2L)
   expect_lt(abs(trend1$estimate[1] - trend2$estimate[1]), 1e-6)
 })

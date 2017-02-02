@@ -14,8 +14,8 @@
 trend <- function(y, method = c("yuepilon", "zhang", "sen")) {
 
   # set up output structure
-  out <- structure(rep(NA_real_, 4),
-                   names = c("estimate", "lower", "upper", "sig"))
+  out <- structure(rep(NA_real_, 5),
+                   names = c("estimate", "lower", "upper", "intercept", "sig"))
 
   # if there are less than four years do not run test
   if (sum(!is.na(y)) < 4) {
@@ -34,13 +34,14 @@ trend <- function(y, method = c("yuepilon", "zhang", "sen")) {
     # fill in estimate and confidence interval for slope
     out[1] <- stats::coef(ss)["Year"]
     out[2:3] <- ss.ci["Year",]
-    out[4] <- Kendall::Kendall(y, Year)$sl
+    out[4] <- stats::coef(ss)["Intercept"]
+    out[5] <- Kendall::Kendall(y, Year)$sl
   } else
     if (method %in% c("yuepilon", "zhang")) {
       zs <- zyp::zyp.trend.vector(y, x = Year, method = method,
                                   conf.intervals = TRUE,
                                   preserve.range.for.sig.test = TRUE)
-      out[] <- zs[c("trend", "lbound", "ubound", "sig")]
+      out[] <- zs[c("trend", "lbound", "ubound", "intercept", "sig")]
     } else {
       # should never get here, but just in case:
       stop("Unknown method :", method)
