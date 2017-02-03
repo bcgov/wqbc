@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 # test for a trend
-trend <- function(y, prewhiten = c("yuepilon", "zhang", "sen")) {
+trend <- function(y, prewhiten = c("zhang", "yuepilon", "none")) {
 
   # set up output structure
   out <- dplyr::data_frame(
@@ -31,7 +31,7 @@ trend <- function(y, prewhiten = c("yuepilon", "zhang", "sen")) {
   Year <- seq_along(y)[!is.na(y)]
   y <- y[!is.na(y)]
 
-  if (prewhiten == "sen") {
+  if (prewhiten == "none") {
     # estimate sen slope
     ss <- zyp::zyp.sen(y ~ Year)
     # calculate confidence intervals
@@ -104,12 +104,11 @@ do_test_trends <- function(data, breaks, FUN, prewhiten) {
 #' @examples
 #'  data <- wqbc::yuepilon
 #'  trend <- test_trends(data, breaks = 6, messages = TRUE)
-#'  trend <- test_trends(data, breaks = 6, messages = TRUE, prewhiten = "yuepilon")
 #' \dontrun{
 #'   demo(test_trends)
 #' }
 #' @export
-test_trends <- function(data, breaks = NULL, FUN = "median", prewhiten = "yuepilon",
+test_trends <- function(data, breaks = NULL, FUN = "median", prewhiten = "zhang",
                         messages = getOption("wqbc.messages", default = TRUE)) {
 
   # check inputs
@@ -181,11 +180,11 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
 #'  data(yuepilon)
 #'  data <- yuepilon[yuepilon$Station == "02EA005", ]
 #'  # estimate trend (using simple sen slope)
-#'  trend <- test_trends(data, messages = TRUE, prewhiten = "sen")
+#'  trend <- test_trends(data, messages = TRUE, prewhiten = "none")
 #'  # get the data used in the test
 #'  datasum <- summarise_for_trends(data)
 #'  plot(datasum$Year, datasum$Value,
-#'       main = paste("p-value =", round(trend$sig, 3)),
+#'       main = paste("p-value =", round(trend$sen_slope_sig, 3)),
 #'       ylab = "Value", xlab = "Year", las = 1)
 #' @export
 

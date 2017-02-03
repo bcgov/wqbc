@@ -20,7 +20,7 @@ test_that("test_trends", {
   expect_is(trend1$sen_slope, "numeric")
   expect_is(trend1$Month, "character")
   # test values
-  expect_lt(abs(trend1$sen_slope[1] - 0.01350760), 1e-6)
+  expect_equal(trend1$sen_slope[1], 0.01350760, tolerance = 10^-5)
   # test breaks
   trend2 <- test_trends(wqbc::yuepilon, breaks = c(1,4,12))
   expect_identical(nrow(trend2), 4L * 3L)

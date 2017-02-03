@@ -4,7 +4,7 @@
 \alias{test_trends}
 \title{Thiel-Sen Trend Test}
 \usage{
-test_trends(data, breaks = NULL, FUN = "median", prewhiten = "yuepilon",
+test_trends(data, breaks = NULL, FUN = "median", prewhiten = "zhang",
   messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
@@ -32,7 +32,6 @@ The data must contain the columns Station, Date, Variable, Value, and Units.
 \examples{
  data <- wqbc::yuepilon
  trend <- test_trends(data, breaks = 6, messages = TRUE)
- trend <- test_trends(data, breaks = 6, messages = TRUE, prewhiten = "yuepilon")
 \dontrun{
   demo(test_trends)
 }

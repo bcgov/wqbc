@@ -27,6 +27,6 @@ trends <-  test_trends(fraser, FUN = median)
 data <- summarise_for_trends(fraser, FUN = median)
 data <- left_join(trends, data)
 
-data %>% ggplot(aes(x = Year, y = Value, color = sig < 0.05)) +
+data %>% ggplot(aes(x = Year, y = Value, color = sen_slope_sig)) +
          geom_point() +
          facet_wrap(~ Station, scales = "free")
