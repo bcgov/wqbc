@@ -20,13 +20,15 @@ Chromium Dissolved,EMS_CR_D,ug/L,mean,460
 Chromium Total,EMS_CR_T,ug/L,mean,463
 Cobalt Dissolved,EMS_CO_D,ug/L,mean,453
 Cobalt Total,EMS_CO_T,ug/L,mean,456
-Colour Apparent,EMS_0001,Pt/Co,mean,437
-Colour True,EMS_0002,Pt/Co,mean,443
+Coliforms Fecal,EMS_0450,/100mL,median,
+Colour Apparent,EMS_0001,Pt-Co,mean,437
+Colour True,EMS_0002,Pt-Co,mean,443
 Copper Dissolved,EMS_CU_D,ug/L,mean,467
 Copper Total,EMS_CU_T,ug/L,mean,470
 Cyanide Dissolved,EMS_1105,ug/L,mean,
 Cyanide Total,EMS_CN_T,ug/L,mean,
 Cyanide Weak Acid Dissociable,EMS_0157,ug/L,mean,
+E. coli,EMS_0147,/100mL,median,
 Ethinylestradiol 17a,EMS_ST13,ng/L,mean,
 Ethylbenzene,EMS_B021,mg/L,mean,
 Fluoride Dissolved,EMS_1106,mg/L,mean,532
@@ -67,7 +69,7 @@ Silver Dissolved,EMS_AG_D,ug/L,mean,348
 Silver Total,EMS_AG_T,ug/L,mean,350
 Sulphate Dissolved,EMS_1121,mg/L,mean,814
 Sulphate Total,EMS_0121,mg/L,mean,813
-Temperature,EMS_0013,C,mean,840
+Temperature,EMS_0013,degC,mean,840
 Thallium Dissolved,EMS_TL_D,ug/L,mean,859
 Thallium Total,EMS_TL_T,ug/L,mean,861
 Toluene,EMS_T001,ug/L,mean,

@@ -13,18 +13,22 @@
 get_unit_multiplier <- function (x) {
   units <- c("ng/L" = 10^-9, "ug/L" = 10^-6, "mg/L" = 10^-3,
              "g/L" = 1,  "kg/L" = 10^3,
-             "pH" = 1)
+             "pH" = 1,
+             "degC" = 1, "C" = 1,
+             "Pt-Co" = 1, "Col.unit" = 1, "Rel" = 1,
+             "/100mL" = 1)
   x <- units[x]
   names(x) <- NULL
   x
 }
 
-get_unit_type <- function (x) {
+get_unit_type <- function(x) {
   type <- list("concentration" = c("ng/L", "ug/L", "mg/L", "g/L", "kg/L"),
                "pH" = "pH",
-               "Colour" = "Pt/Co",
-               "Temperature" = "C",
-               "Turbidity" = "NTU")
+               "Colour" = c("Pt-Co", "Col.Unit", "Rel"),
+               "Temperature" = c("degC", "C"),
+               "Turbidity" = "NTU",
+               "Coli" = "/100 mL")
 
   type <- unlist(type)
   names <- sub("\\d$", "", names(type))

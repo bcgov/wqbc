@@ -87,6 +87,7 @@ substitute_units <- function (
 
   y <- gsub("units", "", x, ignore.case = TRUE)
   y <- gsub(" ", "", y)
+  y <- gsub("_", "", y)
 
   wqbc_substitute(org = x, mod = y, sub = lookup_units(), messages = messages)
 }
