@@ -4,7 +4,7 @@
 \alias{test_trends}
 \title{Thiel-Sen Trend Test}
 \usage{
-test_trends(data, breaks = NULL, FUN = "median", method = "yuepilon",
+test_trends(data, breaks = NULL, FUN = "median", prewhiten = "yuepilon",
   messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
@@ -15,34 +15,27 @@ year is used.}
 
 \item{FUN}{The function to use for yearly summaries, e.g. median, mean, or max.}
 
-\item{method}{A string of the method to use. Values must be 'yuepilon', 'zhang' or 'sen'.}
+\item{prewhiten}{A string of the method to use for prewhitening. Values must be 'yuepilon', 'zhang' or 'none'.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
 \value{
 A tibble data.frame with rows for each Station, Variable, and month grouping, and
-        additional columns for the slope estinate, 95\% confidence intervals and p-value.
+        additional columns for the sen slope estinate, 95\% confidence intervals on the slope, intercept and significance at the 5\% level for both the sen slope and Kendall tau (which can differ).
 }
 \description{
-Analyses time series using the Thiel-Sen estimate of slope.
+Analyses time series using the Thiel-Sen estimate of slope. It ret
 }
 \details{
 The data must contain the columns Station, Date, Variable, Value, and Units.
-
-
-
-This routine computes a prewhitened nonlinear trend on a vector of data, using
-Zhang's (described in Wang and Swail, 2001) or Yue Pilon's (describe in Yue Pilon, 2002)
-method of prewhitening, or Sen's slope with a Kendall test for significance.
 }
 \examples{
  data <- wqbc::yuepilon
  trend <- test_trends(data, breaks = 6, messages = TRUE)
- trend <- test_trends(data, breaks = 6, messages = TRUE, method = "yuepilon")
+ trend <- test_trends(data, breaks = 6, messages = TRUE, prewhiten = "yuepilon")
 \dontrun{
   demo(test_trends)
 }
-
 }
 \references{
 Yue, S., Pilon, P., Phinney, B., and Cavadias, G. (2002). The influence of autocorrelation on the

@@ -16,27 +16,20 @@ test_that("test_trends", {
   trend1 <- test_trends(wqbc::yuepilon)
   # test output structure
   expect_identical(nrow(trend1), 4L)
-  expect_identical(ncol(trend1), 9L)
-  expect_is(trend1$estimate, "numeric")
+  expect_identical(ncol(trend1), 10L)
+  expect_is(trend1$sen_slope, "numeric")
   expect_is(trend1$Month, "character")
   # test values
-  expect_lt(abs(trend1$estimate[1] - 0.01350760), 1e-6)
+  expect_lt(abs(trend1$sen_slope[1] - 0.01350760), 1e-6)
   # test breaks
   trend2 <- test_trends(wqbc::yuepilon, breaks = c(1,4,12))
   expect_identical(nrow(trend2), 4L * 3L)
-  expect_identical(ncol(trend2), 9L)
-  expect_identical(sum(is.na(trend2$estimate)), 4L * 2L)
-  expect_lt(abs(trend1$estimate[1] - trend2$estimate[1]), 1e-6)
+  expect_identical(ncol(trend2), 10L)
+  expect_identical(sum(is.na(trend2$sen_slope)), 4L * 2L)
+  expect_lt(abs(trend1$sen_slope[1] - trend2$sen_slope[1]), 1e-6)
 })
 
 test_that("test_trends provides useful error messages", {
   expect_error(test_trends(wqbc::dummy), "column names in data must include 'Station', 'Date', 'Variable', 'Value' and 'Units'")
-  expect_error(test_trends(wqbc::yuepilon, method = "yuepilon2"), "method must be 'yuepilon', 'zhang' or 'sen'")
+  expect_error(test_trends(wqbc::yuepilon, prewhiten = "yuepilon2"), "prewhiten must be 'yuepilon', 'zhang' or 'none'")
 })
-
-# test values
-# test breaks
-# sanity check
-
-
-
