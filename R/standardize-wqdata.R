@@ -50,9 +50,6 @@ standardize_wqdata <- function (
 
   check_rows(x)
 
-  x$..id <- 1:nrow(x)
-  y <- x
-
   if("Code" %in% colnames(x)) {
     if(messages) message ("Converting Codes to Variables...")
     x$Variable <- lookup_variables(x$Code, messages = messages)

@@ -14,8 +14,8 @@ get_unit_multiplier <- function(x) {
   units <- c("ng/L" = 10^-9, "ug/L" = 10^-6, "mg/L" = 10^-3,
              "g/L" = 1,  "kg/L" = 10^3,
              "pH" = 1,
-             "degC" = 1, "C" = 1,
-             "CU" = 1, "Col.unit" = 1, "Rel" = 1,
+             "degC" = 1, "C" = 1, "NTU" = 1,
+             "CU" = 1, "Col.Unit" = 1, "Rel" = 1,
              "CFU/dL" = 1, "CFU/100mL" = 1, "CFU/mL" = 0.01, "MPN/dL" = 1,
              "MPN/100mL" = 1, "MPN/mL" = 0.01, "CFU/g" = 0.01, "MPN/g" = 0.01)
   x <- units[x]
