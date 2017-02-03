@@ -247,6 +247,21 @@ plot_timeseries_by <- function(data, title = NULL, y0, size, messages) {
 
   if (!is.null(title)) gp <- gp + ggplot2::ggtitle(title)
 
+#   if (tibble::has_name(data, "intercept") & tibble::has_name(data, "estimate")) {
+#     stopifnot(length(unique(data$intercept)) == 1)
+#     stopifnot(length(unique(data$estimate)) == 1)
+#     slope <- data$estimate[1]
+#     intercept <- data$intercept[1]
+#     print(intercept)
+#     print(slope)
+#     gp <- gp + ggplot2::geom_abline(intercept = intercept, slope = 0)
+#     gp <- gp + ggplot2::geom_abline(intercept = intercept, slope = 0)
+#     intercept <- intercept + slope * -1 * min(lubridate::year(data$Date))
+#     print(intercept)
+#     gp <- gp + ggplot2::geom_abline(intercept = intercept, slope = slope, linetype  = "dotted")
+# #    gp <- gp + ggplot2::geom_abline(intercept = intercept + min(lubridate::year(data$Date)) * slope, slope = slope)
+#   }
+
   if (any(!is.na(data$Outlier))) {
     if (any(!is.na(data$Detected))) {
       gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = "Outlier", alpha = "Detected"), size = size)
