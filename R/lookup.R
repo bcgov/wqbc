@@ -19,8 +19,9 @@
 #' @seealso \code{\link{lookup_limits}}
 #' @export
 lookup_units <- function () {
-  c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "Pt-Co", "pH", "degC", "C", "/100mL",
-    "Col.Unit", "Rel", "NTU")
+  c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH", "degC", "C",
+    "CFU/dL", "MPN/dL", "CFU/100mL", "MPN/100mL", "CFU/g", "MPN/g", "CFU/mL", "MPN/mL",
+    "CU", "Col.Unit", "Rel", "NTU")
 }
 
 #' Lookup Codes

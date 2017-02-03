@@ -10,13 +10,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-get_unit_multiplier <- function (x) {
+get_unit_multiplier <- function(x) {
   units <- c("ng/L" = 10^-9, "ug/L" = 10^-6, "mg/L" = 10^-3,
              "g/L" = 1,  "kg/L" = 10^3,
              "pH" = 1,
              "degC" = 1, "C" = 1,
-             "Pt-Co" = 1, "Col.unit" = 1, "Rel" = 1,
-             "/100mL" = 1)
+             "CU" = 1, "Col.unit" = 1, "Rel" = 1,
+             "CFU/dL" = 1, "CFU/100mL" = 1, "CFU/mL" = 0.01, "MPN/dL" = 1,
+             "MPN/100mL" = 1, "MPN/mL" = 0.01, "CFU/g" = 0.01, "MPN/g" = 0.01)
   x <- units[x]
   names(x) <- NULL
   x
@@ -25,10 +26,10 @@ get_unit_multiplier <- function (x) {
 get_unit_type <- function(x) {
   type <- list("concentration" = c("ng/L", "ug/L", "mg/L", "g/L", "kg/L"),
                "pH" = "pH",
-               "Colour" = c("Pt-Co", "Col.Unit", "Rel"),
+               "Colour" = c("CU", "Col.Unit", "Rel"),
                "Temperature" = c("degC", "C"),
                "Turbidity" = "NTU",
-               "Coli" = "/100 mL")
+               "Coli" = c("CFU/dL", "CFU/100mL", "CFU/mL", "MPN/dL", "MPN/100mL", "MPN/mL", "CFU/g", "MPN/g"))
 
   type <- unlist(type)
   names <- sub("\\d$", "", names(type))
