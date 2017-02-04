@@ -26,6 +26,8 @@ prior to calculating the limits to ensure: all variables are recognised,
 all values are non-negative and in the standard units, divergent replicates
 are filtered and all remaining replicates are averaged. Only limits whose
 conditions are met are returned.
+Note to use the long-term limits on daily values set
+term = "long-daily".
 }
 \details{
 If a limit depends on another variable

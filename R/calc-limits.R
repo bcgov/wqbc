@@ -97,11 +97,11 @@ fill_in_conditional_codes <- function (x, ccodes) {
   x
 }
 
-calc_limits_by_date <- function (x, messages) {
-  ccodes <- get_conditional_codes(x$Condition[x$Term == "Short"])
+calc_limits_by_date <- function (x, term, messages) {
+  ccodes <- get_conditional_codes(x$Condition[x$Term == term])
 
-  dropped <- dplyr::filter_(x, ~!((!is.na(Term) & Term == "Short") | Code %in% ccodes))
-  x %<>% dplyr::filter_(~((!is.na(Term) & Term == "Short") | Code %in% ccodes))
+  dropped <- dplyr::filter_(x, ~!((!is.na(Term) & Term == term) | Code %in% ccodes))
+  x %<>% dplyr::filter_(~((!is.na(Term) & Term == term) | Code %in% ccodes))
 
   if (messages) {
     dropped %<>% dplyr::group_by_(~Variable) %>% dplyr::summarise_(n = ~n())
@@ -113,10 +113,10 @@ calc_limits_by_date <- function (x, messages) {
   if (!nrow(x))
     return(NULL)
 
-  x <- dplyr::filter_(x, ~(!is.na(Term) & Term == "Short") | Code %in% ccodes)
+  x <- dplyr::filter_(x, ~(!is.na(Term) & Term == term) | Code %in% ccodes)
   x <- fill_in_conditional_codes(x, ccodes)
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
-  x <- dplyr::filter_(x, ~Term == "Short")
+  x <- dplyr::filter_(x, ~Term == term)
   x <- dplyr::filter_(x, ~!Conditional)
   stopifnot(!anyDuplicated(x$..ID))
   x
@@ -202,8 +202,10 @@ calc_limits_by <- function (x, term, dates, messages) {
 
   if (term == "long") {
     x <- calc_limits_by_30day(x, dates, messages)
-  } else {
-    x <- calc_limits_by_date(x, messages)
+  } else if (term == "short") {
+    x <- calc_limits_by_date(x, "Short", messages)
+  } else {# term == "long-daily"
+    x <- calc_limits_by_date(x, "Long", messages)
   }
   if (is.null(x)) return(NULL)
 
@@ -223,6 +225,8 @@ calc_limits_by <- function (x, term, dates, messages) {
 #' all values are non-negative and in the standard units, divergent replicates
 #' are filtered and all remaining replicates are averaged. Only limits whose
 #' conditions are met are returned.
+#' Note to use the long-term limits on daily values set
+#' term = "long-daily".
 #'
 #' @details If a limit depends on another variable
 #' such as pH or Total Hardness and no value was recorded for the date of interest
@@ -249,7 +253,7 @@ calc_limits_by <- function (x, term, dates, messages) {
 #' }
 #' @seealso \code{\link{calc_wqi}}, \code{\link{clean_wqdata}} and \code{\link{lookup_limits}}
 #' @export
-calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
+calc_limits <- function(x, by = NULL, term = "long", dates = NULL,
                          messages = getOption("wqbc.messages", default = TRUE)) {
 
   assert_that(is.data.frame(x))
@@ -259,7 +263,7 @@ calc_limits <- function (x, by = NULL, term = "long", dates = NULL,
   assert_that(is.flag(messages) && noNA(messages))
 
   term <- tolower(term)
-  if(!term %in% c("long", "short")) stop("term must be \"long\" or \"short\"")
+  if(!term %in% c("long", "short", "long-daily")) stop("term must be \"long\" or \"short\" or \"long-daily\"")
 
   x <- clean_wqdata(x, by = by, messages = messages)
 
