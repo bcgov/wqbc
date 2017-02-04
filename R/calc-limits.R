@@ -274,8 +274,8 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
     if (tibble::has_name(x, "UpperLimit"))
       bol <- bol | !is.na(x$UpperLimit)
 
-    y <- dplyr::slice_(x, which(bol))
-    x %<>% dplyr::slice_(which(!bol))
+    y <- dplyr::slice_(x, ~which(bol))
+    x %<>% dplyr::slice_(~which(!bol))
   }
 
   x <- clean_wqdata(x, by = by, messages = messages)
