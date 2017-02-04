@@ -246,6 +246,7 @@ calc_limits_by <- function (x, term, dates, messages) {
 #' @param by A optional character vector of the columns in x to calculate the limits by.
 #' @param term A string indicating whether to calculate the "long" or "short"-term limits.
 #' @param dates A optional date vector indicating the start of 30 day long-term periods.
+#' @param keep_limits A flag indicating whether to keep values with user supplied upper or lower limits.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' \dontrun{
@@ -253,17 +254,29 @@ calc_limits_by <- function (x, term, dates, messages) {
 #' }
 #' @seealso \code{\link{calc_wqi}}, \code{\link{clean_wqdata}} and \code{\link{lookup_limits}}
 #' @export
-calc_limits <- function(x, by = NULL, term = "long", dates = NULL,
-                         messages = getOption("wqbc.messages", default = TRUE)) {
+calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits = TRUE,
+                        messages = getOption("wqbc.messages", default = TRUE)) {
 
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   assert_that(is.string(term))
   assert_that(is.null(dates) || (is.date(dates) && noNA(dates)))
   assert_that(is.flag(messages) && noNA(messages))
+  assert_that(is.flag(keep_limits) && noNA(keep_limits))
 
   term <- tolower(term)
-  if(!term %in% c("long", "short", "long-daily")) stop("term must be \"long\" or \"short\" or \"long-daily\"")
+  if (!term %in% c("long", "short", "long-daily")) stop("term must be \"long\" or \"short\" or \"long-daily\"")
+
+  if (keep_limits) {
+    bol <- rep(FALSE, nrow(x))
+    if (tibble::has_name(x, "LowerLimit"))
+      bol <- !is.na(x$LowerLimit)
+    if (tibble::has_name(x, "UpperLimit"))
+      bol <- bol | !is.na(x$UpperLimit)
+
+    y <- dplyr::slice_(x, which(bol))
+    x %<>% dplyr::slice_(which(!bol))
+  }
 
   x <- clean_wqdata(x, by = by, messages = messages)
 
@@ -277,6 +290,9 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL,
     x <- plyr::ddply(x, .variables = by, .fun = calc_limits_by,
                      term = term, dates = dates, messages = messages)
   }
-  if(messages) message("Calculated ", paste0(term, "-term") ," water quality limits.")
+  if (messages) message("Calculated ", paste0(term, "-term") ," water quality limits.")
+
+  if (keep_limits)
+    x %<>% dplyr::bind_rows(y)
   x
 }

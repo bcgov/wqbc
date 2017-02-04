@@ -159,7 +159,7 @@ lookup_limits <- function (ph = NULL, hardness = NULL, chloride = NULL,
     codes$Date <- c(dates, dates + 1, dates + 2, dates + 3, dates + 21)
   }
 
-  limits <- calc_limits(codes, term = term, messages = FALSE)
+  limits <- calc_limits(codes, term = term, keep_limits = FALSE, messages = FALSE)
   limits <- add_missing_limits(limits, term = term)
   limits <- tidyup_limits(limits)
   limits
