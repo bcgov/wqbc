@@ -53,4 +53,3 @@ clean_wqdata(wqbc::dummy, messages = TRUE)
 \seealso{
 \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
 }
-

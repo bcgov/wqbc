@@ -30,4 +30,3 @@ indicated by the fill colour of points.
 \seealso{
 \code{\link{plot_map_wqis}}
 }
-

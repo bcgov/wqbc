@@ -16,4 +16,3 @@ the categories defined in the CCME Water Quality Index 1.0 User's Manual.
 \examples{
 categorize_wqi(seq(1,100,by = 5))
 }
-

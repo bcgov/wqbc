@@ -16,4 +16,3 @@ A tibble of the tidied rems data.
 Tidies water quality data downloaded from EMS database using the bcgov/rems package.
 It retains and renames required columns and sets the timezone to PST.
 }
-

@@ -51,4 +51,3 @@ plot_map(fraser)
 \seealso{
 \code{\link{plot_map_wqis}}
 }
-

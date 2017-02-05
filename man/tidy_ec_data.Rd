@@ -16,4 +16,3 @@ A tibble of the tidied rems data.
 Tidies water quality data downloaded from Environment Canada website.
 It retains and renames required columns and sets the timezone to PST.
 }
-

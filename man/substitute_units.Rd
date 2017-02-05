@@ -23,4 +23,3 @@ substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "gkl"), messages = TRUE)
 \seealso{
 \code{\link{substitute_variables}}
 }
-

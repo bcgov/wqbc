@@ -35,4 +35,3 @@ demo(fraser)
 }
 }
 \keyword{datasets}
-

@@ -43,4 +43,3 @@ substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
 \seealso{
 \code{\link{substitute_units}}
 }
-

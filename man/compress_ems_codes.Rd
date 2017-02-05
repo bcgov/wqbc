@@ -20,4 +20,3 @@ compress_ems_codes(c("EMS_0014", "EMS_KR-P", "0-15"))
 \seealso{
 \code{\link{expand_ems_codes}}
 }
-

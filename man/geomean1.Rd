@@ -21,4 +21,3 @@ as may be helpful if averaging bacterial counts.
 mean(0:9)
 geomean1(0:9)
 }
-

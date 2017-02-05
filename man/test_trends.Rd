@@ -56,4 +56,3 @@ Journal of the American Statistical Association, 63 (324): 1379-1389, doi:10.230
 \code{\link[zyp]{zyp.yuepilon}}, \code{\link[zyp]{zyp.zhang}}, \code{\link[zyp]{zyp.sen}}
   and \code{\link[Kendall]{Kendall}} for the individual methods implmented.
 }
-

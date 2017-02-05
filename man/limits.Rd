@@ -23,4 +23,3 @@ by the wqbc package.
 \code{\link{calc_limits}}
 }
 \keyword{datasets}
-

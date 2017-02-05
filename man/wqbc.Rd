@@ -25,4 +25,3 @@ information on the use of the wqbc package please type
 \code{\link{lookup_limits}}, \code{\link{calc_wqi}}
 and \code{\link{plot_wqis}}
 }
-

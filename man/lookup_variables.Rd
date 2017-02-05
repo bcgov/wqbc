@@ -26,4 +26,3 @@ lookup_variables(c("AL-D", "EMS_AS_T", "B--T", "KRYP"), messages = TRUE)
 \seealso{
 \code{\link{lookup_limits}} and \code{\link{expand_ems_codes}}
 }
-

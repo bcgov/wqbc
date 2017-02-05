@@ -45,4 +45,3 @@ calc_wqi(ccme, by = "Date", messages = TRUE)
 \seealso{
 \code{\link{calc_limits}} and \code{\link{wqbc}}
 }
-
