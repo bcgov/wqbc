@@ -39,4 +39,3 @@ the Water Quality Index categories indicated by the fill colour of points.
 \seealso{
 \code{\link{plot_wqis}} and \code{\link{plot_map}}
 }
-

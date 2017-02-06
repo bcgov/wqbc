@@ -31,4 +31,3 @@ lookup_limits(term = "short")
 \seealso{
 \code{\link{calc_limits}}
 }
-

@@ -17,4 +17,3 @@ Throws an error without the call as part of the error message.
 \seealso{
 base::stop
 }
-

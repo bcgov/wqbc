@@ -18,4 +18,3 @@ stations
 The water quality stations for British Columbia with their coordinates.
 }
 \keyword{datasets}
-

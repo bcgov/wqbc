@@ -24,4 +24,3 @@ Otherwise it returns a list of ggplot objects.
 plot_timeseries(ccme[ccme$Variable == "As",])
 plot_timeseries(ccme, by = "Variable")
 }
-

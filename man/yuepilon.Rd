@@ -43,4 +43,3 @@ table of annual mean river flows for four sites: 02FB007, 02KB001,
 02EA005 and 02GA010.
 }
 \keyword{datasets}
-

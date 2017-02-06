@@ -27,4 +27,3 @@ lookup_codes(c("Aluminum", "Arsenic Total", "Boron Something", "Kryptonite"),
 \seealso{
 \code{\link{lookup_limits}} and \code{\link{expand_ems_codes}}
 }
-

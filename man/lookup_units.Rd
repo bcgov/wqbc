@@ -15,4 +15,3 @@ lookup_units()
 \seealso{
 \code{\link{lookup_limits}}
 }
-

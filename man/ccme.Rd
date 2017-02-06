@@ -25,4 +25,3 @@ Water Quality Index 1.0 User's Manual example dataset in tidy format.
 demo(ccme)
 }
 \keyword{datasets}
-

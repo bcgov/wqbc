@@ -38,4 +38,3 @@ The data must contain the columns Station, Date, Variable, Value, and Units.
       main = paste("p-value =", round(trend$sig, 3)),
       ylab = "Value", xlab = "Year", las = 1)
 }
-

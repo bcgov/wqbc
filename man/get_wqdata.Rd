@@ -30,4 +30,3 @@ A wrapper on rems functions to get EMS data from
 \seealso{
 \code{\link[rems]{download_historic_data}} and \code{\link[rems]{read_historic_data}}
 }
-

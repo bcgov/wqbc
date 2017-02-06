@@ -22,4 +22,3 @@ standard units and the R function to use when averaging multiple samples.
 \code{\link{calc_limits}}
 }
 \keyword{datasets}
-

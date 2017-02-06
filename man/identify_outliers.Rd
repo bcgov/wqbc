@@ -33,4 +33,3 @@ identify_outliers(data, by = "Variable", messages = TRUE)
 \seealso{
 \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
 }
-

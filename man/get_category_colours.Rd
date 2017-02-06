@@ -9,4 +9,3 @@ get_category_colours()
 \description{
 Returns a named vector of the WQI category colours used for plotting.
 }
-
