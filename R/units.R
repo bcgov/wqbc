@@ -1,27 +1,35 @@
 # Copyright 2015 Province of British Columbia
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-get_unit_multiplier <- function (x) {
+get_unit_multiplier <- function(x) {
   units <- c("ng/L" = 10^-9, "ug/L" = 10^-6, "mg/L" = 10^-3,
              "g/L" = 1,  "kg/L" = 10^3,
-             "pH" = 1)
+             "pH" = 1,
+             "degC" = 1, "C" = 1, "NTU" = 1,
+             "CU" = 1, "Col.Unit" = 1, "Rel" = 1,
+             "CFU/dL" = 1, "CFU/100mL" = 1, "CFU/mL" = 0.01, "MPN/dL" = 1,
+             "MPN/100mL" = 1, "MPN/mL" = 0.01, "CFU/g" = 0.01, "MPN/g" = 0.01)
   x <- units[x]
   names(x) <- NULL
   x
 }
 
-get_unit_type <- function (x) {
+get_unit_type <- function(x) {
   type <- list("concentration" = c("ng/L", "ug/L", "mg/L", "g/L", "kg/L"),
-               "pH" = "pH")
+               "pH" = "pH",
+               "Colour" = c("CU", "Col.Unit", "Rel"),
+               "Temperature" = c("degC", "C"),
+               "Turbidity" = "NTU",
+               "Coli" = c("CFU/dL", "CFU/100mL", "CFU/mL", "MPN/dL", "MPN/100mL", "MPN/mL", "CFU/g", "MPN/g"))
 
   type <- unlist(type)
   names <- sub("\\d$", "", names(type))

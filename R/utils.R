@@ -66,7 +66,7 @@ del_cols_not_in_y <- function (x, y) {
 }
 
 detected <- function(value, limit) {
-  value & (is.na(limit) | value > limit)
+  value > 0 & (is.na(limit) | value > limit)
 }
 
 delete_rows_with_certain_values <- function (x, columns, messages, txt = "missing") {

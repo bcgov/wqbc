@@ -1,11 +1,11 @@
 # Copyright 2015 Province of British Columbia
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
@@ -19,7 +19,9 @@
 #' @seealso \code{\link{lookup_limits}}
 #' @export
 lookup_units <- function () {
-  c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH")
+  c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH", "degC", "C",
+    "CFU/dL", "MPN/dL", "CFU/100mL", "MPN/100mL", "CFU/g", "MPN/g", "CFU/mL", "MPN/mL",
+    "CU", "Col.Unit", "Rel", "NTU")
 }
 
 #' Lookup Codes
@@ -157,7 +159,7 @@ lookup_limits <- function (ph = NULL, hardness = NULL, chloride = NULL,
     codes$Date <- c(dates, dates + 1, dates + 2, dates + 3, dates + 21)
   }
 
-  limits <- calc_limits(codes, term = term, messages = FALSE)
+  limits <- calc_limits(codes, term = term, keep_limits = FALSE, messages = FALSE)
   limits <- add_missing_limits(limits, term = term)
   limits <- tidyup_limits(limits)
   limits

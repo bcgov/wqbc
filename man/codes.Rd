@@ -10,6 +10,7 @@
   \item{Code}{The EMS code in expanded form.}
   \item{Units}{The standard units for the variable.}
   \item{Average}{R function to calculate "average" value.}
+  \item{EC_Code}{The Variable Code in the Environment Canada data.}
 }}
 \usage{
 codes

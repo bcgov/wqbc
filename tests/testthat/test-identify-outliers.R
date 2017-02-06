@@ -30,7 +30,7 @@ test_that("identify_outliers", {
   data$Value <- data$Value2
   expect_identical(identify_outliers(data, messages = FALSE)$Outlier, c(FALSE, FALSE))
   expect_message(identify_outliers(data, messages = TRUE), "Identified 0 outliers in water quality data.")
-  expect_message(identify_outliers(wqbc::dummy, sds = 2, messages = TRUE), "Identified 2 outliers in water quality data.")
+  expect_message(identify_outliers(wqbc::dummy, sds = 2, messages = TRUE), "Identified 10 outliers in water quality data.")
   expect_identical(identify_outliers(data.frame(Value = c(NA_real_, NA_real_)), messages = FALSE)$Outlier, c(FALSE, FALSE))
   data <- data.frame(Value = c(rep(100, 2), rep(0, 1000)))
   expect_message(identify_outliers(data, messages = TRUE), "Identified 0 outliers in water quality data.")

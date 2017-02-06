@@ -20,12 +20,12 @@ library(devtools)
 
 rm(list = ls())
 
-input_codes <- function () {
+input_codes <- function() {
 
   codes <- read.csv("data-raw/codes.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
-  stopifnot(identical(colnames(codes), c("Variable","Code","Units", "Average")))
+  stopifnot(identical(colnames(codes), c("Variable","Code","Units", "Average", "EC_Code")))
 
-  stopifnot(all(!is.na(codes)))
+  stopifnot(all(!is.na(codes[c("Variable","Code","Units", "Average")])))
 
   stopifnot(!anyDuplicated(codes$Code))
   stopifnot(!anyDuplicated(codes$Variable))

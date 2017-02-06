@@ -11,14 +11,19 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 # test for a trend
-trend <- function(y, method = c("yuepilon", "zhang", "sen")) {
+trend <- function(y, prewhiten = c("zhang", "yuepilon", "none")) {
 
   # set up output structure
-  out <- structure(rep(NA_real_, 4),
-                   names = c("estimate", "lower", "upper", "sig"))
+  out <- dplyr::data_frame(
+    sen_slope = NA_real_,
+    sen_slope_lower = NA_real_,
+    sen_slope_upper = NA_real_,
+    sen_intercept = NA_real_,
+    sen_slope_sig = NA,
+    kendall_sig = NA)
 
-  # if there are less than four years do not run test
-  if (sum(!is.na(y)) < 4) {
+  # if there are less than six years do not run test
+  if (sum(!is.na(y)) <= 5) {
     return(out)
   }
 
@@ -26,7 +31,7 @@ trend <- function(y, method = c("yuepilon", "zhang", "sen")) {
   Year <- seq_along(y)[!is.na(y)]
   y <- y[!is.na(y)]
 
-  if (method == "sen") {
+  if (prewhiten == "none") {
     # estimate sen slope
     ss <- zyp::zyp.sen(y ~ Year)
     # calculate confidence intervals
@@ -34,35 +39,30 @@ trend <- function(y, method = c("yuepilon", "zhang", "sen")) {
     # fill in estimate and confidence interval for slope
     out[1] <- stats::coef(ss)["Year"]
     out[2:3] <- ss.ci["Year",]
-    out[4] <- Kendall::Kendall(y, Year)$sl
-  } else
-    if (method %in% c("yuepilon", "zhang")) {
-      zs <- zyp::zyp.trend.vector(y, x = Year, method = method,
-                                  conf.intervals = TRUE,
-                                  preserve.range.for.sig.test = TRUE)
-      out[] <- zs[c("trend", "lbound", "ubound", "sig")]
-    } else {
-      # should never get here, but just in case:
-      stop("Unknown method :", method)
-    }
-
-  # return
+    out[4] <- stats::coef(ss)["Intercept"]
+    out[6] <- Kendall::Kendall(y, Year)$sl
+  } else {
+    zs <- zyp::zyp.trend.vector(y, x = Year, method = prewhiten,
+                                conf.intervals = TRUE,
+                                preserve.range.for.sig.test = TRUE)
+    out[c(1:4,6)] <- zs[c("trend", "lbound", "ubound", "intercept", "sig")]
+  }
+  out[5] <- !(out[2] <= 0 & out[3] >= 0)
+  out[6] <- out[6] <= 0.05
   out
 }
 
-
-# data <- ems %>% rename(Station = Station_Number) %>% filter(Station == "BC08HB0018");breaks = NULL; FUN <- median; method = "yuepilon"
-
-do_test_trends <- function(data, breaks, FUN, method) {
+do_test_trends <- function(data, breaks, FUN, prewhiten) {
 
   # Summarise data
   data %<>% do_summarise_for_trends(breaks, FUN, return_year = FALSE)
 
-  # fit trend test by month grouping and return
-  groups <- colnames(data)
-  data %<>% apply(MARGIN = 2, trend, method = method) %>%
-    t() %>%
-    tibble::as_data_frame()
+  data %<>% as.data.frame() #%>% tidyr::gather_("Month", "Value", gather_cols = colnames(data), na.rm = TRUE)
+
+  data %<>% purrr::map(trend, prewhiten = prewhiten)
+
+  groups <- names(data)
+  data %<>% dplyr::bind_rows()
   data$Month <- groups
 
   data
@@ -70,7 +70,7 @@ do_test_trends <- function(data, breaks, FUN, method) {
 
 #' Thiel-Sen Trend Test
 #'
-#' Analyses time series using the Thiel-Sen estimate of slope.
+#' Analyses time series using the Thiel-Sen estimate of slope. It ret
 #'
 #' The data must contain the columns Station, Date, Variable, Value, and Units.
 #'
@@ -78,20 +78,12 @@ do_test_trends <- function(data, breaks, FUN, method) {
 #' @param breaks A numeric vector used to create groups of consecutive months, if NULL the full
 #'               year is used.
 #' @param FUN The function to use for yearly summaries, e.g. median, mean, or max.
-#' @param method A string of the method to use. Values must be 'yuepilon', 'zhang' or 'sen'.
+#' @param prewhiten A string of the method to use for prewhitening. Values must be 'yuepilon', 'zhang' or 'none'.
 #' @param messages A flag indicating whether to print messages.
-#'
 #' @return A tibble data.frame with rows for each Station, Variable, and month grouping, and
-#'         additional columns for the slope estinate, 95\% confidence intervals and p-value.
-#' @details
-#'
-#' This routine computes a prewhitened nonlinear trend on a vector of data, using
-#' Zhang's (described in Wang and Swail, 2001) or Yue Pilon's (describe in Yue Pilon, 2002)
-#' method of prewhitening, or Sen's slope with a Kendall test for significance.
-#'
+#'         additional columns for the sen slope estinate, 95\% confidence intervals on the slope, intercept and significance at the 5\% level for both the sen slope and Kendall tau (which can differ).
 #' @seealso \code{\link[zyp]{zyp.yuepilon}}, \code{\link[zyp]{zyp.zhang}}, \code{\link[zyp]{zyp.sen}}
 #'   and \code{\link[Kendall]{Kendall}} for the individual methods implmented.
-#'
 #' @references
 #'
 #' Yue, S., Pilon, P., Phinney, B., and Cavadias, G. (2002). The influence of autocorrelation on the
@@ -112,19 +104,17 @@ do_test_trends <- function(data, breaks, FUN, method) {
 #' @examples
 #'  data <- wqbc::yuepilon
 #'  trend <- test_trends(data, breaks = 6, messages = TRUE)
-#'  trend <- test_trends(data, breaks = 6, messages = TRUE, method = "yuepilon")
 #' \dontrun{
 #'   demo(test_trends)
 #' }
-#'
 #' @export
-test_trends <- function(data, breaks = NULL, FUN = "median", method = "yuepilon",
+test_trends <- function(data, breaks = NULL, FUN = "median", prewhiten = "zhang",
                         messages = getOption("wqbc.messages", default = TRUE)) {
 
   # check inputs
   check_flag(messages)
-  check_string(method)
-  if (!method %in% c("yuepilon", "zhang", "sen")) error("method must be 'yuepilon', 'zhang' or 'sen'")
+  check_string(prewhiten)
+  if (!prewhiten %in% c("yuepilon", "zhang", "none")) error("prewhiten must be 'yuepilon', 'zhang' or 'none'")
 
   check_cols(data, c("Station", "Date", "Variable", "Value", "Units"))
   check_data2(data, list(Date = Sys.Date(),
@@ -138,7 +128,7 @@ test_trends <- function(data, breaks = NULL, FUN = "median", method = "yuepilon"
 
   # fit trends
   data %<>% dplyr::mutate_(Trend = ~purrr::map(Data, do_test_trends,
-                                               breaks = breaks, FUN = FUN, method = method))
+                                               breaks = breaks, FUN = FUN, prewhiten = prewhiten))
 
   # unnest and return
   data %>% tidyr::unnest_(unnest_cols = c("Trend"), .drop = TRUE)
@@ -190,11 +180,11 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
 #'  data(yuepilon)
 #'  data <- yuepilon[yuepilon$Station == "02EA005", ]
 #'  # estimate trend (using simple sen slope)
-#'  trend <- test_trends(data, messages = TRUE, method = "sen")
+#'  trend <- test_trends(data, messages = TRUE, prewhiten = "none")
 #'  # get the data used in the test
 #'  datasum <- summarise_for_trends(data)
 #'  plot(datasum$Year, datasum$Value,
-#'       main = paste("p-value =", round(trend$sig, 3)),
+#'       main = paste("p-value =", round(trend$sen_slope_sig, 3)),
 #'       ylab = "Value", xlab = "Year", las = 1)
 #' @export
 

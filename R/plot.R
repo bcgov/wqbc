@@ -235,7 +235,7 @@ plot_map_wqis <- function (
   gp + ggplot2::scale_fill_manual(values = get_category_colours())
 }
 
-plot_timeseries_by <- function(data, title = NULL, y0, messages) {
+plot_timeseries_by <- function(data, title = NULL, y0, size, messages) {
   if (!is.null(title)) check_string(title)
 
   data %<>% dplyr::mutate_(Detected = ~detected(Value, DetectionLimit))
@@ -249,15 +249,15 @@ plot_timeseries_by <- function(data, title = NULL, y0, messages) {
 
   if (any(!is.na(data$Outlier))) {
     if (any(!is.na(data$Detected))) {
-      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = "Outlier", alpha = "Detected"))
+      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = "Outlier", alpha = "Detected"), size = size)
     } else
-      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = "Outlier"))
+      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = "Outlier"), size = size)
 
   } else {
     if (any(!is.na(data$Detected))) {
-      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(alpha = "Detected"))
+      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(alpha = "Detected"), size = size)
     } else
-      gp <- gp + ggplot2::geom_point()
+      gp <- gp + ggplot2::geom_point(size = size)
   }
 
   if (any(!is.na(data$Outlier)))
@@ -270,9 +270,9 @@ plot_timeseries_by <- function(data, title = NULL, y0, messages) {
   gp
 }
 
-plot_timeseries_fun <- function(data, by, y0, messages) {
+plot_timeseries_fun <- function(data, by, y0, size, messages) {
   title <- paste(data[by][1,], collapse = " ")
-  plot_timeseries_by(data, title = title, y0 = y0, messages = messages)
+  plot_timeseries_by(data, title = title, y0 = y0, size = size, messages = messages)
 }
 
 #' Plot Time Series Data
@@ -283,12 +283,13 @@ plot_timeseries_fun <- function(data, by, y0, messages) {
 #' @param data A data frame of the data to plot.
 #' @param by A character vector of the columns to plot the time series by.
 #' @param y0 A flag indicating whether to expand the y-axis limits to include 0.
+#' @param size A number of the point size.
 #' @param messages A flag indicating whether to print messages.
 #' @export
 #' @examples
 #' plot_timeseries(ccme[ccme$Variable == "As",])
 #' plot_timeseries(ccme, by = "Variable")
-plot_timeseries <- function(data, by = NULL, y0 = TRUE,
+plot_timeseries <- function(data, by = NULL, y0 = TRUE, size = 1,
                             messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
 
@@ -304,9 +305,9 @@ plot_timeseries <- function(data, by = NULL, y0 = TRUE,
                                  "Outlier" = "logical"))
 
   if (is.null(by)) {
-    data %<>% plot_timeseries_by(y0 = y0, messages = messages)
+    data %<>% plot_timeseries_by(y0 = y0, size = size, messages = messages)
   } else {
-    data %<>% plyr::dlply(.variables = by, .fun = plot_timeseries_fun, by = by, y0 = y0, messages = messages)
+    data %<>% plyr::dlply(.variables = by, .fun = plot_timeseries_fun, by = by, y0 = y0, size = size, messages = messages)
   }
   data
 }

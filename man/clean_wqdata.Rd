@@ -4,7 +4,8 @@
 \alias{clean_wqdata}
 \title{Clean Water Quality Data}
 \usage{
-clean_wqdata(x, by = NULL, max_cv = 1.29,
+clean_wqdata(x, by = NULL, max_cv = Inf, sds = 10,
+  ignore_undetected = TRUE, large_only = TRUE, delete_outliers = FALSE,
   messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
@@ -14,6 +15,14 @@ clean_wqdata(x, by = NULL, max_cv = 1.29,
 
 \item{max_cv}{A number indicating the maximum permitted coefficient
 of variation for replicates.}
+
+\item{sds}{The number of standard deviations above which a value is considered an outlier.}
+
+\item{ignore_undetected}{A flag indicating whether to ignore undetected values when calculating the average deviation and identifying outliers.}
+
+\item{large_only}{A flag indicating whether only large values which exceed the sds should be identified as outliers.}
+
+\item{delete_outliers}{A flag indicating whether to delete outliers or merely flag them.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
@@ -30,7 +39,9 @@ to calculating limits.
 If there are three or more replicates with a coefficient of variation (CV) in
 exceedance of \code{max_cv} then the replicates with the highest absolute deviation
 is dropped until the CV is less than or equal to \code{max_cv}
-or only two values remain. The default value max_cv value of 1.29
+or only two values remain. By default all values are averaged.
+
+A max_cv value of 1.29
 is exceeded by two zero and one positive value (CV = 1.73)
 or by two identical positive values and a third value an order
 or magnitude greater (CV = 1.30). It is not exceed by one zero

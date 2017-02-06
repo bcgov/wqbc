@@ -5,7 +5,7 @@
 \title{Calculate Limits}
 \usage{
 calc_limits(x, by = NULL, term = "long", dates = NULL,
-  messages = getOption("wqbc.messages", default = TRUE))
+  keep_limits = TRUE, messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{x}{A data.frame of water quality readings to calculate the limits for.}
@@ -15,6 +15,8 @@ calc_limits(x, by = NULL, term = "long", dates = NULL,
 \item{term}{A string indicating whether to calculate the "long" or "short"-term limits.}
 
 \item{dates}{A optional date vector indicating the start of 30 day long-term periods.}
+
+\item{keep_limits}{A flag indicating whether to keep values with user supplied upper or lower limits.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
@@ -26,6 +28,8 @@ prior to calculating the limits to ensure: all variables are recognised,
 all values are non-negative and in the standard units, divergent replicates
 are filtered and all remaining replicates are averaged. Only limits whose
 conditions are met are returned.
+Note to use the long-term limits on daily values set
+term = "long-daily".
 }
 \details{
 If a limit depends on another variable

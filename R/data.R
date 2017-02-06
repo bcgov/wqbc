@@ -40,6 +40,7 @@
 #'   \item{Code}{The EMS code in expanded form.}
 #'   \item{Units}{The standard units for the variable.}
 #'   \item{Average}{R function to calculate "average" value.}
+#'   \item{EC_Code}{The Variable Code in the Environment Canada data.}
 #' }
 #' @seealso \code{\link{calc_limits}}
 "codes"
@@ -161,3 +162,17 @@
 #' }
 #' @source \url{http://www.ec.gc.ca/rhc-wsc/default.asp?lang=En&n=9018B5EC-1}
 "yuepilon"
+
+#' Water Quality Parameter VMV and Variable Codes for Canada
+#'
+#' The standard variables, VMV codes and Variable Codes provided by Environment Canada.
+#'
+#' There can be more than one VMV Code for a variable!
+#'
+#' @format A tibble
+#' \describe{
+#'   \item{Variable}{The name of the variable.}
+#'   \item{VMV_Code}{The VMV code.}
+#'   \item{EC_Code}{The Variable Code in the Environment Canada data.}
+#' }
+"vmv_codes"
