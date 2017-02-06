@@ -13,45 +13,56 @@
 
 model_totalhardness_by <- function(x, messages) {
 
-  # extract seasonal covariates form 'Date'
-  x %<>% dplyr::mutate_(yday = ~lubridate::yday(Date), # for seasonal trend
-                         day = ~lubridate::decimal_date(Date)) # for long term trends
+  # filter out total hardness observations
+  x_ht <- x %>% dplyr::filter_(~Variable == "Hardness Total")
+  
+  # identify all sampled dates in data and join onto x_ht data
+  # it is nessisary to include Station as this cannot be guessed
+  x_ht <- x %>% dplyr::select_(~Date,~Station) %>% 
+                unique(.) %>%
+                dplyr::left_join(x_ht, by = c("Date", "Station"))
+  x_ht$Units[is.na(x_ht$Units)] <- x_ht$Units[1]
+  x_ht$Variable[is.na(x_ht$Variable)] <- "Hardness Total"
+  
+  # extract seasonal covariates from 'Date'
+  x_ht %<>% dplyr::mutate_(yday = ~lubridate::yday(Date), # for seasonal trend
+                           day = ~lubridate::decimal_date(Date)) # for long term trends
 
   # step 1: long term trend, set k to number of years
   #         (could possibly go up to 1.5 * no. of years)
   # note - also fit a seasonal model to allow for unbalanced sampling
   #        within some years.
-  k_t <- diff(range(lubridate::year(x$Date))) + 1L
+  k_t <- diff(range(lubridate::year(x_ht$Date))) + 1L
   trend_f <- sprintf("Value ~ s(day, k = %i) + s(yday, bs = 'cc', k = 6)", as.integer(k_t))
-  mod1 <- mgcv::gam(stats::formula(trend_f), data = x)
+  mod1 <- mgcv::gam(stats::formula(trend_f), data = x_ht)
   ## set yday coeffs to zero to remove them from the model
   mod1$coefficients[grep("yday", names(mod1$coefficients))] <- 0
-  x$Value_trend <- mgcv::predict.gam(mod1)
+  x_ht$Value_trend <- mgcv::predict.gam(mod1, newdata = x_ht)
 
   # step 2: model seasonal trend component:  allow seasonal trend to evolve.
   seasonal_f <- sprintf("I(Value - Value_trend) ~ te(yday, day, bs = c('cc', 'tp'), k = c(6, %i))", k_t)
   mod2 <- mgcv::gam(stats::formula(seasonal_f),
-                    data = x)
-  x$Value_season <- mgcv::predict.gam(mod2)
+                    data = x_ht)
+  x_ht$Value_season <- mgcv::predict.gam(mod2, newdata = x_ht)
 
-  # save predictions
-  x %<>% dplyr::mutate_(Value_modelled = ~Value_trend + Value_season)
+  # replace Values with modelled ones
+  x_ht %<>% dplyr::mutate_(Value = ~Value_trend + Value_season)
 
-  # record how unusual some observations are, so user can replace outliers if desired
-  x %<>% dplyr::mutate_(Value_resid = ~(Value - Value_modelled) / sd(Value - Value_modelled))
+  # remove working columns
+  x_ht %<>% dplyr::select_(~-Value_season, ~-Value_trend, ~-yday, ~-day)
 
-  x %>% dplyr::select_(~-Value_season, ~-Value_trend, ~-yday, ~-day)
+  # join back onto full data and return
+  dplyr::full_join(x, x_ht)
 }
 
 model_totalhardness <- function(data, by = NULL,
-                                threshold = 3.5,
                                 messages = getOption("wqbc.messages", default = TRUE)) {
 
   # check the contents of data, all we require is Value, Date
   # ... and by variables ...
   check_data2(data, values = list(Value = c(1, NA),
-                                  Date = as.Date("2014/1/1")))
-
+                                  Date = as.Date("2014/1/1"),
+                                  Variable = ""))
   if (is.null(by)) {
     data %<>% model_totalhardness_by(messages = messages)
   } else {
@@ -59,13 +70,7 @@ model_totalhardness <- function(data, by = NULL,
                           messages = messages)
   }
 
-  # fillin appropriate Values with modelled ones
-  bool <- is.na(data$Value) | abs(data$Value_resid) > threshold
-  data$Value[bool] <- data$Value_modelled[bool]
+  if (messages) message("Replaced water hardness observations with modelled values.")
 
-  #  inform user of the number of values imputed / replaced
-  if (messages) message("Replaced ", sum(bool),
-                        " NA or unusual water hardness observations with modelled ones.")
-
-  data # %>% dplyr::select_(~-Value_resid)
+  data
 }
