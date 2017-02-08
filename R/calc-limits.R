@@ -10,8 +10,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-wqbc_limits <- function() {
-  limits <- wqbc::limits
+wqbc_limits <- function(limits = wqbc::limits) {
   limits$Variable %<>% as.character()
   limits$Units %<>% as.character()
   limits
@@ -26,9 +25,9 @@ join_codes <- function(x) {
   x
 }
 
-join_limits <- function(x) {
+join_limits <- function(x, limits = wqbc::limits) {
   x$..ID <- 1:nrow(x)
-  x %<>% dplyr::left_join(wqbc_limits(), by = c("Variable", "Units"))
+  x %<>% dplyr::left_join(wqbc_limits(limits), by = c("Variable", "Units"))
   x
 }
 
@@ -192,9 +191,9 @@ calc_limits_by_30day <- function(x, dates, messages) {
   x
 }
 
-calc_limits_by <- function (x, term, dates, messages) {
+calc_limits_by <- function (x, term, dates, limits, messages) {
   x <- join_codes(x)
-  x <- join_limits(x)
+  x <- join_limits(x, limits)
 
   if (term == "long") {
     x <- calc_limits_by_30day(x, dates, messages)
@@ -254,6 +253,7 @@ calc_limits_by <- function (x, term, dates, messages) {
 #' @export
 calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits = TRUE,
                         delete_outliers = FALSE, estimate_variables = FALSE,
+                        limits = wqbc::limits,
                         messages = getOption("wqbc.messages", default = TRUE)) {
 
   assert_that(is.data.frame(x))
@@ -291,10 +291,10 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
   if (messages) message("Calculating ", paste0(term, "-term") ," water quality limits...")
 
   if (is.null(by)) {
-    x <- calc_limits_by(x, term = term, dates = dates, messages = messages)
+    x <- calc_limits_by(x, term = term, dates = dates, limits = limits, messages = messages)
   } else {
     x <- plyr::ddply(x, .variables = by, .fun = calc_limits_by,
-                     term = term, dates = dates, messages = messages)
+                     term = term, dates = dates, limits = limits, messages = messages)
   }
 
   if (estimate_variables) { ## add original variable values back if still present
