@@ -78,7 +78,7 @@ test_that("calc_limits dependent", {
   expect_equal(x$UpperLimit, 6)
 })
 
-test_that("calc_limits problem", {
+test_that("calc_limits copper dependent", {
   opts <- options()
   on.exit(options(opts))
   options(wqbc.messages = FALSE)
@@ -88,7 +88,7 @@ test_that("calc_limits problem", {
 
   df <- rbind(copper, hardness)
 
-  x <- calc_limits(df, term = "long-daily", estimate_variables = TRUE, messages = TRUE)
+  x <- calc_limits(df, term = "long-daily", estimate_variables = TRUE)
 
 #  x <- calc_limits(df, term = "long-daily")
   expect_is(x, "data.frame")
@@ -96,4 +96,3 @@ test_that("calc_limits problem", {
   expect_equal(nrow(x), 1)
   expect_equal(x$UpperLimit, 2.768)
 })
-
