@@ -62,3 +62,19 @@ check_excursions <- function (x) {
   TRUE
 }
 
+check_limits <- function(limits) {
+
+  check_cols(limits, c("Variable", "Term", "Condition", "UpperLimit", "Units"))
+
+  limits$Variable %<>% as.character()
+  limits$Term %<>% as.character()
+  limits$Condition %<>% as.character()
+  limits$Units %<>% as.character()
+
+  check_data2(limits, values = list(Variable = paste0("^", lookup_variables(), "$"),
+                                    Term = c("^Short$", "^Long$", "^Long$"),
+                                    Condition = c("", NA),
+                                    UpperLimit = "",
+                                    Units = lookup_units()))
+  limits
+}
