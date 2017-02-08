@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 
-model_totalhardness_by <- function(x, messages) {
+estimate_variable_values_by <- function(x, messages) {
 
   # filter out total hardness observations
   x_ht <- x %>% dplyr::filter_(~Variable == "Hardness Total")
@@ -62,7 +62,7 @@ model_totalhardness_by <- function(x, messages) {
 
       # replace Values with modelled ones
       x_ht$Value <- mgcv::predict.gam(mod, newdata = x_ht)
-    } 
+    }
     if (ndata_years > 2) {
       # fit long term trend and seasonally evolving trend in 2 steps
       # step 1: long term trend.
@@ -81,7 +81,7 @@ model_totalhardness_by <- function(x, messages) {
       x_ht$Value <- mgcv::predict.gam(mod1, newdata = x_ht) +
                     mgcv::predict.gam(mod2, newdata = x_ht)
     }
-    
+
     # remove working columns
     x_ht %<>% dplyr::select_(~-yday, ~-day)
   }
@@ -91,7 +91,7 @@ model_totalhardness_by <- function(x, messages) {
         dplyr::full_join(x_ht, by = names(x))
 }
 
-model_totalhardness <- function(data, by = NULL,
+estimate_variable_values <- function(data, by = NULL,
                                 messages = getOption("wqbc.messages", default = TRUE)) {
 
   # check the contents of data
@@ -101,9 +101,9 @@ model_totalhardness <- function(data, by = NULL,
                                   Variable = "",
                                   Units = ""))
   if (is.null(by)) {
-    data %<>% model_totalhardness_by(messages = messages)
+    data %<>% estimate_variable_values_by(messages = messages)
   } else {
-    data %<>% plyr::ddply(.variables = by, .fun = model_totalhardness_by,
+    data %<>% plyr::ddply(.variables = by, .fun = estimate_variable_values_by,
                           messages = messages)
   }
 

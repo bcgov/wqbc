@@ -28,12 +28,12 @@ fraser1b <- dplyr::mutate_(fraser1, Value = ~ifelse(1:nrow(fraser1) %% 2 == 0, N
 fraser1c <- dplyr::mutate(fraser1, Variable = "Nothing")
 
 # fit models
-fit   <- model_totalhardness(fraser,   by = "Station", message = FALSE)$Value
-fit2  <- model_totalhardness(fraser2,  by = "Station", message = FALSE)$Value
-fit2a <- model_totalhardness(fraser2a, by = "Station", message = FALSE)$Value
-fit1  <- model_totalhardness(fraser1,  by = "Station", message = FALSE)$Value
-fit1a <- model_totalhardness(fraser1a, by = "Station", message = FALSE)$Value
-fit1b <- model_totalhardness(fraser1b, by = "Station", message = FALSE)$Value
+fit   <- estimate_variable_values(fraser,   by = "Station", message = FALSE)$Value
+fit2  <- estimate_variable_values(fraser2,  by = "Station", message = FALSE)$Value
+fit2a <- estimate_variable_values(fraser2a, by = "Station", message = FALSE)$Value
+fit1  <- estimate_variable_values(fraser1,  by = "Station", message = FALSE)$Value
+fit1a <- estimate_variable_values(fraser1a, by = "Station", message = FALSE)$Value
+fit1b <- estimate_variable_values(fraser1b, by = "Station", message = FALSE)$Value
 
 # check predictions are near origional values
 # max % abs diff
@@ -52,12 +52,12 @@ expect_lt(mean(abs(fit1b/fraser1$Value - 1)), 0.06)
 expect_equal(fit1a[1], mean(fraser1a$Value, na.rm = TRUE))
 
 # test inputs
-expect_error(model_totalhardness(select_(fraser1, ~-Station)))
-expect_error(model_totalhardness(select_(fraser1, ~-Value)))
-expect_error(model_totalhardness(select_(fraser1, ~-Variable)))
-expect_error(model_totalhardness(select_(fraser1, ~-Unit)))
-expect_error(model_totalhardness(select_(fraser1, ~-Date)))
+expect_error(estimate_variable_values(select_(fraser1, ~-Station)))
+expect_error(estimate_variable_values(select_(fraser1, ~-Value)))
+expect_error(estimate_variable_values(select_(fraser1, ~-Variable)))
+expect_error(estimate_variable_values(select_(fraser1, ~-Unit)))
+expect_error(estimate_variable_values(select_(fraser1, ~-Date)))
 
 # check no predictions are made if no Hardness Total obs are present
-expect_identical(model_totalhardness(fraser1c, messages = FALSE), fraser1c)
+expect_identical(estimate_variable_values(fraser1c, messages = FALSE), fraser1c)
 })
