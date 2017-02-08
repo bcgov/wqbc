@@ -31,10 +31,10 @@ The data must contain the columns Station, Date, Variable, Value, and Units.
  data(yuepilon)
  data <- yuepilon[yuepilon$Station == "02EA005", ]
  # estimate trend (using simple sen slope)
- trend <- test_trends(data, messages = TRUE, prewhiten = "none")
+ trend <- test_trends(data, messages = TRUE)
  # get the data used in the test
  datasum <- summarise_for_trends(data)
  plot(datasum$Year, datasum$Value,
-      main = paste("p-value =", round(trend$sen_slope_sig, 3)),
+      main = paste("p-value =", round(trend$significance, 3)),
       ylab = "Value", xlab = "Year", las = 1)
 }

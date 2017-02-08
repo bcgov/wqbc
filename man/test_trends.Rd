@@ -4,7 +4,7 @@
 \alias{test_trends}
 \title{Thiel-Sen Trend Test}
 \usage{
-test_trends(data, breaks = NULL, FUN = "median", prewhiten = "zhang",
+test_trends(data, breaks = NULL, FUN = "median",
   messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
@@ -15,13 +15,11 @@ year is used.}
 
 \item{FUN}{The function to use for yearly summaries, e.g. median, mean, or max.}
 
-\item{prewhiten}{A string of the method to use for prewhitening. Values must be 'yuepilon', 'zhang' or 'none'.}
-
 \item{messages}{A flag indicating whether to print messages.}
 }
 \value{
 A tibble data.frame with rows for each Station, Variable, and month grouping, and
-        additional columns for the sen slope estinate, 95\% confidence intervals on the slope, intercept and significance at the 5\% level for both the sen slope and Kendall tau (which can differ).
+        additional columns for the sen slope estinate, 95\% confidence intervals on the slope, intercept and significance at the 5\% level for the sen slope.
 }
 \description{
 Analyses time series using the Thiel-Sen estimate of slope. It ret
@@ -37,22 +35,8 @@ The data must contain the columns Station, Date, Variable, Value, and Units.
 }
 }
 \references{
-Yue, S., Pilon, P., Phinney, B., and Cavadias, G. (2002). The influence of autocorrelation on the
-ability to detect trend in hydrological series. Hydrological Processes, 16(9), 1807-1829.
 
-Zhang, X., Harvey, K. D., Hogg, W. D., and Yuzyk, T. R. (2001). Trends in Canadian streamflow.
-Water Resources Research, 37(4), 987-998.
-
-Kendall, M. (1938). A New Measure of Rank Correlation. Biometrika. 30 (1-2): 81-89.
-doi:10.1093/biomet/30.1-2.81
-
-Theil, H. (1950), A rank-invariant method of linear and polynomial regression analysis. I, II,
-III, Nederl. Akad. Wetensch., Proc., 53: 386-392, 521-525, 1397-1412.
-
-Sen, Pranab Kumar (1968), Estimates of the regression coefficient based on Kendall's tau,
-Journal of the American Statistical Association, 63 (324): 1379-1389, doi:10.2307/2285891
 }
 \seealso{
-\code{\link[zyp]{zyp.yuepilon}}, \code{\link[zyp]{zyp.zhang}}, \code{\link[zyp]{zyp.sen}}
-  and \code{\link[Kendall]{Kendall}} for the individual methods implmented.
+\code{\link[zyp]{zyp.sen}}
 }
