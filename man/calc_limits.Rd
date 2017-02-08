@@ -5,7 +5,8 @@
 \title{Calculate Limits}
 \usage{
 calc_limits(x, by = NULL, term = "long", dates = NULL,
-  keep_limits = TRUE, messages = getOption("wqbc.messages", default = TRUE))
+  keep_limits = TRUE, delete_outliers = FALSE, estimate_variables = FALSE,
+  messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{x}{A data.frame of water quality readings to calculate the limits for.}
@@ -17,6 +18,10 @@ calc_limits(x, by = NULL, term = "long", dates = NULL,
 \item{dates}{A optional date vector indicating the start of 30 day long-term periods.}
 
 \item{keep_limits}{A flag indicating whether to keep values with user supplied upper or lower limits.}
+
+\item{delete_outliers}{A flag indicating whether to delete outliers or merely flag them.}
+
+\item{estimate_variables}{A flag indicating whether to estimate total hardness, total chloride and pHfor all dates.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }

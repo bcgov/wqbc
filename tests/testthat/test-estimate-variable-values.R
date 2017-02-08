@@ -10,9 +10,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-context("model-totalhardness")
+context("estimate-variable-values")
 
-test_that("model-totalhardness vary data", {
+test_that("delete_outliers vary data", {
 fraser <- wqbc::fraser
 fraser$Station <-  factor(sub("BC08", "", as.character(fraser$SiteID)))
 fraser <- dplyr::filter_(fraser, ~grepl("hardness", tolower(Variable)))

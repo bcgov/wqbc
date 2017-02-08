@@ -70,7 +70,9 @@ calc_limits_by_period <- function (x) {
 
 get_conditional_codes <- function (x) {
   x <- stringr::str_extract_all(x, "EMS_[[:alnum:]][[:alnum:]_]{3,3}")
-  unique(unlist(x))
+  x <- unique(unlist(x))
+  x <- x[!is.na(x)]
+  x
 }
 
 average_conditional_code_values <- function (x) {
@@ -79,7 +81,7 @@ average_conditional_code_values <- function (x) {
   x[1,,drop = FALSE]
 }
 
-fill_in_conditional_codes <- function (x, ccodes) {
+fill_in_conditional_codes <- function(x, ccodes) {
   y <- dplyr::filter_(x, ~Code %in% ccodes)
   y <- plyr::ddply(y, .variables = "Code", .fun = average_conditional_code_values)
   x$Conditional <- FALSE
@@ -97,25 +99,18 @@ fill_in_conditional_codes <- function (x, ccodes) {
   x
 }
 
-calc_limits_by_date <- function (x, term, messages) {
+calc_limits_by_date <- function(x, term, messages) {
 
   ccodes <- get_conditional_codes(x$Condition[x$Term == term])
 
   dropped <- dplyr::filter_(x, ~!((!is.na(Term) & Term == term) | Code %in% ccodes))
   x %<>% dplyr::filter_(~((!is.na(Term) & Term == term) | Code %in% ccodes))
 
-  if (messages) {
-    dropped %<>% dplyr::group_by_(~Variable) %>% dplyr::summarise_(n = ~n())
-    for (i in seq_along(dropped$Variable)) {
-      message("Dropped ", sum(dropped$n[i]),
-              " values without limits for ", dropped$Variable[i], ".")
-    }
-  }
   if (!nrow(x))
     return(NULL)
 
-  x <- dplyr::filter_(x, ~(!is.na(Term) & Term == term) | Code %in% ccodes)
-  x <- fill_in_conditional_codes(x, ccodes)
+  x %<>% fill_in_conditional_codes(ccodes)
+
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
   x <- dplyr::filter_(x, ~Term == term)
   x <- dplyr::filter_(x, ~!Conditional)
@@ -248,6 +243,8 @@ calc_limits_by <- function (x, term, dates, messages) {
 #' @param term A string indicating whether to calculate the "long" or "short"-term limits.
 #' @param dates A optional date vector indicating the start of 30 day long-term periods.
 #' @param keep_limits A flag indicating whether to keep values with user supplied upper or lower limits.
+#' @param delete_outliers A flag indicating whether to delete outliers or merely flag them.
+#' @param estimate_variables A flag indicating whether to estimate total hardness, total chloride and pHfor all dates.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' \dontrun{
@@ -256,6 +253,7 @@ calc_limits_by <- function (x, term, dates, messages) {
 #' @seealso \code{\link{calc_wqi}}, \code{\link{clean_wqdata}} and \code{\link{lookup_limits}}
 #' @export
 calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits = TRUE,
+                        delete_outliers = FALSE, estimate_variables = FALSE,
                         messages = getOption("wqbc.messages", default = TRUE)) {
 
   assert_that(is.data.frame(x))
@@ -279,7 +277,12 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
     x %<>% dplyr::slice_(~which(!bol))
   }
 
-  x <- clean_wqdata(x, by = by, messages = messages)
+  x %<>% clean_wqdata(by = by, delete_outliers  = delete_outliers, messages = messages)
+
+  x_org <- dplyr::filter_(x, ~Variable %in% c("Chloride Total", "Hardness Total", "pH"))
+
+  if (estimate_variables)
+    x %<>% estimate_variable_values(by = by, messages = messages)
 
   x$DetectionLimit <- NULL
 
@@ -291,6 +294,16 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
     x <- plyr::ddply(x, .variables = by, .fun = calc_limits_by,
                      term = term, dates = dates, messages = messages)
   }
+
+  if (estimate_variables) {
+    x_new <- dplyr::filter_(x, ~Variable %in% c("Chloride Total", "Hardness Total", "pH"))
+    x %<>% dplyr::filter_(~!Variable %in% c("Chloride Total", "Hardness Total", "pH"))
+    x_org <- x_org[c("Date", "Variable", by, "Value")]
+    x_new$Value <- NULL
+    x_new %<>% dplyr::inner_join(x_org, by = c("Date", "Variable", by))
+    x %<>% dplyr::bind_rows(x_new)
+  }
+
   if (messages) message("Calculated ", paste0(term, "-term") ," water quality limits.")
 
   if (keep_limits)

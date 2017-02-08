@@ -69,7 +69,7 @@ estimate_variable_values_by <- function(x, messages) {
   x
 }
 
-estimate_variable_values <- function(data, by = NULL, variables = "Hardness Total",
+estimate_variable_values <- function(data, by = NULL, variables = c("Chloride Total", "Hardness Total", "pH"),
                                      messages = getOption("wqbc.messages", default = TRUE)) {
 
   check_data2(data, values = list(Date = Sys.Date(), Variable = "", Value = c(1, NA), Units = ""))

@@ -40,3 +40,41 @@ test_that("calc_limits single limit", {
     expect_identical(x$Value, c(5000,5))
     expect_identical(x$UpperLimit, c(110,4))
 })
+
+test_that("calc_limits dependent", {
+  opts <- options()
+  on.exit(options(opts))
+  options(wqbc.messages = FALSE)
+
+  date <- as.Date("2000-01-01")
+  variable <- "Copper Total"
+  df <- data.frame(Date = date, Variable = variable, Value = 5, Units = "mg/L")
+  x <- calc_limits(df, term = "long-daily")
+  expect_is(x, "data.frame")
+  expect_identical(colnames(x), c("Date", "Variable", "Value", "UpperLimit", "Units"))
+  expect_equal(nrow(x), 0)
+
+  df2 <- data.frame(Date = date, Variable = "Hardness Total", Value = 100, Units = "mg/L")
+  df3 <- rbind(df, df2)
+  x <- calc_limits(df3, term = "long-daily")
+  expect_equal(nrow(x), 1L)
+  expect_equal(x$UpperLimit, 4)
+
+  df2 <- data.frame(Date = date + 1, Variable = "Hardness Total", Value = 100, Units = "mg/L")
+  df3 <- rbind(df, df2)
+  x <- calc_limits(df3, term = "long-daily")
+  expect_equal(nrow(x), 1L)
+  expect_equal(x$UpperLimit, 4)
+
+  df2 <- data.frame(Date = date, Variable = "Hardness Total", Value = 200, Units = "mg/L")
+  df3 <- rbind(df3, df2)
+  x <- calc_limits(df3, term = "long-daily")
+  expect_equal(nrow(x), 1L)
+  expect_equal(x$UpperLimit, 8)
+
+  df3$Date[3] <- df3$Date[3] + 1
+  x <- calc_limits(df3, term = "long-daily")
+  expect_equal(nrow(x), 1L)
+  expect_equal(x$UpperLimit, 6)
+})
+
