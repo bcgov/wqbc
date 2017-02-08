@@ -33,12 +33,6 @@ input_codes <- function() {
   stopifnot(all(codes$Average %in% c("mean", "median")))
 
 
-  codes$Code %<>%  factor
-  codes$Variable %<>% factor
-  codes$Units %<>% factor(levels = lookup_units())
-  codes$Units %<>% droplevels
-  codes$Average %<>% factor
-
   codes
 }
 codes <- input_codes()

@@ -49,8 +49,7 @@ input_limits <- function () {
 
   load("data/codes.rda")
 
-  limits$Variable <- factor(limits$Variable, levels = levels(codes$Variable))
-  stopifnot(all(!is.na(limits$Variable)))
+  stopifnot(all(limits$Variable %in% codes$Variable))
 
   limits <- inner_join(limits, codes, by = "Variable")
 
@@ -61,8 +60,6 @@ input_limits <- function () {
 
   limits %<>% select(Variable, Term, Condition, UpperLimit, Units)
 
-  limits$Term %<>% factor
-  limits$Units %<>% droplevels
   limits
 }
 limits <- input_limits()

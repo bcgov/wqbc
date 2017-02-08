@@ -244,6 +244,7 @@ calc_limits_by <- function (x, term, dates, limits, messages) {
 #' @param keep_limits A flag indicating whether to keep values with user supplied upper or lower limits.
 #' @param delete_outliers A flag indicating whether to delete outliers or merely flag them.
 #' @param estimate_variables A flag indicating whether to estimate total hardness, total chloride and pHfor all dates.
+#' @param limits A data frame of the limits table to use.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' \dontrun{
@@ -262,6 +263,8 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
   assert_that(is.null(dates) || (is.date(dates) && noNA(dates)))
   assert_that(is.flag(messages) && noNA(messages))
   assert_that(is.flag(keep_limits) && noNA(keep_limits))
+
+  check_limits(limits)
 
   term <- tolower(term)
   if (!term %in% c("long", "short", "long-daily")) stop("term must be \"long\" or \"short\" or \"long-daily\"")
