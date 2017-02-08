@@ -78,3 +78,22 @@ test_that("calc_limits dependent", {
   expect_equal(x$UpperLimit, 6)
 })
 
+test_that("calc_limits problem", {
+  opts <- options()
+  on.exit(options(opts))
+  options(wqbc.messages = FALSE)
+
+  copper <- data.frame(Variable = "Copper Total", Value = 0.9, Units = "ug/L", Date = as.Date("2000-01-01"))
+  hardness <- data.frame(Variable = "Hardness Total", Value = 69.2, Units = "mg/L", Date = as.Date("2000-01-01"))
+
+  df <- rbind(copper, hardness)
+
+  x <- calc_limits(df, term = "long-daily", estimate_variables = TRUE, messages = TRUE)
+
+#  x <- calc_limits(df, term = "long-daily")
+  expect_is(x, "data.frame")
+  expect_identical(colnames(x), c("Date", "Variable", "Value", "UpperLimit", "Units"))
+  expect_equal(nrow(x), 1)
+  expect_equal(x$UpperLimit, 2.768)
+})
+
