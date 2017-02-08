@@ -10,25 +10,25 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-wqbc_limits <- function () {
-  limits <- limits
-  limits$Variable <- as.character(limits$Variable)
-  limits$Units <- as.character(limits$Units)
+wqbc_limits <- function() {
+  limits <- wqbc::limits
+  limits$Variable %<>% as.character()
+  limits$Units %<>% as.character()
   limits
 }
 
-join_codes <- function (x) {
+join_codes <- function(x) {
   x <- dplyr::rename_(x, "..Units" = "Units")
-  x$Variable <- as.character(x$Variable)
-  x <- dplyr::left_join(x, wqbc_codes(), by = "Variable")
+  x$Variable %<>% as.character()
+  x %<>% dplyr::left_join(wqbc_codes(), by = "Variable")
   stopifnot(all(x$Units == x$..Units))
   x$..Units <- NULL
   x
 }
 
-join_limits <- function (x) {
+join_limits <- function(x) {
   x$..ID <- 1:nrow(x)
-  x <- dplyr::left_join(x, wqbc_limits(), by = c("Variable", "Units"))
+  x %<>% dplyr::left_join(wqbc_limits(), by = c("Variable", "Units"))
   x
 }
 
@@ -98,6 +98,7 @@ fill_in_conditional_codes <- function (x, ccodes) {
 }
 
 calc_limits_by_date <- function (x, term, messages) {
+
   ccodes <- get_conditional_codes(x$Condition[x$Term == term])
 
   dropped <- dplyr::filter_(x, ~!((!is.na(Term) & Term == term) | Code %in% ccodes))
