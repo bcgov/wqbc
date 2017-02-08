@@ -279,6 +279,8 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
 
   x %<>% clean_wqdata(by = by, delete_outliers  = delete_outliers, messages = messages)
 
+  cleansed <- x
+
   x_org <- dplyr::filter_(x, ~Variable %in% c("Chloride Total", "Hardness Total", "pH"))
 
   if (estimate_variables)
@@ -295,7 +297,7 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
                      term = term, dates = dates, messages = messages)
   }
 
-  if (estimate_variables) {
+  if (estimate_variables) { ## add original variable values back if still present
     x_new <- dplyr::filter_(x, ~Variable %in% c("Chloride Total", "Hardness Total", "pH"))
     x %<>% dplyr::filter_(~!Variable %in% c("Chloride Total", "Hardness Total", "pH"))
     x_org <- x_org[c("Date", "Variable", by, "Value")]
@@ -304,8 +306,18 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
     x %<>% dplyr::bind_rows(x_new)
   }
 
-  if (messages) message("Calculated ", paste0(term, "-term") ," water quality limits.")
+  if (messages) {
+    cleansed %<>% dplyr::anti_join(x, by = c("Date", "Variable", by))
 
+    if (nrow(cleansed)) {
+      cleansed %<>% plyr::ddply("Variable", function(x) data.frame(n = nrow(x)))
+      for (i in 1:nrow(cleansed))
+        message("Dropped ", cleansed$n[i], " values for ", cleansed$Variable[i]," without limits")
+    } else
+      message("O values without limits")
+
+    message("Calculated ", paste0(term, "-term") ," water quality limits.")
+  }
   if (keep_limits)
     x %<>% dplyr::bind_rows(y)
   x
