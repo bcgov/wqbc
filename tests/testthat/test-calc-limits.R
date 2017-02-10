@@ -96,3 +96,33 @@ test_that("calc_limits copper dependent", {
   expect_equal(nrow(x), 1)
   expect_equal(x$UpperLimit, 2.768)
 })
+
+test_that("calc_limits external limits", {
+
+  copper <- data.frame(Variable = "Lead Total", Value = 0.9, Units = "ug/L", Date = as.Date("2000-01-01"))
+  hardness <- data.frame(Variable = "Hardness Total", Value = 69.2, Units = "mg/L", Date = as.Date("2000-01-01"))
+
+  df <- rbind(copper, hardness)
+
+  x <- calc_limits(df, limits = wqbc::site_limits, term = "long-daily")
+
+  #  x <- calc_limits(df, term = "long-daily")
+  expect_is(x, "data.frame")
+  expect_identical(colnames(x), c("Date", "Variable", "Value", "UpperLimit", "Units"))
+  expect_equal(nrow(x), 1)
+  expect_equal(x$UpperLimit, 5)
+
+  copper <- data.frame(Variable = "Lead Total", Value = 0.9, Units = "ug/L", Date = as.Date("2000-01-01"))
+  hardness <- data.frame(Variable = "Hardness Total", Value = 100, Units = "mg/L", Date = as.Date("2000-01-01"))
+
+  df <- rbind(copper, hardness)
+
+  x <- calc_limits(df, limits = wqbc::site_limits, term = "long-daily")
+
+  #  x <- calc_limits(df, term = "long-daily")
+  expect_is(x, "data.frame")
+  expect_identical(colnames(x), c("Date", "Variable", "Value", "UpperLimit", "Units"))
+  expect_equal(nrow(x), 1)
+  expect_equal(x$UpperLimit, 10)
+})
+
