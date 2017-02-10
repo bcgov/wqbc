@@ -10,21 +10,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-## The overarching script to prepare data for the package
+## Process the wq limits (guidelines) in limits.csv for inclusion in the
+## package. See limits.Rmd for details
 
-library(wqbc) # rebuild package
-source("data-raw/dummy.R")
-source("data-raw/codes.R")
-source("data-raw/limits.R")
-source("data-raw/site-limits.R")
-library(wqbc) # rebuild package
-# source("data-raw/fraser-raw.R")
-source("data-raw/fraser.R")
-# source("data-raw/map-raw.R")
-source("data-raw/map.R")
-source("data-raw/ccme.R")
-source("data-raw/data-internal.R")
-source("data-raw/ems-codes.R")
-source("data-raw/vmv-codes.R")
-source("data-raw/stations.R")
-source("data-raw/YuePilon_hydat_dataset.R")
+library(wqbc)
+library(dplyr)
+library(magrittr)
+library(devtools)
+
+rm(list = ls())
+
+input_site_limits <- function() {
+
+  site_limits <- read.csv("data-raw/site-limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
+
+  site_limits$UpperLimit %<>% as.character()
+  wqbc:::check_limits(site_limits)
+  site_limits
+}
+site_limits <- input_site_limits()
+use_data(site_limits, overwrite = TRUE, compress = "xz")

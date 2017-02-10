@@ -1,0 +1,8 @@
+Station_Name,Variable,Term,Condition,UpperLimit,Units,Code,EMS_ID
+Columbia River at Nicholson,Barium Total,Long,,1,ug/L,EMS_BA_T,E252119
+Columbia River at Nicholson,Cadmium Total,Long,,0.2,ug/L,EMS_CD_T,E252119
+Columbia River at Nicholson,Copper Dissolved,Long,,2,ug/L,EMS_CU_D,E252119
+Columbia River at Nicholson,Lead Total,Long,EMS_0107 <= 95,5,ug/L,EMS_PB_T,E252119
+Columbia River at Nicholson,Lead Total,Long,EMS_0107 > 95,10,ug/L,EMS_PB_T,E252119
+Columbia River at Nicholson,Zinc Total,Long,,50,ug/L,EMS_ZN_T,E252119
+Columbia River at Nicholson,Colour Apparent,Long,,15,CU,EMS_0001,E252119

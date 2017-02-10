@@ -266,6 +266,12 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
 
   check_limits(limits)
 
+  missing_limits <- dplyr::anti_join(limits, wqbc::codes, by = c("Variable", "Units"))
+
+  if (nrow(missing_limits)) {
+    error("unrecognised variables and/or units in limits - they must match those in wqbc::codes")
+  }
+
   term <- tolower(term)
   if (!term %in% c("long", "short", "long-daily")) stop("term must be \"long\" or \"short\" or \"long-daily\"")
 
