@@ -34,9 +34,6 @@ The data must contain the columns Station, Date, Variable, Value, and Units.
   demo(test_trends)
 }
 }
-\references{
-
-}
 \seealso{
 \code{\link[zyp]{zyp.sen}}
 }

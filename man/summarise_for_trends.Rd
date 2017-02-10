@@ -10,8 +10,8 @@ summarise_for_trends(data, breaks = NULL, FUN = "median",
 \arguments{
 \item{data}{The data.frame to analyse.}
 
-\item{breaks}{A numeric vector used to create groups of consecutive months, if NULL the full
-year is used.}
+\item{breaks}{A numeric vector used to create groups of consecutive months,
+if NULL the full year is used.}
 
 \item{FUN}{The function to use for yearly summaries, e.g. median, mean, or max.}
 

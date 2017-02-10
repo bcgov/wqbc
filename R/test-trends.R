@@ -72,8 +72,6 @@ do_test_trends <- function(data, breaks, FUN) {
 #' @return A tibble data.frame with rows for each Station, Variable, and month grouping, and
 #'         additional columns for the sen slope estinate, 95\% confidence intervals on the slope, intercept and significance at the 5\% level for the sen slope.
 #' @seealso \code{\link[zyp]{zyp.sen}}
-#' @references
-#'
 #' @examples
 #'  data <- wqbc::yuepilon
 #'  trend <- test_trends(data, breaks = 6, messages = TRUE)
@@ -138,13 +136,11 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
 #' The data must contain the columns Station, Date, Variable, Value, and Units.
 #'
 #' @param data The data.frame to analyse.
-#' @param breaks A numeric vector used to create groups of consecutive months, if NULL the full
-#'               year is used.
+#' @param breaks A numeric vector used to create groups of consecutive months,
+#' if NULL the full year is used.
 #' @param FUN The function to use for yearly summaries, e.g. median, mean, or max.
 #' @param messages A flag indicating whether to print messages.
-#'
 #' @return A tibble data.frame with rows for each Station, Variable, Year and month grouping.
-#'
 #' @examples
 #'  # select one station
 #'  data(yuepilon)
