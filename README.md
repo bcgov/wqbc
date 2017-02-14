@@ -35,7 +35,7 @@ library(wqbc)
 
 ### Project Status
 
-This package is under development.
+This package is under development. The user is responsible for checking all variables and limits that they use.
 
 ### Getting Help or Reporting an Issue
 
