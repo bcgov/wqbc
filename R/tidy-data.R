@@ -3,12 +3,17 @@
 #' Tidies water quality data downloaded from EMS database using the bcgov/rems package.
 #' It retains and renames required columns and sets the timezone to PST.
 #'
+#' It sets values that are flagged as being less than the detection limit to zero.
+#' It does not alter values that are flagged as being greater than the detection limit -
+#' that is left up to the user.
+#'
 #' @param x The rems data to tidy.
+#' @param cols additional columns from the EMS data to retain.
 #' @return A tibble of the tidied rems data.
 #' @export
-tidy_ems_data <- function(x) {
+tidy_ems_data <- function(x, cols = character(0)) {
   check_cols(x, c("EMS_ID", "MONITORING_LOCATION", "COLLECTION_START", "PARAMETER_CODE",
-                  "RESULT", "UNIT", "METHOD_DETECTION_LIMIT", "PARAMETER"))
+                  "RESULT", "UNIT", "METHOD_DETECTION_LIMIT", "PARAMETER", "RESULT_LETTER", cols))
 
   x %<>% dplyr::mutate_(DateTime = ~lubridate::force_tz(COLLECTION_START, "Etc/GMT+8"))
 
@@ -19,9 +24,10 @@ tidy_ems_data <- function(x) {
                         Code = ~PARAMETER_CODE,
                         Value = ~RESULT,
                         Units = ~UNIT,
-                        DetectionLimit = ~METHOD_DETECTION_LIMIT)
+                        DetectionLimit = ~METHOD_DETECTION_LIMIT,
+                        ResultLetter = ~RESULT_LETTER)
 
-  x$Value[!is.na(x$Value) & !is.na(x$DetectionLimit) & x$DetectionLimit > 0 & x$Value <= x$DetectionLimit] <- 0
+  x$Value[!is.na(x$Value) & !is.na(x$ResultLetter) & x$ResultLetter == "<"] <- 0
 
   x
 }

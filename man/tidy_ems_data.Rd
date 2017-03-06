@@ -4,10 +4,13 @@
 \alias{tidy_ems_data}
 \title{Tidy EMS Data}
 \usage{
-tidy_ems_data(x)
+tidy_ems_data(x, cols = character(0))
 }
 \arguments{
 \item{x}{The rems data to tidy.}
+
+\item{cols}{additional columns from the EMS data to retain.
+are:}
 }
 \value{
 A tibble of the tidied rems data.
@@ -15,4 +18,9 @@ A tibble of the tidied rems data.
 \description{
 Tidies water quality data downloaded from EMS database using the bcgov/rems package.
 It retains and renames required columns and sets the timezone to PST.
+}
+\details{
+It sets values that are flagged as being less than the detection limit to zero.
+It does not alter values that are flagged as being greater than the detection limit -
+that is left up to the user.
 }
