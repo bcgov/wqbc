@@ -81,6 +81,7 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 #'
 #' @param x The data.frame to clean.
 #' @param by A character vector of the columns in x to perform the cleaning by.
+#' If you have multiple stations specify the column name that contains the station IDs.
 #' @param max_cv A number indicating the maximum permitted coefficient
 #' of variation for replicates.
 #' @param sds The number of standard deviations above which a value is considered an outlier.
