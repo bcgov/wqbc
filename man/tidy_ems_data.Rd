@@ -9,8 +9,7 @@ tidy_ems_data(x, cols = character(0))
 \arguments{
 \item{x}{The rems data to tidy.}
 
-\item{cols}{additional columns from the EMS data to retain.
-are:}
+\item{cols}{additional columns from the EMS data to retain.}
 }
 \value{
 A tibble of the tidied rems data.
