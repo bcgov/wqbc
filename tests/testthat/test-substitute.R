@@ -35,6 +35,10 @@ test_that("substitute_variables strict", {
                                      "KRYPTONITE"),
                strict = TRUE), c(NA, "Aluminium Dissolved", "Aluminium Dissolved", "Benzene", NA))
   expect_equal(substitute_variables("KRYPTONITE", strict = TRUE), NA_character_)
+  expect_equal(substitute_variables(c("Benzene Total", "Alkalinity pH 4.5/4.2",
+                                      "Dissolved Aluminium", "Hardness Dissolved Total", "pH")),
+               c("Benzene", "Alkalinity pH 4.5/4.2", "Aluminium Dissolved",
+                 NA, "pH"))
   expect_message(substitute_variables("DISSOLVED ALUMINIUM", strict = TRUE, messages = TRUE))
 })
 
