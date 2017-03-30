@@ -41,25 +41,37 @@ all_words_in_x_in_y <- function (x, y) {
 }
 
 wqbc_substitute <- function (org, mod = org, sub, sub_mod = sub, messages) {
-  org <- as.character(org)
-  mod <- as.character(mod)
-  sub <- as.character(sub)
-  sub_mod <- as.character(sub_mod)
+  org <- stringr::str_trim(org, side = "both")
+  mod <- stringr::str_trim(mod, side = "both")
+  sub <- stringr::str_trim(sub, side = "both")
+  sub_mod <- stringr::str_trim(sub_mod, side = "both")
 
   orgd <- data.frame(org = org, match = tolower(mod), stringsAsFactors = FALSE)
   subd <- data.frame(sub = sub, match = tolower(sub_mod), stringsAsFactors = FALSE)
 
   orgd$sub <- NA_character_
   orgd$multi <- FALSE
-  for (i in 1:nrow(subd)) {
-    bol <- all_words_in_x_in_y(subd$match[i], orgd$match)
-    if (any(bol)) {
-      if (!all(is.na(orgd$sub[bol]))) {
-        orgd$multi <- orgd$multi | (bol & !is.na(orgd$sub))
+
+  ## First check for exact matches:
+  matches <- orgd$match %in% subd$match
+  orgd$sub[matches] <- vapply(orgd$match[matches], function(x) subd$sub[subd$match == x],
+                              FUN.VALUE = character(1))
+
+  ## Then for name matches
+  if (!all(matches)) {
+    for (i in 1:nrow(subd)) {
+
+      bol <- all_words_in_x_in_y(subd$match[i], orgd$match[!matches])
+
+      if (any(bol)) {
+        if (!all(is.na(orgd$sub[!matches][bol]))) {
+          orgd$multi[!matches] <- orgd$multi[!matches] | (bol & !is.na(orgd$sub[!matches]))
+        }
+        orgd$sub[!matches][bol] <- subd$sub[i]
       }
-      orgd$sub[bol] <- subd$sub[i]
     }
   }
+
   orgd$sub[orgd$multi] <- NA_character_
   if(messages) messages_match_substitution(orgd$org, orgd$sub)
   orgd$sub
@@ -123,6 +135,7 @@ substitute_units <- function (
 #'                         strict = FALSE, messages = TRUE)
 #' @seealso \code{\link{substitute_units}}
 #' @export
+
 substitute_variables <- function (
   x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
 
