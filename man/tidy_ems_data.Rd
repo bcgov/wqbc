@@ -4,12 +4,16 @@
 \alias{tidy_ems_data}
 \title{Tidy EMS Data}
 \usage{
-tidy_ems_data(x, cols = character(0))
+tidy_ems_data(x, cols = character(0), mdl_action = "zero")
 }
 \arguments{
 \item{x}{The rems data to tidy.}
 
 \item{cols}{additional columns from the EMS data to retain.}
+
+\item{mdl_action}{What to do with results that are below the detection limit.
+Can be set to \code{zero} (the default), set at the detection limit (\code{mdl}),
+or set to half the detection limit (\code{half}).}
 }
 \value{
 A tibble of the tidied rems data.
