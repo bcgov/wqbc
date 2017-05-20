@@ -9,9 +9,13 @@
 #'
 #' @param x The rems data to tidy.
 #' @param cols additional columns from the EMS data to retain.
+#' @param mdl_action What to do with results that are below the detection limit.
+#' Can be set to \code{zero} (the default), set at the detection limit (\code{mdl}),
+#' or set to half the detection limit (\code{half}).
+#'
 #' @return A tibble of the tidied rems data.
 #' @export
-tidy_ems_data <- function(x, cols = character(0)) {
+tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
   check_cols(x, c("EMS_ID", "MONITORING_LOCATION", "COLLECTION_START", "PARAMETER_CODE",
                   "RESULT", "UNIT", "METHOD_DETECTION_LIMIT", "PARAMETER", "RESULT_LETTER", cols))
 
@@ -27,7 +31,9 @@ tidy_ems_data <- function(x, cols = character(0)) {
                         DetectionLimit = ~METHOD_DETECTION_LIMIT,
                         ResultLetter = ~RESULT_LETTER)
 
-  x$Value[!is.na(x$Value) & !is.na(x$ResultLetter) & x$ResultLetter == "<"] <- 0
+  x$Value = set_non_detects(value = x$Value,
+                    mdl_flag = x$ResultLetter,
+                    mdl_action = mdl_action)
 
   x
 }
@@ -38,9 +44,12 @@ tidy_ems_data <- function(x, cols = character(0)) {
 #' It retains and renames required columns and sets the timezone to PST.
 #'
 #' @param x The rems data to tidy.
+#' @param mdl_action What to do with results that are below the detection limit.
+#' Can be set to \code{zero} (the default), set at the detection limit (\code{mdl}),
+#' or set to half the detection limit (\code{half}).
 #' @return A tibble of the tidied rems data.
 #' @export
-tidy_ec_data <- function(x) {
+tidy_ec_data <- function(x, mdl_action = "zero") {
   check_cols(x, c("SITE_NO", "DATE_TIME_HEURE", "VALUE_VALEUR", "SDL_LDE", "VMV_CODE", "VARIABLE"))
 
   unit <- dplyr::select_(x, ~starts_with("UNIT_UNIT"))
@@ -58,9 +67,63 @@ tidy_ec_data <- function(x) {
 
   x %<>% dplyr::select_(~dplyr::everything(), ~DetectionLimit)
 
-  x$Value[!is.na(x$Value) & !is.na(x$DetectionLimit) & x$DetectionLimit > 0 & x$Value <= x$DetectionLimit] <- 0
-
   x %<>% dplyr::mutate_(DateTime = ~lubridate::dmy_hm(DateTime, tz = "Etc/GMT+8"))
 
+  x$Value = set_non_detects(value = x$Value,
+                    mdl_value = x$DetectionLimit,
+                    mdl_action = mdl_action)
+
   x
+}
+
+#' Set value for 'non-detects'
+#'
+#' Set a value where the actual value of a measurement
+#' is less than the method detection limit (MDL)
+#'
+#' @param value a numeric vector of measured values
+#' @param mdl_flag a character vector the same length as \code{value} that has a "flag" (assumed to be \code{"<"}) for values that are below the MDL
+#' @param mdl_value a numeric vector the same length as \code{value} that contains the MDL values.
+#' @param mdl_action What to do with values below the detection limit. Options are
+#' \code{"zero"} (set the value to \code{0}), \code{"half"} (set the value to half the MDL), or \code{"mdl"} (set the value to equal to the MDL).
+#'
+#' @details You must only supply either \code{mdl_flag} or \code{mdl_value}.
+#' When \code{mdl_flag} is supplied, it is assumed that the original \code{value} has
+#' been set to the MDL.
+#'
+#' @return a numeric vector the same length as value with non-detects adjusted accordingly
+#' @export
+set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL, mdl_action = c("zero", "half", "mdl")) {
+
+  mdl_action <- match.arg(mdl_action)
+
+  if (!is.null(mdl_flag)) {
+    if (!is.null(mdl_value)) stop ("You must supply only one of mdl_flag or mdl_value")
+    if (length(value) != length(mdl_flag)) {
+      stop("value and mdl_flag must be the same length")
+  }
+
+  } else if (!is.null(mdl_value)) {
+    if (length(value) != length(mdl_value))
+      stop("value and mdl_value must be the same length")
+  } else {
+    stop("You must supply either a mdl_flag vector, or a mdl_value vector")
+  }
+
+  if (mdl_action == "zero") {
+    if (!is.null(mdl_flag)) {
+      value[!is.na(value) & !is.na(mdl_flag) & mdl_flag == "<"] <- 0
+    } else {
+      value[!is.na(value) & !is.na(mdl_value) & mdl_value > 0 & value <= mdl_value] <- 0
+    }
+  } else {
+    multiplier <- ifelse(mdl_action == "half", 0.5, 1)
+    if (!is.null(mdl_flag)) {
+      value[!is.na(value) & !is.na(mdl_flag) & mdl_flag == "<"] <- value[!is.na(value) & !is.na(mdl_flag) & mdl_flag == "<"] * multiplier
+    } else {
+      value[!is.na(value) & !is.na(mdl_value) & mdl_value > 0 & value <= mdl_value] <- mdl_value[!is.na(value) & !is.na(mdl_value) & mdl_value > 0 & value <= mdl_value] * multiplier
+    }
+  }
+
+value
 }
