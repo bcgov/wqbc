@@ -32,8 +32,8 @@ tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
                         ResultLetter = ~RESULT_LETTER)
 
   x$Value = set_non_detects(value = x$Value,
-                    mdl_flag = x$ResultLetter,
-                    mdl_action = mdl_action)
+                            mdl_flag = x$ResultLetter,
+                            mdl_action = mdl_action)
 
   x
 }
@@ -70,8 +70,8 @@ tidy_ec_data <- function(x, mdl_action = "zero") {
   x %<>% dplyr::mutate_(DateTime = ~lubridate::dmy_hm(DateTime, tz = "Etc/GMT+8"))
 
   x$Value = set_non_detects(value = x$Value,
-                    mdl_value = x$DetectionLimit,
-                    mdl_action = mdl_action)
+                            mdl_value = x$DetectionLimit,
+                            mdl_action = mdl_action)
 
   x
 }
@@ -98,34 +98,40 @@ set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL, mdl_action
   mdl_action <- match.arg(mdl_action)
 
   if (!is.null(mdl_flag)) {
+
     if (!is.null(mdl_value)) stop ("You must supply only one of mdl_flag or mdl_value")
     if (length(value) != length(mdl_flag)) {
       stop("value and mdl_flag must be the same length")
-  }
+    }
+
+    replacements <- !is.na(value) & !is.na(mdl_flag) & mdl_flag == "<"
 
   } else if (!is.null(mdl_value)) {
-    if (length(value) != length(mdl_value))
+
+    if (length(value) != length(mdl_value)) {
       stop("value and mdl_value must be the same length")
+    }
+
+    replacements <- !is.na(value) & !is.na(mdl_value) & mdl_value > 0 & value <= mdl_value
+
   } else {
     stop("You must supply either a mdl_flag vector, or a mdl_value vector")
   }
 
   if (mdl_action == "zero") {
-    if (!is.null(mdl_flag)) {
-      value[!is.na(value) & !is.na(mdl_flag) & mdl_flag == "<"] <- 0
-    } else {
-      value[!is.na(value) & !is.na(mdl_value) & mdl_value > 0 & value <= mdl_value] <- 0
-    }
+    value[replacements] <- 0
   } else {
+
     multiplier <- ifelse(mdl_action == "half", 0.5, 1)
+
     if (!is.null(mdl_flag)) {
-      replacements <- !is.na(value) & !is.na(mdl_flag) & mdl_flag == "<"
       value[replacements] <- value[replacements] * multiplier
     } else {
-      replacements <- !is.na(value) & !is.na(mdl_value) & mdl_value > 0 & value <= mdl_value
       value[replacements] <- mdl_value[replacements] * multiplier
     }
+
   }
 
-value
+  value
+
 }
