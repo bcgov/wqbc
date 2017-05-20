@@ -119,9 +119,11 @@ set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL, mdl_action
   } else {
     multiplier <- ifelse(mdl_action == "half", 0.5, 1)
     if (!is.null(mdl_flag)) {
-      value[!is.na(value) & !is.na(mdl_flag) & mdl_flag == "<"] <- value[!is.na(value) & !is.na(mdl_flag) & mdl_flag == "<"] * multiplier
+      replacements <- !is.na(value) & !is.na(mdl_flag) & mdl_flag == "<"
+      value[replacements] <- value[replacements] * multiplier
     } else {
-      value[!is.na(value) & !is.na(mdl_value) & mdl_value > 0 & value <= mdl_value] <- mdl_value[!is.na(value) & !is.na(mdl_value) & mdl_value > 0 & value <= mdl_value] * multiplier
+      replacements <- !is.na(value) & !is.na(mdl_value) & mdl_value > 0 & value <= mdl_value
+      value[replacements] <- mdl_value[replacements] * multiplier
     }
   }
 
