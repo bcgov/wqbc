@@ -4,10 +4,14 @@
 \alias{tidy_ec_data}
 \title{Tidy Environment Canada Data}
 \usage{
-tidy_ec_data(x)
+tidy_ec_data(x, mdl_action = "zero")
 }
 \arguments{
 \item{x}{The rems data to tidy.}
+
+\item{mdl_action}{What to do with results that are below the detection limit.
+Can be set to \code{zero} (the default), set at the detection limit (\code{mdl}),
+or set to half the detection limit (\code{half}).}
 }
 \value{
 A tibble of the tidied rems data.
