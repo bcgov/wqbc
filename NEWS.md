@@ -1,3 +1,7 @@
+# wqbc 0.3.1
+
+- Exported previously internal-only function `convert_values` to do unit conversions (#70).
+
 # wqbc 0.3.0
 
 - Added function `set_non_detects()` to flexibily deal with values below the 

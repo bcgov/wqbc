@@ -42,6 +42,30 @@ get_unit_type <- function(x) {
   x
 }
 
+#' Convert values to different units
+#'
+#' @param x a numeric vector of values to convert
+#' @param from units to convert from
+#' @param to units to convert to
+#' @param messages should messages be printed when
+#'
+#' @details Currently supported units for \code{from} and \code{to} are:
+#' c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH", "degC", "C", "CFU/dL", "MPN/dL", "CFU/100mL", "MPN/100mL", "CFU/g", "MPN/g", "CFU/mL", "MPN/mL", "CU", "Col.Unit", "Rel", "NTU")
+#'
+#' @return a numeric vector of the converted values
+#' @export
+#'
+#' @examples
+#'
+#' convert_values(1, "ug/L", "mg/L", messages = FALSE)
+#'
+#' df <- data.frame(value = c(1.256, 5400000, 12300, .00098),
+#'                  units = c("mg/L", "ng/L", "ug/L", "g/L"),
+#'                  stringsAsFactors = FALSE)
+#' df
+#'
+#' df$units_mg_L <- convert_values(df$value, from = df$units, to = "mg/L", messages = FALSE)
+#' df
 convert_values <- function (x, from, to, messages) {
 
   from <- substitute_units(from, messages = messages)
