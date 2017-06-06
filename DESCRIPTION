@@ -18,6 +18,8 @@ Authors@R: c(person("Joe", "Thorley", email = "joe@poissonconsulting.ca",
 Description: Calculates water quality thresholds and water quality indices
     and plots water quality indices spatially and temporally for
     British Columbia.
+URL: https://github.com/bcgov/wqbc
+BugReports: https://github.com/bcgov/wqbc/issues
 License: Apache License (== 2.0) | file LICENSE
 LazyData: true
 Depends:
