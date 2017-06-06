@@ -35,7 +35,7 @@ is_end_open_bracket <- function (x) {
 aes_string_point_expr <- function (head, tail, ...) {
   args <- list(...)
 
-  string <- sapply(args, is.string)
+  string <- vapply(args, is.string, FUN.VALUE = logical(1))
 
   strings <- paste_sep_collapse(args[string], string = TRUE)
   values <- paste_sep_collapse(args[!string])
