@@ -31,7 +31,7 @@ tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
                         DetectionLimit = ~METHOD_DETECTION_LIMIT,
                         ResultLetter = ~RESULT_LETTER)
 
-  x$Value = set_non_detects(value = x$Value,
+  x$Value <- set_non_detects(value = x$Value,
                             mdl_flag = x$ResultLetter,
                             mdl_action = mdl_action)
 
@@ -69,7 +69,7 @@ tidy_ec_data <- function(x, mdl_action = "zero") {
 
   x %<>% dplyr::mutate_(DateTime = ~lubridate::dmy_hm(DateTime, tz = "Etc/GMT+8"))
 
-  x$Value = set_non_detects(value = x$Value,
+  x$Value <- set_non_detects(value = x$Value,
                             mdl_value = x$DetectionLimit,
                             mdl_action = mdl_action)
 
