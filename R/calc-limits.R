@@ -26,7 +26,7 @@ join_codes <- function(x) {
 }
 
 join_limits <- function(x, limits = wqbc::limits) {
-  x$..ID <- 1:nrow(x)
+  x$..ID <- seq_len(nrow(x))
   x %<>% dplyr::left_join(wqbc_limits(limits), by = c("Variable", "Units"))
   x
 }
@@ -331,7 +331,7 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
 
     if (nrow(cleansed)) {
       cleansed %<>% plyr::ddply("Variable", function(x) data.frame(n = nrow(x)))
-      for (i in 1:nrow(cleansed))
+      for (i in seq_len(nrow(cleansed)))
         message("Dropped ", cleansed$n[i], " values for ", cleansed$Variable[i]," without limits")
     } else
       message("O values without limits")

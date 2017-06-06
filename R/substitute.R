@@ -59,7 +59,7 @@ wqbc_substitute <- function (org, mod = org, sub, sub_mod = sub, messages) {
 
   ## Then for name matches
   if (!all(matches)) {
-    for (i in 1:nrow(subd)) {
+    for (i in seq_len(nrow(subd))) {
 
       bol <- all_words_in_x_in_y(subd$match[i], orgd$match[!matches])
 
