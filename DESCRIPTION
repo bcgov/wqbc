@@ -30,11 +30,9 @@ Imports:
     plyr (>= 1.8.1),
     dplyr (>= 0.4.1),
     zyp,
-    Kendall,
     magrittr,
     purrr,
     grDevices,
-    rems (>= 0.4.0.9999),
     stringr (>= 0.6.2),
     stats,
     tibble,
@@ -49,7 +47,9 @@ Suggests:
     sp (>= 1.0-17),
     rgdal (>= 0.9-1),
     rmarkdown,
-    xtable (>= 1.7-4)
+    xtable (>= 1.7-4),
+    rems (>= 0.4.0.9999),
+    Kendall
 Remotes:
     bcgov/rems
 VignetteBuilder: knitr
