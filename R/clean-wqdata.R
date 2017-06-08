@@ -139,7 +139,7 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
                            messages = messages)
 
   if (delete_outliers) {
-    x %<>% dplyr::filter_(~!is.na(Outlier) & Outlier)
+    x %<>% dplyr::filter_(~!is.na(Outlier) & !Outlier)
     if (messages) message("Deleted outliers.")
   }
 
