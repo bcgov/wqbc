@@ -1,5 +1,5 @@
 context("tidy data")
-library(dplyr)
+library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
 
 test_ec <- structure(list(
   SITE_NO = c("BC08NL0001", "BC08NL0001", "BC08NL0001"),
