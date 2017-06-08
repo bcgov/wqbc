@@ -1,3 +1,8 @@
+# wqbc 0.3.1.9000
+
+- Fixed bug where only outliers were retained in `clean_wqdata(delete_outliers = TRUE)` (#79)
+- Retain `ResultLetter` column in `clean_wqdata` and `calc_limits` (#78)
+
 # wqbc 0.3.1
 
 - Exported previously internal-only function `convert_values` to do unit conversions (#70).

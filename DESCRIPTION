@@ -1,7 +1,7 @@
 Package: wqbc
 Type: Package
 Title: Water Quality Thresholds and Index Calculation for British Columbia
-Version: 0.3.1
+Version: 0.3.1.9000
 Date: 2017-05-30
 Authors@R: c(person("Joe", "Thorley", email = "joe@poissonconsulting.ca",
                     role = c("aut", "ctr"),
