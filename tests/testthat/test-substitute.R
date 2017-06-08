@@ -20,7 +20,7 @@ test_that("substitute_units", {
   expect_equal(substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l")),
                c("mg/L", "mg/L", "mg/L", "kg/L"))
   expect_equal(substitute_units(c("DEG C")), c("degC"))
-  expect_equal(substitute_units(c("Col.unit")), c("Col.Unit"))
+  expect_equal(substitute_units(c("Col.Unit")), c("Col.unit"))
   expect_equal(substitute_units("mg.L"), NA_character_)
   expect_identical(substitute_units(c("MG /L", NA)), c("mg/L", NA))
 })

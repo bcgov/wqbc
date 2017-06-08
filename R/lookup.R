@@ -21,7 +21,7 @@
 lookup_units <- function () {
   c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH", "degC", "C",
     "CFU/dL", "MPN/dL", "CFU/100mL", "MPN/100mL", "CFU/g", "MPN/g", "CFU/mL", "MPN/mL",
-    "CU", "Col.Unit", "Rel", "NTU")
+    "Col.unit", "Rel", "NTU")
 }
 
 #' Lookup Codes
