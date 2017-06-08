@@ -124,7 +124,7 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
 
   x <- standardize_wqdata(x, messages = messages)
   if(messages) message("Cleaning water quality data...")
-  res <- c("Date", "Variable", "Value", "Units", "DetectionLimit")
+  res <- c("Date", "Variable", "Value", "Units", "DetectionLimit", "ResultLetter")
   check_by(by, colnames(x), res_names = res)
   x <- del_cols_not_in_y(x, c(res, by))
 
