@@ -13,13 +13,13 @@
 standardize_wqdata_variable <- function (x, messages) {
   codes <- wqbc_codes()
   codes <- dplyr::filter_(codes, ~Variable == x$Variable[1])
-  x$Value <- convert_values(x$Value, from = x$Units, to = codes$Unit,
+  x$Value <- convert_values(x$Value, from = x$Units, to = codes$Units,
                             messages = messages)
   if(!is.null(x$DetectionLimit)) {
     x$DetectionLimit <- convert_values(x$DetectionLimit, from = x$Units,
-                                       to = codes$Unit, messages = messages)
+                                       to = codes$Units, messages = messages)
   }
-  x$Units <- codes$Unit
+  x$Units <- codes$Units
   x
 }
 
