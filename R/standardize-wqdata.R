@@ -52,9 +52,9 @@ standardize_wqdata <- function (
 
   if("Code" %in% colnames(x)) {
     if(messages) message ("Converting Codes to Variables...")
-    # x$Variable <- lookup_variables(x$Code, messages = messages)
-    # x <- delete_rows_with_certain_values(
-    #   x, columns = c("Variable"), messages = messages)
+    x$Variable <- lookup_variables(x$Code, messages = messages)
+    x <- delete_rows_with_certain_values(
+      x, columns = c("Variable"), messages = messages)
     if(messages) message ("Converted Codes to Variables.")
   }
 
@@ -66,25 +66,25 @@ standardize_wqdata <- function (
                               "Value" = "numeric",
                               "Units" = c("character", "factor")))
 
-  # x <- delete_rows_with_certain_values(x, columns = c("Variable", "Value", "Units"),
-  #                                      messages = messages, txt = "missing")
-  #
-  # x <- delete_rows_with_certain_values(x, columns = "Value",
-  #                                      messages = messages, txt = "negative")
+  x <- delete_rows_with_certain_values(x, columns = c("Variable", "Value", "Units"),
+                                       messages = messages, txt = "missing")
+
+  x <- delete_rows_with_certain_values(x, columns = "Value",
+                                       messages = messages, txt = "negative")
 
   if(!nrow(x)) { if(messages) message("Standardized water quality data."); return (x) }
 
-  # x$Variable <- substitute_variables(x$Variable, strict = strict, messages = messages)
-  # is.na(x$Variable[!x$Variable %in% lookup_variables()]) <- TRUE
-  #
-  # x <- delete_rows_with_certain_values(x, columns = c("Variable"),
-  #                                      messages = messages)
-  #
-  # x$Units <- substitute_units(x$Units, messages = messages)
-  # is.na(x$Units[!x$Units %in% lookup_units()]) <- TRUE
-  #
-  # x <- delete_rows_with_certain_values(x, columns = c("Units"),
-  #                                      messages = messages)
+  x$Variable <- substitute_variables(x$Variable, strict = strict, messages = messages)
+  is.na(x$Variable[!x$Variable %in% lookup_variables()]) <- TRUE
+
+  x <- delete_rows_with_certain_values(x, columns = c("Variable"),
+                                       messages = messages)
+
+  x$Units <- substitute_units(x$Units, messages = messages)
+  is.na(x$Units[!x$Units %in% lookup_units()]) <- TRUE
+
+  x <- delete_rows_with_certain_values(x, columns = c("Units"),
+                                       messages = messages)
 
   if(!nrow(x)) { if(messages) message("Standardized water quality data."); return (x) }
 
