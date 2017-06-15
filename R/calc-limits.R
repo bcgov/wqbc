@@ -257,6 +257,7 @@ calc_limits_by <- function (x, term, dates, limits, messages) {
 #' @param keep_limits A flag indicating whether to keep values with user supplied upper or lower limits.
 #' @param delete_outliers A flag indicating whether to delete outliers or merely flag them.
 #' @param estimate_variables A flag indicating whether to estimate total hardness, total chloride and pHfor all dates.
+#' @param clean Should the data be run through \code{\link{clean_wqdata}} before calculating limits? Default \code{TRUE}
 #' @param limits A data frame of the limits table to use.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
@@ -267,7 +268,7 @@ calc_limits_by <- function (x, term, dates, limits, messages) {
 #' @export
 calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits = TRUE,
                         delete_outliers = FALSE, estimate_variables = FALSE,
-                        limits = wqbc::limits,
+                        clean = TRUE, limits = wqbc::limits,
                         messages = getOption("wqbc.messages", default = TRUE)) {
 
   assert_that(is.data.frame(x))
@@ -276,6 +277,7 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
   assert_that(is.null(dates) || (is.date(dates) && noNA(dates)))
   assert_that(is.flag(messages) && noNA(messages))
   assert_that(is.flag(keep_limits) && noNA(keep_limits))
+  assert_that(is.flag(clean) && noNA(clean))
 
   check_limits(limits)
 
@@ -300,7 +302,10 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
     x %<>% dplyr::slice_(~which(!bol))
   }
 
-  x %<>% clean_wqdata(by = by, delete_outliers  = delete_outliers, messages = messages)
+  if (clean) {
+    x %<>% clean_wqdata(by = by, delete_outliers  = delete_outliers, messages = messages)
+  }
+
   x <- standardize_wqdata(x, messages = messages)
 
   cleansed <- x
