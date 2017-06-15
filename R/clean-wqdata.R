@@ -109,6 +109,8 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
 
   check_by(by, colnames(x), res_names = c("Value", "Outlier", "DetectionLimit"))
 
+  x <- x[!is.na(x$Value), , drop = FALSE]
+
   if (!tibble::has_name(x, "Date")) {
     if (tibble::has_name(x, "DateTime")) {
       if (messages) message("replacing DateTime column with Date")
