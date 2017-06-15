@@ -122,9 +122,9 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
   if("DetectionLimit" %in% colnames(x))
     check_class_columns(x, list("DetectionLimit" = "numeric"))
 
-  x <- standardize_wqdata(x, messages = messages)
+  # x <- standardize_wqdata(x, messages = messages)
   if(messages) message("Cleaning water quality data...")
-  res <- c("Date", "Variable", "Value", "Units", "DetectionLimit", "ResultLetter")
+  res <- c("Date", "Variable", "Code", "Value", "Units", "DetectionLimit", "ResultLetter")
   check_by(by, colnames(x), res_names = res)
   x <- del_cols_not_in_y(x, c(res, by))
 

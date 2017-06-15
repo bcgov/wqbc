@@ -193,6 +193,9 @@ calc_limits_by_30day <- function(x, dates, messages) {
 
 calc_limits_by <- function (x, term, dates, limits, messages) {
   x <- join_codes(x)
+  if ("Code.y" %in% names(x)) {
+    x <- dplyr::rename_(x, Code = "Code.y")
+  }
   x <- join_limits(x, limits)
 
   if (term == "long") {
@@ -298,6 +301,7 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
   }
 
   x %<>% clean_wqdata(by = by, delete_outliers  = delete_outliers, messages = messages)
+  x <- standardize_wqdata(x, messages = messages)
 
   cleansed <- x
 
