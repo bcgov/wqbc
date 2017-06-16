@@ -22,8 +22,8 @@ Chromium Total,EMS_CR_T,ug/L,mean,463
 Cobalt Dissolved,EMS_CO_D,ug/L,mean,453
 Cobalt Total,EMS_CO_T,ug/L,mean,456
 Coliforms Fecal,EMS_0450,CFU/dL,median,
-Colour Apparent,EMS_0001,CU,mean,437
-Colour True,EMS_0002,CU,mean,443
+Colour Apparent,EMS_0001,Col.unit,mean,437
+Colour True,EMS_0002,Col.unit,mean,443
 Copper Dissolved,EMS_CU_D,ug/L,mean,467
 Copper Total,EMS_CU_T,ug/L,mean,470
 Cyanide Dissolved,EMS_1105,ug/L,mean,
