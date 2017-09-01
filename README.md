@@ -1,25 +1,24 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<a rel="Exploration" href="https://github.com/BCDevExchange/docs/blob/master/discussion/projectstates.md"><img alt="Being designed and built, but in the lab. May change, disappear, or be buggy." style="border-width:0" src="https://assets.bcdevexchange.org/images/badges/exploration.svg" title="Being designed and built, but in the lab. May change, disappear, or be buggy." /></a>
-
-[![Travis-CI Build Status](https://travis-ci.org/bcgov/wqbc.svg?branch=master)](https://travis-ci.org/bcgov/wqbc)
-
-------------------------------------------------------------------------
-
 wqbc
 ====
 
-Water Quality Thresholds and Index Calculations for British Columbia
---------------------------------------------------------------------
+<a rel="Exploration" href="https://github.com/BCDevExchange/docs/blob/master/discussion/projectstates.md"><img alt="Being designed and built, but in the lab. May change, disappear, or be buggy." style="border-width:0" src="https://assets.bcdevexchange.org/images/badges/exploration.svg" title="Being designed and built, but in the lab. May change, disappear, or be buggy." /></a>[![Travis-CI Build Status](https://travis-ci.org/bcgov/wqbc.svg?branch=master)](https://travis-ci.org/bcgov/wqbc)
+
+Overview
+--------
 
 The `wqbc` R package calculates water quality thresholds and water quality indices and plots water quality indices spatially and temporally for British Columbia.
 
 This package was written for the B.C. Ministry of Environment by [Poisson Consulting](http://www.poissonconsulting.ca/). Ministry of Environment staff maintain the package.
 
-### Usage
+Usage
+-----
 
 For information on use, please see the [vignette](https://htmlpreview.github.com/?https://github.com/bcgov/wqbc/master/inst/doc/wqbc.html). In your R session, you can type `vignette("wqbc")` to see the vignette.
 
-### Install
+Install
+-------
 
 To install the latest version of wqbc:
 
@@ -33,21 +32,25 @@ install_github("bcgov/wqbc", build_vignettes = TRUE)
 library(wqbc)
 ```
 
-### Project Status
+Project Status
+--------------
 
 This package is under development. The user is responsible for checking all variables and limits that they use.
 
-### Getting Help or Reporting an Issue
+Getting Help or Reporting an Issue
+----------------------------------
 
 To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov/wqbc/issues/).
 
-### How to Contribute
+How to Contribute
+-----------------
 
 If you would like to contribute to the package, please see our [CONTRIBUTING](CONTRIBUTING.md) guidelines.
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-### License
+License
+-------
 
     Copyright 2015 Province of British Columbia
 
