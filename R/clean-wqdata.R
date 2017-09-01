@@ -81,6 +81,7 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 #'
 #' @param x The data.frame to clean.
 #' @param by A character vector of the columns in x to perform the cleaning by.
+#' If you have multiple stations specify the column name that contains the station IDs.
 #' @param max_cv A number indicating the maximum permitted coefficient
 #' of variation for replicates.
 #' @param sds The number of standard deviations above which a value is considered an outlier.
@@ -123,7 +124,7 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
 
   x <- standardize_wqdata(x, messages = messages)
   if(messages) message("Cleaning water quality data...")
-  res <- c("Date", "Variable", "Value", "Units", "DetectionLimit")
+  res <- c("Date", "Variable", "Value", "Units", "DetectionLimit", "ResultLetter")
   check_by(by, colnames(x), res_names = res)
   x <- del_cols_not_in_y(x, c(res, by))
 
@@ -138,7 +139,7 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
                            messages = messages)
 
   if (delete_outliers) {
-    x %<>% dplyr::filter_(~!is.na(Outlier) & Outlier)
+    x %<>% dplyr::filter_(~!is.na(Outlier) & !Outlier)
     if (messages) message("Deleted outliers.")
   }
 

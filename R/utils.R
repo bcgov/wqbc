@@ -125,7 +125,7 @@ is_color <- function(x) {
 }
 
 sub_vars <- function (x, vars, strict) {
-  names(which(sapply(vars, FUN = is_match_words, x = x, strict = strict)))
+  names(which(vapply(vars, FUN = is_match_words, x = x, strict = strict, FUN.VALUE = logical(1))))
 }
 
 split_words_tolower <- function (x) {

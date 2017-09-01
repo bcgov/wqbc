@@ -11,7 +11,8 @@ clean_wqdata(x, by = NULL, max_cv = Inf, sds = 10,
 \arguments{
 \item{x}{The data.frame to clean.}
 
-\item{by}{A character vector of the columns in x to perform the cleaning by.}
+\item{by}{A character vector of the columns in x to perform the cleaning by.
+If you have multiple stations specify the column name that contains the station IDs.}
 
 \item{max_cv}{A number indicating the maximum permitted coefficient
 of variation for replicates.}

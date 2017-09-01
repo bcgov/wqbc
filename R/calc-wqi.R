@@ -74,7 +74,7 @@ wqif_matrix <- function (x) {
   wqif(nv = nv, nt = nt, nfv = nfv, nft = nft, nse = nse)
 }
 
-wqi_matrix <- function (x, i = 1:nrow(x)) {
+wqi_matrix <- function (x, i = seq_len(nrow(x))) {
   wqif_matrix(x[i,,drop = FALSE])["WQI"]
 }
 

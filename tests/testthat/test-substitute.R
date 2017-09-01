@@ -20,7 +20,7 @@ test_that("substitute_units", {
   expect_equal(substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l")),
                c("mg/L", "mg/L", "mg/L", "kg/L"))
   expect_equal(substitute_units(c("DEG C")), c("degC"))
-  expect_equal(substitute_units(c("Col.unit")), c("Col.Unit"))
+  expect_equal(substitute_units(c("Col.Unit")), c("Col.unit"))
   expect_equal(substitute_units("mg.L"), NA_character_)
   expect_identical(substitute_units(c("MG /L", NA)), c("mg/L", NA))
 })
@@ -35,6 +35,10 @@ test_that("substitute_variables strict", {
                                      "KRYPTONITE"),
                strict = TRUE), c(NA, "Aluminium Dissolved", "Aluminium Dissolved", "Benzene", NA))
   expect_equal(substitute_variables("KRYPTONITE", strict = TRUE), NA_character_)
+  expect_equal(substitute_variables(c("Benzene Total", "Alkalinity pH 4.5/4.2",
+                                      "Dissolved Aluminium", "Hardness Dissolved Total", "pH")),
+               c("Benzene", "Alkalinity pH 4.5/4.2", "Aluminium Dissolved",
+                 NA, "pH"))
   expect_message(substitute_variables("DISSOLVED ALUMINIUM", strict = TRUE, messages = TRUE))
 })
 

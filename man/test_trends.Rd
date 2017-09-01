@@ -22,7 +22,7 @@ A tibble data.frame with rows for each Station, Variable, and month grouping, an
         additional columns for the sen slope estinate, 95\% confidence intervals on the slope, intercept and significance at the 5\% level for the sen slope.
 }
 \description{
-Analyses time series using the Thiel-Sen estimate of slope. It ret
+Analyses time series using the Thiel-Sen estimate of slope. It requires at least 6 years of data.
 }
 \details{
 The data must contain the columns Station, Date, Variable, Value, and Units.

@@ -26,7 +26,7 @@ fraser2 <- dplyr::filter_(fraser, ~lubridate::year(Date) %in% 2012:2013)
 fraser1 <- dplyr::filter_(fraser, ~lubridate::year(Date) %in% 2012)
 fraser2a <- dplyr::mutate_(fraser2, Value = ~ifelse(lubridate::year(Date) == 2013 & lubridate::month(Date) > 5, NA, Value))
 fraser1a <- dplyr::mutate_(fraser1, Value = ~ifelse(lubridate::month(Date) > 5, NA, Value))
-fraser1b <- dplyr::mutate_(fraser1, Value = ~ifelse(1:nrow(fraser1) %% 2 == 0, NA, Value))
+fraser1b <- dplyr::mutate_(fraser1, Value = ~ifelse(seq_len(nrow(fraser1)) %% 2 == 0, NA, Value))
 fraser1c <- dplyr::mutate(fraser1, Variable = "Nothing")
 
 # fit models
