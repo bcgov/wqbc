@@ -18,7 +18,7 @@ fraser$Station <-  factor(sub("BC08", "", as.character(fraser$SiteID)))
 fraser <- dplyr::filter_(fraser, ~grepl("hardness", tolower(Variable)))
 
 fraser <- dplyr::filter_(fraser, ~Station %in% "LF0001")
-fraser <- clean_wqdata(fraser, by = "Station", message = FALSE)
+fraser <- clean_wqdata(fraser, by = "Station", messages = FALSE)
 
 
 # create degraded data
