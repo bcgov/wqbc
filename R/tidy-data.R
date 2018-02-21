@@ -67,7 +67,11 @@ tidy_ec_data <- function(x, mdl_action = "zero") {
 
   x %<>% dplyr::select_(~dplyr::everything(), ~DetectionLimit)
 
-  x %<>% dplyr::mutate_(DateTime = ~lubridate::dmy_hm(DateTime, tz = "Etc/GMT+8"))
+  if (inherits(x$DateTime, "POSIXt")) {
+    x$DateTime <- lubridate::force_tz(x$DateTime, "Etc/GMT+8")
+  } else {
+    x %<>% dplyr::mutate_(DateTime = ~lubridate::dmy_hm(DateTime, tz = "Etc/GMT+8"))
+  }
 
   x$Value <- set_non_detects(value = x$Value,
                             mdl_value = x$DetectionLimit,
