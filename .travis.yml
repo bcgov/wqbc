@@ -2,9 +2,6 @@ language: r
 cache: packages
 dist: trusty
 
-before_install:
-  - sudo apt-get install libv8-dev
-
 notifications:
   email:
     on_success: change
