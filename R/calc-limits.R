@@ -264,7 +264,7 @@ calc_limits_by <- function (x, term, dates, limits, messages) {
 #' \dontrun{
 #' demo(fraser)
 #' }
-#' @seealso \code{\link{calc_wqi}}, \code{\link{clean_wqdata}} and \code{\link{lookup_limits}}
+#' @seealso \code{\link{clean_wqdata}} and \code{\link{lookup_limits}}
 #' @export
 calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits = TRUE,
                         delete_outliers = FALSE, estimate_variables = FALSE,

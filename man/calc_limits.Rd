@@ -71,5 +71,5 @@ demo(fraser)
 }
 }
 \seealso{
-\code{\link{calc_wqi}}, \code{\link{clean_wqdata}} and \code{\link{lookup_limits}}
+\code{\link{clean_wqdata}} and \code{\link{lookup_limits}}
 }

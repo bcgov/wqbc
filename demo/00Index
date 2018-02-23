@@ -1,4 +1,3 @@
 fraser  	   Fraser River Example Analysis
 dummy        Demonstrates data standardization and cleaning using dummy data
-ccme         Calculate WQIs using ccme data
 test_trends  Test for trends using nonparamtric approaches

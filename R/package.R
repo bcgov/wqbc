@@ -26,10 +26,8 @@
 #' @importFrom magrittr %<>% %>%
 #' @examples
 #' \dontrun{
-#'  demo(ccme)
 #'  demo(dummy)
 #'  demo(fraser)
 #' }
-#' @seealso \code{\link{lookup_limits}}, \code{\link{calc_wqi}}
-#' and \code{\link{plot_wqis}}
+#' @seealso \code{\link{lookup_limits}}
 NULL

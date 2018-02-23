@@ -16,12 +16,10 @@ information on the use of the wqbc package please type
 }
 \examples{
 \dontrun{
- demo(ccme)
  demo(dummy)
  demo(fraser)
 }
 }
 \seealso{
-\code{\link{lookup_limits}}, \code{\link{calc_wqi}}
-and \code{\link{plot_wqis}}
+\code{\link{lookup_limits}}
 }
