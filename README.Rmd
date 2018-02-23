@@ -21,9 +21,8 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-The `wqbc` R package calculates water quality thresholds and water quality indices
-and plots water quality indices spatially and temporally for
-British Columbia.
+The `wqbc` R package helps clean and process water quality data and calculates water quality thresholds for 
+British Columbia. Previously this package also calculated the [CCME Water Quality Index](http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html) but that functionality has been moved to its own package: [wqindex](https://github.com/bcgov/wqindex).
 
 This package was written for the B.C. Ministry of Environment by [Poisson Consulting](http://www.poissonconsulting.ca/). Ministry of Environment staff maintain the package.
 
