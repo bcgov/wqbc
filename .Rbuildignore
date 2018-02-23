@@ -6,3 +6,4 @@
 ^README-*\.png$
 CONTRIBUTING.md
 CODE_OF_CONDUCT.md
+vignettes_ignore
