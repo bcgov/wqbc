@@ -15,7 +15,7 @@ This package was written for the B.C. Ministry of Environment by [Poisson Consul
 Usage
 -----
 
-For information on use, please see the [vignette](https://htmlpreview.github.com/?https://github.com/bcgov/wqbc/master/inst/doc/wqbc.html). In your R session, you can type `vignette("wqbc")` to see the vignette.
+For information on use, please see the [vignette](https://htmlpreview.github.com/?https://github.com/bcgov/wqbc/master/inst/doc/wqbc.html). In your R session, you can type `vignette("wqbc")` to see the vignette. Please note that this vignette is currently out of date as it includes information on calculating the Water Quality Index (which has been moved to its own package [wqindex](https://github.com/bcgov/wqindex)).
 
 Install
 -------
@@ -26,9 +26,7 @@ To install the latest version of wqbc:
 # install the devtools package if it's not already installed
 # install.packages("devtools")
 library(devtools)
-install_github("bcgov/wqbc", build_vignettes = TRUE)
-# Using `build_vignettes = TRUE` will slow down the install, but is necessary if 
-# you want to read the vignette, which is recommended
+install_github("bcgov/wqbc")
 library(wqbc)
 ```
 
