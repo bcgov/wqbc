@@ -6,8 +6,8 @@
 \usage{
 calc_limits(x, by = NULL, term = "long", dates = NULL,
   keep_limits = TRUE, delete_outliers = FALSE, estimate_variables = FALSE,
-  limits = wqbc::limits, messages = getOption("wqbc.messages", default =
-  TRUE))
+  clean = TRUE, limits = wqbc::limits,
+  messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
 \item{x}{A data.frame of water quality readings to calculate the limits for.}
@@ -23,6 +23,8 @@ calc_limits(x, by = NULL, term = "long", dates = NULL,
 \item{delete_outliers}{A flag indicating whether to delete outliers or merely flag them.}
 
 \item{estimate_variables}{A flag indicating whether to estimate total hardness, total chloride and pHfor all dates.}
+
+\item{clean}{Should the data be run through \code{\link{clean_wqdata}} before calculating limits? Default \code{TRUE}}
 
 \item{limits}{A data frame of the limits table to use.}
 
@@ -69,5 +71,5 @@ demo(fraser)
 }
 }
 \seealso{
-\code{\link{calc_wqi}}, \code{\link{clean_wqdata}} and \code{\link{lookup_limits}}
+\code{\link{clean_wqdata}} and \code{\link{lookup_limits}}
 }

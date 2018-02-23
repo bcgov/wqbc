@@ -16,9 +16,11 @@ test_that("delete_outliers vary data", {
 fraser <- wqbc::fraser
 fraser$Station <-  factor(sub("BC08", "", as.character(fraser$SiteID)))
 fraser <- dplyr::filter_(fraser, ~grepl("hardness", tolower(Variable)))
+# This is a temporary fix until we get more robust variable name matching
+fraser$Variable[grepl("hardness", tolower(fraser$Variable))] <- "Hardness Total"
 
 fraser <- dplyr::filter_(fraser, ~Station %in% "LF0001")
-fraser <- clean_wqdata(fraser, by = "Station", message = FALSE)
+fraser <- clean_wqdata(fraser, by = "Station", messages = FALSE)
 
 
 # create degraded data
@@ -35,11 +37,11 @@ fit   <- estimate_variable_values(fraser,   by = "Station", messages = FALSE)
 expect_identical(colnames(fit), colnames(fraser))
 expect_identical(nrow(fit), nrow(fraser))
 
-fit2  <- estimate_variable_values(fraser2,  by = "Station", message = FALSE)
-fit2a <- estimate_variable_values(fraser2a, by = "Station", message = FALSE)
-fit1  <- estimate_variable_values(fraser1,  by = "Station", message = FALSE)
-fit1a <- estimate_variable_values(fraser1a, by = "Station", message = FALSE)
-fit1b <- estimate_variable_values(fraser1b, by = "Station", message = FALSE)
+fit2  <- estimate_variable_values(fraser2,  by = "Station", messages = FALSE)
+fit2a <- estimate_variable_values(fraser2a, by = "Station", messages = FALSE)
+fit1  <- estimate_variable_values(fraser1,  by = "Station", messages = FALSE)
+fit1a <- estimate_variable_values(fraser1a, by = "Station", messages = FALSE)
+fit1b <- estimate_variable_values(fraser1b, by = "Station", messages = FALSE)
 
 # check predictions are near origional values
 # max % abs diff

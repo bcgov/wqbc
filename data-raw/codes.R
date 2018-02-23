@@ -17,6 +17,7 @@ library(wqbc)
 library(dplyr)
 library(magrittr)
 library(devtools)
+# library(rems)
 
 rm(list = ls())
 
@@ -27,11 +28,18 @@ input_codes <- function() {
 
   stopifnot(all(!is.na(codes[c("Variable","Code","Units", "Average")])))
 
+  # codes <- rems::ems_parameters %>%
+  #   select(Variable = PARAMETER, Code = PARAMETER_CODE, Units = UNIT) %>%
+  #   mutate(Code = wqbc:::expand_ems_codes(Code)) %>%
+  #   left_join(select(codes, -Variable, -EC_Code), by = c("Code", "Units")) %>%
+  #   distinct()
+  #
+  # codes$Average[is.na(codes$Average)] <- "mean"
+
   stopifnot(!anyDuplicated(codes$Code))
   stopifnot(!anyDuplicated(codes$Variable))
   stopifnot(all(codes$Units %in% lookup_units()))
   stopifnot(all(codes$Average %in% c("mean", "median")))
-
 
   codes
 }

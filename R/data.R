@@ -25,8 +25,6 @@
 #'   \item{UpperLimit}{The maximum permitted value.}
 #'   \item{Units}{The units of the value, detection limit and lower and upper limits.}
 #' }
-#' @examples
-#' demo(ccme)
 "ccme"
 
 #' Water Quality Parameter Codes and Units for British Columbia

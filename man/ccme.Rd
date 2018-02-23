@@ -21,7 +21,4 @@ ccme
 The Canadian Council of Ministers of the Environment (CCME)
 Water Quality Index 1.0 User's Manual example dataset in tidy format.
 }
-\examples{
-demo(ccme)
-}
 \keyword{datasets}
