@@ -28,7 +28,8 @@ Imports:
     assertthat (>= 0.1),
     datacheckr,
     plyr (>= 1.8.1),
-    dplyr (>= 0.4.1),
+    dplyr (>= 0.7.0),
+    rlang (>= 0.2.0),
     zyp,
     magrittr,
     purrr,
@@ -51,3 +52,4 @@ Remotes:
     bcgov/rems
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)

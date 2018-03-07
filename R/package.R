@@ -24,6 +24,7 @@
 #' @name wqbc
 #' @import assertthat datacheckr
 #' @importFrom magrittr %<>% %>%
+#' @importFrom rlang .data
 #' @examples
 #' \dontrun{
 #'  demo(dummy)
