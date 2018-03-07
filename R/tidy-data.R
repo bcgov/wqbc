@@ -8,7 +8,21 @@
 #' that is left up to the user.
 #'
 #' @param x The rems data to tidy.
-#' @param cols additional columns from the EMS data to retain.
+#' @param cols additional columns from the EMS data to retain specified as a
+#' character vector of column names that exist in the data.
+#' The dafault columns retained are:
+#' * "EMS_ID"
+#' * "MONITORING_LOCATION" (Renamed to "Station")
+#' * "COLLECTION_START" (Renamed to "DateTime")
+#' * "PARAMETER" (Renamed to "Variable")
+#' * "PARAMETER_CODE (Renamed to "Code")
+#' * "RESULT" (Renamed to "Value")
+#' * "UNIT" (Renamed to "Units")
+#' * "METHOD_DETECTION_LIMIT" (Renamed to "DetectionLimit")
+#' * "RESULT_LETTER" (Renamed to "ResultLetter")
+#' * "SAMPLE_STATE"
+#' * "SAMPLE_CLASS"
+#' * "SAMPLE_DESCRIPTOR"
 #' @param mdl_action What to do with results that are below the detection limit.
 #' Can be set to \code{zero} (the default), set at the detection limit (\code{mdl}),
 #' or set to half the detection limit (\code{half}).
@@ -17,19 +31,24 @@
 #' @export
 tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
   check_cols(x, c("EMS_ID", "MONITORING_LOCATION", "COLLECTION_START", "PARAMETER_CODE",
-                  "RESULT", "UNIT", "METHOD_DETECTION_LIMIT", "PARAMETER", "RESULT_LETTER", cols))
+                  "RESULT", "UNIT", "METHOD_DETECTION_LIMIT", "PARAMETER", "RESULT_LETTER",
+                  "SAMPLE_STATE", "SAMPLE_CLASS", "SAMPLE_DESCRIPTOR", cols))
 
   x %<>% dplyr::mutate_(DateTime = ~lubridate::force_tz(COLLECTION_START, "Etc/GMT+8"))
 
-  x %<>% dplyr::select_(~EMS_ID,
-                        Station = ~MONITORING_LOCATION,
-                        ~DateTime,
-                        Variable = ~PARAMETER,
-                        Code = ~PARAMETER_CODE,
-                        Value = ~RESULT,
-                        Units = ~UNIT,
-                        DetectionLimit = ~METHOD_DETECTION_LIMIT,
-                        ResultLetter = ~RESULT_LETTER)
+  x %<>% dplyr::select(.data$EMS_ID,
+                        Station = .data$MONITORING_LOCATION,
+                        .data$DateTime,
+                        Variable = .data$PARAMETER,
+                        Code = .data$PARAMETER_CODE,
+                        Value = .data$RESULT,
+                        Units = .data$UNIT,
+                        DetectionLimit = .data$METHOD_DETECTION_LIMIT,
+                        ResultLetter = .data$RESULT_LETTER,
+                       .data$SAMPLE_STATE,
+                       .data$SAMPLE_CLASS,
+                       .data$SAMPLE_DESCRIPTOR,
+                       !!cols)
 
   x$Value <- set_non_detects(value = x$Value,
                             mdl_flag = x$ResultLetter,
