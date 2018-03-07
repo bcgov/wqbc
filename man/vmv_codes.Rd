@@ -6,9 +6,9 @@
 \title{Water Quality Parameter VMV and Variable Codes for Canada}
 \format{A tibble
 \describe{
-  \item{Variable}{The name of the variable.}
-  \item{VMV_Code}{The VMV code.}
-  \item{EC_Code}{The Variable Code in the Environment Canada data.}
+\item{Variable}{The name of the variable.}
+\item{VMV_Code}{The VMV code.}
+\item{EC_Code}{The Variable Code in the Environment Canada data.}
 }}
 \usage{
 vmv_codes

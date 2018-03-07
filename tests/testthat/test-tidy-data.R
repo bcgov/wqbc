@@ -28,7 +28,11 @@ test_ems <- select(test_ec,
                    METHOD_DETECTION_LIMIT = SDL_LDE) %>%
   mutate(MONITORING_LOCATION = letters[1:3],
          PARAMETER_CODE = LETTERS[1:3],
-         COLLECTION_START = as.POSIXct(COLLECTION_START, format = "%d/%m/%Y %k"))
+         COLLECTION_START = as.POSIXct(COLLECTION_START, format = "%d/%m/%Y %k"),
+         SAMPLE_STATE = letters[1:3],
+         SAMPLE_CLASS = letters[1:3],
+         SAMPLE_DESCRIPTOR = letters[1:3],
+         OTHER_COLUMN = 1:3)
 
 test_that("set_non_detects works with zeros", {
   expect_equal(set_non_detects(c(1.5, 2.0, 2.5), mdl_flag = c("<", NA, NA), mdl_action = "zero"),
@@ -79,10 +83,13 @@ test_that("set_non_detects works with mdl", {
 })
 
 test_that("tidy_ems_data works", {
+  default_ems_names <- c("EMS_ID", "Station", "DateTime", "Variable", "Code",
+                         "Value", "Units", "DetectionLimit", "ResultLetter",
+                         "SAMPLE_STATE", "SAMPLE_CLASS", "SAMPLE_DESCRIPTOR")
   tidied_ems <- tidy_ems_data(test_ems)
-  expect_equal(names(tidied_ems),
-               c("EMS_ID", "Station", "DateTime", "Variable", "Code", "Value",
-                 "Units", "DetectionLimit", "ResultLetter"))
+  expect_equal(names(tidied_ems), default_ems_names)
+  tidied_ems <- tidy_ems_data(test_ems, cols = "OTHER_COLUMN")
+  expect_equal(names(tidied_ems), c(default_ems_names, "OTHER_COLUMN"))
 })
 
 test_that("tidy_ec_data works", {

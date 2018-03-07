@@ -6,14 +6,14 @@
 \title{Example Site Specific Limits}
 \format{A tibble
 \describe{
-  \item{Station_Name}{The name of the station as a character.}
-  \item{Variable}{The variable name as character.}
-  \item{Term}{The term ('Short' or 'Long') as a character.}
-  \item{Condition}{The condition as a character.}
-  \item{UpperLimit}{The upper limit as a character.}
-  \item{Units}{The units as a character.}
-  \item{Code}{The EMS codes as a character.}
-  \item{EMS_ID}{The station EMS ID as a character.}
+\item{Station_Name}{The name of the station as a character.}
+\item{Variable}{The variable name as character.}
+\item{Term}{The term ('Short' or 'Long') as a character.}
+\item{Condition}{The condition as a character.}
+\item{UpperLimit}{The upper limit as a character.}
+\item{Units}{The units as a character.}
+\item{Code}{The EMS codes as a character.}
+\item{EMS_ID}{The station EMS ID as a character.}
 }}
 \usage{
 site_limits

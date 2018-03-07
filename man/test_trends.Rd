@@ -19,7 +19,7 @@ year is used.}
 }
 \value{
 A tibble data.frame with rows for each Station, Variable, and month grouping, and
-        additional columns for the sen slope estinate, 95\% confidence intervals on the slope, intercept and significance at the 5\% level for the sen slope.
+additional columns for the sen slope estinate, 95\% confidence intervals on the slope, intercept and significance at the 5\% level for the sen slope.
 }
 \description{
 Analyses time series using the Thiel-Sen estimate of slope. It requires at least 6 years of data.

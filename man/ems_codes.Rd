@@ -6,8 +6,8 @@
 \title{Water Quality Parameter EMS Names and Codes for British Columbia}
 \format{A tibble with 4 variables:
 \describe{
-  \item{Variable}{The name of the variable.}
-  \item{Code}{The EMS code.}
+\item{Variable}{The name of the variable.}
+\item{Code}{The EMS code.}
 }}
 \usage{
 ems_codes

@@ -4,17 +4,17 @@
 \name{yuepilon}
 \alias{yuepilon}
 \title{Example data used in Yue, Pilon et al. 2001 taken from the
-  Canadian National Water Data Archive (HYDAT) 1949-1998}
+Canadian National Water Data Archive (HYDAT) 1949-1998}
 \format{A data frame with 5 columns:
 \describe{
-  \item{Station}{Unique 7-character station identification code.}
-  \item{Date}{The year of the data stored as if it was taken on the 1st Jan.}
-  \item{Variable}{The name of the variable.}
-  \item{Value}{The value of the reading.}
-  \item{Units}{The units of the value.}
-  \item{Site}{The full name of the station.}
-  \item{Lat}{The latitude of the station in decimal degrees.}
-  \item{Long}{The longitude of the station in decimal degrees.}
+\item{Station}{Unique 7-character station identification code.}
+\item{Date}{The year of the data stored as if it was taken on the 1st Jan.}
+\item{Variable}{The name of the variable.}
+\item{Value}{The value of the reading.}
+\item{Units}{The units of the value.}
+\item{Site}{The full name of the station.}
+\item{Lat}{The latitude of the station in decimal degrees.}
+\item{Long}{The longitude of the station in decimal degrees.}
 }}
 \source{
 \url{http://www.ec.gc.ca/rhc-wsc/default.asp?lang=En&n=9018B5EC-1}

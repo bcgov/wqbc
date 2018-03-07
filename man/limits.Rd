@@ -6,11 +6,11 @@
 \title{Water Quality Limits for British Columbia}
 \format{A data frame with 5 variables:
 \describe{
-  \item{Variable}{The name of the variable.}
-  \item{Term}{The term of the limit i.e. "Short" versus "Long".}
-  \item{Condition}{A logical R expression to test for the required condition.}
-  \item{UpperLimit}{The upper limit or an R expression defining the upper limit.}
-  \item{Units}{The units of the upper limit.}
+\item{Variable}{The name of the variable.}
+\item{Term}{The term of the limit i.e. "Short" versus "Long".}
+\item{Condition}{A logical R expression to test for the required condition.}
+\item{UpperLimit}{The upper limit or an R expression defining the upper limit.}
+\item{Units}{The units of the upper limit.}
 }}
 \usage{
 limits
