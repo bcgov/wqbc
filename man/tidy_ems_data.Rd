@@ -9,7 +9,23 @@ tidy_ems_data(x, cols = character(0), mdl_action = "zero")
 \arguments{
 \item{x}{The rems data to tidy.}
 
-\item{cols}{additional columns from the EMS data to retain.}
+\item{cols}{additional columns from the EMS data to retain specified as a
+character vector of column names that exist in the data.
+The dafault columns retained are:
+\itemize{
+\item "EMS_ID"
+\item "MONITORING_LOCATION" (Renamed to "Station")
+\item "COLLECTION_START" (Renamed to "DateTime")
+\item "PARAMETER" (Renamed to "Variable")
+\item "PARAMETER_CODE (Renamed to "Code")
+\item "RESULT" (Renamed to "Value")
+\item "UNIT" (Renamed to "Units")
+\item "METHOD_DETECTION_LIMIT" (Renamed to "DetectionLimit")
+\item "RESULT_LETTER" (Renamed to "ResultLetter")
+\item "SAMPLE_STATE"
+\item "SAMPLE_CLASS"
+\item "SAMPLE_DESCRIPTOR"
+}}
 
 \item{mdl_action}{What to do with results that are below the detection limit.
 Can be set to \code{zero} (the default), set at the detection limit (\code{mdl}),

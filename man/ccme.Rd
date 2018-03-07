@@ -6,13 +6,13 @@
 \title{CCME Water Quality Index User's Manual Example Data}
 \format{A data frame with 120 rows and 7 columns:
 \describe{
-  \item{Date}{The date of the reading.}
-  \item{Variable}{The name of the variable.}
-  \item{Value}{The value of the reading.}
-  \item{DetectionLimit}{The detection limit.}
-  \item{LowerLimit}{The minimum permitted value.}
-  \item{UpperLimit}{The maximum permitted value.}
-  \item{Units}{The units of the value, detection limit and lower and upper limits.}
+\item{Date}{The date of the reading.}
+\item{Variable}{The name of the variable.}
+\item{Value}{The value of the reading.}
+\item{DetectionLimit}{The detection limit.}
+\item{LowerLimit}{The minimum permitted value.}
+\item{UpperLimit}{The maximum permitted value.}
+\item{Units}{The units of the value, detection limit and lower and upper limits.}
 }}
 \usage{
 ccme
