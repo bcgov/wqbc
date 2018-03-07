@@ -47,9 +47,11 @@ Suggests:
     rmarkdown,
     xtable (>= 1.7-4),
     rems (>= 0.4.0.9999),
+    canwqdata,
     Kendall
 Remotes:
-    bcgov/rems
+    bcgov/rems,
+    bcgov/canwqdata
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)

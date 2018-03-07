@@ -17,7 +17,7 @@ The dafault columns retained are:
 \item "MONITORING_LOCATION" (Renamed to "Station")
 \item "COLLECTION_START" (Renamed to "DateTime")
 \item "PARAMETER" (Renamed to "Variable")
-\item "PARAMETER_CODE (Renamed to "Code")
+\item "PARAMETER_CODE" (Renamed to "Code")
 \item "RESULT" (Renamed to "Value")
 \item "UNIT" (Renamed to "Units")
 \item "METHOD_DETECTION_LIMIT" (Renamed to "DetectionLimit")

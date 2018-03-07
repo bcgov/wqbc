@@ -9,13 +9,13 @@ test_ec <- structure(list(
   SDL_LDE = c(0.01, 2e-04, 0.002),
   MDL_LDM = c(0.01, 2e-04, 0.002),
   VMV_CODE = c(100493L, 100217L, 100474L),
-  `UNIT_UNITÉ` = c("UG/L", "MG/L", "UG/L"),
+  UNIT_UNITE = c("UG/L", "MG/L", "UG/L"),
   VARIABLE = c("BARIUM EXTRACTABLE", "BARIUM TOTAL", "BERYLLIUM EXTRACTABLE"),
   VARIABLE_FR = c("BARYUM EXTRACTIBLE", "BARYUM TOTAL", "BÉRYLLIUM EXTRACTIBL"),
   STATUS_STATUT = c("P", "P", "P")),
   class = "data.frame",
   .Names = c("SITE_NO", "DATE_TIME_HEURE", "FLAG_MARQUEUR",
-             "VALUE_VALEUR", "SDL_LDE", "MDL_LDM", "VMV_CODE","UNIT_UNITÉ", "VARIABLE",
+             "VALUE_VALEUR", "SDL_LDE", "MDL_LDM", "VMV_CODE","UNIT_UNITE", "VARIABLE",
              "VARIABLE_FR", "STATUS_STATUT"), row.names = c(NA, -3L))
 
 test_ems <- select(test_ec,
@@ -24,7 +24,7 @@ test_ems <- select(test_ec,
                    RESULT_LETTER = FLAG_MARQUEUR,
                    PARAMETER = VARIABLE,
                    RESULT = VALUE_VALEUR,
-                   UNIT = `UNIT_UNITÉ`,
+                   UNIT = UNIT_UNITE,
                    METHOD_DETECTION_LIMIT = SDL_LDE) %>%
   mutate(MONITORING_LOCATION = letters[1:3],
          PARAMETER_CODE = LETTERS[1:3],
@@ -93,8 +93,10 @@ test_that("tidy_ems_data works", {
 })
 
 test_that("tidy_ec_data works", {
+  default_ec_names <- c("SITE_NO", "DateTime", "Variable", "Code",
+                        "Value", "Units", "DetectionLimit", "ResultLetter")
   tidied_ec <- tidy_ec_data(test_ec)
-  expect_equal(names(tidied_ec),
-               c("Station", "DateTime", "Variable", "Code", "Value",
-                 "DetectionLimit", "Units"))
+  expect_equal(names(tidied_ec), default_ec_names)
+  tidied_ec <- tidy_ec_data(test_ec, cols = "STATUS_STATUT")
+  expect_equal(names(tidied_ec), c(default_ec_names, "STATUS_STATUT"))
 })

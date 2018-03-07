@@ -15,7 +15,7 @@
 #' * "MONITORING_LOCATION" (Renamed to "Station")
 #' * "COLLECTION_START" (Renamed to "DateTime")
 #' * "PARAMETER" (Renamed to "Variable")
-#' * "PARAMETER_CODE (Renamed to "Code")
+#' * "PARAMETER_CODE" (Renamed to "Code")
 #' * "RESULT" (Renamed to "Value")
 #' * "UNIT" (Renamed to "Units")
 #' * "METHOD_DETECTION_LIMIT" (Renamed to "DetectionLimit")
@@ -34,67 +34,76 @@ tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
                   "RESULT", "UNIT", "METHOD_DETECTION_LIMIT", "PARAMETER", "RESULT_LETTER",
                   "SAMPLE_STATE", "SAMPLE_CLASS", "SAMPLE_DESCRIPTOR", cols))
 
-  x %<>% dplyr::mutate_(DateTime = ~lubridate::force_tz(COLLECTION_START, "Etc/GMT+8"))
+  x$DateTime <- lubridate::force_tz(x$COLLECTION_START, tzone = "Etc/GMT+8")
 
   x %<>% dplyr::select(.data$EMS_ID,
-                        Station = .data$MONITORING_LOCATION,
-                        .data$DateTime,
-                        Variable = .data$PARAMETER,
-                        Code = .data$PARAMETER_CODE,
-                        Value = .data$RESULT,
-                        Units = .data$UNIT,
-                        DetectionLimit = .data$METHOD_DETECTION_LIMIT,
-                        ResultLetter = .data$RESULT_LETTER,
+                       Station = .data$MONITORING_LOCATION,
+                       .data$DateTime,
+                       Variable = .data$PARAMETER,
+                       Code = .data$PARAMETER_CODE,
+                       Value = .data$RESULT,
+                       Units = .data$UNIT,
+                       DetectionLimit = .data$METHOD_DETECTION_LIMIT,
+                       ResultLetter = .data$RESULT_LETTER,
                        .data$SAMPLE_STATE,
                        .data$SAMPLE_CLASS,
                        .data$SAMPLE_DESCRIPTOR,
                        !!cols)
 
   x$Value <- set_non_detects(value = x$Value,
-                            mdl_flag = x$ResultLetter,
-                            mdl_action = mdl_action)
+                             mdl_flag = x$ResultLetter,
+                             mdl_action = mdl_action)
 
   x
 }
 
 #' Tidy Environment Canada Data
 #'
-#' Tidies water quality data downloaded from Environment Canada website.
+#' Tidies water quality data downloaded from Environment Canada website. It
+#' is recommended to obtain the data via [canwqdata::dl_sites()] or
+#' [canwqdata::dl_basin()]
 #' It retains and renames required columns and sets the timezone to PST.
 #'
-#' @param x The rems data to tidy.
+#' @param x The data to tidy.
+#' @param cols additional columns from the EMS data to retain specified as a
+#' character vector of column names that exist in the data.
+#' The dafault columns retained are:
+#' * "SITE_NO"
+#' * "DATE_TIME_HEURE" (Renamed to "DateTime")
+#' * "VARIABLE" (Renamed to "Variable")
+#' * "VMV_CODE" (Renamed to "Code")
+#' * "VALUE_VALEUR" (Renamed to "Value")
+#' * "UNIT_UNITE" (Renamed to "Units")
+#' * "DSL_LDE" (Renamed to "DetectionLimit")
+#' * "FLAG_MARQUEUR" (Renamed to "ResultLetter")
 #' @param mdl_action What to do with results that are below the detection limit.
 #' Can be set to \code{zero} (the default), set at the detection limit (\code{mdl}),
 #' or set to half the detection limit (\code{half}).
 #' @return A tibble of the tidied rems data.
 #' @export
-tidy_ec_data <- function(x, mdl_action = "zero") {
-  check_cols(x, c("SITE_NO", "DATE_TIME_HEURE", "VALUE_VALEUR", "SDL_LDE", "VMV_CODE", "VARIABLE"))
+tidy_ec_data <- function(x, cols = character(0), mdl_action = "zero") {
+  check_cols(x, c("SITE_NO", "DATE_TIME_HEURE", "VALUE_VALEUR", "SDL_LDE",
+                  "UNIT_UNITE", "VMV_CODE", "VARIABLE", "FLAG_MARQUEUR", cols))
 
-  unit <- dplyr::select_(x, ~starts_with("UNIT_UNIT"))
-
-  if (ncol(unit) != 1) error("x must include a column starting with UNIT_UNIT")
-
-  x %<>% dplyr::select_(Station = ~SITE_NO,
-                        DateTime = ~DATE_TIME_HEURE,
-                        Variable = ~VARIABLE,
-                        Code = ~VMV_CODE,
-                        Value = ~VALUE_VALEUR,
-                        DetectionLimit = ~SDL_LDE)
-
-  x$Units <- unit[[1]]
-
-  x %<>% dplyr::select_(~dplyr::everything(), ~DetectionLimit)
+  x %<>% dplyr::select(.data$SITE_NO,
+                       DateTime = .data$DATE_TIME_HEURE,
+                       Variable = .data$VARIABLE,
+                       Code = .data$VMV_CODE,
+                       Value = .data$VALUE_VALEUR,
+                       Units = .data$UNIT_UNITE,
+                       DetectionLimit = .data$SDL_LDE,
+                       ResultLetter = .data$FLAG_MARQUEUR,
+                       !!cols)
 
   if (inherits(x$DateTime, "POSIXt")) {
-    x$DateTime <- lubridate::force_tz(x$DateTime, "Etc/GMT+8")
+    x$DateTime <- lubridate::force_tz(x$DateTime, tzone = "Etc/GMT+8")
   } else {
-    x %<>% dplyr::mutate_(DateTime = ~lubridate::dmy_hm(DateTime, tz = "Etc/GMT+8"))
+    x$DateTime <- lubridate::dmy_hm(x$DateTime, tz = "Etc/GMT+8")
   }
 
   x$Value <- set_non_detects(value = x$Value,
-                            mdl_value = x$DetectionLimit,
-                            mdl_action = mdl_action)
+                             mdl_value = x$DetectionLimit,
+                             mdl_action = mdl_action)
 
   x
 }
