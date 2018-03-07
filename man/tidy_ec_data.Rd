@@ -4,10 +4,24 @@
 \alias{tidy_ec_data}
 \title{Tidy Environment Canada Data}
 \usage{
-tidy_ec_data(x, mdl_action = "zero")
+tidy_ec_data(x, cols = character(0), mdl_action = "zero")
 }
 \arguments{
-\item{x}{The rems data to tidy.}
+\item{x}{The data to tidy.}
+
+\item{cols}{additional columns from the EMS data to retain specified as a
+character vector of column names that exist in the data.
+The dafault columns retained are:
+\itemize{
+\item "SITE_NO"
+\item "DATE_TIME_HEURE" (Renamed to "DateTime")
+\item "VARIABLE" (Renamed to "Variable")
+\item "VMV_CODE" (Renamed to "Code")
+\item "VALUE_VALEUR" (Renamed to "Value")
+\item "UNIT_UNITE" (Renamed to "Units")
+\item "DSL_LDE" (Renamed to "DetectionLimit")
+\item "FLAG_MARQUEUR" (Renamed to "ResultLetter")
+}}
 
 \item{mdl_action}{What to do with results that are below the detection limit.
 Can be set to \code{zero} (the default), set at the detection limit (\code{mdl}),
@@ -17,6 +31,8 @@ or set to half the detection limit (\code{half}).}
 A tibble of the tidied rems data.
 }
 \description{
-Tidies water quality data downloaded from Environment Canada website.
+Tidies water quality data downloaded from Environment Canada website. It
+is recommended to obtain the data via \code{\link[canwqdata:dl_sites]{canwqdata::dl_sites()}} or
+\code{\link[canwqdata:dl_basin]{canwqdata::dl_basin()}}
 It retains and renames required columns and sets the timezone to PST.
 }
