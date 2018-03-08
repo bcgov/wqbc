@@ -32,6 +32,7 @@ test_ems <- select(test_ec,
          SAMPLE_STATE = letters[1:3],
          SAMPLE_CLASS = letters[1:3],
          SAMPLE_DESCRIPTOR = letters[1:3],
+         LOCATION_TYPE = letters[1:3],
          OTHER_COLUMN = 1:3)
 
 test_that("set_non_detects works with zeros", {
@@ -85,7 +86,8 @@ test_that("set_non_detects works with mdl", {
 test_that("tidy_ems_data works", {
   default_ems_names <- c("EMS_ID", "Station", "DateTime", "Variable", "Code",
                          "Value", "Units", "DetectionLimit", "ResultLetter",
-                         "SAMPLE_STATE", "SAMPLE_CLASS", "SAMPLE_DESCRIPTOR")
+                         "SAMPLE_STATE", "SAMPLE_CLASS", "SAMPLE_DESCRIPTOR",
+                         "LOCATION_TYPE")
   tidied_ems <- tidy_ems_data(test_ems)
   expect_equal(names(tidied_ems), default_ems_names)
   tidied_ems <- tidy_ems_data(test_ems, cols = "OTHER_COLUMN")

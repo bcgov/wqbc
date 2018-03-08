@@ -30,9 +30,10 @@
 #' @return A tibble of the tidied rems data.
 #' @export
 tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
-  check_cols(x, c("EMS_ID", "MONITORING_LOCATION", "COLLECTION_START", "PARAMETER_CODE",
-                  "RESULT", "UNIT", "METHOD_DETECTION_LIMIT", "PARAMETER", "RESULT_LETTER",
-                  "SAMPLE_STATE", "SAMPLE_CLASS", "SAMPLE_DESCRIPTOR", cols))
+  check_cols(x, c("EMS_ID", "MONITORING_LOCATION", "COLLECTION_START",
+                  "PARAMETER_CODE", "RESULT", "UNIT", "METHOD_DETECTION_LIMIT",
+                  "PARAMETER", "RESULT_LETTER", "SAMPLE_STATE", "SAMPLE_CLASS",
+                  "SAMPLE_DESCRIPTOR", "LOCATION_TYPE", cols))
 
   x$DateTime <- lubridate::force_tz(x$COLLECTION_START, tzone = "Etc/GMT+8")
 
@@ -48,6 +49,7 @@ tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
                        .data$SAMPLE_STATE,
                        .data$SAMPLE_CLASS,
                        .data$SAMPLE_DESCRIPTOR,
+                       .data$LOCATION_TYPE,
                        !!cols)
 
   x$Value <- set_non_detects(value = x$Value,
