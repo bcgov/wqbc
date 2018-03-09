@@ -30,27 +30,27 @@
 #' @return A tibble of the tidied rems data.
 #' @export
 tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
-  check_cols(x, c("EMS_ID", "MONITORING_LOCATION", "COLLECTION_START",
-                  "PARAMETER_CODE", "RESULT", "UNIT", "METHOD_DETECTION_LIMIT",
-                  "PARAMETER", "RESULT_LETTER", "SAMPLE_STATE", "SAMPLE_CLASS",
-                  "SAMPLE_DESCRIPTOR", "LOCATION_TYPE", cols))
+  cols <- c("EMS_ID", "MONITORING_LOCATION", "COLLECTION_START",
+            "PARAMETER_CODE", "RESULT", "UNIT", "METHOD_DETECTION_LIMIT",
+            "PARAMETER", "RESULT_LETTER", "SAMPLE_STATE", "SAMPLE_CLASS",
+            "SAMPLE_DESCRIPTOR", "LOCATION_TYPE", cols)
 
-  x$DateTime <- lubridate::force_tz(x$COLLECTION_START, tzone = "Etc/GMT+8")
+  check_cols(x, cols)
+  cols <- rlang::enquo(cols)
 
-  x %<>% dplyr::select(.data$EMS_ID,
-                       Station = .data$MONITORING_LOCATION,
-                       .data$DateTime,
-                       Variable = .data$PARAMETER,
-                       Code = .data$PARAMETER_CODE,
-                       Value = .data$RESULT,
-                       Units = .data$UNIT,
-                       DetectionLimit = .data$METHOD_DETECTION_LIMIT,
-                       ResultLetter = .data$RESULT_LETTER,
-                       .data$SAMPLE_STATE,
-                       .data$SAMPLE_CLASS,
-                       .data$SAMPLE_DESCRIPTOR,
-                       .data$LOCATION_TYPE,
-                       !!cols)
+  x$COLLECTION_START <- lubridate::force_tz(x$COLLECTION_START, tzone = "Etc/GMT+8")
+
+  x <- dplyr::select(x, !!cols)
+  x <- dplyr::select(x, .data$EMS_ID,
+                     Station = .data$MONITORING_LOCATION,
+                     DateTime = .data$COLLECTION_START,
+                     Variable = .data$PARAMETER,
+                     Code = .data$PARAMETER_CODE,
+                     Value = .data$RESULT,
+                     Units = .data$UNIT,
+                     DetectionLimit = .data$METHOD_DETECTION_LIMIT,
+                     ResultLetter = .data$RESULT_LETTER,
+                     dplyr::everything())
 
   x$Value <- set_non_detects(value = x$Value,
                              mdl_flag = x$ResultLetter,
@@ -84,18 +84,22 @@ tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
 #' @return A tibble of the tidied rems data.
 #' @export
 tidy_ec_data <- function(x, cols = character(0), mdl_action = "zero") {
-  check_cols(x, c("SITE_NO", "DATE_TIME_HEURE", "VALUE_VALEUR", "SDL_LDE",
-                  "UNIT_UNITE", "VMV_CODE", "VARIABLE", "FLAG_MARQUEUR", cols))
+  cols <-  c("SITE_NO", "DATE_TIME_HEURE", "VALUE_VALEUR", "SDL_LDE",
+             "UNIT_UNITE", "VMV_CODE", "VARIABLE", "FLAG_MARQUEUR", cols)
+  check_cols(x, cols)
 
-  x %<>% dplyr::select(.data$SITE_NO,
-                       DateTime = .data$DATE_TIME_HEURE,
-                       Variable = .data$VARIABLE,
-                       Code = .data$VMV_CODE,
-                       Value = .data$VALUE_VALEUR,
-                       Units = .data$UNIT_UNITE,
-                       DetectionLimit = .data$SDL_LDE,
-                       ResultLetter = .data$FLAG_MARQUEUR,
-                       !!cols)
+  cols <- rlang::enquo(cols)
+
+  x <- dplyr::select(x, !!cols)
+  x <- dplyr::select(x, .data$SITE_NO,
+                     DateTime = .data$DATE_TIME_HEURE,
+                     Variable = .data$VARIABLE,
+                     Code = .data$VMV_CODE,
+                     Value = .data$VALUE_VALEUR,
+                     Units = .data$UNIT_UNITE,
+                     DetectionLimit = .data$SDL_LDE,
+                     ResultLetter = .data$FLAG_MARQUEUR,
+                     dplyr::everything())
 
   if (inherits(x$DateTime, "POSIXt")) {
     x$DateTime <- lubridate::force_tz(x$DateTime, tzone = "Etc/GMT+8")
