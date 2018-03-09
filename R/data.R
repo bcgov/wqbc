@@ -175,6 +175,29 @@
 #' }
 "vmv_codes"
 
+#' A crosswalk table linking EMS codes to Environment and Climate Change Canada
+#' VMV codes
+#'
+#' @format A tibble
+#' \describe{
+#'   \item{EMS_CODE}{EMS Code for the variable}
+#'   \item{EMS_VARIABLE}{EMS name for the variable}
+#'   \item{EMS_UNIT}{EMS name for the unit}
+#'   \item{EMS_UNIT_CODE}{EMS code for the unit}
+#'   \item{EMS_METHOD_CODE}{EMS code for the method}
+#'   \item{EMS_METHOD_TITLE}{EMS name for the method}
+#'   \item{EMS_MDL}{EMS method detection limit}
+#'   \item{VMV_CODE}{VMV code (unique for variable, method, and unit)}
+#'   \item{VMV_VARIABLE_CODE}{VMV code for the variable}
+#'   \item{VMV_VARIABLE}{VMV name for the variable}
+#'   \item{VMV_VARIABLE_TYPE}{VMV name for the variable type}
+#'   \item{VMV_UNIT}{VMV name for the unit}
+#'   \item{VMV_UNIT_NAME}{VMV name for the unit}
+#'   \item{VMV_METHOD_CODE}{VMV code for the method}
+#'   \item{VMV_METHOD_TITLE}{VMV name for the method}
+#' }
+"vmv_ems"
+
 #' Example Site Specific Limits
 #'
 #' The standard variables, VMV codes and Variable Codes provided by Environment Canada.
