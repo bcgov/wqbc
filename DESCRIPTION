@@ -1,6 +1,6 @@
 Package: wqbc
 Type: Package
-Title: Water Quality Thresholds and Index Calculation for British Columbia
+Title: Tidy Water Quality Data and Calculate Thresholds for British Columbia
 Version: 0.3.1.9000
 Date: 2017-05-30
 Authors@R: c(person("Joe", "Thorley", email = "joe@poissonconsulting.ca",
@@ -15,9 +15,8 @@ Authors@R: c(person("Joe", "Thorley", email = "joe@poissonconsulting.ca",
 	     	        role = "ctb"),
 	     	 person("Robyn", "Irvine", role = c("ctb", "ctr")),
 	     	 person("Province of British Columbia", role = "cph"))
-Description: Calculates water quality thresholds and water quality indices
-    and plots water quality indices spatially and temporally for
-    British Columbia.
+Description: Tidies water quality data and calculates water quality thresholds 
+    for British Columbia.
 URL: https://github.com/bcgov/wqbc
 BugReports: https://github.com/bcgov/wqbc/issues
 License: Apache License (== 2.0) | file LICENSE
