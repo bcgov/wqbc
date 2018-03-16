@@ -1,7 +1,14 @@
 # wqbc 0.3.1.9000
 
+## Major changes
+- Water Quality Index calculation has been split into a new package `wqindex` (#82)
+
+## Minor changes and bugfixes
 - Fixed bug where only outliers were retained in `clean_wqdata(delete_outliers = TRUE)` (#79)
 - Retain `ResultLetter` column in `clean_wqdata` and `calc_limits` (#78)
+- Better options for dealing with values below detection limits more robustly
+- More columns retained and option to keep even more in `tidy_ems_data()` and 
+`tidy_ec_data()` (#83)
 
 # wqbc 0.3.1
 
