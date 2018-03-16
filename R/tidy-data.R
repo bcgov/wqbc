@@ -36,11 +36,11 @@ tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
             "SAMPLE_DESCRIPTOR", "LOCATION_TYPE", cols)
 
   check_cols(x, cols)
-  cols <- rlang::enquo(cols)
+  cols <- rlang::syms(cols)
 
   x$COLLECTION_START <- lubridate::force_tz(x$COLLECTION_START, tzone = "Etc/GMT+8")
 
-  x <- dplyr::select(x, !!cols)
+  x <- dplyr::select(x, !!!cols)
   x <- dplyr::select(x, .data$EMS_ID,
                      Station = .data$MONITORING_LOCATION,
                      DateTime = .data$COLLECTION_START,
@@ -88,17 +88,17 @@ tidy_ec_data <- function(x, cols = character(0), mdl_action = "zero") {
              "UNIT_UNITE", "VMV_CODE", "VARIABLE", "FLAG_MARQUEUR", cols)
   check_cols(x, cols)
 
-  cols <- rlang::enquo(cols)
-
-  x <- dplyr::select(x, !!cols)
-  x <- dplyr::select(x, .data$SITE_NO,
-                     DateTime = .data$DATE_TIME_HEURE,
-                     Variable = .data$VARIABLE,
-                     Code = .data$VMV_CODE,
-                     Value = .data$VALUE_VALEUR,
-                     Units = .data$UNIT_UNITE,
-                     DetectionLimit = .data$SDL_LDE,
-                     ResultLetter = .data$FLAG_MARQUEUR,
+  cols <- rlang::syms(cols)
+  # print(rlang::expr(dplyr::select(x, !!!cols)))
+  x <- dplyr::select(x, !!!cols)
+  x <- dplyr::select(x, !!rlang::sym("SITE_NO"),
+                     DateTime = !!rlang::sym("DATE_TIME_HEURE"),
+                     Variable = !!rlang::sym("VARIABLE"),
+                     Code = !!rlang::sym("VMV_CODE"),
+                     Value = !!rlang::sym("VALUE_VALEUR"),
+                     Units = !!rlang::sym("UNIT_UNITE"),
+                     DetectionLimit = !!rlang::sym("SDL_LDE"),
+                     ResultLetter = !!rlang::sym("FLAG_MARQUEUR"),
                      dplyr::everything())
 
   if (inherits(x$DateTime, "POSIXt")) {
