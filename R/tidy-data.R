@@ -138,12 +138,22 @@ set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL,
 
   if (!is.null(mdl_flag)) {
 
-    if (!is.null(mdl_value)) stop("You must supply only one of mdl_flag or mdl_value")
     if (length(value) != length(mdl_flag)) {
       stop("value and mdl_flag must be the same length")
     }
+    replace_these <- !is.na(mdl_flag) & mdl_flag == "<"
 
-    replacements <- !is.na(value) & !is.na(mdl_flag) & mdl_flag == "<"
+    if (!is.null(mdl_value)) {
+      if (length(value) != length(mdl_value)) {
+        stop("value and mdl_value must be the same length")
+      }
+      ## If both mdl_flag and mdl_value are supplied, then use the
+      ## mdl_values to replace the values which have a mdl_flag
+      replacements <- mdl_value
+    } else {
+      ## Otherwise just use the values
+      replacements <- value
+    }
 
   } else if (!is.null(mdl_value)) {
 
@@ -151,24 +161,26 @@ set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL,
       stop("value and mdl_value must be the same length")
     }
 
-    replacements <- !is.na(value) & !is.na(mdl_value) & mdl_value > 0 & value <= mdl_value
+    replace_these <- !is.na(value) & !is.na(mdl_value) & value <= mdl_value
+    replacements <- mdl_value
 
   } else {
-    stop("You must supply either a mdl_flag vector, or a mdl_value vector")
+    stop("You must supply either a mdl_value vector, or a mdl_flag vector (with
+         or without a mdl_value vector")
   }
 
   if (mdl_action == "zero") {
-    value[replacements] <- 0
+    value[replace_these] <- 0
   } else if (mdl_action == "na") {
-    value[replacements] <- NA
+    value[replace_these] <- NA
   } else {
 
     multiplier <- ifelse(mdl_action == "half", 0.5, 1)
 
     if (!is.null(mdl_flag)) {
-      value[replacements] <- value[replacements] * multiplier
+      value[replace_these] <- replacements[replace_these] * multiplier
     } else {
-      value[replacements] <- mdl_value[replacements] * multiplier
+      value[replace_these] <- replacements[replace_these] * multiplier
     }
 
   }
