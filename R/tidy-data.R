@@ -116,24 +116,29 @@ tidy_ec_data <- function(x, cols = character(0), mdl_action = "zero") {
 #' is less than the method detection limit (MDL)
 #'
 #' @param value a numeric vector of measured values
-#' @param mdl_flag a character vector the same length as \code{value} that has a "flag" (assumed to be \code{"<"}) for values that are below the MDL
-#' @param mdl_value a numeric vector the same length as \code{value} that contains the MDL values.
-#' @param mdl_action What to do with values below the detection limit. Options are
-#' \code{"zero"} (set the value to \code{0}), \code{"half"} (set the value to half the MDL), or \code{"mdl"} (set the value to equal to the MDL).
+#' @param mdl_flag a character vector the same length as `value` that has a
+#' "flag" (assumed to be `"<"`) for values that are below the MDL
+#' @param mdl_value a numeric vector the same length as `value` that contains
+#' the MDL values.
+#' @param mdl_action What to do with values below the detection limit. Options
+#' are `"zero"` (set the value to `0`; the default), #' `"half"` (set the value
+#' to half the MDL), `"mdl"` (set the value to equal to the MDL), or `"na"` (set
+#' the value to `NA`).
 #'
-#' @details You must only supply either \code{mdl_flag} or \code{mdl_value}.
-#' When \code{mdl_flag} is supplied, it is assumed that the original \code{value} has
+#' @details You must only supply either `mdl_flag` or `mdl_value`.
+#' When `mdl_flag` is supplied, it is assumed that the original `value` has
 #' been set to the MDL.
 #'
 #' @return a numeric vector the same length as value with non-detects adjusted accordingly
 #' @export
-set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL, mdl_action = c("zero", "half", "mdl")) {
+set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL,
+                            mdl_action = c("zero", "mdl", "half", "na")) {
 
   mdl_action <- match.arg(mdl_action)
 
   if (!is.null(mdl_flag)) {
 
-    if (!is.null(mdl_value)) stop ("You must supply only one of mdl_flag or mdl_value")
+    if (!is.null(mdl_value)) stop("You must supply only one of mdl_flag or mdl_value")
     if (length(value) != length(mdl_flag)) {
       stop("value and mdl_flag must be the same length")
     }
@@ -154,6 +159,8 @@ set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL, mdl_action
 
   if (mdl_action == "zero") {
     value[replacements] <- 0
+  } else if (mdl_action == "na") {
+    value[replacements] <- NA
   } else {
 
     multiplier <- ifelse(mdl_action == "half", 0.5, 1)
