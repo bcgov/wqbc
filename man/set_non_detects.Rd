@@ -5,17 +5,21 @@
 \title{Set value for 'non-detects'}
 \usage{
 set_non_detects(value, mdl_flag = NULL, mdl_value = NULL,
-  mdl_action = c("zero", "half", "mdl"))
+  mdl_action = c("zero", "mdl", "half", "na"))
 }
 \arguments{
 \item{value}{a numeric vector of measured values}
 
-\item{mdl_flag}{a character vector the same length as \code{value} that has a "flag" (assumed to be \code{"<"}) for values that are below the MDL}
+\item{mdl_flag}{a character vector the same length as \code{value} that has a
+"flag" (assumed to be \code{"<"}) for values that are below the MDL}
 
-\item{mdl_value}{a numeric vector the same length as \code{value} that contains the MDL values.}
+\item{mdl_value}{a numeric vector the same length as \code{value} that contains
+the MDL values.}
 
-\item{mdl_action}{What to do with values below the detection limit. Options are
-\code{"zero"} (set the value to \code{0}), \code{"half"} (set the value to half the MDL), or \code{"mdl"} (set the value to equal to the MDL).}
+\item{mdl_action}{What to do with values below the detection limit. Options
+are \code{"zero"} (set the value to \code{0}; the default), #' \code{"half"} (set the value
+to half the MDL), \code{"mdl"} (set the value to equal to the MDL), or \code{"na"} (set
+the value to \code{NA}).}
 }
 \value{
 a numeric vector the same length as value with non-detects adjusted accordingly
@@ -25,7 +29,12 @@ Set a value where the actual value of a measurement
 is less than the method detection limit (MDL)
 }
 \details{
-You must only supply either \code{mdl_flag} or \code{mdl_value}.
-When \code{mdl_flag} is supplied, it is assumed that the original \code{value} has
-been set to the MDL.
+You must supply either \code{mdl_flag} or \code{mdl_value}, or both. When only
+\code{mdl_flag} is supplied, it is assumed that the original \code{value} has been
+set to the MDL, and will be adjusted according to the \code{mdl_action}. When
+only \code{mdl_value} is supplied then any \code{value} less than that will be
+adjusted appropriately using the corresponding \code{mdl_value}. When both
+\code{mdl_flag} and \code{mdl_value} are supplied, any \code{value} with a corresponding
+\code{<} in the \code{mdl_flag} vector will be adjusted appropriately using the
+corresponding \code{mdl_value}.
 }

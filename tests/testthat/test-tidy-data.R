@@ -45,10 +45,17 @@ test_that("set_non_detects works with zeros", {
                        mdl_action = "zero"),
                c(0, 0, 2.5))
   expect_equal(set_non_detects(c(NA, 2.0, 2.5), mdl_flag = c("<", "<", NA), mdl_action = "zero"),
-               c(NA, 0, 2.5))
+               c(0, 0, 2.5))
   expect_equal(set_non_detects(c(NA, 2.0, 2.5), mdl_value = c(2.0, 2.0, 2.0),
                        mdl_action = "zero"),
                c(NA, 0, 2.5))
+  # Checking with both mdl_flag and mdl_value supplied
+  expect_equal(set_non_detects(c(1.5, 2.0, 2.5), mdl_flag = c("<", NA, NA),
+                               mdl_value = c(2.0, 3.0, 3.0), mdl_action = "zero"),
+               c(0, 2.0, 2.5))
+  expect_equal(set_non_detects(c(NA, 2.0, 2.5), mdl_flag = c("<", "<", NA),
+                               mdl_value = c(2.0, 2.0, 3.0), mdl_action = "zero"),
+               c(0, 0, 2.5))
 })
 
 test_that("set_non_detects works with half mdl", {
@@ -65,6 +72,13 @@ test_that("set_non_detects works with half mdl", {
   expect_equal(set_non_detects(c(NA, 2.0, 2.5), mdl_value = c(2.0, 2.0, 2.0),
                        mdl_action = "half"),
                c(NA, 1.0, 2.5))
+  # Checking with both mdl_flag and mdl_value supplied
+  expect_equal(set_non_detects(c(1.5, 2.0, 2.5), mdl_flag = c("<", NA, NA),
+                               mdl_value = c(2.0, 3.0, 3.0), mdl_action = "half"),
+               c(1.0, 2.0, 2.5))
+  expect_equal(set_non_detects(c(NA, 2.0, 2.5), mdl_flag = c("<", "<", NA),
+                               mdl_value = c(2.0, 2.0, 3.0), mdl_action = "half"),
+               c(1.0, 1.0, 2.5))
 })
 
 test_that("set_non_detects works with mdl", {
@@ -81,6 +95,36 @@ test_that("set_non_detects works with mdl", {
   expect_equal(set_non_detects(c(NA, 2.0, 2.5), mdl_value = c(2.0, 2.0, 2.0),
                        mdl_action = "mdl"),
                c(NA, 2.0, 2.5))
+  # Checking with both mdl_flag and mdl_value supplied
+  expect_equal(set_non_detects(c(1.5, 2.0, 2.5), mdl_flag = c("<", NA, NA),
+                               mdl_value = c(2.0, 3.0, 3.0), mdl_action = "mdl"),
+               c(2.0, 2.0, 2.5))
+  expect_equal(set_non_detects(c(NA, 2.0, 2.5), mdl_flag = c("<", "<", NA),
+                               mdl_value = c(2.0, 2.0, 3.0), mdl_action = "mdl"),
+               c(2.0, 2.0, 2.5))
+})
+
+test_that("set_non_detects works with na", {
+  expect_equal(set_non_detects(c(1.5, 2.0, 2.5), mdl_flag = c("<", NA, NA), mdl_action = "na"),
+               c(NA, 2.0, 2.5))
+  expect_equal(set_non_detects(c(1.5, 2.0, 2.5), mdl_value = c(1.9, 1.9, 1.9),
+                               mdl_action = "na"),
+               c(NA, 2.0, 2.5))
+  expect_equal(set_non_detects(c(1.5, 2.0, 2.5), mdl_value = c(2.0, 2.0, 2.0),
+                               mdl_action = "na"),
+               c(NA, NA, 2.5))
+  expect_equal(set_non_detects(c(NA, 2.0, 2.5), mdl_flag = c("<", "<", NA), mdl_action = "na"),
+               c(NA, NA, 2.5))
+  expect_equal(set_non_detects(c(NA, 2.0, 2.5), mdl_value = c(2.0, 2.0, 2.0),
+                               mdl_action = "na"),
+               c(NA, NA, 2.5))
+  # Checking with both mdl_flag and mdl_value supplied
+  expect_equal(set_non_detects(c(1.5, 2.0, 2.5), mdl_flag = c("<", NA, NA),
+                               mdl_value = c(2.0, 3.0, 3.0), mdl_action = "na"),
+               c(NA, 2.0, 2.5))
+  expect_equal(set_non_detects(c(NA, 2.0, 2.5), mdl_flag = c("<", "<", NA),
+                               mdl_value = c(2.0, 2.0, 3.0), mdl_action = "na"),
+               c(NA, NA, 2.5))
 })
 
 test_that("tidy_ems_data works", {

@@ -125,9 +125,14 @@ tidy_ec_data <- function(x, cols = character(0), mdl_action = "zero") {
 #' to half the MDL), `"mdl"` (set the value to equal to the MDL), or `"na"` (set
 #' the value to `NA`).
 #'
-#' @details You must only supply either `mdl_flag` or `mdl_value`.
-#' When `mdl_flag` is supplied, it is assumed that the original `value` has
-#' been set to the MDL.
+#' @details You must supply either `mdl_flag` or `mdl_value`, or both. When only
+#'   `mdl_flag` is supplied, it is assumed that the original `value` has been
+#'   set to the MDL, and will be adjusted according to the `mdl_action`. When
+#'   only `mdl_value` is supplied then any `value` less than that will be
+#'   adjusted appropriately using the corresponding `mdl_value`. When both
+#'   `mdl_flag` and `mdl_value` are supplied, any `value` with a corresponding
+#'   `<` in the `mdl_flag` vector will be adjusted appropriately using the
+#'   corresponding `mdl_value`.
 #'
 #' @return a numeric vector the same length as value with non-detects adjusted accordingly
 #' @export
@@ -141,6 +146,7 @@ set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL,
     if (length(value) != length(mdl_flag)) {
       stop("value and mdl_flag must be the same length")
     }
+
     replace_these <- !is.na(mdl_flag) & mdl_flag == "<"
 
     if (!is.null(mdl_value)) {
