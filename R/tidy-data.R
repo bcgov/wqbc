@@ -24,12 +24,15 @@
 #' * "SAMPLE_CLASS"
 #' * "SAMPLE_DESCRIPTOR"
 #' @param mdl_action What to do with results that are below the detection limit.
-#' Can be set to \code{zero} (the default), set at the detection limit (\code{mdl}),
-#' or set to half the detection limit (\code{half}).
+#' Can be set to `"zero"` (the default), set at the detection limit (`"mdl"`),
+#' set to half the detection limit (`"half"`), set to `NA` (`"na"`) or left as
+#' is (`"none"`).
 #'
 #' @return A tibble of the tidied rems data.
 #' @export
-tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
+tidy_ems_data <- function(x, cols = character(0),
+                          mdl_action = c("zero", "mdl", "half", "na", "none")) {
+  mdl_action <- match.arg(mdl_action)
   cols <- c("EMS_ID",
             "Station" = "MONITORING_LOCATION",
             "DateTime" = "COLLECTION_START",
@@ -51,9 +54,11 @@ tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
 
   x$DateTime <- lubridate::force_tz(x$DateTime, tzone = "Etc/GMT+8")
 
-  x$Value <- set_non_detects(value = x$Value,
-                             mdl_flag = x$ResultLetter,
-                             mdl_action = mdl_action)
+  if (mdl_action != "none") {
+    x$Value <- set_non_detects(value = x$Value,
+                               mdl_flag = x$ResultLetter,
+                               mdl_action = mdl_action)
+  }
 
   x
 }
@@ -65,7 +70,6 @@ tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
 #' [canwqdata::dl_basin()]
 #' It retains and renames required columns and sets the timezone to PST.
 #'
-#' @param x The data to tidy.
 #' @param cols additional columns from the EMS data to retain specified as a
 #' character vector of column names that exist in the data.
 #' The dafault columns retained are:
@@ -77,12 +81,12 @@ tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
 #' * "UNIT_UNITE" (Renamed to "Units")
 #' * "DSL_LDE" (Renamed to "DetectionLimit")
 #' * "FLAG_MARQUEUR" (Renamed to "ResultLetter")
-#' @param mdl_action What to do with results that are below the detection limit.
-#' Can be set to \code{zero} (the default), set at the detection limit (\code{mdl}),
-#' or set to half the detection limit (\code{half}).
+#' @inheritParams tidy_ems_data
 #' @return A tibble of the tidied rems data.
 #' @export
-tidy_ec_data <- function(x, cols = character(0), mdl_action = "zero") {
+tidy_ec_data <- function(x, cols = character(0),
+                         mdl_action = c("zero", "mdl", "half", "na", "none")) {
+  mdl_action <- match.arg(mdl_action)
   cols <-  c("SITE_NO",
              "DateTime" = "DATE_TIME_HEURE",
              "Variable" = "VARIABLE",
@@ -103,9 +107,11 @@ tidy_ec_data <- function(x, cols = character(0), mdl_action = "zero") {
     x$DateTime <- lubridate::dmy_hm(x$DateTime, tz = "Etc/GMT+8")
   }
 
-  x$Value <- set_non_detects(value = x$Value,
-                             mdl_value = x$DetectionLimit,
-                             mdl_action = mdl_action)
+  if (mdl_action != "none") {
+    x$Value <- set_non_detects(value = x$Value,
+                               mdl_flag = x$ResultLetter,
+                               mdl_action = mdl_action)
+  }
 
   x
 }
