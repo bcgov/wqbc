@@ -7,7 +7,7 @@
 #' It does not alter values that are flagged as being greater than the detection limit -
 #' that is left up to the user.
 #'
-#' @param x The rems data to tidy.
+#' @param x The data to tidy.
 #' @param cols additional columns from the EMS data to retain specified as a
 #' character vector of column names that exist in the data.
 #' The dafault columns retained are:
@@ -23,10 +23,10 @@
 #' * "SAMPLE_STATE"
 #' * "SAMPLE_CLASS"
 #' * "SAMPLE_DESCRIPTOR"
-#' @param mdl_action What to do with results that are below the detection limit.
-#' Can be set to `"zero"` (the default), set at the detection limit (`"mdl"`),
-#' set to half the detection limit (`"half"`), set to `NA` (`"na"`) or left as
-#' is (`"none"`).
+#' @param mdl_action What to do with values below the detection limit. Options
+#' are `"zero"` (set the value to `0`; the default), #' `"half"` (set the value
+#' to half the MDL), `"mdl"` (set the value to equal to the MDL), or `"na"` (set
+#' the value to `NA`). Can also be set to `"none"` to leave as is.
 #'
 #' @return A tibble of the tidied rems data.
 #' @export

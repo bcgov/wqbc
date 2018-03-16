@@ -4,10 +4,11 @@
 \alias{tidy_ems_data}
 \title{Tidy EMS Data}
 \usage{
-tidy_ems_data(x, cols = character(0), mdl_action = "zero")
+tidy_ems_data(x, cols = character(0), mdl_action = c("zero", "mdl", "half",
+  "na", "none"))
 }
 \arguments{
-\item{x}{The rems data to tidy.}
+\item{x}{The data to tidy.}
 
 \item{cols}{additional columns from the EMS data to retain specified as a
 character vector of column names that exist in the data.
@@ -27,9 +28,10 @@ The dafault columns retained are:
 \item "SAMPLE_DESCRIPTOR"
 }}
 
-\item{mdl_action}{What to do with results that are below the detection limit.
-Can be set to \code{zero} (the default), set at the detection limit (\code{mdl}),
-or set to half the detection limit (\code{half}).}
+\item{mdl_action}{What to do with values below the detection limit. Options
+are \code{"zero"} (set the value to \code{0}; the default), #' \code{"half"} (set the value
+to half the MDL), \code{"mdl"} (set the value to equal to the MDL), or \code{"na"} (set
+the value to \code{NA}). Can also be set to \code{"none"} to leave as is.}
 }
 \value{
 A tibble of the tidied rems data.
