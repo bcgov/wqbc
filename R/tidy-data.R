@@ -84,22 +84,20 @@ tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
 #' @return A tibble of the tidied rems data.
 #' @export
 tidy_ec_data <- function(x, cols = character(0), mdl_action = "zero") {
-  cols <-  c("SITE_NO", "DATE_TIME_HEURE", "VALUE_VALEUR", "SDL_LDE",
-             "UNIT_UNITE", "VMV_CODE", "VARIABLE", "FLAG_MARQUEUR", cols)
-  check_cols(x, cols)
+  cols <-  c("SITE_NO",
+             "DateTime" = "DATE_TIME_HEURE",
+             "Variable" = "VARIABLE",
+             "Code" = "VMV_CODE",
+             "Value" = "VALUE_VALEUR",
+             "Units" = "UNIT_UNITE",
+             "DetectionLimit" = "SDL_LDE",
+             "ResultLetter" = "FLAG_MARQUEUR",
+             cols)
+
+  check_cols(x, unname(cols))
 
   cols <- rlang::syms(cols)
-  # print(rlang::expr(dplyr::select(x, !!!cols)))
   x <- dplyr::select(x, !!!cols)
-  x <- dplyr::select(x, !!rlang::sym("SITE_NO"),
-                     DateTime = !!rlang::sym("DATE_TIME_HEURE"),
-                     Variable = !!rlang::sym("VARIABLE"),
-                     Code = !!rlang::sym("VMV_CODE"),
-                     Value = !!rlang::sym("VALUE_VALEUR"),
-                     Units = !!rlang::sym("UNIT_UNITE"),
-                     DetectionLimit = !!rlang::sym("SDL_LDE"),
-                     ResultLetter = !!rlang::sym("FLAG_MARQUEUR"),
-                     dplyr::everything())
 
   if (inherits(x$DateTime, "POSIXt")) {
     x$DateTime <- lubridate::force_tz(x$DateTime, tzone = "Etc/GMT+8")
