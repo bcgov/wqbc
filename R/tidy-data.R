@@ -30,27 +30,26 @@
 #' @return A tibble of the tidied rems data.
 #' @export
 tidy_ems_data <- function(x, cols = character(0), mdl_action = "zero") {
-  cols <- c("EMS_ID", "MONITORING_LOCATION", "COLLECTION_START",
-            "PARAMETER_CODE", "RESULT", "UNIT", "METHOD_DETECTION_LIMIT",
-            "PARAMETER", "RESULT_LETTER", "SAMPLE_STATE", "SAMPLE_CLASS",
-            "SAMPLE_DESCRIPTOR", "LOCATION_TYPE", cols)
+  cols <- c("EMS_ID",
+            "Station" = "MONITORING_LOCATION",
+            "DateTime" = "COLLECTION_START",
+            "Variable" = "PARAMETER",
+            "Code" = "PARAMETER_CODE",
+            "Value" = "RESULT",
+            "Units" = "UNIT",
+            "DetectionLimit" = "METHOD_DETECTION_LIMIT",
+            "ResultLetter" = "RESULT_LETTER",
+            "SAMPLE_STATE",
+            "SAMPLE_CLASS",
+            "SAMPLE_DESCRIPTOR",
+            "LOCATION_TYPE",
+            cols)
 
-  check_cols(x, cols)
+  check_cols(x, unname(cols))
   cols <- rlang::syms(cols)
-
-  x$COLLECTION_START <- lubridate::force_tz(x$COLLECTION_START, tzone = "Etc/GMT+8")
-
   x <- dplyr::select(x, !!!cols)
-  x <- dplyr::select(x, .data$EMS_ID,
-                     Station = .data$MONITORING_LOCATION,
-                     DateTime = .data$COLLECTION_START,
-                     Variable = .data$PARAMETER,
-                     Code = .data$PARAMETER_CODE,
-                     Value = .data$RESULT,
-                     Units = .data$UNIT,
-                     DetectionLimit = .data$METHOD_DETECTION_LIMIT,
-                     ResultLetter = .data$RESULT_LETTER,
-                     dplyr::everything())
+
+  x$DateTime <- lubridate::force_tz(x$DateTime, tzone = "Etc/GMT+8")
 
   x$Value <- set_non_detects(value = x$Value,
                              mdl_flag = x$ResultLetter,
@@ -95,7 +94,6 @@ tidy_ec_data <- function(x, cols = character(0), mdl_action = "zero") {
              cols)
 
   check_cols(x, unname(cols))
-
   cols <- rlang::syms(cols)
   x <- dplyr::select(x, !!!cols)
 
