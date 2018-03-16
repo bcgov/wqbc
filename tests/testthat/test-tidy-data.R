@@ -133,6 +133,7 @@ test_that("tidy_ems_data works", {
                          "SAMPLE_STATE", "SAMPLE_CLASS", "SAMPLE_DESCRIPTOR",
                          "LOCATION_TYPE")
   tidied_ems <- tidy_ems_data(test_ems)
+  expect_is(tidied_ems, "ems_tidy")
   expect_equal(names(tidied_ems), default_ems_names)
   tidied_ems <- tidy_ems_data(test_ems, cols = "OTHER_COLUMN")
   expect_equal(names(tidied_ems), c(default_ems_names, "OTHER_COLUMN"))
@@ -142,6 +143,7 @@ test_that("tidy_ec_data works", {
   default_ec_names <- c("SITE_NO", "DateTime", "Variable", "Code",
                         "Value", "Units", "DetectionLimit", "ResultLetter")
   tidied_ec <- tidy_ec_data(test_ec)
+  expect_is(tidied_ec, "ec_tidy")
   expect_equal(names(tidied_ec), default_ec_names)
   tidied_ec <- tidy_ec_data(test_ec, cols = "STATUS_STATUT")
   expect_equal(names(tidied_ec), c(default_ec_names, "STATUS_STATUT"))

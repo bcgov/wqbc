@@ -60,7 +60,7 @@ tidy_ems_data <- function(x, cols = character(0),
                                mdl_action = mdl_action)
   }
 
-  x
+  structure(x, class = c("ems_tidy", "wq", class(x)))
 }
 
 #' Tidy Environment Canada Data
@@ -113,7 +113,7 @@ tidy_ec_data <- function(x, cols = character(0),
                                mdl_action = mdl_action)
   }
 
-  x
+  structure(x, class = c("ec_tidy", "wq", class(x)))
 }
 
 #' Set value for 'non-detects'
