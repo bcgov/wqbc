@@ -10,6 +10,7 @@
 - More columns retained and option to keep even more in `tidy_ems_data()` and 
 `tidy_ec_data()` (#83)
 - Fully duplicated records are removed in `tidy_ec_data()` and `tidy_ems_data()`
+- New argument `remove_blanks` in `clean_wqdata()` to remove blank records (#90)
 
 # wqbc 0.3.1
 
