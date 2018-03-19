@@ -48,18 +48,7 @@ tidy_ems_data <- function(x, cols = character(0),
             "LOCATION_TYPE",
             cols)
 
-  check_cols(x, unname(cols))
-  cols <- rlang::syms(cols)
-  x <- dplyr::select(x, !!!cols)
-  x <- dplyr::distinct(x)
-
-  x$DateTime <- lubridate::force_tz(x$DateTime, tzone = "Etc/GMT+8")
-
-  if (mdl_action != "none") {
-    x$Value <- set_non_detects(value = x$Value,
-                               mdl_flag = x$ResultLetter,
-                               mdl_action = mdl_action)
-  }
+  x <- tidy_wq_data(x, cols, mdl_action, dt_fun = lubridate::ymd_hms)
 
   structure(x, class = c("ems_tidy", "wq", class(x)))
 }
@@ -98,6 +87,12 @@ tidy_ec_data <- function(x, cols = character(0),
              "ResultLetter" = "FLAG_MARQUEUR",
              cols)
 
+  x <- tidy_wq_data(x, cols, mdl_action, dt_fun = lubridate::ymd_hm)
+
+  structure(x, class = c("ec_tidy", "wq", class(x)))
+}
+
+tidy_wq_data <- function(x, cols, mdl_action, dt_fun) {
   check_cols(x, unname(cols))
   cols <- rlang::syms(cols)
   x <- dplyr::select(x, !!!cols)
@@ -106,7 +101,7 @@ tidy_ec_data <- function(x, cols = character(0),
   if (inherits(x$DateTime, "POSIXt")) {
     x$DateTime <- lubridate::force_tz(x$DateTime, tzone = "Etc/GMT+8")
   } else {
-    x$DateTime <- lubridate::ymd_hm(x$DateTime, tz = "Etc/GMT+8")
+    x$DateTime <- dt_fun(x$DateTime, tz = "Etc/GMT+8")
   }
 
   if (mdl_action != "none") {
@@ -114,8 +109,7 @@ tidy_ec_data <- function(x, cols = character(0),
                                mdl_flag = x$ResultLetter,
                                mdl_action = mdl_action)
   }
-
-  structure(x, class = c("ec_tidy", "wq", class(x)))
+  x
 }
 
 #' Set value for 'non-detects'
