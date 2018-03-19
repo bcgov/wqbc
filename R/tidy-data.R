@@ -51,6 +51,7 @@ tidy_ems_data <- function(x, cols = character(0),
   check_cols(x, unname(cols))
   cols <- rlang::syms(cols)
   x <- dplyr::select(x, !!!cols)
+  x <- dplyr::distinct(x)
 
   x$DateTime <- lubridate::force_tz(x$DateTime, tzone = "Etc/GMT+8")
 
@@ -100,11 +101,12 @@ tidy_ec_data <- function(x, cols = character(0),
   check_cols(x, unname(cols))
   cols <- rlang::syms(cols)
   x <- dplyr::select(x, !!!cols)
+  x <- dplyr::distinct(x)
 
   if (inherits(x$DateTime, "POSIXt")) {
     x$DateTime <- lubridate::force_tz(x$DateTime, tzone = "Etc/GMT+8")
   } else {
-    x$DateTime <- lubridate::dmy_hm(x$DateTime, tz = "Etc/GMT+8")
+    x$DateTime <- lubridate::ymd_hm(x$DateTime, tz = "Etc/GMT+8")
   }
 
   if (mdl_action != "none") {
