@@ -6,7 +6,8 @@
 \usage{
 clean_wqdata(x, by = NULL, max_cv = Inf, sds = 10,
   ignore_undetected = TRUE, large_only = TRUE, delete_outliers = FALSE,
-  messages = getOption("wqbc.messages", default = TRUE))
+  remove_blanks = FALSE, messages = getOption("wqbc.messages", default =
+  TRUE))
 }
 \arguments{
 \item{x}{The data.frame to clean.}
@@ -24,6 +25,9 @@ of variation for replicates.}
 \item{large_only}{A flag indicating whether only large values which exceed the sds should be identified as outliers.}
 
 \item{delete_outliers}{A flag indicating whether to delete outliers or merely flag them.}
+
+\item{remove_blanks}{Should blanks be removed? Blanks are assumed to be denoted by
+a value of \code{"Blank..."} in the \code{SAMPLE_CLASS} column. Default \code{FALSE}}
 
 \item{messages}{A flag indicating whether to print messages.}
 }

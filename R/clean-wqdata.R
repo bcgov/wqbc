@@ -88,7 +88,10 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 #' @param ignore_undetected A flag indicating whether to ignore undetected values when calculating the average deviation and identifying outliers.
 #' @param large_only A flag indicating whether only large values which exceed the sds should be identified as outliers.
 #' @param delete_outliers A flag indicating whether to delete outliers or merely flag them.
+#' @param remove_blanks Should blanks be removed? Blanks are assumed to be denoted by
+#' a value of `"Blank..."` in the `SAMPLE_CLASS` column. Default `FALSE`
 #' @param messages A flag indicating whether to print messages.
+#'
 #' @examples
 #' clean_wqdata(wqbc::dummy, messages = TRUE)
 #' @seealso \code{\link{calc_limits}} and \code{\link{standardize_wqdata}}
@@ -96,7 +99,8 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 clean_wqdata <- function(x, by = NULL, max_cv = Inf,
                          sds = 10, ignore_undetected = TRUE,
                          large_only = TRUE, delete_outliers = FALSE,
-                          messages = getOption("wqbc.messages", default = TRUE)) {
+                         remove_blanks = FALSE,
+                         messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   assert_that(is.number(max_cv))
@@ -110,6 +114,13 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
   check_by(by, colnames(x), res_names = c("Value", "Outlier", "DetectionLimit"))
 
   x <- x[!is.na(x$Value), , drop = FALSE]
+
+  if (remove_blanks) {
+    if (!"SAMPLE_CLASS" %in% names(x)) {
+      stop("SAMPLE_CLASS column must be present to remove blank records")
+    }
+    x <- x[!grepl("^[Bb]lank", x$SAMPLE_CLASS), ]
+  }
 
   if (!tibble::has_name(x, "Date")) {
     if (tibble::has_name(x, "DateTime")) {
