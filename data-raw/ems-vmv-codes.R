@@ -8,15 +8,20 @@ library(canwqdata)
 
 vmv_codes <- canwqdata::wq_params() %>%
         select(VMV_CODE,
-               VMV_VARIABLE_CODE = VARIABLE_CODE,
-               VMV_VARIABLE = VARIABLE,
+               VMV_VARIABLE_CODE = NATIONAL_VARIABLE_CODE,
+               VMV_VARIABLE = VARIABLE_COMMON_NAME,
                VMV_VARIABLE_TYPE = VARIABLE_TYPE,
-               VMV_UNIT = UNIT_UNITÉ,
-               VMV_UNIT_NAME = UNIT_NAME,
-               VMV_METHOD_CODE = METHOD_CODE,
+               VMV_UNIT = MEASUREMENT_UNIT,
+               VMV_UNIT_NAME = DESCRIPTION,
+               VMV_METHOD_CODE = NATIONAL_METHOD_CODE,
                VMV_METHOD_TITLE = METHOD_TITLE) %>%
         mutate_all(stringr::str_trim, side = "both") %>%
         distinct()
+
+vmv_reduced <- read_csv("data-raw/ec_variables_reduced.csv")
+
+vmv_codes <- vmv_codes %>%
+        left_join(vmv_reduced, by = c(""))
 
 ems_codes <- rems::ems_parameters %>%
         select(EMS_CODE = PARAMETER_CODE,
