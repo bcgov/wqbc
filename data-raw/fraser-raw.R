@@ -17,8 +17,9 @@
 # install_github("bcgov/canwqdata")
 library(canwqdata)
 library(dplyr)
+devtools::load_all()
 
-fraser <- dl_basin("FRASER-LOWER MAINLAND")
+fraser <- wq_basin_data("FRASER-LOWER MAINLAND")
 
 fraser <- tidy_ec_data(fraser)
 
