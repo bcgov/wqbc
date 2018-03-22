@@ -6,6 +6,12 @@ library(tidyr)
 library(rems)
 library(canwqdata)
 
+camel_to_snake <- function(x, case = c("lower", "upper")) {
+        case <- match.arg(case)
+        case_fun <- switch(case, lower = tolower, upper = toupper)
+        case_fun(gsub("([a-z0-9])([A-Z]+)", "\\1_\\2", x))
+}
+
 vmv_codes <- canwqdata::wq_params() %>%
         select(VMV_CODE,
                VMV_VARIABLE_CODE = NATIONAL_VARIABLE_CODE,
@@ -18,10 +24,11 @@ vmv_codes <- canwqdata::wq_params() %>%
         mutate_all(stringr::str_trim, side = "both") %>%
         distinct()
 
-vmv_reduced <- read_csv("data-raw/ec_variables_reduced.csv")
+vmv_reduced <- read_csv("data-raw/ec_variables_reduced.csv", trim_ws = TRUE) %>%
+        rename_all(camel_to_snake, "upper")
 
 vmv_codes <- vmv_codes %>%
-        left_join(vmv_reduced, by = c(""))
+        left_join(vmv_reduced, by = c("VMV_VARIABLE" = "VARIABLE_NAME"))
 
 ems_codes <- rems::ems_parameters %>%
         select(EMS_CODE = PARAMETER_CODE,
@@ -36,16 +43,15 @@ ems_codes <- rems::ems_parameters %>%
 
 ## Ensure codes have consistent leading zeros etc.
 vmv_ems_xwalk <- read_csv("data-raw/VMV_to_EMS.csv",
-                          col_types = cols(.default = col_character())) %>%
+                          col_types = cols(.default = col_character()),
+                          trim_ws = TRUE) %>%
         filter(OTHER_SYSTEM_NAME == "EMS") %>%
         separate(OTHER_SYSTEM_CODE, c("EMS_CODE", "EMS_METHOD_CODE"), 4) %>%
         select(VMV_CODE = vmv_code,
                VMV_METHOD_CODE = method_code,
                EMS_CODE,
                EMS_METHOD_CODE,
-               EMS_UNIT_CODE = OTHER_SYSTEM_UNIT_CODE
-               ) %>%
-        mutate_all(stringr::str_trim, side = "both") %>%
+               EMS_UNIT_CODE = OTHER_SYSTEM_UNIT_CODE) %>%
         distinct()
 
 # VMV_CODE should be unique but include VMV_METHOD_CODE for completeness.
@@ -71,7 +77,11 @@ vmv_ems <- left_join(ems_codes, vmv_ems_xwalk,
                 VMV_UNIT,
                 VMV_UNIT_NAME,
                 VMV_METHOD_CODE,
-                VMV_METHOD_TITLE
+                VMV_METHOD_TITLE,
+                PARAM_SHORT_NAME,
+                CONSTIT_ABBREV,
+                VARIABLE_GROUP,
+                PARAM_GROUP,
         )
 
 use_data(ems_codes, vmv_ems, vmv_codes, overwrite = TRUE)
