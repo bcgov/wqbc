@@ -1,6 +1,23 @@
 language: r
-cache: packages
-dist: trusty
+# cache: packages
+
+# Add devtools to force install so works on r-devel
+r_packages:
+  - devtools
+
+matrix:
+  include:
+    - os: linux
+      r: devel
+
+    - os: linux
+      r: release
+
+    - os: osx
+      r: devel
+
+    - os: osx
+      r: release
 
 notifications:
   email:
