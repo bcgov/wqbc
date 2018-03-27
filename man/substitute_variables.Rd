@@ -28,17 +28,7 @@ In both cases the only requirement is that all words or just the first word
 are present in x. The order of the words does not matter nor does the
 presence of other words. This means that a value such as
 "Total Fluoride Hardness" matches two recognised variables which causes an
-error. The code also considers
-Aluminium to be a match with Aluminum.
-}
-\examples{
-substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-        "dissolved aluminium", "BORON Total", "KRYPTONITE",
-        "Total Fluoride Hardness"), messages = TRUE)
-substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-                        "dissolved aluminium", "BORON Total", "KRYPTONITE",
-                        "Total Fluoride Hardness"),
-                        strict = FALSE, messages = TRUE)
+error.
 }
 \seealso{
 \code{\link{substitute_units}}

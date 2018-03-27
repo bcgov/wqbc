@@ -1,7 +1,7 @@
 Variable,Code,Units,Average,EC_Code
 Alkalinity Total,EMS_AK_T,mg/L,mean,364
 Alkalinity pH 4.5/4.2,EMS_D102,mg/L,mean,
-Aluminium Dissolved,EMS_AL_D,mg/L,mean,370
+Aluminum Dissolved,EMS_AL_D,mg/L,mean,370
 Ammonia Total,EMS_0108,mg/L,mean,605
 Ammonia Dissolved,EMS_1108,mg/L,mean,604
 Arsenic Dissolved,EMS_AS_D,ug/L,mean,376

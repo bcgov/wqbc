@@ -16,7 +16,7 @@ library(devtools)
 library(dplyr)
 library(magrittr)
 
-dummy <- data.frame(Date = as.Date("2000-01-01"), Variable = "Aluminium Dissolved",
+dummy <- data.frame(Date = as.Date("2000-01-01"), Variable = "Aluminum Dissolved",
                    Value = c(20, 1, 2), Units = "mg/L")
 
 dummy %<>% rbind(data.frame(Date = as.Date("2000-01-01"), Variable = "pH",
@@ -25,13 +25,13 @@ dummy %<>% rbind(data.frame(Date = as.Date("2000-01-01"), Variable = "pH",
 dummy %<>% rbind(data.frame(Date = as.Date("2000-01-02"), Variable = "DISSOLVED ALUMINUM",
                                Value = c(1, 2 * 10^3), Units = c("MG/L", "uG/L")))
 
-dummy %<>% rbind(data.frame(Date = as.Date("2000-01-04"), Variable = "Aluminium Dissolved",
+dummy %<>% rbind(data.frame(Date = as.Date("2000-01-04"), Variable = "Aluminum Dissolved",
                                Value = c(2 * 10^3, 1), Units = c("ug/L", "mg/L")))
 
-dummy %<>% rbind(data.frame(Date = as.Date("2000-01-05"), Variable = "Aluminium Dissolved",
+dummy %<>% rbind(data.frame(Date = as.Date("2000-01-05"), Variable = "Aluminum Dissolved",
                                Value = c(1, 40, NA), Units = "mg/L"))
 
-dummy %<>% rbind(data.frame(Date = as.Date("2000-01-06"), Variable = "Aluminium Dissolved",
+dummy %<>% rbind(data.frame(Date = as.Date("2000-01-06"), Variable = "Aluminum Dissolved",
                                Value = c(10, 20, NA), Units = "mg/L"))
 
 dummy %<>% rbind(data.frame(Date = as.Date("1977-05-25"), Variable = "Zinc Total",

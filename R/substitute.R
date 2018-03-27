@@ -117,22 +117,13 @@ substitute_units <- function (
 #' are present in x. The order of the words does not matter nor does the
 #' presence of other words. This means that a value such as
 #' "Total Fluoride Hardness" matches two recognised variables which causes an
-#' error. The code also considers
-#' Aluminium to be a match with Aluminum.
+#' error.
 #'
 #' @param x A character vector of variable names to substitute.
 #' @param strict A flag indicating whether to require all words
 #' in a recognised variable name to be present in x (strict = TRUE)
 #' or only the first one (strict = FALSE).
 #' @param messages A flag indicating whether to print messages.
-#' @examples
-#' substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-#'         "dissolved aluminium", "BORON Total", "KRYPTONITE",
-#'         "Total Fluoride Hardness"), messages = TRUE)
-#' substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-#'                         "dissolved aluminium", "BORON Total", "KRYPTONITE",
-#'                         "Total Fluoride Hardness"),
-#'                         strict = FALSE, messages = TRUE)
 #' @seealso \code{\link{substitute_units}}
 #' @export
 
@@ -145,7 +136,6 @@ substitute_variables <- function (
 
   x <- as.character(x)
 
-  y <- gsub("Aluminum", "Aluminium", x, ignore.case = TRUE)
   y <- gsub("Total Dissolved", "Dissolved", y, ignore.case = TRUE)
 
   sub <- lookup_variables()

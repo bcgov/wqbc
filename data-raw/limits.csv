@@ -1,9 +1,9 @@
 Variable,Term,Condition,UpperLimit,Units,Table,Reference,Use
 Alkalinity Total,Long,,20,mg/L,BC,CANADA_2014,Freshwater Life
-Aluminium Dissolved,Long,EMS_0004 >= 6.5,0.05,mg/L,1,BC_2015,Freshwater Life
-Aluminium Dissolved,Long,EMS_0004 < 6.5,exp(1.6 - 3.327 * EMS_0004 + 0.402 * EMS_0004^2),mg/L,1,BC_2015,Freshwater Life
-Aluminium Dissolved,Short,EMS_0004 >= 6.5,0.1,mg/L,1,BC_2015,Freshwater Life
-Aluminium Dissolved,Short,EMS_0004 < 6.5,exp(1.209 - 2.426 * EMS_0004 + 0.286 * EMS_0004^2),mg/L,1,BC_2015,Freshwater Life
+Aluminum Dissolved,Long,EMS_0004 >= 6.5,0.05,mg/L,1,BC_2015,Freshwater Life
+Aluminum Dissolved,Long,EMS_0004 < 6.5,exp(1.6 - 3.327 * EMS_0004 + 0.402 * EMS_0004^2),mg/L,1,BC_2015,Freshwater Life
+Aluminum Dissolved,Short,EMS_0004 >= 6.5,0.1,mg/L,1,BC_2015,Freshwater Life
+Aluminum Dissolved,Short,EMS_0004 < 6.5,exp(1.209 - 2.426 * EMS_0004 + 0.286 * EMS_0004^2),mg/L,1,BC_2015,Freshwater Life
 Arsenic Total,Long,,5,ug/L,2,BC_2015,Freshwater Life
 Benzene,Long,,40,ug/L,3,BC_2015,Freshwater Life
 Boron Total,Long,,1.2,mg/L,4A,BC_2015,Freshwater Life
