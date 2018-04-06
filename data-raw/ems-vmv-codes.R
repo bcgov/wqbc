@@ -61,7 +61,7 @@ vmv_ems <- left_join(ems_codes, vmv_ems_xwalk,
                      by = c("EMS_CODE",
                             "EMS_METHOD_CODE",
                             "EMS_UNIT_CODE")) %>%
-        left_join(vmv_codes, by = c("VMV_CODE", "VMV_METHOD_CODE")) %>%
+        full_join(vmv_codes, by = c("VMV_CODE", "VMV_METHOD_CODE")) %>%
         select(
                 EMS_CODE,
                 EMS_VARIABLE,
