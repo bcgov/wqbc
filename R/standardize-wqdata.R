@@ -74,7 +74,8 @@ standardize_wqdata <- function (
 
   if(!nrow(x)) { if(messages) message("Standardized water quality data."); return (x) }
 
-  x$Variable <- substitute_variables(x$Variable, strict = strict, messages = messages)
+  # x$Variable <- substitute_variables(x$Variable, strict = strict, messages = messages)
+  x <- add_shortnames(x) # x needs to be class ems_tidy or ec_tidy
   is.na(x$Variable[!x$Variable %in% lookup_variables()]) <- TRUE
 
   x <- delete_rows_with_certain_values(x, columns = c("Variable"),
@@ -92,5 +93,16 @@ standardize_wqdata <- function (
                    .fun = standardize_wqdata_variable, messages = messages)
 
   if(messages) message("Standardized water quality data.")
+  x
+}
+
+add_shortnames <- function(Variable) {
+  UseMethod("add_shortnames")
+}
+
+add_shortnames.ec_tidy <- function(x) {
+  x <- dplyr::left_join(x, vmv_ems[, c("VMV_VARIABLE", "PARAM_SHORT_NAME",
+                                     "VARIABLE_GROUP", "PARAM_GROUP", "CONSTIT_ABBREV")],
+                        by = c("Variable" = "VMV_VARIABLE"))
   x
 }
