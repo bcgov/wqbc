@@ -50,17 +50,14 @@ vmv_ems_xwalk <- read_csv("data-raw/VMV_to_EMS.csv",
         select(VMV_CODE = vmv_code,
                VMV_METHOD_CODE = method_code,
                EMS_CODE,
-               EMS_METHOD_CODE,
-               EMS_UNIT_CODE = OTHER_SYSTEM_UNIT_CODE) %>%
+               EMS_METHOD_CODE) %>%
         distinct()
 
 # VMV_CODE should be unique but include VMV_METHOD_CODE for completeness.
-# The combination of EMS_CODE, EMS_METHOD_CODE, and EMS_UNIT_CODE should be
-# unique.
+# The combination of EMS_CODE & EMS_METHOD_CODE should be unique.
 vmv_ems <- left_join(ems_codes, vmv_ems_xwalk,
                      by = c("EMS_CODE",
-                            "EMS_METHOD_CODE",
-                            "EMS_UNIT_CODE")) %>%
+                            "EMS_METHOD_CODE")) %>%
         full_join(vmv_codes, by = c("VMV_CODE", "VMV_METHOD_CODE")) %>%
         select(
                 EMS_CODE,
