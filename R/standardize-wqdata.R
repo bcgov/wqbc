@@ -108,8 +108,8 @@ add_shortnames.ec_tidy <- function(x) {
 }
 
 add_shortnames.ems_tidy <- function(x) {
-  x <- dplyr::left_join(x, vmv_ems[, c("EMS_CODE", "PARAM_SHORT_NAME",
+  x <- dplyr::left_join(x, vmv_ems[, c("EMS_CODE", "EMS_METHOD_CODE", "PARAM_SHORT_NAME",
                                        "VARIABLE_GROUP", "PARAM_GROUP", "CONSTIT_ABBREV")],
-                        by = c("Code" = "EMS_CODE"))
+                        by = c("Code" = "EMS_CODE", "MethodCode" = "EMS_METHOD_CODE"))
   dplyr::distinct(x)
 }
