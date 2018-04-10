@@ -53,7 +53,7 @@ vmv_ems_xwalk <- read_csv("data-raw/VMV_to_EMS.csv",
         filter(OTHER_SYSTEM_NAME == "EMS") %>%
         separate(OTHER_SYSTEM_CODE, c("EMS_CODE", "EMS_METHOD_CODE"), 4) %>%
         select(VMV_CODE = vmv_code,
-               VMV_METHOD_CODE = method_code,
+               # VMV_METHOD_CODE = method_code,
                EMS_CODE,
                EMS_METHOD_CODE) %>%
         mutate_all(stringr::str_trim, side = "both") %>%
@@ -65,7 +65,7 @@ vmv_ems_xwalk <- read_csv("data-raw/VMV_to_EMS.csv",
 vmv_ems <- left_join(ems_codes, vmv_ems_xwalk,
                      by = c("EMS_CODE",
                             "EMS_METHOD_CODE")) %>%
-        full_join(vmv_codes, by = c("VMV_CODE", "VMV_METHOD_CODE")) %>%
+        full_join(vmv_codes, by = "VMV_CODE") %>%
         select(
                 EMS_CODE,
                 EMS_VARIABLE,
