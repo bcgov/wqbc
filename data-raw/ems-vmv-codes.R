@@ -22,10 +22,14 @@ vmv_codes <- canwqdata::wq_params() %>%
                VMV_METHOD_CODE = NATIONAL_METHOD_CODE,
                VMV_METHOD_TITLE = METHOD_TITLE) %>%
         mutate_all(stringr::str_trim, side = "both") %>%
+        mutate_all(stringr::str_squish) %>%
         distinct()
 
 vmv_reduced <- read_csv("data-raw/ec_variables_reduced.csv", trim_ws = TRUE) %>%
-        rename_all(camel_to_snake, "upper")
+        rename_all(camel_to_snake, "upper") %>%
+        mutate_all(stringr::str_trim, side = "both") %>%
+        mutate_all(stringr::str_squish) %>%
+        distinct()
 
 vmv_codes <- vmv_codes %>%
         left_join(vmv_reduced, by = c("VMV_VARIABLE" = "VARIABLE_NAME"))
@@ -39,6 +43,7 @@ ems_codes <- rems::ems_parameters %>%
                EMS_METHOD_TITLE = ANALYTICAL_METHOD,
                EMS_MDL = METHOD_DETECTION_LIMIT) %>%
         mutate_all(stringr::str_trim, side = "both") %>%
+        mutate_all(stringr::str_squish) %>%
         distinct()
 
 ## Ensure codes have consistent leading zeros etc.
@@ -51,6 +56,8 @@ vmv_ems_xwalk <- read_csv("data-raw/VMV_to_EMS.csv",
                VMV_METHOD_CODE = method_code,
                EMS_CODE,
                EMS_METHOD_CODE) %>%
+        mutate_all(stringr::str_trim, side = "both") %>%
+        mutate_all(stringr::str_squish) %>%
         distinct()
 
 # VMV_CODE should be unique but include VMV_METHOD_CODE for completeness.
