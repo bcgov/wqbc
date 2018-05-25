@@ -97,10 +97,19 @@ standardize_wqdata <- function (
   x
 }
 
-add_shortnames <- function(Variable) {
+
+#' Add parameter aliases (generalized short names) and other fields
+#'
+#' @param x A data.frame of class `ec_tidy` or `ems_tidy`
+#'
+#' @return Same as input but with additional fields: "VMV_CODE", "PARAM_SHORT_NAME",
+#' "VARIABLE_GROUP", "PARAM_GROUP", "CONSTIT_ABBREV"
+#' @export
+add_shortnames <- function(x) {
   UseMethod("add_shortnames")
 }
 
+#' @export
 add_shortnames.ec_tidy <- function(x) {
   x <- dplyr::left_join(x, vmv_ems[, c("VMV_CODE", "PARAM_SHORT_NAME",
                                      "VARIABLE_GROUP", "PARAM_GROUP", "CONSTIT_ABBREV")],
@@ -108,6 +117,7 @@ add_shortnames.ec_tidy <- function(x) {
   dplyr::distinct(x)
 }
 
+#' @export
 add_shortnames.ems_tidy <- function(x) {
   x <- dplyr::left_join(x, vmv_ems[, c("EMS_CODE", "EMS_METHOD_CODE", "PARAM_SHORT_NAME",
                                        "VARIABLE_GROUP", "PARAM_GROUP", "CONSTIT_ABBREV")],
