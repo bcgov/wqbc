@@ -11,6 +11,6 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 ems_ec_stations <- read.csv("data-raw/ems_ec_stations.csv",
-                            stringsAsFactors = FALSE)
+                            stringsAsFactors = FALSE, na.strings = "")
 
 devtools::use_data(ems_ec_stations, compress = "xz", overwrite = TRUE)
