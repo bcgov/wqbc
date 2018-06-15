@@ -1,1 +1,42 @@
-envirodat_no,ems_id,station_name,type,freq,start_date,wsc_site_noBC08EE0009,E285129,Bulkely River at Smithers,S,M,17-Mar-11,08EE005BC08GA0010,E269864,Cheakamus River at Daisy Lake FSR,S,M,08-Mar-04,BC08MB0007,E255962,Chilcotin River Upstream of Christie Rd Bridge,B,B,15-Nov-04,BC08NE0005,200003,Columbia River at Birchbank,S,B,25-May-83,08NE049BC08NA0048,E252119,Columbia River at Nicholson,B,M,30-Apr-03,BC08NE0001,200559,Columbia River at Waneta,S,B,20-Sep-79,08NE058BC08HA0018,E206106,Cowichan River D/S Of Somenos Creek,S,B,23-Jun-99,08HA011BC08CF0001,600042,Dean River u/s Lodge Creek,B/S,B,19-Mar-08,BC08NK0003,200016,Elk River at Highway 93 near Elko,S,B,02-May-84,BC08NK0004,200102,Elk River below Sparwood,S,B,03-Sep-02,08NK002BC08HB0019,121580,Englishman River at Highway 19,B,B,09-Nov-04,08HB002BC08MH0453,E271643,Fraser River at Gravesend Reach - Buoy,Buoy,B,27-Aug-08,BC08MF0001,E206581,Fraser River at Hope,B,B,17-Jul-79,08MF005BC08MC0001,600011,Fraser River at Marguerite,S,B,24-Jul-84,08MC018BC08KA0007,E236796,Fraser River at Red Pass,S,B,28-Jul-84,08KA007BC08KH0012,E256314,Horsefly River above Quesnel Lake,S,B,11-May-06,08KH031BC08CG0001,920125,Iskut River below Johnson River,B,7/yr,01-Jun-80,08CG001BC08NN0021,920673,Kettle River at Carson Road Bridge,B,M,10-Oct-79,BC08NN0011,200084,Kettle River at Midway,B,M,09-Oct-79,08NN013BC08NH0005,E206587,Kootenay River at Creston,S,M,12-Sep-79,BC08NG0009,200038,Kootenay River near Fenwick Station,S,M,02-May-84,08NG065,E279733,Murray River near mouth,S,7/yr,,07FB002BC08KE0010,E206583,Nechako River at Prince George,B,B,24-Jul-84,BC08LG0001,E216848,Nicola River near Mouth,B,M,24-Jun-03,08LG006BC08MH0269,E255013,North Alouette River at 132nd Ave.,S,B,02-Mar-04,08MH006BC08NM0001,500720,Okanagan River at Oliver,B,M,20-Sep-79,08NM085BC07FD0005,E206585,Peace River above Alces River,B,M,16-Mar-84,07FD010BC08NE0029,200021,Pend d'Oreille River at Waneta,B,M,02-Nov-79,BC10DA0002,E282116,Petitot River at Highway 77,S,7/yr,08-May-12,10DA001BC08KH0013,E285533,Quesnel River at Gravelle Ferry Bridge,B,M,16-Jun-14,08KH006BC08KH0014,E299950,Quesnel River off Likely Bridge,B,M,23-Sep-14,08KH001BC08HD0004,126400,Quinsam River near the mouth,B,B,11-Feb-86,08HD005BC08LE0004,E206092,Salmon River at Highway #1 Bridge,B,B,1988 APR 19,08LE021AK08DC0001,E237496,"Salmon River near Hyder, Alaska",S,B,1981 JUN 15,BC08LC0005,E284949,Shuswap River below Mara Lake,B,B,2011 FEB 24,08LC002BC08NL0001,500629,Similkameen River at Princeton,B,B,1984 APR 04,08NL007BC08NL0005,500073,Similkameen River near US border,B,B,1979 OCT 24,BC08MH0027,300038,Sumas River at International Boundary,B,B,1979 JUL 17,08MH029BC08LF0001,E206586,Thompson River at Spences Bridge,B,B,1984 JUL 23,08LF051BC08LF0078,,Thompson River at Spences Bridge North Bank,,,2015 JAN 01,08LF051BC08HB0018,E207826,Tsolum River below Murex Creek,S,B,2005 MAY 17,08HB089
+envirodat_no,ems_id,station_name,type,freq,start_date,wsc_site_no
+BC08EE0009,E285129,Bulkely River at Smithers,S,M,17-Mar-11,08EE005
+BC08GA0010,E269864,Cheakamus River at Daisy Lake FSR,S,M,08-Mar-04,
+BC08MB0007,E255962,Chilcotin River Upstream of Christie Rd Bridge,B,B,15-Nov-04,
+BC08NE0005,200003,Columbia River at Birchbank,S,B,25-May-83,08NE049
+BC08NA0048,E252119,Columbia River at Nicholson,B,M,30-Apr-03,
+BC08NE0001,200559,Columbia River at Waneta,S,B,20-Sep-79,08NE058
+BC08HA0018,E206106,Cowichan River D/S Of Somenos Creek,S,B,23-Jun-99,08HA011
+BC08CF0001,600042,Dean River u/s Lodge Creek,B/S,B,19-Mar-08,
+BC08NK0003,200016,Elk River at Highway 93 near Elko,S,B,02-May-84,
+BC08NK0004,200102,Elk River below Sparwood,S,B,03-Sep-02,08NK002
+BC08HB0019,121580,Englishman River at Highway 19,B,B,09-Nov-04,08HB002
+BC08MH0453,E271643,Fraser River at Gravesend Reach - Buoy,Buoy,B,27-Aug-08,
+BC08MF0001,E206581,Fraser River at Hope,B,B,17-Jul-79,08MF005
+BC08MC0001,600011,Fraser River at Marguerite,S,B,24-Jul-84,08MC018
+BC08KA0007,E236796,Fraser River at Red Pass,S,B,28-Jul-84,08KA007
+BC08KH0012,E256314,Horsefly River above Quesnel Lake,S,B,11-May-06,08KH031
+BC08CG0001,920125,Iskut River below Johnson River,B,7/yr,01-Jun-80,08CG001
+BC08NN0021,920673,Kettle River at Carson Road Bridge,B,M,10-Oct-79,
+BC08NN0011,200084,Kettle River at Midway,B,M,09-Oct-79,08NN013
+BC08NH0005,E206587,Kootenay River at Creston,S,M,12-Sep-79,
+BC08NG0009,200038,Kootenay River near Fenwick Station,S,M,02-May-84,08NG065
+BC07FB0005,E279733,Murray River near mouth,S,7/yr,,07FB002
+BC08KE0010,E206583,Nechako River at Prince George,B,B,24-Jul-84,
+BC08LG0001,E216848,Nicola River near Mouth,B,M,24-Jun-03,08LG006
+BC08MH0269,E255013,North Alouette River at 132nd Ave.,S,B,02-Mar-04,08MH006
+BC08NM0001,500720,Okanagan River at Oliver,B,M,20-Sep-79,08NM085
+BC07FD0005,E206585,Peace River above Alces River,B,M,16-Mar-84,07FD010
+BC08NE0029,200021,Pend d'Oreille River at Waneta,B,M,02-Nov-79,
+BC10DA0002,E282116,Petitot River at Highway 77,S,7/yr,08-May-12,10DA001
+BC08KH0013,E285533,Quesnel River at Gravelle Ferry Bridge,B,M,16-Jun-14,08KH006
+BC08KH0014,E299950,Quesnel River off Likely Bridge,B,M,23-Sep-14,08KH001
+BC08HD0004,126400,Quinsam River near the mouth,B,B,11-Feb-86,08HD005
+BC08LE0004,E206092,Salmon River at Highway #1 Bridge,B,B,1988 APR 19,08LE021
+AK08DC0001,E237496,"Salmon River near Hyder, Alaska",S,B,1981 JUN 15,
+BC08LC0005,E284949,Shuswap River below Mara Lake,B,B,2011 FEB 24,08LC002
+BC08NL0001,500629,Similkameen River at Princeton,B,B,1984 APR 04,08NL007
+BC08NL0005,500073,Similkameen River near US border,B,B,1979 OCT 24,
+BC08MH0027,300038,Sumas River at International Boundary,B,B,1979 JUL 17,08MH029
+BC08LF0001,E206586,Thompson River at Spences Bridge,B,B,1984 JUL 23,08LF051
+BC08LF0078,,Thompson River at Spences Bridge North Bank,,,2015 JAN 01,08LF051
+BC08HB0018,E207826,Tsolum River below Murex Creek,S,B,2005 MAY 17,08HB089
