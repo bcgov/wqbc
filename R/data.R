@@ -215,3 +215,21 @@
 #' }
 "site_limits"
 
+#' Water Quality Monitoring Statios in British Columbia
+#'
+#' A crosswalk table of station codes between Envirodat (Environment Canada)
+#' and EMS (Britisch Columbia) for monitoring stations in the Fed-Prov
+#' water quality monitoring network
+#'
+#' @format A data frame with 7 variables:
+#' \describe{
+#'   \item{envirodat_no}{The ID of the station in Envirodat}
+#'   \item{ems_id}{The ID of the station in EMS}
+#'   \item{station_name}{The name of the monitoring station}
+#'   \item{type}{The type of monitoring station (shoreline or buoy)}
+#'   \item{freq}{The frequency of monitoring}
+#'   \item{start_date}{The data the station was started}
+#'   \item{wsc_site_no}{The hydrometric station assocated with the station}
+#' }
+#' @seealso \code{\link{calc_limits}}
+"ems_ec_stations"
