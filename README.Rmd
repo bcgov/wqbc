@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 # wqbc
 
-<div id="devex-badge"><a rel="Exploration" href="https://github.com/BCDevExchange/docs/blob/master/discussion/projectstates.md"><img alt="Being designed and built, but in the lab. May change, disappear, or be buggy." style="border-width:0" src="https://assets.bcdevexchange.org/images/badges/exploration.svg" title="Being designed and built, but in the lab. May change, disappear, or be buggy." /></a></div>[![Travis-CI Build Status](https://travis-ci.org/bcgov/wqbc.svg?branch=master)](https://travis-ci.org/bcgov/wqbc)[![Coverage status](https://codecov.io/gh/bcgov/wqbc/branch/master/graph/badge.svg)](https://codecov.io/github/bcgov/wqbc?branch=master)
+<a rel="Exploration" href="https://github.com/BCDevExchange/docs/blob/master/discussion/projectstates.md"><img alt="Being designed and built, but in the lab. May change, disappear, or be buggy." style="border-width:0" src="https://assets.bcdevexchange.org/images/badges/exploration.svg" title="Being designed and built, but in the lab. May change, disappear, or be buggy." /></a>[![Travis-CI Build Status](https://travis-ci.org/bcgov/wqbc.svg?branch=master)](https://travis-ci.org/bcgov/wqbc)[![Coverage status](https://codecov.io/gh/bcgov/wqbc/branch/master/graph/badge.svg)](https://codecov.io/github/bcgov/wqbc?branch=master)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 
 
