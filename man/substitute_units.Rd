@@ -4,7 +4,8 @@
 \alias{substitute_units}
 \title{Substitute Units}
 \usage{
-substitute_units(x, messages = getOption("wqbc.messages", default = TRUE))
+substitute_units(x, messages = getOption("wqbc.messages", default =
+  TRUE))
 }
 \arguments{
 \item{x}{The character vector of units to substitute.}
