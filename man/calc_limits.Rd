@@ -5,8 +5,8 @@
 \title{Calculate Limits}
 \usage{
 calc_limits(x, by = NULL, term = "long", dates = NULL,
-  keep_limits = TRUE, delete_outliers = FALSE, estimate_variables = FALSE,
-  clean = TRUE, limits = wqbc::limits,
+  keep_limits = TRUE, delete_outliers = FALSE,
+  estimate_variables = FALSE, clean = TRUE, limits = wqbc::limits,
   messages = getOption("wqbc.messages", default = TRUE))
 }
 \arguments{
