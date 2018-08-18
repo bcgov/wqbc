@@ -48,7 +48,7 @@ standardize_wqdata <- function (
   assert_that(is.flag(strict) && noNA(strict))
   assert_that(is.flag(messages) && noNA(messages))
 
-  check_rows(x)
+  check_nrow(x)
 
   if("Code" %in% colnames(x)) {
     if(messages) message ("Converting Codes to Variables...")
@@ -60,7 +60,7 @@ standardize_wqdata <- function (
 
   if(messages) message("Standardizing water quality data...")
 
-  check_columns(x, c("Variable", "Value", "Units"))
+  check_colnames(x, c("Variable", "Value", "Units"))
 
   check_class_columns(x, list("Variable" = c("character", "factor"),
                               "Value" = "numeric",

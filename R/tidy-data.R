@@ -93,7 +93,7 @@ tidy_ec_data <- function(x, cols = character(0),
 }
 
 tidy_wq_data <- function(x, cols, mdl_action, dt_fun) {
-  check_cols(x, unname(cols))
+  check_colnames(x, unname(cols))
   cols <- rlang::syms(cols)
   x <- dplyr::select(x, !!!cols)
   x <- dplyr::distinct(x)

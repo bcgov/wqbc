@@ -58,7 +58,7 @@ identify_outliers <- function(data, by = NULL, sds = 6, ignore_undetected = TRUE
   if (!tibble::has_name(data, "Outlier")) data$Outlier <- FALSE
   if (!tibble::has_name(data, "DetectionLimit")) data$DetectionLimit <- NA_real_
 
-  check_data2(data, values = list(Value = c(1, NA),
+  check_data(data, values = list(Value = c(1, NA),
                                   DetectionLimit = c(1, NA),
                                   Outlier = TRUE))
 
