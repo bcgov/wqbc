@@ -26,7 +26,7 @@ test_that("adequate_unique_outliers", {
 
 test_that("identify_outliers", {
   data <- data.frame(Value2 = c(1,NA))
-  expect_error(identify_outliers(data), "data must have column 'Value'")
+  expect_error(identify_outliers(data), "data column names must include 'Value', 'DetectionLimit' and 'Outlier'")
   data$Value <- data$Value2
   expect_identical(identify_outliers(data, messages = FALSE)$Outlier, c(FALSE, FALSE))
   expect_message(identify_outliers(data, messages = TRUE), "Identified 0 outliers in water quality data.")

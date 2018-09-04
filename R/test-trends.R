@@ -84,8 +84,8 @@ test_trends <- function(data, breaks = NULL, FUN = "median", messages = getOptio
   # check inputs
   check_flag(messages)
 
-  check_cols(data, c("Station", "Date", "Variable", "Value", "Units"))
-  check_data2(data, list(Date = Sys.Date(),
+  check_colnames(data, c("Station", "Date", "Variable", "Value", "Units"))
+  check_data(data, list(Date = Sys.Date(),
                          Value = c(1, NA)))
 
   # keep only relevant columns
@@ -158,8 +158,8 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
 
   # check inputs
   check_flag(messages)
-  check_cols(data, c("Station", "Date", "Variable", "Value", "Units"))
-  check_data2(data, list(Date = Sys.Date(),
+  check_colnames(data, c("Station", "Date", "Variable", "Value", "Units"))
+  check_data(data, list(Date = Sys.Date(),
                          Value = c(1, NA)))
 
   # keep only relevant columns

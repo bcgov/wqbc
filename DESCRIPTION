@@ -1,8 +1,8 @@
 Package: wqbc
 Type: Package
 Title: Tidy Water Quality Data and Calculate Thresholds for British Columbia
-Version: 0.3.1.9001
-Date: 2017-08-15
+Version: 0.3.1.9002
+Date: 2017-08-17
 Authors@R: c(person("Joe", "Thorley", email = "joe@poissonconsulting.ca",
                     role = c("aut", "ctr"),
                     comment = "Primary author"),
@@ -25,7 +25,7 @@ Depends:
     R (>= 3.1.2)
 Imports:
     assertthat (>= 0.1),
-    datacheckr,
+    checkr,
     plyr (>= 1.8.1),
     dplyr (>= 0.7.0),
     rlang (>= 0.2.0),
