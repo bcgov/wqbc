@@ -6,8 +6,8 @@
 \alias{wqbc-package}
 \title{wqbc: Tidy Water Quality Data and Calculate Thresholds for British Columbia}
 \description{
-Tidies water quality data and calculates water quality thresholds
-for British Columbia.
+Tidies water quality data and calculates water quality thresholds 
+    for British Columbia.
 }
 \seealso{
 Useful links:

@@ -4,8 +4,8 @@
 \alias{tidy_ems_data}
 \title{Tidy EMS Data}
 \usage{
-tidy_ems_data(x, cols = character(0), mdl_action = c("zero", "mdl", "half",
-  "na", "none"))
+tidy_ems_data(x, cols = character(0), mdl_action = c("zero", "mdl",
+  "half", "na", "none"))
 }
 \arguments{
 \item{x}{The data to tidy.}
