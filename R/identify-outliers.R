@@ -74,6 +74,8 @@ identify_outliers <- function(data, by = NULL, sds = 6, ignore_undetected = TRUE
                           messages = messages)
   }
 
-  if (messages) message("Identified ", sum(data$Outlier[!is.na(data$Outlier)]), " outliers in water quality data.")
+  n_outliers <- sum(data$Outlier[!is.na(data$Outlier)])
+  if (messages) message("Identified ", n_outliers, " outliers in water quality data.")
+  attr(data, "wq_n_outliers") <- n_outliers
   data
 }

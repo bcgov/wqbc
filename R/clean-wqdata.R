@@ -157,5 +157,5 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
   }
 
   if (messages) message("Cleansed water quality data.")
-  x
+  structure(x, class = union(c("wq_clean", "wq"), class(x)))
 }
