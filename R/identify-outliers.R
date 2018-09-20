@@ -15,7 +15,7 @@ adequate_unique_outliers <- function(x) {
   length(unique(x$Value[!x$Outlier])) > 2
 }
 
-identify_outliers_by <- function(x, sds, ignore_undetected, large_only, messages) {
+identify_outliers_by <- function(x, sds, ignore_undetected, large_only, method, messages) {
   outlier <- x$Outlier
   missing <- is.na(x$Value)
   undetected <- !detected(x$Value, x$DetectionLimit)
@@ -31,9 +31,16 @@ identify_outliers_by <- function(x, sds, ignore_undetected, large_only, messages
     while (new && adequate_unique_outliers(x)) {
       id_ok <- which(!x$Outlier)
       # calculate average deviation
-      mdev <- stats::sd(x$Value[id_ok]) # because of adequate outliers sd(x) > 0
+      if (method == "sd") {
+        dev_fun <- stats::sd
+        centre_fun <- mean
+      } else if (method == "mad") {
+        dev_fun <- stats::mad
+        centre_fun <- stats::median
+      }
 
-      scaled <- (x$Value[id_ok] - stats::median(x$Value[id_ok])) / mdev
+      mdev <- dev_fun(x$Value[id_ok]) # because of adequate outliers sd(x) > 0
+      scaled <- (x$Value[id_ok] - centre_fun(x$Value[id_ok])) / mdev
 
       if (large_only) { # if large only then only only too large values are identified
         bol <- scaled > sds
@@ -52,7 +59,7 @@ identify_outliers_by <- function(x, sds, ignore_undetected, large_only, messages
 }
 
 identify_outliers <- function(data, by = NULL, sds = 6, ignore_undetected = TRUE,
-                              large_only = TRUE,
+                              large_only = TRUE, method = "sd",
                               messages = getOption("wqbc.messages", default = TRUE)) {
 
   if (!tibble::has_name(data, "Outlier")) data$Outlier <- FALSE
@@ -65,12 +72,12 @@ identify_outliers <- function(data, by = NULL, sds = 6, ignore_undetected = TRUE
   if (is.null(by)) {
     data %<>% identify_outliers_by(sds = sds,
                                    ignore_undetected = ignore_undetected,
-                                   large_only = large_only,
+                                   large_only = large_only, method = method,
                                    messages = messages)
   } else {
     data %<>% plyr::ddply(.variables = by, .fun = identify_outliers_by,
                           sds = sds, ignore_undetected = ignore_undetected,
-                          large_only = large_only,
+                          large_only = large_only, method = method,
                           messages = messages)
   }
 

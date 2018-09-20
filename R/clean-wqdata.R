@@ -88,6 +88,9 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 #' @param ignore_undetected A flag indicating whether to ignore undetected values when calculating the average deviation and identifying outliers.
 #' @param large_only A flag indicating whether only large values which exceed the sds should be identified as outliers.
 #' @param delete_outliers A flag indicating whether to delete outliers or merely flag them.
+#' @param outlier_method Standard Deviation (\code{"sd"}, default), or Mean Absolute Deviation (\code{"mad"}).
+#' If you choose \code{"mad"}, you will likely need to choose a much higher value for \code{"sds"}
+#' otherwise many more points will be identified as outliers.
 #' @param remove_blanks Should blanks be removed? Blanks are assumed to be denoted by
 #' a value of `"Blank..."` in the `SAMPLE_CLASS` column. Default `FALSE`
 #' @param messages A flag indicating whether to print messages.
@@ -99,7 +102,7 @@ clean_wqdata_by <- function (x, max_cv, messages) {
 clean_wqdata <- function(x, by = NULL, max_cv = Inf,
                          sds = 10, ignore_undetected = TRUE,
                          large_only = TRUE, delete_outliers = FALSE,
-                         remove_blanks = FALSE,
+                         outlier_method = c("sd", "mad"), remove_blanks = FALSE,
                          messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
@@ -110,6 +113,8 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
   check_flag(ignore_undetected)
   check_flag(large_only)
   check_flag(delete_outliers)
+
+  outlier_method <- match.arg(outlier_method)
 
   check_by(by, colnames(x), res_names = c("Value", "Outlier", "DetectionLimit"))
 
@@ -148,7 +153,8 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
                      messages = messages)
   }
 
-  x %<>% identify_outliers(by = by, sds = sds, ignore_undetected = ignore_undetected, large_only = large_only,
+  x %<>% identify_outliers(by = by, sds = sds, ignore_undetected = ignore_undetected,
+                           large_only = large_only, method = outlier_method,
                            messages = messages)
 
   if (delete_outliers) {
