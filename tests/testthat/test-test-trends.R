@@ -30,5 +30,5 @@ test_that("test_trends", {
 })
 
 test_that("test_trends provides useful error messages", {
-  expect_error(test_trends(wqbc::dummy), "column names in data must include 'Station', 'Date', 'Variable', 'Value' and 'Units'")
+  expect_error(test_trends(wqbc::dummy), "data column names must include 'Station', 'Date', 'Variable', 'Value' and 'Units'")
 })

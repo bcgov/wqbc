@@ -73,7 +73,7 @@ delete_rows_with_certain_values <- function (x, columns, messages, txt = "missin
   if(missing(columns))
     columns <- as.list(colnames(x))
 
-  check_columns(x, unlist(columns))
+  check_colnames(x, unlist(columns))
 
   if(txt %in% c("missing", "unrecognised")) {
     fun <- function (x) is.na(x)
