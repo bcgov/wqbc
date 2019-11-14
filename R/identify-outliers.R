@@ -62,6 +62,8 @@ identify_outliers <- function(data, by = NULL, sds = 6, ignore_undetected = TRUE
                                   DetectionLimit = c(1, NA),
                                   Outlier = TRUE))
 
+  by <- c("Variable", by)
+
   if (is.null(by)) {
     data %<>% identify_outliers_by(sds = sds,
                                    ignore_undetected = ignore_undetected,

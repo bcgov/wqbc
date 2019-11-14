@@ -92,14 +92,16 @@ test_trends <- function(data, breaks = NULL, FUN = "median", messages = getOptio
   data %<>% dplyr::select_(~Station, ~Date, ~Variable, ~Value, ~Units)
 
   # nest for analysis
-  data %<>% tidyr::nest_("Data", c("Date", "Value"))
+  data %<>% tidyr::nest(Data = c(.data$Date, .data$Value))
 
   # fit trends
   data %<>% dplyr::mutate_(Trend = ~purrr::map(Data, do_test_trends,
                                                breaks = breaks, FUN = FUN))
 
   # unnest and return
-  data %>% tidyr::unnest_(unnest_cols = c("Trend"), .drop = TRUE)
+  data %<>% tidyr::unnest(.data$Trend)
+  data %<>% dplyr::select(-.data$Data)
+  data
 }
 
 do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
@@ -166,14 +168,15 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
   data %<>% dplyr::select_(~Station, ~Date, ~Variable, ~Value, ~Units)
 
   # nest for analysis
-  data %<>% tidyr::nest_("Data", c("Date", "Value"))
+  data %<>% tidyr::nest(Data = c(.data$Date, .data$Value))
 
   # summarise
   data %<>% dplyr::mutate_(Summary = ~purrr::map(Data, do_summarise_for_trends,
                                                  breaks = breaks, FUN = FUN))
 
   # unnest
-  data %<>% tidyr::unnest_(unnest_cols = c("Summary"), .drop = TRUE)
+  data %<>% tidyr::unnest(.data$Summary)
+  data %<>% dplyr::select(-.data$Data)
 
   # gather and return
   gather_cols <- setdiff(names(data), c("Station", "Variable", "Units", "Year"))
