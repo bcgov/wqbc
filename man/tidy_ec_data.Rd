@@ -4,8 +4,11 @@
 \alias{tidy_ec_data}
 \title{Tidy Environment Canada Data}
 \usage{
-tidy_ec_data(x, cols = character(0), mdl_action = c("zero", "mdl",
-  "half", "na", "none"))
+tidy_ec_data(
+  x,
+  cols = character(0),
+  mdl_action = c("zero", "mdl", "half", "na", "none")
+)
 }
 \arguments{
 \item{x}{The data to tidy.}

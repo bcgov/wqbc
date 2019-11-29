@@ -4,8 +4,12 @@
 \alias{summarise_for_trends}
 \title{Summarise data by year and month}
 \usage{
-summarise_for_trends(data, breaks = NULL, FUN = "median",
-  messages = getOption("wqbc.messages", default = TRUE))
+summarise_for_trends(
+  data,
+  breaks = NULL,
+  FUN = "median",
+  messages = getOption("wqbc.messages", default = TRUE)
+)
 }
 \arguments{
 \item{data}{The data.frame to analyse.}

@@ -4,8 +4,13 @@
 \alias{plot_timeseries}
 \title{Plot Time Series Data}
 \usage{
-plot_timeseries(data, by = NULL, y0 = TRUE, size = 1,
-  messages = getOption("wqbc.messages", default = TRUE))
+plot_timeseries(
+  data,
+  by = NULL,
+  y0 = TRUE,
+  size = 1,
+  messages = getOption("wqbc.messages", default = TRUE)
+)
 }
 \arguments{
 \item{data}{A data frame of the data to plot.}
