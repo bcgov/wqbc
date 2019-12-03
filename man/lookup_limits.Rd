@@ -4,8 +4,13 @@
 \alias{lookup_limits}
 \title{Lookup Limits}
 \usage{
-lookup_limits(ph = NULL, hardness = NULL, chloride = NULL,
-  methyl_mercury = NULL, term = "long")
+lookup_limits(
+  ph = NULL,
+  hardness = NULL,
+  chloride = NULL,
+  methyl_mercury = NULL,
+  term = "long"
+)
 }
 \arguments{
 \item{ph}{A number indicating the pH in pH units at the site of interest.}

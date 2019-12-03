@@ -4,8 +4,10 @@
 \alias{lookup_variables}
 \title{Lookup Variables}
 \usage{
-lookup_variables(codes = NULL, messages = getOption("wqbc.messages",
-  default = TRUE))
+lookup_variables(
+  codes = NULL,
+  messages = getOption("wqbc.messages", default = TRUE)
+)
 }
 \arguments{
 \item{codes}{An optional character vector of codes to look up variables.}

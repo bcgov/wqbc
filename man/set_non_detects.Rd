@@ -4,8 +4,12 @@
 \alias{set_non_detects}
 \title{Set value for 'non-detects'}
 \usage{
-set_non_detects(value, mdl_flag = NULL, mdl_value = NULL,
-  mdl_action = c("zero", "mdl", "half", "na"))
+set_non_detects(
+  value,
+  mdl_flag = NULL,
+  mdl_value = NULL,
+  mdl_action = c("zero", "mdl", "half", "na")
+)
 }
 \arguments{
 \item{value}{a numeric vector of measured values}

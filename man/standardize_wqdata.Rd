@@ -5,8 +5,11 @@
 \alias{standardise_wqdata}
 \title{Standardize Water Quality Data}
 \usage{
-standardize_wqdata(x, strict = TRUE,
-  messages = getOption("wqbc.messages", default = TRUE))
+standardize_wqdata(
+  x,
+  strict = TRUE,
+  messages = getOption("wqbc.messages", default = TRUE)
+)
 }
 \arguments{
 \item{x}{A data.frame to standardize.}

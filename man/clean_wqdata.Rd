@@ -4,10 +4,17 @@
 \alias{clean_wqdata}
 \title{Clean Water Quality Data}
 \usage{
-clean_wqdata(x, by = NULL, max_cv = Inf, sds = 10,
-  ignore_undetected = TRUE, large_only = TRUE,
-  delete_outliers = FALSE, remove_blanks = FALSE,
-  messages = getOption("wqbc.messages", default = TRUE))
+clean_wqdata(
+  x,
+  by = NULL,
+  max_cv = Inf,
+  sds = 10,
+  ignore_undetected = TRUE,
+  large_only = TRUE,
+  delete_outliers = FALSE,
+  remove_blanks = FALSE,
+  messages = getOption("wqbc.messages", default = TRUE)
+)
 }
 \arguments{
 \item{x}{The data.frame to clean.}
