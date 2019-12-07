@@ -25,6 +25,7 @@ input_site_limits <- function() {
   site_limits <- read.csv("data-raw/site-limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
   site_limits$UpperLimit %<>% as.character()
+  site_limits$Use <- "Freshwater Life"
   wqbc:::check_limits(site_limits)
   site_limits
 }

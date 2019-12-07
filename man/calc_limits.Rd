@@ -14,7 +14,8 @@ calc_limits(
   estimate_variables = FALSE,
   clean = TRUE,
   limits = wqbc::limits,
-  messages = getOption("wqbc.messages", default = TRUE)
+  messages = getOption("wqbc.messages", default = TRUE),
+  use = "Freshwater Life"
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ calc_limits(
 \item{limits}{A data frame of the limits table to use.}
 
 \item{messages}{A flag indicating whether to print messages.}
+
+\item{use}{A string indicating the Use.}
 }
 \description{
 Calculates the approved "short" or "long"-term

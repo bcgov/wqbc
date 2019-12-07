@@ -259,6 +259,7 @@ calc_limits_by <- function (x, term, dates, limits, messages) {
 #' @param estimate_variables A flag indicating whether to estimate total hardness, total chloride and pHfor all dates.
 #' @param clean Should the data be run through \code{\link{clean_wqdata}} before calculating limits? Default \code{TRUE}
 #' @param limits A data frame of the limits table to use.
+#' @param use A string indicating the Use.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' \dontrun{
@@ -269,11 +270,13 @@ calc_limits_by <- function (x, term, dates, limits, messages) {
 calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits = TRUE,
                         delete_outliers = FALSE, estimate_variables = FALSE,
                         clean = TRUE, limits = wqbc::limits,
-                        messages = getOption("wqbc.messages", default = TRUE)) {
+                        messages = getOption("wqbc.messages", default = TRUE),
+                        use = "Freshwater Life") {
 
   assert_that(is.data.frame(x))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   assert_that(is.string(term))
+  assert_that(is.string(use))
   assert_that(is.null(dates) || (is.date(dates) && noNA(dates)))
   assert_that(is.flag(messages) && noNA(messages))
   assert_that(is.flag(keep_limits) && noNA(keep_limits))
@@ -290,6 +293,10 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
 
   term <- tolower(term)
   if (!term %in% c("long", "short", "long-daily")) stop("term must be \"long\" or \"short\" or \"long-daily\"")
+
+  if(!use %in% limits$Use) stop("use must match a Use in the limits table")
+  limits <- dplyr::filter_(limits, ~Use %in% use)
+  limits$Use <- NULL
 
   if (keep_limits) {
     bol <- rep(FALSE, nrow(x))

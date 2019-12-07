@@ -9,7 +9,8 @@ lookup_limits(
   hardness = NULL,
   chloride = NULL,
   methyl_mercury = NULL,
-  term = "long"
+  term = "long",
+  use = "Freshwater Life"
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ lookup_limits(
 \item{methyl_mercury}{A number indicating the total concentration of methyl mercury in ug/L at the site of interest.}
 
 \item{term}{A string indicating whether to lookup the "long" or "short"-term limits.}
+
+\item{use}{A string indicating the Use.}
 }
 \description{
 Looks up the long or short-term water quality limits for BC. If the limits depend on

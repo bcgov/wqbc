@@ -14,6 +14,7 @@
 \item{Units}{The units as a character.}
 \item{Code}{The EMS codes as a character.}
 \item{EMS_ID}{The station EMS ID as a character.}
+\item{Use}{The use name as character.}
 }}
 \usage{
 site_limits
