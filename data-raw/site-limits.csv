@@ -1,8 +1,8 @@
-Station_Name,Variable,Term,Condition,UpperLimit,Units,Code,EMS_ID
-Columbia River at Nicholson,Barium Total,Long,,1,ug/L,EMS_BA_T,E252119
-Columbia River at Nicholson,Cadmium Total,Long,,0.2,ug/L,EMS_CD_T,E252119
-Columbia River at Nicholson,Copper Dissolved,Long,,2,ug/L,EMS_CU_D,E252119
-Columbia River at Nicholson,Lead Total,Long,EMS_0107 <= 95,5,ug/L,EMS_PB_T,E252119
-Columbia River at Nicholson,Lead Total,Long,EMS_0107 > 95,10,ug/L,EMS_PB_T,E252119
-Columbia River at Nicholson,Zinc Total,Long,,50,ug/L,EMS_ZN_T,E252119
-Columbia River at Nicholson,Colour Apparent,Long,,15,Col.unit,EMS_0001,E252119
+Station_Name,Variable,Use,Term,Condition,UpperLimit,Units,Code,EMS_ID
+Columbia River at Nicholson,Barium Total,Freshwater Life,Long,,1,ug/L,EMS_BA_T,E252119
+Columbia River at Nicholson,Cadmium Total,Freshwater Life,Long,,0.2,ug/L,EMS_CD_T,E252119
+Columbia River at Nicholson,Copper Dissolved,Freshwater Life,Long,,2,ug/L,EMS_CU_D,E252119
+Columbia River at Nicholson,Lead Total,Freshwater Life,Long,EMS_0107 <= 95,5,ug/L,EMS_PB_T,E252119
+Columbia River at Nicholson,Lead Total,Freshwater Life,Long,EMS_0107 > 95,10,ug/L,EMS_PB_T,E252119
+Columbia River at Nicholson,Zinc Total,Freshwater Life,Long,,50,ug/L,EMS_ZN_T,E252119
+Columbia River at Nicholson,Colour Apparent,Freshwater Life,Long,,15,Col.unit,EMS_0001,E252119

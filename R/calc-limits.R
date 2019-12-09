@@ -295,7 +295,7 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
   if (!term %in% c("long", "short", "long-daily")) stop("term must be \"long\" or \"short\" or \"long-daily\"")
 
   if(!use %in% limits$Use) stop("use must match a Use in the limits table")
-  limits <- dplyr::filter_(limits, ~Use %in% use)
+  limits <- dplyr::filter(limits, .data$Use == use)
   limits$Use <- NULL
 
   if (keep_limits) {
