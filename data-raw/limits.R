@@ -56,9 +56,9 @@ input_limits <- function () {
   stopifnot(all(limits$..Units == limits$Units))
   limits$..Units <- NULL
 
-  limits %<>% arrange(Variable, Term)
+  limits %<>% arrange(Variable, Use, Term)
 
-  limits %<>% select(Variable, Term, Condition, UpperLimit, Units)
+  limits %<>% select(Variable, Use, Term, Condition, UpperLimit, Units)
 
   limits
 }

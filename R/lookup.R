@@ -24,6 +24,18 @@ lookup_units <- function () {
     "Col.unit", "Rel", "NTU")
 }
 
+#' Lookup Use
+#'
+#' Returns a character vector of the recognised uses.
+#'
+#' @examples
+#' lookup_use()
+#' @seealso \code{\link{lookup_limits}}
+#' @export
+lookup_use <- function () {
+  unique(wqbc_limits()$Use)
+}
+
 #' Lookup Codes
 #'
 #' Returns compressed recognised water quality EMS codes.
@@ -133,13 +145,15 @@ add_missing_limits <- function (x, term) {
 #' @param chloride A number indicating the total chloride concentration in mg/L at the site of interest.
 #' @param methyl_mercury A number indicating the total concentration of methyl mercury in ug/L at the site of interest.
 #' @param term A string indicating whether to lookup the "long" or "short"-term limits.
+#' @param use A string indicating the Use.
 #' @examples
 #' lookup_limits(ph = 8, hardness = 100, chloride = 50, methyl_mercury = 2)
 #' lookup_limits(term = "short")
 #' @seealso \code{\link{calc_limits}}
 #' @export
 lookup_limits <- function (ph = NULL, hardness = NULL, chloride = NULL,
-                           methyl_mercury =  NULL, term = "long") {
+                           methyl_mercury =  NULL, term = "long",
+                           use = "Freshwater Life") {
   assert_that(is.null(ph) || (is.number(ph) && noNA(ph)))
   assert_that(is.null(hardness) || (is.number(hardness) && noNA(hardness)))
   assert_that(is.null(chloride) || (is.number(chloride) && noNA(chloride)))
@@ -159,7 +173,7 @@ lookup_limits <- function (ph = NULL, hardness = NULL, chloride = NULL,
     codes$Date <- c(dates, dates + 1, dates + 2, dates + 3, dates + 21)
   }
 
-  limits <- calc_limits(codes, term = term, keep_limits = FALSE, messages = FALSE)
+  limits <- calc_limits(codes, term = term, keep_limits = FALSE, messages = FALSE, use = use)
   limits <- add_missing_limits(limits, term = term)
   limits <- tidyup_limits(limits)
   limits

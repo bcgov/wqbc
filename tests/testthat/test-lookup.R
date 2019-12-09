@@ -21,6 +21,15 @@ test_that("lookup_units", {
 
 })
 
+test_that("lookup_use", {
+  opts <- options()
+  on.exit(options(opts))
+  options(wqbc.messages = FALSE)
+
+  expect_is(lookup_use(), "character")
+
+})
+
 test_that("lookup_codes lookup_variables", {
   opts <- options()
   on.exit(options(opts))

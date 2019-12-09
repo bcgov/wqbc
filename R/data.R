@@ -102,9 +102,10 @@
 #' The short and long term water quality limits for British Columbia recognised
 #' by the wqbc package.
 #'
-#' @format A data frame with 5 variables:
+#' @format A data frame with 6 variables:
 #' \describe{
 #'   \item{Variable}{The name of the variable.}
+#'   \item{Use}{The name of the Use.}
 #'   \item{Term}{The term of the limit i.e. "Short" versus "Long".}
 #'   \item{Condition}{A logical R expression to test for the required condition.}
 #'   \item{UpperLimit}{The upper limit or an R expression defining the upper limit.}
@@ -212,6 +213,7 @@
 #'   \item{Units}{The units as a character.}
 #'   \item{Code}{The EMS codes as a character.}
 #'   \item{EMS_ID}{The station EMS ID as a character.}
+#'   \item{Use}{The use name as character.}
 #' }
 "site_limits"
 
