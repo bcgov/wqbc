@@ -15,9 +15,11 @@ knitr::opts_chunk$set(
 ```
 # wqbc
 
-<div id="devex-badge"><a rel="Exploration" href="https://github.com/BCDevExchange/docs/blob/master/discussion/projectstates.md"><img alt="Being designed and built, but in the lab. May change, disappear, or be buggy." style="border-width:0" src="https://assets.bcdevexchange.org/images/badges/exploration.svg" title="Being designed and built, but in the lab. May change, disappear, or be buggy." /></a>[![Travis-CI Build Status](https://travis-ci.org/bcgov/wqbc.svg?branch=master)](https://travis-ci.org/bcgov/wqbc)</div>
-
-
+<!-- badges: start -->
+[![BCDevExchange Status](https://assets.bcdevexchange.org/images/badges/exploration.svg)](https://github.com/BCDevExchange/docs/blob/master/discussion/projectstates.md)
+[![Travis-CI Build Status](https://travis-ci.org/bcgov/wqbc.svg?branch=master)](https://travis-ci.org/bcgov/wqbc)
+[![Codecov test coverage](https://codecov.io/gh/bcgov/wqbc/branch/master/graph/badge.svg)](https://codecov.io/gh/bcgov/wqbc?branch=master)
+<!-- badges: end -->
 
 ## Overview
 

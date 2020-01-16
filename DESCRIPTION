@@ -47,11 +47,12 @@ Suggests:
     xtable (>= 1.7-4),
     rems (>= 0.4.0.9999),
     canwqdata,
-    Kendall
+    Kendall,
+    covr
 Remotes:
     bcgov/rems,
     bcgov/canwqdata
 VignetteBuilder: knitr
-RoxygenNote: 7.0.1
+RoxygenNote: 7.0.2
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
