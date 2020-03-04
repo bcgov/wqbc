@@ -34,19 +34,20 @@ tidy_ems_data <- function(x, cols = character(0),
                           mdl_action = c("zero", "mdl", "half", "na", "none")) {
   mdl_action <- match.arg(mdl_action)
   cols <- c("EMS_ID",
-            "Station" = "MONITORING_LOCATION",
-            "DateTime" = "COLLECTION_START",
-            "Variable" = "PARAMETER",
-            "Code" = "PARAMETER_CODE",
-            "Value" = "RESULT",
-            "Units" = "UNIT",
-            "DetectionLimit" = "METHOD_DETECTION_LIMIT",
-            "ResultLetter" = "RESULT_LETTER",
-            "SAMPLE_STATE",
-            "SAMPLE_CLASS",
-            "SAMPLE_DESCRIPTOR",
-            "LOCATION_TYPE",
-            cols)
+    "Station" = "MONITORING_LOCATION",
+    "DateTime" = "COLLECTION_START",
+    "Variable" = "PARAMETER",
+    "Code" = "PARAMETER_CODE",
+    "Value" = "RESULT",
+    "Units" = "UNIT",
+    "DetectionLimit" = "METHOD_DETECTION_LIMIT",
+    "ResultLetter" = "RESULT_LETTER",
+    "SAMPLE_STATE",
+    "SAMPLE_CLASS",
+    "SAMPLE_DESCRIPTOR",
+    "LOCATION_TYPE",
+    cols
+  )
 
   x <- tidy_wq_data(x, cols, mdl_action, dt_fun = lubridate::ymd_hms)
 
@@ -77,15 +78,16 @@ tidy_ems_data <- function(x, cols = character(0),
 tidy_ec_data <- function(x, cols = character(0),
                          mdl_action = c("zero", "mdl", "half", "na", "none")) {
   mdl_action <- match.arg(mdl_action)
-  cols <-  c("SITE_NO",
-             "DateTime" = "DATE_TIME_HEURE",
-             "Variable" = "VARIABLE",
-             "Code" = "VMV_CODE",
-             "Value" = "VALUE_VALEUR",
-             "Units" = "UNIT_UNITE",
-             "DetectionLimit" = "SDL_LDE",
-             "ResultLetter" = "FLAG_MARQUEUR",
-             cols)
+  cols <- c("SITE_NO",
+    "DateTime" = "DATE_TIME_HEURE",
+    "Variable" = "VARIABLE",
+    "Code" = "VMV_CODE",
+    "Value" = "VALUE_VALEUR",
+    "Units" = "UNIT_UNITE",
+    "DetectionLimit" = "SDL_LDE",
+    "ResultLetter" = "FLAG_MARQUEUR",
+    cols
+  )
 
   x <- tidy_wq_data(x, cols, mdl_action, dt_fun = lubridate::ymd_hm)
 
@@ -105,9 +107,11 @@ tidy_wq_data <- function(x, cols, mdl_action, dt_fun) {
   }
 
   if (mdl_action != "none") {
-    x$Value <- set_non_detects(value = x$Value,
-                               mdl_flag = x$ResultLetter,
-                               mdl_action = mdl_action)
+    x$Value <- set_non_detects(
+      value = x$Value,
+      mdl_flag = x$ResultLetter,
+      mdl_action = mdl_action
+    )
   }
   x
 }
@@ -140,11 +144,9 @@ tidy_wq_data <- function(x, cols, mdl_action, dt_fun) {
 #' @export
 set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL,
                             mdl_action = c("zero", "mdl", "half", "na")) {
-
   mdl_action <- match.arg(mdl_action)
 
   if (!is.null(mdl_flag)) {
-
     if (length(value) != length(mdl_flag)) {
       stop("value and mdl_flag must be the same length")
     }
@@ -162,16 +164,13 @@ set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL,
       ## Otherwise just use the values
       replacements <- value
     }
-
   } else if (!is.null(mdl_value)) {
-
     if (length(value) != length(mdl_value)) {
       stop("value and mdl_value must be the same length")
     }
 
     replace_these <- !is.na(value) & !is.na(mdl_value) & value <= mdl_value
     replacements <- mdl_value
-
   } else {
     stop("You must supply either a mdl_value vector, or a mdl_flag vector (with
          or without a mdl_value vector")
@@ -182,7 +181,6 @@ set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL,
   } else if (mdl_action == "na") {
     value[replace_these] <- NA
   } else {
-
     multiplier <- ifelse(mdl_action == "half", 0.5, 1)
 
     if (!is.null(mdl_flag)) {
@@ -190,9 +188,7 @@ set_non_detects <- function(value, mdl_flag = NULL, mdl_value = NULL,
     } else {
       value[replace_these] <- replacements[replace_these] * multiplier
     }
-
   }
 
   value
-
 }

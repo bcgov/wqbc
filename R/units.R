@@ -11,25 +11,29 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 get_unit_multiplier <- function(x) {
-  units <- c("ng/L" = 10^-9, "ug/L" = 10^-6, "mg/L" = 10^-3,
-             "g/L" = 1,  "kg/L" = 10^3,
-             "pH" = 1,
-             "degC" = 1, "C" = 1, "NTU" = 1,
-             "Col.unit" = 1, "Rel" = 1,
-             "CFU/dL" = 1, "CFU/100mL" = 1, "CFU/mL" = 0.01, "MPN/dL" = 1,
-             "MPN/100mL" = 1, "MPN/mL" = 0.01, "CFU/g" = 0.01, "MPN/g" = 0.01)
+  units <- c(
+    "ng/L" = 10^-9, "ug/L" = 10^-6, "mg/L" = 10^-3,
+    "g/L" = 1, "kg/L" = 10^3,
+    "pH" = 1,
+    "degC" = 1, "C" = 1, "NTU" = 1,
+    "Col.unit" = 1, "Rel" = 1,
+    "CFU/dL" = 1, "CFU/100mL" = 1, "CFU/mL" = 0.01, "MPN/dL" = 1,
+    "MPN/100mL" = 1, "MPN/mL" = 0.01, "CFU/g" = 0.01, "MPN/g" = 0.01
+  )
   x <- units[x]
   names(x) <- NULL
   x
 }
 
 get_unit_type <- function(x) {
-  type <- list("concentration" = c("ng/L", "ug/L", "mg/L", "g/L", "kg/L"),
-               "pH" = "pH",
-               "Colour" = c("Col.unit", "Rel"),
-               "Temperature" = c("degC", "C"),
-               "Turbidity" = "NTU",
-               "Coli" = c("CFU/dL", "CFU/100mL", "CFU/mL", "MPN/dL", "MPN/100mL", "MPN/mL", "CFU/g", "MPN/g"))
+  type <- list(
+    "concentration" = c("ng/L", "ug/L", "mg/L", "g/L", "kg/L"),
+    "pH" = "pH",
+    "Colour" = c("Col.unit", "Rel"),
+    "Temperature" = c("degC", "C"),
+    "Turbidity" = "NTU",
+    "Coli" = c("CFU/dL", "CFU/100mL", "CFU/mL", "MPN/dL", "MPN/100mL", "MPN/mL", "CFU/g", "MPN/g")
+  )
 
   type <- unlist(type)
   names <- sub("\\d$", "", names(type))
@@ -59,15 +63,16 @@ get_unit_type <- function(x) {
 #'
 #' convert_values(1, "ug/L", "mg/L", messages = FALSE)
 #'
-#' df <- data.frame(value = c(1.256, 5400000, 12300, .00098),
-#'                  units = c("mg/L", "ng/L", "ug/L", "g/L"),
-#'                  stringsAsFactors = FALSE)
+#' df <- data.frame(
+#'   value = c(1.256, 5400000, 12300, .00098),
+#'   units = c("mg/L", "ng/L", "ug/L", "g/L"),
+#'   stringsAsFactors = FALSE
+#' )
 #' df
 #'
 #' df$units_mg_L <- convert_values(df$value, from = df$units, to = "mg/L", messages = FALSE)
 #' df
-convert_values <- function (x, from, to, messages) {
-
+convert_values <- function(x, from, to, messages) {
   from <- substitute_units(from, messages = messages)
   to <- substitute_units(to, messages = messages)
 
@@ -76,7 +81,7 @@ convert_values <- function (x, from, to, messages) {
   bol <- from != to & get_unit_type(from) != get_unit_type(to)
   bol <- is.na(bol) | bol
 
-  if(any(bol)) {
+  if (any(bol)) {
     warning(sum(bol), " values have inconvertible units")
     is.na(x[bol]) <- TRUE
   }

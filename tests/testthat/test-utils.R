@@ -13,24 +13,24 @@
 context("utils")
 
 test_that("detected", {
-  expect_identical(detected(1,1), FALSE)
-  expect_identical(detected(2,1), TRUE)
-  expect_identical(detected(NA,NA), NA)
-  expect_identical(detected(NA,1), NA)
-  expect_identical(detected(0,NA), FALSE)
-  expect_identical(detected(1,NA), TRUE)
-  expect_identical(detected(1:2,1:2), c(FALSE,FALSE))
-  expect_identical(detected(2:3,1:2), c(TRUE, TRUE))
-  expect_identical(detected(1:2,1:1), c(FALSE, TRUE))
-  expect_identical(detected(0:3,c(NA,NA,2,2)), c(FALSE, TRUE, FALSE, TRUE))
+  expect_identical(detected(1, 1), FALSE)
+  expect_identical(detected(2, 1), TRUE)
+  expect_identical(detected(NA, NA), NA)
+  expect_identical(detected(NA, 1), NA)
+  expect_identical(detected(0, NA), FALSE)
+  expect_identical(detected(1, NA), TRUE)
+  expect_identical(detected(1:2, 1:2), c(FALSE, FALSE))
+  expect_identical(detected(2:3, 1:2), c(TRUE, TRUE))
+  expect_identical(detected(1:2, 1:1), c(FALSE, TRUE))
+  expect_identical(detected(0:3, c(NA, NA, 2, 2)), c(FALSE, TRUE, FALSE, TRUE))
 })
 
 test_that("punctuate_strings", {
   expect_identical(punctuate_strings(c("x")), "x")
-  expect_identical(punctuate_strings(c("x","y")), "x or y")
-  expect_identical(punctuate_strings(c("x","y","z")), "x, y or z")
-  expect_identical(punctuate_strings(c("x","y","z","a")), "x, y, z or a")
-  expect_identical(punctuate_strings(c("x","y","z","a"), "and"), "x, y, z and a")
+  expect_identical(punctuate_strings(c("x", "y")), "x or y")
+  expect_identical(punctuate_strings(c("x", "y", "z")), "x, y or z")
+  expect_identical(punctuate_strings(c("x", "y", "z", "a")), "x, y, z or a")
+  expect_identical(punctuate_strings(c("x", "y", "z", "a"), "and"), "x, y, z and a")
 })
 
 test_that("add_missing_columns", {
@@ -45,17 +45,16 @@ test_that("add_missing_columns", {
 })
 
 test_that("delete_rows_with_certain_values", {
-  x <- data.frame(X = c(1,2,NA,4,NA), Y = c(1,NA,NA,4,5), Z = 1:5)
+  x <- data.frame(X = c(1, 2, NA, 4, NA), Y = c(1, NA, NA, 4, 5), Z = 1:5)
 
   expect_message(delete_rows_with_certain_values(x, list("X", "Y"), messages = TRUE))
   z <- delete_rows_with_certain_values(x, list("X", "Y"), messages = FALSE)
-  expect_identical(x[!is.na(x$X) & !is.na(x$Y),,drop = FALSE], z)
+  expect_identical(x[!is.na(x$X) & !is.na(x$Y), , drop = FALSE], z)
   z <- delete_rows_with_certain_values(x, list(c("X", "Y")), messages = FALSE)
-  expect_identical(x[!(is.na(x$X) & is.na(x$Y)),,drop = FALSE], z)
+  expect_identical(x[!(is.na(x$X) & is.na(x$Y)), , drop = FALSE], z)
 })
 
 test_that("is_color", {
   expect_true(is_color("black"))
   expect_false(is_color("Date"))
 })
-

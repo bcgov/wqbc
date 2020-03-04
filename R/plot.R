@@ -13,7 +13,7 @@
 plot_timeseries_by <- function(data, title = NULL, y0, size, messages) {
   if (!is.null(title)) check_string(title)
 
-  data %<>% dplyr::mutate_(Detected = ~detected(Value, DetectionLimit))
+  data %<>% dplyr::mutate_(Detected = ~ detected(Value, DetectionLimit))
 
   data$Detected %<>% factor(levels = c(TRUE, FALSE))
   data$Outlier %<>% factor(levels = c(TRUE, FALSE))
@@ -25,28 +25,31 @@ plot_timeseries_by <- function(data, title = NULL, y0, size, messages) {
   if (any(!is.na(data$Outlier))) {
     if (any(!is.na(data$Detected))) {
       gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = "Outlier", alpha = "Detected"), size = size)
-    } else
+    } else {
       gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = "Outlier"), size = size)
-
+    }
   } else {
     if (any(!is.na(data$Detected))) {
       gp <- gp + ggplot2::geom_point(ggplot2::aes_string(alpha = "Detected"), size = size)
-    } else
+    } else {
       gp <- gp + ggplot2::geom_point(size = size)
+    }
   }
 
-  if (any(!is.na(data$Outlier)))
+  if (any(!is.na(data$Outlier))) {
     gp <- gp + ggplot2::scale_color_discrete(drop = FALSE)
+  }
 
-  if (any(!is.na(data$Detected)))
-    gp <- gp + ggplot2::scale_alpha_discrete(range = c(1, 1/3), drop = FALSE)
+  if (any(!is.na(data$Detected))) {
+    gp <- gp + ggplot2::scale_alpha_discrete(range = c(1, 1 / 3), drop = FALSE)
+  }
 
   if (y0) gp <- gp + ggplot2::expand_limits(y = 0)
   gp
 }
 
 plot_timeseries_fun <- function(data, by, y0, size, messages) {
-  title <- paste(data[by][1,], collapse = " ")
+  title <- paste(data[by][1, ], collapse = " ")
   plot_timeseries_by(data, title = title, y0 = y0, size = size, messages = messages)
 }
 
@@ -62,7 +65,7 @@ plot_timeseries_fun <- function(data, by, y0, size, messages) {
 #' @param messages A flag indicating whether to print messages.
 #' @export
 #' @examples
-#' plot_timeseries(ccme[ccme$Variable == "As",])
+#' plot_timeseries(ccme[ccme$Variable == "As", ])
 #' plot_timeseries(ccme, by = "Variable")
 plot_timeseries <- function(data, by = NULL, y0 = TRUE, size = 1,
                             messages = getOption("wqbc.messages", default = TRUE)) {
@@ -75,9 +78,11 @@ plot_timeseries <- function(data, by = NULL, y0 = TRUE, size = 1,
   if (!tibble::has_name(data, "DetectionLimit")) data$DetectionLimit <- NA_real_
   if (!tibble::has_name(data, "Outlier")) data$Outlier <- NA
 
-  check_class_columns(data, list("Date" = "Date", "Value" = "numeric",
-                                 "DetectionLimit" = "numeric",
-                                 "Outlier" = "logical"))
+  check_class_columns(data, list(
+    "Date" = "Date", "Value" = "numeric",
+    "DetectionLimit" = "numeric",
+    "Outlier" = "logical"
+  ))
 
   if (is.null(by)) {
     data %<>% plot_timeseries_by(y0 = y0, size = size, messages = messages)

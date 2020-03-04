@@ -21,7 +21,7 @@ options(wqbc.messages = TRUE)
 data(fraser)
 print(summary(fraser))
 
-fraser$SiteID <-  factor(sub("BC08", "", as.character(fraser$SiteID)))
+fraser$SiteID <- factor(sub("BC08", "", as.character(fraser$SiteID)))
 fraser$Year <- year(fraser$Date)
 
 data(fraser)

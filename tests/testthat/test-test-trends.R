@@ -22,7 +22,7 @@ test_that("test_trends", {
   # test values
   expect_equal(trend1$slope[1], 0.01350760, tolerance = 10^-5)
   # test breaks
-  trend2 <- test_trends(wqbc::yuepilon, breaks = c(1,4,12))
+  trend2 <- test_trends(wqbc::yuepilon, breaks = c(1, 4, 12))
   expect_identical(nrow(trend2), 4L * 3L)
   expect_identical(ncol(trend2), 9L)
   expect_identical(sum(is.na(trend2$slope)), 4L * 2L)
