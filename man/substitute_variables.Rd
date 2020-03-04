@@ -35,13 +35,18 @@ error. The code also considers
 Aluminium to be a match with Aluminum.
 }
 \examples{
-substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-        "dissolved aluminium", "BORON Total", "KRYPTONITE",
-        "Total Fluoride Hardness"), messages = TRUE)
-substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-                        "dissolved aluminium", "BORON Total", "KRYPTONITE",
-                        "Total Fluoride Hardness"),
-                        strict = FALSE, messages = TRUE)
+substitute_variables(c(
+  "ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
+  "dissolved aluminium", "BORON Total", "KRYPTONITE",
+  "Total Fluoride Hardness"
+), messages = TRUE)
+substitute_variables(c(
+  "ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
+  "dissolved aluminium", "BORON Total", "KRYPTONITE",
+  "Total Fluoride Hardness"
+),
+strict = FALSE, messages = TRUE
+)
 }
 \seealso{
 \code{\link{substitute_units}}

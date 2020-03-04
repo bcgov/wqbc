@@ -24,7 +24,8 @@ looks up the matching codes from \code{\link{codes}}.
 \examples{
 lookup_codes()
 lookup_codes(c("Aluminum", "Arsenic Total", "Boron Something", "Kryptonite"),
-               messages = TRUE)
+  messages = TRUE
+)
 }
 \seealso{
 \code{\link{lookup_limits}} and \code{\link{expand_ems_codes}}

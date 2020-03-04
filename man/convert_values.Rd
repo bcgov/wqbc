@@ -29,9 +29,11 @@ c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH", "degC", "C", "CFU/dL", "MPN/dL", 
 
 convert_values(1, "ug/L", "mg/L", messages = FALSE)
 
-df <- data.frame(value = c(1.256, 5400000, 12300, .00098),
-                 units = c("mg/L", "ng/L", "ug/L", "g/L"),
-                 stringsAsFactors = FALSE)
+df <- data.frame(
+  value = c(1.256, 5400000, 12300, .00098),
+  units = c("mg/L", "ng/L", "ug/L", "g/L"),
+  stringsAsFactors = FALSE
+)
 df
 
 df$units_mg_L <- convert_values(df$value, from = df$units, to = "mg/L", messages = FALSE)
