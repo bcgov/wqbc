@@ -7,4 +7,6 @@
 CONTRIBUTING.md
 CODE_OF_CONDUCT.md
 vignettes_ignore
+^codecov\.yml$
 ^COMPLIANCE\.yaml$
+

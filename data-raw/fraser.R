@@ -37,4 +37,4 @@ fraser$Date %<>% as.Date
 
 use_data(fraser, pkg = as.package("."), overwrite = TRUE, compress = "xz")
 # improve compression
-#tools::resaveRdaFiles("data/fraser.rda")
+# tools::resaveRdaFiles("data/fraser.rda")

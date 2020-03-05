@@ -10,14 +10,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-standardize_wqdata_variable <- function (x, messages) {
+standardize_wqdata_variable <- function(x, messages) {
   codes <- wqbc_codes()
-  codes <- dplyr::filter_(codes, ~Variable == x$Variable[1])
-  x$Value <- convert_values(x$Value, from = x$Units, to = codes$Units,
-                            messages = messages)
-  if(!is.null(x$DetectionLimit)) {
-    x$DetectionLimit <- convert_values(x$DetectionLimit, from = x$Units,
-                                       to = codes$Units, messages = messages)
+  codes <- dplyr::filter_(codes, ~ Variable == x$Variable[1])
+  x$Value <- convert_values(x$Value,
+    from = x$Units, to = codes$Units,
+    messages = messages
+  )
+  if (!is.null(x$DetectionLimit)) {
+    x$DetectionLimit <- convert_values(x$DetectionLimit,
+      from = x$Units,
+      to = codes$Units, messages = messages
+    )
   }
   x$Units <- codes$Units
   x
@@ -42,55 +46,75 @@ standardize_wqdata_variable <- function (x, messages) {
 #' @seealso \code{\link{clean_wqdata}}
 #' @aliases standardise_wqdata
 #' @export
-standardize_wqdata <- function (
-  x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
+standardize_wqdata <- function(
+                               x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.data.frame(x))
   assert_that(is.flag(strict) && noNA(strict))
   assert_that(is.flag(messages) && noNA(messages))
 
   check_nrow(x)
 
-  if("Code" %in% colnames(x)) {
-    if(messages) message ("Converting Codes to Variables...")
+  if ("Code" %in% colnames(x)) {
+    if (messages) message("Converting Codes to Variables...")
     x$Variable <- lookup_variables(x$Code, messages = messages)
     x <- delete_rows_with_certain_values(
-      x, columns = c("Variable"), messages = messages)
-    if(messages) message ("Converted Codes to Variables.")
+      x,
+      columns = c("Variable"), messages = messages
+    )
+    if (messages) message("Converted Codes to Variables.")
   }
 
-  if(messages) message("Standardizing water quality data...")
+  if (messages) message("Standardizing water quality data...")
 
   check_colnames(x, c("Variable", "Value", "Units"))
 
-  check_class_columns(x, list("Variable" = c("character", "factor"),
-                              "Value" = "numeric",
-                              "Units" = c("character", "factor")))
+  check_class_columns(x, list(
+    "Variable" = c("character", "factor"),
+    "Value" = "numeric",
+    "Units" = c("character", "factor")
+  ))
 
-  x <- delete_rows_with_certain_values(x, columns = c("Variable", "Value", "Units"),
-                                       messages = messages, txt = "missing")
+  x <- delete_rows_with_certain_values(x,
+    columns = c("Variable", "Value", "Units"),
+    messages = messages, txt = "missing"
+  )
 
-  x <- delete_rows_with_certain_values(x, columns = "Value",
-                                       messages = messages, txt = "negative")
+  x <- delete_rows_with_certain_values(x,
+    columns = "Value",
+    messages = messages, txt = "negative"
+  )
 
-  if(!nrow(x)) { if(messages) message("Standardized water quality data."); return (x) }
+  if (!nrow(x)) {
+    if (messages) message("Standardized water quality data.")
+    return(x)
+  }
 
   x$Variable <- substitute_variables(x$Variable, strict = strict, messages = messages)
   is.na(x$Variable[!x$Variable %in% lookup_variables()]) <- TRUE
 
-  x <- delete_rows_with_certain_values(x, columns = c("Variable"),
-                                       messages = messages)
+  x <- delete_rows_with_certain_values(x,
+    columns = c("Variable"),
+    messages = messages
+  )
 
   x$Units <- substitute_units(x$Units, messages = messages)
   is.na(x$Units[!x$Units %in% lookup_units()]) <- TRUE
 
-  x <- delete_rows_with_certain_values(x, columns = c("Units"),
-                                       messages = messages)
+  x <- delete_rows_with_certain_values(x,
+    columns = c("Units"),
+    messages = messages
+  )
 
-  if(!nrow(x)) { if(messages) message("Standardized water quality data."); return (x) }
+  if (!nrow(x)) {
+    if (messages) message("Standardized water quality data.")
+    return(x)
+  }
 
-  x <- plyr::ddply(x, .variables = "Variable",
-                   .fun = standardize_wqdata_variable, messages = messages)
+  x <- plyr::ddply(x,
+    .variables = "Variable",
+    .fun = standardize_wqdata_variable, messages = messages
+  )
 
-  if(messages) message("Standardized water quality data.")
+  if (messages) message("Standardized water quality data.")
   x
 }

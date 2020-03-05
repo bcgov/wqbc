@@ -24,8 +24,11 @@ fraser <- tidy_ec_data(fraser)
 
 meta <- wq_sites()
 fraser <- left_join(fraser,
-                    select(meta, Station = SITE_NO, StationName = SITE_NAME,
-                           Lat = LATITUDE, Long = LONGITUDE),
-                    by = "Station")
+  select(meta,
+    Station = SITE_NO, StationName = SITE_NAME,
+    Lat = LATITUDE, Long = LONGITUDE
+  ),
+  by = "Station"
+)
 
 write.csv(fraser, "data-raw/fraser/fraser.csv", row.names = FALSE)

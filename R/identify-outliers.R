@@ -37,8 +37,9 @@ identify_outliers_by <- function(x, sds, ignore_undetected, large_only, messages
 
       if (large_only) { # if large only then only only too large values are identified
         bol <- scaled > sds
-      } else
+      } else {
         bol <- abs(scaled) > sds
+      }
 
       x$Outlier[id_ok] <- bol
       new <- any(bol)
@@ -54,26 +55,31 @@ identify_outliers_by <- function(x, sds, ignore_undetected, large_only, messages
 identify_outliers <- function(data, by = NULL, sds = 6, ignore_undetected = TRUE,
                               large_only = TRUE,
                               messages = getOption("wqbc.messages", default = TRUE)) {
-
   if (!tibble::has_name(data, "Outlier")) data$Outlier <- FALSE
   if (!tibble::has_name(data, "DetectionLimit")) data$DetectionLimit <- NA_real_
 
-  check_data(data, values = list(Value = c(1, NA),
-                                  DetectionLimit = c(1, NA),
-                                  Outlier = TRUE))
+  check_data(data, values = list(
+    Value = c(1, NA),
+    DetectionLimit = c(1, NA),
+    Outlier = TRUE
+  ))
 
   by <- c("Variable", by)
 
   if (is.null(by)) {
-    data %<>% identify_outliers_by(sds = sds,
-                                   ignore_undetected = ignore_undetected,
-                                   large_only = large_only,
-                                   messages = messages)
+    data %<>% identify_outliers_by(
+      sds = sds,
+      ignore_undetected = ignore_undetected,
+      large_only = large_only,
+      messages = messages
+    )
   } else {
-    data %<>% plyr::ddply(.variables = by, .fun = identify_outliers_by,
-                          sds = sds, ignore_undetected = ignore_undetected,
-                          large_only = large_only,
-                          messages = messages)
+    data %<>% plyr::ddply(
+      .variables = by, .fun = identify_outliers_by,
+      sds = sds, ignore_undetected = ignore_undetected,
+      large_only = large_only,
+      messages = messages
+    )
   }
 
   if (messages) message("Identified ", sum(data$Outlier[!is.na(data$Outlier)]), " outliers in water quality data.")
