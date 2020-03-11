@@ -10,51 +10,62 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-cv <- function (x) {
-  if(length(x) == 1)
-    return (0)
-  if(mean(x) == 0)
-    return (0)
+cv <- function(x) {
+  if (length(x) == 1) {
+    return(0)
+  }
+  if (mean(x) == 0) {
+    return(0)
+  }
   stats::sd(x) / mean(x)
 }
 
-abs_dev <- function (x) {
+abs_dev <- function(x) {
   abs(x - mean(x))
 }
 
-clean_wqdata_replicates <- function (x, max_cv, messages) {
+clean_wqdata_replicates <- function(x, max_cv, messages) {
   n <- nrow(x)
   cv <- cv(x$Value)
-  if(cv(x$Value) > max_cv && nrow(x) > 2) {
-    x <- dplyr::arrange_(x, ~-Value)
-    while(cv(x$Value) > max_cv && nrow(x) > 2) {
-      x <- x[-which.max(abs_dev(x$Value)),]
+  if (cv(x$Value) > max_cv && nrow(x) > 2) {
+    x <- dplyr::arrange_(x, ~ -Value)
+    while (cv(x$Value) > max_cv && nrow(x) > 2) {
+      x <- x[-which.max(abs_dev(x$Value)), ]
     }
   }
   x$Value <- mean(x$Value)
 
-  if(!is.null(x$DetectionLimit))
+  if (!is.null(x$DetectionLimit)) {
     x$DetectionLimit <- mean(x$DetectionLimit)
-
-  if(messages && n > nrow(x)) {
-    message("Filtered ", n - nrow(x), " of ", n,
-            " replicate values with a CV of ", signif(cv, 3), " for ", x$Variable[1],
-            " on ", x$Date[1], ".")
   }
-  x[1,,drop = FALSE]
+
+  if (messages && n > nrow(x)) {
+    message(
+      "Filtered ", n - nrow(x), " of ", n,
+      " replicate values with a CV of ", signif(cv, 3), " for ", x$Variable[1],
+      " on ", x$Date[1], "."
+    )
+  }
+  x[1, , drop = FALSE]
 }
 
-clean_wqdata_variable <- function (x, max_cv, messages) {
-  if(anyDuplicated(x$Date))
-    x <- plyr::ddply(x, "Date", clean_wqdata_replicates, max_cv = max_cv,
-                     messages = messages)
+clean_wqdata_variable <- function(x, max_cv, messages) {
+  if (anyDuplicated(x$Date)) {
+    x <- plyr::ddply(x, "Date", clean_wqdata_replicates,
+      max_cv = max_cv,
+      messages = messages
+    )
+  }
   x
 }
 
-clean_wqdata_by <- function (x, max_cv, messages) {
-  if(anyDuplicated(x$Variable))
-    x <- plyr::ddply(x, "Variable", clean_wqdata_variable, max_cv = max_cv,
-                     messages = messages)
+clean_wqdata_by <- function(x, max_cv, messages) {
+  if (anyDuplicated(x$Variable)) {
+    x <- plyr::ddply(x, "Variable", clean_wqdata_variable,
+      max_cv = max_cv,
+      messages = messages
+    )
+  }
   x
 }
 
@@ -127,32 +138,38 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
       if (messages) message("replacing DateTime column with Date")
       x$Date <- lubridate::date(x$DateTime)
       x$DateTime <- NULL
-    } else
+    } else {
       x <- add_missing_columns(x, list("Date" = as.Date("2000-01-01")), messages = messages)
+    }
   }
   check_class_columns(x, list("Date" = "Date"))
 
-  if("DetectionLimit" %in% colnames(x))
+  if ("DetectionLimit" %in% colnames(x)) {
     check_class_columns(x, list("DetectionLimit" = "numeric"))
+  }
 
   # x <- standardize_wqdata(x, messages = messages)
-  if(messages) message("Cleaning water quality data...")
+  if (messages) message("Cleaning water quality data...")
   res <- c("Date", "Variable", "Code", "Value", "Units", "DetectionLimit", "ResultLetter")
   check_by(by, colnames(x), res_names = res)
   x <- del_cols_not_in_y(x, c(res, by))
 
-  if(is.null(by)) {
+  if (is.null(by)) {
     x <- clean_wqdata_by(x, max_cv = max_cv, messages = messages)
   } else {
-    x <- plyr::ddply(x, .variables = by, .fun = clean_wqdata_by, max_cv = max_cv,
-                     messages = messages)
+    x <- plyr::ddply(x,
+      .variables = by, .fun = clean_wqdata_by, max_cv = max_cv,
+      messages = messages
+    )
   }
 
-  x %<>% identify_outliers(by = by, sds = sds, ignore_undetected = ignore_undetected, large_only = large_only,
-                           messages = messages)
+  x %<>% identify_outliers(
+    by = by, sds = sds, ignore_undetected = ignore_undetected, large_only = large_only,
+    messages = messages
+  )
 
   if (delete_outliers) {
-    x %<>% dplyr::filter_(~!is.na(Outlier) & !Outlier)
+    x %<>% dplyr::filter_(~ !is.na(Outlier) & !Outlier)
     if (messages) message("Deleted outliers.")
   }
 

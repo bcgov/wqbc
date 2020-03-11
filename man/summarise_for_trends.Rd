@@ -31,14 +31,15 @@ Compute annual summaries of water quality observations.
 The data must contain the columns Station, Date, Variable, Value, and Units.
 }
 \examples{
- # select one station
- data(yuepilon)
- data <- yuepilon[yuepilon$Station == "02EA005", ]
- # estimate trend (using simple sen slope)
- trend <- test_trends(data, messages = TRUE)
- # get the data used in the test
- datasum <- summarise_for_trends(data)
- plot(datasum$Year, datasum$Value,
-      main = paste("p-value =", round(trend$significance, 3)),
-      ylab = "Value", xlab = "Year", las = 1)
+# select one station
+data(yuepilon)
+data <- yuepilon[yuepilon$Station == "02EA005", ]
+# estimate trend (using simple sen slope)
+trend <- test_trends(data, messages = TRUE)
+# get the data used in the test
+datasum <- summarise_for_trends(data)
+plot(datasum$Year, datasum$Value,
+  main = paste("p-value =", round(trend$significance, 3)),
+  ylab = "Value", xlab = "Year", las = 1
+)
 }

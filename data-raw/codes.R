@@ -22,11 +22,10 @@ library(devtools)
 rm(list = ls())
 
 input_codes <- function() {
-
   codes <- read.csv("data-raw/codes.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
-  stopifnot(identical(colnames(codes), c("Variable","Code","Units", "Average", "EC_Code")))
+  stopifnot(identical(colnames(codes), c("Variable", "Code", "Units", "Average", "EC_Code")))
 
-  stopifnot(all(!is.na(codes[c("Variable","Code","Units", "Average")])))
+  stopifnot(all(!is.na(codes[c("Variable", "Code", "Units", "Average")])))
 
   # codes <- rems::ems_parameters %>%
   #   select(Variable = PARAMETER, Code = PARAMETER_CODE, Units = UNIT) %>%

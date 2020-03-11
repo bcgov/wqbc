@@ -17,8 +17,8 @@ estimate_variable_values_by <- function(x, messages) {
   # skip modelling and return with NAs
   # here defined as 6 x the year range
   ndata_years <- x %>%
-    dplyr::filter_(~!is.na(Value)) %>%
-    dplyr::mutate_(year = ~lubridate::year(Date)) %>%
+    dplyr::filter_(~ !is.na(Value)) %>%
+    dplyr::mutate_(year = ~ lubridate::year(Date)) %>%
     dplyr::group_by_(~year) %>%
     dplyr::tally()
   ndata_years <- sum(ndata_years$n >= 12)
@@ -27,8 +27,10 @@ estimate_variable_values_by <- function(x, messages) {
     x$Value <- mean(x$Value, na.rm = TRUE)
   } else {
     # extract seasonal covariates from 'Date'
-    x %<>% dplyr::mutate_(yday = ~lubridate::yday(Date), # for seasonal trend
-                          day = ~lubridate::decimal_date(Date)) # for long term trends
+    x %<>% dplyr::mutate_(
+      yday = ~ lubridate::yday(Date), # for seasonal trend
+      day = ~ lubridate::decimal_date(Date)
+    ) # for long term trends
 
     if (ndata_years == 1) {
       # simply fit a seasonal smoother
@@ -39,7 +41,7 @@ estimate_variable_values_by <- function(x, messages) {
     }
     if (ndata_years == 2) {
       # simply fit a seasonal smoother with a trend
-      mod <- mgcv::gam(Value ~ s(day, k=3) + s(yday, k = 6, bs = "cc"), data = x)
+      mod <- mgcv::gam(Value ~ s(day, k = 3) + s(yday, k = 6, bs = "cc"), data = x)
 
       # replace Values with modelled ones
       x$Value <- mgcv::predict.gam(mod, newdata = x)
@@ -64,14 +66,13 @@ estimate_variable_values_by <- function(x, messages) {
     }
 
     # remove working columns
-    x %<>% dplyr::select_(~-yday, ~-day)
+    x %<>% dplyr::select_(~ -yday, ~ -day)
   }
   x
 }
 
 estimate_variable_values <- function(data, by = NULL, variables = c("Chloride Total", "Hardness Total", "pH"),
                                      messages = getOption("wqbc.messages", default = TRUE)) {
-
   check_data(data, values = list(Date = Sys.Date(), Variable = "", Value = c(1, NA), Units = ""))
   assert_that(is.null(by) || (is.character(by) && noNA(by)))
   check_vector(variables, values = "")
@@ -84,13 +85,11 @@ estimate_variable_values <- function(data, by = NULL, variables = c("Chloride To
   dates_by <- data[unique(c("Date", by))] %>% dplyr::distinct()
 
   for (variable in variables) {
-
     if (messages) message("Estimating ", variable)
 
-    new_data <- dplyr::filter_(data, ~Variable == variable)
+    new_data <- dplyr::filter_(data, ~ Variable == variable)
 
     if (nrow(new_data)) {
-
       new_data %<>% standardize_wqdata(messages = messages)
 
       unit <- new_data$Units[1]
@@ -103,16 +102,17 @@ estimate_variable_values <- function(data, by = NULL, variables = c("Chloride To
       if (is.null(by)) {
         new_data %<>% estimate_variable_values_by(messages = messages)
       } else {
-        new_data %<>% plyr::ddply(.variables = by, .fun = estimate_variable_values_by,
-                                  messages = messages)
+        new_data %<>% plyr::ddply(
+          .variables = by, .fun = estimate_variable_values_by,
+          messages = messages
+        )
       }
 
-      data %<>% dplyr::filter_(~!Variable == variable)
+      data %<>% dplyr::filter_(~ !Variable == variable)
 
       data %<>% dplyr::bind_rows(new_data)
 
       if (messages) message("Estimated ", variable, " values")
-
     } else if (messages) message("No ", variable, " values")
   }
 

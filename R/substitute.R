@@ -10,37 +10,41 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-messages_match_substitution <- function (x, y, txt = "substitute") {
+messages_match_substitution <- function(x, y, txt = "substitute") {
   x <- as.character(x)
   y <- as.character(y)
   d <- data.frame(x = x, y = y, stringsAsFactors = FALSE)
   d <- unique(d)
   d <- dplyr::arrange_(d, ~x)
   b <- !is.na(d$x) & !is.na(d$y) & d$x != d$y
-  if(any(b)) {
-    db <- d[b,,drop = FALSE]
-    message(capitalize(txt), "d ",
-            punctuate_strings(paste0("'", db$x, "' with '", db$y, "'"), "and"), ".")
+  if (any(b)) {
+    db <- d[b, , drop = FALSE]
+    message(
+      capitalize(txt), "d ",
+      punctuate_strings(paste0("'", db$x, "' with '", db$y, "'"), "and"), "."
+    )
   }
   b <- !is.na(d$x) & is.na(d$y)
-  if(any(b)) {
-    db <- d[b,,drop = FALSE]
-    message("Failed to ", txt, " ",
-            punctuate_strings(paste0("'", db$x, "'"), "and"), ".")
+  if (any(b)) {
+    db <- d[b, , drop = FALSE]
+    message(
+      "Failed to ", txt, " ",
+      punctuate_strings(paste0("'", db$x, "'"), "and"), "."
+    )
   }
   NULL
 }
 
-all_words_in_x_in_y_one <- function (x) {
+all_words_in_x_in_y_one <- function(x) {
   all(strsplit(x[1], " ")[[1]] %in% strsplit(x[2], " ")[[1]])
 }
 
-all_words_in_x_in_y <- function (x, y) {
+all_words_in_x_in_y <- function(x, y) {
   mat <- as.matrix(data.frame(x = x, y = y))
   apply(mat, MARGIN = 1, all_words_in_x_in_y_one)
 }
 
-wqbc_substitute <- function (org, mod = org, sub, sub_mod = sub, messages) {
+wqbc_substitute <- function(org, mod = org, sub, sub_mod = sub, messages) {
   org <- stringr::str_trim(org, side = "both")
   mod <- stringr::str_trim(mod, side = "both")
   sub <- stringr::str_trim(sub, side = "both")
@@ -55,12 +59,12 @@ wqbc_substitute <- function (org, mod = org, sub, sub_mod = sub, messages) {
   ## First check for exact matches:
   matches <- orgd$match %in% subd$match
   orgd$sub[matches] <- vapply(orgd$match[matches], function(x) subd$sub[subd$match == x],
-                              FUN.VALUE = character(1))
+    FUN.VALUE = character(1)
+  )
 
   ## Then for name matches
   if (!all(matches)) {
     for (i in seq_len(nrow(subd))) {
-
       bol <- all_words_in_x_in_y(subd$match[i], orgd$match[!matches])
 
       if (any(bol)) {
@@ -73,7 +77,7 @@ wqbc_substitute <- function (org, mod = org, sub, sub_mod = sub, messages) {
   }
 
   orgd$sub[orgd$multi] <- NA_character_
-  if(messages) messages_match_substitution(orgd$org, orgd$sub)
+  if (messages) messages_match_substitution(orgd$org, orgd$sub)
   orgd$sub
 }
 
@@ -90,8 +94,8 @@ wqbc_substitute <- function (org, mod = org, sub, sub_mod = sub, messages) {
 #' substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l", "gkl"), messages = TRUE)
 #' @seealso \code{\link{substitute_variables}}
 #' @export
-substitute_units <- function (
-  x, messages = getOption("wqbc.messages", default = TRUE)) {
+substitute_units <- function(
+                             x, messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.character(x) || is.factor(x))
   assert_that(is.flag(messages) && noNA(messages))
 
@@ -126,19 +130,23 @@ substitute_units <- function (
 #' or only the first one (strict = FALSE).
 #' @param messages A flag indicating whether to print messages.
 #' @examples
-#' substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-#'         "dissolved aluminium", "BORON Total", "KRYPTONITE",
-#'         "Total Fluoride Hardness"), messages = TRUE)
-#' substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-#'                         "dissolved aluminium", "BORON Total", "KRYPTONITE",
-#'                         "Total Fluoride Hardness"),
-#'                         strict = FALSE, messages = TRUE)
+#' substitute_variables(c(
+#'   "ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
+#'   "dissolved aluminium", "BORON Total", "KRYPTONITE",
+#'   "Total Fluoride Hardness"
+#' ), messages = TRUE)
+#' substitute_variables(c(
+#'   "ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
+#'   "dissolved aluminium", "BORON Total", "KRYPTONITE",
+#'   "Total Fluoride Hardness"
+#' ),
+#' strict = FALSE, messages = TRUE
+#' )
 #' @seealso \code{\link{substitute_units}}
 #' @export
 
-substitute_variables <- function (
-  x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
-
+substitute_variables <- function(
+                                 x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
   assert_that(is.character(x) || is.factor(x))
   assert_that(is.flag(strict) && noNA(strict))
   assert_that(is.flag(messages) && noNA(messages))
@@ -150,7 +158,7 @@ substitute_variables <- function (
 
   sub <- lookup_variables()
   sub_mod <- sub
-  if(!strict) { # pull out first word and remove duplicates
+  if (!strict) { # pull out first word and remove duplicates
     sub_mod <- stringr::word(sub)
     bol <- sub_mod %in% unique(sub_mod[duplicated(sub_mod)])
     sub <- sub[!bol]
