@@ -34,17 +34,6 @@ check_by <- function(by, colnames, res_names = NULL) {
   TRUE
 }
 
-check_excursions <- function (x) {
-  if(any(is.infinite(x$Excursion))) {
-    vars <- unique(x$Variable[is.infinite(x$Excursion)])
-    vars <- sort(vars)
-    stop(plural("Variable", length(vars) > 1, " "), punctuate_strings(vars, "and"),
-         " ", ifelse(length(vars) > 1,  "have", "has"),
-         " a LowerLimit and one or more zero Values with no defined DetectionLimit")
-  }
-  TRUE
-}
-
 check_limits <- function(limits) {
 
   check_names(limits, c("Variable", "Use", "Term", "Condition", "UpperLimit", "Units"))

@@ -108,11 +108,6 @@ capitalize <- function (x) {
   gsub(pattern = "\\b([a-z])", replacement = "\\U\\1", x, perl = TRUE)
 }
 
-is_match_words <- function (var, x, strict) {
-  if(!strict) return (var[1] %in% x)
-  all(var %in% x)
-}
-
 # from http://stackoverflow.com/questions/13289009/check-if-character-string-is-a-valid-color-representation
 is_color <- function(x) {
   check_values(x, "")
@@ -122,14 +117,6 @@ is_color <- function(x) {
              error = function(e) FALSE)
   }
   vapply(x, fun, TRUE)
-}
-
-sub_vars <- function (x, vars, strict) {
-  names(which(vapply(vars, FUN = is_match_words, x = x, strict = strict, FUN.VALUE = logical(1))))
-}
-
-split_words_tolower <- function (x) {
-  tolower(unlist(strsplit(unlist(x), " ")))
 }
 
 
