@@ -10,13 +10,24 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-## saves the map data as internal data for the package
+theme_wqis <- function() {
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    stop("ggplot2 package not installed")
+  }
 
-rm(list = ls())
+  ggplot2::theme_bw()
+}
 
-load("data-raw/map.rda")
+theme_map <- function() {
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    stop("ggplot2 package not installed")
+  }
 
-use_data(map,
-  pkg = as.package("."), internal = TRUE,
-  overwrite = TRUE, compress = "xz"
-)
+  ggplot2::theme_minimal() +
+    ggplot2::theme(
+      axis.title = ggplot2::element_blank(),
+      axis.text = ggplot2::element_blank(),
+      axis.ticks = ggplot2::element_blank(),
+      panel.grid = ggplot2::element_blank()
+    )
+}

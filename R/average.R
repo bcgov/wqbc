@@ -22,14 +22,15 @@
 #' mean(0:9)
 #' geomean1(0:9)
 #' @export
-geomean1 <- function (x, na.rm = FALSE) {
+geomean1 <- function(x, na.rm = FALSE) {
   chk_vector(x)
   check_values(na.rm, TRUE)
 
   x <- as.numeric(x)
 
-  if(any(x < 0, na.rm = TRUE))
+  if (any(x < 0, na.rm = TRUE)) {
     stop("x must not be negative")
+  }
 
   expm1(mean(log1p(as.numeric(x)), na.rm = na.rm))
 }

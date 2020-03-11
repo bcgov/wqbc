@@ -18,10 +18,12 @@
 #' lookup_units()
 #' @seealso \code{\link{lookup_limits}}
 #' @export
-lookup_units <- function () {
-  c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH", "degC", "C",
+lookup_units <- function() {
+  c(
+    "ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH", "degC", "C",
     "CFU/dL", "MPN/dL", "CFU/100mL", "MPN/100mL", "CFU/g", "MPN/g", "CFU/mL", "MPN/mL",
-    "Col.unit", "Rel", "NTU")
+    "Col.unit", "Rel", "NTU"
+  )
 }
 
 #' Lookup Use
@@ -32,7 +34,7 @@ lookup_units <- function () {
 #' lookup_use()
 #' @seealso \code{\link{lookup_limits}}
 #' @export
-lookup_use <- function () {
+lookup_use <- function() {
   unique(wqbc_limits()$Use)
 }
 
@@ -49,17 +51,22 @@ lookup_use <- function () {
 #' @examples
 #' lookup_codes()
 #' lookup_codes(c("Aluminum", "Arsenic Total", "Boron Something", "Kryptonite"),
-#'                messages = TRUE)
+#'   messages = TRUE
+#' )
 #' @seealso \code{\link{lookup_limits}} and \code{\link{expand_ems_codes}}
 #' @export
-lookup_codes <- function (
-  variables = NULL, messages = getOption("wqbc.messages", default = TRUE)) {
-  if(is.null(variables)) return (wqbc_codes(compress = TRUE)$Code)
+lookup_codes <- function(
+                         variables = NULL, messages = getOption("wqbc.messages", default = TRUE)) {
+  if (is.null(variables)) {
+    return(wqbc_codes(compress = TRUE)$Code)
+  }
 
   variables <- substitute_variables(variables, messages = messages)
   d <- dplyr::left_join(data.frame(Variable = variables, stringsAsFactors = FALSE),
-                        wqbc_codes(compress = TRUE), by = "Variable")
-  if(messages) messages_match_substitution(variables, d$Code, "replace")
+    wqbc_codes(compress = TRUE),
+    by = "Variable"
+  )
+  if (messages) messages_match_substitution(variables, d$Code, "replace")
 
   as.character(d$Code)
 }
@@ -79,41 +86,44 @@ lookup_codes <- function (
 #' lookup_variables(c("AL-D", "EMS_AS_T", "B--T", "KRYP"), messages = TRUE)
 #' @seealso \code{\link{lookup_limits}} and \code{\link{expand_ems_codes}}
 #' @export
-lookup_variables<- function (
-  codes = NULL, messages = getOption("wqbc.messages", default = TRUE)) {
-  if(is.null(codes)) return (wqbc_codes()$Variable)
+lookup_variables <- function(
+                             codes = NULL, messages = getOption("wqbc.messages", default = TRUE)) {
+  if (is.null(codes)) {
+    return(wqbc_codes()$Variable)
+  }
 
   chkor(chk_character(codes), chk_s3_class(codes, "factor"))
   codes <- as.character(codes)
   codes <- compress_ems_codes(codes)
   d <- dplyr::left_join(data.frame(Code = codes, stringsAsFactors = FALSE),
-                        wqbc_codes(compress = TRUE), by = "Code")
-  if(messages) messages_match_substitution(codes, d$Variable, "replace")
+    wqbc_codes(compress = TRUE),
+    by = "Code"
+  )
+  if (messages) messages_match_substitution(codes, d$Variable, "replace")
   as.character(d$Variable)
 }
 
-if_null_NA <- function (x) {
+if_null_NA <- function(x) {
   ifelse(is.null(x), NA, x)
 }
 
-setup_condition_values <- function (codes, ph, hardness, chloride, methyl_mercury) {
-
+setup_condition_values <- function(codes, ph, hardness, chloride, methyl_mercury) {
   codes$Value[codes$Variable == "pH"] <- if_null_NA(ph)
   codes$Value[codes$Variable == "Hardness Total"] <- if_null_NA(hardness)
   codes$Value[codes$Variable == "Chloride Total"] <- if_null_NA(chloride)
   codes$Value[codes$Variable == "Mercury Methyl"] <- if_null_NA(methyl_mercury)
 
-  dplyr::filter_(codes, ~!is.na(Value))
+  dplyr::filter_(codes, ~ !is.na(Value))
 }
 
-setup_codes <- function () {
+setup_codes <- function() {
   codes <- wqbc_codes()
   codes$Date <- as.Date("2000-01-01")
   codes$Value <- 1
   dplyr::select_(codes, ~Date, ~Variable, ~Value, ~Units)
 }
 
-tidyup_limits <- function (x) {
+tidyup_limits <- function(x) {
   x <- dplyr::select_(x, ~Variable, ~UpperLimit, ~Units)
   x$Variable <- factor(x$Variable, levels = lookup_variables())
   x$Units <- factor(x$Units, levels = lookup_units())
@@ -121,13 +131,14 @@ tidyup_limits <- function (x) {
   x
 }
 
-add_missing_limits <- function (x, term) {
+add_missing_limits <- function(x, term) {
   limits <- wqbc_limits()
-  limits <- dplyr::filter_(limits, ~tolower(Term) == tolower(term))
-  limits <- dplyr::filter_(limits, ~!Variable %in% x$Variable)
+  limits <- dplyr::filter_(limits, ~ tolower(Term) == tolower(term))
+  limits <- dplyr::filter_(limits, ~ !Variable %in% x$Variable)
   limits <- dplyr::select_(limits, ~Variable, ~Units)
-  if(!nrow(limits))
-    return (x)
+  if (!nrow(limits)) {
+    return(x)
+  }
   limits <- unique(limits)
   limits$UpperLimit <- NA_real_
   plyr::rbind.fill(x, limits)
@@ -151,9 +162,9 @@ add_missing_limits <- function (x, term) {
 #' lookup_limits(term = "short")
 #' @seealso \code{\link{calc_limits}}
 #' @export
-lookup_limits <- function (ph = NULL, hardness = NULL, chloride = NULL,
-                           methyl_mercury =  NULL, term = "long",
-                           use = "Freshwater Life") {
+lookup_limits <- function(ph = NULL, hardness = NULL, chloride = NULL,
+                          methyl_mercury =  NULL, term = "long",
+                          use = "Freshwater Life") {
   chkor(chk_null(ph), check_values(ph, 1))
   chkor(chk_null(hardness), check_values(hardness, 1))
   chkor(chk_null(chloride), check_values(chloride, 1))
@@ -161,13 +172,15 @@ lookup_limits <- function (ph = NULL, hardness = NULL, chloride = NULL,
   chk_string(term)
 
   term <- tolower(term)
-  if(!term %in% c("short", "long")) stop("term must be \"short\" or \"long\"")
+  if (!term %in% c("short", "long")) stop("term must be \"short\" or \"long\"")
 
   codes <- setup_codes()
-  codes <- setup_condition_values(codes, ph = ph, hardness = hardness,
-                                  chloride = chloride, methyl_mercury = methyl_mercury)
+  codes <- setup_condition_values(codes,
+    ph = ph, hardness = hardness,
+    chloride = chloride, methyl_mercury = methyl_mercury
+  )
 
-  if(term == "long") {
+  if (term == "long") {
     dates <- codes$Date
     codes <- rbind(codes, codes, codes, codes, codes)
     codes$Date <- c(dates, dates + 1, dates + 2, dates + 3, dates + 21)

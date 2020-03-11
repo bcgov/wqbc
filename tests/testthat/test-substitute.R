@@ -17,8 +17,10 @@ test_that("substitute_units", {
   on.exit(options(opts))
   options(wqbc.messages = FALSE)
 
-  expect_equal(substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l")),
-               c("mg/L", "mg/L", "mg/L", "kg/L"))
+  expect_equal(
+    substitute_units(c("mg/L", "MG/L", "mg /L ", "Kg/l")),
+    c("mg/L", "mg/L", "mg/L", "kg/L")
+  )
   expect_equal(substitute_units(c("DEG C")), c("degC"))
   expect_equal(substitute_units(c("Col.Unit")), c("Col.unit"))
   expect_equal(substitute_units("mg.L"), NA_character_)
@@ -30,15 +32,24 @@ test_that("substitute_variables strict", {
   on.exit(options(opts))
   options(wqbc.messages = FALSE)
 
-  expect_equal(substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-                                      "dissolved aluminium", "Benzene Total",
-                                     "KRYPTONITE"),
-               strict = TRUE), c(NA, "Aluminium Dissolved", "Aluminium Dissolved", "Benzene", NA))
+  expect_equal(substitute_variables(c(
+    "ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
+    "dissolved aluminium", "Benzene Total",
+    "KRYPTONITE"
+  ),
+  strict = TRUE
+  ), c(NA, "Aluminium Dissolved", "Aluminium Dissolved", "Benzene", NA))
   expect_equal(substitute_variables("KRYPTONITE", strict = TRUE), NA_character_)
-  expect_equal(substitute_variables(c("Benzene Total", "Alkalinity pH 4.5/4.2",
-                                      "Dissolved Aluminium", "Hardness Dissolved Total", "pH")),
-               c("Benzene", "Alkalinity pH 4.5/4.2", "Aluminium Dissolved",
-                 NA, "pH"))
+  expect_equal(
+    substitute_variables(c(
+      "Benzene Total", "Alkalinity pH 4.5/4.2",
+      "Dissolved Aluminium", "Hardness Dissolved Total", "pH"
+    )),
+    c(
+      "Benzene", "Alkalinity pH 4.5/4.2", "Aluminium Dissolved",
+      NA, "pH"
+    )
+  )
   expect_message(substitute_variables("DISSOLVED ALUMINIUM", strict = TRUE, messages = TRUE))
 })
 
@@ -47,16 +58,21 @@ test_that("substitute_variables not strict", {
   on.exit(options(opts))
   options(wqbc.messages = FALSE)
 
-   expect_equal(substitute_variables(c("ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-                                       "dissolved aluminium", "Benzene Total",
-                                      "KRYPTONITE"),
-                strict = FALSE), c("Aluminium Dissolved", "Aluminium Dissolved", "Aluminium Dissolved", "Benzene", NA))
+  expect_equal(substitute_variables(c(
+    "ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
+    "dissolved aluminium", "Benzene Total",
+    "KRYPTONITE"
+  ),
+  strict = FALSE
+  ), c("Aluminium Dissolved", "Aluminium Dissolved", "Aluminium Dissolved", "Benzene", NA))
   expect_equal(substitute_variables("KRYPTONITE", strict = FALSE), NA_character_)
-  expect_equal(substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum"), strict = TRUE),
-               c("Iron Total", "Iron Dissolved", NA))
-  expect_equal(substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum"), strict = FALSE),
-               c(NA, NA, "Aluminium Dissolved"))
+  expect_equal(
+    substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum"), strict = TRUE),
+    c("Iron Total", "Iron Dissolved", NA)
+  )
+  expect_equal(
+    substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum"), strict = FALSE),
+    c(NA, NA, "Aluminium Dissolved")
+  )
   expect_equal(substitute_variables("KRYPTONITE", strict = FALSE), NA_character_)
-
 })
-

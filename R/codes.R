@@ -10,11 +10,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-wqbc_codes <- function (compress = FALSE) {
+wqbc_codes <- function(compress = FALSE) {
   codes <- wqbc::codes
   codes$Code <- as.character(codes$Code)
-  if(compress)
+  if (compress) {
     codes$Code <- compress_ems_codes(codes$Code)
+  }
   codes$Variable <- as.character(codes$Variable)
   codes$Units <- as.character(codes$Units)
   codes
@@ -31,8 +32,9 @@ wqbc_codes <- function (compress = FALSE) {
 #' compress_ems_codes(c("EMS_0014", "EMS_KR-P", "0-15"))
 #' @seealso \code{\link{expand_ems_codes}}
 #' @export
-compress_ems_codes <- function (x) {
+compress_ems_codes <- function(x) {
   chkor(chk_character(x), chk_s3_class(x, "factor"))
+
   x <- as.character(x)
   x <- gsub("[_]", "-", x)
   sub("^EMS[-]", "", x)
@@ -49,8 +51,9 @@ compress_ems_codes <- function (x) {
 #' expand_ems_codes(c("0014", "KR-P", "0_15", "EMS_ZN_T"))
 #' @seealso \code{\link{compress_ems_codes}}
 #' @export
-expand_ems_codes <- function (x) {
+expand_ems_codes <- function(x) {
   chkor(chk_character(x), chk_s3_class(x, "factor"))
+
   x <- as.character(x)
   x <- gsub("[-]", "_", x)
   bol <- !grepl("^EMS[_-]", x)

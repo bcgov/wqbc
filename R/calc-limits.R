@@ -31,66 +31,75 @@ join_limits <- function(x, limits = wqbc::limits) {
   x
 }
 
-get_code_values <- function (x) {
-  code_value <-  as.list(x$Value)
+get_code_values <- function(x) {
+  code_value <- as.list(x$Value)
   names(code_value) <- x$Code
   code_value[!duplicated(names(code_value))]
 }
 
-test_condition <- function (x, cvalues) {
-  if(is.na(x))
-    return (TRUE)
+test_condition <- function(x, cvalues) {
+  if (is.na(x)) {
+    return(TRUE)
+  }
   x <- try(eval(parse(text = x), envir = cvalues), silent = TRUE)
-  if(class(x) != "logical")
-    return (FALSE)
-  return (x)
+  if (class(x) != "logical") {
+    return(FALSE)
+  }
+  return(x)
 }
 
-calc_limit <- function (x, cvalues) {
+calc_limit <- function(x, cvalues) {
   x <- try(eval(parse(text = as.character(x)), envir = cvalues), silent = TRUE)
-  if(class(x) != "numeric")
-    return (NA)
-  return (x)
+  if (class(x) != "numeric") {
+    return(NA)
+  }
+  return(x)
 }
 
-calc_limits_by_period <- function (x) {
+calc_limits_by_period <- function(x) {
   cvalues <- get_code_values(x)
 
-  x$Condition <- vapply(x$Condition, FUN = test_condition,
-                        FUN.VALUE = logical(1), cvalues = cvalues)
+  x$Condition <- vapply(x$Condition,
+    FUN = test_condition,
+    FUN.VALUE = logical(1), cvalues = cvalues
+  )
 
-  x <- x[x$Condition,,drop = FALSE]
+  x <- x[x$Condition, , drop = FALSE]
   x$Condition <- NULL
-  x$UpperLimit <- vapply(x$UpperLimit, FUN = calc_limit,
-                         FUN.VALUE = numeric(1), cvalues = cvalues)
+  x$UpperLimit <- vapply(x$UpperLimit,
+    FUN = calc_limit,
+    FUN.VALUE = numeric(1), cvalues = cvalues
+  )
 
-  x[!is.na(x$UpperLimit),,drop = FALSE]
+  x[!is.na(x$UpperLimit), , drop = FALSE]
 }
 
-get_conditional_codes <- function (x) {
+get_conditional_codes <- function(x) {
   x <- stringr::str_extract_all(x, "EMS_[[:alnum:]][[:alnum:]_]{3,3}")
   x <- unique(unlist(x))
   x <- x[!is.na(x)]
   x
 }
 
-average_conditional_code_values <- function (x) {
+average_conditional_code_values <- function(x) {
   txt <- paste0("x$Value <- ", x$Average[1], "(x$Value)")
   eval(parse(text = txt))
-  x[1,,drop = FALSE]
+  x[1, , drop = FALSE]
 }
 
 fill_in_conditional_codes <- function(x, ccodes) {
-  y <- dplyr::filter_(x, ~Code %in% ccodes)
+  y <- dplyr::filter_(x, ~ Code %in% ccodes)
   y <- plyr::ddply(y, .variables = "Code", .fun = average_conditional_code_values)
   x$Conditional <- FALSE
-  if(nrow(y)) {
-    dates <- expand.grid(Date = unique(x$Date), Variable = unique(y$Variable),
-                         stringsAsFactors = FALSE)
+  if (nrow(y)) {
+    dates <- expand.grid(
+      Date = unique(x$Date), Variable = unique(y$Variable),
+      stringsAsFactors = FALSE
+    )
     y$Date <- NULL
     y <- dplyr::inner_join(dates, y, by = "Variable")
     y <- dplyr::anti_join(y, x, by = c("Date", "Variable"))
-    if(nrow(y)) {
+    if (nrow(y)) {
       y$Conditional <- TRUE
       x <- rbind(x, y)
     }
@@ -99,29 +108,29 @@ fill_in_conditional_codes <- function(x, ccodes) {
 }
 
 calc_limits_by_date <- function(x, term, messages) {
-
   ccodes <- get_conditional_codes(x$Condition[x$Term == term])
 
-  dropped <- dplyr::filter_(x, ~!((!is.na(Term) & Term == term) | Code %in% ccodes))
-  x %<>% dplyr::filter_(~((!is.na(Term) & Term == term) | Code %in% ccodes))
+  dropped <- dplyr::filter_(x, ~ !((!is.na(Term) & Term == term) | Code %in% ccodes))
+  x %<>% dplyr::filter_(~ ((!is.na(Term) & Term == term) | Code %in% ccodes))
 
-  if (!nrow(x))
+  if (!nrow(x)) {
     return(NULL)
+  }
 
   x %<>% fill_in_conditional_codes(ccodes)
 
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
-  x <- dplyr::filter_(x, ~Term == term)
-  x <- dplyr::filter_(x, ~!Conditional)
+  x <- dplyr::filter_(x, ~ Term == term)
+  x <- dplyr::filter_(x, ~ !Conditional)
   stopifnot(!anyDuplicated(x$..ID))
   x
 }
 
-abs_days_diff <- function (x, y) {
+abs_days_diff <- function(x, y) {
   abs(as.integer(diff(c(x, y))))
 }
 
-assign_30day_periods <- function (x, dates) {
+assign_30day_periods <- function(x, dates) {
   if (!is.null(dates)) dates <- sort(unique(dates))
   y <- unique(dplyr::select_(x, ~Date))
   y <- dplyr::arrange_(y, ~Date)
@@ -131,9 +140,9 @@ assign_30day_periods <- function (x, dates) {
   start_date <- y$Date[1]
   y$Period[1] <- period
 
-  if(nrow(y) > 1) {
-    for(i in 2:nrow(y)) {
-      if(abs_days_diff(start_date, y$Date[i]) > 30 | y$Date[i] %in% dates) {
+  if (nrow(y) > 1) {
+    for (i in 2:nrow(y)) {
+      if (abs_days_diff(start_date, y$Date[i]) > 30 | y$Date[i] %in% dates) {
         period <- period + 1
         start_date <- y$Date[i]
       }
@@ -146,37 +155,42 @@ assign_30day_periods <- function (x, dates) {
   x
 }
 
-average_30day_values_variable <- function (x) {
+average_30day_values_variable <- function(x) {
   stopifnot(!is.unsorted(x$Date))
   x$Samples <- nrow(x)
-  if(!is.null(x$DetectionLimit))
+  if (!is.null(x$DetectionLimit)) {
     x$DetectionLimit <- mean(x$DetectionLimit)
+  }
 
   x$Span <- abs_days_diff(x$Date[1], x$Date[x$Samples])
   txt <- paste0("x$Value <- ", x$Average[1], "(x$Value)")
   eval(parse(text = txt))
-  x[1,,drop = FALSE]
+  x[1, , drop = FALSE]
 }
 
-average_30day_values <- function (x) {
+average_30day_values <- function(x) {
   plyr::ddply(x, c("Variable", "Condition"), average_30day_values_variable)
 }
 
 calc_limits_by_30day <- function(x, dates, messages) {
   ccodes <- get_conditional_codes(x$Condition[x$Term == "Long"])
 
-  dropped <- dplyr::filter_(x, ~!((!is.na(Term) & Term == "Long") | Code %in% ccodes))
-  x %<>% dplyr::filter_(~((!is.na(Term) & Term == "Long") | Code %in% ccodes))
+  dropped <- dplyr::filter_(x, ~ !((!is.na(Term) & Term == "Long") | Code %in% ccodes))
+  x %<>% dplyr::filter_(~ ((!is.na(Term) & Term == "Long") | Code %in% ccodes))
 
   if (messages) {
-    dropped %<>% dplyr::group_by_(~Variable) %>% dplyr::summarise_(n = ~n())
+    dropped %<>% dplyr::group_by_(~Variable) %>% dplyr::summarise_(n = ~ n())
     for (i in seq_along(dropped$Variable)) {
-      message("Dropped ", sum(dropped$n[i]),
-              " values without limits for ", dropped$Variable[i], ".")
+      message(
+        "Dropped ", sum(dropped$n[i]),
+        " values without limits for ", dropped$Variable[i], "."
+      )
     }
   }
 
-  if (!nrow(x)) return(NULL)
+  if (!nrow(x)) {
+    return(NULL)
+  }
 
   x <- dplyr::arrange_(x, ~Date)
 
@@ -184,14 +198,14 @@ calc_limits_by_30day <- function(x, dates, messages) {
   x <- plyr::ddply(x, c("Period"), average_30day_values)
   x <- fill_in_conditional_codes(x, ccodes)
   x <- plyr::ddply(x, "Date", calc_limits_by_period)
-  x <- dplyr::filter_(x, ~Term == "Long")
-  x <- dplyr::filter_(x, ~!Conditional)
-  x <- dplyr::filter_(x, ~Samples >= 5 & Span >= 21)
+  x <- dplyr::filter_(x, ~ Term == "Long")
+  x <- dplyr::filter_(x, ~ !Conditional)
+  x <- dplyr::filter_(x, ~ Samples >= 5 & Span >= 21)
   stopifnot(!anyDuplicated(x$..ID))
   x
 }
 
-calc_limits_by <- function (x, term, dates, limits, messages) {
+calc_limits_by <- function(x, term, dates, limits, messages) {
   x <- join_codes(x)
   if ("Code.y" %in% names(x)) {
     x <- dplyr::rename_(x, Code = "Code.y")
@@ -202,15 +216,18 @@ calc_limits_by <- function (x, term, dates, limits, messages) {
     x <- calc_limits_by_30day(x, dates, messages)
   } else if (term == "short") {
     x <- calc_limits_by_date(x, "Short", messages)
-  } else {# term == "long-daily"
+  } else { # term == "long-daily"
     x <- calc_limits_by_date(x, "Long", messages)
   }
-  if (is.null(x)) return(NULL)
+  if (is.null(x)) {
+    return(NULL)
+  }
 
   if (!is.null(x$DetectionLimit)) {
     x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~DetectionLimit, ~Units)
-  } else
+  } else {
     x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units)
+  }
   x
 }
 
@@ -272,7 +289,6 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
                         clean = TRUE, limits = wqbc::limits,
                         messages = getOption("wqbc.messages", default = TRUE),
                         use = "Freshwater Life") {
-
   chk_data(x)
   chkor(chk_null(by), check_values(by, ""))
   chk_string(term)
@@ -294,48 +310,53 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
   term <- tolower(term)
   if (!term %in% c("long", "short", "long-daily")) stop("term must be \"long\" or \"short\" or \"long-daily\"")
 
-  if(!use %in% limits$Use) stop("use must match a Use in the limits table")
+  if (!use %in% limits$Use) stop("use must match a Use in the limits table")
   limits <- dplyr::filter(limits, .data$Use == use)
   limits$Use <- NULL
 
   if (keep_limits) {
     bol <- rep(FALSE, nrow(x))
-    if (tibble::has_name(x, "LowerLimit"))
+    if (tibble::has_name(x, "LowerLimit")) {
       bol <- !is.na(x$LowerLimit)
-    if (tibble::has_name(x, "UpperLimit"))
+    }
+    if (tibble::has_name(x, "UpperLimit")) {
       bol <- bol | !is.na(x$UpperLimit)
+    }
 
-    y <- dplyr::slice_(x, ~which(bol))
-    x %<>% dplyr::slice_(~which(!bol))
+    y <- dplyr::slice_(x, ~ which(bol))
+    x %<>% dplyr::slice_(~ which(!bol))
   }
 
   if (clean) {
-    x %<>% clean_wqdata(by = by, delete_outliers  = delete_outliers, messages = messages)
+    x %<>% clean_wqdata(by = by, delete_outliers = delete_outliers, messages = messages)
   }
 
   x <- standardize_wqdata(x, messages = messages)
 
   cleansed <- x
 
-  x_org <- dplyr::filter_(x, ~Variable %in% c("Chloride Total", "Hardness Total", "pH"))
+  x_org <- dplyr::filter_(x, ~ Variable %in% c("Chloride Total", "Hardness Total", "pH"))
 
-  if (estimate_variables)
+  if (estimate_variables) {
     x %<>% estimate_variable_values(by = by, messages = messages)
+  }
 
   x$DetectionLimit <- NULL
 
-  if (messages) message("Calculating ", paste0(term, "-term") ," water quality limits...")
+  if (messages) message("Calculating ", paste0(term, "-term"), " water quality limits...")
 
   if (is.null(by)) {
     x <- calc_limits_by(x, term = term, dates = dates, limits = limits, messages = messages)
   } else {
-    x <- plyr::ddply(x, .variables = by, .fun = calc_limits_by,
-                     term = term, dates = dates, limits = limits, messages = messages)
+    x <- plyr::ddply(x,
+      .variables = by, .fun = calc_limits_by,
+      term = term, dates = dates, limits = limits, messages = messages
+    )
   }
 
   if (estimate_variables) { ## add original variable values back if still present
-    x_new <- dplyr::filter_(x, ~Variable %in% c("Chloride Total", "Hardness Total", "pH"))
-    x %<>% dplyr::filter_(~!Variable %in% c("Chloride Total", "Hardness Total", "pH"))
+    x_new <- dplyr::filter_(x, ~ Variable %in% c("Chloride Total", "Hardness Total", "pH"))
+    x %<>% dplyr::filter_(~ !Variable %in% c("Chloride Total", "Hardness Total", "pH"))
     x_org <- x_org[c("Date", "Variable", by, "Value")]
     x_new$Value <- NULL
     x_new %<>% dplyr::inner_join(x_org, by = c("Date", "Variable", by))
@@ -347,14 +368,17 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
 
     if (nrow(cleansed)) {
       cleansed %<>% plyr::ddply("Variable", function(x) data.frame(n = nrow(x)))
-      for (i in seq_len(nrow(cleansed)))
-        message("Dropped ", cleansed$n[i], " values for ", cleansed$Variable[i]," without limits")
-    } else
+      for (i in seq_len(nrow(cleansed))) {
+        message("Dropped ", cleansed$n[i], " values for ", cleansed$Variable[i], " without limits")
+      }
+    } else {
       message("O values without limits")
+    }
 
-    message("Calculated ", paste0(term, "-term") ," water quality limits.")
+    message("Calculated ", paste0(term, "-term"), " water quality limits.")
   }
-  if (keep_limits)
+  if (keep_limits) {
     x %<>% dplyr::bind_rows(y)
+  }
   x
 }

@@ -32,10 +32,10 @@ Analyses time series using the Thiel-Sen estimate of slope. It requires at least
 The data must contain the columns Station, Date, Variable, Value, and Units.
 }
 \examples{
- data <- wqbc::yuepilon
- trend <- test_trends(data, breaks = 6, messages = TRUE)
+data <- wqbc::yuepilon
+trend <- test_trends(data, breaks = 6, messages = TRUE)
 \dontrun{
-  demo(test_trends)
+demo(test_trends)
 }
 }
 \seealso{

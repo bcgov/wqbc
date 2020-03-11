@@ -28,6 +28,6 @@ If \code{by = NULL} plot_timeseries returns a ggplot object.
 Otherwise it returns a list of ggplot objects.
 }
 \examples{
-plot_timeseries(ccme[ccme$Variable == "As",])
+plot_timeseries(ccme[ccme$Variable == "As", ])
 plot_timeseries(ccme, by = "Variable")
 }
