@@ -44,11 +44,12 @@ standardize_wqdata_variable <- function (x, messages) {
 #' @export
 standardize_wqdata <- function (
   x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
-  assert_that(is.data.frame(x))
-  assert_that(is.flag(strict) && noNA(strict))
-  assert_that(is.flag(messages) && noNA(messages))
 
-  check_nrow(x)
+  chk_data(x)
+  check_values(strict, TRUE)
+  check_values(messages, TRUE)
+
+  chk_true(nrow(x) > 0)
 
   if("Code" %in% colnames(x)) {
     if(messages) message ("Converting Codes to Variables...")
@@ -60,7 +61,7 @@ standardize_wqdata <- function (
 
   if(messages) message("Standardizing water quality data...")
 
-  check_colnames(x, c("Variable", "Value", "Units"))
+  check_names(x, c("Variable", "Value", "Units"))
 
   check_class_columns(x, list("Variable" = c("character", "factor"),
                               "Value" = "numeric",

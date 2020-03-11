@@ -32,7 +32,7 @@ wqbc_codes <- function (compress = FALSE) {
 #' @seealso \code{\link{expand_ems_codes}}
 #' @export
 compress_ems_codes <- function (x) {
-  assert_that(is.character(x) || is.factor(x))
+  chkor(chk_character(x), chk_s3_class(x, "factor"))
   x <- as.character(x)
   x <- gsub("[_]", "-", x)
   sub("^EMS[-]", "", x)
@@ -50,7 +50,7 @@ compress_ems_codes <- function (x) {
 #' @seealso \code{\link{compress_ems_codes}}
 #' @export
 expand_ems_codes <- function (x) {
-  assert_that(is.character(x) || is.factor(x))
+  chkor(chk_character(x), chk_s3_class(x, "factor"))
   x <- as.character(x)
   x <- gsub("[-]", "_", x)
   bol <- !grepl("^EMS[_-]", x)

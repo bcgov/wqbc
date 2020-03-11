@@ -1,4 +1,4 @@
-#' @import assertthat checkr
+#' @import chk
 #' @importFrom magrittr %<>% %>%
 #' @importFrom rlang .data
 #' @keywords internal

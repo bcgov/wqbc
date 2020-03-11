@@ -141,7 +141,7 @@ assign_30day_periods <- function (x, dates) {
     }
   }
   x <- dplyr::left_join(x, y, by = "Date")
-  stopifnot(noNA(x$Period))
+  chk_not_any_na(x$Period)
   x$Period <- factor(x$Period)
   x
 }
@@ -273,14 +273,14 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
                         messages = getOption("wqbc.messages", default = TRUE),
                         use = "Freshwater Life") {
 
-  assert_that(is.data.frame(x))
-  assert_that(is.null(by) || (is.character(by) && noNA(by)))
-  assert_that(is.string(term))
-  assert_that(is.string(use))
-  assert_that(is.null(dates) || (is.date(dates) && noNA(dates)))
-  assert_that(is.flag(messages) && noNA(messages))
-  assert_that(is.flag(keep_limits) && noNA(keep_limits))
-  assert_that(is.flag(clean) && noNA(clean))
+  chk_data(x)
+  chkor(chk_null(by), check_values(by, ""))
+  chk_string(term)
+  chk_string(use)
+  chkor(chk_null(dates), check_values(dates, Sys.Date()))
+  check_values(messages, TRUE)
+  check_values(keep_limits, TRUE)
+  check_values(clean, TRUE)
 
   check_limits(limits)
 

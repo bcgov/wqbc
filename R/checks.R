@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 check_class_columns <- function (x, columns) {
-  check_colnames(x, names(columns))
+  check_names(x, names(columns))
 
   for(colname in names(columns)) {
     if(!class(x[[colname]]) %in% columns[[colname]])
@@ -47,7 +47,7 @@ check_excursions <- function (x) {
 
 check_limits <- function(limits) {
 
-  check_colnames(limits, c("Variable", "Use", "Term", "Condition", "UpperLimit", "Units"))
+  check_names(limits, c("Variable", "Use", "Term", "Condition", "UpperLimit", "Units"))
 
   limits$Variable %<>% as.character()
   limits$Term %<>% as.character()

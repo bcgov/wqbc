@@ -101,15 +101,17 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
                          large_only = TRUE, delete_outliers = FALSE,
                          remove_blanks = FALSE,
                          messages = getOption("wqbc.messages", default = TRUE)) {
-  assert_that(is.data.frame(x))
-  assert_that(is.null(by) || (is.character(by) && noNA(by)))
-  assert_that(is.number(max_cv))
-  assert_that(is.flag(messages) && noNA(messages))
 
-  check_scalar(sds, c(1, 100))
-  check_flag(ignore_undetected)
-  check_flag(large_only)
-  check_flag(delete_outliers)
+  chk_data(x)
+  chkor(chk_null(by), check_values(by, ""))
+  chk_number(max_cv)
+  check_values(messages, TRUE)
+
+  chk_range(length(sds), c(1, 1))
+  chk_range(sds, c(1, 100))
+  chk_flag(ignore_undetected)
+  chk_flag(large_only)
+  chk_flag(delete_outliers)
 
   check_by(by, colnames(x), res_names = c("Value", "Outlier", "DetectionLimit"))
 
