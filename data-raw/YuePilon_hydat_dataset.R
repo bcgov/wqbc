@@ -84,7 +84,7 @@ names(yuepilon) <- tolower(names(yuepilon))
 yuepilon <-
   yuepilon %>%
   select(station_number:month, matches("^flow[0-9]+$")) %>%
-  as_data_frame()
+  as_tibble()
 
 # restructure and filter out NA obs
 yuepilon <-

@@ -23,8 +23,9 @@
 #' geomean1(0:9)
 #' @export
 geomean1 <- function(x, na.rm = FALSE) {
-  assert_that(is.vector(x))
-  assert_that(is.flag(na.rm) && noNA(na.rm))
+  chk_vector(x)
+  check_values(na.rm, TRUE)
+
   x <- as.numeric(x)
 
   if (any(x < 0, na.rm = TRUE)) {

@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 check_class_columns <- function(x, columns) {
-  check_colnames(x, names(columns))
+  check_names(x, names(columns))
 
   for (colname in names(columns)) {
     if (!class(x[[colname]]) %in% columns[[colname]]) {
@@ -40,21 +40,9 @@ check_by <- function(by, colnames, res_names = NULL) {
   TRUE
 }
 
-check_excursions <- function(x) {
-  if (any(is.infinite(x$Excursion))) {
-    vars <- unique(x$Variable[is.infinite(x$Excursion)])
-    vars <- sort(vars)
-    stop(
-      plural("Variable", length(vars) > 1, " "), punctuate_strings(vars, "and"),
-      " ", ifelse(length(vars) > 1, "have", "has"),
-      " a LowerLimit and one or more zero Values with no defined DetectionLimit"
-    )
-  }
-  TRUE
-}
-
 check_limits <- function(limits) {
-  check_colnames(limits, c("Variable", "Use", "Term", "Condition", "UpperLimit", "Units"))
+
+  check_names(limits, c("Variable", "Use", "Term", "Condition", "UpperLimit", "Units"))
 
   limits$Variable %<>% as.character()
   limits$Term %<>% as.character()

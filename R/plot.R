@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 plot_timeseries_by <- function(data, title = NULL, y0, size, messages) {
-  if (!is.null(title)) check_string(title)
+  if (!is.null(title)) chk_string(title)
 
   data %<>% dplyr::mutate_(Detected = ~ detected(Value, DetectionLimit))
 
@@ -69,10 +69,10 @@ plot_timeseries_fun <- function(data, by, y0, size, messages) {
 #' plot_timeseries(ccme, by = "Variable")
 plot_timeseries <- function(data, by = NULL, y0 = TRUE, size = 1,
                             messages = getOption("wqbc.messages", default = TRUE)) {
-  assert_that(is.null(by) || (is.character(by) && noNA(by)))
+  chkor(chk_null(by), check_values(by, ""))
 
-  check_flag(y0)
-  check_flag(messages)
+  chk_flag(y0)
+  chk_flag(messages)
 
   check_by(by, colnames(data))
   if (!tibble::has_name(data, "DetectionLimit")) data$DetectionLimit <- NA_real_
