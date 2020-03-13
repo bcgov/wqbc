@@ -34,9 +34,9 @@ punctuate_strings <- function(x, qualifier = "or") {
 }
 
 add_missing_columns <- function(x, columns, messages) {
-  assert_that(is.data.frame(x))
-  assert_that(is.list(columns))
-  assert_that(is.flag(messages) && noNA(messages))
+  chk_data(x)
+  chk_list(columns)
+  check_values(messages, TRUE)
 
   for (column in names(columns)) {
     if (!column %in% colnames(x)) {
@@ -78,7 +78,7 @@ delete_rows_with_certain_values <- function(x, columns, messages, txt = "missing
     columns <- as.list(colnames(x))
   }
 
-  check_colnames(x, unlist(columns))
+  check_names(x, unlist(columns))
 
   if (txt %in% c("missing", "unrecognised")) {
     fun <- function(x) is.na(x)
@@ -118,16 +118,9 @@ capitalize <- function(x) {
   gsub(pattern = "\\b([a-z])", replacement = "\\U\\1", x, perl = TRUE)
 }
 
-is_match_words <- function(var, x, strict) {
-  if (!strict) {
-    return(var[1] %in% x)
-  }
-  all(var %in% x)
-}
-
 # from http://stackoverflow.com/questions/13289009/check-if-character-string-is-a-valid-color-representation
 is_color <- function(x) {
-  check_vector(x, "")
+  check_values(x, "")
 
   fun <- function(x) {
     tryCatch(is.matrix(grDevices::col2rgb(x)),
@@ -135,12 +128,4 @@ is_color <- function(x) {
     )
   }
   vapply(x, fun, TRUE)
-}
-
-sub_vars <- function(x, vars, strict) {
-  names(which(vapply(vars, FUN = is_match_words, x = x, strict = strict, FUN.VALUE = logical(1))))
-}
-
-split_words_tolower <- function(x) {
-  tolower(unlist(strsplit(unlist(x), " ")))
 }

@@ -14,7 +14,7 @@
 trend <- function(y) {
 
   # set up output structure
-  out <- dplyr::data_frame(
+  out <- dplyr::tibble(
     slope = NA_real_,
     lower = NA_real_,
     upper = NA_real_,
@@ -83,13 +83,11 @@ do_test_trends <- function(data, breaks, FUN) {
 test_trends <- function(data, breaks = NULL, FUN = "median", messages = getOption("wqbc.messages", default = TRUE)) {
 
   # check inputs
-  check_flag(messages)
+  chk_flag(messages)
 
-  check_colnames(data, c("Station", "Date", "Variable", "Value", "Units"))
-  check_data(data, list(
-    Date = Sys.Date(),
-    Value = c(1, NA)
-  ))
+  check_names(data, c("Station", "Date", "Variable", "Value", "Units"))
+  check_data(data, list(Date = Sys.Date(),
+    Value = c(1, NA)))
 
   # keep only relevant columns
   data %<>% dplyr::select_(~Station, ~Date, ~Variable, ~Value, ~Units)
@@ -168,12 +166,10 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
                                  messages = getOption("wqbc.messages", default = TRUE)) {
 
   # check inputs
-  check_flag(messages)
-  check_colnames(data, c("Station", "Date", "Variable", "Value", "Units"))
-  check_data(data, list(
-    Date = Sys.Date(),
-    Value = c(1, NA)
-  ))
+  chk_flag(messages)
+  check_names(data, c("Station", "Date", "Variable", "Value", "Units"))
+  check_data(data, list(Date = Sys.Date(),
+    Value = c(1, NA)))
 
   # keep only relevant columns
   data %<>% dplyr::select_(~Station, ~Date, ~Variable, ~Value, ~Units)

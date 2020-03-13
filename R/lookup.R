@@ -92,7 +92,7 @@ lookup_variables <- function(
     return(wqbc_codes()$Variable)
   }
 
-  assert_that(is.character(codes) || is.factor(codes))
+  chkor(chk_character(codes), chk_s3_class(codes, "factor"))
   codes <- as.character(codes)
   codes <- compress_ems_codes(codes)
   d <- dplyr::left_join(data.frame(Code = codes, stringsAsFactors = FALSE),
@@ -163,13 +163,13 @@ add_missing_limits <- function(x, term) {
 #' @seealso \code{\link{calc_limits}}
 #' @export
 lookup_limits <- function(ph = NULL, hardness = NULL, chloride = NULL,
-                          methyl_mercury = NULL, term = "long",
+                          methyl_mercury =  NULL, term = "long",
                           use = "Freshwater Life") {
-  assert_that(is.null(ph) || (is.number(ph) && noNA(ph)))
-  assert_that(is.null(hardness) || (is.number(hardness) && noNA(hardness)))
-  assert_that(is.null(chloride) || (is.number(chloride) && noNA(chloride)))
-  assert_that(is.null(methyl_mercury) || (is.number(methyl_mercury) && noNA(methyl_mercury)))
-  assert_that(is.string(term))
+  chkor(chk_null(ph), check_values(ph, 1))
+  chkor(chk_null(hardness), check_values(hardness, 1))
+  chkor(chk_null(chloride), check_values(chloride, 1))
+  chkor(chk_null(methyl_mercury), check_values(methyl_mercury, 1))
+  chk_string(term)
 
   term <- tolower(term)
   if (!term %in% c("short", "long")) stop("term must be \"short\" or \"long\"")

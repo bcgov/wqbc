@@ -96,8 +96,8 @@ wqbc_substitute <- function(org, mod = org, sub, sub_mod = sub, messages) {
 #' @export
 substitute_units <- function(
                              x, messages = getOption("wqbc.messages", default = TRUE)) {
-  assert_that(is.character(x) || is.factor(x))
-  assert_that(is.flag(messages) && noNA(messages))
+  chkor(chk_character(x), chk_s3_class(x, "factor"))
+  check_values(messages, TRUE)
 
   x <- as.character(x)
 
@@ -144,12 +144,12 @@ substitute_units <- function(
 #' )
 #' @seealso \code{\link{substitute_units}}
 #' @export
-
 substitute_variables <- function(
                                  x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
-  assert_that(is.character(x) || is.factor(x))
-  assert_that(is.flag(strict) && noNA(strict))
-  assert_that(is.flag(messages) && noNA(messages))
+
+  chkor(chk_character(x), chk_s3_class(x, "factor"))
+  check_values(strict, TRUE)
+  check_values(messages, TRUE)
 
   x <- as.character(x)
 
