@@ -43,4 +43,4 @@ input_codes <- function() {
   codes
 }
 codes <- input_codes()
-devtools::use_data(codes, overwrite = TRUE, compress = "xz")
+use_data(codes, overwrite = TRUE, compress = "xz")

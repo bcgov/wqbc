@@ -16,6 +16,7 @@ library(wqbc) # rebuild package
 source("data-raw/dummy.R")
 source("data-raw/codes.R")
 source("data-raw/limits.R")
+source("data-raw/limits-update.R")
 source("data-raw/site-limits.R")
 library(wqbc) # rebuild package
 # source("data-raw/fraser-raw.R")

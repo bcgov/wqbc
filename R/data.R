@@ -37,7 +37,6 @@
 #'   \item{Variable}{The name of the variable.}
 #'   \item{Code}{The EMS code in expanded form.}
 #'   \item{Units}{The standard units for the variable.}
-#'   \item{Average}{R function to calculate "average" value.}
 #'   \item{EC_Code}{The Variable Code in the Environment Canada data.}
 #' }
 #' @seealso \code{\link{calc_limits}}
@@ -110,6 +109,7 @@
 #'   \item{Condition}{A logical R expression to test for the required condition.}
 #'   \item{UpperLimit}{The upper limit or an R expression defining the upper limit.}
 #'   \item{Units}{The units of the upper limit.}
+#'   \item{Statistic}{R function to calculate statistic of value.}
 #' }
 #' @seealso \code{\link{calc_limits}}
 "limits"

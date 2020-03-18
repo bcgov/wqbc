@@ -61,4 +61,4 @@ dummy %<>% rbind(data.frame(
   Value = 7, Units = "PH UNITS"
 ))
 
-use_data(dummy, pkg = as.package("."), overwrite = TRUE, compress = "xz")
+use_data(dummy, overwrite = TRUE, compress = "xz")
