@@ -34,15 +34,8 @@ clean_wqdata_replicates <- function (x, max_cv, messages, FUN) {
     }
   }
 
-  if(FUN == "mean"){
-    x$Value <- mean(x$Value)
-  }
-  if(FUN == "max"){
-    x$Value <- max(x$Value)
-  }
-  if(FUN == "median"){
-    x$Value <- stats::median(x$Value)
-  }
+  x$Value <- FUN(x$Value)
+
   if (!is.null(x$DetectionLimit))
     x$DetectionLimit <- mean(x$DetectionLimit)
   if (messages && n > nrow(x)) {
@@ -102,7 +95,7 @@ clean_wqdata_by <- function (x, max_cv, messages, FUN) {
 #' @param remove_blanks Should blanks be removed? Blanks are assumed to be denoted by
 #' a value of `"Blank..."` in the `SAMPLE_CLASS` column. Default `FALSE`
 #' @param messages A flag indicating whether to print messages.
-#' @param FUN A character string of the function to use for yearly summaries, (either 'median', 'mean', or 'max').
+#' @param FUN The function to use for summaries, e.g. median, mean, or max.
 #'
 #' @examples
 #' clean_wqdata(wqbc::dummy, messages = TRUE)
@@ -113,7 +106,7 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
                          large_only = TRUE, delete_outliers = FALSE,
                          remove_blanks = FALSE,
                          messages = getOption("wqbc.messages", default = TRUE),
-                         FUN = "mean") {
+                         FUN = mean) {
 
   chk_data(x)
   chkor(chk_null(by), check_values(by, ""))
@@ -125,7 +118,7 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
   chk_flag(ignore_undetected)
   chk_flag(large_only)
   chk_flag(delete_outliers)
-  check_values(FUN, c("mean", "median", "max"))
+  chk_function(FUN)
 
   check_by(by, colnames(x), res_names = c("Value", "Outlier",
                                                  "DetectionLimit"))

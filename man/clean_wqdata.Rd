@@ -14,7 +14,7 @@ clean_wqdata(
   delete_outliers = FALSE,
   remove_blanks = FALSE,
   messages = getOption("wqbc.messages", default = TRUE),
-  FUN = "mean"
+  FUN = mean
 )
 }
 \arguments{
@@ -39,7 +39,7 @@ a value of \code{"Blank..."} in the \code{SAMPLE_CLASS} column. Default \code{FA
 
 \item{messages}{A flag indicating whether to print messages.}
 
-\item{FUN}{A character string of the function to use for yearly summaries, (either 'median', 'mean', or 'max').}
+\item{FUN}{The function to use for summaries, e.g. median, mean, or max.}
 }
 \description{
 Cleans water quality data. After standardization using \code{\link{standardize_wqdata}}
