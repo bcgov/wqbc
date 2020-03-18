@@ -12,6 +12,7 @@
 \item{Condition}{A logical R expression to test for the required condition.}
 \item{UpperLimit}{The upper limit or an R expression defining the upper limit.}
 \item{Units}{The units of the upper limit.}
+\item{Statistic}{R function to calculate statistic of value.}
 }}
 \usage{
 limits
