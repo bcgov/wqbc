@@ -95,7 +95,7 @@ clean_wqdata_by <- function (x, max_cv, messages, FUN) {
 #' @param remove_blanks Should blanks be removed? Blanks are assumed to be denoted by
 #' a value of `"Blank..."` in the `SAMPLE_CLASS` column. Default `FALSE`
 #' @param messages A flag indicating whether to print messages.
-#' @param FUN The function to use for summaries, e.g. median, mean, or max.
+#' @param FUN The function to use for summaries, e.g. `median`, `mean`, or `max`. Default `mean`
 #'
 #' @examples
 #' clean_wqdata(wqbc::dummy, messages = TRUE)
