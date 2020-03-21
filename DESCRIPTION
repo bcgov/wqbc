@@ -22,7 +22,7 @@ BugReports: https://github.com/bcgov/wqbc/issues
 License: Apache License (== 2.0) | file LICENSE
 LazyData: true
 Depends:
-    R (>= 3.4)
+    R (>= 3.5)
 Imports:
     chk,
     plyr (>= 1.8.1),
