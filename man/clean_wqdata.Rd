@@ -39,7 +39,7 @@ a value of \code{"Blank..."} in the \code{SAMPLE_CLASS} column. Default \code{FA
 
 \item{messages}{A flag indicating whether to print messages.}
 
-\item{FUN}{The function to use for summaries, e.g. median, mean, or max.}
+\item{FUN}{The function to use for summaries, e.g. \code{median}, \code{mean}, or \code{max}. Default \code{mean}}
 }
 \description{
 Cleans water quality data. After standardization using \code{\link{standardize_wqdata}}
