@@ -2,19 +2,16 @@ Package: wqbc
 Type: Package
 Title: Tidy Water Quality Data and Calculate Thresholds for British Columbia
 Version: 0.3.1.9002
-Date: 2017-08-17
-Authors@R: c(person("Joe", "Thorley", email = "joe@poissonconsulting.ca",
-                    role = c("aut", "ctr"),
-                    comment = "Primary author"),
-	     	 person("Colin", "Millar", email = "colinpmillar@gmail.com",
-	     	        role = c("aut", "ctr")),
-	     	 person("Andy", "Teucher", email = "andy.teucher@gov.bc.ca",
-	     	        role = c("aut", "cre")),
-	     	 person("Wendy", "Wang", role = c("ctb", "ctr")),
-	     	 person("Stephanie", "Hazlitt", email = "stephanie.hazlitt@gov.bc.ca",
-	     	        role = "ctb"),
-	     	 person("Robyn", "Irvine", role = c("ctb", "ctr")),
-	     	 person("Province of British Columbia", role = "cph"))
+Authors@R: c(
+    person("Joe", "Thorley", , "joe@poissonconsulting.ca", c("aut", "ctr"), comment = c(ORCID = "0000-0002-7683-4592")),
+	  person("Colin", "Millar", , "colinpmillar@gmail.com", c("aut", "ctr")),
+	  person("Andy", "Teucher", , "andy.teucher@gov.bc.ca", c("aut", "cre")),
+    person("Sebastian", "Dalgarno", , "seb@poissonconsulting.ca", "ctb", comment = c(ORCID = "0000-0002-3658-4517")),
+	  person("Wendy", "Wang", role = c("ctb", "ctr")),
+	  person("Stephanie", "Hazlitt", , "stephanie.hazlitt@gov.bc.ca", "ctb"),
+	  person("Robyn", "Irvine", role = c("ctb", "ctr")),
+	  person("Province of British Columbia", role = "cph")
+  )
 Description: Tidies water quality data and calculates water quality thresholds 
     for British Columbia.
 URL: https://github.com/bcgov/wqbc
