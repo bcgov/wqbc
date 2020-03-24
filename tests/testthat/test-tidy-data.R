@@ -255,3 +255,20 @@ test_that("tidy_ec_data works", {
   tidied_ec <- tidy_ec_data(test_ec, cols = "STATUS_STATUT")
   expect_equal(names(tidied_ec), c(default_ec_names, "STATUS_STATUT"))
 })
+
+test_that("clean_wqgdata FUN works", {
+
+  test_ems2 <- test_ems
+  test_ems2$RESULT <- c(5, NA, 1.1)
+  test_ems <- rbind(test_ems, test_ems2)
+  tidy_ems <- tidy_ems_data(test_ems)
+  clean_ems <- clean_wqdata(tidy_ems)
+  clean_ems2 <- clean_wqdata(tidy_ems, FUN = max)
+  clean_ems3 <- clean_wqdata(tidy_ems, FUN = median)
+
+  expect_identical(clean_ems$Value[1], 12.3)
+  expect_identical(clean_ems2$Value[1], 19.6)
+  expect_identical(clean_ems3$Value[1], 12.3)
+
+  expect_error(clean_wqdata(tidy_ems, FUN = "median"), class = "chk_error")
+})

@@ -4,13 +4,15 @@
 \name{codes}
 \alias{codes}
 \title{Water Quality Parameter Codes and Units for British Columbia}
-\format{A data frame with 4 variables:
+\format{
+A data frame with 4 variables:
 \describe{
 \item{Variable}{The name of the variable.}
 \item{Code}{The EMS code in expanded form.}
 \item{Units}{The standard units for the variable.}
 \item{EC_Code}{The Variable Code in the Environment Canada data.}
-}}
+}
+}
 \usage{
 codes
 }
