@@ -22,7 +22,7 @@ BugReports: https://github.com/bcgov/wqbc/issues
 License: Apache License (== 2.0) | file LICENSE
 LazyData: true
 Depends:
-    R (>= 3.5)
+    R (>= 3.4)
 Imports:
     chk,
     plyr (>= 1.8.1),
@@ -44,7 +44,7 @@ Suggests:
     ggplot2 (>= 1.0.0),
     rmarkdown,
     xtable (>= 1.7-4),
-    rems (>= 0.4.0.9999),
+    rems (>= 0.5.1),
     canwqdata,
     Kendall,
     covr
