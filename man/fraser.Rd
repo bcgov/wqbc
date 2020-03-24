@@ -4,7 +4,8 @@
 \name{fraser}
 \alias{fraser}
 \title{Fraser River Basin Long-term Water Quality Monitoring 1979-Present}
-\format{A data frame with 8 columns:
+\format{
+A data frame with 8 columns:
 \describe{
 \item{SiteID}{The unique water quality station number.}
 \item{Date}{The date of the reading.}
@@ -14,7 +15,8 @@
 \item{Site}{The full name of the station.}
 \item{Lat}{The latitude of the station in decimal degrees.}
 \item{Long}{The longitude of the station in decimal degrees.}
-}}
+}
+}
 \source{
 \url{http://open.canada.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18}
 }
