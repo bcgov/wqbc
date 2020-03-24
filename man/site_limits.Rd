@@ -4,7 +4,8 @@
 \name{site_limits}
 \alias{site_limits}
 \title{Example Site Specific Limits}
-\format{A tibble
+\format{
+A tibble
 \describe{
 \item{Station_Name}{The name of the station as a character.}
 \item{Variable}{The variable name as character.}
@@ -15,7 +16,8 @@
 \item{Code}{The EMS codes as a character.}
 \item{EMS_ID}{The station EMS ID as a character.}
 \item{Use}{The use name as character.}
-}}
+}
+}
 \usage{
 site_limits
 }
