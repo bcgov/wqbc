@@ -27,93 +27,67 @@ limits_new <- dplyr::mutate(limits_new,
   slice(1) %>%
   ungroup()
 
-### remove mercury duplicate if hasnt been resolved yet on bcdata
-mercury_index <- limits_new$Variable == "Mercury Total" & limits_new$UpperLimit == 0.02
-
-if(is.na(limits_new$Condition[mercury_index])){
-  limits_new <- limits_new[!mercury_index,]
-}
-
-### remove Chlorophenol duplicates (since they have identical EMS_Code)
-if(sum(limits_new$EMS_Code == "EMS_M050") > 1){
-  limits_new <- limits_new %>%
-    filter(EMS_Code != "EMS_M050")
-}
+### remove duplicates
+limits_new <- limits_new %>%
+  dplyr::group_by(EMS_Code, Use, Term, Condition) %>%
+  dplyr::filter(dplyr::n() == 1) %>%
+  dplyr::ungroup()
 
 ### ensure that no duplicates
 expect_true(all(limits_new %>%
-                  dplyr::group_by(Variable, Use, Term, Condition) %>%
+                  dplyr::group_by(EMS_Code, Use, Term, Condition) %>%
                   dplyr::mutate(n = dplyr::n()) %>%
                   dplyr::ungroup() %>%
-                  dplyr::pull(n)))
+                  dplyr::pull(n) == 1))
 
-### leave old codes where possible to maintain EC_Code values
-# codes_new <- limits_new %>%
-#   select(Variable, Code = EMS_Code, Units, Average = Statistic) %>%
-#   mutate(EC_Code = NA_integer_)
+# limits <- limits %>%
+#   left_join(select(codes, Variable, Code), "Variable")
 #
-# missing_codes <- anti_join(codes_new, codes,
-#                            by = c("Variable", "Code", "Units", "Average"))
-# codes <- rbind(missing_codes, codes) %>%
-#   distinct()
-
-limits <- limits %>%
-  left_join(select(codes, Variable, Code), "Variable")
-
-limits$EMS_Code <- limits$Code
+# limits$EMS_Code <- limits$Code
 
 # get all missing limits from old table and then remove them one by one based on discussion here:
 # https://github.com/bcgov/wqg_data/issues/83
-tmp <- anti_join(limits, limits_new, c("EMS_Code", "Term"))
+# tmp <- anti_join(limits, limits_new, c("EMS_Code", "Term"))
+#
+# ### remove copper total, nitrogen dissolved, nitrogen total, phosphorous dissolved limits
+# tmp <- tmp %>%
+#   filter(!(EMS_Code %in% c("EMS_P__D", "EMS_1114", "EMS_0114", "EMS_CU_T", "EMS_0104")))
+#
+# ### Term is incorrect in old table for EMS_AS_T, EMS_CLO3, EMS_MTBE
+# tmp <- tmp %>%
+#   filter(!(EMS_Code %in% c("EMS_AS_T", "EMS_MTBE", "EMS_CLO3", "EMS_CL03")))
+#
+# ### remove Chlorine Residual and Phosphorous Total because have ConditionNotes
+# tmp <- tmp %>%
+#   filter(!(EMS_Code %in% c("EMS_1016", "EMS_P__T")))
+#
+# ### remove EMS_NAPH as replace by EMS_PA14
+# tmp <- tmp %>%
+#   filter(!(EMS_Code %in% c("EMS_NAPH")))
+#
+# ### remove Alkalinity Total as replaced by Alkalinity (CaCO3) Total
+# tmp <- tmp %>%
+#   filter(!(EMS_Code == "EMS_AK_T"))
+#
+# ### confirm that all cases have been dealt with
+# expect_identical(nrow(tmp), 0L)
 
-### remove copper total, nitrogen dissolved, nitrogen total, phosphorous dissolved limits
-tmp <- tmp %>%
-  filter(!(EMS_Code %in% c("EMS_P__D", "EMS_1114", "EMS_0114", "EMS_CU_T", "EMS_0104")))
 
-### Term is incorrect in old table for EMS_AS_T, EMS_CLO3, EMS_MTBE
-tmp <- tmp %>%
-  filter(!(EMS_Code %in% c("EMS_AS_T", "EMS_MTBE", "EMS_CLO3", "EMS_CL03")))
-
-### remove Chlorine Residual and Phosphorous Total because have ConditionNotes
-tmp <- tmp %>%
-  filter(!(EMS_Code %in% c("EMS_1016", "EMS_P__T")))
-
-### remove EMS_NAPH as replace by EMS_PA14
-tmp <- tmp %>%
-  filter(!(EMS_Code %in% c("EMS_NAPH")))
-
-### remove Alkalinity Total as replaced by Alkalinity (CaCO3) Total
-tmp <- tmp %>%
-  filter(!(EMS_Code == "EMS_AK_T"))
-
-### confirm that all cases have been dealt with
-expect_identical(nrow(tmp), 0L)
-
-### units
-limits_new$Units[limits_new$Units == "mg/L N"] <- "mg/L"
-limits_new$Units[limits_new$Variable == "Barium Total"] <- "mg/L"
-
-### deal with hardness equations
+### deal with hardness equations (only include Hardness Total when both Hardness Total and Hardnes Dissolved)
 modified <- limits_new$Condition[which(stringr::str_detect(limits_new$Condition, "EMS_0107"))] %>%
   stringr::str_split_fixed("\\|", 2)
 modified <- modified[, 1]
 limits_new$Condition[which(stringr::str_detect(limits_new$Condition, "EMS_0107"))] <- modified
 
-### replace LN with log (if not already resolved in dataBC version)
-limits_new$UpperLimit %<>%
-  stringr::str_replace_all("LN", "log")
-
 ### replace Aluminum with Aluminium
 limits_new$Variable %<>%
   stringr::str_replace_all("Aluminum", "Aluminium")
 
-### deal with
-limits <- limits_new %>% distinct()
-### create new codes table
+### create new codes table and grab EC_Code from old table where possible
 ec_codes <- select(codes, Code, EC_Code) %>%
   filter(Code %in% unique(limits$EMS_Code), !is.na(EC_Code))
 
-codes_new <- limits %>%
+codes_new <- limits_new %>%
   select(Variable, Code = EMS_Code, Units) %>%
   distinct() %>%
   left_join(ec_codes, "Code")
@@ -124,6 +98,8 @@ missing_codes$Average <- NULL
 codes <- rbind(codes_new, missing_codes)
 # remove ems_code error
 codes <- codes[!(codes$Code == "EMS_CL03"),]
+
+limits <- limits_new
 
 #### check limits
 stopifnot(all(!is.na(select(limits, -Condition))))
@@ -149,10 +125,13 @@ limits <- inner_join(limits, select(codes, EMS_Code = Code, Units), by = "EMS_Co
 stopifnot(all(limits$..Units == limits$Units))
 limits$..Units <- NULL
 
-limits %<>% arrange(Variable, Use, Term)
-codes %<>% arrange(Variable, Code)
+limits  <- limits %>%
+  arrange(Variable, Use, Term)
+codes <- codes %>%
+  arrange(Variable, Code)
 
-limits %<>% select(Variable, Use, Term, Condition, UpperLimit, Units, Statistic)
+limits  <- limits %>%
+  select(Variable, Use, Term, Condition, UpperLimit, Units, Statistic)
 
 stopifnot(identical(colnames(codes), c("Variable", "Code", "Units", "EC_Code")))
 
