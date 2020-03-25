@@ -3,8 +3,8 @@ library(dplyr)
 load("data/codes.rda")
 
 ###### ------ create new limits table from new guidelines
-limits_new <- bcdata::bcdc_get_data(record = "85d3990a-ec0a-4436-8ebd-150de3ba0747")
-limits_new <- dplyr::mutate(limits_new,
+limits <- bcdata::bcdc_get_data(record = "85d3990a-ec0a-4436-8ebd-150de3ba0747")
+limits <- dplyr::mutate(limit,
                             Condition = dplyr::if_else(Condition == "",
                                                        NA_character_, Condition)) %>%
   dplyr::filter(Use == "Aquatic Life - Freshwater",
@@ -27,33 +27,33 @@ limits_new <- dplyr::mutate(limits_new,
   ungroup()
 
 ### remove duplicates
-limits_new <- limits_new %>%
+limits <- limits %>%
   dplyr::group_by(EMS_Code, Use, Term, Condition) %>%
   dplyr::filter(dplyr::n() == 1) %>%
   dplyr::ungroup()
 
 ### ensure that no duplicates
-stopifnot(all(limits_new %>%
+stopifnot(all(limits %>%
                 dplyr::group_by(EMS_Code, Use, Term, Condition) %>%
                 dplyr::mutate(n = dplyr::n()) %>%
                 dplyr::ungroup() %>%
                 dplyr::pull(n) == 1))
 
 ### deal with hardness equations (only include Hardness Total when both Hardness Total and Hardnes Dissolved)
-modified <- limits_new$Condition[which(stringr::str_detect(limits_new$Condition, "EMS_0107"))] %>%
+modified <- limits$Condition[which(stringr::str_detect(limits$Condition, "EMS_0107"))] %>%
   stringr::str_split_fixed("\\|", 2)
 modified <- modified[stringr::str_detect(modified, "EMS_0107")]
-limits_new$Condition[which(stringr::str_detect(limits_new$Condition, "EMS_0107"))] <- modified
+limits$Condition[which(stringr::str_detect(limits$Condition, "EMS_0107"))] <- modified
 
 ### replace Aluminum with Aluminium
-limits_new$Variable %<>%
+limits$Variable %<>%
   stringr::str_replace_all("Aluminum", "Aluminium")
 
 ### create new codes table and grab EC_Code from old table where possible
 ec_codes <- select(codes, Code, EC_Code) %>%
-  filter(Code %in% unique(limits_new$EMS_Code), !is.na(EC_Code))
+  filter(Code %in% unique(limits$EMS_Code), !is.na(EC_Code))
 
-codes_new <- limits_new %>%
+codes_new <- limits %>%
   select(Variable, Code = EMS_Code, Units) %>%
   distinct() %>%
   left_join(ec_codes, "Code")
@@ -64,8 +64,6 @@ missing_codes$Average <- NULL
 codes <- rbind(codes_new, missing_codes)
 # remove ems_code error
 codes <- codes[!(codes$Code == "EMS_CL03"),]
-
-limits <- limits_new
 
 #### check limits
 stopifnot(all(!is.na(select(limits, -Condition))))
