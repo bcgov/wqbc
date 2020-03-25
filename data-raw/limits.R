@@ -32,13 +32,6 @@ limits <- limits %>%
   dplyr::filter(dplyr::n() == 1) %>%
   dplyr::ungroup()
 
-### ensure that no duplicates
-stopifnot(all(limits %>%
-                dplyr::group_by(EMS_Code, Use, Term, Condition) %>%
-                dplyr::mutate(n = dplyr::n()) %>%
-                dplyr::ungroup() %>%
-                dplyr::pull(n) == 1))
-
 ### deal with hardness equations (only include Hardness Total when both Hardness Total and Hardnes Dissolved)
 modified <- limits$Condition[which(stringr::str_detect(limits$Condition, "EMS_0107"))] %>%
   stringr::str_split_fixed("\\|", 2)
@@ -62,6 +55,13 @@ codes <- rbind(codes_new, missing_codes)
 codes <- codes[!(codes$Code == "EMS_CL03"),]
 
 #### check limits
+# ensure that no duplicates
+stopifnot(all(limits %>%
+                dplyr::group_by(EMS_Code, Use, Term, Condition) %>%
+                dplyr::mutate(n = dplyr::n()) %>%
+                dplyr::ungroup() %>%
+                dplyr::pull(n) == 1))
+
 stopifnot(all(!is.na(select(limits, -Condition))))
 
 stopifnot(all(limits$Term %in% c("Short", "Long")))
