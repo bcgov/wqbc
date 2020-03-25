@@ -15,20 +15,19 @@ coverage](https://codecov.io/gh/bcgov/wqbc/branch/master/graph/badge.svg)](https
 
 ## Overview
 
-The `wqbc` R package helps clean and process water quality data and
-calculates water quality thresholds for British Columbia. Previously
-this package also calculated the [CCME Water Quality
+The `wqbc` R package facilitates cleaning and tidying water quality data
+and calculating water quality thresholds for British Columbia.
+Previously it also calculated the [CCME Water Quality
 Index](http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html)
-but that functionality has been moved to its own package:
-[wqindex](https://github.com/bcgov/wqindex).
+but that functionality has been moved to the
+[wqindex](https://github.com/bcgov/wqindex) package.
 
-This package was written for the B.C. Ministry of Environment by
-[Poisson Consulting](http://www.poissonconsulting.ca/). Ministry of
-Environment staff maintain the package.
+`wqbc` was written by B.C. Ministry of Environment and [Poisson
+Consulting](http://www.poissonconsulting.ca/) team members.
 
 ## Usage
 
-For information on use, please see the
+For more information please see the
 [vignette](https://htmlpreview.github.com/?https://github.com/bcgov/wqbc/master/inst/doc/wqbc.html).
 In your R session, you can type `vignette("wqbc")` to see the vignette.
 Please note that this vignette is currently out of date as it includes
@@ -37,13 +36,11 @@ to its own package [wqindex](https://github.com/bcgov/wqindex)).
 
 ## Install
 
-To install the latest version of wqbc:
+To install and load the latest version of wqbc:
 
 ``` r
-# install the devtools package if it's not already installed
-# install.packages("devtools")
-library(devtools)
-install_github("bcgov/wqbc")
+# install.packages("remotes") # if remotes is not installed
+remotes::install_github("bcgov/wqbc")
 library(wqbc)
 ```
 

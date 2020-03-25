@@ -2,19 +2,16 @@ Package: wqbc
 Type: Package
 Title: Tidy Water Quality Data and Calculate Thresholds for British Columbia
 Version: 0.3.1.9002
-Date: 2017-08-17
-Authors@R: c(person("Joe", "Thorley", email = "joe@poissonconsulting.ca",
-                    role = c("aut", "ctr"),
-                    comment = "Primary author"),
-	     	 person("Colin", "Millar", email = "colinpmillar@gmail.com",
-	     	        role = c("aut", "ctr")),
-	     	 person("Andy", "Teucher", email = "andy.teucher@gov.bc.ca",
-	     	        role = c("aut", "cre")),
-	     	 person("Wendy", "Wang", role = c("ctb", "ctr")),
-	     	 person("Stephanie", "Hazlitt", email = "stephanie.hazlitt@gov.bc.ca",
-	     	        role = "ctb"),
-	     	 person("Robyn", "Irvine", role = c("ctb", "ctr")),
-	     	 person("Province of British Columbia", role = "cph"))
+Authors@R: c(
+    person("Joe", "Thorley", , "joe@poissonconsulting.ca", c("aut", "ctr"), comment = c(ORCID = "0000-0002-7683-4592")),
+	  person("Colin", "Millar", , "colinpmillar@gmail.com", c("aut", "ctr")),
+	  person("Andy", "Teucher", , "andy.teucher@gov.bc.ca", c("aut", "cre")),
+    person("Sebastian", "Dalgarno", , "seb@poissonconsulting.ca", "ctb", comment = c(ORCID = "0000-0002-3658-4517")),
+	  person("Wendy", "Wang", role = c("ctb", "ctr")),
+	  person("Stephanie", "Hazlitt", , "stephanie.hazlitt@gov.bc.ca", "ctb"),
+	  person("Robyn", "Irvine", role = c("ctb", "ctr")),
+	  person("Province of British Columbia", role = "cph")
+  )
 Description: Tidies water quality data and calculates water quality thresholds 
     for British Columbia.
 URL: https://github.com/bcgov/wqbc
@@ -22,29 +19,29 @@ BugReports: https://github.com/bcgov/wqbc/issues
 License: Apache License (== 2.0) | file LICENSE
 LazyData: true
 Depends:
-    R (>= 3.1.2)
+    R (>= 3.4)
 Imports:
     chk,
-    plyr (>= 1.8.1),
-    dplyr (>= 0.7.0),
-    rlang (>= 0.2.0),
+    plyr,
+    dplyr,
+    rlang,
     zyp,
     magrittr,
     purrr,
     grDevices,
-    stringr (>= 0.6.2),
+    stringr,
     stats,
     tibble,
-    tidyr (>= 1.0.0),
+    tidyr,
     mgcv,
-    lubridate (>= 1.3.3),
+    lubridate,
 Suggests:
-    testthat (>= 0.9.1),
+    testthat,
     knitr,
-    ggplot2 (>= 1.0.0),
+    ggplot2,
     rmarkdown,
-    xtable (>= 1.7-4),
-    rems (>= 0.4.0.9999),
+    xtable,
+    rems (>= 0.5.1),
     canwqdata,
     Kendall,
     covr
@@ -52,6 +49,6 @@ Remotes:
     bcgov/rems,
     bcgov/canwqdata
 VignetteBuilder: knitr
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8

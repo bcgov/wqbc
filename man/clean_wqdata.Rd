@@ -13,7 +13,8 @@ clean_wqdata(
   large_only = TRUE,
   delete_outliers = FALSE,
   remove_blanks = FALSE,
-  messages = getOption("wqbc.messages", default = TRUE)
+  messages = getOption("wqbc.messages", default = TRUE),
+  FUN = mean
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ of variation for replicates.}
 a value of \code{"Blank..."} in the \code{SAMPLE_CLASS} column. Default \code{FALSE}}
 
 \item{messages}{A flag indicating whether to print messages.}
+
+\item{FUN}{The function to use for summaries, e.g. \code{median}, \code{mean}, or \code{max}. Default \code{mean}}
 }
 \description{
 Cleans water quality data. After standardization using \code{\link{standardize_wqdata}}
