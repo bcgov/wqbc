@@ -4,7 +4,7 @@ load("data/codes.rda")
 
 ###### ------ create new limits table from new guidelines
 limits <- bcdata::bcdc_get_data(record = "85d3990a-ec0a-4436-8ebd-150de3ba0747")
-limits <- dplyr::mutate(limit,
+limits <- dplyr::mutate(limits,
                             Condition = dplyr::if_else(Condition == "",
                                                        NA_character_, Condition)) %>%
   dplyr::filter(Use == "Aquatic Life - Freshwater",
@@ -44,10 +44,6 @@ modified <- limits$Condition[which(stringr::str_detect(limits$Condition, "EMS_01
   stringr::str_split_fixed("\\|", 2)
 modified <- modified[stringr::str_detect(modified, "EMS_0107")]
 limits$Condition[which(stringr::str_detect(limits$Condition, "EMS_0107"))] <- modified
-
-### replace Aluminum with Aluminium
-limits$Variable %<>%
-  stringr::str_replace_all("Aluminum", "Aluminium")
 
 ### create new codes table and grab EC_Code from old table where possible
 ec_codes <- select(codes, Code, EC_Code) %>%

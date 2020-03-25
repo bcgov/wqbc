@@ -23,6 +23,9 @@ rm(list = ls())
 
 input_codes <- function() {
   codes <- read.csv("data-raw/codes.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
+  codes$Variable  <- codes$Variable %>%
+    stringr::str_replace_all("Aluminium", "Aluminum")
+
   stopifnot(identical(colnames(codes), c("Variable", "Code", "Units", "Average", "EC_Code")))
 
   stopifnot(all(!is.na(codes[c("Variable", "Code", "Units", "Average")])))

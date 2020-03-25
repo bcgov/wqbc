@@ -54,27 +54,27 @@ test_that("lookup_limits", {
   expect_equal(as.character(x$Unit[x$Variable == "Aldicarb Total"]), "ug/L") # check if Aldicarb Total has unit ug/L
 
   z <- lookup_limits(term = "long", ph = 9) # EMS_0004
-  expect_equal(z$UpperLimit[z$Variable == "Aluminium Dissolved"], 0.050) # check if Aluminium Dissolved with ph=9 and long term equals to 0.05 upperlimits
+  expect_equal(z$UpperLimit[z$Variable == "Aluminum Dissolved"], 0.050) # check if Aluminum Dissolved with ph=9 and long term equals to 0.05 upperlimits
 
   m <- lookup_limits(term = "long", ph = 6.5) # EMS_0004
-  expect_equal(z$UpperLimit[z$Variable == "Aluminium Dissolved"], 0.050) # check if Aluminium Dissolved with ph=9 and long term equals to 0.05 upperlimits
+  expect_equal(z$UpperLimit[z$Variable == "Aluminum Dissolved"], 0.050) # check if Aluminum Dissolved with ph=9 and long term equals to 0.05 upperlimits
 
   n <- lookup_limits(term = "long", ph = 5) # EMS_0004
-  expect_equal(as.character(n$Unit[n$Variable == "Aluminium Dissolved"]), "mg/L") # check units with different conditions
-  expect_equal(n$UpperLimit[n$Variable == "Aluminium Dissolved"], 0.006839778)
+  expect_equal(as.character(n$Unit[n$Variable == "Aluminum Dissolved"]), "mg/L") # check units with different conditions
+  expect_equal(n$UpperLimit[n$Variable == "Aluminum Dissolved"], 0.006839778)
   expect_equal(as.character(n$UpperLimit[n$Variable == "Cadmium Dissolved"]), as.character(NA)) # upperlimit with NA
   expect_equal(as.character(n$UpperLimit[n$Variable == "Sulphate Total"]), as.character(NA))
 
   q <- lookup_limits(term = "short")
-  expect_equal(as.character(q$UpperLimit[q$Variable == "Aluminium Dissolved"]), as.character(NA))
+  expect_equal(as.character(q$UpperLimit[q$Variable == "Aluminum Dissolved"]), as.character(NA))
   expect_equal(q$UpperLimit[q$Variable == "Polychlorinated Biphenyls Total"], 0.10)
   expect_equal(as.character(q$Unit[q$Variable == "Polychlorinated Biphenyls Total"]), "ng/L")
 
   p <- lookup_limits(term = "short", ph = 9) # EMS_0004
-  expect_equal(as.character(p$Unit[p$Variable == "Aluminium Dissolved"]), "mg/L")
+  expect_equal(as.character(p$Unit[p$Variable == "Aluminum Dissolved"]), "mg/L")
   expect_equal(as.character(p$Unit[p$Variable == "Lead Total"]), "ug/L")
   expect_equal(as.character(p$Unit[p$Variable == "Ethinylestradiol 17a Total"]), "ng/L")
-  expect_equal(p$UpperLimit[p$Variable == "Aluminium Dissolved"], 0.10)
+  expect_equal(p$UpperLimit[p$Variable == "Aluminum Dissolved"], 0.10)
   expect_equal(p$UpperLimit[p$Variable == "Cobalt Total"], 110.00)
   expect_equal(as.character(p$UpperLimit[p$Variable == "Lead Total"]), as.character(NA))
   expect_equal(as.character(p$UpperLimit[p$Variable == "Manganese Total"]), as.character(NA))
@@ -82,10 +82,10 @@ test_that("lookup_limits", {
 
 
   i <- lookup_limits(term = "short", ph = 6.5) # EMS_0004
-  expect_equal(as.character(i$Unit[i$Variable == "Aluminium Dissolved"]), "mg/L")
+  expect_equal(as.character(i$Unit[i$Variable == "Aluminum Dissolved"]), "mg/L")
   expect_equal(as.character(i$Unit[i$Variable == "Cyanide weak acid dissociable Total"]), "ug/L")
   expect_equal(as.character(i$Unit[i$Variable == "Polychlorinated Biphenyls Total"]), "ng/L")
-  expect_equal(i$UpperLimit[i$Variable == "Aluminium Dissolved"], 0.1)
+  expect_equal(i$UpperLimit[i$Variable == "Aluminum Dissolved"], 0.1)
   expect_equal(as.character(i$UpperLimit[i$Variable == "Silver Total"]), as.character(NA))
   expect_equal(as.character(i$UpperLimit[i$Variable == "Zinc Total"]), as.character(NA))
 
