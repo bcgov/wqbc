@@ -75,7 +75,7 @@ expect_true(all(limits_new %>%
 
 ### deal with hardness equations (only include Hardness Total when both Hardness Total and Hardnes Dissolved)
 modified <- limits_new$Condition[which(stringr::str_detect(limits_new$Condition, "EMS_0107"))] %>%
-  stringr::str_split_fixed("\\|", 2)
+  stringr::str_split_fixed("\\s?\\|\\s?", 2)
 modified <- modified[, 1]
 limits_new$Condition[which(stringr::str_detect(limits_new$Condition, "EMS_0107"))] <- modified
 
