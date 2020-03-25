@@ -4,8 +4,7 @@
 \name{limits}
 \alias{limits}
 \title{Water Quality Limits for British Columbia}
-\format{
-A data frame with 6 variables:
+\format{A data frame with 6 variables:
 \describe{
 \item{Variable}{The name of the variable.}
 \item{Use}{The name of the Use.}
@@ -13,8 +12,8 @@ A data frame with 6 variables:
 \item{Condition}{A logical R expression to test for the required condition.}
 \item{UpperLimit}{The upper limit or an R expression defining the upper limit.}
 \item{Units}{The units of the upper limit.}
-}
-}
+\item{Statistic}{R function to calculate statistic of value.}
+}}
 \usage{
 limits
 }

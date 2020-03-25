@@ -5,8 +5,7 @@
 \alias{vmv_ems}
 \title{A crosswalk table linking EMS codes to Environment and Climate Change Canada
 VMV codes}
-\format{
-A tibble
+\format{A tibble
 \describe{
 \item{EMS_CODE}{EMS Code for the variable}
 \item{EMS_VARIABLE}{EMS name for the variable}
@@ -23,8 +22,7 @@ A tibble
 \item{VMV_UNIT_NAME}{VMV name for the unit}
 \item{VMV_METHOD_CODE}{VMV code for the method}
 \item{VMV_METHOD_TITLE}{VMV name for the method}
-}
-}
+}}
 \usage{
 vmv_ems
 }
