@@ -20,7 +20,7 @@
 
 # download hydat database 'Hydat_sqlite3_20161017.zip' from:
 # http://collaboration.cmc.ec.gc.ca/cmc/hydrometrics/www/
-hydatzip <- "Hydat_sqlite3_20161017.zip"
+hydatzip <- "Hydat_sqlite3_20200118.zip"
 if (!file.exists(paste0("data-raw/hydat/", hydatzip))) {
   ret <-
     download.file(
@@ -98,34 +98,31 @@ yuepilon <-
   yuepilon %>%
   select(station_number, year, flow) %>%
   group_by(station_number, year) %>%
-  summarise(flow = mean(flow)) %>%
+  dplyr::summarise(flow = mean(flow)) %>%
   ungroup() %>%
   mutate(Date = as.Date(as.character(year), format = "%Y"))
 
 # rename colmns
 yuepilon <-
   yuepilon %>%
-  rename(Station = station_number, Value = flow) %>%
+  dplyr::rename(Station = station_number, Value = flow) %>%
   mutate(Variable = "mean_annual_flow", Units = "m^3/s") %>%
   select(Station, Date, Variable, Value, Units)
 
 # join on station info
 stations <-
   stations %>%
-  rename(Station = STATION_NUMBER, Site = STATION_NAME, Lat = LATITUDE, Long = LONGITUDE) %>%
+  dplyr::rename(Station = STATION_NUMBER, Site = STATION_NAME, Lat = LATITUDE, Long = LONGITUDE) %>%
   select(Station, Site, Lat, Long)
 
 yuepilon <-
   yuepilon %>%
   left_join(stations, by = "Station")
 
-# save data for use in package ---------------
-library(devtools)
-
 # save data as csv
 write.csv(yuepilon, "data-raw/hydat/yuepilon.csv", row.names = FALSE)
 
 # add data to package
-use_data(yuepilon, pkg = as.package("."), overwrite = TRUE, compress = "xz")
+usethis::use_data(yuepilon, overwrite = TRUE, compress = "xz")
 # improve compression
 # tools::resaveRdaFiles("data/yuepilon.rda")
