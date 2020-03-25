@@ -22,12 +22,13 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Joe Thorley \email{joe@poissonconsulting.ca} (Primary author) [contractor]
+  \item Joe Thorley \email{joe@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-7683-4592}{ORCID}) [contractor]
   \item Colin Millar \email{colinpmillar@gmail.com} [contractor]
 }
 
 Other contributors:
 \itemize{
+  \item Sebastian Dalgarno \email{seb@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-3658-4517}{ORCID}) [contributor]
   \item Wendy Wang [contributor, contractor]
   \item Stephanie Hazlitt \email{stephanie.hazlitt@gov.bc.ca} [contributor]
   \item Robyn Irvine [contributor, contractor]

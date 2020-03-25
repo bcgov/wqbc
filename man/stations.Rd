@@ -4,15 +4,13 @@
 \name{stations}
 \alias{stations}
 \title{Water Quality Stations for British Columbia}
-\format{
-A tibble with 4 variables:
+\format{A tibble with 4 variables:
 \describe{
 \item{EMS_ID}{The station ID (chr).}
 \item{Station_Name}{The EMS name of the station (chr).}
 \item{Latitude}{The station latitude in decimal degrees (dbl).}
 \item{Longitude}{The station longitude in decimal degrees (dbl).}
-}
-}
+}}
 \usage{
 stations
 }

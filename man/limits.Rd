@@ -4,8 +4,7 @@
 \name{limits}
 \alias{limits}
 \title{Water Quality Limits for British Columbia}
-\format{
-A data frame with 6 variables:
+\format{A data frame with 6 variables:
 \describe{
 \item{Variable}{The name of the variable.}
 \item{Use}{The name of the Use.}
