@@ -132,7 +132,7 @@ abs_days_diff <- function(x, y) {
 
 assign_30day_periods <- function(x, dates) {
   if (!is.null(dates)) dates <- sort(unique(dates))
-  y <- unique(dplyr::select_(x, ~Date))
+  y <- unique(dplyr::select(x, .data$Date))
   y <- dplyr::arrange_(y, ~Date)
   y$Period <- NA
 
@@ -224,9 +224,9 @@ calc_limits_by <- function(x, term, dates, limits, messages) {
   }
 
   if (!is.null(x$DetectionLimit)) {
-    x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~DetectionLimit, ~Units)
+    x <- dplyr::select(x, .data$Date, .data$Variable, .data$Value, .data$UpperLimit, .data$DetectionLimit, .data$Units)
   } else {
-    x <- dplyr::select_(x, ~Date, ~Variable, ~Value, ~UpperLimit, ~Units)
+    x <- dplyr::select(x, .data$Date, .data$Variable, .data$Value, .data$UpperLimit, .data$Units)
   }
   x
 }

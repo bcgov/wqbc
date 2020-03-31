@@ -91,7 +91,7 @@ test_trends <- function(data, breaks = NULL, FUN = "median", messages = getOptio
     Value = c(1, NA)))
 
   # keep only relevant columns
-  data %<>% dplyr::select_(~Station, ~Date, ~Variable, ~Value, ~Units)
+  data %<>% dplyr::select(.data$Station, .data$Date, .data$Variable, .data$Value, .data$Units)
 
   # nest for analysis
   data %<>% tidyr::nest(Data = c(.data$Date, .data$Value))
@@ -173,7 +173,7 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
     Value = c(1, NA)))
 
   # keep only relevant columns
-  data %<>% dplyr::select_(~Station, ~Date, ~Variable, ~Value, ~Units)
+  data %<>% dplyr::select(.data$Station, .data$Date, .data$Variable, .data$Value, .data$Units)
 
   # nest for analysis
   data %<>% tidyr::nest(Data = c(.data$Date, .data$Value))

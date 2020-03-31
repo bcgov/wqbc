@@ -61,11 +61,11 @@ test_that("delete_outliers vary data", {
   expect_equal(fit1a$Value[1], mean(fraser1a$Value, na.rm = TRUE))
 
   # test inputs
-  expect_error(estimate_variable_values(select_(fraser1, ~ -Station)))
-  expect_error(estimate_variable_values(select_(fraser1, ~ -Value)))
-  expect_error(estimate_variable_values(select_(fraser1, ~ -Variable)))
-  expect_error(estimate_variable_values(select_(fraser1, ~ -Unit)))
-  expect_error(estimate_variable_values(select_(fraser1, ~ -Date)))
+  expect_error(estimate_variable_values(select(fraser1, -.data$Station)))
+  expect_error(estimate_variable_values(select(fraser1, -.data$Value)))
+  expect_error(estimate_variable_values(select(fraser1, -.data$Variable)))
+  expect_error(estimate_variable_values(select(fraser1, -.data$Unit)))
+  expect_error(estimate_variable_values(select(fraser1, -.data$Date)))
 
   # check no predictions are made if no Hardness Total obs are present
   expect_identical(estimate_variable_values(fraser1c, messages = FALSE), fraser1c)

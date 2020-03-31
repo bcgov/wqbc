@@ -66,7 +66,7 @@ estimate_variable_values_by <- function(x, messages) {
     }
 
     # remove working columns
-    x %<>% dplyr::select_(~ -yday, ~ -day)
+    x %<>% dplyr::select(-.data$yday, -.data$day)
   }
   x
 }

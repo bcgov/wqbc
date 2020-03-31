@@ -120,11 +120,11 @@ setup_codes <- function() {
   codes <- wqbc_codes()
   codes$Date <- as.Date("2000-01-01")
   codes$Value <- 1
-  dplyr::select_(codes, ~Date, ~Variable, ~Value, ~Units)
+  dplyr::select(codes, .data$Date, .data$Variable, .data$Value, .data$Units)
 }
 
 tidyup_limits <- function(x) {
-  x <- dplyr::select_(x, ~Variable, ~UpperLimit, ~Units)
+  x <- dplyr::select(x, .data$Variable, .data$UpperLimit, .data$Units)
   x$Variable <- factor(x$Variable, levels = lookup_variables())
   x$Units <- factor(x$Units, levels = lookup_units())
   x <- dplyr::arrange_(x, ~Variable)
@@ -135,7 +135,7 @@ add_missing_limits <- function(x, term) {
   limits <- wqbc_limits()
   limits <- dplyr::filter_(limits, ~ tolower(Term) == tolower(term))
   limits <- dplyr::filter_(limits, ~ !Variable %in% x$Variable)
-  limits <- dplyr::select_(limits, ~Variable, ~Units)
+  limits <- dplyr::select(limits, .data$Variable, .data$Units)
   if (!nrow(limits)) {
     return(x)
   }
