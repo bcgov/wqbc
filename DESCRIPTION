@@ -31,7 +31,7 @@ Imports:
     grDevices,
     stringr,
     stats,
-    tibble,
+    tibble (>= 3.0.0),
     tidyr,
     mgcv,
     lubridate,
