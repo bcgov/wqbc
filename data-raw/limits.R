@@ -76,7 +76,7 @@ check_valid_expression <- function(x) {
 check_valid_expression(limits$Condition)
 check_valid_expression(limits$UpperLimit)
 
-limits <- rename_(limits, "..Units" = "Units")
+limits <- rename(limits, "..Units" = "Units")
 
 stopifnot(all(limits$Variable %in% codes$Variable))
 

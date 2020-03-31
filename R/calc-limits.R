@@ -17,7 +17,7 @@ wqbc_limits <- function(limits = wqbc::limits) {
 }
 
 join_codes <- function(x) {
-  x <- dplyr::rename_(x, "..Units" = "Units")
+  x <- dplyr::rename(x, "..Units" = "Units")
   x$Variable %<>% as.character()
   x %<>% dplyr::left_join(wqbc_codes(), by = "Variable")
   stopifnot(all(x$Units == x$..Units))
@@ -208,7 +208,7 @@ calc_limits_by_30day <- function(x, dates, messages) {
 calc_limits_by <- function(x, term, dates, limits, messages) {
   x <- join_codes(x)
   if ("Code.y" %in% names(x)) {
-    x <- dplyr::rename_(x, Code = "Code.y")
+    x <- dplyr::rename(x, Code = "Code.y")
   }
   x <- join_limits(x, limits)
 
