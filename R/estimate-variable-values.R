@@ -17,7 +17,7 @@ estimate_variable_values_by <- function(x, messages) {
   # skip modelling and return with NAs
   # here defined as 6 x the year range
   ndata_years <- x %>%
-    dplyr::filter_(~ !is.na(Value)) %>%
+    dplyr::filter(!is.na(.data$Value)) %>%
     dplyr::mutate_(year = ~ lubridate::year(Date)) %>%
     dplyr::group_by_(~year) %>%
     dplyr::tally()
@@ -87,7 +87,7 @@ estimate_variable_values <- function(data, by = NULL, variables = c("Chloride To
   for (variable in variables) {
     if (messages) message("Estimating ", variable)
 
-    new_data <- dplyr::filter_(data, ~ Variable == variable)
+    new_data <- dplyr::filter(data, .data$Variable == variable)
 
     if (nrow(new_data)) {
       new_data %<>% standardize_wqdata(messages = messages)
@@ -108,7 +108,7 @@ estimate_variable_values <- function(data, by = NULL, variables = c("Chloride To
         )
       }
 
-      data %<>% dplyr::filter_(~ !Variable == variable)
+      data %<>% dplyr::filter(.data$Variable != variable)
 
       data %<>% dplyr::bind_rows(new_data)
 

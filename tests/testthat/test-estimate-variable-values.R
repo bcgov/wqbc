@@ -15,17 +15,17 @@ context("estimate-variable-values")
 test_that("delete_outliers vary data", {
   fraser <- wqbc::fraser
   fraser$Station <- factor(sub("BC08", "", as.character(fraser$SiteID)))
-  fraser <- dplyr::filter_(fraser, ~ grepl("hardness", tolower(Variable)))
+  fraser <- dplyr::filter(fraser, grepl("hardness", tolower(.data$Variable)))
   # This is a temporary fix until we get more robust variable name matching
   fraser$Variable[grepl("hardness", tolower(fraser$Variable))] <- "Hardness Total"
 
-  fraser <- dplyr::filter_(fraser, ~ Station %in% "LF0001")
+  fraser <- dplyr::filter(fraser, .data$Station %in% "LF0001")
   fraser <- clean_wqdata(fraser, by = "Station", messages = FALSE)
 
 
   # create degraded data
-  fraser2 <- dplyr::filter_(fraser, ~ lubridate::year(Date) %in% 2012:2013)
-  fraser1 <- dplyr::filter_(fraser, ~ lubridate::year(Date) %in% 2012)
+  fraser2 <- dplyr::filter(fraser, lubridate::year(.data$Date) %in% 2012:2013)
+  fraser1 <- dplyr::filter(fraser, lubridate::year(.data$Date) %in% 2012)
   fraser2a <- dplyr::mutate_(fraser2, Value = ~ ifelse(lubridate::year(Date) == 2013 & lubridate::month(Date) > 5, NA, Value))
   fraser1a <- dplyr::mutate_(fraser1, Value = ~ ifelse(lubridate::month(Date) > 5, NA, Value))
   fraser1b <- dplyr::mutate_(fraser1, Value = ~ ifelse(seq_len(nrow(fraser1)) %% 2 == 0, NA, Value))
