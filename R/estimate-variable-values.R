@@ -19,7 +19,7 @@ estimate_variable_values_by <- function(x, messages) {
   ndata_years <- x %>%
     dplyr::filter(!is.na(.data$Value)) %>%
     dplyr::mutate_(year = ~ lubridate::year(Date)) %>%
-    dplyr::group_by_(~year) %>%
+    dplyr::group_by(.data$year) %>%
     dplyr::tally()
   ndata_years <- sum(ndata_years$n >= 12)
   if (ndata_years == 0) {
