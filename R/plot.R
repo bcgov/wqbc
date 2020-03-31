@@ -41,7 +41,7 @@ plot_timeseries_by <- function(data, title = NULL, y0, size, messages) {
   }
 
   if (any(!is.na(data$Detected))) {
-    gp <- gp + ggplot2::scale_alpha_discrete(range = c(1, 1 / 3), drop = FALSE)
+    suppressWarnings(gp <- gp + ggplot2::scale_alpha_discrete(range = c(1, 1 / 3), drop = FALSE))
   }
 
   if (y0) gp <- gp + ggplot2::expand_limits(y = 0)
