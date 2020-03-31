@@ -37,7 +37,8 @@ trend <- function(y) {
   ss.ci <- zyp::confint.zyp(ss, level = 0.95)
   # fill in estimate and confidence interval for slope
   out[1] <- stats::coef(ss)["Year"]
-  out[2:3] <- ss.ci["Year", ]
+  out[2] <- ss.ci["Year", ][1]
+  out[3] <- ss.ci["Year", ][2]
   out[4] <- stats::coef(ss)["Intercept"]
   out[5] <- !(out[2] <= 0 & out[3] >= 0)
   out
