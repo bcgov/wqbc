@@ -28,7 +28,7 @@ clean_wqdata_replicates <- function (x, max_cv, messages, FUN) {
   n <- nrow(x)
   cv <- cv(x$Value)
   if (cv(x$Value) > max_cv && nrow(x) > 2) {
-    x <- dplyr::arrange_(x, ~-Value)
+    x <- dplyr::arrange(x, dplyr::desc(.data$Value))
     while (cv(x$Value) > max_cv && nrow(x) > 2) {
       x <- x[-which.max(abs_dev(x$Value)), ]
     }

@@ -133,7 +133,7 @@ abs_days_diff <- function(x, y) {
 assign_30day_periods <- function(x, dates) {
   if (!is.null(dates)) dates <- sort(unique(dates))
   y <- unique(dplyr::select(x, .data$Date))
-  y <- dplyr::arrange_(y, ~Date)
+  y <- dplyr::arrange(y, .data$Date)
   y$Period <- NA
 
   period <- 1
@@ -192,7 +192,7 @@ calc_limits_by_30day <- function(x, dates, messages) {
     return(NULL)
   }
 
-  x <- dplyr::arrange_(x, ~Date)
+  x <- dplyr::arrange(x, .data$Date)
 
   x <- assign_30day_periods(x, dates)
   x <- plyr::ddply(x, c("Period"), average_30day_values)

@@ -127,7 +127,7 @@ tidyup_limits <- function(x) {
   x <- dplyr::select(x, .data$Variable, .data$UpperLimit, .data$Units)
   x$Variable <- factor(x$Variable, levels = lookup_variables())
   x$Units <- factor(x$Units, levels = lookup_units())
-  x <- dplyr::arrange_(x, ~Variable)
+  x <- dplyr::arrange(x, .data$Variable)
   x
 }
 
