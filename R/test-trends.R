@@ -49,7 +49,7 @@ do_test_trends <- function(data, breaks, FUN) {
   # Summarise data
   data %<>% do_summarise_for_trends(breaks, FUN, return_year = FALSE)
 
-  data %<>% as.data.frame() # %>% tidyr::gather_("Month", "Value", gather_cols = colnames(data), na.rm = TRUE)
+  data %<>% as.data.frame() # %>% tidyr::pivot_longer(colnames(data), names_to = "Month", values_to = "Value", na.rm = TRUE)
 
   data %<>% purrr::map(trend)
 
@@ -189,5 +189,5 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
 
   # gather and return
   gather_cols <- setdiff(names(data), c("Station", "Variable", "Units", "Year"))
-  data %>% tidyr::gather_("Month", "Value", gather_cols = gather_cols)
+  data %>% tidyr::pivot_longer(gather_cols, names_to = "Month", values_to = "Value")
 }
