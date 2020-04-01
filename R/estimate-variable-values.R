@@ -18,7 +18,7 @@ estimate_variable_values_by <- function(x, messages) {
   # here defined as 6 x the year range
   ndata_years <- x %>%
     dplyr::filter(!is.na(.data$Value)) %>%
-    dplyr::mutate_(year = ~ lubridate::year(Date)) %>%
+    dplyr::mutate(year = lubridate::year(.data$Date)) %>%
     dplyr::group_by(.data$year) %>%
     dplyr::tally()
   ndata_years <- sum(ndata_years$n >= 12)
@@ -27,9 +27,9 @@ estimate_variable_values_by <- function(x, messages) {
     x$Value <- mean(x$Value, na.rm = TRUE)
   } else {
     # extract seasonal covariates from 'Date'
-    x %<>% dplyr::mutate_(
-      yday = ~ lubridate::yday(Date), # for seasonal trend
-      day = ~ lubridate::decimal_date(Date)
+    x %<>% dplyr::mutate(
+      yday = lubridate::yday(.data$Date), # for seasonal trend
+      day = lubridate::decimal_date(.data$Date)
     ) # for long term trends
 
     if (ndata_years == 1) {

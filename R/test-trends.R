@@ -97,7 +97,7 @@ test_trends <- function(data, breaks = NULL, FUN = "median", messages = getOptio
   data %<>% tidyr::nest(Data = c(.data$Date, .data$Value))
 
   # fit trends
-  data %<>% dplyr::mutate_(Trend = ~ purrr::map(Data, do_test_trends,
+  data %<>% dplyr::mutate(Trend = purrr::map(.data$Data, do_test_trends,
     breaks = breaks, FUN = FUN
   ))
 
@@ -119,11 +119,11 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
     unique()
 
   # add Month, Year and month grouping columns
-  data %<>% dplyr::mutate_(
-    Month = ~ lubridate::month(Date),
-    Year = ~ lubridate::year(Date)
+  data %<>% dplyr::mutate(
+    Month = lubridate::month(.data$Date),
+    Year = lubridate::year(.data$Date)
   ) %>%
-    dplyr::mutate_(group = ~ cut(Month, breaks))
+    dplyr::mutate(group = cut(.data$Month, breaks))
 
   # summarise by group
   data %<>% with(., tapply(Value, list(Year, group), FUN))
@@ -179,7 +179,7 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
   data %<>% tidyr::nest(Data = c(.data$Date, .data$Value))
 
   # summarise
-  data %<>% dplyr::mutate_(Summary = ~ purrr::map(Data, do_summarise_for_trends,
+  data %<>% dplyr::mutate(Summary = purrr::map(.data$Data, do_summarise_for_trends,
     breaks = breaks, FUN = FUN
   ))
 

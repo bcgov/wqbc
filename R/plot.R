@@ -13,7 +13,7 @@
 plot_timeseries_by <- function(data, title = NULL, y0, size, messages) {
   if (!is.null(title)) chk_string(title)
 
-  data %<>% dplyr::mutate_(Detected = ~ detected(Value, DetectionLimit))
+  data %<>% dplyr::mutate(Detected = detected(.data$Value, .data$DetectionLimit))
 
   data$Detected %<>% factor(levels = c(TRUE, FALSE))
   data$Outlier %<>% factor(levels = c(TRUE, FALSE))
