@@ -49,7 +49,7 @@ do_test_trends <- function(data, breaks, FUN) {
   # Summarise data
   data %<>% do_summarise_for_trends(breaks, FUN, return_year = FALSE)
 
-  data %<>% as.data.frame() # %>% tidyr::gather_("Month", "Value", gather_cols = colnames(data), na.rm = TRUE)
+  data %<>% as.data.frame() # %>% tidyr::pivot_longer(colnames(data), names_to = "Month", values_to = "Value", na.rm = TRUE)
 
   data %<>% purrr::map(trend)
 
@@ -91,13 +91,13 @@ test_trends <- function(data, breaks = NULL, FUN = "median", messages = getOptio
     Value = c(1, NA)))
 
   # keep only relevant columns
-  data %<>% dplyr::select_(~Station, ~Date, ~Variable, ~Value, ~Units)
+  data %<>% dplyr::select(.data$Station, .data$Date, .data$Variable, .data$Value, .data$Units)
 
   # nest for analysis
   data %<>% tidyr::nest(Data = c(.data$Date, .data$Value))
 
   # fit trends
-  data %<>% dplyr::mutate_(Trend = ~ purrr::map(Data, do_test_trends,
+  data %<>% dplyr::mutate(Trend = purrr::map(.data$Data, do_test_trends,
     breaks = breaks, FUN = FUN
   ))
 
@@ -119,11 +119,11 @@ do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
     unique()
 
   # add Month, Year and month grouping columns
-  data %<>% dplyr::mutate_(
-    Month = ~ lubridate::month(Date),
-    Year = ~ lubridate::year(Date)
+  data %<>% dplyr::mutate(
+    Month = lubridate::month(.data$Date),
+    Year = lubridate::year(.data$Date)
   ) %>%
-    dplyr::mutate_(group = ~ cut(Month, breaks))
+    dplyr::mutate(group = cut(.data$Month, breaks))
 
   # summarise by group
   data %<>% with(., tapply(Value, list(Year, group), FUN))
@@ -173,13 +173,13 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
     Value = c(1, NA)))
 
   # keep only relevant columns
-  data %<>% dplyr::select_(~Station, ~Date, ~Variable, ~Value, ~Units)
+  data %<>% dplyr::select(.data$Station, .data$Date, .data$Variable, .data$Value, .data$Units)
 
   # nest for analysis
   data %<>% tidyr::nest(Data = c(.data$Date, .data$Value))
 
   # summarise
-  data %<>% dplyr::mutate_(Summary = ~ purrr::map(Data, do_summarise_for_trends,
+  data %<>% dplyr::mutate(Summary = purrr::map(.data$Data, do_summarise_for_trends,
     breaks = breaks, FUN = FUN
   ))
 
@@ -189,5 +189,5 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
 
   # gather and return
   gather_cols <- setdiff(names(data), c("Station", "Variable", "Units", "Year"))
-  data %>% tidyr::gather_("Month", "Value", gather_cols = gather_cols)
+  data %>% tidyr::pivot_longer(gather_cols, names_to = "Month", values_to = "Value")
 }

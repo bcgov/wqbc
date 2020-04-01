@@ -28,7 +28,7 @@ clean_wqdata_replicates <- function (x, max_cv, messages, FUN) {
   n <- nrow(x)
   cv <- cv(x$Value)
   if (cv(x$Value) > max_cv && nrow(x) > 2) {
-    x <- dplyr::arrange_(x, ~-Value)
+    x <- dplyr::arrange(x, dplyr::desc(.data$Value))
     while (cv(x$Value) > max_cv && nrow(x) > 2) {
       x <- x[-which.max(abs_dev(x$Value)), ]
     }
@@ -158,7 +158,7 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
   x %<>% identify_outliers(by = by, sds = sds, ignore_undetected = ignore_undetected,
                                   large_only = large_only, messages = messages)
   if (delete_outliers) {
-    x %<>% dplyr::filter_(~!is.na(Outlier) & !Outlier)
+    x %<>% dplyr::filter(!is.na(.data$Outlier) & !.data$Outlier)
     if (messages)
       message("Deleted outliers.")
   }

@@ -15,20 +15,20 @@ context("estimate-variable-values")
 test_that("delete_outliers vary data", {
   fraser <- wqbc::fraser
   fraser$Station <- factor(sub("BC08", "", as.character(fraser$SiteID)))
-  fraser <- dplyr::filter_(fraser, ~ grepl("hardness", tolower(Variable)))
+  fraser <- dplyr::filter(fraser, grepl("hardness", tolower(.data$Variable)))
   # This is a temporary fix until we get more robust variable name matching
   fraser$Variable[grepl("hardness", tolower(fraser$Variable))] <- "Hardness Total"
 
-  fraser <- dplyr::filter_(fraser, ~ Station %in% "LF0001")
+  fraser <- dplyr::filter(fraser, .data$Station %in% "LF0001")
   fraser <- clean_wqdata(fraser, by = "Station", messages = FALSE)
 
 
   # create degraded data
-  fraser2 <- dplyr::filter_(fraser, ~ lubridate::year(Date) %in% 2012:2013)
-  fraser1 <- dplyr::filter_(fraser, ~ lubridate::year(Date) %in% 2012)
-  fraser2a <- dplyr::mutate_(fraser2, Value = ~ ifelse(lubridate::year(Date) == 2013 & lubridate::month(Date) > 5, NA, Value))
-  fraser1a <- dplyr::mutate_(fraser1, Value = ~ ifelse(lubridate::month(Date) > 5, NA, Value))
-  fraser1b <- dplyr::mutate_(fraser1, Value = ~ ifelse(seq_len(nrow(fraser1)) %% 2 == 0, NA, Value))
+  fraser2 <- dplyr::filter(fraser, lubridate::year(.data$Date) %in% 2012:2013)
+  fraser1 <- dplyr::filter(fraser, lubridate::year(.data$Date) %in% 2012)
+  fraser2a <- dplyr::mutate(fraser2, Value = ifelse(lubridate::year(.data$Date) == 2013 & lubridate::month(.data$Date) > 5, NA, Value))
+  fraser1a <- dplyr::mutate(fraser1, Value = ifelse(lubridate::month(.data$Date) > 5, NA, .data$Value))
+  fraser1b <- dplyr::mutate(fraser1, Value = ifelse(seq_len(nrow(fraser1)) %% 2 == 0, NA, .data$Value))
   fraser1c <- dplyr::mutate(fraser1, Variable = "Nothing")
 
   # fit models
@@ -61,11 +61,11 @@ test_that("delete_outliers vary data", {
   expect_equal(fit1a$Value[1], mean(fraser1a$Value, na.rm = TRUE))
 
   # test inputs
-  expect_error(estimate_variable_values(select_(fraser1, ~ -Station)))
-  expect_error(estimate_variable_values(select_(fraser1, ~ -Value)))
-  expect_error(estimate_variable_values(select_(fraser1, ~ -Variable)))
-  expect_error(estimate_variable_values(select_(fraser1, ~ -Unit)))
-  expect_error(estimate_variable_values(select_(fraser1, ~ -Date)))
+  expect_error(estimate_variable_values(select(fraser1, -.data$Station)))
+  expect_error(estimate_variable_values(select(fraser1, -.data$Value)))
+  expect_error(estimate_variable_values(select(fraser1, -.data$Variable)))
+  expect_error(estimate_variable_values(select(fraser1, -.data$Unit)))
+  expect_error(estimate_variable_values(select(fraser1, -.data$Date)))
 
   # check no predictions are made if no Hardness Total obs are present
   expect_identical(estimate_variable_values(fraser1c, messages = FALSE), fraser1c)

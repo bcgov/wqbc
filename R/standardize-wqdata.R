@@ -12,7 +12,7 @@
 
 standardize_wqdata_variable <- function(x, messages) {
   codes <- wqbc_codes()
-  codes <- dplyr::filter_(codes, ~ Variable == x$Variable[1])
+  codes <- dplyr::filter(codes, .data$Variable == x$Variable[1])
   x$Value <- convert_values(x$Value,
     from = x$Units, to = codes$Units,
     messages = messages
