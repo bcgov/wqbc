@@ -380,5 +380,5 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
   if (keep_limits) {
     x %<>% dplyr::bind_rows(y)
   }
-  x
+  tibble::as_tibble(x)
 }
