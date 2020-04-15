@@ -9,3 +9,4 @@
 # do not git hydat sqlite database
 data-raw/hydat/Hydat.sqlite3
 data-raw/hydat/Hydat_sqlite3_20161017.zip
+inst/doc
