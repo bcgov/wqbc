@@ -10,11 +10,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-library(dplyr)
-library(lubridate)
-library(ggplot2)
-library(sp)
-library(rgdal)
+library(wqbc)
 
 options(wqbc.messages = TRUE)
 
@@ -22,10 +18,10 @@ data(fraser)
 print(summary(fraser))
 
 fraser$SiteID <- factor(sub("BC08", "", as.character(fraser$SiteID)))
-fraser$Year <- year(fraser$Date)
+fraser$Year <- lubridate::year(fraser$Date)
 
 data(fraser)
-fraser$Year <- year(fraser$Date)
+
 fraser <- standardize_wqdata(fraser, strict = FALSE)
 fraser <- clean_wqdata(fraser, by = "Year", max_cv = Inf)
 fraser <- calc_limits(fraser, by = "Year", term = "short")
