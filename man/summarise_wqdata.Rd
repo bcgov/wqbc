@@ -4,12 +4,14 @@
 \alias{summarise_wqdata}
 \title{Summarise Water Quality Data}
 \usage{
-summarise_wqdata(x, by = NULL, na.rm = FALSE)
+summarise_wqdata(x, by = NULL, level = 0.95, na.rm = FALSE)
 }
 \arguments{
 \item{x}{The data.frame to summarise.}
 
 \item{by}{A character vector of the columns in x to summarise by.}
+
+\item{level}{A number between 0 and 1 specifying the upper and lower percentiles.}
 
 \item{na.rm}{A flag specifying whether to exclude missing values when summarising.}
 }
@@ -22,7 +24,7 @@ by Variable (character or factor) column.
 }
 \details{
 Provides basic summary statistics (n, min, max, mean, median, se, sd).
-SD; Options for quantiles, percentiles, upper/lower confidence intervals). View summary statistics in a tab of the results panel (added function to wqbc)
+SD; Options for quantiles, levels, upper/lower confidence intervals). View summary statistics in a tab of the results panel (added function to wqbc)
 }
 \examples{
 data.frame(Variable = "var", Value = 1:5, stringsAsFactors = FALSE)
