@@ -26,13 +26,14 @@ summarise_wqdata_by <- function(x, level, na.rm) {
     se = se(x, na.rm = na.rm))
 }
 
-summarise_norows <- function() {
+summarise_norows <- function(integer) {
+  value0 <- if(integer) integer(0) else double(0)
   tibble::tibble(
     n = integer(0),
-    min = double(0),
-    max = double(0),
+    min = value0,
+    max = value0,
     mean = double(0),
-    median = double(0),
+    median = value0, # because sometimes median can be integer
     lowerQ = double(0),
     upperQ = double(0),
     sd = double(0),
@@ -40,7 +41,7 @@ summarise_norows <- function() {
 }
 
 summarise_wqdata_norows <- function(x, by) {
-  dplyr::bind_rows(x[by], summarise_norows())
+  dplyr::bind_rows(x[by], summarise_norows(is.integer(x$Value)))
 }
 
 #' Summarise Water Quality Data

@@ -20,6 +20,23 @@ test_that("zero rows", {
   expect_identical(x,y)
 })
 
+test_that("zero rows with integer values", {
+  x <- summarise_wqdata(data.frame(Variable = character(0), Value = integer(0), stringsAsFactors = FALSE))
+  y <-  tibble::tibble(
+    Variable = character(0),
+    n = integer(0),
+    min = integer(0),
+    max = integer(0),
+    mean = double(0),
+    median = integer(0),
+    lowerQ = double(0),
+    upperQ = double(0),
+    sd = double(0),
+    se = double(0))
+
+  expect_identical(x,y)
+})
+
 test_that("works", {
   x <- summarise_wqdata(data.frame(Variable = "1", Value = 1, stringsAsFactors = FALSE))
   y <- tibble::tibble(Variable = "1", n = 1L, min = 1, max = 1, mean = 1,
@@ -61,6 +78,12 @@ test_that("multiple integer values", {
   x <- summarise_wqdata(data.frame(Variable = "var", Value = 1:5, stringsAsFactors = FALSE))
   y <- tibble::tibble(Variable = "var", n = 5L, min = 1L, max = 5L, mean = 3,
                       median = 3L, lowerQ = 1.1, upperQ = 4.9, sd = 1.58113883008419, se = 0.707106781186548)
+
+  expect_equal(as.data.frame(x), as.data.frame(y))
+
+  x <- summarise_wqdata(data.frame(Variable = "var", Value = 1:2, stringsAsFactors = FALSE))
+  y <- tibble::tibble(Variable = "var", n = 2L, min = 1L, max = 2L, mean = 1.5,
+                      median = 1.5, lowerQ = 1.025, upperQ = 1.975, sd = 0.707106781186548, se = 0.5)
 
   expect_equal(as.data.frame(x), as.data.frame(y))
 })
