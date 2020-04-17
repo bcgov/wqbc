@@ -105,7 +105,7 @@ test_that("na.rm = TRUE with only 1 non-missing value", {
   y <- tibble::tibble(Variable = "1", n = 1L, ncen = 0L, min = 1, max = 1,
     mean = NA_real_, median = NA_real_, lowerQ = NA_real_, upperQ = NA_real_,
     sd = NA_real_, se = NA_real_, lowerCL = NA_real_, upperCL = NA_real_)
-  expect_identical(x, y)
+  expect_identical(as.data.frame(x), as.data.frame(y))
 })
 
 test_that("multiple variables each with 1 value", {
@@ -117,7 +117,7 @@ test_that("multiple variables each with 1 value", {
     se = c(NA_real_, NA_real_), lowerCL = c(NA_real_, NA_real_
     ), upperCL = c(NA_real_, NA_real_))
 
-  expect_identical(x, y)
+  expect_identical(as.data.frame(x), as.data.frame(y))
 })
 
 test_that("two integer values", {
