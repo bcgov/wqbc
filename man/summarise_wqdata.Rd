@@ -7,38 +7,54 @@
 summarise_wqdata(
   x,
   by = NULL,
-  cenmle = FALSE,
-  level = 0.95,
+  group = NULL,
+  censored = FALSE,
   na.rm = FALSE,
-  dist = "lognormal"
+  conf_level = 0.95,
+  perc_range = 0.95
 )
 }
 \arguments{
 \item{x}{The data.frame to summarise.}
 
-\item{by}{A character vector of the columns in x to summarise by.}
+\item{by}{A character vector specifying the columns in x to independently summarise by.}
 
-\item{cenmle}{A flag specifying whether to account for non-detects using left-censored maximum likelihood estimation.}
+\item{group}{A character vector specifying the columns in x to summarise by assuming the same variance.}
 
-\item{level}{A number between 0 and 1 specifying the upper and lower percentiles.}
+\item{censored}{A flag specifying whether to account for non-detects.}
 
-\item{na.rm}{A flag specifying whether to exclude missing values when summarising.}
+\item{na.rm}{A flag specifying whether to exclude missing Value values when summarising.}
 
-\item{dist}{Assumed distribution of the values for the left-censored maximum-likelihood model.}
+\item{conf_level}{A number between 0 and 1 specifying confidence limits.}
 
-\item{...}{Additional arguments passed to \code{\link[survival]{survreg}}.}
+\item{perc_range}{A number between 0 and 1 specifying the quantile range.}
 }
 \value{
 A tibble of the summary statistics.
 }
 \description{
-By default provides summary statistics for water quality data in the Values (numeric) column
-by Variable (character or factor) column.
+Calculates summary statistics for water quality data
+using log-normal maximum-likelihood models.
 }
 \details{
-The user can specify additional columns to calculate the summary statistics by
-and/or account for non-detects using left-censored maximum-likelihood estimation.
-Missing values are considered to be below the detection limit (if the detection limit is defined).
+The data set must include a numeric 'Value' and
+a character or factor 'Variable' column.
+
+By default the summary statistics are independently calculated for each Variable.
+The user can specify additional columns to independently calculate the statistics by using the by argument.
+
+If the user wishes to calculate the statistics for groups assuming the same variance
+then they should specify them using the group argument.
+A column cannot be specified in both the by and group argument.
+
+If the user wishes to account for non-detects using left-censored maximum-likelihood
+(by setting censored = TRUE) the data set must also include a numeric DetectionLimit column.
+
+Missing values in the DetectionLimit column are assumed to indicate that the
+Values are not censored.
+Missing values in the Value column are always considered to be missing values.
+If the user wishes to exclude missing values in the Value column
+they should set na.rm = TRUE.
 }
 \examples{
 data.frame(Variable = "var", Value = 1:5, stringsAsFactors = FALSE)
