@@ -9,4 +9,7 @@ CODE_OF_CONDUCT.md
 vignettes_ignore
 ^codecov\.yml$
 ^COMPLIANCE\.yaml$
-
+^build\.R$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
