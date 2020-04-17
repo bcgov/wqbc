@@ -32,3 +32,14 @@ test_that("test_trends", {
 test_that("test_trends provides useful error messages", {
   expect_error(test_trends(wqbc::dummy), class = "chk_error")
 })
+
+test_that("summarise_for_trends", {
+  data(yuepilon)
+  data <- yuepilon[yuepilon$Station == "02EA005", ]
+  trend <- test_trends(data, messages = TRUE)
+  datasum <- summarise_for_trends(data)
+  expect_is(datasum, "tbl_df")
+  expect_identical(colnames(datasum), c("Station", "Variable", "Units", "Year", "Month", "Value"))
+  expect_equal(datasum$Year, 1949:1999)
+  expect_equal(datasum$Value[1:3], c(5.6496712529496, 5.44526029351639, 7.28700275094542))
+})
