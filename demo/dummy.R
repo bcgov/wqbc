@@ -10,7 +10,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-library(dplyr)
+library(wqbc)
 
 options(wqbc.messages = TRUE)
 
@@ -21,7 +21,7 @@ dummy$Units <- substitute_units(dummy$Units)
 dummy$Variable <- substitute_variables(dummy$Variable)
 print(dummy)
 
-dummy <- filter(dummy, Units %in% lookup_units() & Variable %in% lookup_variables())
+dummy <- dplyr::filter(dummy, Units %in% lookup_units() & Variable %in% lookup_variables())
 print(dummy)
 
 dummy <- standardize_wqdata(dummy)
