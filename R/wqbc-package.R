@@ -1,4 +1,4 @@
-#' @import chk
+#' @import chk NADA
 #' @importFrom magrittr %<>% %>%
 #' @importFrom rlang .data
 #' @keywords internal

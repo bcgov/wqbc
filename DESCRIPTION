@@ -21,12 +21,13 @@ LazyData: true
 Depends:
     R (>= 3.4)
 Imports:
-    chk,
+    chk (>= 0.4.0.9004),
     plyr,
     dplyr,
     rlang,
     zyp,
     magrittr,
+    NADA,
     purrr,
     grDevices,
     stringr,
@@ -46,6 +47,7 @@ Suggests:
     Kendall,
     covr
 Remotes:
+    poissonconsulting/chk,
     bcgov/rems,
     bcgov/canwqdata
 VignetteBuilder: knitr
