@@ -1,0 +1,94 @@
+---
+title: "Getting Started with wqbc"
+date: '`r format(Sys.time(), "%Y-%m-%d")`'
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with wqbc}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `wqbc` R package calculates water quality limits for British Columbia.
+
+Previously it also calculated the [CCME Water Quality Index](http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html) but that functionality has been moved to the [wqindex](https://github.com/bcgov/wqindex) package.
+
+## Fraser Data
+
+The data used in this demonstration are from the Fraser River basin (data available [here](http://data.gc.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18) under the [Candian Open Government License](http://open.canada.ca/en/open-government-licence-canada).
+
+To load the `wqbc` package and the `fraser` data run
+
+```{r}
+library(wqbc)
+data(fraser)
+```
+
+The `fraser` data is organized so that each row corresponds to one observation.  
+
+```{r}
+library(tibble) # for prettier printing of tibbles
+print(fraser)
+```
+
+As the `fraser` data is a large dataset (`r nrow(fraser)` rows) we'll just use the data from 2012.
+
+```{r, message=FALSE}
+data2012 <- dplyr::filter(fraser, lubridate::year(Date) == 2012)
+data2012
+```
+
+This leaves us with a dataset with `r nrow(data2012)` rows. 
+Before the data can be assigned the water quality limits provided by `wqbc` they first have to be standardized and then cleaned.
+
+### Standardizing Data
+
+The `standardize_wqdata()` function converts any non-standard variable names, checks (and if possible) converts the units and removes any missing and negative values.  
+
+```{r}
+data2012 <- standardize_wqdata(data2012)
+```
+
+As a result of the standardization, the 2012 Fraser dataset has been reduced to `r nrow(data2012)` observations that can in principle be assigned water quality limits by the `wqbc` package.
+However, first it is necessary to deal with multiple observations by cleaning the data.
+
+```{r}
+as_tibble(data2012)
+```
+
+### Cleaning Data
+
+After standardization, it is necessary to ensure that there are only single values for each date for a given variable and this is done using the function `clean_wqdata()`.  
+
+```{r}
+data2012 <- clean_wqdata(data2012, by = "SiteID")
+```
+
+The end result is a data frame with `r nrow(data2012)` rows each of which represents the average value for a single variable on a particular date at an individual `SiteID`. 
+```{r}
+as_tibble(data2012)
+```
+
+### Calculating Limits
+
+Once the data have been standardized and cleansed the final task is to determine the water quality limits for each observation using the `calc_limits()` function.
+
+```{r}
+data2012 <- calc_limits(data2012, by = "SiteID", term = "short")
+```
+
+The final result is a data frame with `r nrow(data2012)` rows each of which has an upper water quality limit.
+
+```{r}
+as_tibble(data2012)
+```
+
+### Calculating Water Quality Index
+
+The resultant data can be used to calculate water quality indices using the `calc_wqi()` function of the `wqindex` package.
