@@ -4,27 +4,41 @@
 \alias{summarise_wqdata}
 \title{Summarise Water Quality Data}
 \usage{
-summarise_wqdata(x, by = NULL, level = 0.95, na.rm = FALSE)
+summarise_wqdata(
+  x,
+  by = NULL,
+  cenmle = FALSE,
+  level = 0.95,
+  na.rm = FALSE,
+  dist = "lognormal"
+)
 }
 \arguments{
 \item{x}{The data.frame to summarise.}
 
 \item{by}{A character vector of the columns in x to summarise by.}
 
+\item{cenmle}{A flag specifying whether to account for non-detects using left-censored maximum likelihood estimation.}
+
 \item{level}{A number between 0 and 1 specifying the upper and lower percentiles.}
 
 \item{na.rm}{A flag specifying whether to exclude missing values when summarising.}
+
+\item{dist}{Assumed distribution of the values for the left-censored maximum-likelihood model.}
+
+\item{...}{Additional arguments passed to \code{\link[survival]{survreg}}.}
 }
 \value{
 A tibble of the summary statistics.
 }
 \description{
-Summarises water quality data in the Values (numeric) column
+By default provides summary statistics for water quality data in the Values (numeric) column
 by Variable (character or factor) column.
 }
 \details{
-Provides basic summary statistics (n, min, max, mean, median, se, sd).
-SD; Options for quantiles, levels, upper/lower confidence intervals). View summary statistics in a tab of the results panel (added function to wqbc)
+The user can specify additional columns to calculate the summary statistics by
+and/or account for non-detects using left-censored maximum-likelihood estimation.
+Missing values are considered to be below the detection limit (if the detection limit is defined).
 }
 \examples{
 data.frame(Variable = "var", Value = 1:5, stringsAsFactors = FALSE)

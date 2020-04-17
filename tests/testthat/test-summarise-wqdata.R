@@ -1,6 +1,7 @@
 test_that("errors correctly", {
   chk::expect_chk_error(summarise_wqdata(data.frame(Value = 1)))
   chk::expect_chk_error(summarise_wqdata(data.frame(Variable = 1, Value = 1)))
+  chk::expect_chk_error(summarise_wqdata(data.frame(Variable = "1", Value = 1), cenmle = TRUE))
 })
 
 test_that("zero rows", {
@@ -101,4 +102,14 @@ test_that("factor variable", {
   y <- tibble::tibble(Variable = factor("1"), n = 1L, min = 1, max = 1, mean = 1,
                       median = 1, lowerQ = 1, upperQ = 1, sd = NA_real_, se = NA_real_)
   expect_identical(x, y)
+})
+
+test_that("cenmle", {
+  x <- summarise_wqdata(data.frame(Variable = "var", Value = c(0.60520238844859, 1.14057345351346), DetectionLimit = 2, stringsAsFactors = FALSE), cenmle = TRUE)
+  y <- tibble::tibble(Variable = "var", n = 2L, min = 0.60520238844859,
+    max = 1.14057345351346, mean = 0.873602418302059, median = 0.830829572335628,
+    lowerQ = 0.446476627453879, upperQ = 1.54605579737476,
+    sd = 0.283906799310736, se = 0.20075242301759)
+
+  expect_equal(as.data.frame(x), as.data.frame(y))
 })
