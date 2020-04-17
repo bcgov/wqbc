@@ -189,5 +189,5 @@ lookup_limits <- function(ph = NULL, hardness = NULL, chloride = NULL,
   limits <- calc_limits(codes, term = term, keep_limits = FALSE, messages = FALSE, use = use)
   limits <- add_missing_limits(limits, term = term)
   limits <- tidyup_limits(limits)
-  limits
+  tibble::as_tibble(limits)
 }

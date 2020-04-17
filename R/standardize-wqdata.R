@@ -117,5 +117,5 @@ standardize_wqdata <- function(
   )
 
   if (messages) message("Standardized water quality data.")
-  x
+  tibble::as_tibble(x)
 }

@@ -104,7 +104,7 @@ test_trends <- function(data, breaks = NULL, FUN = "median", messages = getOptio
   # unnest and return
   data %<>% tidyr::unnest(.data$Trend)
   data %<>% dplyr::select(-.data$Data)
-  data
+  tibble::as_tibble(data)
 }
 
 do_summarise_for_trends <- function(data, breaks, FUN, return_year = TRUE) {
