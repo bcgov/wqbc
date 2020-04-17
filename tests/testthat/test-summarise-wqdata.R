@@ -301,26 +301,3 @@ test_that("lower censored by ", {
     ))
   expect_equal(as.data.frame(x), as.data.frame(y))
 })
-#
-# test_that("lower censored group", {
-#   set.seed(99)
-#   data1 <- data.frame(Variable = "1", MeanLog = 0, Value = rlnorm(1000, meanlog = 1),
-#                                    DetectionLimit = 0.5, stringsAsFactors = FALSE)
-#   data2 <- data.frame(Variable = "1", MeanLog = 2, Value = rlnorm(1000, meanlog = 2),
-#                                    DetectionLimit = 0.5, stringsAsFactors = FALSE)
-#
-#   data <- rbind(data1, data2)
-#
-#   x <- summarise_wqdata(data, group = "MeanLog", censored = TRUE)
-#
-#   y <- tibble::tibble(Variable = c("1", "1"), MeanLog = c(0, 2), n = c(1000L,
-# 1000L), ncen = c(54L, 3L), min = c(0.123855240922235, 0.336010163606413
-# ), max = c(98.8358058837172, 165.557501183876), mean = c(4.48406426490208,
-# 12.1971429147508), median = c(2.6503014491015, 7.56195983066146
-# ), lowerQ = c(0.355109337091874, 1.11251993244631), upperQ = c(19.7800987961412,
-# 51.3997410858051), sd = c(6.11963921796074, 15.436214422828),
-#     se = c(0.193519983872475, 0.488135960268779), lowerCL = c(4.14551983124041,
-#     11.3308870601644), upperCL = c(4.8502559751971, 13.1296247586724
-#     ))
-#   expect_equal(as.data.frame(x), as.data.frame(y))
-# })

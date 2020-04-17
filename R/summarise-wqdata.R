@@ -55,7 +55,7 @@ summarise_zero_values <- function(x, censored) {
     upperCL = NA_real_)
 }
 
-summarise_wqdata_by <- function(x, group, censored, na.rm, conf_level, perc_range) {
+summarise_wqdata_by <- function(x, censored, na.rm, conf_level, perc_range) {
   if(na.rm) x %<>% dplyr::filter(!is.na(.data$Value))
   if(!nrow(x)) {
     return(summarise_norows(x))
@@ -112,10 +112,6 @@ summarise_wqdata_norows <- function(x, by) {
 #' By default the summary statistics are independently calculated for each Variable.
 #' The user can specify additional columns to independently calculate the statistics by using the by argument.
 #'
-#' If the user wishes to calculate the statistics for groups assuming the same variance
-#' then they should specify them using the group argument.
-#' A column cannot be specified in both the by and group argument.
-#'
 #' If the user wishes to account for non-detects using left-censored maximum-likelihood
 #' (by setting censored = TRUE) the data set must also include a numeric DetectionLimit column.
 #'
@@ -127,7 +123,6 @@ summarise_wqdata_norows <- function(x, by) {
 #'
 #' @param x The data.frame to summarise.
 #' @param by A character vector specifying the columns in x to independently summarise by.
-#' @param group A character vector specifying the columns in x to summarise by assuming the same variance.
 #' @param censored A flag specifying whether to account for non-detects.
 #' @param na.rm A flag specifying whether to exclude missing Value values when summarising.
 #' @param conf_level A number between 0 and 1 specifying confidence limits.
@@ -136,7 +131,7 @@ summarise_wqdata_norows <- function(x, by) {
 #' @export
 #' @examples
 #' data.frame(Variable = "var", Value = 1:5, stringsAsFactors = FALSE)
-summarise_wqdata <- function(x, by = NULL, group = NULL, censored = FALSE,
+summarise_wqdata <- function(x, by = NULL, censored = FALSE,
                              na.rm = FALSE, conf_level = 0.95, perc_range = 0.95) {
   chk_data(x)
   check_names(x, c("Variable", "Value"))
@@ -144,7 +139,6 @@ summarise_wqdata <- function(x, by = NULL, group = NULL, censored = FALSE,
   chk_numeric(x$Value)
   chk_gte(x$Value)
   check_by(by, colnames(x), res_names = c("Value", "DetectionLimit"))
-  check_by(group, colnames(x), res_names = c("Value", "Variable", "DetectionLimit", by))
   chk_flag(censored)
   chk_flag(na.rm)
   chk_number(conf_level)
@@ -159,13 +153,12 @@ summarise_wqdata <- function(x, by = NULL, group = NULL, censored = FALSE,
   }
 
   by <- unique(c("Variable", by))
-  group <- unique(group)
 
   if(!nrow(x)) {
     x <- summarise_wqdata_norows(x, by = by)
   } else {
     x <- plyr::ddply(x, .variables = by, .fun = summarise_wqdata_by,
-                     group = group, censored = censored, na.rm = na.rm,
+                     censored = censored, na.rm = na.rm,
                      conf_level = conf_level,
                      perc_range = perc_range)
   }

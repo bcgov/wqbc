@@ -7,7 +7,6 @@
 summarise_wqdata(
   x,
   by = NULL,
-  group = NULL,
   censored = FALSE,
   na.rm = FALSE,
   conf_level = 0.95,
@@ -18,8 +17,6 @@ summarise_wqdata(
 \item{x}{The data.frame to summarise.}
 
 \item{by}{A character vector specifying the columns in x to independently summarise by.}
-
-\item{group}{A character vector specifying the columns in x to summarise by assuming the same variance.}
 
 \item{censored}{A flag specifying whether to account for non-detects.}
 
@@ -42,10 +39,6 @@ a character or factor 'Variable' column.
 
 By default the summary statistics are independently calculated for each Variable.
 The user can specify additional columns to independently calculate the statistics by using the by argument.
-
-If the user wishes to calculate the statistics for groups assuming the same variance
-then they should specify them using the group argument.
-A column cannot be specified in both the by and group argument.
 
 If the user wishes to account for non-detects using left-censored maximum-likelihood
 (by setting censored = TRUE) the data set must also include a numeric DetectionLimit column.
