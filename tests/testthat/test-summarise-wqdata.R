@@ -49,7 +49,7 @@ test_that("works", {
   x <- summarise_wqdata(data.frame(Variable = "1", Value = rlnorm(1000), stringsAsFactors = FALSE))
   y <- tibble::tibble(Variable = "1", n = 1000L, ncen = 0L, min = 0.0455637968166263,
     max = 36.359661036231, mean = 1.64623322183978, median = 0.976190223959382,
-    lowerQ = 0.131619030746151, upperQ = 7.24019427852939, sd = 2.23542268426457,
+    lowerQ = 0.489850822752585, upperQ = 1.94538277592153, sd = 2.23542268426457,
     se = 0.070690272154835, lowerCL = 1.52244306862086, upperCL = 1.78008877740433)
   expect_equal(as.data.frame(x), as.data.frame(y))
 })
@@ -124,7 +124,7 @@ test_that("two integer values", {
   x <- summarise_wqdata(data.frame(Variable = "var", Value = 1:2, stringsAsFactors = FALSE))
   y <- tibble::tibble(Variable = "var", n = 2L, ncen = 0L, min = 1L,
     max = 2L, mean = 1.5017486818551, median = 1.41421356237309,
-    lowerQ = 0.71698657342923, upperQ = 2.78945251433974, sd = 0.53649338845922,
+    lowerQ = 1.11942286789001, upperQ = 1.78663493248962, sd = 0.53649338845922,
     se = 0.379358113041263, lowerCL = 0.920159272574001, upperCL = 2.45093340976159)
 
   expect_equal(as.data.frame(x), as.data.frame(y))
@@ -134,7 +134,7 @@ test_that("missing values in variables", {
   x <- summarise_wqdata(data.frame(Variable = NA_character_, Value = 1:2, stringsAsFactors = FALSE))
   y <- tibble::tibble(Variable = NA_character_, n = 2L, ncen = 0L, min = 1L,
     max = 2L, mean = 1.5017486818551, median = 1.41421356237309,
-    lowerQ = 0.71698657342923, upperQ = 2.78945251433974, sd = 0.53649338845922,
+    lowerQ = 1.11942286789001, upperQ = 1.78663493248962, sd = 0.53649338845922,
     se = 0.379358113041263, lowerCL = 0.920159272574001, upperCL = 2.45093340976159)
 
   expect_equal(as.data.frame(x), as.data.frame(y))
@@ -144,7 +144,7 @@ test_that("factor variable", {
   x <- summarise_wqdata(data.frame(Variable = factor("1"), Value = c(1,2), stringsAsFactors = FALSE))
   y <- tibble::tibble(Variable = factor("1"), n = 2L, ncen = 0L, min = 1,
     max = 2, mean = 1.5017486818551, median = 1.41421356237309,
-    lowerQ = 0.71698657342923, upperQ = 2.78945251433974, sd = 0.53649338845922,
+    lowerQ = 1.11942286789001, upperQ = 1.78663493248962, sd = 0.53649338845922,
     se = 0.379358113041263, lowerCL = 0.920159272574001, upperCL = 2.45093340976159)
   expect_equal(as.data.frame(x), as.data.frame(y))
 })
@@ -157,7 +157,7 @@ test_that("lower censored", {
   x <- summarise_wqdata(data, censored = TRUE)
   y <- tibble::tibble(Variable = "1", n = 1000L, ncen = 260L, min = 0.0455637968166263,
     max = 36.359661036231, mean = 1.65082950042163, median = 0.969085874824302,
-    lowerQ = 0.128169227038409, upperQ = 7.32724581776991, sd = 2.27663879655169,
+    lowerQ = 0.483074099197225, upperQ = 1.94406496714402, sd = 2.27663879655169,
     se = 0.0719936400660803, lowerCL = 1.52514916805004, upperCL = 1.78686655479519)
   expect_equal(as.data.frame(x), as.data.frame(y))
 })
@@ -172,7 +172,7 @@ test_that("lower 0s censored", {
   x <- summarise_wqdata(data, censored = TRUE)
   y <- tibble::tibble(Variable = "1", n = 1000L, ncen = 260L, min = 0,
     max = 36.359661036231, mean = 1.65082950042163, median = 0.969085874824302,
-    lowerQ = 0.128169227038409, upperQ = 7.32724581776991, sd = 2.27663879655169,
+    lowerQ = 0.483074099197225, upperQ = 1.94406496714402, sd = 2.27663879655169,
     se = 0.0719936400660803, lowerCL = 1.52514916805004, upperCL = 1.78686655479519)
   expect_equal(as.data.frame(x), as.data.frame(y))
 })
@@ -202,7 +202,7 @@ test_that("lower censored not quite 0", {
 
   y <- tibble::tibble(Variable = "1", n = 1000L, ncen = 0L, min = 0.001,
     max = 36.359661036231, mean = 48.8749791701325, median = 0.226523789098847,
-    lowerQ = 0.000366841259147391, upperQ = 139.878014667598,
+    lowerQ = 0.0248177221015859, upperQ = 2.06759616445297,
     sd = 10545.1967836686, se = 333.468402110748, lowerCL = 29.2671569135385,
     upperCL = 81.6192565590778)
   expect_equal(as.data.frame(x), as.data.frame(y))
@@ -216,20 +216,20 @@ test_that("lower censored conf_level", {
   x <- summarise_wqdata(data, censored = TRUE, conf_level = 0.8)
   y <- tibble::tibble(Variable = "1", n = 1000L, ncen = 260L, min = 0.0455637968166263,
     max = 36.359661036231, mean = 1.65082950042163, median = 0.969085874824302,
-    lowerQ = 0.128169227038409, upperQ = 7.32724581776991, sd = 2.27663879655169,
+    lowerQ = 0.483074099197225, upperQ = 1.94406496714402, sd = 2.27663879655169,
     se = 0.0719936400660803, lowerCL = 1.56753004900058, upperCL = 1.73855553276308)
   expect_equal(as.data.frame(x), as.data.frame(y))
 })
 
-test_that("lower censored perc_range", {
+test_that("lower censored quan_range", {
   set.seed(99)
   data <- data.frame(Variable = "1", Value = rlnorm(1000),
                                    DetectionLimit = 0.5, stringsAsFactors = FALSE)
 
-  x <- summarise_wqdata(data, censored = TRUE, perc_range = 0.5)
+  x <- summarise_wqdata(data, censored = TRUE, quan_range = 0.95)
   y <- tibble::tibble(Variable = "1", n = 1000L, ncen = 260L, min = 0.0455637968166263,
     max = 36.359661036231, mean = 1.65082950042163, median = 0.969085874824302,
-    lowerQ = 0.483074099197225, upperQ = 1.94406496714402, sd = 2.27663879655169,
+    lowerQ = 0.128169227038409, upperQ = 7.32724581776991, sd = 2.27663879655169,
     se = 0.0719936400660803, lowerCL = 1.52514916805004, upperCL = 1.78686655479519)
   expect_equal(as.data.frame(x), as.data.frame(y))
 })
@@ -259,7 +259,7 @@ test_that("lower censored missing value na.rm = TRUE", {
   x <- summarise_wqdata(data, censored = TRUE, na.rm = TRUE)
   y <- tibble::tibble(Variable = "1", n = 999L, ncen = 260L, min = 0.0455637968166263,
     max = 36.359661036231, mean = 1.65145740813986, median = 0.968670543090355,
-    lowerQ = 0.127917722159096, upperQ = 7.33536061472339, sd = 2.2803164138024,
+    lowerQ = 0.482611967837587, upperQ = 1.94425891520108, sd = 2.2803164138024,
     se = 0.0721460185668738, lowerCL = 1.52554520191114, upperCL = 1.78776188832907)
   expect_equal(as.data.frame(x), as.data.frame(y))
 })
@@ -274,7 +274,7 @@ test_that("lower censored all detection limits missing", {
   x <- summarise_wqdata(data, censored = TRUE)
   y <- tibble::tibble(Variable = "1", n = 1000L, ncen = 0L, min = 0.0455637968166263,
     max = 36.359661036231, mean = 1.64623322183978, median = 0.976190223959382,
-    lowerQ = 0.131619030746151, upperQ = 7.24019427852939, sd = 2.23542268426457,
+    lowerQ = 0.489850822752585, upperQ = 1.94538277592153, sd = 2.23542268426457,
     se = 0.070690272154835, lowerCL = 1.52244306862086, upperCL = 1.78008877740433)
   expect_equal(as.data.frame(x), as.data.frame(y))
 })
@@ -294,8 +294,8 @@ test_that("lower censored by ", {
 1000L), ncen = c(54L, 3L), min = c(0.123855240922235, 0.336010163606413
 ), max = c(98.8358058837172, 165.557501183876), mean = c(4.48406426490208,
 12.1971429147508), median = c(2.6503014491015, 7.56195983066146
-), lowerQ = c(0.355109337091874, 1.11251993244631), upperQ = c(19.7800987961412,
-51.3997410858051), sd = c(6.11963921796074, 15.436214422828),
+), lowerQ = c(1.32705678555795, 3.91023362790236), upperQ = c(5.29298960492958,
+14.6239948612005), sd = c(6.11963921796074, 15.436214422828),
     se = c(0.193519983872475, 0.488135960268779), lowerCL = c(4.14551983124041,
     11.3308870601644), upperCL = c(4.8502559751971, 13.1296247586724
     ))

@@ -55,7 +55,7 @@ summarise_zero_values <- function(x, censored) {
     upperCL = NA_real_)
 }
 
-summarise_wqdata_by <- function(x, censored, na.rm, conf_level, perc_range) {
+summarise_wqdata_by <- function(x, censored, na.rm, conf_level, quan_range) {
   if(na.rm) x %<>% dplyr::filter(!is.na(.data$Value))
   if(!nrow(x)) {
     return(summarise_norows(x))
@@ -80,7 +80,7 @@ summarise_wqdata_by <- function(x, censored, na.rm, conf_level, perc_range) {
   ml <- with(x, cenmle(Value, Censored, dist = "lognormal", conf.int = conf_level))
 
   est <- mean(ml)
-  quantiles <- quantile(ml,  c((1-perc_range)/2, perc_range + (1-perc_range)/2))
+  quantiles <- quantile(ml,  c((1-quan_range)/2, quan_range + (1-quan_range)/2))
 
   tibble::tibble(
     n = nrow(x),
@@ -126,13 +126,15 @@ summarise_wqdata_norows <- function(x, by) {
 #' @param censored A flag specifying whether to account for non-detects.
 #' @param na.rm A flag specifying whether to exclude missing Value values when summarising.
 #' @param conf_level A number between 0 and 1 specifying confidence limits.
-#' @param perc_range A number between 0 and 1 specifying the quantile range.
+#' By default calculates 95% confidence intervals.
+#' @param quan_range A number between 0 and 1 specifying the quantile range.
+#' By default calculates the inter-quartile range.
 #' @return A tibble of the summary statistics.
 #' @export
 #' @examples
 #' data.frame(Variable = "var", Value = 1:5, stringsAsFactors = FALSE)
 summarise_wqdata <- function(x, by = NULL, censored = FALSE,
-                             na.rm = FALSE, conf_level = 0.95, perc_range = 0.95) {
+                             na.rm = FALSE, conf_level = 0.95, quan_range = 0.5) {
   chk_data(x)
   check_names(x, c("Variable", "Value"))
   chk_character_or_factor(x$Variable)
@@ -143,8 +145,8 @@ summarise_wqdata <- function(x, by = NULL, censored = FALSE,
   chk_flag(na.rm)
   chk_number(conf_level)
   chk_range(conf_level)
-  chk_number(perc_range)
-  chk_range(perc_range)
+  chk_number(quan_range)
+  chk_range(quan_range)
 
   if(censored) {
     check_names(x, "DetectionLimit")
@@ -160,7 +162,7 @@ summarise_wqdata <- function(x, by = NULL, censored = FALSE,
     x <- plyr::ddply(x, .variables = by, .fun = summarise_wqdata_by,
                      censored = censored, na.rm = na.rm,
                      conf_level = conf_level,
-                     perc_range = perc_range)
+                     quan_range = quan_range)
   }
   tibble::as_tibble(x)
 }

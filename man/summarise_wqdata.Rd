@@ -10,7 +10,7 @@ summarise_wqdata(
   censored = FALSE,
   na.rm = FALSE,
   conf_level = 0.95,
-  perc_range = 0.95
+  quan_range = 0.5
 )
 }
 \arguments{
@@ -22,9 +22,11 @@ summarise_wqdata(
 
 \item{na.rm}{A flag specifying whether to exclude missing Value values when summarising.}
 
-\item{conf_level}{A number between 0 and 1 specifying confidence limits.}
+\item{conf_level}{A number between 0 and 1 specifying confidence limits.
+By default calculates 95\% confidence intervals.}
 
-\item{perc_range}{A number between 0 and 1 specifying the quantile range.}
+\item{quan_range}{A number between 0 and 1 specifying the quantile range.
+By default calculates the inter-quartile range.}
 }
 \value{
 A tibble of the summary statistics.
