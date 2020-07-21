@@ -1,7 +1,7 @@
 Package: wqbc
 Type: Package
 Title: Tidy Water Quality Data and Calculate Thresholds for British Columbia
-Version: 0.3.1.9002
+Version: 0.3.1.9003
 Authors@R: c(
     person("Joe", "Thorley", , "joe@poissonconsulting.ca", c("aut", "ctr"), comment = c(ORCID = "0000-0002-7683-4592")),
 	  person("Colin", "Millar", , "colinpmillar@gmail.com", c("aut", "ctr")),
@@ -51,6 +51,6 @@ Remotes:
     bcgov/rems,
     bcgov/canwqdata
 VignetteBuilder: knitr
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8

@@ -10,8 +10,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-context("limits")
-
-test_that("calc_limits single limit", {
-  expect_is(check_limits(wqbc::limits), "data.frame")
+test_that("check_limits", {
+  expect_null(check_limits(wqbc::limits))
 })

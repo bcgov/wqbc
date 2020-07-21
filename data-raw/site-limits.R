@@ -27,6 +27,7 @@ input_site_limits <- function() {
   site_limits$Units[site_limits$Variable == "Barium Total"] <- "mg/L"
 
   site_limits$UpperLimit %<>% as.character()
+  site_limits$Statistic <- "mean"
   wqbc:::check_limits(site_limits)
   site_limits
 }
