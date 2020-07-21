@@ -47,8 +47,9 @@ codes_new <- limits %>%
   distinct() %>%
   left_join(ec_codes, "Code")
 
-missing_codes <- anti_join(codes, codes_new, "Code")
-missing_codes$Average <- NULL
+missing_codes <-
+  anti_join(codes, codes_new, "Code") %>%
+  select(-Average)
 
 codes <- rbind(codes_new, missing_codes)
 # remove ems_code error
@@ -61,16 +62,13 @@ stopifnot(all(limits$Variable %in% codes$Variable))
 limits <- inner_join(limits, select(codes, EMS_Code = Code, Units), by = "EMS_Code")
 
 stopifnot(all(limits$..Units == limits$Units))
-limits$..Units <- NULL
 
 limits  <- limits %>%
+  select(Variable, Use, Term, Condition, UpperLimit, Units, Statistic) %>%
   arrange(Variable, Use, Term)
 
 codes <- codes %>%
   arrange(Variable, Code)
-
-limits  <- limits %>%
-  select(Variable, Use, Term, Condition, UpperLimit, Units, Statistic)
 
 check_limits(limits)
 check_codes(codes)
