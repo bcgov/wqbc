@@ -12,6 +12,10 @@
 
 context("codes")
 
+test_that("check_codes", {
+  expect_null(check_codes(wqbc::codes))
+})
+
 test_that("expand_ems_codes", {
   expect_identical(
     expand_ems_codes(c("0014", "KR-P", "0_15", "EMS_ZN_T")),

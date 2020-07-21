@@ -14,10 +14,9 @@
 
 devtools::load_all() # rebuild package
 source("data-raw/dummy.R")
-source("data-raw/codes.R")
-source("data-raw/limits.R")
-devtools::load_all() # rebuild package
+source("data-raw/limits-and-codes.R")
 source("data-raw/site-limits.R")
+devtools::load_all() # rebuild package
 # source("data-raw/fraser-raw.R")
 source("data-raw/fraser.R")
 # source("data-raw/map-raw.R")
