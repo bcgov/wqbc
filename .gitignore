@@ -1,12 +1,13 @@
 .Rproj.user
 .Rhistory
 .RData
+.Ruserdata
 
 .DS_Store
+.Renviron
+.RProfile
+.httr-oauth
 
-.~lock*
+*.html
 
-# do not git hydat sqlite database
-data-raw/hydat/Hydat.sqlite3
-data-raw/hydat/Hydat_sqlite3_20161017.zip
-inst/doc
+inst/docs/

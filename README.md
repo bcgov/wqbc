@@ -7,8 +7,8 @@
 
 [![BCDevExchange
 Status](https://assets.bcdevexchange.org/images/badges/exploration.svg)](https://github.com/BCDevExchange/docs/blob/master/discussion/projectstates.md)
-[![Travis-CI Build
-Status](https://travis-ci.org/bcgov/wqbc.svg?branch=master)](https://travis-ci.org/bcgov/wqbc)
+[![R build
+status](https://github.com/bcgov/wqbc/workflows/R-CMD-check/badge.svg)](https://github.com/bcgov/wqbc/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/bcgov/wqbc/branch/master/graph/badge.svg)](https://codecov.io/gh/bcgov/wqbc?branch=master)
 <!-- badges: end -->
