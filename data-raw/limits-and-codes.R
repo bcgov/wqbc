@@ -5,6 +5,8 @@ limits <- bcdata::bcdc_get_data(record = "85d3990a-ec0a-4436-8ebd-150de3ba0747")
 
 codes <- read.csv("data-raw/codes.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
+ec_codes <- read.csv("data-raw/ec-codes.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
+
 limits <- dplyr::mutate(limits,
                             Condition = dplyr::if_else(Condition == "",
                                                        NA_character_, Condition)) %>%
@@ -38,20 +40,18 @@ modified <-
 modified <- modified[stringr::str_detect(modified, "EMS_0107")]
 limits$Condition[which(stringr::str_detect(limits$Condition, "EMS_0107"))] <- modified
 
-### create new codes table and grab EC_Code from old table where possible
-ec_codes <- select(codes, Code, EC_Code) %>%
-  filter(Code %in% unique(limits$EMS_Code), !is.na(EC_Code))
-
-codes_new <- limits %>%
+codes_limits <- limits %>%
   select(Variable, Code = EMS_Code, Units) %>%
-  distinct() %>%
-  left_join(ec_codes, "Code")
+  distinct()
 
-missing_codes <-
-  anti_join(codes, codes_new, "Code") %>%
-  select(-Average)
+# codes that already in limits
+semi_join(codes, codes_limits, "Code")
 
-codes <- rbind(codes_new, missing_codes)
+codes <- anti_join(codes, codes_limits, "Code")
+
+codes <- rbind(codes_new, missing_codes)  %>%
+  left_join(ec_codes, by = c(Code = "EMS_Code"))
+
 # remove ems_code error
 codes <- codes[!(codes$Code == "EMS_CL03"),]
 
