@@ -1,49 +1,91 @@
 Variable,Code,Units
-Alkalinity Total,EMS_AK_T,mg/L
-Alkalinity pH 4.5/4.2,EMS_D102,mg/L
-Aluminum Total,EMS_AL_T,mg/L
-Ammonia Dissolved,EMS_1108,mg/L
-Arsenic Dissolved,EMS_AS_D,µg/L
-Barium Dissolved,EMS_BA_D,µg/L
-Boron Dissolved,EMS_B__D,mg/L
-Cadmium Total,EMS_CD_T,µg/L
-Chlorate Dissolved,EMS_CL03,mg/L
-Chloride Total,EMS_0104,mg/L
-Chromium Dissolved,EMS_CR_D,µg/L
-Chromium Total,EMS_CR_T,µg/L
-Cobalt Dissolved,EMS_CO_D,µg/L
-Coliforms Fecal,EMS_0450,CFU/100mL
 Colour Apparent,EMS_0001,Col.unit
-Colour Trµe,EMS_0002,Col.unit
-Copper Dissolved,EMS_Cµ_D,µg/L
-Copper Total,EMS_Cµ_T,µg/L
+Colour True,EMS_0002,Col.unit
+pH,EMS_0004,pH
+Dissolved Solids (Filterable Residue),EMS_0007,mg/L
+Conductivity Specific,EMS_0011,mS/cm
+Temperature,EMS_0013,degC
+Oxygen Dissolved,EMS_0014,mg/L
+Turbidity,EMS_0015,NTU
+Extinction Depth,EMS_0019,m
+Alkalinity Total 4.5,EMS_0102,mg/L
+Organic Carbon Total,EMS_0103,mg/L
+Chloride Total,EMS_0104,mg/L
+Fluoride Total,EMS_0106,mg/L
+Hardness Total,EMS_0107,mg/L
+Nitrate Nitrite,EMS_0109,mg/L
+Nitrite Dissolved Total,EMS_0111,mg/L
+Nitrogen Total,EMS_0114,mg/L
+Biochemical Oxygen Demand,EMS_0115,mg/L
+Salinity,EMS_0130,ng/L
+Chlorophyll A,EMS_0143,mg/L
+Escherichia coli,EMS_0147,CFU/100mL
+Enterococci,EMS_0148,CFU/100mL
+Coliforms Fecal,EMS_0450,CFU/100mL
 Cyanide Dissolved,EMS_1105,µg/L
-Cyanide Total,EMS_CN_T,µg/L
-E. coli,EMS_0147,CFU/100mL
 Fluoride Dissolved,EMS_1106,mg/L
 Hardness Dissolved,EMS_1107,mg/L
-Hardness Total,EMS_0107,mg/L
-Lead Dissolved,EMS_PB_D,µg/L
-Manganese Dissolved,EMS_MN_D,mg/L
+Ammonia Dissolved,EMS_1108,mg/L
+Nitrate Nitrite Dissolved,EMS_1109,mg/L
+Nitrogen Dissolved,EMS_1114,mg/L
+Phosphorus Ortho,EMS_1118,mg/L
+Sulphate Dissolved,EMS_1121,mg/L
+Organic Carbon Dissolved,EMS_1126,mg/L
+Atrazine,EMS_A016,mg/L
+Silver Dissolved,EMS_AG_D,µg/L
+Alkalinity Total,EMS_AK_T,mg/L
+Aluminum Total,EMS_AL_T,mg/L
+Arsenic Dissolved,EMS_AS_D,µg/L
+Boron Dissolved,EMS_B__D,mg/L
+Dichlorobromomethane (Bromodichloromethane),EMS_B002,µg/L
+Tribromomethane (Bromoform),EMS_B013,µg/L
+"1,2-Dichlorobenzene",EMS_B022,µg/L
+Barium Dissolved,EMS_BA_D,µg/L
+Vinyl Chloride,EMS_C004,mg/L
+"1,2-Dichloroethane",EMS_C022,µg/L
+"1,1-Dichloroethylene",EMS_C024,mg/L
+Carbon Tetrachloride,EMS_C034,mg/L
+Tetrachloromethane (Carbon Tetrachloride),EMS_C034,mg/L
+Calcium Dissolved,EMS_CA_D,mg/L
+Cadmium Total,EMS_CD_T,µg/L
+Chlorate Dissolved,EMS_CL03,mg/L
+Chlorite Dissolved,EMS_CLO_,mg/L
+Cyanide Total,EMS_CN_T,µg/L
+Cobalt Dissolved,EMS_CO_D,µg/L
+Chromium Dissolved,EMS_CR_D,µg/L
+Chromium Total,EMS_CR_T,mg/L
+Chromium Total,EMS_CR_T,µg/L
+Copper Dissolved,EMS_CU_D,mg/L
+Copper Total,EMS_CU_T,mg/L
+"Chlorophenol, DCP",EMS_D060,mg/L
+Alkalinity pH 4.5/4.2,EMS_D102,mg/L
+Oxygen Dissolved Field,EMS_DO_F,mg/L
+Hexachlorobenzene,EMS_H003,µg/L
 Mercury Dissolved,EMS_HG_D,µg/L
 Mercury Methyl,EMS_HGME,µg/L
+Lithium Total,EMS_LI_T,mg/L
+Manganese Dissolved,EMS_MN_D,mg/L
 Molybdenum Dissolved,EMS_MO_D,mg/L
 Naphthalene D8,EMS_NAPH,µg/L
 Nickel Dissolved,EMS_NI_D,µg/L
-Nitrate Dissolved,EMS_1110,mg/L
 Nitrate Soluble,EMS_NO3_,mg/L
-Nitrate Nitrite,EMS_0109,mg/L
-Nitrogen Dissolved,EMS_1114,mg/L
-Nitrogen Total,EMS_0114,mg/L
-Oxygen Dissolved,EMS_0014,mg/L
-pH,EMS_0004,pH
 Phosphorus Dissolved,EMS_P__D,mg/L
-Phosphorus Ortho,EMS_1118,mg/L
+Phosphorus Total,EMS_P__T,mg/L
+Chrysene,EMS_PA09,µg/L
+Polycyclic Aromatic Hydrocarbons (Carcinogenic) Total,EMS_PAH_,mg/L
+Lead Dissolved,EMS_PB_D,µg/L
+Pseudomonas Aeruginosa,EMS_PSEU,CFU/100mL
+Conductivity Specific,EMS_SC_F,mS/cm
 Selenium Dissolved,EMS_SE_D,µg/L
-Silver Dissolved,EMS_AG_D,µg/L
-Sulphate Dissolved,EMS_1121,mg/L
-Temperature,EMS_0013,degC
+Strontium Total,EMS_SR_T,mg/L
+"Chlorophenol, TTCP",EMS_T020,mg/L
+"Chlorophenol, TCP",EMS_T021,mg/L
+Trichloroethylene,EMS_T029,mg/L
+Tetrachloroethylene,EMS_T030,mg/L
+Temperature,EMS_TEMF,degC
 Thallium Dissolved,EMS_TL_D,µg/L
-Turbidity,EMS_0015,NTU
-Uranium Dissolved,EMS_µ__D,µg/L
+"Tin, Tributyltin",EMS_TRSN,mg/L
+Turbidity,EMS_TURF,NTU
+Uranium Dissolved,EMS_U__D,µg/L
+Vanadium Total,EMS_V__T,mg/L
 Zinc Dissolved,EMS_ZN_D,µg/L
