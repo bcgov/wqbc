@@ -1,34 +1,35 @@
 Variable,Code,Units
 Alkalinity Total,EMS_AK_T,mg/L
 Alkalinity pH 4.5/4.2,EMS_D102,mg/L
+Aluminum Total,EMS_AL_T,mg/L
 Ammonia Dissolved,EMS_1108,mg/L
-Arsenic Dissolved,EMS_AS_D,ug/L
-Barium Dissolved,EMS_BA_D,ug/L
+Arsenic Dissolved,EMS_AS_D,µg/L
+Barium Dissolved,EMS_BA_D,µg/L
 Boron Dissolved,EMS_B__D,mg/L
-Cadmium Total,EMS_CD_T,ug/L
+Cadmium Total,EMS_CD_T,µg/L
 Chlorate Dissolved,EMS_CL03,mg/L
 Chloride Total,EMS_0104,mg/L
-Chromium Dissolved,EMS_CR_D,ug/L
-Chromium Total,EMS_CR_T,ug/L
-Cobalt Dissolved,EMS_CO_D,ug/L
-Coliforms Fecal,EMS_0450,CFU/dL
+Chromium Dissolved,EMS_CR_D,µg/L
+Chromium Total,EMS_CR_T,µg/L
+Cobalt Dissolved,EMS_CO_D,µg/L
+Coliforms Fecal,EMS_0450,CFU/100mL
 Colour Apparent,EMS_0001,Col.unit
-Colour True,EMS_0002,Col.unit
-Copper Dissolved,EMS_CU_D,ug/L
-Copper Total,EMS_CU_T,ug/L
-Cyanide Dissolved,EMS_1105,ug/L
-Cyanide Total,EMS_CN_T,ug/L
-E. coli,EMS_0147,CFU/dL
+Colour Trµe,EMS_0002,Col.unit
+Copper Dissolved,EMS_Cµ_D,µg/L
+Copper Total,EMS_Cµ_T,µg/L
+Cyanide Dissolved,EMS_1105,µg/L
+Cyanide Total,EMS_CN_T,µg/L
+E. coli,EMS_0147,CFU/100mL
 Fluoride Dissolved,EMS_1106,mg/L
 Hardness Dissolved,EMS_1107,mg/L
 Hardness Total,EMS_0107,mg/L
-Lead Dissolved,EMS_PB_D,ug/L
+Lead Dissolved,EMS_PB_D,µg/L
 Manganese Dissolved,EMS_MN_D,mg/L
-Mercury Dissolved,EMS_HG_D,ug/L
-Mercury Methyl,EMS_HGME,ug/L
+Mercury Dissolved,EMS_HG_D,µg/L
+Mercury Methyl,EMS_HGME,µg/L
 Molybdenum Dissolved,EMS_MO_D,mg/L
-Naphthalene D8,EMS_NAPH,ug/L
-Nickel Dissolved,EMS_NI_D,ug/L
+Naphthalene D8,EMS_NAPH,µg/L
+Nickel Dissolved,EMS_NI_D,µg/L
 Nitrate Dissolved,EMS_1110,mg/L
 Nitrate Soluble,EMS_NO3_,mg/L
 Nitrate Nitrite,EMS_0109,mg/L
@@ -37,12 +38,12 @@ Nitrogen Total,EMS_0114,mg/L
 Oxygen Dissolved,EMS_0014,mg/L
 pH,EMS_0004,pH
 Phosphorus Dissolved,EMS_P__D,mg/L
-Phosphorus Total,EMS_P__T,mg/L
-Selenium Dissolved,EMS_SE_D,ug/L
-Silver Dissolved,EMS_AG_D,ug/L
+Phosphorus Ortho,EMS_1118,mg/L
+Selenium Dissolved,EMS_SE_D,µg/L
+Silver Dissolved,EMS_AG_D,µg/L
 Sulphate Dissolved,EMS_1121,mg/L
 Temperature,EMS_0013,degC
-Thallium Dissolved,EMS_TL_D,ug/L
+Thallium Dissolved,EMS_TL_D,µg/L
 Turbidity,EMS_0015,NTU
-Uranium Dissolved,EMS_U__D,ug/L
-Zinc Dissolved,EMS_ZN_D,ug/L
+Uranium Dissolved,EMS_µ__D,µg/L
+Zinc Dissolved,EMS_ZN_D,µg/L
