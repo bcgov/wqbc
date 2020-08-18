@@ -22,7 +22,7 @@ lookup_units <- function() {
   c(
     "ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH", "degC", "C",
     "CFU/dL", "MPN/dL", "CFU/100mL", "MPN/100mL", "CFU/g", "MPN/g", "CFU/mL", "MPN/mL",
-    "Col.unit", "Rel", "NTU"
+    "Col.unit", "Rel", "NTU", "m", "mS/cm"
   )
 }
 
