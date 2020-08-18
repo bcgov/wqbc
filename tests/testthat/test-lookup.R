@@ -67,8 +67,8 @@ test_that("lookup_limits", {
 
   q <- lookup_limits(term = "short")
   expect_equal(as.character(q$UpperLimit[q$Variable == "Aluminum Dissolved"]), as.character(NA))
-  expect_equal(q$UpperLimit[q$Variable == "Polychlorinated Biphenyls Total"], 0.10)
-  expect_equal(as.character(q$Units[q$Variable == "Polychlorinated Biphenyls Total"]), "ng/L")
+  expect_equal(q$UpperLimit[q$Variable == "Polychlorinated Biphenyls (PCB) Total"], 0.10)
+  expect_equal(as.character(q$Units[q$Variable == "Polychlorinated Biphenyls (PCB) Total"]), "ng/L")
 
   p <- lookup_limits(term = "short", ph = 9) # EMS_0004
   expect_equal(as.character(p$Units[p$Variable == "Aluminum Dissolved"]), "mg/L")
@@ -84,7 +84,7 @@ test_that("lookup_limits", {
   i <- lookup_limits(term = "short", ph = 6.5) # EMS_0004
   expect_equal(as.character(i$Units[i$Variable == "Aluminum Dissolved"]), "mg/L")
   expect_equal(as.character(i$Units[i$Variable == "Cyanide weak acid dissociable Total"]), "ug/L")
-  expect_equal(as.character(i$Units[i$Variable == "Polychlorinated Biphenyls Total"]), "ng/L")
+  expect_equal(as.character(i$Units[i$Variable == "Polychlorinated Biphenyls (PCB) Total"]), "ng/L")
   expect_equal(i$UpperLimit[i$Variable == "Aluminum Dissolved"], 0.1)
   expect_equal(as.character(i$UpperLimit[i$Variable == "Silver Total"]), as.character(NA))
   expect_equal(as.character(i$UpperLimit[i$Variable == "Zinc Total"]), as.character(NA))

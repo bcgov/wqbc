@@ -1,11 +1,17 @@
 library(dplyr)
+library(chk)
 
 ###### ------ create new limits table from new guidelines
 limits <- bcdata::bcdc_get_data(record = "85d3990a-ec0a-4436-8ebd-150de3ba0747")
 
 codes <- read.csv("data-raw/codes.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
+check_key(codes, "Code")
+
 ec_codes <- read.csv("data-raw/ec-codes.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
+
+check_key(ec_codes, "EMS_Code")
+check_key(ec_codes, "EC_Code")
 
 limits <- dplyr::mutate(limits,
                             Condition = dplyr::if_else(Condition == "",
@@ -33,7 +39,7 @@ limits <- dplyr::mutate(limits,
   dplyr::filter(dplyr::n() == 1) %>%
   dplyr::ungroup()
 
-### deal with hardness equations (only include Hardness Total when both Hardness Total and Hardnes Dissolved)
+### deal with hardness equations (only include Hardness Total when both Hardness Total and Hardness Dissolved)
 modified <-
   limits$Condition[which(stringr::str_detect(limits$Condition, "EMS_0107"))] %>%
   stringr::str_split_fixed("\\|", 2)
@@ -49,7 +55,7 @@ semi_join(codes, codes_limits, "Code")
 
 codes <- anti_join(codes, codes_limits, "Code")
 
-codes <- rbind(codes_new, missing_codes)  %>%
+codes %<>% rbind(codes_limits)  %>%
   left_join(ec_codes, by = c(Code = "EMS_Code"))
 
 # remove ems_code error
@@ -70,8 +76,10 @@ limits  <- limits %>%
 codes <- codes %>%
   arrange(Variable, Code)
 
-check_limits(limits)
+poisdata::ps_duplicates(codes, "Code")
+
 check_codes(codes)
+check_limits(limits, codes = FALSE)
 
 use_data(limits, overwrite = TRUE, compress = "xz")
 use_data(codes, overwrite = TRUE, compress = "xz")

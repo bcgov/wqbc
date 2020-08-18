@@ -17,19 +17,19 @@ library(wqbc)
 library(dplyr)
 library(magrittr)
 library(devtools)
+library(chk)
 
 rm(list = ls())
 
-input_site_limits <- function() {
-  site_limits <- read.csv("data-raw/site-limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
+site_limits <- read.csv("data-raw/site-limits.csv", na.strings = c("NA", ""), stringsAsFactors = FALSE)
 
-  ### fix Barium units
-  site_limits$Units[site_limits$Variable == "Barium Total"] <- "mg/L"
+### fix Barium units
+site_limits$Units[site_limits$Variable == "Barium Total"] <- "mg/L"
 
-  site_limits$UpperLimit %<>% as.character()
-  site_limits$Statistic <- "mean"
-  wqbc:::check_limits(site_limits)
-  site_limits
-}
-site_limits <- input_site_limits()
+site_limits$UpperLimit %<>% as.character()
+site_limits$Statistic <- "mean"
+wqbc:::check_limits(site_limits)
+
+chk_join(limits, wqbc::codes, by = c("Variable", "Units"))
+
 use_data(site_limits, overwrite = TRUE, compress = "xz")

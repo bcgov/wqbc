@@ -9,15 +9,16 @@ check_codes <- function(x) {
                        Code = "",
                        Units = lookup_units(),
                        EC_Code = c(1L, NA)),
-                  key = "Variable")
-  chk::check_key(x, "Code")
+                  key = "Code")
+  chk::check_key(x, "Variable")
   invisible(NULL)
 }
 
-check_limits <- function(x) {
+check_limits <- function(x, codes = TRUE) {
+  variable <- if(!codes) "" else lookup_variables()
   chk::check_data(x,
-                  list(Variable = lookup_variables(),
-                       Use = lookup_use(),
+                  list(Variable = variable,
+                       Use = c("Freshwater Life", "Freshwater Life", "Freshwater Life"),
                        Term = c("Short", "Long", "Long"),
                        Condition = c("", NA),
                        UpperLimit = "",

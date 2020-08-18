@@ -63,16 +63,19 @@ test_that("substitute_variables not strict", {
     "dissolved aluminum", "Benzene Total",
     "KRYPTONITE"
   ),
-  strict = FALSE
-  ), c("Aluminum Dissolved", "Aluminum Dissolved", "Aluminum Dissolved", "Benzene Total", NA))
-  expect_equal(substitute_variables("KRYPTONITE", strict = FALSE), NA_character_)
+  strict = TRUE
+  ), c(NA, "Aluminum Dissolved", "Aluminum Dissolved", "Benzene Total", NA))
+  expect_equal(substitute_variables("KRYPTONITE"), NA_character_)
   expect_equal(
     substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum"), strict = TRUE),
     c("Iron Total", "Iron Dissolved", NA)
   )
   expect_equal(
-    substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum"), strict = FALSE),
-    c(NA, NA, "Aluminum Dissolved")
+    substitute_variables(c("Iron Total", "Iron Dissolved"), strict = TRUE),
+    c("Iron Total", "Iron Dissolved")
   )
-  expect_equal(substitute_variables("KRYPTONITE", strict = FALSE), NA_character_)
+  expect_equal(
+    substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum")),
+    c("Iron Total", "Iron Dissolved", NA)
+  )
 })
