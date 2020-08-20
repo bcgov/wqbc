@@ -20,7 +20,7 @@ get_unit_multiplier <- function(x) {
     "CFU/dL" = 1, "CFU/100mL" = 1, "CFU/mL" = 0.01, "MPN/dL" = 1,
     "MPN/100mL" = 1, "MPN/mL" = 0.01, "CFU/g" = 0.01, "MPN/g" = 0.01,
     "m" = 1,
-    "mS/cm" = 1
+    "uS/cm" = 1
   )
   x <- units[x]
   names(x) <- NULL
@@ -36,7 +36,7 @@ get_unit_type <- function(x) {
     "Turbidity" = "NTU",
     "Coli" = c("CFU/dL", "CFU/100mL", "CFU/mL", "MPN/dL", "MPN/100mL", "MPN/mL", "CFU/g", "MPN/g"),
     "Distance" = "m",
-    "Conductivity" = "mS/cm"
+    "Conductivity" = "uS/cm"
   )
 
   type <- unlist(type)
@@ -58,7 +58,7 @@ get_unit_type <- function(x) {
 #' @param messages should messages be printed when
 #'
 #' @details Currently supported units for \code{from} and \code{to} are:
-#' c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH", "degC", "C", "CFU/dL", "MPN/dL", "CFU/100mL", "MPN/100mL", "CFU/g", "MPN/g", "CFU/mL", "MPN/mL", "Col.unit", "Rel", "NTU", "m", "mS/cm")
+#' c("ng/L", "ug/L", "mg/L", "g/L", "kg/L", "pH", "degC", "C", "CFU/dL", "MPN/dL", "CFU/100mL", "MPN/100mL", "CFU/g", "MPN/g", "CFU/mL", "MPN/mL", "Col.unit", "Rel", "NTU", "m", "uS/cm")
 #'
 #' @return a numeric vector of the converted values
 #' @export
