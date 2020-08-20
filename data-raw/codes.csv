@@ -3,7 +3,7 @@ Colour Apparent,EMS_0001,Col.unit
 Colour True,EMS_0002,Col.unit
 pH,EMS_0004,pH
 Dissolved Solids (Filterable Residue),EMS_0007,mg/L
-Conductivity Specific,EMS_0011,mS/cm
+Conductivity Specific,EMS_0011,uS/cm
 Temperature,EMS_0013,degC
 Temperature - Field,EMS_TEMF,degC
 Oxygen Dissolved,EMS_0014,mg/L
@@ -74,7 +74,7 @@ Chrysene,EMS_PA09,ug/L
 Polycyclic Aromatic Hydrocarbons (Carcinogenic) Total,EMS_PAH_,mg/L
 Lead Dissolved,EMS_PB_D,ug/L
 Pseudomonas Aeruginosa,EMS_PSEU,CFU/100mL
-Conductivity Specific - Field,EMS_SC_F,mS/cm
+Conductivity Specific - Field,EMS_SC_F,uS/cm
 Selenium Dissolved,EMS_SE_D,ug/L
 Strontium Total,EMS_SR_T,mg/L
 "Chlorophenol, TTCP",EMS_T020,mg/L
