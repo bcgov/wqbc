@@ -71,12 +71,12 @@ estimate_variable_values_by <- function(x, messages) {
   x
 }
 
-estimate_variable_values <- function(data, by = NULL, variables = c("Chloride Total", "Hardness Total", "pH"),
+estimate_variable_values <- function(data, by = NULL, variables = estimated_variables(),
                                      messages = getOption("wqbc.messages", default = TRUE)) {
   check_data(data, values = list(Date = Sys.Date(), Variable = "", Value = c(1, NA), Units = ""))
   chkor(chk_null(by), check_values(by, ""))
   check_values(variables, "")
-  if (!all(variables %in% c("Chloride Total", "Hardness Total", "pH"))) error("Unrecognized variables")
+  if (!all(variables %in% estimated_variables())) error("Unrecognized variables")
   chk_flag(messages)
   stopifnot(!any(c("Variable", "Value", "Units", "Date") %in% by))
 

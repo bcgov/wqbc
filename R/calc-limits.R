@@ -334,7 +334,7 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
 
   cleansed <- x
 
-  x_org <- dplyr::filter(x, .data$Variable %in% c("Chloride Total", "Hardness Total", "pH"))
+  x_org <- dplyr::filter(x, .data$Variable %in% estimated_variables())
 
   if (estimate_variables) {
     x %<>% estimate_variable_values(by = by, messages = messages)
@@ -354,8 +354,8 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
   }
 
   if (estimate_variables) { ## add original variable values back if still present
-    x_new <- dplyr::filter(x, .data$Variable %in% c("Chloride Total", "Hardness Total", "pH"))
-    x %<>% dplyr::filter(!.data$Variable %in% c("Chloride Total", "Hardness Total", "pH"))
+    x_new <- dplyr::filter(x, .data$Variable %in% estimated_variables())
+    x %<>% dplyr::filter(!.data$Variable %in% estimated_variables())
     x_org <- x_org[c("Date", "Variable", by, "Value")]
     x_new$Value <- NULL
     x_new %<>% dplyr::inner_join(x_org, by = c("Date", "Variable", by))
