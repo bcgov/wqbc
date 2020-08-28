@@ -38,9 +38,6 @@ standardize_wqdata_variable <- function(x, messages) {
 #'
 #' @inheritParams substitute_variables
 #' @param x A data.frame to standardize.
-#' @param strict A flag that is passed to substitute_variables indicating
-#' whether to require all words in a recognised variable name to be
-#' present in x (strict = TRUE) or only the first one (strict = FALSE)
 #' @examples
 #' standardize_wqdata(wqbc::dummy, messages = TRUE)
 #' @seealso \code{\link{clean_wqdata}}

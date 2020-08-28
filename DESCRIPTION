@@ -36,6 +36,7 @@ Imports:
     tidyr,
     mgcv,
     lubridate,
+    lifecycle
 Suggests:
     testthat,
     knitr,
@@ -54,3 +55,4 @@ VignetteBuilder: knitr
 RoxygenNote: 7.1.1.9000
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
+RdMacros: lifecycle

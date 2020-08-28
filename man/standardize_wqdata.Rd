@@ -14,9 +14,9 @@ standardize_wqdata(
 \arguments{
 \item{x}{A data.frame to standardize.}
 
-\item{strict}{A flag that is passed to substitute_variables indicating
-whether to require all words in a recognised variable name to be
-present in x (strict = TRUE) or only the first one (strict = FALSE)}
+\item{strict}{A flag indicating whether to require all words
+in a recognised variable name to be present in x (strict = TRUE)
+or only the first one (strict = FALSE) \lifecycle{soft-deprecated}.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
