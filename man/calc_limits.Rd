@@ -23,7 +23,7 @@ calc_limits(
 
 \item{by}{A optional character vector of the columns in x to calculate the limits by.}
 
-\item{term}{A string indicating whether to calculate the "long" or "short"-term limits.}
+\item{term}{A string indicating whether to calculate the "long" or "short"-term or "long-daily" limits.}
 
 \item{dates}{A optional date vector indicating the start of 30 day long-term periods.}
 
@@ -31,7 +31,7 @@ calc_limits(
 
 \item{delete_outliers}{A flag indicating whether to delete outliers or merely flag them.}
 
-\item{estimate_variables}{A flag indicating whether to estimate total hardness, total chloride and pHfor all dates.}
+\item{estimate_variables}{A flag indicating whether to estimate total hardness, total chloride and pH for all dates.}
 
 \item{clean}{Should the data be run through \code{\link{clean_wqdata}} before calculating limits? Default \code{TRUE}}
 
@@ -42,15 +42,13 @@ calc_limits(
 \item{use}{A string indicating the Use.}
 }
 \description{
-Calculates the approved "short" or "long"-term
+Calculates the approved "short" or "long"-term or the "long-daily"
 upper water quality thresholds for freshwater life in British Columbia.
 The water quality data is automatically cleaned using \code{\link{clean_wqdata}}
 prior to calculating the limits to ensure: all variables are recognised,
 all values are non-negative and in the standard units, divergent replicates
 are filtered and all remaining replicates are averaged. Only limits whose
 conditions are met are returned.
-Note to use the long-term limits on daily values set
-term = "long-daily".
 }
 \details{
 If a limit depends on another variable
@@ -75,6 +73,10 @@ period extends for 30 days or until a provided date is reached. It is important
 to note that the averaging of conditional variables, the 5 in 30 rule
 and the assignment of 30 day periods occurs independently for all combination
 of factor levels in the columns specified by by.
+
+If the user wishes to consider the long-term thresholds without the above requirements that
+there are at least 5 values spanning 21 days etc then they should set
+\code{term = "long-daily"}
 }
 \examples{
 \dontrun{
