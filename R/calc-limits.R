@@ -292,13 +292,16 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
   chk_data(x)
   chkor(chk_null(by), check_values(by, ""))
   chk_string(term)
-  chk_string(use)
+  chk_subset(term, c("long", "short", "long-daily"))
   chkor(chk_null(dates), check_values(dates, Sys.Date()))
-  check_values(messages, TRUE)
-  check_values(keep_limits, TRUE)
-  check_values(clean, TRUE)
-
+  chk_flag(keep_limits)
+  chk_flag(delete_outliers)
+  chk_flag(estimate_variables)
+  chk_flag(clean)
   check_limits(limits)
+  chk_flag(messages)
+  chk_string(use)
+  chk_subset(use, c(unique(limits$Use), rep("Freshwater Life", 2)))
 
   missing_limits <- dplyr::anti_join(limits, wqbc::codes, by = c("Variable", "Units"))
 
@@ -307,10 +310,6 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
   }
   limits$Code <- NULL
 
-  term <- tolower(term)
-  if (!term %in% c("long", "short", "long-daily")) stop("term must be \"long\" or \"short\" or \"long-daily\"")
-
-  if (!use %in% limits$Use) stop("use must match a Use in the limits table")
   limits <- dplyr::filter(limits, .data$Use == use)
   limits$Use <- NULL
 
