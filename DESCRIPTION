@@ -21,7 +21,7 @@ LazyData: true
 Depends:
     R (>= 3.4)
 Imports:
-    chk (>= 0.4.0.9004),
+    chk,
     plyr,
     dplyr,
     rlang,
@@ -32,7 +32,7 @@ Imports:
     grDevices,
     stringr,
     stats,
-    tibble (>= 3.0.0),
+    tibble,
     tidyr,
     mgcv,
     lubridate,
@@ -47,10 +47,9 @@ Suggests:
     Kendall,
     covr
 Remotes:
-    poissonconsulting/chk,
     bcgov/rems,
     bcgov/canwqdata
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1.9000
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
