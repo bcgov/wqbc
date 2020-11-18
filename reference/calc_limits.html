@@ -40,15 +40,13 @@
 
 
 <meta property="og:title" content="Calculate Limits — calc_limits" />
-<meta property="og:description" content="Calculates the approved &quot;short&quot; or &quot;long&quot;-term
+<meta property="og:description" content="Calculates the approved &quot;short&quot; or &quot;long&quot;-term or the &quot;long-daily&quot;
 upper water quality thresholds for freshwater life in British Columbia.
 The water quality data is automatically cleaned using clean_wqdata
 prior to calculating the limits to ensure: all variables are recognised,
 all values are non-negative and in the standard units, divergent replicates
 are filtered and all remaining replicates are averaged. Only limits whose
-conditions are met are returned.
-Note to use the long-term limits on daily values set
-term = &quot;long-daily&quot;." />
+conditions are met are returned." />
 
 
 
@@ -122,15 +120,13 @@ term = &quot;long-daily&quot;." />
     </div>
 
     <div class="ref-description">
-    <p>Calculates the approved "short" or "long"-term
+    <p>Calculates the approved "short" or "long"-term or the "long-daily"
 upper water quality thresholds for freshwater life in British Columbia.
 The water quality data is automatically cleaned using <code><a href='clean_wqdata.html'>clean_wqdata</a></code>
 prior to calculating the limits to ensure: all variables are recognised,
 all values are non-negative and in the standard units, divergent replicates
 are filtered and all remaining replicates are averaged. Only limits whose
-conditions are met are returned.
-Note to use the long-term limits on daily values set
-term = "long-daily".</p>
+conditions are met are returned.</p>
     </div>
 
     <pre class="usage"><span class='fu'>calc_limits</span><span class='op'>(</span>
@@ -160,7 +156,7 @@ term = "long-daily".</p>
     </tr>
     <tr>
       <th>term</th>
-      <td><p>A string indicating whether to calculate the "long" or "short"-term limits.</p></td>
+      <td><p>A string indicating whether to calculate the "long" or "short"-term or "long-daily" limits.</p></td>
     </tr>
     <tr>
       <th>dates</th>
@@ -176,7 +172,7 @@ term = "long-daily".</p>
     </tr>
     <tr>
       <th>estimate_variables</th>
-      <td><p>A flag indicating whether to estimate total hardness, total chloride and pHfor all dates.</p></td>
+      <td><p>A flag indicating whether to estimate total hardness, total chloride and pH for all dates.</p></td>
     </tr>
     <tr>
       <th>clean</th>
@@ -219,6 +215,9 @@ period extends for 30 days or until a provided date is reached. It is important
 to note that the averaging of conditional variables, the 5 in 30 rule
 and the assignment of 30 day periods occurs independently for all combination
 of factor levels in the columns specified by by.</p>
+<p>If the user wishes to consider the long-term thresholds without the above requirements that
+there are at least 5 values spanning 21 days etc then they should set
+<code>term = "long-daily"</code></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='clean_wqdata.html'>clean_wqdata</a></code> and <code><a href='lookup_limits.html'>lookup_limits</a></code></p></div>
