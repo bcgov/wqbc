@@ -44,7 +44,7 @@
 important. Where
 there are no matches missing values are returned. When strict = TRUE
 all words in a recognised variable must be present in x but when
-strict = FALSE the only requirement is that the first word is present.
+strict = FALSE (soft-deprecated) the only requirement is that the first word is present.
 When strict = FALSE recognised variables with the same first word
 such as &quot;Iron Dissolved&quot; and &quot;Iron Total&quot;  are excluded from matches.
 In both cases the only requirement is that all words or just the first word
@@ -130,7 +130,7 @@ Aluminium to be a match with Aluminum." />
 important. Where
 there are no matches missing values are returned. When strict = TRUE
 all words in a recognised variable must be present in x but when
-strict = FALSE the only requirement is that the first word is present.
+strict = FALSE (soft-deprecated) the only requirement is that the first word is present.
 When strict = FALSE recognised variables with the same first word
 such as "Iron Dissolved" and "Iron Total"  are excluded from matches.
 In both cases the only requirement is that all words or just the first word
@@ -158,7 +158,8 @@ Aluminium to be a match with Aluminum.</p>
       <th>strict</th>
       <td><p>A flag indicating whether to require all words
 in a recognised variable name to be present in x (strict = TRUE)
-or only the first one (strict = FALSE).</p></td>
+or only the first one (strict = FALSE) <img src='figures/lifecycle-soft-deprecated.svg' alt='Soft-deprecated lifecycle' />
+.</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -177,19 +178,7 @@ or only the first one (strict = FALSE).</p></td>
   <span class='st'>"Total Fluoride Hardness"</span>
 <span class='op'>)</span>, messages <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Substituted 'ALUMINUM DISSOLVED' with 'Aluminum Dissolved' and 'BORON Total' with 'Boron Total'.</span></div><div class='output co'>#&gt; <span class='message'>Failed to substitute 'ALUMINIUM SOMETHING', 'dissolved aluminium', 'KRYPTONITE' and 'Total Fluoride Hardness'.</span></div><div class='output co'>#&gt; [1] NA                   "Aluminum Dissolved" NA                  
-#&gt; [4] "Boron Total"        NA                   NA                  </div><div class='input'><span class='fu'>substitute_variables</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-  <span class='st'>"ALUMINIUM SOMETHING"</span>, <span class='st'>"ALUMINUM DISSOLVED"</span>,
-  <span class='st'>"dissolved aluminium"</span>, <span class='st'>"BORON Total"</span>, <span class='st'>"KRYPTONITE"</span>,
-  <span class='st'>"Total Fluoride Hardness"</span>
-<span class='op'>)</span>,
-strict <span class='op'>=</span> <span class='cn'>FALSE</span>, messages <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Substituted 'ALUMINUM DISSOLVED' with 'Dissolved Solids (Filterable Residue)' and 'dissolved aluminium' with 'Dissolved Solids (Filterable Residue)'.</span></div><div class='output co'>#&gt; <span class='message'>Failed to substitute 'ALUMINIUM SOMETHING', 'BORON Total', 'KRYPTONITE' and 'Total Fluoride Hardness'.</span></div><div class='output co'>#&gt; [1] NA                                     
-#&gt; [2] "Dissolved Solids (Filterable Residue)"
-#&gt; [3] "Dissolved Solids (Filterable Residue)"
-#&gt; [4] NA                                     
-#&gt; [5] NA                                     
-#&gt; [6] NA                                     </div></pre>
+#&gt; [4] "Boron Total"        NA                   NA                  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
