@@ -83,12 +83,6 @@ not the codes are compressed or expanded is unimportant." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/wqbc.html">Get started</a>
 </li>
 <li>
@@ -131,10 +125,10 @@ looks up the matching variables from <code><a href='codes.html'>codes</a></code>
 not the codes are compressed or expanded is unimportant.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lookup_variables</span>(
-  codes = <span class='kw'>NULL</span>,
-  messages = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"wqbc.messages"</span>, default = <span class='fl'>TRUE</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>lookup_variables</span><span class='op'>(</span>
+  codes <span class='op'>=</span> <span class='cn'>NULL</span>,
+  messages <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"wqbc.messages"</span>, default <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,7 +148,8 @@ not the codes are compressed or expanded is unimportant.</p>
     <div class='dont-index'><p><code><a href='lookup_limits.html'>lookup_limits</a></code> and <code><a href='expand_ems_codes.html'>expand_ems_codes</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>lookup_variables</span>()</div><div class='output co'>#&gt;   [1] "1,1-Dichloroethylene"                                                              
+    <pre class="examples"><div class='input'><span class='fu'>lookup_variables</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   [1] "1,1-Dichloroethylene"                                                              
 #&gt;   [2] "1,1,2-Trichloroethene (Trichloroethylene) Total"                                   
 #&gt;   [3] "1,1,2,2-Tetrachloroethene (Tetrachloroethylene, Perchlorethylene) Total"           
 #&gt;   [4] "1,2-Dichlorobenzene Total"                                                         
@@ -341,7 +336,8 @@ not the codes are compressed or expanded is unimportant.</p>
 #&gt; [185] "Vinyl Chloride"                                                                    
 #&gt; [186] "Xylene Total"                                                                      
 #&gt; [187] "Zinc Dissolved"                                                                    
-#&gt; [188] "Zinc Total"                                                                        </div><div class='input'><span class='fu'>lookup_variables</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AL-D"</span>, <span class='st'>"EMS_AS_T"</span>, <span class='st'>"B--T"</span>, <span class='st'>"KRYP"</span>), messages = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Replaced 'AL-D' with 'Aluminum Dissolved', 'AS-T' with 'Arsenic Total' and 'B--T' with 'Boron Total'.</span></div><div class='output co'>#&gt; <span class='message'>Failed to replace 'KRYP'.</span></div><div class='output co'>#&gt; [1] "Aluminum Dissolved" "Arsenic Total"      "Boron Total"       
+#&gt; [188] "Zinc Total"                                                                        </div><div class='input'><span class='fu'>lookup_variables</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AL-D"</span>, <span class='st'>"EMS_AS_T"</span>, <span class='st'>"B--T"</span>, <span class='st'>"KRYP"</span><span class='op'>)</span>, messages <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Replaced 'AL-D' with 'Aluminum Dissolved', 'AS-T' with 'Arsenic Total' and 'B--T' with 'Boron Total'.</span></div><div class='output co'>#&gt; <span class='message'>Failed to replace 'KRYP'.</span></div><div class='output co'>#&gt; [1] "Aluminum Dissolved" "Arsenic Total"      "Boron Total"       
 #&gt; [4] NA                  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -358,7 +354,7 @@ not the codes are compressed or expanded is unimportant.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

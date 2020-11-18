@@ -85,12 +85,6 @@ to calculating limits." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/wqbc.html">Get started</a>
 </li>
 <li>
@@ -135,18 +129,18 @@ function is automatically called by <code><a href='calc_limits.html'>calc_limits
 to calculating limits.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>clean_wqdata</span>(
-  <span class='kw'>x</span>,
-  by = <span class='kw'>NULL</span>,
-  max_cv = <span class='fl'>Inf</span>,
-  sds = <span class='fl'>10</span>,
-  ignore_undetected = <span class='fl'>TRUE</span>,
-  large_only = <span class='fl'>TRUE</span>,
-  delete_outliers = <span class='fl'>FALSE</span>,
-  remove_blanks = <span class='fl'>FALSE</span>,
-  messages = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"wqbc.messages"</span>, default = <span class='fl'>TRUE</span>),
-  FUN = <span class='kw'>mean</span>
-)</pre>
+    <pre class="usage"><span class='fu'>clean_wqdata</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  max_cv <span class='op'>=</span> <span class='cn'>Inf</span>,
+  sds <span class='op'>=</span> <span class='fl'>10</span>,
+  ignore_undetected <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  large_only <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  delete_outliers <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  remove_blanks <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  messages <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"wqbc.messages"</span>, default <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
+  FUN <span class='op'>=</span> <span class='va'>mean</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -212,7 +206,8 @@ and two identical positive values (CV = 0.87).</p>
     <div class='dont-index'><p><code><a href='calc_limits.html'>calc_limits</a></code> and <code><a href='standardize_wqdata.html'>standardize_wqdata</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>clean_wqdata</span>(<span class='kw'>wqbc</span>::<span class='kw'><a href='dummy.html'>dummy</a></span>, messages = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Cleaning water quality data...</span></div><div class='output co'>#&gt; <span class='message'>Identified 0 outliers in water quality data.</span></div><div class='output co'>#&gt; <span class='message'>Cleansed water quality data.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 6</span><span>
+    <pre class="examples"><div class='input'><span class='fu'>clean_wqdata</span><span class='op'>(</span><span class='fu'>wqbc</span><span class='fu'>::</span><span class='va'><a href='dummy.html'>dummy</a></span>, messages <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Cleaning water quality data...</span></div><div class='output co'>#&gt; <span class='message'>Identified 0 outliers in water quality data.</span></div><div class='output co'>#&gt; <span class='message'>Cleansed water quality data.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 6</span><span>
 #&gt;   Date       Variable              Value Units    Outlier DetectionLimit
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> 2000-01-01 Aluminium Dissolved    7.67 mg/L     FALSE               </span><span style='color: #BB0000;'>NA</span><span>
@@ -239,7 +234,7 @@ and two identical positive values (CV = 0.87).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

@@ -83,12 +83,6 @@ looks up the matching codes from codes." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/wqbc.html">Get started</a>
 </li>
 <li>
@@ -131,10 +125,10 @@ variables using <code><a href='substitute_variables.html'>substitute_variables</
 looks up the matching codes from <code><a href='codes.html'>codes</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lookup_codes</span>(
-  variables = <span class='kw'>NULL</span>,
-  messages = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"wqbc.messages"</span>, default = <span class='fl'>TRUE</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>lookup_codes</span><span class='op'>(</span>
+  variables <span class='op'>=</span> <span class='cn'>NULL</span>,
+  messages <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"wqbc.messages"</span>, default <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,7 +148,8 @@ looks up the matching codes from <code><a href='codes.html'>codes</a></code>.</p
     <div class='dont-index'><p><code><a href='lookup_limits.html'>lookup_limits</a></code> and <code><a href='expand_ems_codes.html'>expand_ems_codes</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>lookup_codes</span>()</div><div class='output co'>#&gt;   [1] "C024" "T029" "T030" "B022" "C022" "P020" "T065" "TCB5" "T066" "B026"
+    <pre class="examples"><div class='input'><span class='fu'>lookup_codes</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   [1] "C024" "T029" "T030" "B022" "C022" "P020" "T065" "TCB5" "T066" "B026"
 #&gt;  [11] "B025" "IPBC" "PA01" "A003" "0102" "D102" "AK-T" "AL-D" "AL-T" "1108"
 #&gt;  [21] "0108" "SB-T" "AS-D" "AS-T" "A016" "BA-D" "BA-T" "B020" "PA05" "BE-T"
 #&gt;  [31] "0115" "B--D" "B--T" "B014" "B009" "CD-D" "CD-T" "CA-D" "C005" "C040"
@@ -172,9 +167,10 @@ looks up the matching codes from <code><a href='codes.html'>codes</a></code>.</p
 #&gt; [151] "P--D" "1118" "P--T" "PICL" "P019" "PAH-" "PSEU" "PA19" "0130" "SE-D"
 #&gt; [161] "SE-T" "AG-D" "AG-T" "S001" "SR-T" "S010" "1121" "0121" "0013" "TEMF"
 #&gt; [171] "C034" "TL-D" "TL-T" "TRSN" "T001" "T082" "B013" "C032" "T015" "0015"
-#&gt; [181] "TURF" "U--D" "U--T" "V--T" "C004" "X001" "ZN-D" "ZN-T"</div><div class='input'><span class='fu'>lookup_codes</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Aluminum"</span>, <span class='st'>"Arsenic Total"</span>, <span class='st'>"Boron Something"</span>, <span class='st'>"Kryptonite"</span>),
-  messages = <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span class='message'>Failed to substitute 'Aluminum', 'Boron Something' and 'Kryptonite'.</span></div><div class='output co'>#&gt; <span class='message'>Replaced 'Arsenic Total' with 'AS-T'.</span></div><div class='output co'>#&gt; [1] NA     "AS-T" NA     NA    </div></pre>
+#&gt; [181] "TURF" "U--D" "U--T" "V--T" "C004" "X001" "ZN-D" "ZN-T"</div><div class='input'><span class='fu'>lookup_codes</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Aluminum"</span>, <span class='st'>"Arsenic Total"</span>, <span class='st'>"Boron Something"</span>, <span class='st'>"Kryptonite"</span><span class='op'>)</span>,
+  messages <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Failed to substitute 'Aluminum', 'Boron Something' and 'Kryptonite'.</span></div><div class='output co'>#&gt; <span class='message'>Replaced 'Arsenic Total' with 'AS-T'.</span></div><div class='output co'>#&gt; [1] NA     "AS-T" NA     NA    </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -190,7 +186,7 @@ looks up the matching codes from <code><a href='codes.html'>codes</a></code>.</p
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

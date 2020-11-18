@@ -91,12 +91,6 @@ Aluminium to be a match with Aluminum." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/wqbc.html">Get started</a>
 </li>
 <li>
@@ -147,11 +141,11 @@ error. The code also considers
 Aluminium to be a match with Aluminum.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>substitute_variables</span>(
-  <span class='kw'>x</span>,
-  strict = <span class='fl'>TRUE</span>,
-  messages = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"wqbc.messages"</span>, default = <span class='fl'>TRUE</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>substitute_variables</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  strict <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  messages <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"wqbc.messages"</span>, default <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,18 +171,20 @@ or only the first one (strict = FALSE).</p></td>
     <div class='dont-index'><p><code><a href='substitute_units.html'>substitute_units</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>substitute_variables</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+    <pre class="examples"><div class='input'><span class='fu'>substitute_variables</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
   <span class='st'>"ALUMINIUM SOMETHING"</span>, <span class='st'>"ALUMINUM DISSOLVED"</span>,
   <span class='st'>"dissolved aluminium"</span>, <span class='st'>"BORON Total"</span>, <span class='st'>"KRYPTONITE"</span>,
   <span class='st'>"Total Fluoride Hardness"</span>
-), messages = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Substituted 'ALUMINUM DISSOLVED' with 'Aluminum Dissolved' and 'BORON Total' with 'Boron Total'.</span></div><div class='output co'>#&gt; <span class='message'>Failed to substitute 'ALUMINIUM SOMETHING', 'dissolved aluminium', 'KRYPTONITE' and 'Total Fluoride Hardness'.</span></div><div class='output co'>#&gt; [1] NA                   "Aluminum Dissolved" NA                  
-#&gt; [4] "Boron Total"        NA                   NA                  </div><div class='input'><span class='fu'>substitute_variables</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+<span class='op'>)</span>, messages <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Substituted 'ALUMINUM DISSOLVED' with 'Aluminum Dissolved' and 'BORON Total' with 'Boron Total'.</span></div><div class='output co'>#&gt; <span class='message'>Failed to substitute 'ALUMINIUM SOMETHING', 'dissolved aluminium', 'KRYPTONITE' and 'Total Fluoride Hardness'.</span></div><div class='output co'>#&gt; [1] NA                   "Aluminum Dissolved" NA                  
+#&gt; [4] "Boron Total"        NA                   NA                  </div><div class='input'><span class='fu'>substitute_variables</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
   <span class='st'>"ALUMINIUM SOMETHING"</span>, <span class='st'>"ALUMINUM DISSOLVED"</span>,
   <span class='st'>"dissolved aluminium"</span>, <span class='st'>"BORON Total"</span>, <span class='st'>"KRYPTONITE"</span>,
   <span class='st'>"Total Fluoride Hardness"</span>
-),
-strict = <span class='fl'>FALSE</span>, messages = <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span class='message'>Substituted 'ALUMINUM DISSOLVED' with 'Dissolved Solids (Filterable Residue)' and 'dissolved aluminium' with 'Dissolved Solids (Filterable Residue)'.</span></div><div class='output co'>#&gt; <span class='message'>Failed to substitute 'ALUMINIUM SOMETHING', 'BORON Total', 'KRYPTONITE' and 'Total Fluoride Hardness'.</span></div><div class='output co'>#&gt; [1] NA                                     
+<span class='op'>)</span>,
+strict <span class='op'>=</span> <span class='cn'>FALSE</span>, messages <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Substituted 'ALUMINUM DISSOLVED' with 'Dissolved Solids (Filterable Residue)' and 'dissolved aluminium' with 'Dissolved Solids (Filterable Residue)'.</span></div><div class='output co'>#&gt; <span class='message'>Failed to substitute 'ALUMINIUM SOMETHING', 'BORON Total', 'KRYPTONITE' and 'Total Fluoride Hardness'.</span></div><div class='output co'>#&gt; [1] NA                                     
 #&gt; [2] "Dissolved Solids (Filterable Residue)"
 #&gt; [3] "Dissolved Solids (Filterable Residue)"
 #&gt; [4] NA                                     
@@ -209,7 +205,7 @@ strict = <span class='fl'>FALSE</span>, messages = <span class='fl'>TRUE</span>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

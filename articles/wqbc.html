@@ -38,12 +38,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/wqbc.html">Get started</a>
 </li>
 <li>
@@ -75,7 +69,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started with wqbc</h1>
             
-            <h4 class="date">2020-08-20</h4>
+            <h4 class="date">2020-11-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/bcgov/wqbc/blob/master/vignettes/wqbc.Rmd"><code>vignettes/wqbc.Rmd</code></a></small>
       <div class="hidden name"><code>wqbc.Rmd</code></div>
@@ -91,14 +85,13 @@
 <a href="#fraser-data" class="anchor"></a>Fraser Data</h2>
 <p>The data used in this demonstration are from the Fraser River basin (data available <a href="http://data.gc.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18">here</a> under the <a href="http://open.canada.ca/en/open-government-licence-canada">Candian Open Government License</a>.</p>
 <p>To load the <code>wqbc</code> package and the <code>fraser</code> data run</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/bcgov/wqbc">wqbc</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">fraser</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bcgov/wqbc">wqbc</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">fraser</span><span class="op">)</span></code></pre></div>
 <p>The <code>fraser</code> data is organized so that each row corresponds to one observation.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://tibble.tidyverse.org">tibble</a></span>) <span class="co"># for prettier printing of tibbles</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw">fraser</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span> <span class="co"># for prettier printing of tibbles</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fraser</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 242,631 x 8</span>
 <span class="co">#&gt;    SiteID    Date       Variable          Value Units Site             Lat  Long</span>
 <span class="co">#&gt;    &lt;chr&gt;     &lt;date&gt;     &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -112,12 +105,11 @@
 <span class="co">#&gt;  8 BC08KA00… 2000-01-12 CADMIUM EXTRAC…  0.007  UG/L  FRASER RIVER …  53.0 -119.</span>
 <span class="co">#&gt;  9 BC08KA00… 2000-01-12 CADMIUM TOTAL    0      MG/L  FRASER RIVER …  53.0 -119.</span>
 <span class="co">#&gt; 10 BC08KA00… 2000-01-12 CALCIUM EXTRAC… 19.7    MG/L  FRASER RIVER …  53.0 -119.</span>
-<span class="co">#&gt; # … with 242,621 more rows</span>
-</pre></div>
+<span class="co">#&gt; # … with 242,621 more rows</span></code></pre></div>
 <p>As the <code>fraser</code> data is a large dataset (242631 rows) we’ll just use the data from 2012.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">data2012</span> <span class="op">&lt;-</span> <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">fraser</span>, <span class="kw">lubridate</span>::<span class="fu"><a href="http://lubridate.tidyverse.org/reference/year.html">year</a></span>(<span class="kw">Date</span>) <span class="op">==</span> <span class="fl">2012</span>)
-<span class="kw">data2012</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data2012</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fraser</span>, <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span> <span class="op">==</span> <span class="fl">2012</span><span class="op">)</span>
+<span class="va">data2012</span>
 <span class="co">#&gt; # A tibble: 17,881 x 8</span>
 <span class="co">#&gt;    SiteID    Date       Variable         Value Units Site              Lat  Long</span>
 <span class="co">#&gt;    &lt;chr&gt;     &lt;date&gt;     &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -131,15 +123,14 @@
 <span class="co">#&gt;  8 BC08KA00… 2012-01-24 BORON TOTAL      1.6   UG/L  FRASER RIVER A…  53.0 -119.</span>
 <span class="co">#&gt;  9 BC08KA00… 2012-01-24 CADMIUM TOTAL    0.003 UG/L  FRASER RIVER A…  53.0 -119.</span>
 <span class="co">#&gt; 10 BC08KA00… 2012-01-24 CALCIUM DISSOL… 20     MG/L  FRASER RIVER A…  53.0 -119.</span>
-<span class="co">#&gt; # … with 17,871 more rows</span>
-</pre></div>
+<span class="co">#&gt; # … with 17,871 more rows</span></code></pre></div>
 <p>This leaves us with a dataset with 17881 rows. Before the data can be assigned the water quality limits provided by <code>wqbc</code> they first have to be standardized and then cleaned.</p>
 <div id="standardizing-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#standardizing-data" class="anchor"></a>Standardizing Data</h3>
 <p>The <code><a href="../reference/standardize_wqdata.html">standardize_wqdata()</a></code> function converts any non-standard variable names, checks (and if possible) converts the units and removes any missing and negative values.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">data2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/standardize_wqdata.html">standardize_wqdata</a></span>(<span class="kw">data2012</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/standardize_wqdata.html">standardize_wqdata</a></span><span class="op">(</span><span class="va">data2012</span><span class="op">)</span>
 <span class="co">#&gt; Standardizing water quality data...</span>
 <span class="co">#&gt; Deleted 43 rows with negative values in Value.</span>
 <span class="co">#&gt; Substituted 'ALKALINITY TOTAL CACO3' with 'Alkalinity Total', 'ALUMINUM DISSOLVED' with 'Aluminum Dissolved', 'ALUMINUM TOTAL' with 'Aluminum Total', 'AMMONIA DISSOLVED' with 'Ammonia Dissolved', 'ARSENIC DISSOLVED' with 'Arsenic Dissolved', 'ARSENIC TOTAL' with 'Arsenic Total', 'BARIUM DISSOLVED' with 'Barium Dissolved', 'BARIUM TOTAL' with 'Barium Total', 'BERYLLIUM TOTAL' with 'Beryllium Total', 'BORON DISSOLVED' with 'Boron Dissolved', 'BORON TOTAL' with 'Boron Total', 'CADMIUM DISSOLVED' with 'Cadmium Dissolved', 'CADMIUM TOTAL' with 'Cadmium Total', 'CALCIUM DISSOLVED' with 'Calcium Dissolved', 'CARBON DISSOLVED ORGANIC' with 'Organic Carbon Dissolved', 'CARBON TOTAL ORGANIC' with 'Organic Carbon Total', 'CHLORIDE DISSOLVED' with 'Chloride Dissolved', 'CHROMIUM DISSOLVED' with 'Chromium Dissolved', 'CHROMIUM TOTAL' with 'Chromium Total', 'COBALT DISSOLVED' with 'Cobalt Dissolved', 'COBALT TOTAL' with 'Cobalt Total', 'COLOUR TRUE' with 'Colour True', 'COPPER DISSOLVED' with 'Copper Dissolved', 'COPPER TOTAL' with 'Copper Total', 'FIELD PH' with 'pH', 'FLUORIDE DISSOLVED' with 'Fluoride Dissolved', 'HARDNESS TOTAL (CALCD.) CACO3' with 'Hardness Total', 'IRON DISSOLVED' with 'Iron Dissolved', 'IRON TOTAL' with 'Iron Total', 'LEAD DISSOLVED' with 'Lead Dissolved', 'LEAD TOTAL' with 'Lead Total', 'LITHIUM TOTAL' with 'Lithium Total', 'MANGANESE DISSOLVED' with 'Manganese Dissolved', 'MANGANESE TOTAL' with 'Manganese Total', 'MOLYBDENUM DISSOLVED' with 'Molybdenum Dissolved', 'MOLYBDENUM TOTAL' with 'Molybdenum Total', 'NICKEL DISSOLVED' with 'Nickel Dissolved', 'NICKEL TOTAL' with 'Nickel Total', 'NITROGEN DISSOLVED KJELDAHL' with 'Nitrogen Dissolved', 'NITROGEN DISSOLVED NITRATE' with 'Nitrogen Dissolved', 'NITROGEN DISSOLVED NO3 &amp; NO2' with 'Nitrogen Dissolved', 'NITROGEN TOTAL' with 'Nitrogen Total', 'NITROGEN TOTAL DISSOLVED' with 'Nitrogen Dissolved', 'NITROGEN TOTAL KJELDAHL' with 'Nitrogen Total', 'OXYGEN DISSOLVED' with 'Oxygen Dissolved', 'PH' with 'pH', 'PHOSPHORUS TOTAL' with 'Phosphorus Total', 'PHOSPHORUS TOTAL DISSOLVED' with 'Phosphorus Dissolved', 'SALINITY' with 'Salinity', 'SELENIUM DISSOLVED' with 'Selenium Dissolved', 'SELENIUM TOTAL' with 'Selenium Total', 'SILVER DISSOLVED' with 'Silver Dissolved', 'SILVER TOTAL' with 'Silver Total', 'STRONTIUM TOTAL' with 'Strontium Total', 'SULPHATE DISSOLVED' with 'Sulphate Dissolved', 'TEMPERATURE AIR' with 'Temperature', 'TEMPERATURE WATER' with 'Temperature', 'THALLIUM DISSOLVED' with 'Thallium Dissolved', 'THALLIUM TOTAL' with 'Thallium Total', 'TURBIDITY' with 'Turbidity', 'URANIUM DISSOLVED' with 'Uranium Dissolved', 'URANIUM TOTAL' with 'Uranium Total', 'VANADIUM TOTAL' with 'Vanadium Total', 'ZINC DISSOLVED' with 'Zinc Dissolved' and 'ZINC TOTAL' with 'Zinc Total'.</span>
@@ -148,11 +139,10 @@
 <span class="co">#&gt; Substituted 'DEG C' with 'degC', 'MG/L' with 'mg/L', 'PH UNITS' with 'pH' and 'UG/L' with 'ug/L'.</span>
 <span class="co">#&gt; Failed to substitute 'COLOR UNIT', 'PPT' and 'RATIO'.</span>
 <span class="co">#&gt; Deleted 285 rows with missing values in Units.</span>
-<span class="co">#&gt; Standardized water quality data.</span>
-</pre></div>
+<span class="co">#&gt; Standardized water quality data.</span></code></pre></div>
 <p>As a result of the standardization, the 2012 Fraser dataset has been reduced to 11971 observations that can in principle be assigned water quality limits by the <code>wqbc</code> package. However, first it is necessary to deal with multiple observations by cleaning the data.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="kw">data2012</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">data2012</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 11,971 x 8</span>
 <span class="co">#&gt;    SiteID    Date       Variable       Value Units Site                Lat  Long</span>
 <span class="co">#&gt;    &lt;chr&gt;     &lt;date&gt;     &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -166,22 +156,20 @@
 <span class="co">#&gt;  8 BC08KA00… 2012-07-10 Alkalinity To…  43.2 mg/L  FRASER RIVER AT …  53.0 -119.</span>
 <span class="co">#&gt;  9 BC08KA00… 2012-07-16 Alkalinity To…  40.8 mg/L  FRASER RIVER AT …  53.0 -119.</span>
 <span class="co">#&gt; 10 BC08KA00… 2012-07-25 Alkalinity To…  40.9 mg/L  FRASER RIVER AT …  53.0 -119.</span>
-<span class="co">#&gt; # … with 11,961 more rows</span>
-</pre></div>
+<span class="co">#&gt; # … with 11,961 more rows</span></code></pre></div>
 </div>
 <div id="cleaning-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cleaning-data" class="anchor"></a>Cleaning Data</h3>
 <p>After standardization, it is necessary to ensure that there are only single values for each date for a given variable and this is done using the function <code><a href="../reference/clean_wqdata.html">clean_wqdata()</a></code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw">data2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/clean_wqdata.html">clean_wqdata</a></span>(<span class="kw">data2012</span>, by = <span class="st">"SiteID"</span>)
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/clean_wqdata.html">clean_wqdata</a></span><span class="op">(</span><span class="va">data2012</span>, by <span class="op">=</span> <span class="st">"SiteID"</span><span class="op">)</span>
 <span class="co">#&gt; Cleaning water quality data...</span>
 <span class="co">#&gt; Identified 0 outliers in water quality data.</span>
-<span class="co">#&gt; Cleansed water quality data.</span>
-</pre></div>
+<span class="co">#&gt; Cleansed water quality data.</span></code></pre></div>
 <p>The end result is a data frame with 10654 rows each of which represents the average value for a single variable on a particular date at an individual <code>SiteID</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="kw">data2012</span>)
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">data2012</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 10,654 x 7</span>
 <span class="co">#&gt;    SiteID     Date       Variable         Value Units Outlier DetectionLimit</span>
 <span class="co">#&gt;    &lt;chr&gt;      &lt;date&gt;     &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt; &lt;lgl&gt;            &lt;dbl&gt;</span>
@@ -195,15 +183,14 @@
 <span class="co">#&gt;  8 BC08KA0007 2012-07-10 Alkalinity Total  43.2 mg/L  FALSE               NA</span>
 <span class="co">#&gt;  9 BC08KA0007 2012-07-16 Alkalinity Total  40.8 mg/L  FALSE               NA</span>
 <span class="co">#&gt; 10 BC08KA0007 2012-07-25 Alkalinity Total  40.9 mg/L  FALSE               NA</span>
-<span class="co">#&gt; # … with 10,644 more rows</span>
-</pre></div>
+<span class="co">#&gt; # … with 10,644 more rows</span></code></pre></div>
 </div>
 <div id="calculating-limits" class="section level3">
 <h3 class="hasAnchor">
 <a href="#calculating-limits" class="anchor"></a>Calculating Limits</h3>
 <p>Once the data have been standardized and cleansed the final task is to determine the water quality limits for each observation using the <code><a href="../reference/calc_limits.html">calc_limits()</a></code> function.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="kw">data2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calc_limits.html">calc_limits</a></span>(<span class="kw">data2012</span>, by = <span class="st">"SiteID"</span>, term = <span class="st">"short"</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calc_limits.html">calc_limits</a></span><span class="op">(</span><span class="va">data2012</span>, by <span class="op">=</span> <span class="st">"SiteID"</span>, term <span class="op">=</span> <span class="st">"short"</span><span class="op">)</span>
 <span class="co">#&gt; Cleaning water quality data...</span>
 <span class="co">#&gt; Identified 0 outliers in water quality data.</span>
 <span class="co">#&gt; Cleansed water quality data.</span>
@@ -256,11 +243,10 @@
 <span class="co">#&gt; Dropped 279 values for Uranium Total without limits</span>
 <span class="co">#&gt; Dropped 278 values for Vanadium Total without limits</span>
 <span class="co">#&gt; Dropped 33 values for Zinc Dissolved without limits</span>
-<span class="co">#&gt; Calculated short-term water quality limits.</span>
-</pre></div>
+<span class="co">#&gt; Calculated short-term water quality limits.</span></code></pre></div>
 <p>The final result is a data frame with 2602 rows each of which has an upper water quality limit.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="kw">data2012</span>)
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">data2012</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 2,602 x 8</span>
 <span class="co">#&gt;    SiteID  Date       Variable     Value UpperLimit Units Outlier DetectionLimit</span>
 <span class="co">#&gt;    &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;lgl&gt;            &lt;dbl&gt;</span>
@@ -274,8 +260,7 @@
 <span class="co">#&gt;  8 BC08KA… 2012-01-24 Silver To… 0             0.1  ug/L  NA                  NA</span>
 <span class="co">#&gt;  9 BC08KA… 2012-01-24 Zinc Total 0.3          33    ug/L  NA                  NA</span>
 <span class="co">#&gt; 10 BC08KA… 2012-04-11 Arsenic T… 0.1           5    ug/L  NA                  NA</span>
-<span class="co">#&gt; # … with 2,592 more rows</span>
-</pre></div>
+<span class="co">#&gt; # … with 2,592 more rows</span></code></pre></div>
 </div>
 <div id="calculating-water-quality-index" class="section level3">
 <h3 class="hasAnchor">
@@ -300,7 +285,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
