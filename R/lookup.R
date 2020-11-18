@@ -116,6 +116,10 @@ setup_condition_values <- function(codes, ph, hardness, chloride, methyl_mercury
   dplyr::filter(codes, !is.na(.data$Value))
 }
 
+estimated_variables <- function() {
+  c("Chloride Total", "Hardness Total", "pH")
+}
+
 setup_codes <- function() {
   codes <- wqbc_codes()
   codes$Date <- as.Date("2000-01-01")
