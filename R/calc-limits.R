@@ -233,15 +233,13 @@ calc_limits_by <- function(x, term, dates, limits, messages) {
 
 #' Calculate Limits
 #'
-#' Calculates the approved "short" or "long"-term
+#' Calculates the approved "short" or "long"-term or the "long-daily"
 #' upper water quality thresholds for freshwater life in British Columbia.
 #' The water quality data is automatically cleaned using \code{\link{clean_wqdata}}
 #' prior to calculating the limits to ensure: all variables are recognised,
 #' all values are non-negative and in the standard units, divergent replicates
 #' are filtered and all remaining replicates are averaged. Only limits whose
 #' conditions are met are returned.
-#' Note to use the long-term limits on daily values set
-#' term = "long-daily".
 #'
 #' If a limit depends on another variable
 #' such as pH, Total Chloride, or Total Hardness and no value was recorded for the date of interest
@@ -266,14 +264,18 @@ calc_limits_by <- function(x, term, dates, limits, messages) {
 #' and the assignment of 30 day periods occurs independently for all combination
 #' of factor levels in the columns specified by by.
 #'
+#' If the user wishes to consider the long-term thresholds without the above requirements that
+#' there are at least 5 values spanning 21 days etc then they should set
+#' \code{term = "long-daily"}
+#'
 #'
 #' @param x A data.frame of water quality readings to calculate the limits for.
 #' @param by A optional character vector of the columns in x to calculate the limits by.
-#' @param term A string indicating whether to calculate the "long" or "short"-term limits.
+#' @param term A string indicating whether to calculate the "long" or "short"-term or "long-daily" limits.
 #' @param dates A optional date vector indicating the start of 30 day long-term periods.
 #' @param keep_limits A flag indicating whether to keep values with user supplied upper or lower limits.
 #' @param delete_outliers A flag indicating whether to delete outliers or merely flag them.
-#' @param estimate_variables A flag indicating whether to estimate total hardness, total chloride and pHfor all dates.
+#' @param estimate_variables A flag indicating whether to estimate total hardness, total chloride and pH for all dates.
 #' @param clean Should the data be run through \code{\link{clean_wqdata}} before calculating limits? Default \code{TRUE}
 #' @param limits A data frame of the limits table to use.
 #' @param use A string indicating the Use.
