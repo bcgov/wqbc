@@ -59,7 +59,7 @@ wqbc_substitute <- function(org, mod = org, sub, sub_mod = sub, messages) {
   ## First check for exact matches:
   matches <- orgd$match %in% subd$match
   orgd$sub[matches] <- vapply(orgd$match[matches], function(x) subd$sub[subd$match == x],
-    FUN.VALUE = character(1)
+                              FUN.VALUE = character(1)
   )
 
   ## Then for name matches
@@ -95,7 +95,7 @@ wqbc_substitute <- function(org, mod = org, sub, sub_mod = sub, messages) {
 #' @seealso \code{\link{substitute_variables}}
 #' @export
 substitute_units <- function(
-                             x, messages = getOption("wqbc.messages", default = TRUE)) {
+  x, messages = getOption("wqbc.messages", default = TRUE)) {
   chkor(chk_character(x), chk_s3_class(x, "factor"))
   check_values(messages, TRUE)
 
@@ -114,7 +114,7 @@ substitute_units <- function(
 #' important. Where
 #' there are no matches missing values are returned. When strict = TRUE
 #' all words in a recognised variable must be present in x but when
-#' strict = FALSE the only requirement is that the first word is present.
+#' strict = FALSE (soft-deprecated) the only requirement is that the first word is present.
 #' When strict = FALSE recognised variables with the same first word
 #' such as "Iron Dissolved" and "Iron Total"  are excluded from matches.
 #' In both cases the only requirement is that all words or just the first word
@@ -127,7 +127,7 @@ substitute_units <- function(
 #' @param x A character vector of variable names to substitute.
 #' @param strict A flag indicating whether to require all words
 #' in a recognised variable name to be present in x (strict = TRUE)
-#' or only the first one (strict = FALSE).
+#' or only the first one (strict = FALSE) \lifecycle{soft-deprecated}.
 #' @param messages A flag indicating whether to print messages.
 #' @examples
 #' substitute_variables(c(
@@ -135,21 +135,20 @@ substitute_units <- function(
 #'   "dissolved aluminium", "BORON Total", "KRYPTONITE",
 #'   "Total Fluoride Hardness"
 #' ), messages = TRUE)
-#' substitute_variables(c(
-#'   "ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-#'   "dissolved aluminium", "BORON Total", "KRYPTONITE",
-#'   "Total Fluoride Hardness"
-#' ),
-#' strict = FALSE, messages = TRUE
-#' )
 #' @seealso \code{\link{substitute_units}}
 #' @export
 substitute_variables <- function(
-                                 x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
+  x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
 
   chkor(chk_character(x), chk_s3_class(x, "factor"))
   check_values(strict, TRUE)
   check_values(messages, TRUE)
+
+  if(!vld_true(strict)) {
+    lifecycle::deprecate_soft(
+      "0.3.2", "substitute_variables(strict = )"
+    )
+  }
 
   x <- as.character(x)
 

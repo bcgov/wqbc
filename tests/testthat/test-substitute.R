@@ -37,9 +37,8 @@ test_that("substitute_variables strict", {
     "dissolved aluminum", "Benzene Total",
     "KRYPTONITE"
   ),
-  strict = TRUE
   ), c(NA, "Aluminum Dissolved", "Aluminum Dissolved", "Benzene Total", NA))
-  expect_equal(substitute_variables("KRYPTONITE", strict = TRUE), NA_character_)
+  expect_equal(substitute_variables("KRYPTONITE"), NA_character_)
   expect_equal(
     substitute_variables(c(
       "Benzene Total", "Alkalinity pH 4.5/4.2",
@@ -50,7 +49,7 @@ test_that("substitute_variables strict", {
       NA, "pH"
     )
   )
-  expect_message(substitute_variables("DISSOLVED ALUMINUM", strict = TRUE, messages = TRUE))
+  expect_message(substitute_variables("DISSOLVED ALUMINUM", messages = TRUE))
 })
 
 test_that("substitute_variables not strict", {
@@ -62,20 +61,21 @@ test_that("substitute_variables not strict", {
     "ALUMINUM SOMETHING", "ALUMINUM DISSOLVED",
     "dissolved aluminum", "Benzene Total",
     "KRYPTONITE"
-  ),
-  strict = TRUE
-  ), c(NA, "Aluminum Dissolved", "Aluminum Dissolved", "Benzene Total", NA))
+  )), c(NA, "Aluminum Dissolved", "Aluminum Dissolved", "Benzene Total", NA))
   expect_equal(substitute_variables("KRYPTONITE"), NA_character_)
   expect_equal(
-    substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum"), strict = TRUE),
+    substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum")),
     c("Iron Total", "Iron Dissolved", NA)
   )
   expect_equal(
-    substitute_variables(c("Iron Total", "Iron Dissolved"), strict = TRUE),
+    substitute_variables(c("Iron Total", "Iron Dissolved")),
     c("Iron Total", "Iron Dissolved")
   )
   expect_equal(
     substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum")),
     c("Iron Total", "Iron Dissolved", NA)
+  )
+  lifecycle::expect_deprecated(
+    substitute_variables(c("Iron Total", "Iron Dissolved", "Aluminum"), strict = FALSE)
   )
 })

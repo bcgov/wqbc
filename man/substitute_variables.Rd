@@ -15,7 +15,7 @@ substitute_variables(
 
 \item{strict}{A flag indicating whether to require all words
 in a recognised variable name to be present in x (strict = TRUE)
-or only the first one (strict = FALSE).}
+or only the first one (strict = FALSE) \lifecycle{soft-deprecated}.}
 
 \item{messages}{A flag indicating whether to print messages.}
 }
@@ -24,7 +24,7 @@ Substitutes provided variable names for recognised names. The case is not
 important. Where
 there are no matches missing values are returned. When strict = TRUE
 all words in a recognised variable must be present in x but when
-strict = FALSE the only requirement is that the first word is present.
+strict = FALSE (soft-deprecated) the only requirement is that the first word is present.
 When strict = FALSE recognised variables with the same first word
 such as "Iron Dissolved" and "Iron Total"  are excluded from matches.
 In both cases the only requirement is that all words or just the first word
@@ -40,13 +40,6 @@ substitute_variables(c(
   "dissolved aluminium", "BORON Total", "KRYPTONITE",
   "Total Fluoride Hardness"
 ), messages = TRUE)
-substitute_variables(c(
-  "ALUMINIUM SOMETHING", "ALUMINUM DISSOLVED",
-  "dissolved aluminium", "BORON Total", "KRYPTONITE",
-  "Total Fluoride Hardness"
-),
-strict = FALSE, messages = TRUE
-)
 }
 \seealso{
 \code{\link{substitute_units}}
