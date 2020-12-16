@@ -31,7 +31,7 @@ Nitrate Nitrite Dissolved,EMS_1109,mg/L
 Nitrogen Dissolved,EMS_1114,mg/L
 Phosphorus Ortho,EMS_1118,mg/L
 Sulphate Dissolved,EMS_1121,mg/L
-Organic Carbon Dissolved,EMS_1126,mg/L
+Dissolved Organic Carbon,EMS_1126,mg/L
 Atrazine,EMS_A016,mg/L
 Silver Dissolved,EMS_AG_D,ug/L
 Alkalinity Total,EMS_AK_T,mg/L
