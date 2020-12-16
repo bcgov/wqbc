@@ -5,8 +5,7 @@
 
 <!-- badges: start -->
 
-[![BCDevExchange
-Status](https://assets.bcdevexchange.org/images/badges/exploration.svg)](https://github.com/BCDevExchange/docs/blob/master/discussion/projectstates.md)
+[![img](https://img.shields.io/badge/Lifecycle-Maturing-007EC6)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
 [![R build
 status](https://github.com/bcgov/wqbc/workflows/R-CMD-check/badge.svg)](https://github.com/bcgov/wqbc/actions)
 [![Codecov test
