@@ -49,6 +49,8 @@ not the codes are compressed or expanded is unimportant." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -60,9 +62,15 @@ not the codes are compressed or expanded is unimportant." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -125,10 +133,10 @@ looks up the matching variables from <code><a href='codes.html'>codes</a></code>
 not the codes are compressed or expanded is unimportant.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lookup_variables</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>lookup_variables</span><span class='op'>(</span>
   codes <span class='op'>=</span> <span class='cn'>NULL</span>,
   messages <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"wqbc.messages"</span>, default <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,197 +156,201 @@ not the codes are compressed or expanded is unimportant.</p>
     <div class='dont-index'><p><code><a href='lookup_limits.html'>lookup_limits</a></code> and <code><a href='expand_ems_codes.html'>expand_ems_codes</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>lookup_variables</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   [1] "1,1-Dichloroethylene"                                                              
-#&gt;   [2] "1,1,2-Trichloroethene (Trichloroethylene) Total"                                   
-#&gt;   [3] "1,1,2,2-Tetrachloroethene (Tetrachloroethylene, Perchlorethylene) Total"           
-#&gt;   [4] "1,2-Dichlorobenzene Total"                                                         
-#&gt;   [5] "1,2-Dichloroethane Total"                                                          
-#&gt;   [6] "1,2-Propylene glycol Total"                                                        
-#&gt;   [7] "1,2,3-Trichlorobenzene Total"                                                      
-#&gt;   [8] "1,2,3,4-Tetrachlorobenzene Total"                                                  
-#&gt;   [9] "1,2,4-Trichlorobenzene Total"                                                      
-#&gt;  [10] "1,3-Dichlorobenzene Total"                                                         
-#&gt;  [11] "1,4-Dichlorobenzene Total"                                                         
-#&gt;  [12] "3-Lodo-2-propynl butylcarbamate (IPBC) Total"                                      
-#&gt;  [13] "Acenaphthene Total"                                                                
-#&gt;  [14] "Aldicarb Total"                                                                    
-#&gt;  [15] "Alkalinity ( CaCO3) Total"                                                         
-#&gt;  [16] "Alkalinity pH 4.5/4.2"                                                             
-#&gt;  [17] "Alkalinity Total"                                                                  
-#&gt;  [18] "Aluminum Dissolved"                                                                
-#&gt;  [19] "Aluminum Total"                                                                    
-#&gt;  [20] "Ammonia Dissolved"                                                                 
-#&gt;  [21] "Ammonia Total"                                                                     
-#&gt;  [22] "Antimony (III) Total"                                                              
-#&gt;  [23] "Arsenic Dissolved"                                                                 
-#&gt;  [24] "Arsenic Total"                                                                     
-#&gt;  [25] "Atrazine"                                                                          
-#&gt;  [26] "Barium Dissolved"                                                                  
-#&gt;  [27] "Barium Total"                                                                      
-#&gt;  [28] "Benzene Total"                                                                     
-#&gt;  [29] "Benzo(a)pyrene Total"                                                              
-#&gt;  [30] "Beryllium Total"                                                                   
-#&gt;  [31] "Biochemical Oxygen Demand"                                                         
-#&gt;  [32] "Boron Dissolved"                                                                   
-#&gt;  [33] "Boron Total"                                                                       
-#&gt;  [34] "Bromacil Total"                                                                    
-#&gt;  [35] "Bromoxynil Total"                                                                  
-#&gt;  [36] "Cadmium Dissolved"                                                                 
-#&gt;  [37] "Cadmium Total"                                                                     
-#&gt;  [38] "Calcium Dissolved"                                                                 
-#&gt;  [39] "Captan Total"                                                                      
-#&gt;  [40] "Carbofuran Total"                                                                  
-#&gt;  [41] "Chlorate Dissolved"                                                                
-#&gt;  [42] "Chloride Dissolved"                                                                
-#&gt;  [43] "Chloride Total"                                                                    
-#&gt;  [44] "Chlorine Residual Total"                                                           
-#&gt;  [45] "Chlorite Dissolved"                                                                
-#&gt;  [46] "Chlorophenol, 2,3-DCP Total"                                                       
-#&gt;  [47] "Chlorophenol, 2,3,4-TCP Total"                                                     
-#&gt;  [48] "Chlorophenol, 2,3,4,5-TTCP Total"                                                  
-#&gt;  [49] "Chlorophenol, 2,3,4,5,6-PCP Total"                                                 
-#&gt;  [50] "Chlorophenol, 2,3,4,6-TTCP Total"                                                  
-#&gt;  [51] "Chlorophenol, 2,3,5-TCP Total"                                                     
-#&gt;  [52] "Chlorophenol, 2,3,5,6-TTCP Total"                                                  
-#&gt;  [53] "Chlorophenol, 2,3,6-TCP Total"                                                     
-#&gt;  [54] "Chlorophenol, 2,4-DCP Total"                                                       
-#&gt;  [55] "Chlorophenol, 2,4,5-TCP Total"                                                     
-#&gt;  [56] "Chlorophenol, 2,4,6-TCP Total"                                                     
-#&gt;  [57] "Chlorophenol, 2,5-DCP Total"                                                       
-#&gt;  [58] "Chlorophenol, 2,6-DCP Total"                                                       
-#&gt;  [59] "Chlorophenol, 3,4-DCP Total"                                                       
-#&gt;  [60] "Chlorophenol, 3,4,5-TCP Total"                                                     
-#&gt;  [61] "Chlorophenol, 3,5-DCP Total"                                                       
-#&gt;  [62] "Chlorophenol, DCP"                                                                 
-#&gt;  [63] "Chlorophenol, TCP"                                                                 
-#&gt;  [64] "Chlorophenol, TTCP"                                                                
-#&gt;  [65] "Chlorophyll A"                                                                     
-#&gt;  [66] "Chlorothalonil (2,4,5,6-Tetrachloro-1,3-benzenecarbonitrile, Daconil) Total"       
-#&gt;  [67] "Chlorpyrifos Total"                                                                
-#&gt;  [68] "Chromium Dissolved"                                                                
-#&gt;  [69] "Chromium hexavalent Total"                                                         
-#&gt;  [70] "Chromium Total"                                                                    
-#&gt;  [71] "Chromium trivalent Total"                                                          
-#&gt;  [72] "Chrysene"                                                                          
-#&gt;  [73] "Cobalt Dissolved"                                                                  
-#&gt;  [74] "Cobalt Total"                                                                      
-#&gt;  [75] "Coliforms Fecal"                                                                   
-#&gt;  [76] "Colour Apparent"                                                                   
-#&gt;  [77] "Colour True"                                                                       
-#&gt;  [78] "Conductivity Specific"                                                             
-#&gt;  [79] "Conductivity Specific - Field"                                                     
-#&gt;  [80] "Copper Dissolved"                                                                  
-#&gt;  [81] "Copper Total"                                                                      
-#&gt;  [82] "Cyanazine Total"                                                                   
-#&gt;  [83] "Cyanide Dissolved"                                                                 
-#&gt;  [84] "Cyanide Total"                                                                     
-#&gt;  [85] "Cyanide weak acid dissociable Total"                                               
-#&gt;  [86] "Dehydroabietic acid (DHA) Total"                                                   
-#&gt;  [87] "Deltamethrin Total"                                                                
-#&gt;  [88] "Di-(2-ethylhexyl) phthalate (DEHP) Total"                                          
-#&gt;  [89] "Di-n-butyl tin Total"                                                              
-#&gt;  [90] "Dibutyl phthalate (DBP, di-n-butylphthalate) Total"                                
-#&gt;  [91] "Dicamba Total"                                                                     
-#&gt;  [92] "Dichlorobromomethane (Bromodichloromethane)"                                       
-#&gt;  [93] "Dichloromethane (Methylene chloride) Total"                                        
-#&gt;  [94] "Dichlorophenoxyacetic acid (2,4-D) Total"                                          
-#&gt;  [95] "Diclofop-methyl Total"                                                             
-#&gt;  [96] "Didecyl dimethyl ammonium chloride (DDAC) Total"                                   
-#&gt;  [97] "Dimethoate Total"                                                                  
-#&gt;  [98] "Dinoseb Total"                                                                     
-#&gt;  [99] "Dissolved Organic Carbon"                                                          
-#&gt; [100] "Dissolved Solids (Filterable Residue)"                                             
-#&gt; [101] "Enterococci"                                                                       
-#&gt; [102] "Escherichia coli"                                                                  
-#&gt; [103] "Ethinylestradiol 17a Total"                                                        
-#&gt; [104] "Ethylbenzene Total"                                                                
-#&gt; [105] "Ethylene glycol Total"                                                             
-#&gt; [106] "Extinction Depth"                                                                  
-#&gt; [107] "Fluorene Total"                                                                    
-#&gt; [108] "Fluoride Dissolved"                                                                
-#&gt; [109] "Fluoride Total"                                                                    
-#&gt; [110] "Hardness Dissolved"                                                                
-#&gt; [111] "Hardness Total"                                                                    
-#&gt; [112] "Hexachlorobenzene"                                                                 
-#&gt; [113] "Hexachlorobutadiene Total"                                                         
-#&gt; [114] "Hexachlorocyclohexane (Lindane) Total"                                             
-#&gt; [115] "Iron Dissolved"                                                                    
-#&gt; [116] "Iron Total"                                                                        
-#&gt; [117] "Lead Dissolved"                                                                    
-#&gt; [118] "Lead Total"                                                                        
-#&gt; [119] "Linuron Total"                                                                     
-#&gt; [120] "Lithium Total"                                                                     
-#&gt; [121] "Malathion Total"                                                                   
-#&gt; [122] "Manganese Dissolved"                                                               
-#&gt; [123] "Manganese Total"                                                                   
-#&gt; [124] "Mercury Dissolved"                                                                 
-#&gt; [125] "Mercury Methyl"                                                                    
-#&gt; [126] "Mercury Total"                                                                     
-#&gt; [127] "Methyl tertiary-butyl ether Total"                                                 
-#&gt; [128] "Methylchlorophenoxy acetic acid (4-chloro-2-methylphenoxy acetic acid; MCPA) Total"
-#&gt; [129] "Metolachlor Total"                                                                 
-#&gt; [130] "Metribuzin Total"                                                                  
-#&gt; [131] "Molybdenum Dissolved"                                                              
-#&gt; [132] "Molybdenum Total"                                                                  
-#&gt; [133] "Monochlorobenzene Total"                                                           
-#&gt; [134] "Naphthalene D8"                                                                    
-#&gt; [135] "Naphthalene Total"                                                                 
-#&gt; [136] "Nickel Dissolved"                                                                  
-#&gt; [137] "Nickel Total"                                                                      
-#&gt; [138] "Nitrate Nitrite"                                                                   
-#&gt; [139] "Nitrate Nitrite Dissolved"                                                         
-#&gt; [140] "Nitrate Soluble"                                                                   
-#&gt; [141] "Nitrate Total"                                                                     
-#&gt; [142] "Nitrite Total"                                                                     
-#&gt; [143] "Nitrogen Dissolved"                                                                
-#&gt; [144] "Nitrogen Total"                                                                    
-#&gt; [145] "Organic Carbon Total"                                                              
-#&gt; [146] "Oxygen Dissolved"                                                                  
-#&gt; [147] "Oxygen Dissolved Field"                                                            
-#&gt; [148] "Pentachlorobenzene Total"                                                          
-#&gt; [149] "pH"                                                                                
-#&gt; [150] "Phenanthrene Total"                                                                
-#&gt; [151] "Phosphorus Dissolved"                                                              
-#&gt; [152] "Phosphorus Ortho"                                                                  
-#&gt; [153] "Phosphorus Total"                                                                  
-#&gt; [154] "Picloram Total"                                                                    
-#&gt; [155] "Polychlorinated Biphenyls (PCB) Total"                                             
-#&gt; [156] "Polycyclic Aromatic Hydrocarbons (Carcinogenic) Total"                             
-#&gt; [157] "Pseudomonas Aeruginosa"                                                            
-#&gt; [158] "Quinoline Total"                                                                   
-#&gt; [159] "Salinity"                                                                          
-#&gt; [160] "Selenium Dissolved"                                                                
-#&gt; [161] "Selenium Total"                                                                    
-#&gt; [162] "Silver Dissolved"                                                                  
-#&gt; [163] "Silver Total"                                                                      
-#&gt; [164] "Simazine Total"                                                                    
-#&gt; [165] "Strontium Total"                                                                   
-#&gt; [166] "Styrene Total"                                                                     
-#&gt; [167] "Sulphate Dissolved"                                                                
-#&gt; [168] "Sulphate Total"                                                                    
-#&gt; [169] "Temperature"                                                                       
-#&gt; [170] "Temperature - Field"                                                               
-#&gt; [171] "Tetrachloromethane (carbon tetrachloride) Total"                                   
-#&gt; [172] "Thallium Dissolved"                                                                
-#&gt; [173] "Thallium Total"                                                                    
-#&gt; [174] "Tin, Tributyltin Total"                                                            
-#&gt; [175] "Toluene Total"                                                                     
-#&gt; [176] "Triallate Total"                                                                   
-#&gt; [177] "Tribromomethane (Bromoform)"                                                       
-#&gt; [178] "Trichloromethane (chloroform) Total"                                               
-#&gt; [179] "Trifluralin Total"                                                                 
-#&gt; [180] "Turbidity"                                                                         
-#&gt; [181] "Turbidity - Field"                                                                 
-#&gt; [182] "Uranium Dissolved"                                                                 
-#&gt; [183] "Uranium Total"                                                                     
-#&gt; [184] "Vanadium Total"                                                                    
-#&gt; [185] "Vinyl Chloride"                                                                    
-#&gt; [186] "Xylene Total"                                                                      
-#&gt; [187] "Zinc Dissolved"                                                                    
-#&gt; [188] "Zinc Total"                                                                        </div><div class='input'><span class='fu'>lookup_variables</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AL-D"</span>, <span class='st'>"EMS_AS_T"</span>, <span class='st'>"B--T"</span>, <span class='st'>"KRYP"</span><span class='op'>)</span>, messages <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Replaced 'AL-D' with 'Aluminum Dissolved', 'AS-T' with 'Arsenic Total' and 'B--T' with 'Boron Total'.</span></div><div class='output co'>#&gt; <span class='message'>Failed to replace 'KRYP'.</span></div><div class='output co'>#&gt; [1] "Aluminum Dissolved" "Arsenic Total"      "Boron Total"       
-#&gt; [4] NA                  </div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>lookup_variables</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [1] "1,1-Dichloroethylene"                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [2] "1,1,2-Trichloroethene (Trichloroethylene) Total"                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [3] "1,1,2,2-Tetrachloroethene (Tetrachloroethylene, Perchlorethylene) Total"           </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [4] "1,2-Dichlorobenzene Total"                                                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [5] "1,2-Dichloroethane Total"                                                          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [6] "1,2-Propylene glycol Total"                                                        </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [7] "1,2,3-Trichlorobenzene Total"                                                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [8] "1,2,3,4-Tetrachlorobenzene Total"                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [9] "1,2,4-Trichlorobenzene Total"                                                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [10] "1,3-Dichlorobenzene Total"                                                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [11] "1,4-Dichlorobenzene Total"                                                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [12] "3-Lodo-2-propynl butylcarbamate (IPBC) Total"                                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [13] "Acenaphthene Total"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [14] "Aldicarb Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [15] "Alkalinity ( CaCO3) Total"                                                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [16] "Alkalinity pH 4.5/4.2"                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [17] "Alkalinity Total"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [18] "Aluminum Dissolved"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [19] "Aluminum Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [20] "Ammonia Dissolved"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [21] "Ammonia Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [22] "Antimony (III) Total"                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [23] "Arsenic Dissolved"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [24] "Arsenic Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [25] "Atrazine"                                                                          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [26] "Barium Dissolved"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [27] "Barium Total"                                                                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [28] "Benzene Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [29] "Benzo(a)pyrene Total"                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [30] "Beryllium Total"                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [31] "Biochemical Oxygen Demand"                                                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [32] "Boron Dissolved"                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [33] "Boron Total"                                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [34] "Bromacil Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [35] "Bromoxynil Total"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [36] "Cadmium Dissolved"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [37] "Cadmium Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [38] "Calcium Dissolved"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [39] "Captan Total"                                                                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [40] "Carbofuran Total"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [41] "Chlorate Dissolved"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [42] "Chloride Dissolved"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [43] "Chloride Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [44] "Chlorine Residual Total"                                                           </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [45] "Chlorite Dissolved"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [46] "Chlorophenol, 2,3-DCP Total"                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [47] "Chlorophenol, 2,3,4-TCP Total"                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [48] "Chlorophenol, 2,3,4,5-TTCP Total"                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [49] "Chlorophenol, 2,3,4,5,6-PCP Total"                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [50] "Chlorophenol, 2,3,4,6-TTCP Total"                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [51] "Chlorophenol, 2,3,5-TCP Total"                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [52] "Chlorophenol, 2,3,5,6-TTCP Total"                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [53] "Chlorophenol, 2,3,6-TCP Total"                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [54] "Chlorophenol, 2,4-DCP Total"                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [55] "Chlorophenol, 2,4,5-TCP Total"                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [56] "Chlorophenol, 2,4,6-TCP Total"                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [57] "Chlorophenol, 2,5-DCP Total"                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [58] "Chlorophenol, 2,6-DCP Total"                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [59] "Chlorophenol, 3,4-DCP Total"                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [60] "Chlorophenol, 3,4,5-TCP Total"                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [61] "Chlorophenol, 3,5-DCP Total"                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [62] "Chlorophenol, DCP"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [63] "Chlorophenol, TCP"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [64] "Chlorophenol, TTCP"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [65] "Chlorophyll A"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [66] "Chlorothalonil (2,4,5,6-Tetrachloro-1,3-benzenecarbonitrile, Daconil) Total"       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [67] "Chlorpyrifos Total"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [68] "Chromium Dissolved"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [69] "Chromium hexavalent Total"                                                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [70] "Chromium Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [71] "Chromium trivalent Total"                                                          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [72] "Chrysene"                                                                          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [73] "Cobalt Dissolved"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [74] "Cobalt Total"                                                                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [75] "Coliforms Fecal"                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [76] "Colour Apparent"                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [77] "Colour True"                                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [78] "Conductivity Specific"                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [79] "Conductivity Specific - Field"                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [80] "Copper Dissolved"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [81] "Copper Total"                                                                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [82] "Cyanazine Total"                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [83] "Cyanide Dissolved"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [84] "Cyanide Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [85] "Cyanide weak acid dissociable Total"                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [86] "Dehydroabietic acid (DHA) Total"                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [87] "Deltamethrin Total"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [88] "Di-(2-ethylhexyl) phthalate (DEHP) Total"                                          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [89] "Di-n-butyl tin Total"                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [90] "Dibutyl phthalate (DBP, di-n-butylphthalate) Total"                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [91] "Dicamba Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [92] "Dichlorobromomethane (Bromodichloromethane)"                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [93] "Dichloromethane (Methylene chloride) Total"                                        </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [94] "Dichlorophenoxyacetic acid (2,4-D) Total"                                          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [95] "Diclofop-methyl Total"                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [96] "Didecyl dimethyl ammonium chloride (DDAC) Total"                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [97] "Dimethoate Total"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [98] "Dinoseb Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [99] "Dissolved Organic Carbon"                                                          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [100] "Dissolved Solids (Filterable Residue)"                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [101] "Enterococci"                                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [102] "Escherichia coli"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [103] "Ethinylestradiol 17a Total"                                                        </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [104] "Ethylbenzene Total"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [105] "Ethylene glycol Total"                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [106] "Extinction Depth"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [107] "Fluorene Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [108] "Fluoride Dissolved"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [109] "Fluoride Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [110] "Hardness Dissolved"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [111] "Hardness Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [112] "Hexachlorobenzene"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [113] "Hexachlorobutadiene Total"                                                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [114] "Hexachlorocyclohexane (Lindane) Total"                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [115] "Iron Dissolved"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [116] "Iron Total"                                                                        </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [117] "Lead Dissolved"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [118] "Lead Total"                                                                        </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [119] "Linuron Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [120] "Lithium Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [121] "Malathion Total"                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [122] "Manganese Dissolved"                                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [123] "Manganese Total"                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [124] "Mercury Dissolved"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [125] "Mercury Methyl"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [126] "Mercury Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [127] "Methyl tertiary-butyl ether Total"                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [128] "Methylchlorophenoxy acetic acid (4-chloro-2-methylphenoxy acetic acid; MCPA) Total"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [129] "Metolachlor Total"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [130] "Metribuzin Total"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [131] "Molybdenum Dissolved"                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [132] "Molybdenum Total"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [133] "Monochlorobenzene Total"                                                           </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [134] "Naphthalene D8"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [135] "Naphthalene Total"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [136] "Nickel Dissolved"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [137] "Nickel Total"                                                                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [138] "Nitrate Nitrite"                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [139] "Nitrate Nitrite Dissolved"                                                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [140] "Nitrate Soluble"                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [141] "Nitrate Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [142] "Nitrite Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [143] "Nitrogen Dissolved"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [144] "Nitrogen Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [145] "Organic Carbon Total"                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [146] "Oxygen Dissolved"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [147] "Oxygen Dissolved Field"                                                            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [148] "Pentachlorobenzene Total"                                                          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [149] "pH"                                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [150] "Phenanthrene Total"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [151] "Phosphorus Dissolved"                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [152] "Phosphorus Ortho"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [153] "Phosphorus Total"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [154] "Picloram Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [155] "Polychlorinated Biphenyls (PCB) Total"                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [156] "Polycyclic Aromatic Hydrocarbons (Carcinogenic) Total"                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [157] "Pseudomonas Aeruginosa"                                                            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [158] "Quinoline Total"                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [159] "Salinity"                                                                          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [160] "Selenium Dissolved"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [161] "Selenium Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [162] "Silver Dissolved"                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [163] "Silver Total"                                                                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [164] "Simazine Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [165] "Strontium Total"                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [166] "Styrene Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [167] "Sulphate Dissolved"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [168] "Sulphate Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [169] "Temperature"                                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [170] "Temperature - Field"                                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [171] "Tetrachloromethane (carbon tetrachloride) Total"                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [172] "Thallium Dissolved"                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [173] "Thallium Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [174] "Tin, Tributyltin Total"                                                            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [175] "Toluene Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [176] "Triallate Total"                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [177] "Tribromomethane (Bromoform)"                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [178] "Trichloromethane (chloroform) Total"                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [179] "Trifluralin Total"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [180] "Turbidity"                                                                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [181] "Turbidity - Field"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [182] "Uranium Dissolved"                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [183] "Uranium Total"                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [184] "Vanadium Total"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [185] "Vinyl Chloride"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [186] "Xylene Total"                                                                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [187] "Zinc Dissolved"                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [188] "Zinc Total"                                                                        </span>
+<span class='r-in'><span class='fu'>lookup_variables</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AL-D"</span>, <span class='st'>"EMS_AS_T"</span>, <span class='st'>"B--T"</span>, <span class='st'>"KRYP"</span><span class='op'>)</span>, messages <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Replaced 'AL-D' with 'Aluminum Dissolved', 'AS-T' with 'Arsenic Total' and 'B--T' with 'Boron Total'.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Failed to replace 'KRYP'.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Aluminum Dissolved" "Arsenic Total"      "Boron Total"       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [4] NA                  </span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -350,11 +362,11 @@ not the codes are compressed or expanded is unimportant.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p>
+  <p><p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -362,6 +374,8 @@ not the codes are compressed or expanded is unimportant.</p>
 
   
 
+
+  
 
   </body>
 </html>

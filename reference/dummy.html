@@ -45,6 +45,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -56,9 +58,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -117,7 +125,7 @@
     <p>A dummy data set to illustrate various data cleaning functions.</p>
     </div>
 
-    <pre class="usage"><span class='va'>dummy</span></pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='va'>dummy</span></code></pre></div>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -135,115 +143,139 @@
     <div class='dont-index'><p><code><a href='clean_wqdata.html'>clean_wqdata</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/demo.html'>demo</a></span><span class='op'>(</span><span class='va'>dummy</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; 	demo(dummy)
-#&gt; 	---- ~~~~~
-#&gt; 
-#&gt; &gt; # Copyright 2015 Province of British Columbia
-#&gt; &gt; #
-#&gt; &gt; # Licensed under the Apache License, Version 2.0 (the "License");
-#&gt; &gt; # you may not use this file except in compliance with the License.
-#&gt; &gt; # You may obtain a copy of the License at
-#&gt; &gt; #
-#&gt; &gt; # http://www.apache.org/licenses/LICENSE-2.0
-#&gt; &gt; #
-#&gt; &gt; # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
-#&gt; &gt; # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#&gt; &gt; # See the License for the specific language governing permissions and limitations under the License.
-#&gt; &gt; 
-#&gt; &gt; library(wqbc)
-#&gt; 
-#&gt; &gt; options(wqbc.messages = TRUE)
-#&gt; 
-#&gt; &gt; data(dummy)
-#&gt; 
-#&gt; &gt; print(dummy)
-#&gt;          Date            Variable  Value         Units
-#&gt; 1  2000-01-01 Aluminium Dissolved   20.0          mg/L
-#&gt; 2  2000-01-01 Aluminium Dissolved    1.0          mg/L
-#&gt; 3  2000-01-01 Aluminium Dissolved    2.0          mg/L
-#&gt; 4  2000-01-01                  pH    8.0      PH UNITS
-#&gt; 5  2000-01-01                  pH    9.5      PH UNITS
-#&gt; 6  2000-01-02  DISSOLVED ALUMINUM    1.0          MG/L
-#&gt; 7  2000-01-02  DISSOLVED ALUMINUM 2000.0          uG/L
-#&gt; 8  2000-01-04 Aluminium Dissolved 2000.0          ug/L
-#&gt; 9  2000-01-04 Aluminium Dissolved    1.0          mg/L
-#&gt; 10 2000-01-05 Aluminium Dissolved    1.0          mg/L
-#&gt; 11 2000-01-05 Aluminium Dissolved   40.0          mg/L
-#&gt; 12 2000-01-05 Aluminium Dissolved     NA          mg/L
-#&gt; 13 2000-01-06 Aluminium Dissolved   10.0          mg/L
-#&gt; 14 2000-01-06 Aluminium Dissolved   20.0          mg/L
-#&gt; 15 2000-01-06 Aluminium Dissolved     NA          mg/L
-#&gt; 16 1977-05-25          Zinc Total    1.0          ug/L
-#&gt; 17 1977-05-25          Zinc Total 1000.0 midichlorians
-#&gt; 18 1978-12-01          Kryptonite    1.0          ug/L
-#&gt; 19 1978-12-01                  pH    7.0      PH UNITS
-#&gt; 
-#&gt; &gt; dummy$Units &lt;- substitute_units(dummy$Units)</div><div class='output co'>#&gt; <span class='message'>Substituted 'MG/L' with 'mg/L', 'PH UNITS' with 'pH' and 'uG/L' with 'ug/L'.</span></div><div class='output co'>#&gt; <span class='message'>Failed to substitute 'midichlorians'.</span></div><div class='output co'>#&gt; 
-#&gt; &gt; dummy$Variable &lt;- substitute_variables(dummy$Variable)</div><div class='output co'>#&gt; <span class='message'>Substituted 'DISSOLVED ALUMINUM' with 'Aluminum Dissolved'.</span></div><div class='output co'>#&gt; <span class='message'>Failed to substitute 'Aluminium Dissolved' and 'Kryptonite'.</span></div><div class='output co'>#&gt; 
-#&gt; &gt; print(dummy)
-#&gt;          Date           Variable  Value Units
-#&gt; 1  2000-01-01               &lt;NA&gt;   20.0  mg/L
-#&gt; 2  2000-01-01               &lt;NA&gt;    1.0  mg/L
-#&gt; 3  2000-01-01               &lt;NA&gt;    2.0  mg/L
-#&gt; 4  2000-01-01                 pH    8.0    pH
-#&gt; 5  2000-01-01                 pH    9.5    pH
-#&gt; 6  2000-01-02 Aluminum Dissolved    1.0  mg/L
-#&gt; 7  2000-01-02 Aluminum Dissolved 2000.0  ug/L
-#&gt; 8  2000-01-04               &lt;NA&gt; 2000.0  ug/L
-#&gt; 9  2000-01-04               &lt;NA&gt;    1.0  mg/L
-#&gt; 10 2000-01-05               &lt;NA&gt;    1.0  mg/L
-#&gt; 11 2000-01-05               &lt;NA&gt;   40.0  mg/L
-#&gt; 12 2000-01-05               &lt;NA&gt;     NA  mg/L
-#&gt; 13 2000-01-06               &lt;NA&gt;   10.0  mg/L
-#&gt; 14 2000-01-06               &lt;NA&gt;   20.0  mg/L
-#&gt; 15 2000-01-06               &lt;NA&gt;     NA  mg/L
-#&gt; 16 1977-05-25         Zinc Total    1.0  ug/L
-#&gt; 17 1977-05-25         Zinc Total 1000.0  &lt;NA&gt;
-#&gt; 18 1978-12-01               &lt;NA&gt;    1.0  ug/L
-#&gt; 19 1978-12-01                 pH    7.0    pH
-#&gt; 
-#&gt; &gt; dummy &lt;- dplyr::filter(dummy, Units %in% lookup_units() &amp; Variable %in% lookup_variables())
-#&gt; 
-#&gt; &gt; print(dummy)
-#&gt;         Date           Variable  Value Units
-#&gt; 1 2000-01-01                 pH    8.0    pH
-#&gt; 2 2000-01-01                 pH    9.5    pH
-#&gt; 3 2000-01-02 Aluminum Dissolved    1.0  mg/L
-#&gt; 4 2000-01-02 Aluminum Dissolved 2000.0  ug/L
-#&gt; 5 1977-05-25         Zinc Total    1.0  ug/L
-#&gt; 6 1978-12-01                 pH    7.0    pH
-#&gt; 
-#&gt; &gt; dummy &lt;- standardize_wqdata(dummy)</div><div class='output co'>#&gt; <span class='message'>Standardizing water quality data...</span></div><div class='output co'>#&gt; <span class='message'>Standardized water quality data.</span></div><div class='output co'>#&gt; 
-#&gt; &gt; print(dummy)
-#&gt; <span style='color: #555555;'># A tibble: 6 x 4</span><span>
-#&gt;   Date       Variable           Value Units
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> 2000-01-02 Aluminum Dissolved   1   mg/L 
-#&gt; </span><span style='color: #555555;'>2</span><span> 2000-01-02 Aluminum Dissolved   2   mg/L 
-#&gt; </span><span style='color: #555555;'>3</span><span> 2000-01-01 pH                   8   pH   
-#&gt; </span><span style='color: #555555;'>4</span><span> 2000-01-01 pH                   9.5 pH   
-#&gt; </span><span style='color: #555555;'>5</span><span> 1978-12-01 pH                   7   pH   
-#&gt; </span><span style='color: #555555;'>6</span><span> 1977-05-25 Zinc Total           1   ug/L 
-#&gt; 
-#&gt; &gt; dummy &lt;- clean_wqdata(dummy)</div><div class='output co'>#&gt; <span class='message'>Cleaning water quality data...</span></div><div class='output co'>#&gt; <span class='message'>Identified 0 outliers in water quality data.</span></div><div class='output co'>#&gt; <span class='message'>Cleansed water quality data.</span></div><div class='output co'>#&gt; 
-#&gt; &gt; print(dummy)
-#&gt; </span><span style='color: #555555;'># A tibble: 4 x 6</span><span>
-#&gt;   Date       Variable           Value Units Outlier DetectionLimit
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> 2000-01-02 Aluminum Dissolved  1.5  mg/L  FALSE               </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> 1978-12-01 pH                  7    pH    FALSE               </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> 2000-01-01 pH                  8.75 pH    FALSE               </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span> 1977-05-25 Zinc Total          1    ug/L  FALSE               </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; 
-#&gt; &gt; dummy &lt;- calc_limits(dummy, term = "short")</div><div class='output co'>#&gt; <span class='message'>Cleaning water quality data...</span></div><div class='output co'>#&gt; <span class='message'>Identified 0 outliers in water quality data.</span></div><div class='output co'>#&gt; <span class='message'>Cleansed water quality data.</span></div><div class='output co'>#&gt; <span class='message'>Standardizing water quality data...</span></div><div class='output co'>#&gt; <span class='message'>Standardized water quality data.</span></div><div class='output co'>#&gt; <span class='message'>Calculating short-term water quality limits...</span></div><div class='output co'>#&gt; <span class='message'>Dropped 2 values for pH without limits</span></div><div class='output co'>#&gt; <span class='message'>Dropped 1 values for Zinc Total without limits</span></div><div class='output co'>#&gt; <span class='message'>Calculated short-term water quality limits.</span></div><div class='output co'>#&gt; 
-#&gt; &gt; print(dummy)
-#&gt; </span><span style='color: #555555;'># A tibble: 1 x 7</span><span>
-#&gt;   Date       Variable           Value UpperLimit Units Outlier DetectionLimit
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> 2000-01-02 Aluminum Dissolved   1.5        0.1 mg/L  </span><span style='color: #BB0000;'>NA</span><span>                  </span><span style='color: #BB0000;'>NA</span><span></div></span></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/demo.html'>demo</a></span><span class='op'>(</span><span class='va'>dummy</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 	demo(dummy)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 	---- ~~~~~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; # Copyright 2015 Province of British Columbia</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; #</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; # Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; # you may not use this file except in compliance with the License.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; # You may obtain a copy of the License at</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; #</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; # http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; #</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; # See the License for the specific language governing permissions and limitations under the License.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; library(wqbc)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; options(wqbc.messages = TRUE)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; data(dummy)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; print(dummy)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          Date            Variable  Value         Units</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  2000-01-01 Aluminium Dissolved   20.0          mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  2000-01-01 Aluminium Dissolved    1.0          mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  2000-01-01 Aluminium Dissolved    2.0          mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  2000-01-01                  pH    8.0      PH UNITS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  2000-01-01                  pH    9.5      PH UNITS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  2000-01-02  DISSOLVED ALUMINUM    1.0          MG/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  2000-01-02  DISSOLVED ALUMINUM 2000.0          uG/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  2000-01-04 Aluminium Dissolved 2000.0          ug/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  2000-01-04 Aluminium Dissolved    1.0          mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 2000-01-05 Aluminium Dissolved    1.0          mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 2000-01-05 Aluminium Dissolved   40.0          mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 2000-01-05 Aluminium Dissolved     NA          mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 2000-01-06 Aluminium Dissolved   10.0          mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 2000-01-06 Aluminium Dissolved   20.0          mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 2000-01-06 Aluminium Dissolved     NA          mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 1977-05-25          Zinc Total    1.0          ug/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 1977-05-25          Zinc Total 1000.0 midichlorians</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 1978-12-01          Kryptonite    1.0          ug/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 1978-12-01                  pH    7.0      PH UNITS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; dummy$Units &lt;- substitute_units(dummy$Units)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Substituted 'MG/L' with 'mg/L', 'PH UNITS' with 'pH' and 'uG/L' with 'ug/L'.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Failed to substitute 'midichlorians'.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; dummy$Variable &lt;- substitute_variables(dummy$Variable)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Substituted 'DISSOLVED ALUMINUM' with 'Aluminum Dissolved'.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Failed to substitute 'Aluminium Dissolved' and 'Kryptonite'.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; print(dummy)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          Date           Variable  Value Units</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  2000-01-01               &lt;NA&gt;   20.0  mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  2000-01-01               &lt;NA&gt;    1.0  mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  2000-01-01               &lt;NA&gt;    2.0  mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  2000-01-01                 pH    8.0    pH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  2000-01-01                 pH    9.5    pH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  2000-01-02 Aluminum Dissolved    1.0  mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  2000-01-02 Aluminum Dissolved 2000.0  ug/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  2000-01-04               &lt;NA&gt; 2000.0  ug/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  2000-01-04               &lt;NA&gt;    1.0  mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 2000-01-05               &lt;NA&gt;    1.0  mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 2000-01-05               &lt;NA&gt;   40.0  mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 2000-01-05               &lt;NA&gt;     NA  mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 2000-01-06               &lt;NA&gt;   10.0  mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 2000-01-06               &lt;NA&gt;   20.0  mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 2000-01-06               &lt;NA&gt;     NA  mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 1977-05-25         Zinc Total    1.0  ug/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 1977-05-25         Zinc Total 1000.0  &lt;NA&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 1978-12-01               &lt;NA&gt;    1.0  ug/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 1978-12-01                 pH    7.0    pH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; dummy &lt;- dplyr::filter(dummy, Units %in% lookup_units() &amp; Variable %in% lookup_variables())</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; print(dummy)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         Date           Variable  Value Units</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 2000-01-01                 pH    8.0    pH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2 2000-01-01                 pH    9.5    pH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3 2000-01-02 Aluminum Dissolved    1.0  mg/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4 2000-01-02 Aluminum Dissolved 2000.0  ug/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5 1977-05-25         Zinc Total    1.0  ug/L</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6 1978-12-01                 pH    7.0    pH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; dummy &lt;- standardize_wqdata(dummy)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Standardizing water quality data...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Standardized water quality data.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; print(dummy)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 × 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Date       Variable           Value Units</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> 2000-01-02 Aluminum Dissolved   1   mg/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> 2000-01-02 Aluminum Dissolved   2   mg/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> 1977-05-25 Zinc Total           1   ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> 2000-01-01 pH                   8   pH   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> 2000-01-01 pH                   9.5 pH   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> 1978-12-01 pH                   7   pH   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; dummy &lt;- clean_wqdata(dummy)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Cleaning water quality data...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Identified 0 outliers in water quality data.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Cleansed water quality data.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; print(dummy)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 × 6</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Date       Variable           Value Units Outlier DetectionLimit</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> 2000-01-02 Aluminum Dissolved  1.5  mg/L  FALSE               <span style='color: #BB0000;'>NA</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> 1977-05-25 Zinc Total          1    ug/L  FALSE               <span style='color: #BB0000;'>NA</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> 1978-12-01 pH                  7    pH    FALSE               <span style='color: #BB0000;'>NA</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> 2000-01-01 pH                  8.75 pH    FALSE               <span style='color: #BB0000;'>NA</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; dummy &lt;- calc_limits(dummy, term = "short")</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Cleaning water quality data...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Identified 0 outliers in water quality data.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Cleansed water quality data.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Standardizing water quality data...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Standardized water quality data.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Calculating short-term water quality limits...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Dropped 1 values for Zinc Total without limits</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Dropped 2 values for pH without limits</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Calculated short-term water quality limits.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &gt; print(dummy)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 1 × 7</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Date       Variable           Value UpperLimit Units Outlier DetectionLimit</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> 2000-01-02 Aluminum Dissolved   1.5        0.1 mg/L  <span style='color: #BB0000;'>NA</span>                  <span style='color: #BB0000;'>NA</span></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -255,11 +287,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p>
+  <p><p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -267,6 +299,8 @@
 
   
 
+
+  
 
   </body>
 </html>

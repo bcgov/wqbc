@@ -57,6 +57,8 @@ Aluminium to be a match with Aluminum." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -68,9 +70,15 @@ Aluminium to be a match with Aluminum." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -141,11 +149,11 @@ error. The code also considers
 Aluminium to be a match with Aluminum.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>substitute_variables</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>substitute_variables</span><span class='op'>(</span>
   <span class='va'>x</span>,
   strict <span class='op'>=</span> <span class='cn'>TRUE</span>,
   messages <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"wqbc.messages"</span>, default <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,7 +166,7 @@ Aluminium to be a match with Aluminum.</p>
       <th>strict</th>
       <td><p>A flag indicating whether to require all words
 in a recognised variable name to be present in x (strict = TRUE)
-or only the first one (strict = FALSE) <img src='figures/lifecycle-soft-deprecated.svg' alt='Soft-deprecated lifecycle' />
+or only the first one (strict = FALSE) <a href='https://lifecycle.r-lib.org/articles/stages.html#soft-deprecated'><img src='figures/lifecycle-soft-deprecated.svg' alt='[Soft-deprecated]' /></a>
 .</p></td>
     </tr>
     <tr>
@@ -172,13 +180,16 @@ or only the first one (strict = FALSE) <img src='figures/lifecycle-soft-deprecat
     <div class='dont-index'><p><code><a href='substitute_units.html'>substitute_units</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>substitute_variables</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-  <span class='st'>"ALUMINIUM SOMETHING"</span>, <span class='st'>"ALUMINUM DISSOLVED"</span>,
-  <span class='st'>"dissolved aluminium"</span>, <span class='st'>"BORON Total"</span>, <span class='st'>"KRYPTONITE"</span>,
-  <span class='st'>"Total Fluoride Hardness"</span>
-<span class='op'>)</span>, messages <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Substituted 'ALUMINUM DISSOLVED' with 'Aluminum Dissolved' and 'BORON Total' with 'Boron Total'.</span></div><div class='output co'>#&gt; <span class='message'>Failed to substitute 'ALUMINIUM SOMETHING', 'dissolved aluminium', 'KRYPTONITE' and 'Total Fluoride Hardness'.</span></div><div class='output co'>#&gt; [1] NA                   "Aluminum Dissolved" NA                  
-#&gt; [4] "Boron Total"        NA                   NA                  </div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>substitute_variables</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span class='r-in'>  <span class='st'>"ALUMINIUM SOMETHING"</span>, <span class='st'>"ALUMINUM DISSOLVED"</span>,</span>
+<span class='r-in'>  <span class='st'>"dissolved aluminium"</span>, <span class='st'>"BORON Total"</span>, <span class='st'>"KRYPTONITE"</span>,</span>
+<span class='r-in'>  <span class='st'>"Total Fluoride Hardness"</span></span>
+<span class='r-in'><span class='op'>)</span>, messages <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Substituted 'ALUMINUM DISSOLVED' with 'Aluminum Dissolved' and 'BORON Total' with 'Boron Total'.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Failed to substitute 'ALUMINIUM SOMETHING', 'KRYPTONITE', 'Total Fluoride Hardness' and 'dissolved aluminium'.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] NA                   "Aluminum Dissolved" NA                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [4] "Boron Total"        NA                   NA                  </span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -190,11 +201,11 @@ or only the first one (strict = FALSE) <img src='figures/lifecycle-soft-deprecat
 
       <footer>
       <div class="copyright">
-  <p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p>
+  <p><p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -202,6 +213,8 @@ or only the first one (strict = FALSE) <img src='figures/lifecycle-soft-deprecat
 
   
 
+
+  
 
   </body>
 </html>

@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -49,7 +51,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/bcgov/wqbc/">
+  <a href="https://github.com/bcgov/wqbc/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -69,9 +71,9 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started with wqbc</h1>
             
-            <h4 class="date">2020-12-16</h4>
+            <h4 data-toc-skip class="date">2021-08-10</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/bcgov/wqbc/blob/master/vignettes/wqbc.Rmd"><code>vignettes/wqbc.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/bcgov/wqbc/blob/master/vignettes/wqbc.Rmd" class="external-link"><code>vignettes/wqbc.Rmd</code></a></small>
       <div class="hidden name"><code>wqbc.Rmd</code></div>
 
     </div>
@@ -79,55 +81,55 @@
     
     
 <p>The <code>wqbc</code> R package calculates water quality limits for British Columbia.</p>
-<p>Previously it also calculated the <a href="http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html">CCME Water Quality Index</a> but that functionality has been moved to the <a href="https://github.com/bcgov/wqindex">wqindex</a> package.</p>
+<p>Previously it also calculated the <a href="http://www.ccme.ca/en/resources/canadian_environmental_quality_guidelines/index.html" class="external-link">CCME Water Quality Index</a> but that functionality has been moved to the <a href="https://github.com/bcgov/wqindex" class="external-link">wqindex</a> package.</p>
 <div id="fraser-data" class="section level2">
 <h2 class="hasAnchor">
-<a href="#fraser-data" class="anchor"></a>Fraser Data</h2>
-<p>The data used in this demonstration are from the Fraser River basin (data available <a href="http://data.gc.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18">here</a> under the <a href="http://open.canada.ca/en/open-government-licence-canada">Candian Open Government License</a>.</p>
+<a href="#fraser-data" class="anchor" aria-hidden="true"></a>Fraser Data</h2>
+<p>The data used in this demonstration are from the Fraser River basin (data available <a href="http://data.gc.ca/data/en/dataset/9ec91c92-22f8-4520-8b2c-0f1cce663e18" class="external-link">here</a> under the <a href="http://open.canada.ca/en/open-government-licence-canada" class="external-link">Candian Open Government License</a>.</p>
 <p>To load the <code>wqbc</code> package and the <code>fraser</code> data run</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bcgov/wqbc">wqbc</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">fraser</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bcgov/wqbc" class="external-link">wqbc</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">fraser</span><span class="op">)</span></code></pre></div>
 <p>The <code>fraser</code> data is organized so that each row corresponds to one observation.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span> <span class="co"># for prettier printing of tibbles</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fraser</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 242,631 x 8</span>
-<span class="co">#&gt;    SiteID    Date       Variable          Value Units Site             Lat  Long</span>
-<span class="co">#&gt;    &lt;chr&gt;     &lt;date&gt;     &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 BC08KA00… 2000-01-12 ALKALINITY TOT… 59.1    MG/L  FRASER RIVER …  53.0 -119.</span>
-<span class="co">#&gt;  2 BC08KA00… 2000-01-12 ALUMINUM TOTAL   0.061  MG/L  FRASER RIVER …  53.0 -119.</span>
-<span class="co">#&gt;  3 BC08KA00… 2000-01-12 BARIUM EXTRACT… 14.5    UG/L  FRASER RIVER …  53.0 -119.</span>
-<span class="co">#&gt;  4 BC08KA00… 2000-01-12 BARIUM TOTAL     0.0141 MG/L  FRASER RIVER …  53.0 -119.</span>
-<span class="co">#&gt;  5 BC08KA00… 2000-01-12 BERYLLIUM EXTR…  0      UG/L  FRASER RIVER …  53.0 -119.</span>
-<span class="co">#&gt;  6 BC08KA00… 2000-01-12 BERYLLIUM TOTAL  0      UG/L  FRASER RIVER …  53.0 -119.</span>
-<span class="co">#&gt;  7 BC08KA00… 2000-01-12 BORON EXTRACTA…  0.77   UG/L  FRASER RIVER …  53.0 -119.</span>
-<span class="co">#&gt;  8 BC08KA00… 2000-01-12 CADMIUM EXTRAC…  0.007  UG/L  FRASER RIVER …  53.0 -119.</span>
-<span class="co">#&gt;  9 BC08KA00… 2000-01-12 CADMIUM TOTAL    0      MG/L  FRASER RIVER …  53.0 -119.</span>
-<span class="co">#&gt; 10 BC08KA00… 2000-01-12 CALCIUM EXTRAC… 19.7    MG/L  FRASER RIVER …  53.0 -119.</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span> <span class="co"># for prettier printing of tibbles</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">fraser</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 242,631 × 8</span>
+<span class="co">#&gt;    SiteID     Date       Variable                 Value Units Site     Lat  Long</span>
+<span class="co">#&gt;    &lt;chr&gt;      &lt;date&gt;     &lt;chr&gt;                    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 BC08KA0007 2000-01-12 ALKALINITY TOTAL CACO3 59.1    MG/L  FRASE…  53.0 -119.</span>
+<span class="co">#&gt;  2 BC08KA0007 2000-01-12 ALUMINUM TOTAL          0.061  MG/L  FRASE…  53.0 -119.</span>
+<span class="co">#&gt;  3 BC08KA0007 2000-01-12 BARIUM EXTRACTABLE     14.5    UG/L  FRASE…  53.0 -119.</span>
+<span class="co">#&gt;  4 BC08KA0007 2000-01-12 BARIUM TOTAL            0.0141 MG/L  FRASE…  53.0 -119.</span>
+<span class="co">#&gt;  5 BC08KA0007 2000-01-12 BERYLLIUM EXTRACTABLE   0      UG/L  FRASE…  53.0 -119.</span>
+<span class="co">#&gt;  6 BC08KA0007 2000-01-12 BERYLLIUM TOTAL         0      UG/L  FRASE…  53.0 -119.</span>
+<span class="co">#&gt;  7 BC08KA0007 2000-01-12 BORON EXTRACTABLE       0.77   UG/L  FRASE…  53.0 -119.</span>
+<span class="co">#&gt;  8 BC08KA0007 2000-01-12 CADMIUM EXTRACTABLE     0.007  UG/L  FRASE…  53.0 -119.</span>
+<span class="co">#&gt;  9 BC08KA0007 2000-01-12 CADMIUM TOTAL           0      MG/L  FRASE…  53.0 -119.</span>
+<span class="co">#&gt; 10 BC08KA0007 2000-01-12 CALCIUM EXTRACTABLE    19.7    MG/L  FRASE…  53.0 -119.</span>
 <span class="co">#&gt; # … with 242,621 more rows</span></code></pre></div>
 <p>As the <code>fraser</code> data is a large dataset (242631 rows) we’ll just use the data from 2012.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data2012</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fraser</span>, <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span> <span class="op">==</span> <span class="fl">2012</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">data2012</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">fraser</span>, <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/year.html" class="external-link">year</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span> <span class="op">==</span> <span class="fl">2012</span><span class="op">)</span>
 <span class="va">data2012</span>
-<span class="co">#&gt; # A tibble: 17,881 x 8</span>
-<span class="co">#&gt;    SiteID    Date       Variable         Value Units Site              Lat  Long</span>
-<span class="co">#&gt;    &lt;chr&gt;     &lt;date&gt;     &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 BC08KA00… 2012-01-24 ALKALINITY TOT… 64.1   MG/L  FRASER RIVER A…  53.0 -119.</span>
-<span class="co">#&gt;  2 BC08KA00… 2012-01-24 ALUMINUM TOTAL  42     UG/L  FRASER RIVER A…  53.0 -119.</span>
-<span class="co">#&gt;  3 BC08KA00… 2012-01-24 ANTIMONY TOTAL   0.009 UG/L  FRASER RIVER A…  53.0 -119.</span>
-<span class="co">#&gt;  4 BC08KA00… 2012-01-24 ARSENIC TOTAL    0.12  UG/L  FRASER RIVER A…  53.0 -119.</span>
-<span class="co">#&gt;  5 BC08KA00… 2012-01-24 BARIUM TOTAL    15     UG/L  FRASER RIVER A…  53.0 -119.</span>
-<span class="co">#&gt;  6 BC08KA00… 2012-01-24 BERYLLIUM TOTAL  0     UG/L  FRASER RIVER A…  53.0 -119.</span>
-<span class="co">#&gt;  7 BC08KA00… 2012-01-24 BISMUTH TOTAL    0     UG/L  FRASER RIVER A…  53.0 -119.</span>
-<span class="co">#&gt;  8 BC08KA00… 2012-01-24 BORON TOTAL      1.6   UG/L  FRASER RIVER A…  53.0 -119.</span>
-<span class="co">#&gt;  9 BC08KA00… 2012-01-24 CADMIUM TOTAL    0.003 UG/L  FRASER RIVER A…  53.0 -119.</span>
-<span class="co">#&gt; 10 BC08KA00… 2012-01-24 CALCIUM DISSOL… 20     MG/L  FRASER RIVER A…  53.0 -119.</span>
+<span class="co">#&gt; # A tibble: 17,881 × 8</span>
+<span class="co">#&gt;    SiteID     Date       Variable                Value Units Site      Lat  Long</span>
+<span class="co">#&gt;    &lt;chr&gt;      &lt;date&gt;     &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 BC08KA0007 2012-01-24 ALKALINITY TOTAL CACO3 64.1   MG/L  FRASER…  53.0 -119.</span>
+<span class="co">#&gt;  2 BC08KA0007 2012-01-24 ALUMINUM TOTAL         42     UG/L  FRASER…  53.0 -119.</span>
+<span class="co">#&gt;  3 BC08KA0007 2012-01-24 ANTIMONY TOTAL          0.009 UG/L  FRASER…  53.0 -119.</span>
+<span class="co">#&gt;  4 BC08KA0007 2012-01-24 ARSENIC TOTAL           0.12  UG/L  FRASER…  53.0 -119.</span>
+<span class="co">#&gt;  5 BC08KA0007 2012-01-24 BARIUM TOTAL           15     UG/L  FRASER…  53.0 -119.</span>
+<span class="co">#&gt;  6 BC08KA0007 2012-01-24 BERYLLIUM TOTAL         0     UG/L  FRASER…  53.0 -119.</span>
+<span class="co">#&gt;  7 BC08KA0007 2012-01-24 BISMUTH TOTAL           0     UG/L  FRASER…  53.0 -119.</span>
+<span class="co">#&gt;  8 BC08KA0007 2012-01-24 BORON TOTAL             1.6   UG/L  FRASER…  53.0 -119.</span>
+<span class="co">#&gt;  9 BC08KA0007 2012-01-24 CADMIUM TOTAL           0.003 UG/L  FRASER…  53.0 -119.</span>
+<span class="co">#&gt; 10 BC08KA0007 2012-01-24 CALCIUM DISSOLVED      20     MG/L  FRASER…  53.0 -119.</span>
 <span class="co">#&gt; # … with 17,871 more rows</span></code></pre></div>
 <p>This leaves us with a dataset with 17881 rows. Before the data can be assigned the water quality limits provided by <code>wqbc</code> they first have to be standardized and then cleaned.</p>
 <div id="standardizing-data" class="section level3">
 <h3 class="hasAnchor">
-<a href="#standardizing-data" class="anchor"></a>Standardizing Data</h3>
+<a href="#standardizing-data" class="anchor" aria-hidden="true"></a>Standardizing Data</h3>
 <p>The <code><a href="../reference/standardize_wqdata.html">standardize_wqdata()</a></code> function converts any non-standard variable names, checks (and if possible) converts the units and removes any missing and negative values.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/standardize_wqdata.html">standardize_wqdata</a></span><span class="op">(</span><span class="va">data2012</span><span class="op">)</span>
@@ -142,25 +144,25 @@
 <span class="co">#&gt; Standardized water quality data.</span></code></pre></div>
 <p>As a result of the standardization, the 2012 Fraser dataset has been reduced to 11971 observations that can in principle be assigned water quality limits by the <code>wqbc</code> package. However, first it is necessary to deal with multiple observations by cleaning the data.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">data2012</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 11,971 x 8</span>
-<span class="co">#&gt;    SiteID    Date       Variable       Value Units Site                Lat  Long</span>
-<span class="co">#&gt;    &lt;chr&gt;     &lt;date&gt;     &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 BC08KA00… 2012-01-24 Alkalinity To…  64.1 mg/L  FRASER RIVER AT …  53.0 -119.</span>
-<span class="co">#&gt;  2 BC08KA00… 2012-04-11 Alkalinity To…  65.1 mg/L  FRASER RIVER AT …  53.0 -119.</span>
-<span class="co">#&gt;  3 BC08KA00… 2012-04-18 Alkalinity To…  63.5 mg/L  FRASER RIVER AT …  53.0 -119.</span>
-<span class="co">#&gt;  4 BC08KA00… 2012-05-01 Alkalinity To…  59.5 mg/L  FRASER RIVER AT …  53.0 -119.</span>
-<span class="co">#&gt;  5 BC08KA00… 2012-05-16 Alkalinity To…  59.5 mg/L  FRASER RIVER AT …  53.0 -119.</span>
-<span class="co">#&gt;  6 BC08KA00… 2012-05-30 Alkalinity To…  58.8 mg/L  FRASER RIVER AT …  53.0 -119.</span>
-<span class="co">#&gt;  7 BC08KA00… 2012-06-11 Alkalinity To…  56.5 mg/L  FRASER RIVER AT …  53.0 -119.</span>
-<span class="co">#&gt;  8 BC08KA00… 2012-07-10 Alkalinity To…  43.2 mg/L  FRASER RIVER AT …  53.0 -119.</span>
-<span class="co">#&gt;  9 BC08KA00… 2012-07-16 Alkalinity To…  40.8 mg/L  FRASER RIVER AT …  53.0 -119.</span>
-<span class="co">#&gt; 10 BC08KA00… 2012-07-25 Alkalinity To…  40.9 mg/L  FRASER RIVER AT …  53.0 -119.</span>
+<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="va">data2012</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 11,971 × 8</span>
+<span class="co">#&gt;    SiteID     Date       Variable         Value Units Site             Lat  Long</span>
+<span class="co">#&gt;    &lt;chr&gt;      &lt;date&gt;     &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 BC08KA0007 2012-01-24 Alkalinity Total  64.1 mg/L  FRASER RIVER …  53.0 -119.</span>
+<span class="co">#&gt;  2 BC08KA0007 2012-04-11 Alkalinity Total  65.1 mg/L  FRASER RIVER …  53.0 -119.</span>
+<span class="co">#&gt;  3 BC08KA0007 2012-04-18 Alkalinity Total  63.5 mg/L  FRASER RIVER …  53.0 -119.</span>
+<span class="co">#&gt;  4 BC08KA0007 2012-05-01 Alkalinity Total  59.5 mg/L  FRASER RIVER …  53.0 -119.</span>
+<span class="co">#&gt;  5 BC08KA0007 2012-05-16 Alkalinity Total  59.5 mg/L  FRASER RIVER …  53.0 -119.</span>
+<span class="co">#&gt;  6 BC08KA0007 2012-05-30 Alkalinity Total  58.8 mg/L  FRASER RIVER …  53.0 -119.</span>
+<span class="co">#&gt;  7 BC08KA0007 2012-06-11 Alkalinity Total  56.5 mg/L  FRASER RIVER …  53.0 -119.</span>
+<span class="co">#&gt;  8 BC08KA0007 2012-07-10 Alkalinity Total  43.2 mg/L  FRASER RIVER …  53.0 -119.</span>
+<span class="co">#&gt;  9 BC08KA0007 2012-07-16 Alkalinity Total  40.8 mg/L  FRASER RIVER …  53.0 -119.</span>
+<span class="co">#&gt; 10 BC08KA0007 2012-07-25 Alkalinity Total  40.9 mg/L  FRASER RIVER …  53.0 -119.</span>
 <span class="co">#&gt; # … with 11,961 more rows</span></code></pre></div>
 </div>
 <div id="cleaning-data" class="section level3">
 <h3 class="hasAnchor">
-<a href="#cleaning-data" class="anchor"></a>Cleaning Data</h3>
+<a href="#cleaning-data" class="anchor" aria-hidden="true"></a>Cleaning Data</h3>
 <p>After standardization, it is necessary to ensure that there are only single values for each date for a given variable and this is done using the function <code><a href="../reference/clean_wqdata.html">clean_wqdata()</a></code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/clean_wqdata.html">clean_wqdata</a></span><span class="op">(</span><span class="va">data2012</span>, by <span class="op">=</span> <span class="st">"SiteID"</span><span class="op">)</span>
@@ -169,8 +171,8 @@
 <span class="co">#&gt; Cleansed water quality data.</span></code></pre></div>
 <p>The end result is a data frame with 10654 rows each of which represents the average value for a single variable on a particular date at an individual <code>SiteID</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">data2012</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 10,654 x 7</span>
+<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="va">data2012</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 10,654 × 7</span>
 <span class="co">#&gt;    SiteID     Date       Variable         Value Units Outlier DetectionLimit</span>
 <span class="co">#&gt;    &lt;chr&gt;      &lt;date&gt;     &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt; &lt;lgl&gt;            &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 BC08KA0007 2012-01-24 Alkalinity Total  64.1 mg/L  FALSE               NA</span>
@@ -187,7 +189,7 @@
 </div>
 <div id="calculating-limits" class="section level3">
 <h3 class="hasAnchor">
-<a href="#calculating-limits" class="anchor"></a>Calculating Limits</h3>
+<a href="#calculating-limits" class="anchor" aria-hidden="true"></a>Calculating Limits</h3>
 <p>Once the data have been standardized and cleansed the final task is to determine the water quality limits for each observation using the <code><a href="../reference/calc_limits.html">calc_limits()</a></code> function.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calc_limits.html">calc_limits</a></span><span class="op">(</span><span class="va">data2012</span>, by <span class="op">=</span> <span class="st">"SiteID"</span>, term <span class="op">=</span> <span class="st">"short"</span><span class="op">)</span>
@@ -246,25 +248,25 @@
 <span class="co">#&gt; Calculated short-term water quality limits.</span></code></pre></div>
 <p>The final result is a data frame with 2602 rows each of which has an upper water quality limit.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">data2012</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 2,602 x 8</span>
-<span class="co">#&gt;    SiteID  Date       Variable     Value UpperLimit Units Outlier DetectionLimit</span>
-<span class="co">#&gt;    &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;lgl&gt;            &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 BC08KA… 2012-01-24 Arsenic T… 0.12          5    ug/L  NA                  NA</span>
-<span class="co">#&gt;  2 BC08KA… 2012-01-24 Chloride … 0           600    mg/L  NA                  NA</span>
-<span class="co">#&gt;  3 BC08KA… 2012-01-24 Cobalt To… 0.2         110    ug/L  NA                  NA</span>
-<span class="co">#&gt;  4 BC08KA… 2012-01-24 Iron Total 0.0303        1    mg/L  NA                  NA</span>
-<span class="co">#&gt;  5 BC08KA… 2012-01-24 Lead Total 0.01         61.2  ug/L  NA                  NA</span>
-<span class="co">#&gt;  6 BC08KA… 2012-01-24 Manganese… 0.0112        1.42 mg/L  NA                  NA</span>
-<span class="co">#&gt;  7 BC08KA… 2012-01-24 Molybdenu… 0.00007       2    mg/L  NA                  NA</span>
-<span class="co">#&gt;  8 BC08KA… 2012-01-24 Silver To… 0             0.1  ug/L  NA                  NA</span>
-<span class="co">#&gt;  9 BC08KA… 2012-01-24 Zinc Total 0.3          33    ug/L  NA                  NA</span>
-<span class="co">#&gt; 10 BC08KA… 2012-04-11 Arsenic T… 0.1           5    ug/L  NA                  NA</span>
+<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="va">data2012</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 2,602 × 8</span>
+<span class="co">#&gt;    SiteID     Date       Variable   Value UpperLimit Units Outlier DetectionLimit</span>
+<span class="co">#&gt;    &lt;chr&gt;      &lt;date&gt;     &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;lgl&gt;            &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 BC08KA0007 2012-01-24 Arsenic… 0.12          5    ug/L  NA                  NA</span>
+<span class="co">#&gt;  2 BC08KA0007 2012-01-24 Chlorid… 0           600    mg/L  NA                  NA</span>
+<span class="co">#&gt;  3 BC08KA0007 2012-01-24 Cobalt … 0.2         110    ug/L  NA                  NA</span>
+<span class="co">#&gt;  4 BC08KA0007 2012-01-24 Iron To… 0.0303        1    mg/L  NA                  NA</span>
+<span class="co">#&gt;  5 BC08KA0007 2012-01-24 Lead To… 0.01         61.2  ug/L  NA                  NA</span>
+<span class="co">#&gt;  6 BC08KA0007 2012-01-24 Mangane… 0.0112        1.42 mg/L  NA                  NA</span>
+<span class="co">#&gt;  7 BC08KA0007 2012-01-24 Molybde… 0.00007       2    mg/L  NA                  NA</span>
+<span class="co">#&gt;  8 BC08KA0007 2012-01-24 Silver … 0             0.1  ug/L  NA                  NA</span>
+<span class="co">#&gt;  9 BC08KA0007 2012-01-24 Zinc To… 0.3          33    ug/L  NA                  NA</span>
+<span class="co">#&gt; 10 BC08KA0007 2012-04-11 Arsenic… 0.1           5    ug/L  NA                  NA</span>
 <span class="co">#&gt; # … with 2,592 more rows</span></code></pre></div>
 </div>
 <div id="calculating-water-quality-index" class="section level3">
 <h3 class="hasAnchor">
-<a href="#calculating-water-quality-index" class="anchor"></a>Calculating Water Quality Index</h3>
+<a href="#calculating-water-quality-index" class="anchor" aria-hidden="true"></a>Calculating Water Quality Index</h3>
 <p>The resultant data can be used to calculate water quality indices using the <code>calc_wqi()</code> function of the <code>wqindex</code> package.</p>
 </div>
 </div>
@@ -281,11 +283,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p>
+  <p></p>
+<p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
@@ -293,6 +297,8 @@
 
   
 
+
+  
 
   </body>
 </html>

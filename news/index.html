@@ -44,6 +44,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -55,9 +57,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -113,64 +121,50 @@
 
     <div id="wqbc-0319000" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.1.9000">
-<a href="#wqbc-0319000" class="anchor"></a>wqbc 0.3.1.9000</h1>
+<a href="#wqbc-0319000" class="anchor" aria-hidden="true"></a>wqbc 0.3.1.9000</h1>
 <div id="major-changes" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h2>
-<ul>
-<li>Water Quality Index calculation has been split into a new package <code>wqindex</code> (<a href='https://github.com/bcgov/wqbc/issues/82'>#82</a>)</li>
-</ul>
-</div>
+<a href="#major-changes" class="anchor" aria-hidden="true"></a>Major changes</h2>
+<ul><li>Water Quality Index calculation has been split into a new package <code>wqindex</code> (<a href='https://github.com/bcgov/wqbc/issues/82'>#82</a>)</li>
+</ul></div>
 <div id="minor-changes-and-bugfixes" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-and-bugfixes" class="anchor"></a>Minor changes and bugfixes</h2>
-<ul>
-<li>Fixed bug where only outliers were retained in <code><a href="../reference/clean_wqdata.html">clean_wqdata(delete_outliers = TRUE)</a></code> (<a href='https://github.com/bcgov/wqbc/issues/79'>#79</a>)</li>
+<a href="#minor-changes-and-bugfixes" class="anchor" aria-hidden="true"></a>Minor changes and bugfixes</h2>
+<ul><li>Fixed bug where only outliers were retained in <code>clean_wqdata(delete_outliers = TRUE)</code> (<a href='https://github.com/bcgov/wqbc/issues/79'>#79</a>)</li>
 <li>Retain <code>ResultLetter</code> column in <code>clean_wqdata</code> and <code>calc_limits</code> (<a href='https://github.com/bcgov/wqbc/issues/78'>#78</a>)</li>
 <li>Better options for dealing with values below detection limits more robustly</li>
 <li>More columns retained and option to keep even more in <code><a href="../reference/tidy_ems_data.html">tidy_ems_data()</a></code> and <code><a href="../reference/tidy_ec_data.html">tidy_ec_data()</a></code> (<a href='https://github.com/bcgov/wqbc/issues/83'>#83</a>)</li>
 <li>Fully duplicated records are removed in <code><a href="../reference/tidy_ec_data.html">tidy_ec_data()</a></code> and <code><a href="../reference/tidy_ems_data.html">tidy_ems_data()</a></code>
 </li>
 <li>New argument <code>remove_blanks</code> in <code><a href="../reference/clean_wqdata.html">clean_wqdata()</a></code> to remove blank records (<a href='https://github.com/bcgov/wqbc/issues/90'>#90</a>)</li>
-</ul>
-</div>
+</ul></div>
 </div>
     <div id="wqbc-031" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.1">
-<a href="#wqbc-031" class="anchor"></a>wqbc 0.3.1</h1>
-<ul>
-<li>Exported previously internal-only function <code>convert_values</code> to do unit conversions (<a href='https://github.com/bcgov/wqbc/issues/70'>#70</a>).</li>
-</ul>
-</div>
+<a href="#wqbc-031" class="anchor" aria-hidden="true"></a>wqbc 0.3.1</h1>
+<ul><li>Exported previously internal-only function <code>convert_values</code> to do unit conversions (<a href='https://github.com/bcgov/wqbc/issues/70'>#70</a>).</li>
+</ul></div>
     <div id="wqbc-030" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.0">
-<a href="#wqbc-030" class="anchor"></a>wqbc 0.3.0</h1>
-<ul>
-<li>Added function <code><a href="../reference/set_non_detects.html">set_non_detects()</a></code> to flexibily deal with values below the detection limit (<a href='https://github.com/bcgov/wqbc/issues/73'>#73</a>)</li>
+<a href="#wqbc-030" class="anchor" aria-hidden="true"></a>wqbc 0.3.0</h1>
+<ul><li>Added function <code><a href="../reference/set_non_detects.html">set_non_detects()</a></code> to flexibily deal with values below the detection limit (<a href='https://github.com/bcgov/wqbc/issues/73'>#73</a>)</li>
 <li>Added flexibility in dealing with non-detects to <code><a href="../reference/tidy_ems_data.html">tidy_ems_data()</a></code> and <code><a href="../reference/tidy_ec_data.html">tidy_ec_data()</a></code> (<a href='https://github.com/bcgov/wqbc/issues/73'>#73</a>)</li>
-</ul>
-</div>
+</ul></div>
     <div id="wqbc-021" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.1">
-<a href="#wqbc-021" class="anchor"></a>wqbc 0.2.1</h1>
-<ul>
-<li>Fixed a bug where <code><a href="../reference/substitute_variables.html">substitute_variables()</a></code> matched too many variables (<a href='https://github.com/bcgov/wqbc/issues/72'>#72</a>)</li>
-</ul>
-</div>
+<a href="#wqbc-021" class="anchor" aria-hidden="true"></a>wqbc 0.2.1</h1>
+<ul><li>Fixed a bug where <code><a href="../reference/substitute_variables.html">substitute_variables()</a></code> matched too many variables (<a href='https://github.com/bcgov/wqbc/issues/72'>#72</a>)</li>
+</ul></div>
     <div id="wqbc-020" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.0">
-<a href="#wqbc-020" class="anchor"></a>wqbc 0.2.0</h1>
-<ul>
-<li>Many changes including functionality for trends and importing and cleaning data from the rems package.</li>
-</ul>
-</div>
+<a href="#wqbc-020" class="anchor" aria-hidden="true"></a>wqbc 0.2.0</h1>
+<ul><li>Many changes including functionality for trends and importing and cleaning data from the rems package.</li>
+</ul></div>
     <div id="wqbc-010" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0">
-<a href="#wqbc-010" class="anchor"></a>wqbc 0.1.0</h1>
-<ul>
-<li>Initial release of package</li>
-</ul>
-</div>
+<a href="#wqbc-010" class="anchor" aria-hidden="true"></a>wqbc 0.1.0</h1>
+<ul><li>Initial release of package</li>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -184,11 +178,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p>
+  <p><p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -196,6 +190,8 @@
 
   
 
+
+  
 
   </body>
 </html>

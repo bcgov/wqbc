@@ -49,6 +49,8 @@ looks up the matching codes from codes." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -60,9 +62,15 @@ looks up the matching codes from codes." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -125,10 +133,10 @@ variables using <code><a href='substitute_variables.html'>substitute_variables</
 looks up the matching codes from <code><a href='codes.html'>codes</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lookup_codes</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>lookup_codes</span><span class='op'>(</span>
   variables <span class='op'>=</span> <span class='cn'>NULL</span>,
   messages <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"wqbc.messages"</span>, default <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,29 +156,33 @@ looks up the matching codes from <code><a href='codes.html'>codes</a></code>.</p
     <div class='dont-index'><p><code><a href='lookup_limits.html'>lookup_limits</a></code> and <code><a href='expand_ems_codes.html'>expand_ems_codes</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>lookup_codes</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   [1] "C024" "T029" "T030" "B022" "C022" "P020" "T065" "TCB5" "T066" "B026"
-#&gt;  [11] "B025" "IPBC" "PA01" "A003" "0102" "D102" "AK-T" "AL-D" "AL-T" "1108"
-#&gt;  [21] "0108" "SB-T" "AS-D" "AS-T" "A016" "BA-D" "BA-T" "B020" "PA05" "BE-T"
-#&gt;  [31] "0115" "B--D" "B--T" "B014" "B009" "CD-D" "CD-T" "CA-D" "C005" "C040"
-#&gt;  [41] "CLO3" "1104" "0104" "1016" "CLO-" "D073" "T033" "T036" "P022" "T037"
-#&gt;  [51] "T034" "T038" "T035" "D050" "T043" "T042" "D075" "D076" "CP07" "T044"
-#&gt;  [61] "D077" "D060" "T021" "T020" "0143" "C016" "C017" "CR-D" "CR-6" "CR-T"
-#&gt;  [71] "CR-3" "PA09" "CO-D" "CO-T" "0450" "0001" "0002" "0011" "SC-F" "CU-D"
-#&gt;  [81] "CU-T" "CYNZ" "1105" "CN-T" "0157" "D052" "D079" "P014" "DISN" "P012"
-#&gt;  [91] "D032" "B002" "M041" "D041" "D009" "DDAC" "D001" "D031" "1126" "0007"
-#&gt; [101] "0148" "0147" "ST13" "B021" "E020" "0019" "PA12" "1106" "0106" "1107"
-#&gt; [111] "0107" "H003" "HCBD" "L002" "FE-D" "FE-T" "PB-D" "PB-T" "M032" "LI-T"
-#&gt; [121] "M001" "MN-D" "MN-T" "HG-D" "HGME" "HG-T" "MTBE" "M010" "M005" "M006"
-#&gt; [131] "MO-D" "MO-T" "C010" "NAPH" "PA14" "NI-D" "NI-T" "0109" "1109" "NO3-"
-#&gt; [141] "0110" "0111" "1114" "0114" "0103" "0014" "DO-F" "PCLB" "0004" "PA15"
-#&gt; [151] "P--D" "1118" "P--T" "PICL" "P019" "PAH-" "PSEU" "PA19" "0130" "SE-D"
-#&gt; [161] "SE-T" "AG-D" "AG-T" "S001" "SR-T" "S010" "1121" "0121" "0013" "TEMF"
-#&gt; [171] "C034" "TL-D" "TL-T" "TRSN" "T001" "T082" "B013" "C032" "T015" "0015"
-#&gt; [181] "TURF" "U--D" "U--T" "V--T" "C004" "X001" "ZN-D" "ZN-T"</div><div class='input'><span class='fu'>lookup_codes</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Aluminum"</span>, <span class='st'>"Arsenic Total"</span>, <span class='st'>"Boron Something"</span>, <span class='st'>"Kryptonite"</span><span class='op'>)</span>,
-  messages <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Failed to substitute 'Aluminum', 'Boron Something' and 'Kryptonite'.</span></div><div class='output co'>#&gt; <span class='message'>Replaced 'Arsenic Total' with 'AS-T'.</span></div><div class='output co'>#&gt; [1] NA     "AS-T" NA     NA    </div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>lookup_codes</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [1] "C024" "T029" "T030" "B022" "C022" "P020" "T065" "TCB5" "T066" "B026"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [11] "B025" "IPBC" "PA01" "A003" "0102" "D102" "AK-T" "AL-D" "AL-T" "1108"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [21] "0108" "SB-T" "AS-D" "AS-T" "A016" "BA-D" "BA-T" "B020" "PA05" "BE-T"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [31] "0115" "B--D" "B--T" "B014" "B009" "CD-D" "CD-T" "CA-D" "C005" "C040"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [41] "CLO3" "1104" "0104" "1016" "CLO-" "D073" "T033" "T036" "P022" "T037"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [51] "T034" "T038" "T035" "D050" "T043" "T042" "D075" "D076" "CP07" "T044"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [61] "D077" "D060" "T021" "T020" "0143" "C016" "C017" "CR-D" "CR-6" "CR-T"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [71] "CR-3" "PA09" "CO-D" "CO-T" "0450" "0001" "0002" "0011" "SC-F" "CU-D"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [81] "CU-T" "CYNZ" "1105" "CN-T" "0157" "D052" "D079" "P014" "DISN" "P012"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [91] "D032" "B002" "M041" "D041" "D009" "DDAC" "D001" "D031" "1126" "0007"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [101] "0148" "0147" "ST13" "B021" "E020" "0019" "PA12" "1106" "0106" "1107"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [111] "0107" "H003" "HCBD" "L002" "FE-D" "FE-T" "PB-D" "PB-T" "M032" "LI-T"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [121] "M001" "MN-D" "MN-T" "HG-D" "HGME" "HG-T" "MTBE" "M010" "M005" "M006"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [131] "MO-D" "MO-T" "C010" "NAPH" "PA14" "NI-D" "NI-T" "0109" "1109" "NO3-"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [141] "0110" "0111" "1114" "0114" "0103" "0014" "DO-F" "PCLB" "0004" "PA15"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [151] "P--D" "1118" "P--T" "PICL" "P019" "PAH-" "PSEU" "PA19" "0130" "SE-D"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [161] "SE-T" "AG-D" "AG-T" "S001" "SR-T" "S010" "1121" "0121" "0013" "TEMF"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [171] "C034" "TL-D" "TL-T" "TRSN" "T001" "T082" "B013" "C032" "T015" "0015"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [181] "TURF" "U--D" "U--T" "V--T" "C004" "X001" "ZN-D" "ZN-T"</span>
+<span class='r-in'><span class='fu'>lookup_codes</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Aluminum"</span>, <span class='st'>"Arsenic Total"</span>, <span class='st'>"Boron Something"</span>, <span class='st'>"Kryptonite"</span><span class='op'>)</span>,</span>
+<span class='r-in'>  messages <span class='op'>=</span> <span class='cn'>TRUE</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Failed to substitute 'Aluminum', 'Boron Something' and 'Kryptonite'.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Replaced 'Arsenic Total' with 'AS-T'.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] NA     "AS-T" NA     NA    </span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -182,11 +194,11 @@ looks up the matching codes from <code><a href='codes.html'>codes</a></code>.</p
 
       <footer>
       <div class="copyright">
-  <p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p>
+  <p><p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -194,6 +206,8 @@ looks up the matching codes from <code><a href='codes.html'>codes</a></code>.</p
 
   
 
+
+  
 
   </body>
 </html>

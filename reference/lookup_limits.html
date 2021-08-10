@@ -48,6 +48,8 @@ as missing values." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -59,9 +61,15 @@ as missing values." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -123,14 +131,14 @@ and site specific values are not provided then the dependent limits are returned
 as missing values.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lookup_limits</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>lookup_limits</span><span class='op'>(</span>
   ph <span class='op'>=</span> <span class='cn'>NULL</span>,
   hardness <span class='op'>=</span> <span class='cn'>NULL</span>,
   chloride <span class='op'>=</span> <span class='cn'>NULL</span>,
   methyl_mercury <span class='op'>=</span> <span class='cn'>NULL</span>,
   term <span class='op'>=</span> <span class='st'>"long"</span>,
   use <span class='op'>=</span> <span class='st'>"Freshwater Life"</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,35 +174,37 @@ as missing values.</p>
     <div class='dont-index'><p><code><a href='calc_limits.html'>calc_limits</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>lookup_limits</span><span class='op'>(</span>ph <span class='op'>=</span> <span class='fl'>8</span>, hardness <span class='op'>=</span> <span class='fl'>100</span>, chloride <span class='op'>=</span> <span class='fl'>50</span>, methyl_mercury <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 87 x 3</span><span>
-#&gt;    Variable                                                     UpperLimit Units
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>                                                             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 1,1,2-Trichloroethene (Trichloroethylene) Total                    21   ug/L 
-#&gt; </span><span style='color: #555555;'> 2</span><span> 1,1,2,2-Tetrachloroethene (Tetrachloroethylene, Perchloreth…      110   ug/L 
-#&gt; </span><span style='color: #555555;'> 3</span><span> 1,2-Dichlorobenzene Total                                           0.7 ug/L 
-#&gt; </span><span style='color: #555555;'> 4</span><span> 1,2-Dichloroethane Total                                          100   ug/L 
-#&gt; </span><span style='color: #555555;'> 5</span><span> 1,2-Propylene glycol Total                                        500   mg/L 
-#&gt; </span><span style='color: #555555;'> 6</span><span> 1,2,3-Trichlorobenzene Total                                        8   ug/L 
-#&gt; </span><span style='color: #555555;'> 7</span><span> 1,2,3,4-Tetrachlorobenzene Total                                    1.8 ug/L 
-#&gt; </span><span style='color: #555555;'> 8</span><span> 1,2,4-Trichlorobenzene Total                                       24   ug/L 
-#&gt; </span><span style='color: #555555;'> 9</span><span> 1,3-Dichlorobenzene Total                                         150   ug/L 
-#&gt; </span><span style='color: #555555;'>10</span><span> 1,4-Dichlorobenzene Total                                          26   ug/L 
-#&gt; </span><span style='color: #555555;'># … with 77 more rows</span><span></div><div class='input'><span class='fu'>lookup_limits</span><span class='op'>(</span>term <span class='op'>=</span> <span class='st'>"short"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 38 x 3</span><span>
-#&gt;    Variable                          UpperLimit Units
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>                                  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Aluminum Dissolved                        </span><span style='color: #BB0000;'>NA</span><span> mg/L 
-#&gt; </span><span style='color: #555555;'> 2</span><span> Ammonia Total                             </span><span style='color: #BB0000;'>NA</span><span> mg/L 
-#&gt; </span><span style='color: #555555;'> 3</span><span> Arsenic Total                              5 ug/L 
-#&gt; </span><span style='color: #555555;'> 4</span><span> Cadmium Dissolved                         </span><span style='color: #BB0000;'>NA</span><span> ug/L 
-#&gt; </span><span style='color: #555555;'> 5</span><span> Chloride Dissolved                       600 mg/L 
-#&gt; </span><span style='color: #555555;'> 6</span><span> Chlorophenol, 2,3-DCP Total               </span><span style='color: #BB0000;'>NA</span><span> ug/L 
-#&gt; </span><span style='color: #555555;'> 7</span><span> Chlorophenol, 2,3,4-TCP Total             </span><span style='color: #BB0000;'>NA</span><span> ug/L 
-#&gt; </span><span style='color: #555555;'> 8</span><span> Chlorophenol, 2,3,4,5-TTCP Total          </span><span style='color: #BB0000;'>NA</span><span> ug/L 
-#&gt; </span><span style='color: #555555;'> 9</span><span> Chlorophenol, 2,3,4,5,6-PCP Total         </span><span style='color: #BB0000;'>NA</span><span> ug/L 
-#&gt; </span><span style='color: #555555;'>10</span><span> Chlorophenol, 2,3,4,6-TTCP Total          </span><span style='color: #BB0000;'>NA</span><span> ug/L 
-#&gt; </span><span style='color: #555555;'># … with 28 more rows</span><span></div></span></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>lookup_limits</span><span class='op'>(</span>ph <span class='op'>=</span> <span class='fl'>8</span>, hardness <span class='op'>=</span> <span class='fl'>100</span>, chloride <span class='op'>=</span> <span class='fl'>50</span>, methyl_mercury <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 87 × 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    Variable                                                     UpperLimit Units</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>                                                             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 1,1,2-Trichloroethene (Trichloroethylene) Total                    21   ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 1,1,2,2-Tetrachloroethene (Tetrachloroethylene, Perchloreth…      110   ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 1,2-Dichlorobenzene Total                                           0.7 ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 1,2-Dichloroethane Total                                          100   ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 1,2-Propylene glycol Total                                        500   mg/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 1,2,3-Trichlorobenzene Total                                        8   ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 1,2,3,4-Tetrachlorobenzene Total                                    1.8 ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 1,2,4-Trichlorobenzene Total                                       24   ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 1,3-Dichlorobenzene Total                                         150   ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 1,4-Dichlorobenzene Total                                          26   ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 77 more rows</span></span>
+<span class='r-in'><span class='fu'>lookup_limits</span><span class='op'>(</span>term <span class='op'>=</span> <span class='st'>"short"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 38 × 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    Variable                          UpperLimit Units</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>                                  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> Aluminum Dissolved                        <span style='color: #BB0000;'>NA</span> mg/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> Ammonia Total                             <span style='color: #BB0000;'>NA</span> mg/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> Arsenic Total                              5 ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> Cadmium Dissolved                         <span style='color: #BB0000;'>NA</span> ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> Chloride Dissolved                       600 mg/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> Chlorophenol, 2,3-DCP Total               <span style='color: #BB0000;'>NA</span> ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> Chlorophenol, 2,3,4-TCP Total             <span style='color: #BB0000;'>NA</span> ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> Chlorophenol, 2,3,4,5-TTCP Total          <span style='color: #BB0000;'>NA</span> ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> Chlorophenol, 2,3,4,5,6-PCP Total         <span style='color: #BB0000;'>NA</span> ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> Chlorophenol, 2,3,4,6-TTCP Total          <span style='color: #BB0000;'>NA</span> ug/L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 28 more rows</span></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -206,11 +216,11 @@ as missing values.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p>
+  <p><p>Developed by Joe Thorley, Colin Millar, Andy Teucher.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -218,6 +228,8 @@ as missing values.</p>
 
   
 
+
+  
 
   </body>
 </html>
