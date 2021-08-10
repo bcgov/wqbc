@@ -4,7 +4,7 @@
 # wqbc
 
 <!-- badges: start -->
-[![Lifecycle:Dormant](https://img.shields.io/badge/Lifecycle-Dormant-ff7f2a)]
+[![Lifecycle:Dormant](https://img.shields.io/badge/Lifecycle-Dormant-ff7f2a)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
 [![img](https://img.shields.io/badge/Lifecycle-Maturing-007EC6)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
 [![R build
 status](https://github.com/bcgov/wqbc/workflows/R-CMD-check/badge.svg)](https://github.com/bcgov/wqbc/actions)
