@@ -179,7 +179,7 @@ calc_limits_by_30day <- function(x, dates, messages) {
   x %<>% dplyr::filter((!is.na(.data$Term) & .data$Term == "Long") | .data$Code %in% ccodes)
 
   if (messages) {
-    dropped %<>% dplyr::group_by(.data$Variable) %>% dplyr::summarise_(n = length(.data$Variable))
+    dropped %<>% dplyr::group_by(.data$Variable) %>% dplyr::summarise(n = length(.data$Variable))
     for (i in seq_along(dropped$Variable)) {
       message(
         "Dropped ", sum(dropped$n[i]),
