@@ -91,10 +91,10 @@ test_trends <- function(data, breaks = NULL, FUN = "median", messages = getOptio
     Value = c(1, NA)))
 
   # keep only relevant columns
-  data %<>% dplyr::select(.data$Station, .data$Date, .data$Variable, .data$Value, .data$Units)
+  data %<>% dplyr::select("Station", "Date", "Variable", "Value", "Units")
 
   # nest for analysis
-  data %<>% tidyr::nest(Data = c(.data$Date, .data$Value))
+  data %<>% tidyr::nest(Data = c("Date", "Value"))
 
   # fit trends
   data %<>% dplyr::mutate(Trend = purrr::map(.data$Data, do_test_trends,
@@ -102,8 +102,8 @@ test_trends <- function(data, breaks = NULL, FUN = "median", messages = getOptio
   ))
 
   # unnest and return
-  data %<>% tidyr::unnest(.data$Trend)
-  data %<>% dplyr::select(-.data$Data)
+  data %<>% tidyr::unnest("Trend")
+  data %<>% dplyr::select(-"Data")
   tibble::as_tibble(data)
 }
 
@@ -173,10 +173,10 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
     Value = c(1, NA)))
 
   # keep only relevant columns
-  data %<>% dplyr::select(.data$Station, .data$Date, .data$Variable, .data$Value, .data$Units)
+  data %<>% dplyr::select("Station", "Date", "Variable", "Value", "Units")
 
   # nest for analysis
-  data %<>% tidyr::nest(Data = c(.data$Date, .data$Value))
+  data %<>% tidyr::nest(Data = c("Date", "Value"))
 
   # summarise
   data %<>% dplyr::mutate(Summary = purrr::map(.data$Data, do_summarise_for_trends,
@@ -184,8 +184,8 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
   ))
 
   # unnest
-  data %<>% tidyr::unnest(.data$Summary)
-  data %<>% dplyr::select(-.data$Data)
+  data %<>% tidyr::unnest("Summary")
+  data %<>% dplyr::select(-"Data")
 
   # gather and return
   gather_cols <- setdiff(names(data), c("Station", "Variable", "Units", "Year"))
