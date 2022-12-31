@@ -129,3 +129,5 @@ is_color <- function(x) {
   }
   vapply(x, fun, TRUE)
 }
+
+is_try_error <- function(x) inherits(x, "try-error")

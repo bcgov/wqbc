@@ -77,24 +77,40 @@ summarise_wqdata_by <- function(x, censored, na.rm, conf_level, quan_range) {
   if(any(x$Value == 0)) {
     return(summarise_zero_values(x, censored))
   }
+
   ml <- with(x, cenmle(Value, Censored, dist = "lognormal", conf.int = conf_level))
+  est <- try(mean(ml), silent = TRUE)
 
-  est <- mean(ml)
-  quantiles <- quantile(ml,  c((1-quan_range)/2, quan_range + (1-quan_range)/2))
-
-  tibble::tibble(
-    n = nrow(x),
-    ncen = sum(x$Censored),
-    min = min,
-    max = max,
-    mean = est[["mean"]],
-    median = median(ml),
-    lowerQ = quantiles[[1]],
-    upperQ = quantiles[[2]],
-    sd = sd(ml),
-    se = est[["se"]],
-    lowerCL = est[[3]],
-    upperCL = est[[4]])
+  if (!is_try_error(est)) {
+    quantiles <- quantile(ml,  c((1-quan_range)/2, quan_range + (1-quan_range)/2))
+    tibble::tibble(
+      n = nrow(x),
+      ncen = sum(x$Censored),
+      min = min,
+      max = max,
+      mean = est[["mean"]],
+      median = median(ml),
+      lowerQ = quantiles[[1]],
+      upperQ = quantiles[[2]],
+      sd = sd(ml),
+      se = est[["se"]],
+      lowerCL = est[[3]],
+      upperCL = est[[4]])
+  } else {
+    tibble::tibble(
+      n = nrow(x),
+      ncen = sum(x$Censored),
+      min = min,
+      max = max,
+      mean = NA_real_,
+      median = NA_real_,
+      lowerQ = NA_real_,
+      upperQ = NA_real_,
+      sd = NA_real_,
+      se = NA_real_,
+      lowerCL = NA_real_,
+      upperCL = NA_real_)
+  }
 }
 
 summarise_wqdata_norows <- function(x, by) {
