@@ -249,10 +249,11 @@ test_that("tidy_ec_data works", {
     "SITE_NO", "DateTime", "Variable", "Code",
     "Value", "Units", "DetectionLimit", "ResultLetter"
   )
-  tidied_ec <- tidy_ec_data(test_ec)
+  expect_warning(tidy_ec_data(test_ec))
+  tidied_ec <- suppressWarnings(tidy_ec_data(test_ec))
   expect_is(tidied_ec, "ec_tidy")
   expect_equal(names(tidied_ec), default_ec_names)
-  tidied_ec <- tidy_ec_data(test_ec, cols = "STATUS_STATUT")
+  tidied_ec <- suppressWarnings(tidy_ec_data(test_ec, cols = "STATUS_STATUT"))
   expect_equal(names(tidied_ec), c(default_ec_names, "STATUS_STATUT"))
 })
 
