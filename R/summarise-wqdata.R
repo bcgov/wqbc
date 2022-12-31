@@ -63,7 +63,6 @@ summarise_wqdata_by <- function(x, censored, na.rm, conf_level, quan_range) {
   if(any(is.na(x$Value))) {
     return(summarise_missing_values(x, censored))
   }
-
   # get min and max before censored values altered
   min <- min(x$Value)
   max <- max(x$Value)
@@ -77,7 +76,6 @@ summarise_wqdata_by <- function(x, censored, na.rm, conf_level, quan_range) {
   if(any(x$Value == 0)) {
     return(summarise_zero_values(x, censored))
   }
-
   ml <- with(x, cenmle(Value, Censored, dist = "lognormal", conf.int = conf_level))
   est <- try(mean(ml), silent = TRUE)
 
