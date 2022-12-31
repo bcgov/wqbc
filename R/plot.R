@@ -74,8 +74,7 @@ plot_timeseries_fun <- function(data, by, y0, size, messages) {
 #' plot_timeseries(ccme, by = "Variable")
 plot_timeseries <- function(data, by = NULL, y0 = TRUE, size = 1,
                             messages = getOption("wqbc.messages", default = TRUE)) {
-  chkor(chk_null(by), check_values(by, ""))
-
+  chk_null_or(by, vld = vld_character)
   chk_flag(y0)
   chk_flag(messages)
 

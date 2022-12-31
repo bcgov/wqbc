@@ -109,7 +109,7 @@ clean_wqdata <- function(x, by = NULL, max_cv = Inf,
                          FUN = mean) {
 
   chk_data(x)
-  chkor(chk_null(by), check_values(by, ""))
+  chk_null_or(by, vld = vld_character)
   chk_number(max_cv)
   check_values(messages, TRUE)
 

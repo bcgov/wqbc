@@ -33,7 +33,8 @@ wqbc_codes <- function(compress = FALSE) {
 #' @seealso \code{\link{expand_ems_codes}}
 #' @export
 compress_ems_codes <- function(x) {
-  chkor(chk_character(x), chk_s3_class(x, "factor"))
+
+  chkor_vld(vld_character(x), vld_s3_class(x, "factor"))
 
   x <- as.character(x)
   x <- gsub("[_]", "-", x)
@@ -52,7 +53,8 @@ compress_ems_codes <- function(x) {
 #' @seealso \code{\link{compress_ems_codes}}
 #' @export
 expand_ems_codes <- function(x) {
-  chkor(chk_character(x), chk_s3_class(x, "factor"))
+
+  chkor_vld(vld_character(x), vld_s3_class(x, "factor"))
 
   x <- as.character(x)
   x <- gsub("[-]", "_", x)

@@ -92,7 +92,7 @@ lookup_variables <- function(
     return(wqbc_codes()$Variable)
   }
 
-  chkor(chk_character(codes), chk_s3_class(codes, "factor"))
+  chkor_vld(vld_character(codes), vld_s3_class(codes, "factor"))
   codes <- as.character(codes)
   codes <- compress_ems_codes(codes)
   d <- dplyr::left_join(data.frame(Code = codes, stringsAsFactors = FALSE),
@@ -169,10 +169,10 @@ add_missing_limits <- function(x, term) {
 lookup_limits <- function(ph = NULL, hardness = NULL, chloride = NULL,
                           methyl_mercury =  NULL, term = "long",
                           use = "Freshwater Life") {
-  chkor(chk_null(ph), check_values(ph, 1))
-  chkor(chk_null(hardness), check_values(hardness, 1))
-  chkor(chk_null(chloride), check_values(chloride, 1))
-  chkor(chk_null(methyl_mercury), check_values(methyl_mercury, 1))
+  chk_null_or(ph, vld = vld_double)
+  chk_null_or(hardness, vld = vld_double)
+  chk_null_or(chloride, vld = vld_double)
+  chk_null_or(methyl_mercury, vld = vld_double)
   chk_string(term)
 
   term <- tolower(term)

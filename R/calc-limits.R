@@ -292,10 +292,10 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
                         messages = getOption("wqbc.messages", default = TRUE),
                         use = "Freshwater Life") {
   chk_data(x)
-  chkor(chk_null(by), check_values(by, ""))
+  chk_null_or(by, vld = vld_character)
   chk_string(term)
   chk_subset(term, c("long", "short", "long-daily"))
-  chkor(chk_null(dates), check_values(dates, Sys.Date()))
+  chk_null_or(dates, vld = vld_date)
   chk_flag(keep_limits)
   chk_flag(delete_outliers)
   chk_flag(estimate_variables)
