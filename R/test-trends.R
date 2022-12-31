@@ -189,5 +189,5 @@ summarise_for_trends <- function(data, breaks = NULL, FUN = "median",
 
   # gather and return
   gather_cols <- setdiff(names(data), c("Station", "Variable", "Units", "Year"))
-  data %>% tidyr::pivot_longer(gather_cols, names_to = "Month", values_to = "Value")
+  data %>% tidyr::pivot_longer(tidyr::all_of(gather_cols), names_to = "Month", values_to = "Value")
 }
