@@ -12,30 +12,25 @@
 
 plot_timeseries_by <- function(data, title = NULL, y0, size, messages) {
   if (!is.null(title)) chk_string(title)
-  # to deal with CMD variable note
-  Date <- rlang::sym("Date")
-  Value <- rlang::sym("Value")
-  Outlier <- rlang::sym("Outlier")
-  Detected <- rlang::sym("Detected")
 
   data %<>% dplyr::mutate(Detected = detected(.data$Value, .data$DetectionLimit))
 
   data$Detected %<>% factor(levels = c(TRUE, FALSE))
   data$Outlier %<>% factor(levels = c(TRUE, FALSE))
 
-  gp <- ggplot2::ggplot(data, ggplot2::aes(x = Date, y = Value))
+  gp <- ggplot2::ggplot(data, ggplot2::aes(x = .data$Date, y = .data$Value))
 
   if (!is.null(title)) gp <- gp + ggplot2::ggtitle(title)
 
   if (any(!is.na(data$Outlier))) {
     if (any(!is.na(data$Detected))) {
-      gp <- gp + ggplot2::geom_point(ggplot2::aes(color = Outlier, alpha = Detected), size = size)
+      gp <- gp + ggplot2::geom_point(ggplot2::aes(color = .data$Outlier, alpha = .data$Detected), size = size)
     } else {
-      gp <- gp + ggplot2::geom_point(ggplot2::aes(color = Outlier), size = size)
+      gp <- gp + ggplot2::geom_point(ggplot2::aes(color = .data$Outlier), size = size)
     }
   } else {
     if (any(!is.na(data$Detected))) {
-      gp <- gp + ggplot2::geom_point(ggplot2::aes(alpha = Detected), size = size)
+      gp <- gp + ggplot2::geom_point(ggplot2::aes(alpha = .data$Detected), size = size)
     } else {
       gp <- gp + ggplot2::geom_point(size = size)
     }
