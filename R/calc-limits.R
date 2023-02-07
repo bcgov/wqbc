@@ -132,7 +132,7 @@ abs_days_diff <- function(x, y) {
 
 assign_30day_periods <- function(x, dates) {
   if (!is.null(dates)) dates <- sort(unique(dates))
-  y <- unique(dplyr::select(x, .data$Date))
+  y <- unique(dplyr::select(x, "Date"))
   y <- dplyr::arrange(y, .data$Date)
   y$Period <- NA
 
@@ -224,9 +224,9 @@ calc_limits_by <- function(x, term, dates, limits, messages) {
   }
 
   if (!is.null(x$DetectionLimit)) {
-    x <- dplyr::select(x, .data$Date, .data$Variable, .data$Value, .data$UpperLimit, .data$DetectionLimit, .data$Units)
+    x <- dplyr::select(x, "Date", "Variable", "Value", "UpperLimit", "DetectionLimit", "Units")
   } else {
-    x <- dplyr::select(x, .data$Date, .data$Variable, .data$Value, .data$UpperLimit, .data$Units)
+    x <- dplyr::select(x, "Date", "Variable", "Value", "UpperLimit", "Units")
   }
   x
 }
@@ -292,10 +292,10 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
                         messages = getOption("wqbc.messages", default = TRUE),
                         use = "Freshwater Life") {
   chk_data(x)
-  chkor(chk_null(by), check_values(by, ""))
+  chk_null_or(by, vld = vld_character)
   chk_string(term)
   chk_subset(term, c("long", "short", "long-daily"))
-  chkor(chk_null(dates), check_values(dates, Sys.Date()))
+  chk_null_or(dates, vld = vld_date)
   chk_flag(keep_limits)
   chk_flag(delete_outliers)
   chk_flag(estimate_variables)

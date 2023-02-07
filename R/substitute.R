@@ -96,7 +96,8 @@ wqbc_substitute <- function(org, mod = org, sub, sub_mod = sub, messages) {
 #' @export
 substitute_units <- function(
   x, messages = getOption("wqbc.messages", default = TRUE)) {
-  chkor(chk_character(x), chk_s3_class(x, "factor"))
+
+  chkor_vld(vld_character(x), vld_s3_class(x, "factor"))
   check_values(messages, TRUE)
 
   x <- as.character(x)
@@ -140,7 +141,7 @@ substitute_units <- function(
 substitute_variables <- function(
   x, strict = TRUE, messages = getOption("wqbc.messages", default = TRUE)) {
 
-  chkor(chk_character(x), chk_s3_class(x, "factor"))
+  chkor_vld(vld_character(x), vld_s3_class(x, "factor"))
   check_values(strict, TRUE)
   check_values(messages, TRUE)
 

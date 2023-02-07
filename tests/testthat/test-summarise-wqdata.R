@@ -100,8 +100,26 @@ test_that("some missing values uncensored", {
 })
 
 test_that("na.rm = TRUE with only 1 non-missing value", {
-  x <- summarise_wqdata(data.frame(Variable = "1", Value = c(NA_real_, 1), stringsAsFactors = FALSE),
-                        na.rm = TRUE)
+  x <- suppressWarnings(
+    summarise_wqdata(
+      data.frame(
+        Variable = "1",
+        Value = c(NA_real_, 1),
+        stringsAsFactors = FALSE
+      ),
+      na.rm = TRUE
+    )
+  )
+  expect_warning(
+    summarise_wqdata(
+      data.frame(
+        Variable = "1",
+        Value = c(NA_real_, 1),
+        stringsAsFactors = FALSE
+      ),
+      na.rm = TRUE
+    )
+  )
   y <- tibble::tibble(Variable = "1", n = 1L, ncen = 0L, min = 1, max = 1,
     mean = NA_real_, median = NA_real_, lowerQ = NA_real_, upperQ = NA_real_,
     sd = NA_real_, se = NA_real_, lowerCL = NA_real_, upperCL = NA_real_)
@@ -109,13 +127,28 @@ test_that("na.rm = TRUE with only 1 non-missing value", {
 })
 
 test_that("multiple variables each with 1 value", {
-  x <- summarise_wqdata(data.frame(Variable = c("1", "three"), Value = c(1, 3), stringsAsFactors = FALSE))
-  y <- tibble::tibble(Variable = c("1", "three"), n = c(1L, 1L), ncen = c(0L,
-0L), min = c(1, 3), max = c(1, 3), mean = c(NA_real_, NA_real_
-), median = c(NA_real_, NA_real_), lowerQ = c(NA_real_, NA_real_
-), upperQ = c(NA_real_, NA_real_), sd = c(NA_real_, NA_real_),
-    se = c(NA_real_, NA_real_), lowerCL = c(NA_real_, NA_real_
-    ), upperCL = c(NA_real_, NA_real_))
+  expect_warning(
+    summarise_wqdata(
+      data.frame(
+        Variable = c("1", "three"), Value = c(1, 3), stringsAsFactors = FALSE
+      )
+    )
+  )
+
+  x <- suppressWarnings(
+    summarise_wqdata(
+      data.frame(
+        Variable = c("1", "three"), Value = c(1, 3), stringsAsFactors = FALSE
+      )
+    )
+  )
+
+  y <- tibble::tibble(
+    Variable = c("1", "three"), n = c(1L, 1L), ncen = c(0L, 0L), min = c(1, 3),
+    max = c(1, 3), mean = c(NA_real_, NA_real_), median = c(NA_real_, NA_real_),
+    lowerQ = c(NA_real_, NA_real_), upperQ = c(NA_real_, NA_real_),
+    sd = c(NA_real_, NA_real_), se = c(NA_real_, NA_real_),
+    lowerCL = c(NA_real_, NA_real_), upperCL = c(NA_real_, NA_real_))
 
   expect_equal(as.data.frame(x), as.data.frame(y))
 })

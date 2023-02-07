@@ -66,7 +66,7 @@ estimate_variable_values_by <- function(x, messages) {
     }
 
     # remove working columns
-    x %<>% dplyr::select(-.data$yday, -.data$day)
+    x %<>% dplyr::select(-"yday", -"day")
   }
   x
 }
@@ -74,7 +74,7 @@ estimate_variable_values_by <- function(x, messages) {
 estimate_variable_values <- function(data, by = NULL, variables = estimated_variables(),
                                      messages = getOption("wqbc.messages", default = TRUE)) {
   check_data(data, values = list(Date = Sys.Date(), Variable = "", Value = c(1, NA), Units = ""))
-  chkor(chk_null(by), check_values(by, ""))
+  chk_null_or(by, vld = vld_character)
   check_values(variables, "")
   if (!all(variables %in% estimated_variables())) error("Unrecognized variables")
   chk_flag(messages)

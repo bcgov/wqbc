@@ -92,7 +92,7 @@ lookup_variables <- function(
     return(wqbc_codes()$Variable)
   }
 
-  chkor(chk_character(codes), chk_s3_class(codes, "factor"))
+  chkor_vld(vld_character(codes), vld_s3_class(codes, "factor"))
   codes <- as.character(codes)
   codes <- compress_ems_codes(codes)
   d <- dplyr::left_join(data.frame(Code = codes, stringsAsFactors = FALSE),
@@ -124,11 +124,11 @@ setup_codes <- function() {
   codes <- wqbc_codes()
   codes$Date <- as.Date("2000-01-01")
   codes$Value <- 1
-  dplyr::select(codes, .data$Date, .data$Variable, .data$Value, .data$Units)
+  dplyr::select(codes, "Date", "Variable", "Value", "Units")
 }
 
 tidyup_limits <- function(x) {
-  x <- dplyr::select(x, .data$Variable, .data$UpperLimit, .data$Units)
+  x <- dplyr::select(x, "Variable", "UpperLimit", "Units")
   x$Variable <- factor(x$Variable, levels = lookup_variables())
   x$Units <- factor(x$Units, levels = lookup_units())
   x <- dplyr::arrange(x, .data$Variable)
@@ -139,7 +139,7 @@ add_missing_limits <- function(x, term) {
   limits <- wqbc_limits()
   limits <- dplyr::filter(limits, tolower(.data$Term) == tolower(term))
   limits <- dplyr::filter(limits, !.data$Variable %in% x$Variable)
-  limits <- dplyr::select(limits, .data$Variable, .data$Units)
+  limits <- dplyr::select(limits, "Variable", "Units")
   if (!nrow(limits)) {
     return(x)
   }
@@ -169,10 +169,10 @@ add_missing_limits <- function(x, term) {
 lookup_limits <- function(ph = NULL, hardness = NULL, chloride = NULL,
                           methyl_mercury =  NULL, term = "long",
                           use = "Freshwater Life") {
-  chkor(chk_null(ph), check_values(ph, 1))
-  chkor(chk_null(hardness), check_values(hardness, 1))
-  chkor(chk_null(chloride), check_values(chloride, 1))
-  chkor(chk_null(methyl_mercury), check_values(methyl_mercury, 1))
+  chk_null_or(ph, vld = vld_double)
+  chk_null_or(hardness, vld = vld_double)
+  chk_null_or(chloride, vld = vld_double)
+  chk_null_or(methyl_mercury, vld = vld_double)
   chk_string(term)
 
   term <- tolower(term)

@@ -18,19 +18,19 @@ plot_timeseries_by <- function(data, title = NULL, y0, size, messages) {
   data$Detected %<>% factor(levels = c(TRUE, FALSE))
   data$Outlier %<>% factor(levels = c(TRUE, FALSE))
 
-  gp <- ggplot2::ggplot(data, ggplot2::aes_string(x = "Date", y = "Value"))
+  gp <- ggplot2::ggplot(data, ggplot2::aes(x = .data$Date, y = .data$Value))
 
   if (!is.null(title)) gp <- gp + ggplot2::ggtitle(title)
 
   if (any(!is.na(data$Outlier))) {
     if (any(!is.na(data$Detected))) {
-      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = "Outlier", alpha = "Detected"), size = size)
+      gp <- gp + ggplot2::geom_point(ggplot2::aes(color = .data$Outlier, alpha = .data$Detected), size = size)
     } else {
-      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(color = "Outlier"), size = size)
+      gp <- gp + ggplot2::geom_point(ggplot2::aes(color = .data$Outlier), size = size)
     }
   } else {
     if (any(!is.na(data$Detected))) {
-      gp <- gp + ggplot2::geom_point(ggplot2::aes_string(alpha = "Detected"), size = size)
+      gp <- gp + ggplot2::geom_point(ggplot2::aes(alpha = .data$Detected), size = size)
     } else {
       gp <- gp + ggplot2::geom_point(size = size)
     }
@@ -69,8 +69,7 @@ plot_timeseries_fun <- function(data, by, y0, size, messages) {
 #' plot_timeseries(ccme, by = "Variable")
 plot_timeseries <- function(data, by = NULL, y0 = TRUE, size = 1,
                             messages = getOption("wqbc.messages", default = TRUE)) {
-  chkor(chk_null(by), check_values(by, ""))
-
+  chk_null_or(by, vld = vld_character)
   chk_flag(y0)
   chk_flag(messages)
 
