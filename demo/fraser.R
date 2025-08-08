@@ -1,4 +1,4 @@
-# Copyright 2015 Province of British Columbia
+# Copyright 2025 Province of British Columbia
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,6 +11,7 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 library(wqbc)
+library(lubridate)
 
 options(wqbc.messages = TRUE)
 
@@ -23,5 +24,5 @@ fraser$Year <- lubridate::year(fraser$Date)
 data(fraser)
 
 fraser <- standardize_wqdata(fraser, strict = FALSE)
-fraser <- clean_wqdata(fraser, by = "Year", max_cv = Inf)
-fraser <- calc_limits(fraser, by = "Year", term = "short")
+fraser$Year <- year(fraser$Date)
+fraser <- calc_limits(fraser, by = "Year", term = "short", pH_source = "field")

@@ -1,4 +1,4 @@
-# Copyright 2015 Province of British Columbia
+# Copyright 2025 Province of British Columbia
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,5 +30,5 @@ print(dummy)
 dummy <- clean_wqdata(dummy)
 print(dummy)
 
-dummy <- calc_limits(dummy, term = "short")
+dummy <- calc_limits(dummy, term = "short", pH_source = "both")
 print(dummy)

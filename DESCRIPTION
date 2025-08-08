@@ -14,7 +14,9 @@ Authors@R: c(
     person("Robyn", "Irvine", role = c("ctb", "ctr")),
     person("Province of British Columbia", role = "cph"),
     person("Ayla", "Pearson", , "ayla@poissonconsulting.ca", role = "ctb",
-           comment = c(ORCID = "0000-0001-7388-1222"))
+           comment = c(ORCID = "0000-0001-7388-1222")),
+    person("Zhuoyan", "Song", , "Zhuoyan.Song@gov.bc.ca", role = "ctb",
+           comment = c(ORCID = "0000-0002-6056-8568"))       
   )
 Description: Tidies water quality data and calculates water quality thresholds 
     for British Columbia.
@@ -22,40 +24,35 @@ URL: https://github.com/bcgov/wqbc
 BugReports: https://github.com/bcgov/wqbc/issues
 License: Apache License (== 2.0) | file LICENSE
 LazyData: true
-Depends:
+Depends: 
     R (>= 3.4)
-Imports:
+Imports: 
     chk,
-    plyr,
     dplyr,
-    rlang,
-    zyp,
-    magrittr,
-    NADA,
-    purrr,
+    ggplot2,
     grDevices,
-    stringr,
+    lifecycle,
+    lubridate,
+    magrittr,
+    mgcv,
+    NADA,
+    plyr,
+    purrr,
+    rlang,
     stats,
+    stringr,
     tibble,
     tidyr,
-    mgcv,
-    lubridate,
-    lifecycle
-Suggests:
-    testthat,
+    zyp
+Suggests: 
     knitr,
-    ggplot2,
     rmarkdown,
-    xtable,
-    rems (>= 0.5.1),
-    canwqdata,
-    Kendall,
-    covr
-Remotes:
+    testthat
+Remotes: 
     bcgov/rems,
     bcgov/canwqdata
 VignetteBuilder: knitr
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
 RdMacros: lifecycle

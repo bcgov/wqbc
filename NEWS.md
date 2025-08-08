@@ -1,3 +1,9 @@
+# wqbc 0.3.1.9003
+
+## Major changes
+- An option for specifying the source of pH values: 'lab', 'field', or 'both' for calculating guidelines 
+  has been added to `calc_limits()` (#95).
+
 # wqbc 0.3.1.9000
 
 ## Major changes

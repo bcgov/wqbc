@@ -1,4 +1,4 @@
-# Copyright 2015 Province of British Columbia
+# Copyright 2025 Province of British Columbia
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -270,9 +270,9 @@ calc_limits_by <- function(x, term, dates, limits, messages) {
 #'
 #'
 #' @param x A data.frame of water quality readings to calculate the limits for.
-#' @param by A optional character vector of the columns in x to calculate the limits by.
+#' @param by An optional character vector of the columns in x to calculate the limits by.
 #' @param term A string indicating whether to calculate the "long" or "short"-term or "long-daily" limits.
-#' @param dates A optional date vector indicating the start of 30 day long-term periods.
+#' @param dates An optional date vector indicating the start of 30 day long-term periods.
 #' @param keep_limits A flag indicating whether to keep values with user supplied upper or lower limits.
 #' @param delete_outliers A flag indicating whether to delete outliers or merely flag them.
 #' @param estimate_variables A flag indicating whether to estimate total hardness, total chloride and pH for all dates.
@@ -280,6 +280,7 @@ calc_limits_by <- function(x, term, dates, limits, messages) {
 #' @param limits A data frame of the limits table to use.
 #' @param use A string indicating the Use.
 #' @param messages A flag indicating whether to print messages.
+#' @param pH_source An optional parameter specifying the source of pH values: 'lab', 'field', or 'both', for calculating limits.
 #' @examples
 #' \dontrun{
 #' demo(fraser)
@@ -290,7 +291,7 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
                         delete_outliers = FALSE, estimate_variables = FALSE,
                         clean = TRUE, limits = wqbc::limits,
                         messages = getOption("wqbc.messages", default = TRUE),
-                        use = "Freshwater Life") {
+                        use = "Freshwater Life", pH_source = "both") {
   chk_data(x)
   chk_null_or(by, vld = vld_character)
   chk_string(term)
@@ -331,6 +332,13 @@ calc_limits <- function(x, by = NULL, term = "long", dates = NULL, keep_limits =
   if (clean) {
     x %<>% clean_wqdata(by = by, delete_outliers = delete_outliers, messages = messages)
   }
+
+  pH_source <- match.arg(pH_source, choices = c("lab", "field", "both"))
+
+  x %<>% dplyr::filter(
+    !(.data$Variable == "PH" & pH_source == "field") &
+      !(.data$Variable == "FIELD PH" & pH_source == "lab")
+  )
 
   x <- standardize_wqdata(x, messages = messages)
 

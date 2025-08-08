@@ -32,6 +32,8 @@ Other contributors:
   \item Stephanie Hazlitt \email{stephanie.hazlitt@gov.bc.ca} [contributor]
   \item Robyn Irvine [contributor, contractor]
   \item Province of British Columbia [copyright holder]
+  \item Ayla Pearson \email{ayla@poissonconsulting.ca} (\href{https://orcid.org/0000-0001-7388-1222}{ORCID}) [contributor]
+  \item Zhuoyan Song \email{Zhuoyan.Song@gov.bc.ca} (\href{https://orcid.org/0000-0002-6056-8568}{ORCID}) [contributor]
 }
 
 }

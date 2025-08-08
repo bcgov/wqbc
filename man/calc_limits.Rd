@@ -15,17 +15,18 @@ calc_limits(
   clean = TRUE,
   limits = wqbc::limits,
   messages = getOption("wqbc.messages", default = TRUE),
-  use = "Freshwater Life"
+  use = "Freshwater Life",
+  pH_source = "both"
 )
 }
 \arguments{
 \item{x}{A data.frame of water quality readings to calculate the limits for.}
 
-\item{by}{A optional character vector of the columns in x to calculate the limits by.}
+\item{by}{An optional character vector of the columns in x to calculate the limits by.}
 
 \item{term}{A string indicating whether to calculate the "long" or "short"-term or "long-daily" limits.}
 
-\item{dates}{A optional date vector indicating the start of 30 day long-term periods.}
+\item{dates}{An optional date vector indicating the start of 30 day long-term periods.}
 
 \item{keep_limits}{A flag indicating whether to keep values with user supplied upper or lower limits.}
 
@@ -40,6 +41,8 @@ calc_limits(
 \item{messages}{A flag indicating whether to print messages.}
 
 \item{use}{A string indicating the Use.}
+
+\item{pH_source}{An optional parameter specifying the source of pH values: 'lab', 'field', or 'both', for calculating limits.}
 }
 \description{
 Calculates the approved "short" or "long"-term or the "long-daily"
