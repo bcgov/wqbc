@@ -54,11 +54,12 @@ tidy_ems_data <- function(x, cols = character(0),
   structure(x, class = c("ems_tidy", "wq", class(x)))
 }
 
+
+
 #' Tidy Environment Canada Data
 #'
 #' Tidies water quality data downloaded from Environment Canada website. It
-#' is recommended to obtain the data via [canwqdata::wq_site_data()] or
-#' [canwqdata::wq_basin_data()]
+#' is recommended to obtain the data via \link[canwqdata]{wq_site_data()} or \link[canwqdata]{wq_basin_data()}.
 #' It retains and renames required columns and sets the timezone to PST.
 #'
 #' @param cols additional columns from the EMS data to retain specified as a

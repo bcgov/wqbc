@@ -37,7 +37,6 @@ A tibble of the tidied rems data.
 }
 \description{
 Tidies water quality data downloaded from Environment Canada website. It
-is recommended to obtain the data via \code{\link[canwqdata:wq_site_data]{canwqdata::wq_site_data()}} or
-\code{\link[canwqdata:wq_basin_data]{canwqdata::wq_basin_data()}}
+is recommended to obtain the data via \link[canwqdata]{wq_site_data()} or \link[canwqdata]{wq_basin_data()}.
 It retains and renames required columns and sets the timezone to PST.
 }
