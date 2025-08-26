@@ -6,7 +6,7 @@ Authors@R: c(
     person("Joe", "Thorley", , "joe@poissonconsulting.ca", role = c("aut", "ctr"),
            comment = c(ORCID = "0000-0002-7683-4592")),
     person("Colin", "Millar", , "colinpmillar@gmail.com", role = c("aut", "ctr")),
-    person("Andy", "Teucher", , "andy.teucher@gov.bc.ca", role = c("aut", "cre")),
+    person("Andy", "Teucher", , "andy.teucher@gov.bc.ca", role = c("aut")),
     person("Sebastian", "Dalgarno", , "seb@poissonconsulting.ca", role = "ctb",
            comment = c(ORCID = "0000-0002-3658-4517")),
     person("Wendy", "Wang", role = c("ctb", "ctr")),
@@ -14,7 +14,8 @@ Authors@R: c(
     person("Robyn", "Irvine", role = c("ctb", "ctr")),
     person("Province of British Columbia", role = "cph"),
     person("Ayla", "Pearson", , "ayla@poissonconsulting.ca", role = "ctb",
-           comment = c(ORCID = "0000-0001-7388-1222"))
+           comment = c(ORCID = "0000-0001-7388-1222")),
+    person("Karly", "Harker", , "karly.harker@gov.bc.ca", role = c("cre", "ctb"))
   )
 Description: Tidies water quality data and calculates water quality thresholds 
     for British Columbia.
@@ -48,14 +49,13 @@ Suggests:
     rmarkdown,
     xtable,
     rems (>= 0.5.1),
-    canwqdata,
     Kendall,
     covr
 Remotes:
     bcgov/rems,
     bcgov/canwqdata
 VignetteBuilder: knitr
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
 RdMacros: lifecycle

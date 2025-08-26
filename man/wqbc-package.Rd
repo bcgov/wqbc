@@ -17,12 +17,13 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Andy Teucher \email{andy.teucher@gov.bc.ca}
+\strong{Maintainer}: Karly Harker \email{karly.harker@gov.bc.ca} [contributor]
 
 Authors:
 \itemize{
   \item Joe Thorley \email{joe@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-7683-4592}{ORCID}) [contractor]
   \item Colin Millar \email{colinpmillar@gmail.com} [contractor]
+  \item Andy Teucher \email{andy.teucher@gov.bc.ca}
 }
 
 Other contributors:
@@ -32,6 +33,7 @@ Other contributors:
   \item Stephanie Hazlitt \email{stephanie.hazlitt@gov.bc.ca} [contributor]
   \item Robyn Irvine [contributor, contractor]
   \item Province of British Columbia [copyright holder]
+  \item Ayla Pearson \email{ayla@poissonconsulting.ca} (\href{https://orcid.org/0000-0001-7388-1222}{ORCID}) [contributor]
 }
 
 }
