@@ -53,7 +53,8 @@ Suggests:
     covr
 Remotes:
     bcgov/rems,
-    bcgov/canwqdata
+    bcgov/canwqdata,
+    SwampThingPaul/NADA
 VignetteBuilder: knitr
 RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
