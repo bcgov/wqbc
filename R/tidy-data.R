@@ -20,6 +20,7 @@
 #' * "UNIT" (Renamed to "Units")
 #' * "METHOD_DETECTION_LIMIT" (Renamed to "DetectionLimit")
 #' * "RESULT_LETTER" (Renamed to "ResultLetter")
+#' * "METHOD_DETECTION_UNIT" (Renamed to "DetectionUnit")
 #' * "SAMPLE_STATE"
 #' * "SAMPLE_CLASS"
 #' * "SAMPLE_DESCRIPTOR"
@@ -42,6 +43,7 @@ tidy_ems_data <- function(x, cols = character(0),
     "Units" = "UNIT",
     "DetectionLimit" = "METHOD_DETECTION_LIMIT",
     "ResultLetter" = "RESULT_LETTER",
+    "DetectionUnit" = "MDL_UNIT",
     "SAMPLE_STATE",
     "SAMPLE_CLASS",
     "SAMPLE_DESCRIPTOR",
